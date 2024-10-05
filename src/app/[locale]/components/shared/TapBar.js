@@ -8,13 +8,10 @@ import AssetsIcon from "../ui/AssetsIcon.js";
 import { useThemeStore } from "../../../../store";
 
 export const Tapbar = () => {
-  // Достаем значение темы из состояния
   const { theme } = useThemeStore();
 
-  // Локальное состояние для цвета
   const [color, setColor] = useState(theme === "dark" ? "#fff" : "#000");
 
-  // Используем useEffect для отслеживания изменений темы и обновления цвета
   useEffect(() => {
     setColor(theme === "dark" ? "#fff" : "#000");
   }, [theme]);

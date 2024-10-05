@@ -20,4 +20,3 @@ export { Profile_nav } from "./Profile_nav";
 export { Profile_news } from "./Profile_news";
 export { Profile_payments } from "./Profile_payments";
 export { Profile_qr } from "./Profile_qr";
-export { Tapbar } from "./Tapbar";

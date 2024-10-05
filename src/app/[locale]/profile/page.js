@@ -11,12 +11,11 @@ import {
   Profile_payments,
   Profile_qr,
   Profile_balance,
-  Tapbar,
   Header,
 } from "../components/shared";
 import { useThemeStore } from "../../../store";
-
-const Profile = () => {
+import { Tapbar } from "../components/shared/Tapbar";
+export default function Profile()  {
   const [verify, setVerify] = useState(false); // Исправлена опечатка
   const { initializeTheme } = useThemeStore();
 
@@ -27,27 +26,26 @@ const Profile = () => {
     <section className="profile">
       <Header auth={true} />
       <Profile_nav />
-      <Profile_info verify={verify} />
-
-      <div className="profile__grid gap-[190px] max-xl:grid max-xl:grid-cols-1">
+      <Profile_info />
+      <div className="profile__grid gap-[24px] max-xl:grid max-xl:grid-cols-1">
         <div className="">
+          <hr />
           {verify ? (
             <Profile_balance />
           ) : (
             <Profile_verification setVerify={setVerify} /> // Исправлено имя функции
           )}
-          <Profile_industry />
-        </div>
-        <div className="flex flex-col items-stretch">
           <Profile_payments />
+        </div>
+        <div className="">
+          <Profile_industry />
           <Profile_news />
           <Profile_qr />
         </div>
       </div>
-
       <Tapbar />
     </section>
   );
 };
 
-export default Profile;
+
