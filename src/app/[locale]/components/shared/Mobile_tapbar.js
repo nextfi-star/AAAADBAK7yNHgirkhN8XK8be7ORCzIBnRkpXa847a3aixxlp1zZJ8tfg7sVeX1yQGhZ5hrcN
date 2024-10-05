@@ -57,6 +57,7 @@ export const Mobile_tapbar = () => {
             priority
             quality={100}
           />
+          <span>qe</span>
           <span className="text-[12px] mobile__tapbar_text">{item.title}</span>
         </div>
       ))}
