@@ -11,6 +11,7 @@ import {
   Profile_payments,
   Profile_qr,
   Profile_balance,
+  Header,
 } from "../components/shared";
 import { Mobile_tapbar } from "../components/shared/Mobile_tapbar";
 import { useThemeStore } from '../../../store'
@@ -24,6 +25,7 @@ const Page = () => {
   }, [initializeTheme]);
   return (
     <section className="profile">
+        <Header hasAuth={false}/>
       <Profile_nav />
       <Profile_info />
       <div className="profile__divided  ">
