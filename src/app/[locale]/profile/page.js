@@ -11,11 +11,10 @@ import {
   Profile_payments,
   Profile_qr,
   Profile_balance,
-  Tapbar,
   Header,
 } from "../components/shared";
 import { useThemeStore } from "../../../store";
-
+import {Tapbar} from "../components/shared/Tapbar";
 const Profile = () => {
   const [verify, setVerify] = useState(false); // Исправлена опечатка
   const { initializeTheme } = useThemeStore();
