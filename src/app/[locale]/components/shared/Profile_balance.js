@@ -40,7 +40,7 @@ export const Profile_balance = () => {
   }
 
   return (
-    <section className="mt-[70px]">
+    <section className="">
       <div className="w-[212px] flex sm:hidden  m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200">
         <button
           className={`w-[104px] ${
@@ -60,22 +60,22 @@ export const Profile_balance = () => {
 
       <div className="profile__balance ">
         <div className="profile__balance_sides">
-          <div className="w-[364px] h-[156px] sm:hidden m-auto shadow-lg bg-white gap-[10px] rounded-xl p-4 flex flex-col">
+          <div className="w-[364px] h-[156px] sm:hidden m-auto shadow-lg bg-[#000] border border-[#3A3939] border-solid gap-[10px] rounded-xl p-4 flex flex-col">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <StarsMobile width="24px" />
                 <h4 className="text-blue-600 text-[20px] font-semibold">Balance</h4>
               </div>
               <div>
-                <select className="bg-transparent  text-[16px] font-medium">
-                  <option value="USDT">USDT</option>
-                  <option value="NextFi">NextFi</option>
+                <select className="bg-transparent text-[16px] font-medium">
+                  <option className='text-[12px] max-w-[1px] text-black' value="USDT">USDT</option>
+                  <option className='text-[12px] max-w-[1px] text-black' value="NextFi">NextFi</option>
                 </select>
               </div>
             </div>
 
             <div className="flex items-center gap-[8px]">
-              <p className="text-black text-[24px] font-bold">$000,000</p>
+              <p className="text-white text-[24px] font-bold">$000,000</p>
               <Eye />
             </div>
 

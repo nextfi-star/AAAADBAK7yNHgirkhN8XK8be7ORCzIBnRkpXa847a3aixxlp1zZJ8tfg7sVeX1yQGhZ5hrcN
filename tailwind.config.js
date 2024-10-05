@@ -11,11 +11,6 @@ module.exports = {
   },
   plugins: [require("daisyui")],
   theme: {
-    colors: {
-      bgwhiteLight: "#EFEFEF",
-      bgdark: "#3A3939",
-      blue: "#205BC9",
-    },
     extend: {
       rotate: {
         270: "270deg",

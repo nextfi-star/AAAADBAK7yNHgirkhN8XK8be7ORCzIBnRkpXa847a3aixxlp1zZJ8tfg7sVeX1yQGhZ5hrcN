@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Profile_industry,
@@ -11,38 +11,43 @@ import {
   Profile_payments,
   Profile_qr,
   Profile_balance,
+  Tapbar,
   Header,
 } from "../components/shared";
-import { Mobile_tapbar } from "../components/shared/Mobile_tapbar";
-import { useThemeStore } from '../../../store'
+import { useThemeStore } from "../../../store";
 
-const Page = () => {
-  const {initializeTheme} = useThemeStore();
-  const [verify, setVirify] = useState(false);
-  console.log(verify);
+const Profile = () => {
+  const [verify, setVerify] = useState(false); // Исправлена опечатка
+  const { initializeTheme } = useThemeStore();
+
   useEffect(() => {
-    initializeTheme(); 
+    initializeTheme();
   }, [initializeTheme]);
   return (
     <section className="profile">
-        <Header hasAuth={false}/>
+      <Header auth={true} />
       <Profile_nav />
-      <Profile_info />
-      <div className="profile__divided  ">
-        <div className="flex items-center ">
-          {verify ? <Profile_balance /> : <Profile_verification setVirify={setVirify} />}
-          {/* <Profile_balance /> */}
+      <Profile_info verify={verify} />
+
+      <div className="profile__grid gap-[190px] max-xl:grid max-xl:grid-cols-1">
+        <div className="">
+          {verify ? (
+            <Profile_balance />
+          ) : (
+            <Profile_verification setVerify={setVerify} /> // Исправлено имя функции
+          )}
           <Profile_industry />
         </div>
-        <aside>
+        <div className="flex flex-col items-stretch">
           <Profile_payments />
           <Profile_news />
           <Profile_qr />
-        </aside>
+        </div>
       </div>
-      <Mobile_tapbar />
+
+      <Tapbar />
     </section>
   );
 };
 
-export default Page;
+export default Profile;

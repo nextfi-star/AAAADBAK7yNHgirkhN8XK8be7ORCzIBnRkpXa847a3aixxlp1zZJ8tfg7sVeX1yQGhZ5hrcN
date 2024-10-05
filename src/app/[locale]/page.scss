@@ -254,11 +254,12 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
     @media (max-width: 1830px) {
       padding: 2.083vw 30px;
     }
     @media (max-width: 992px) {
-      padding: 12px 32px;
+      padding: 13px 32px;
     }
 
     .header__logo {
@@ -2705,36 +2706,32 @@ header {
 // profile
 .profile {
   max-width: 1656px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding-bottom: 2.5rem;
+  padding: 0 1rem;
 
-  .big__container {
-    position: relative;
-
-    .big__icon {
-      padding: 1rem;
-      border-radius: 50%;
-      background: var(--blue);
+  //grid
+  @media (max-width: 430px) {
+    margin-top: 70px;
+  }
+  @media (min-width: 1280px) {
+    .profile__grid {
+      display: grid;
+      grid-template-columns: 1fr 0.5fr;
     }
   }
 
-  .mobile__tapbar {
-    background: var(--mobile-tapbarbg);
-    display: none;
-    @media (max-width: 430px) {
-      display: flex;
-    }
-    &_text {
-      color: var(--black-light);
-    }
+  header {
+    box-shadow: 0 0 20px #1e50a668;
   }
 
   //nav
   .profile__nav {
-    margin-top: 200px;
+    padding: 0 20px;
+    margin-top: 150px;
     margin-bottom: 30px;
 
     .profile__nav-navbar {
@@ -2841,7 +2838,9 @@ header {
     @media (max-width: 1280px) {
       display: flex;
       padding: 40px 80px;
-      max-width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      margin-bottom: 40px;
 
       &-title {
         margin-bottom: 30px;
@@ -2869,7 +2868,11 @@ header {
       padding: 30px;
       max-width: 100%;
       background-color: transparent;
+      border-top: 1px solid var(--gray-color);
+      border-bottom: 1px solid var(--gray-color);
       box-shadow: none;
+      border-radius: 0%;
+      margin-top: 60px;
 
       &-title {
         margin-bottom: 30px;
@@ -2919,7 +2922,6 @@ header {
   .profile_blocks_border {
     border-radius: 30px;
     padding: 40px;
-    display: none; //! Пока что выключил
   }
 
   //info
@@ -3022,11 +3024,14 @@ header {
     color: var(--button-text);
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
-  }
 
-  .profile__info__block___right__verification_block__button:hover {
-    background-color: var(--button-bg-hover);
-    color: var(--button-text-hover);
+    &.passed {
+      border: none;
+    }
+
+    &:hover {
+      color: var(--button-text-hover);
+    }
   }
 
   @media (max-width: 640px) {
@@ -3181,17 +3186,17 @@ header {
   }
 
   .profile__industy {
-    background-color: var(--getstarted-item);
     display: flex;
     height: 416px;
     box-shadow: var(--shadow-split);
     max-width: 536px;
     flex-direction: column;
-    // gap: 30px;
     margin-bottom: 40px;
     align-items: center;
+
     .profile__industry__main_text {
-      text-align: center;
+      width: 100%;
+      text-align: left;
       font-family: inherit;
       font-size: 32px;
       line-height: 40px;
@@ -3199,18 +3204,19 @@ header {
     }
 
     .profile__industry__block {
-      background-color: var(---getstarted-item);
-
       display: flex;
+      background-color: var(--profile-block);
       flex-direction: column;
       gap: 20px;
       align-items: center;
+      margin-top: 32px;
+      margin-bottom: 24px;
     }
 
     .profile__industry__block__image {
       display: flex;
       gap: 10px;
-      align-items: first baseline;
+      align-items: center;
       .profile__industry__image_text {
         font-family: inherit;
         font-size: 18px;
@@ -3237,6 +3243,7 @@ header {
       font-weight: 500;
       background-color: var(--blue);
       padding: 10px 60px;
+      color: var(--white);
       border-radius: 50px;
       max-width: 300px;
       cursor: pointer;
@@ -3246,17 +3253,25 @@ header {
     .profile__industry__button:hover {
       background-color: var(--blue-light);
     }
+
+    @media (max-width: 640px) {
+      margin: 0;
+      border-top: 1px solid var(--gray-color);
+      border-radius: 0%;
+      height: 264px;
+    }
   }
 
   @media (max-width: 1280px) {
     .profile__industy {
-      gap: 40px;
+      gap: 20px;
+      max-width: 800px;
     }
   }
 
   @media (max-width: 640px) {
     .profile__industy {
-      gap: 40px;
+      gap: 20px;
       background-color: transparent;
       box-shadow: none;
     }
@@ -3345,6 +3360,11 @@ header {
 
     @media (max-width: 1024px) {
       padding-right: 50px;
+    }
+    @media (max-width: 1280px) {
+      margin: 0 auto;
+      margin-bottom: 40px;
+      max-width: 1000px;
     }
 
     @media (max-width: 640px) {
@@ -3444,9 +3464,14 @@ header {
         line-height: 28px;
         font-weight: 500;
 
+      
         @media (max-width: 640px) {
           padding: 10px 20px;
           font-size: 16px;
+        }
+        @media (max-width: 430px) {
+          padding: 10px 17px;
+          font-size: 14px;
         }
       }
     }
@@ -3466,14 +3491,9 @@ header {
     }
   }
 
-  // .profile__divided {
-  //   display: grid;
-  //   grid-template-columns: 1fr 0.5fr;
-  //   gap: 24px;
-
-  //   @media (max-width: 1200px) {
-  //     grid-template-columns: 1fr;
-  //     margin: 20px;
+  // @media (max-width: 1280px) {
+  //   .profile-qr {
+  //     max-width: 800px;
   //   }
   // }
 
@@ -3538,6 +3558,10 @@ header {
         font-size: 20px;
         line-height: 28px;
         font-weight: 500;
+
+        @media (max-width: 640px) {
+          display: none;
+        }
       }
       .profile__industry__additional_text {
         font-family: inherit;
@@ -3569,4 +3593,23 @@ header {
 .react-datepicker__day--selected {
   background-color: #ff4757; /* Цвет выделенного дня */
   color: white; /* Цвет текста выделенного дня */
+}
+
+.Tapbar {
+  // background-color: #3a3939;
+  padding: 10px;
+  // box-shadow: 0 0 30px 0 #0d28530f;
+}
+
+.Tapbar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: black;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 400;
+  text-align: center;
 }

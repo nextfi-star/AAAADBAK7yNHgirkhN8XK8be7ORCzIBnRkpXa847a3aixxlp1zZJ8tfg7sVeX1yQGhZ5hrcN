@@ -11,14 +11,14 @@ export const Profile_qr = () => {
         <h2 className="text-[18px]">
           Download app <br /> and trade on the go
         </h2>
-        <div className="flex justify-center items-center gap-[12px] w-full">
-          <div className="flex justify-center shadow bg-[#3c3c3c66] w-[88px] h-[88px] rounded-[15px]">
+        <div className="flex justify-center items-center  gap-[12px] w-full">
+          <div className="flex justify-center shadow bg-[#3c3c3c66] w-[70px] h-[70px] rounded-[15px]">
             <GooglePlay />
           </div>
-          <div className="flex justify-center shadow bg-[#3c3c3c66] w-[88px] h-[88px] rounded-[15px]">
+          <div className="flex justify-center shadow bg-[#3c3c3c66] w-[70px] h-[70px] rounded-[15px]">
             <GooglePlay />
           </div>
-          <div className="flex justify-center shadow bg-[#3c3c3c66] w-[88px] h-[88px] rounded-[15px]">
+          <div className="flex justify-center shadow bg-[#3c3c3c66] w-[70px] h-[70px] rounded-[15px]">
             <GooglePlay />
           </div>
         </div>

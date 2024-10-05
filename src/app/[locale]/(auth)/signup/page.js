@@ -47,9 +47,7 @@ export default function SignUp() {
 					priority
 					alt='Logo'
 				/>
-				<h1>
-					Welcome to <b>NextFi</b>
-				</h1>
+				
 			</div>
 
 			<div className='switch-mode'>

@@ -1,13 +1,14 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 import { useTranslations } from "next-intl";
 
 import Copy from "../ui/Copy";
 import Avatar from "../ui/Avatar";
 
-export const Profile_info = () => {
+export const Profile_info = ({ verify }) => {
   const t = useTranslations("profile");
-
+  const [auth, setAuth] = useState(false);
   return (
     <section className="hidden sm:block profile__info profile_blocks_border">
       <div className="profile__info__block__left">
@@ -25,9 +26,20 @@ export const Profile_info = () => {
       <div className="profile__info__block__right">
         <div className="profile__info__block___right__block">
           <h5 className="profile__info__block___right__main__text">{t("Verification")}</h5>
-          <button className="profile__info__block___right__verification_block__button profile__info__block___right__additional__text">
-            {t("GoThroughVerification")}
-          </button>
+          {!verify ? (
+            <button
+              onClick={() => setAuth(prev => !prev)}
+              className="profile__info__block___right__verification_block__button profile__info__block___right__additional__text"
+            >
+              {t("GoThroughVerification")}
+            </button>
+          ) : (
+            <button
+              className={`profile__info__block___right__verification_block__button passed profile__info__block___right__additional__text `}
+            >
+              Verification passed
+            </button>
+          )}
         </div>
         <div className="profile__info__block___right__block">
           <h5 className="profile__info__block___right__main__text">{t("CountryRegion")}</h5>

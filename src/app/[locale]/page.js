@@ -4,7 +4,7 @@ import "aos/dist/aos.css";
 import Preloader from "./components/shared/Preloader";
 import { Era, Get_started, How, Intro, Invest, Levels, Faq, Header } from "./components/shared/index";
 import { useEffect, useState } from "react";
-import { useThemeStore } from '../../store'
+import { useThemeStore } from "../../store";
 
 export default function Home() {
   const { initializeTheme } = useThemeStore();
@@ -14,7 +14,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    initializeTheme(); 
+    initializeTheme();
   }, [initializeTheme]);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Home() {
 
   return (
     <>
-      <Header hasTest={false}/>
+      <Header auth={false} />
 
       <Intro />
 
