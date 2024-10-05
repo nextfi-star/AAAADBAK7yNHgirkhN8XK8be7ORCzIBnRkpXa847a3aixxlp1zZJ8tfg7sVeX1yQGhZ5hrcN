@@ -551,7 +551,7 @@ header {
         font-size: 24px;
         line-height: 32px;
         font-weight: 400;
-        padding: 0 44px;
+        padding: 0 ;
         display: block;
         color: var(--text-color);
         transition: 0.2s ease-in-out;
@@ -2582,9 +2582,21 @@ header {
     background-color: transparent;
     box-shadow: none;
   }
+
+  @media (max-width: 640px) {
+    background-color: transparent;
+    border-top: 1px solid var(--gray-color);
+    border-radius: 0%;
+    box-shadow: none;
+  }
+
+  @media (max-width: 1280px) {
+    margin: 0 auto;
+    margin-bottom: 40px;
+    max-width: 1000px;
+  }
 }
 
-/////////////////////
 
 .row-3 {
   display: flex;
@@ -2592,130 +2604,24 @@ header {
   font-size: 20px;
 }
 
-// .packages-ct {
-//   width: 100%;
-//   max-width: 1016px;
-// }
-
-// .packages-cols-ct {
-//   display: flex;
-//   justify-content: space-between;
-//   margin-bottom: 24px;
-// }
-
-// .packages-cols-ct .col,
-// .package .col {
-//   flex: 1;
-//   padding: 0 10px;
-//   text-align: center;
-// }
-
-// .packages-cols-ct .col-1,
-// .package .col-1 {
-//   flex: 2; /* Делаем колонку с destination больше */
-//   text-align: left; /* Выравнивание по левому краю */
-// }
-
-// .package {
-//   display: flex;
-//   gap: 10px;
-//   border-top: 1px solid #888888;
-//   padding: 8px;
-//   justify-content: space-between; /* Разделяем элементы по ширине */
-// }
-
-// .package .col,
-// .package .col-1 {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center; /* Центрируем текст по горизонтали */
-// }
-
-// .package .col-1 {
-//   justify-content: flex-start;
-// }
-
-// .col p {
-//   margin: 0;
-// }
-
-// .package .col-1 p {
-//   padding: 24px 0;
-//   display: flex;
-//   gap: 8px;
-//   align-items: center;
-// }
-
-// .package .col p:last-child {
-//   justify-content: flex-end;
-//   font-size: 18px;
-//   display: flex;
-//   align-items: center;
-//   gap: 4px;
-//   cursor: pointer;
-
-//   &:hover {
-//     gap: 6px;
-//   }
-// }
-
-/* Адаптация для планшетов */
-// @media (max-width: 640px) {
-//   .packages-cols-ct {
-//     flex-direction: row; /* Сохраняем горизонтальное расположение колонок */
-//     justify-content: space-between; /* Уменьшаем расстояние между колонками */
-//   }
-
-//   .package {
-//     flex-direction: row; /* Оставляем горизонтальное расположение строк таблицы */
-//     gap: 5px; /* Уменьшаем отступы между элементами */
-//   }
-
-//   .package .col-1 p {
-//     font-size: 16px; /* Уменьшаем шрифт для небольших экранов */
-//   }
-
-//   .package .col p {
-//     font-size: 14px; /* Уменьшаем шрифт для значений */
-//   }
-// }
-
-/* Адаптация для телефонов */
-// @media (max-width: 480px) {
-//   .packages-cols-ct {
-//     flex-direction: row; /* Оставляем колонки в одной строке */
-//     gap: 5px; /* Уменьшаем отступы между колонками */
-//   }
-
-//   .package {
-//     flex-direction: row; /* Оставляем строки в табличном виде */
-//     gap: 5px; /* Минимизируем расстояние между колонками */
-//   }
-
-//   .package .col-1 p {
-//     font-size: 14px; /* Ещё больше уменьшаем шрифт */
-//   }
-
-//   .package .col p {
-//     font-size: 12px; /* Ещё больше уменьшаем шрифт для числовых данных */
-//   }
-// }
-
-/////////////////////////////////////
-
 // profile
 .profile {
   max-width: 1656px;
-  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding: 0 1rem;
+
+  header {
+    &.box-shadow {
+      box-shadow: 0 0 20px #073d95;
+    }
+  }
 
   //grid
-  @media (max-width: 430px) {
-    margin-top: 70px;
+
+  @media (max-width: 1420px) {
+    padding: 2.5rem 1.5rem 5rem 1.5rem;
   }
   @media (min-width: 1280px) {
     .profile__grid {
@@ -2724,14 +2630,10 @@ header {
     }
   }
 
-  header {
-    box-shadow: 0 0 20px #1e50a668;
-  }
 
   //nav
   .profile__nav {
-    padding: 0 20px;
-    margin-top: 150px;
+    margin-top: 200px;
     margin-bottom: 30px;
 
     .profile__nav-navbar {
@@ -2785,7 +2687,7 @@ header {
     display: flex;
     flex-direction: column;
     background-color: var(--getstarted-item);
-    max-width: 536px;
+    max-width: 100%;
     box-shadow: var(--shadow-split);
     border-radius: 30px;
     padding: 40px;
@@ -2838,7 +2740,7 @@ header {
     @media (max-width: 1280px) {
       display: flex;
       padding: 40px 80px;
-      max-width: 800px;
+      max-width: 100%;
       margin: 0 auto;
       margin-bottom: 40px;
 
@@ -2872,7 +2774,7 @@ header {
       border-bottom: 1px solid var(--gray-color);
       box-shadow: none;
       border-radius: 0%;
-      margin-top: 60px;
+      margin-top: 200px;
 
       &-title {
         margin-bottom: 30px;
@@ -3024,14 +2926,11 @@ header {
     color: var(--button-text);
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
+  }
 
-    &.passed {
-      border: none;
-    }
-
-    &:hover {
-      color: var(--button-text-hover);
-    }
+  .profile__info__block___right__verification_block__button:hover {
+    background-color: var(--button-bg-hover);
+    color: var(--button-text-hover);
   }
 
   @media (max-width: 640px) {
@@ -3109,7 +3008,7 @@ header {
     .profile__info {
       flex-wrap: nowrap; /* Убираем оборачивание на планшетах */
       gap: 40px;
-      margin: 0 20px;
+      margin: 0 2px;
     }
 
     .profile__info__block__left {
@@ -3135,6 +3034,8 @@ header {
     line-height: 40px;
     font-weight: 500;
     margin-bottom: 40px;
+
+   
 
     .profile__verification__blocks__list {
       display: grid;
@@ -3186,17 +3087,18 @@ header {
   }
 
   .profile__industy {
+    background-color: var(--getstarted-item);
     display: flex;
     height: 416px;
     box-shadow: var(--shadow-split);
     max-width: 536px;
+    width: 100%;
     flex-direction: column;
     margin-bottom: 40px;
     align-items: center;
 
     .profile__industry__main_text {
-      width: 100%;
-      text-align: left;
+      text-align: center;
       font-family: inherit;
       font-size: 32px;
       line-height: 40px;
@@ -3215,8 +3117,9 @@ header {
 
     .profile__industry__block__image {
       display: flex;
-      gap: 10px;
       align-items: center;
+      gap: 10px;
+
       .profile__industry__image_text {
         font-family: inherit;
         font-size: 18px;
@@ -3265,7 +3168,7 @@ header {
   @media (max-width: 1280px) {
     .profile__industy {
       gap: 20px;
-      max-width: 800px;
+      max-width: 100%;
     }
   }
 
@@ -3464,13 +3367,8 @@ header {
         line-height: 28px;
         font-weight: 500;
 
-      
         @media (max-width: 640px) {
-          padding: 10px 20px;
-          font-size: 16px;
-        }
-        @media (max-width: 430px) {
-          padding: 10px 17px;
+          padding: 10px 13px;
           font-size: 14px;
         }
       }
@@ -3503,7 +3401,7 @@ header {
       padding: 30px;
       height: auto;
       max-width: 90%;
-
+      max-height: 250px;
       // span {
       //   font-size: 20px;
       //   margin-bottom: 100px;
