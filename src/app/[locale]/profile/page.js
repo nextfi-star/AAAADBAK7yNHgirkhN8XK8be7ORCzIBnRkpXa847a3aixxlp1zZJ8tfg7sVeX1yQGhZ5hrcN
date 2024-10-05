@@ -15,7 +15,7 @@ import {
 } from "../components/shared";
 import { useThemeStore } from "../../../store";
 import { Tapbar } from "../components/shared/Tapbar";
-const Profile = () => {
+export default function Profile()  {
   const [verify, setVerify] = useState(false); // Исправлена опечатка
   const { initializeTheme } = useThemeStore();
 
@@ -48,4 +48,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+
