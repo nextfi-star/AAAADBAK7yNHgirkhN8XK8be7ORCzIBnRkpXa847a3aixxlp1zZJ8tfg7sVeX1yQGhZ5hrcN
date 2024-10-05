@@ -38,6 +38,8 @@ export const Header = ({ hasAuth = true }) => {
 
         <Navigation />
 
+        <span>TEST FROM ARTUR</span>
+
         {hasAuth && (
           <div className="header__actions">
             <div className="header__buttons">
