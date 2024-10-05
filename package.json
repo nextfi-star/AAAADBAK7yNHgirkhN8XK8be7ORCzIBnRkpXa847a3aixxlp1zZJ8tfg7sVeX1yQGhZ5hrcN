@@ -1,0 +1,42 @@
+{
+  "name": "next_app_next_fi",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@lottiefiles/dotlottie-react": "^0.8.12",
+    "aos": "^3.0.0-beta.6",
+    "chart.js": "^4.4.4",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "lottie-react": "^2.4.0",
+    "lottie-web": "^5.12.2",
+    "lucide": "^0.441.0",
+    "next": "14.2.11",
+    "next-intl": "^3.19.1",
+    "next-themes": "^0.3.0",
+    "react": "^18",
+    "react-chartjs-2": "^5.2.0",
+    "react-datepicker": "^7.4.0",
+    "react-dom": "^18",
+    "sass": "^1.78.0",
+    "sharp": "^0.33.5",
+    "swiper": "^11.1.14",
+    "zustand": "^5.0.0-rc.2"
+  },
+  "devDependencies": {
+    "@types/node": "22.5.5",
+    "@types/react": "18.3.5",
+    "autoprefixer": "^10.4.20",
+    "daisyui": "^4.12.11",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.11",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13"
+  }
+}
