@@ -14,7 +14,7 @@ import {
   Header,
 } from "../components/shared";
 import { useThemeStore } from "../../../store";
-import { Tapbar } from "../components/shared/Tapbar";
+import { TapBar } from "../components/shared/TapBar";
 export default function Profile()  {
   const [verify, setVerify] = useState(false); // Исправлена опечатка
   const { initializeTheme } = useThemeStore();
@@ -43,7 +43,7 @@ export default function Profile()  {
           <Profile_qr />
         </div>
       </div>
-      <Tapbar />
+      <TapBar />
     </section>
   );
 };
