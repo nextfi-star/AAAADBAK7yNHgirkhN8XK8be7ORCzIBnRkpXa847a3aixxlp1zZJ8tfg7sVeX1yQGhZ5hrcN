@@ -127,6 +127,8 @@
   --era-title: #205bc9;
   --faq-bg: url("/main/plus_white.svg");
   --mobile-tapbarbg: #eeeeee;
+  --button-border: #3a3939;
+
 }
 .dark {
   --era-title: #205bc9;
@@ -176,11 +178,9 @@
   --button-text-hover: #3c3c3c66;
   --button-verification-bg: #205bc9;
 }
-
 .logo {
   color: var(--logo-color);
 }
-
 .theme-icon {
   color: var(--icon-color);
 }
@@ -191,7 +191,6 @@ body {
   background: var(--body-color);
   color: var(--text-color);
 }
-
 .preloader {
   position: fixed;
   top: 0;
@@ -210,14 +209,13 @@ body {
     object-fit: cover;
   }
 }
-
 .preloader__black {
   background: #000;
 }
-
 .preloader__white {
   background: #fff;
 }
+// ? Content 
 
 header {
   background-color: var(--body-color);
@@ -2460,7 +2458,7 @@ header {
   font-size: 20px;
 }
 
-// profile
+// ? profile
 .profile__body {
   padding-bottom: 2.5rem;
   min-height: 100vh;
@@ -2785,8 +2783,9 @@ header {
       flex-direction: row;
       justify-content: flex-end;
       align-items: flex-start;
+      gap: 10px;
 
-      @media (max-width: 1200px) {
+      @media (max-width: 1280px) {
         display: flex;
         gap: 10px;
         align-items: center;
@@ -2810,7 +2809,6 @@ header {
       align-items: center;
       justify-content: center;
       text-align: center;
-      margin-bottom: 20px;
     }
 
     .profile__info__block___right__main__text {
