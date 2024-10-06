@@ -28,8 +28,8 @@ const StarsMobile = ({ width = "68" }) => {
           y2="48.8276"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.404729" stop-color="#205BC9" stop-opacity="0" />
-          <stop offset="1" stop-color="#073D95" />
+          <stop offset="0.404729" stopColor="#205BC9" stopOpacity="0" />
+          <stop offset="1" stopColor="#073D95" />
         </linearGradient>
       </defs>
     </svg>

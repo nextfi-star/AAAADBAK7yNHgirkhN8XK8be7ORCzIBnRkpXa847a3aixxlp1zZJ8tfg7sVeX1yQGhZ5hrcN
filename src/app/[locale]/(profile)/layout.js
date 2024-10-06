@@ -4,7 +4,7 @@ import { TapBar } from "../components/shared/TapBar";
 
 export const metadata = {
   title: "Profile | Home",
-  description: "Auth page for NextFi",
+  description: "Your personal space in NextFi",
 };
 
 export default function FormLayout({ children }) {

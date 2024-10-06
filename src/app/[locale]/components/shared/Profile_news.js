@@ -11,10 +11,11 @@ import { useTranslations } from "next-intl";
 export const Profile_news = () => {
   const t = useTranslations("profile");
 
-  const dataNews = Array(10).fill({
+  const dataNews = Array(10).fill().map((_, index) => ({
     date: "11:24 am",
     news: "Kalshi seeks permission to trade political contracts amid CFTC appeal",
-  });
+    id: index,  // Уникальный идентификатор
+  }));
 
   return (
     <div className="profile-news">
