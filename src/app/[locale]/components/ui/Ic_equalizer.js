@@ -1,6 +1,6 @@
 import React from "react";
 
-const Ic_equalizer = () => {
+export const Ic_equalizer = () => {
   return (
     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -11,4 +11,3 @@ const Ic_equalizer = () => {
   );
 };
 
-export default Ic_equalizer;

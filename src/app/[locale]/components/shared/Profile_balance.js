@@ -60,7 +60,7 @@ export const Profile_balance = () => {
 
       <div className="profile__balance ">
         <div className="profile__balance_sides">
-          <div className="w-[364px] h-[156px] sm:hidden m-auto shadow-lg bg-[#000] border border-[#3A3939] border-solid gap-[10px] rounded-xl p-4 flex flex-col">
+          <div className="w-[364px] h-[156px] sm:hidden m-auto shadow-lg  border border-[#3A3939] border-solid gap-[10px] rounded-xl p-4 flex flex-col">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <StarsMobile width="24px" />
@@ -75,7 +75,7 @@ export const Profile_balance = () => {
             </div>
 
             <div className="flex items-center gap-[8px]">
-              <p className="text-white text-[24px] font-bold">$000,000</p>
+              <p className="text-[24px] font-bold">$000,000</p>
               <Eye />
             </div>
 

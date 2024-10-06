@@ -110,7 +110,7 @@ export default function SignUp() {
                 viewBox="0 0 511.985 511.985"
               >
                 <path
-                  fill="#fff"
+                  fill={theme === "dark" ? "#fff" : "#3A3939"}
                   d="M500.088 83.681c-15.841-15.862-41.564-15.852-57.426 0L184.205 342.148 69.332 227.276c-15.862-15.862-41.574-15.862-57.436 0-15.862 15.862-15.862 41.574 0 57.436l143.585 143.585c7.926 7.926 18.319 11.899 28.713 11.899 10.394 0 20.797-3.963 28.723-11.899l287.171-287.181c15.862-15.851 15.862-41.574 0-57.435z"
                 />
               </svg>
@@ -146,10 +146,34 @@ export default function SignUp() {
           <span>join us on social networks</span>
 
           <div className="socials__icons">
-            <Image src={"/form/icons_dark/Instagram_dark.svg"} width={48} height={48} quality={100} alt="Logo" />
-            <Image src={"/form/icons_dark/Telegram_dark.svg"} width={48} height={48} quality={100} alt="Logo" />
-            <Image src={"/form/icons_dark/Snapchat_dark.svg"} width={48} height={48} quality={100} alt="Logo" />
-            <Image src={"/form/icons_dark/Twitter_dark.svg"} width={48} height={48} quality={100} alt="Logo" />
+            <Image
+              src={theme === "dark" ? "/form/icons_dark/Instagram_dark.svg" : "/form/icons_white/Instagram.svg"}
+              width={48}
+              height={48}
+              quality={100}
+              alt="Logo"
+            />
+            <Image
+              src={theme === "dark" ? "/form/icons_dark/Telegram_dark.svg" : "/form/icons_white/Telegram_white.svg"}
+              width={48}
+              height={48}
+              quality={100}
+              alt="Logo"
+            />
+            <Image
+              src={theme === "dark" ? "/form/icons_dark/Snapchat_dark.svg" : "/form/icons_white/Snapchat_white.svg"}
+              width={48}
+              height={48}
+              quality={100}
+              alt="Logo"
+            />
+            <Image
+              src={theme === "dark" ? "/form/icons_dark/Twitter_dark.svg" : "/form/icons_white/Twitter_white.svg"}
+              width={48}
+              height={48}
+              quality={100}
+              alt="Logo"
+            />
           </div>
         </div>
       </div>
