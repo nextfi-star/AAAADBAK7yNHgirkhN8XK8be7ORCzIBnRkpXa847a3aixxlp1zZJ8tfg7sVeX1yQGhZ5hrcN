@@ -3,6 +3,7 @@ import React from "react";
 import { Qr } from "../ui/Qr.js";
 
 import GooglePlay from "../ui/GooglePlay.js";
+import Image from "next/image.js";
 
 export const Profile_qr = () => {
   return (
@@ -13,13 +14,13 @@ export const Profile_qr = () => {
         </h2>
         <div className="flex justify-center items-center  gap-[12px] w-full">
           <div className="flex justify-center shadow bg-[#3c3c3c66] w-[70px] h-[70px] rounded-[15px]">
-            <GooglePlay />
+            <Image src="/main/download_icons/Aptoide.svg" alt="Aptoide" width={48} height={48} />
           </div>
           <div className="flex justify-center shadow bg-[#3c3c3c66] w-[70px] h-[70px] rounded-[15px]">
-            <GooglePlay />
+            <Image src="/main/download_icons/google-play.svg" alt="google" width={48} height={48} />
           </div>
           <div className="flex justify-center shadow bg-[#3c3c3c66] w-[70px] h-[70px] rounded-[15px]">
-            <GooglePlay />
+            <Image src="/main/download_icons/apple-app-store.svg" alt="Aptoide" width={48} height={48} />
           </div>
         </div>
         <p className="text-[20px]">NextFi App</p>

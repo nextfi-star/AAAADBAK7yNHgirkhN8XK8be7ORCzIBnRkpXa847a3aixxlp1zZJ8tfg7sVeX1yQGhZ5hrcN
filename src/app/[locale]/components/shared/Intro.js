@@ -18,7 +18,7 @@ export const Intro = () => {
               Explore new opportunities in financial&nbsp;investing <b>with NextFi token</b>
             </h1>
             {/* mobile v. */}
-            <div className="m-main__img-wrapper">
+            <div className="m-main__img-wrapper z-[9]">
               <Image width={768} height={650} src="/main/Illustration.svg" alt="" className="main-img" quality={100} />
             </div>
             <span data-aos="fade-right" data-aos-duration="800" data-aos-once="true">

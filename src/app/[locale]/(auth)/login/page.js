@@ -99,10 +99,10 @@ export default function LogIn() {
           <span>join us on social networks</span>
 
           <div className="socials__icons">
-            <Image src={"/form/icons_dark/Instagram_dark.svg"} width={48} height={48} quality={100} alt="Logo" />
-            <Image src={"/form/icons_dark/Telegram_dark.svg"} width={48} height={48} quality={100} alt="Logo" />
-            <Image src={"/form/icons_dark/Snapchat_dark.svg"} width={48} height={48} quality={100} alt="Logo" />
-            <Image src={"/form/icons_dark/Twitter_dark.svg"} width={48} height={48} quality={100} alt="Logo" />
+            <Image src={theme === "dark" ? "/form/icons_dark/Instagram_dark.svg" : "/form/icons_white/Instagram.svg"} width={48} height={48} quality={100} alt="Logo" />
+            <Image src={theme === "dark" ? "/form/icons_dark/Telegram_dark.svg" : "/form/icons_white/Telegram_white.svg"} width={48} height={48} quality={100} alt="Logo" />
+            <Image src={theme === "dark" ? "/form/icons_dark/Snapchat_dark.svg" : "/form/icons_white/Snapchat_white.svg"} width={48} height={48} quality={100} alt="Logo" />
+            <Image src={theme === "dark" ? "/form/icons_dark/Twitter_dark.svg" : "/form/icons_white/Twitter_white.svg"} width={48} height={48} quality={100} alt="Logo" />
           </div>
         </div>
       </div>

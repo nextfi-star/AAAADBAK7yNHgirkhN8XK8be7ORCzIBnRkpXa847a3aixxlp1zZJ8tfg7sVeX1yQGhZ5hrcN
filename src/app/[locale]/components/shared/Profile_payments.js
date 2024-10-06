@@ -1,4 +1,4 @@
-'use client'
+"use client";
 // В вашем компоненте Profile_payments.js
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
@@ -14,17 +14,19 @@ export const Profile_payments = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false); // Чтобы отслеживать монтирование
+  const [isMounted, setIsMounted] = useState(false);
   const t = useTranslations("profile");
 
-  const dataPay = Array(6).fill().map((_, index) => ({
-    icon: <StarsMobile />,
-    destination: `Company Stocks`,
-    amount: `$000.00`,
-    percent: `+ 0,4%`,
-    total: `$000.00`,
-    id: index,  // Уникальный ключ для каждого элемента
-  }));
+  const dataPay = Array(6)
+    .fill()
+    .map((_, index) => ({
+      icon: <StarsMobile />,
+      destination: `Company Stocks`,
+      amount: `$000.00`,
+      percent: `+ 0,4%`,
+      total: `$000.00`,
+      id: index,
+    }));
 
   useEffect(() => {
     setStartDate(new Date());
@@ -38,9 +40,8 @@ export const Profile_payments = () => {
     setEndDate(end);
   };
 
-  
   if (!isMounted) {
-    return null; 
+    return null;
   }
 
   return (
@@ -52,10 +53,10 @@ export const Profile_payments = () => {
           {endDate ? endDate.toLocaleDateString() : "Select end date"}
           {/* Кнопка для открытия календаря с иконкой */}
           <button onClick={() => setIsOpen(!isOpen)} className="cursor-pointer">
-            <ArrowBracket className={"text-[#515151]"} />
+            <ArrowBracket className={"text-[#515151] dark:text-red-500"} />
           </button>
           {isOpen && (
-            <div className="absolute top-[100%] right-0 z-10 mt-2 border border-gray-300 rounded-md bg-[#3a3939] shadow-lg">
+            <div  className="absolute top-[100%] right-0 z-10 mt-2 border border-gray-300 rounded-md bg-[#3a3939] shadow-lg text-white">
               <DatePicker
                 selected={startDate}
                 onChange={handleDateChange}
@@ -71,17 +72,17 @@ export const Profile_payments = () => {
       <div className="overflow-x-auto flex">
         <table className="table ">
           <thead>
-            <tr className="text-[20px] text-white">
+            <tr className="text-[14px] sm:text-[16px] md:text-[20px] lg:text-[24px] text-white ">
               <th>{t("Destination")}</th>
               <th>{t("The amount")}</th>
               <th>{t("Percent")}</th>
-              <th>{t("Sum Total")}</th>
-              <th>{t("Report")}</th>
+              <th className="hidden xl:table-cell">{t("Sum Total")}</th>
+              <th className="hidden xl:inline-block">{t("Report")}</th>
             </tr>
           </thead>
           <tbody>
             {dataPay.map(item => (
-              <tr key={item.id} className="text-[20px] items-center">
+              <tr key={item.id} className="text-[14px] sm:text-[16px] md:text-[20px]  items-center">
                 <td className="py-[24px]">
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -94,8 +95,8 @@ export const Profile_payments = () => {
                 </td>
                 <td>{item.amount}</td>
                 <td>{item.percent}</td>
-                <td>{item.total}</td>
-                <td className="flex gap-2 items-center py-[35px]">
+                <td className="hidden xl:table-cell">{item.total}</td>
+                <td className="hidden xl:flex gap-2 items-center py-[35px]">
                   {t("View Report")} <ArrowUp />
                 </td>
               </tr>
