@@ -14,6 +14,7 @@ import { useThemeStore } from "../../../../store";
 export const Header = ({ auth = true }) => {
   const t = useTranslations("nav");
   const { theme } = useThemeStore();
+  
   useEffect(() => {
     const header = document.querySelector("header");
     const handleScroll = () => {

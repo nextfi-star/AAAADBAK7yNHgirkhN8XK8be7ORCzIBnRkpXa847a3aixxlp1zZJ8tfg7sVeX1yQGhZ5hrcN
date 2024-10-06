@@ -253,7 +253,6 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
     @media (max-width: 1830px) {
       padding: 2.083vw 30px;
     }
@@ -327,6 +326,7 @@ header {
         display: flex;
         flex-direction: row;
         align-items: center;
+        gap: 20px;
 
         &-login {
           padding: 12px;
@@ -361,7 +361,6 @@ header {
         &-signup {
           padding: 12px;
           width: 155px;
-
           font-size: 20px;
           line-height: 28px;
           font-weight: 500;
@@ -370,6 +369,7 @@ header {
           background-color: var(--blue);
           color: #fff;
           transition: 0.2s ease-in-out;
+          margin-right: 20px;
           &:hover {
             background-color: var(--blue-light);
           }
@@ -398,7 +398,6 @@ header {
           }
         }
       }
-
       .header__icons {
         display: flex;
         flex-direction: row;

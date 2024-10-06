@@ -89,7 +89,7 @@ export default function LogIn() {
 					</span>
 				</div>
 
-				<Link href={'/profile'} className={btnAuth}>Log In</Link>
+				<Link href={'/over'} className={btnAuth}>Log In</Link>
 			</form>
 
 			<span className='forgot'>Forgot your password?</span>
