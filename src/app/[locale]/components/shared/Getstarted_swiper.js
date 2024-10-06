@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import Image from 'next/image'
 import { useThemeStore } from '../../../../store'
@@ -29,7 +30,6 @@ export const Getstarted_swiper = () => {
 				delay: 2000,
 				disableOnInteraction: false,
 			}}
-			loop={true}
 			modules={[Autoplay]}
 			className='getstarted-swiper'
 		>

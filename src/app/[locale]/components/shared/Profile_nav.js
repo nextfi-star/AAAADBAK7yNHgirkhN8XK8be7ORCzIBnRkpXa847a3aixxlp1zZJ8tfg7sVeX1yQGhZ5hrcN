@@ -1,17 +1,14 @@
-import React from "react";
-
-import Link from "next/link";
-
+import { Link } from "../../../../i18n/routing";
 import { useTranslations } from "next-intl";
 
 export const Profile_nav = () => {
   const t = useTranslations("profile");
 
   return (
-    <nav className="profile__nav">
-      <ul className="profile__nav-navbar">
+    <nav className="flex items-end min-h-[0] sm:min-h-[9rem] mb-10">
+      <ul className="flex items-center gap-2 ">
         <li>
-          <Link href="#" className={`profile__nav-navbar-item active`}>
+          <Link href="/over" className={`profile__nav-navbar-item active`}>
             {t("Overview")}
           </Link>
         </li>

@@ -1,19 +1,23 @@
 "use client";
-import { useState } from "react";
+import { use, useState } from "react";
 import clsx from "clsx";
 import Theme_switch from "./Theme_switch";
 import Locale_Switcher from "./Locale_Switcher";
 import { useTranslations } from "next-intl";
 import { Link } from "../../../../i18n/routing";
+import Image from 'next/image'
+import { useThemeStore } from '../../../../store'
 
 export const Burger = () => {
   const [show, setShow] = useState(true);
   const classChange = clsx("menu", { active: !show });
   const listClass = clsx("m_header", { active: !show });
   const { auth } = useState(false);
+  
   const handleClick = e => {
     setShow(!show);
   };
+  const {theme} = useThemeStore()
 
   const t = useTranslations("nav");
   return (
@@ -68,8 +72,9 @@ export const Burger = () => {
         </div>
       </div>
       <div className={classChange} onClick={handleClick}>
-        <span></span>
+       <span></span>
       </div>
+     
     </>
   );
 };

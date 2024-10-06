@@ -1,3 +1,4 @@
+'use client'
 // В вашем компоненте Profile_payments.js
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
@@ -37,9 +38,9 @@ export const Profile_payments = () => {
     setEndDate(end);
   };
 
-  // Проверяем, смонтирован ли компонент на клиенте, чтобы избежать ошибок рендеринга
+  
   if (!isMounted) {
-    return null; // Возвращаем null до монтирования, чтобы избежать SSR ошибок
+    return null; 
   }
 
   return (

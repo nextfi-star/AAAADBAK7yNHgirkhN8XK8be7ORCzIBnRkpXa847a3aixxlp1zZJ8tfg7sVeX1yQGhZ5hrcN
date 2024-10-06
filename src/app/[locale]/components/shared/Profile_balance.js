@@ -1,17 +1,17 @@
-import { useState } from "react";
+'use client';
 
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-
 import Accordion from "../ui/Accordion";
 import ArrowUP from "../ui/ArrowUP";
 import Eye from "../ui/Eye";
 import StarsMobile from "../ui/StarsMobile";
 import Stonks from "../ui/Stonks";
-
 import ArrowBracket from "../ui/ArrowBracket";
 import "./chart.scss";
 import { ChartBlock } from "./ChartBlock";
+
 
 export const Profile_balance = () => {
   const t = useTranslations("profile");
