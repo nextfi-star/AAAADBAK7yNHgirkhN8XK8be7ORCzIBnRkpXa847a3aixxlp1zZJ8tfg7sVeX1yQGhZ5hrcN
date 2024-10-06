@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -11,8 +13,8 @@ export const Mobile_swiper = () => {
 				pagination={{ clickable: true }}
 				slidesPerView={1}
 				spaceBetween={24}
-				className='swiper how-swiper'
 				loop={true}
+				className='swiper how-swiper'
 			>
 				<div className='swiper-wrapper'>
 					<SwiperSlide>

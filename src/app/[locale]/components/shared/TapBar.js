@@ -7,7 +7,7 @@ import TokenIcon from "../ui/TokenIcon.js";
 import AssetsIcon from "../ui/AssetsIcon.js";
 import { useThemeStore } from "../../../../store";
 
-export const Tapbar = () => {
+export const TapBar = () => {
   const { theme } = useThemeStore();
 
   const [color, setColor] = useState(theme === "dark" ? "#fff" : "#000");

@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { Scrollbar, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'

@@ -1,10 +1,9 @@
 import React from "react";
-
 import { useTranslations } from "next-intl";
-
 import Ic_equalizer from "../ui/Ic_equalizer";
 
 export const Profile_industry = () => {
+  
   const t = useTranslations("profile");
 
   return (
