@@ -17,15 +17,15 @@ export const Profile_payments = () => {
   const [isMounted, setIsMounted] = useState(false); // Чтобы отслеживать монтирование
   const t = useTranslations("profile");
 
-  const dataPay = Array(6).fill({
+  const dataPay = Array(6).fill().map((_, index) => ({
     icon: <StarsMobile />,
     destination: `Company Stocks`,
     amount: `$000.00`,
     percent: `+ 0,4%`,
     total: `$000.00`,
-  });
+    id: index,  // Уникальный ключ для каждого элемента
+  }));
 
-  // Устанавливаем начальные значения даты только на клиенте
   useEffect(() => {
     setStartDate(new Date());
     setEndDate(new Date());
@@ -81,7 +81,7 @@ export const Profile_payments = () => {
           </thead>
           <tbody>
             {dataPay.map(item => (
-              <tr key={item} className="text-[20px] items-center">
+              <tr key={item.id} className="text-[20px] items-center">
                 <td className="py-[24px]">
                   <div className="flex items-center gap-3">
                     <div className="avatar">

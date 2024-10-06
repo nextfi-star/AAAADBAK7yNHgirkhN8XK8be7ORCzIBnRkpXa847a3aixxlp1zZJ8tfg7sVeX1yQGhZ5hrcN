@@ -28,7 +28,7 @@ export default function VerifyCode() {
 				<OTPInput length={6} onChange={handleOtpChange} />
 			</div>
 
-			<Link href='/profile' className='next__btn'>
+			<Link href='/over' className='next__btn'>
 				Next
 			</Link>
 			<span className='form__verify-resend'>Didn't receive the code?</span>
