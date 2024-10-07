@@ -2,8 +2,6 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Ic_equalizer } from "../ui/Ic_equalizer";
-import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 
 const data = [
@@ -44,8 +42,6 @@ export const Profile_industry = () => {
         slidesPerView={1}
         spaceBetween={24}
         loop={true}
-        // modules={[Autoplay]}
-        // autoplay={{ delay: 2000, disableOnInteraction: false }}
       >
         {data.map(item => (
           <SwiperSlide key={item.title}>
