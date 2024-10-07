@@ -62,6 +62,7 @@ export default function SignUp() {
           placeholder={mode === "email" ? "E-mail" : "Phone number"}
           onChange={handleInputOneChange}
           className={inputOneClass}
+          id="login"
         />
 
         <div className="password__wrapper">
@@ -71,6 +72,7 @@ export default function SignUp() {
             placeholder="Create a password"
             onChange={handleInputTwoChange}
             className={inputTwoClass}
+            id="pass"
           />
           {/* DECOR ↓ */}
           <span onClick={togglePasswordVisibility}>
@@ -90,7 +92,7 @@ export default function SignUp() {
             <label htmlFor="checkbox" className="checkbox-label"></label>
           </label>
 
-          {!referelOpen && <input className="referal__input" type="text" placeholder="UFRYXEEXDG" />}
+          {!referelOpen && <input className="referal__input" type="text" placeholder="UFRYXEEXDG" id='referal' />}
         </div>
 
         <div className="privacy">

@@ -35,19 +35,25 @@ export const Profile_industry = () => {
   const t = useTranslations("profile");
 
   return (
-    <section className="profile__industy profile_blocks_border overflow-hidden">
+    <section className="profile__industy profile_blocks_border ">
       <h3 className="profile__industry__main_text">{t("ChooseIndustry")}</h3>
 
       <Swiper
         slidesPerView={1}
-        spaceBetween={24}
+        spaceBetween={10}
         loop={true}
+        breakpoints={{
+          1279: {
+            slidesPerView: 1,
+            spaceBetween: 24,
+          },
+        }}
       >
         {data.map(item => (
-          <SwiperSlide key={item.title}>
-            <div className="profile__industry__block profile_blocks_border ">
+          <SwiperSlide key={item.title} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <div className="profile__industry__block rounded-[20px] backdrop-blur-[6px] hover:shadow-lg hover:cursor-pointer transition duration-300 ">
               <div className="profile__industry__block__image">
-                <Image src={item.icon} width={33} height={33} quality={100} priority />
+                <Image src={item.icon} width={33} height={33} quality={100} priority alt={item.title} />
                 <h4 className="profile__industry__image_text">{item.title}</h4>
               </div>
               <p className="profile__industry__additional_text">{item.desc}</p>

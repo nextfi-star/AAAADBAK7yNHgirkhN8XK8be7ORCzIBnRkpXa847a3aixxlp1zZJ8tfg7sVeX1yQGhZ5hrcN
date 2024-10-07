@@ -1,7 +1,8 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { OTPInput } from '../../components/shared/OTPInput'
 import { Link } from '../../../../i18n/routing'
+import { useThemeStore } from '../../../../store'
 
 
 export default function VerifyCode() {
@@ -15,6 +16,11 @@ export default function VerifyCode() {
 	const handleSubmit = () => {
 		console.log(`verify code - ${otp}`)
 	}
+	const { initializeTheme } = useThemeStore();
+
+  useEffect(() => {
+    initializeTheme();
+  }, [initializeTheme]);
 
 	return (
 		<div className='form__verify'>

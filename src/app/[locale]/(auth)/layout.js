@@ -2,6 +2,7 @@ import Image from "next/image";
 import "./auth.scss";
 import Link from "next/link";
 import LayoutWithLink from "../components/shared/LayoutWithLink";
+import { CloseBtn } from "../components/ui/CloseBtn";
 
 export const metadata = {
   title: "Auth",
@@ -36,7 +37,7 @@ export default function FormLayout({ children }) {
         <div className="form__right">
           {children}{" "}
           <Link className="form__close" href={"/"}>
-            <Image width={30} height={30} quality={100} priority src={"/form/x.svg"} alt="X" />
+            <CloseBtn />
           </Link>
         </div>
       </div>

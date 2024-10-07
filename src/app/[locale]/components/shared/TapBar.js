@@ -19,7 +19,7 @@ export const TapBar = () => {
   return (
     <div
       className={`Tapbar fixed bottom-0 left-0 w-full flex justify-around items-center py-2 sm:hidden ${
-        theme === "dark" ? "bg-[#3a3939]" : "bg-[#EFEFEF]"
+        theme === "dark" ? "bg-[#3a3939e8]" : "bg-[#efefefef]"
       }`}
     >
       <div className="Tapbar__item">

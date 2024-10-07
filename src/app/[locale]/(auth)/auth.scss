@@ -130,16 +130,16 @@
       a {
         background: rgb(255, 255, 255);
         border-radius: 50%;
-        width: 40px;
-        height: 40px;
+        height: 46px;
+        width: 46px;
         display: flex;
         align-items: center;
         justify-content: center;
 
         img {
-          max-width: 20px;
-          height: 20px;
-          width: auto;
+          max-width: 30px;
+          width: 100%;
+          height: 30px;
           object-fit: contain;
         }
       }
@@ -232,11 +232,9 @@
       top: 30px;
       right: 40px;
       border: 1px solid #333333;
-      background: #181818;
       font-size: 1rem;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      padding: 0.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -253,16 +251,21 @@
         border: none;
         top: 60px;
         right: 13px;
+        padding: 5px;
       }
       @media (max-width: 375px) {
         border: none;
         top: 28px;
       }
 
-      img {
-        width: 25px;
+      svg {
+        min-width: 30px;
         height: auto;
         object-fit: contain;
+
+        @media (max-width: 430px) {
+          min-width: 20px;
+        }
       }
     }
 
@@ -270,14 +273,12 @@
       width: 100%;
       padding: 3.25rem 1rem 0 1rem;
     }
-    @media (max-width: 540px) {
-      padding: 0 1rem;
-    }
 
     .form__wrapper {
-      max-width: 349px;
       height: 100%;
-      width: max-content;
+      max-width: 350px;
+      min-width: 350px;
+      width: 100%;
       padding: 1rem 0 1.2rem 0;
       color: #fff;
       display: flex;
@@ -307,30 +308,25 @@
       }
       @media (max-width: 768px) {
         gap: 30px;
-        padding: 2.7rem 1rem 0 1rem;
+        padding: 2.7rem 1rem;
       }
       @media (max-width: 540px) {
         gap: 20px;
       }
       @media (max-width: 430px) {
         max-width: 330px;
+        min-width: 330px;
       }
       @media (max-width: 375px) {
         gap: 22px;
         max-width: 310px;
+        min-width: 310px;
       }
       @media (max-width: 320px) {
         gap: 20px;
         max-width: 285px;
-      }
+        min-width: 285px;
 
-      &.login__wrapper {
-        @media (max-width: 375px) {
-          gap: 20px;
-        }
-        @media (max-width: 768px) {
-          padding: 2.7rem 1rem 0 1rem;
-        }
       }
 
       &-title {
@@ -397,11 +393,10 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 0.5rem;
+        width: 100%;
 
         a {
           min-height: 42px;
-          min-width: 165px;
           padding: 0 10px;
           display: flex;
           align-items: center;
@@ -414,22 +409,30 @@
           border-radius: 10px;
           transition: background-color 0.3s ease-in-out;
 
+          &:nth-last-of-type(2) {
+            min-width: 156.89px;
+            @media (max-width: 430px) {
+              min-width: 122.67px;
+            }
+            @media (max-width: 320px) {
+              min-width: 115.83px;
+            }
+          }
+
           @media (max-width: 1280px) {
             font-size: 18px;
             min-height: 32px;
-            min-width: 165px;
           }
           @media (max-width: 768px) {
             font-size: 16px;
-            min-height: 35px;
           }
-          @media (max-width: 425px) {
+          @media (max-width: 430px) {
             font-size: 15px;
+            
           }
           @media (max-width: 375px) {
             font-size: 14px;
             min-height: 35px;
-            min-width: 140px;
           }
 
           &.active {
@@ -440,6 +443,7 @@
       }
 
       .form {
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -467,8 +471,9 @@
           }
         }
 
-        input[type="text"],
-        input[type="password"] {
+        #login,
+        #pass,
+        #referal {
           font-family: inherit;
           font-size: 20px;
           font-weight: 400;
@@ -563,7 +568,6 @@
           gap: 10px;
 
           .referalID {
-            width: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -592,8 +596,9 @@
                 height: 30px;
                 border-radius: 20px;
                 background: #fff;
+                outline: 1px solid #205bc9;
 
-                &:before {
+                &::before {
                   position: absolute;
                   left: 2px;
                   top: 2px;
@@ -618,7 +623,6 @@
         }
 
         .privacy {
-          width: 100%;
           font-family: inherit;
           color: var(--form-text);
 
@@ -631,6 +635,7 @@
           }
 
           .checkbox-label {
+            width: 100%;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -881,7 +886,7 @@
       p,
       span {
         /* Desktop/Text-2 Onest 20\28 Regular */
-        color: rgb(239, 239, 239);
+        color: var(--form-text);
         font-family: inherit;
         font-size: 16px;
         font-weight: 400;
@@ -899,9 +904,9 @@
           gap: 5px;
         }
         input {
-          color: #000;
+          color: var(--form-text);
           border-radius: 10px;
-          background: rgb(239, 239, 239);
+          background: var(--form-bg);
           font-family: inherit;
           font-size: 32px;
           font-weight: 500;
@@ -909,6 +914,10 @@
           width: 40px;
           height: 50px;
         }
+      }
+
+      .otp__input {
+        outline: 1px solid var(--form-text);
       }
 
       .form__verify-resend {
@@ -919,6 +928,7 @@
         line-height: 28px;
         text-align: center;
         width: 100%;
+        cursor: pointer;
       }
     }
   }

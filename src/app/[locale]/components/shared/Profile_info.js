@@ -18,7 +18,7 @@ export const Profile_info = ({ verify, setVerify }) => {
           <h3 className="profile__info__block__left__text_name ">Sergey Sergey</h3>
           <p className="profile__info__block__left__text_email">Sergey@mail.ru</p>
           <p className="profile__info__block__left__text__id">
-            32132131213111 <Copy />
+          888888888в8888888 <Copy />
           </p>
         </div>
       </div>

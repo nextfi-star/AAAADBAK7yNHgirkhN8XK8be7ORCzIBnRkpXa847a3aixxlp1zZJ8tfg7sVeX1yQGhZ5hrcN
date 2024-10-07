@@ -22,14 +22,15 @@ export const Intro = () => {
               <Image width={768} height={650} src="/main/Illustration.svg" alt="" className="main-img" quality={100} />
             </div>
             <span data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
-              {t("Modern")}
+              Modern AI solutions provide reliable tokenomics, sustained growth in investments, and ensure the safety of
+              your funds.
             </span>
             <div className="main__buttons" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true">
               <Link href="/signup" className="btn btn-blue">
-                {t("SignUp")}
+                Sign Up
               </Link>
               <Link href="/login" className="btn btn-transparent">
-                {t("LogIn")}
+                Log In
               </Link>
             </div>
           </div>

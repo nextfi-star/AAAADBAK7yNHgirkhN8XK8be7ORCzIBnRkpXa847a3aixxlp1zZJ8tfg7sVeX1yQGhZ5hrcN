@@ -9,6 +9,8 @@ import { Link } from "../../../../i18n/routing";
 import { User } from "../ui/User";
 import { Download2 } from "../ui/download2";
 import { useThemeStore } from "../../../../store";
+import { Logo_header } from "../ui/Logo_header";
+import { Chat } from "../ui/Chat";
 
 export const ProfileHeader = ({ auth = true }) => {
   const t = useTranslations("nav");
@@ -32,9 +34,11 @@ export const ProfileHeader = ({ auth = true }) => {
   }, []);
 
   return (
-    <header id="header">
-      <div className="header__content container" data-aos="fade-down" data-aos-duration="1000">
-        
+    <header id="header" className="py-[1.5rem]">
+      <div className="header__content site-holder" data-aos="fade-down" data-aos-duration="1000">
+        <a href="" className="header__logo">
+          <Logo_header />
+        </a>
         <Burger_profile />
 
         <Navigation />
@@ -70,6 +74,7 @@ export const ProfileHeader = ({ auth = true }) => {
                   <a href="#" className="header__icons-item">
                     <Theme_switch />
                   </a>
+
                   <button href="" className="header__icons-item">
                     <Locale_Switcher />
                   </button>
@@ -80,6 +85,9 @@ export const ProfileHeader = ({ auth = true }) => {
                   </a>
                   <button href="" className="header__icons-item">
                     <Locale_Switcher />
+                  </button>
+                  <button href="" className="header__icons-item">
+                    <Chat color={theme === "dark" ? "white" : "black"} />
                   </button>
                 </div>
               </>
