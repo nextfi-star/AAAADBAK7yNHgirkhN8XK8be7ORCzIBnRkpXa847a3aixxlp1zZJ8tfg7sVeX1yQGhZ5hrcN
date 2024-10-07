@@ -46,7 +46,7 @@ export const Profile_balance = () => {
 
   return (
     <section className="">
-      <div className="w-[212px] flex sm:hidden  m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200">
+      <div className="w-[212px] sm:hidden  flex  m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200">
         <button
           className={`w-[104px] transition duration-300 ${
             isActive ? "bg-[#205BC9] text-white" : "text-[#205BC9]"
@@ -68,6 +68,7 @@ export const Profile_balance = () => {
       <div className="profile__balance ">
         <div className="profile__balance_sides">
           {/* Mobile */}
+
           <Swiper
             slidesPerView={1}
             spaceBetween={24}
@@ -75,12 +76,13 @@ export const Profile_balance = () => {
               swiperRef.current = swiper;
             }}
             onSlideChange={swiper => handleSlideChange(swiper.activeIndex)}
+            className="blanace__swiper"
           >
             <SwiperSlide>
               <div className="w-full sm:hidden m-auto shadow-lg  border border-[#3A3939] border-solid gap-[10px] rounded-xl p-4 flex flex-col">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
-                    <StarsMobile width="24px" />
+                    <StarsMobile width="40px" />
                     <h4 className="text-blue-600 text-[20px] font-semibold">Balance</h4>
                   </div>
                   <div>
@@ -110,7 +112,7 @@ export const Profile_balance = () => {
               <div className="w-full sm:hidden m-auto shadow-lg  border border-[#3A3939] border-solid gap-[10px] rounded-xl p-4 flex flex-col">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
-                    <StarsMobile width="24px" />
+                    <StarsMobile width="40px" />
                     <h4 className="text-blue-600 text-[20px] font-semibold">Bonus Balance</h4>
                   </div>
                   <div>
@@ -141,7 +143,7 @@ export const Profile_balance = () => {
           <div className="profile_balance_side">
             <div className="profile_balance_side_title">
               <h4 className="profile_balance_side_main_text">
-                <StarsMobile /> Balance
+                <StarsMobile width="65" /> Balance
               </h4>
               <p className="profile_balance_side_cost_text">
                 <select>
@@ -162,7 +164,7 @@ export const Profile_balance = () => {
           <div className="profile_balance_side">
             <div className="profile_balance_side_title">
               <h4 className="profile_balance_side_main_text">
-                <StarsMobile /> Bonus Balance
+                <StarsMobile width="65" /> Bonus Balance
               </h4>
               <p className="profile_balance_side_cost_text">
                 <select>
@@ -174,6 +176,7 @@ export const Profile_balance = () => {
             <p className="profile_balance_side_money">
               $000,000,000 <Eye />
             </p>
+
             <div className="profile_balance_side_statistic_block">
               <Stonks />
               <p className="profile_balance_side_statistic_block_text">Today $0,00 (0,00 %)</p>
@@ -227,6 +230,7 @@ export const Profile_balance = () => {
               </div>
             </div>
           </div>
+          
         </Accordion>
       </div>
 

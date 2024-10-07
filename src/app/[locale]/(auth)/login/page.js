@@ -18,7 +18,7 @@ export default function LogIn() {
   useEffect(() => {
     initializeTheme();
   }, [initializeTheme]);
-	
+
   const modeToogle = selected => {
     setMode(selected);
   };
@@ -33,7 +33,7 @@ export default function LogIn() {
   };
 
   return (
-    <div className="form__wrapper login__wrapper">
+    <div className="form__wrapper ">
       <div className="form__wrapper-title">
         <FormLogo color={theme === "dark" ? "white" : "#3A3939"} />
       </div>
@@ -52,6 +52,7 @@ export default function LogIn() {
           placeholder={mode === "email" ? "E-mail" : "Phone number"}
           onChange={handleInputOneChange}
           className={inputOneClass}
+          id="login"
         />
 
         <div className="password__wrapper">
@@ -60,6 +61,7 @@ export default function LogIn() {
             placeholder="Password"
             onChange={handleInputTwoChange}
             className={inputTwoClass}
+            id="pass"
           />
 
           <span onClick={togglePasswordVisibility}>
@@ -99,10 +101,34 @@ export default function LogIn() {
           <span>join us on social networks</span>
 
           <div className="socials__icons">
-            <Image src={theme === "dark" ? "/form/icons_dark/Instagram_dark.svg" : "/form/icons_white/Instagram.svg"} width={48} height={48} quality={100} alt="Logo" />
-            <Image src={theme === "dark" ? "/form/icons_dark/Telegram_dark.svg" : "/form/icons_white/Telegram_white.svg"} width={48} height={48} quality={100} alt="Logo" />
-            <Image src={theme === "dark" ? "/form/icons_dark/Snapchat_dark.svg" : "/form/icons_white/Snapchat_white.svg"} width={48} height={48} quality={100} alt="Logo" />
-            <Image src={theme === "dark" ? "/form/icons_dark/Twitter_dark.svg" : "/form/icons_white/Twitter_white.svg"} width={48} height={48} quality={100} alt="Logo" />
+            <Image
+              src={theme === "dark" ? "/form/icons_dark/Instagram_dark.svg" : "/form/icons_white/Instagram.svg"}
+              width={48}
+              height={48}
+              quality={100}
+              alt="Logo"
+            />
+            <Image
+              src={theme === "dark" ? "/form/icons_dark/Telegram_dark.svg" : "/form/icons_white/Telegram_white.svg"}
+              width={48}
+              height={48}
+              quality={100}
+              alt="Logo"
+            />
+            <Image
+              src={theme === "dark" ? "/form/icons_dark/Snapchat_dark.svg" : "/form/icons_white/Snapchat_white.svg"}
+              width={48}
+              height={48}
+              quality={100}
+              alt="Logo"
+            />
+            <Image
+              src={theme === "dark" ? "/form/icons_dark/Twitter_dark.svg" : "/form/icons_white/Twitter_white.svg"}
+              width={48}
+              height={48}
+              quality={100}
+              alt="Logo"
+            />
           </div>
         </div>
       </div>

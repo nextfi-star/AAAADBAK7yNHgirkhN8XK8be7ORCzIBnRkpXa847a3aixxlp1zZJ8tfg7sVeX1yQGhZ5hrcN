@@ -39,6 +39,7 @@ export const OTPInput = ({ length = 6, onChange }) => {
           onKeyDown={e => handleBackspace(e, index)}
           maxLength={1}
           style={{ width: '40px', textAlign: 'center' }}
+					className='otp__input'
         />
       ))}
 		</>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const StarsMobile = ({ width = "68" }) => {
+const StarsMobile = ({ width = "40" }) => {
   return (
     <svg width={width} viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

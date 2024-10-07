@@ -9,9 +9,9 @@ export const metadata = {
 
 export default function FormLayout({ children }) {
   return (
-    <div className="profile__body container mx-auto">
+    <div className="profile__body ">
       <ProfileHeader />
-      <main className="profile__main container mx-auto">
+      <main className="profile__main site-holder">
         <Profile_nav />
         {children}
       </main>

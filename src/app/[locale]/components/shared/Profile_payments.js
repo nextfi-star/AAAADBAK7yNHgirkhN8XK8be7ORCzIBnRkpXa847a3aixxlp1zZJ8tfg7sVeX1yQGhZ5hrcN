@@ -48,7 +48,7 @@ export const Profile_payments = () => {
     <div className="payments">
       <div className="flex justify-between gap-[32px] max-w-[1016px] items-center py-4 my-[20px]">
         <h3 className="text-[32px] font-semibold">Payments</h3>
-        <span className="flex items-center text-[10px] md:text-[14px] gap-[15px] text-gray-100 relative ">
+        <span className="flex items-center text-[10px] md:text-[14px] gap-[15px] data__picker relative ">
           Date: {startDate ? startDate.toLocaleDateString() : "Select start date"} -
           {endDate ? endDate.toLocaleDateString() : "Select end date"}
           {/* Кнопка для открытия календаря с иконкой */}

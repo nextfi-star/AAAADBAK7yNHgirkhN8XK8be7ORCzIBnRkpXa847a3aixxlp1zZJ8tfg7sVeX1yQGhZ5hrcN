@@ -35,7 +35,8 @@ export const Header = ({ auth = true }) => {
 
   return (
     <header id="header">
-      <div className="header__content" data-aos="fade-down" data-aos-duration="1000">
+     <div className="site-holder">
+     <div className="header__content" data-aos="fade-down" data-aos-duration="1000">
         {!auth && (
           <a href="" className="header__logo">
             <Logo_header />
@@ -87,6 +88,7 @@ export const Header = ({ auth = true }) => {
           </div>
         </div>
       </div>
+     </div>
     </header>
   );
 };
