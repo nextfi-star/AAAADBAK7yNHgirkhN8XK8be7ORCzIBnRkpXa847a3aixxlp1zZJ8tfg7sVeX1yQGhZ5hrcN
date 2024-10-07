@@ -218,6 +218,10 @@ body {
 .preloader__white {
   background: #fff;
 }
+.table :where(th, td){
+  padding-left: 0;
+  padding-right: 0;
+}
 // ? Content
 
 header {
@@ -2568,7 +2572,7 @@ header {
     @media (min-width: 1280px) {
       .profile__grid {
         display: grid;
-        grid-template-columns: 1fr 0.5fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -2784,7 +2788,7 @@ header {
       width: 100%;
       flex-direction: row;
       justify-content: flex-end;
-      align-items: flex-start;
+      align-items: center;
       gap: 10px;
 
       @media (max-width: 1280px) {
@@ -2850,9 +2854,9 @@ header {
         border: none;
       }
 
-      @media (max-width: 1200px) {
-        font-size: 14px;
-        padding: 5px 10px;
+      @media (max-width: 1366px) {
+        font-size: 13px;
+        padding: 5px 7px;
       }
     }
 
@@ -2938,6 +2942,14 @@ header {
           display: flex;
           flex-direction: column;
           gap: 20px;
+
+          svg {
+            max-width: 60px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+          }
           .profile__verification__info__block_step_text {
             font-family: inherit;
             font-size: 18px;
@@ -2995,7 +3007,7 @@ header {
       background-color: var(--getstarted-item);
       min-height: 435px;
       box-shadow: var(--shadow-split);
-      max-width: 536px;
+      max-width: 100%;
       width: 100%;
       margin-bottom: 40px;
 
@@ -3095,10 +3107,10 @@ header {
     .profile_qr {
       display: flex;
       flex-direction: column;
-      justify-content: start;
+      justify-content: flex-start;
       padding: 40px;
       height: 316px;
-      max-width: 536px;
+      width: 100%;
       background-color: var(--profile-block);
       box-shadow: var(--shadow-split);
       border-radius: 30px;
@@ -3120,7 +3132,7 @@ header {
 
       &-link {
         display: flex;
-        justify-content: start;
+        justify-content: center;
         margin-top: 20px;
         gap: 40px;
         align-items: center;
@@ -3162,10 +3174,12 @@ header {
       font-weight: 500;
       display: flex;
       justify-content: space-between;
-
       flex-direction: column;
       margin-bottom: 40px;
 
+      @media (max-width: 1366px) {
+        padding: 6px 15px;
+      }
       @media (max-width: 1024px) {
         padding-right: 50px;
       }
@@ -3174,7 +3188,6 @@ header {
         margin-bottom: 40px;
         max-width: 1000px;
       }
-
       @media (max-width: 640px) {
         margin: 0 auto;
         min-height: auto;
@@ -3189,13 +3202,13 @@ header {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        margin-bottom: 40px; /* Отступ снизу по умолчанию */
+        margin-bottom: 40px;
 
         .profile_balance_side {
           display: flex;
           flex-direction: column;
           gap: 40px;
-          width: calc(50% - 20px); /* Ширина 50% с учётом отступов */
+          width: calc(50% - 20px);
 
           @media (max-width: 640px) {
             display: none;
@@ -3215,6 +3228,15 @@ header {
               font-size: 32px;
               line-height: 40px;
               font-weight: 500;
+
+              @media (max-width: 1366px) {
+                font-size: 18px;
+                line-height: 20px;
+
+                svg {
+                  max-width: 40px;
+                }
+              }
             }
 
             .profile_balance_side_cost_text {
@@ -3253,7 +3275,6 @@ header {
           margin-bottom: 0px; /* Отмена отступа снизу */
         }
       }
-
       .profile_balance_buttons {
         display: flex;
         gap: 24px;
@@ -3274,13 +3295,15 @@ header {
           min-width: 172px;
           padding: 0.5rem 0;
 
+          @media (max-width: 1366px) {
+            font-size: 16px;
+          }
           @media (max-width: 640px) {
             font-size: 14px;
             min-width: 126px;
           }
         }
       }
-
       .profile__balance__accordion {
         display: flex;
         max-width: 1016px;

@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Accordion from "../ui/Accordion";
@@ -11,11 +11,16 @@ import Stonks from "../ui/Stonks";
 import ArrowBracket from "../ui/ArrowBracket";
 import "./chart.scss";
 import { ChartBlock } from "./ChartBlock";
-
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export const Profile_balance = () => {
   const t = useTranslations("profile");
-  const [isActive, setIsActive] = useState(true); // для мобилки
+  const swiperRef = useRef(null);
+  const [isActive, setIsActive] = useState(true);
+
+  const handleSlideChange = index => {
+    setIsActive(index === 0);
+  };
   const [activeButton, setActiveButton] = useState("1 week");
 
   const handler = () => {};
@@ -43,16 +48,18 @@ export const Profile_balance = () => {
     <section className="">
       <div className="w-[212px] flex sm:hidden  m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200">
         <button
-          className={`w-[104px] ${
+          className={`w-[104px] transition duration-300 ${
             isActive ? "bg-[#205BC9] text-white" : "text-[#205BC9]"
-          } text-[18px]  rounded-[50px] font-medium`}
+          } text-[18px] rounded-[50px] font-medium`}
+          onClick={() => swiperRef.current.slideTo(0)}
         >
           Balance
         </button>
         <button
-          className={`w-[104px] ${
+          className={`w-[104px] transition duration-300 ${
             !isActive ? "bg-[#205BC9] text-white" : "text-[#205BC9]"
-          }   text-[18px] rounded-[50px] font-medium`}
+          } text-[18px] rounded-[50px] font-medium`}
+          onClick={() => swiperRef.current.slideTo(1)}
         >
           Bonus
         </button>
@@ -60,55 +67,76 @@ export const Profile_balance = () => {
 
       <div className="profile__balance ">
         <div className="profile__balance_sides">
-          <div className="w-[364px] h-[156px] sm:hidden m-auto shadow-lg  border border-[#3A3939] border-solid gap-[10px] rounded-xl p-4 flex flex-col">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <StarsMobile width="24px" />
-                <h4 className="text-blue-600 text-[20px] font-semibold">Balance</h4>
+          {/* Mobile */}
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={24}
+            onSwiper={swiper => {
+              swiperRef.current = swiper;
+            }}
+            onSlideChange={swiper => handleSlideChange(swiper.activeIndex)}
+          >
+            <SwiperSlide>
+              <div className="w-full sm:hidden m-auto shadow-lg  border border-[#3A3939] border-solid gap-[10px] rounded-xl p-4 flex flex-col">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <StarsMobile width="24px" />
+                    <h4 className="text-blue-600 text-[20px] font-semibold">Balance</h4>
+                  </div>
+                  <div>
+                    <select className="bg-transparent text-[16px] font-medium">
+                      <option className="text-[12px] max-w-[1px] text-black" value="USDT">
+                        USDT
+                      </option>
+                      <option className="text-[12px] max-w-[1px] text-black" value="NextFi">
+                        NextFi
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-[8px]">
+                  <p className="text-[24px] font-bold">$000,000</p>
+                  <Eye />
+                </div>
+
+                <div className="flex items-center gap-2 text-blue-600 text-[14px]">
+                  <Stonks />
+                  <p>Today $0,00 (0,00 %)</p>
+                </div>
               </div>
-              <div>
-                <select className="bg-transparent text-[16px] font-medium">
-                  <option className='text-[12px] max-w-[1px] text-black' value="USDT">USDT</option>
-                  <option className='text-[12px] max-w-[1px] text-black' value="NextFi">NextFi</option>
-                </select>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="w-full sm:hidden m-auto shadow-lg  border border-[#3A3939] border-solid gap-[10px] rounded-xl p-4 flex flex-col">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <StarsMobile width="24px" />
+                    <h4 className="text-blue-600 text-[20px] font-semibold">Bonus Balance</h4>
+                  </div>
+                  <div>
+                    <select className="bg-transparent text-[16px] font-medium">
+                      <option className="text-[12px] max-w-[1px] text-black" value="USDT">
+                        USDT
+                      </option>
+                      <option className="text-[12px] max-w-[1px] text-black" value="NextFi">
+                        NextFi
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-[8px]">
+                  <p className="text-[24px] font-bold">$000,000</p>
+                  <Eye />
+                </div>
+
+                <div className="flex items-center gap-2 text-blue-600 text-[14px]">
+                  <Stonks />
+                  <p>Today $0,00 (0,00 %)</p>
+                </div>
               </div>
-            </div>
-
-            <div className="flex items-center gap-[8px]">
-              <p className="text-[24px] font-bold">$000,000</p>
-              <Eye />
-            </div>
-
-            <div className="flex items-center gap-2 text-blue-600 text-[14px]">
-              <Stonks />
-              <p>Today $0,00 (0,00 %)</p>
-            </div>
-          </div>
-
-          {/* <div className="w-[364px] h-[156px] m-auto shadow-lg  gap-[10px] rounded-xl p-4 flex flex-col">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <StarsMobile width="24px" />
-                <h4 className="text-blue-600 text-[20px] font-semibold">Bonus Balance</h4>
-              </div>
-              <div>
-                <select className="bg-transparent text-[16px] font-medium">
-                  <option value="USDT">USDT</option>
-                  <option value="NextFi">NextFi</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-[8px]">
-              <p className=" text-[24px] font-bold">$000,000,000</p>
-              <Eye />
-            </div>
-
-            <div className="flex items-center gap-2 text-blue-600 text-[14px]">
-              <Stonks />
-              <p>Today $0,00 (0,00 %)</p>
-            </div>
-          </div> */}
+            </SwiperSlide>
+          </Swiper>
 
           <div className="profile_balance_side">
             <div className="profile_balance_side_title">
@@ -201,6 +229,31 @@ export const Profile_balance = () => {
           </div>
         </Accordion>
       </div>
+
+      {/* <div className="w-[364px] h-[156px] m-auto shadow-lg  gap-[10px] rounded-xl p-4 flex flex-col">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-2">
+                <StarsMobile width="24px" />
+                <h4 className="text-blue-600 text-[20px] font-semibold">Bonus Balance</h4>
+              </div>
+              <div>
+                <select className="bg-transparent text-[16px] font-medium">
+                  <option value="USDT">USDT</option>
+                  <option value="NextFi">NextFi</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-[8px]">
+              <p className=" text-[24px] font-bold">$000,000,000</p>
+              <Eye />
+            </div>
+
+            <div className="flex items-center gap-2 text-blue-600 text-[14px]">
+              <Stonks />
+              <p>Today $0,00 (0,00 %)</p>
+            </div>
+          </div> */}
     </section>
   );
 };
