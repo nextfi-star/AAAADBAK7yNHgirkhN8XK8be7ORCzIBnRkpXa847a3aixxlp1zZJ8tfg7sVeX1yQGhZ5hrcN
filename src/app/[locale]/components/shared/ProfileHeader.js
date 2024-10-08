@@ -4,17 +4,24 @@ import Theme_switch from "./Theme_switch";
 import Locale_Switcher from "./Locale_Switcher";
 import { Burger_profile } from "./Burger_profile";
 import { useTranslations } from "next-intl";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "../../../../i18n/routing";
 import { User } from "../ui/User";
 import { Download2 } from "../ui/download2";
 import { useThemeStore } from "../../../../store";
 import { Logo_header } from "../ui/Logo_header";
 import { Chat } from "../ui/Chat";
+import { BurgerIcon } from "./BurgerIcon";
+import clsx from "clsx";
 
 export const ProfileHeader = ({ auth = true }) => {
   const t = useTranslations("nav");
+  const [show, setShow] = useState(true);
   const { theme } = useThemeStore();
+  const classChange = clsx("m_header__profile_menu", { active: !show });
+  const handleClick = e => {
+    setShow(!show);
+  };
   useEffect(() => {
     const header = document.querySelector("header");
     const handleScroll = () => {
@@ -39,7 +46,12 @@ export const ProfileHeader = ({ auth = true }) => {
         <a href="" className="header__logo">
           <Logo_header />
         </a>
-        <Burger_profile />
+
+        <div className={`${classChange}`} onClick={handleClick}>
+          <BurgerIcon color={theme === "dark" ? "white" : "black"} />
+        </div>
+
+        <Burger_profile show={show} handleClick={handleClick} />
 
         <Navigation />
 
@@ -74,14 +86,14 @@ export const ProfileHeader = ({ auth = true }) => {
                   <a href="#" className="header__icons-item">
                     <Theme_switch />
                   </a>
-
                   <button href="" className="header__icons-item">
                     <Locale_Switcher />
                   </button>
                 </div>
+
                 <div className="flex sm:hidden gap-[18px]">
                   <a href="#" className="header__icons-item">
-                    <Theme_switch width={30}/>
+                    <Theme_switch width={30} />
                   </a>
                   <button href="" className="header__icons-item">
                     <Locale_Switcher />
