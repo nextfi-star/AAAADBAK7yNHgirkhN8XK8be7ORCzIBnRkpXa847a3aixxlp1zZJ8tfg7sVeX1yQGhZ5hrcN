@@ -17,7 +17,6 @@ const data = [
   {
     src: "/header_icons/profile_burger/commission.svg",
     title: "Commission",
-		subtitle: 'level'
   },
 ];
 export const ProfileBurger_assets = () => {
@@ -29,7 +28,7 @@ export const ProfileBurger_assets = () => {
           data.map(item => (
             <div key={item.title} className="flex flex-col items-center">
               <Image src={item.src} width={36} height={36} quality={100} priority alt={item.title} className="w-full" />
-              <span className='text-center'>{item.title} <br /> {item.subtitle} </span>
+              <span className='text-center'>{item.title}  </span>
             </div>
           ))}
       </div>
