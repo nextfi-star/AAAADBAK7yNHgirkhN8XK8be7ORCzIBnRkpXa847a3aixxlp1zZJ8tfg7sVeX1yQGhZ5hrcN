@@ -38,7 +38,7 @@ export const Profile_verification = ({ setVerify }) => {
         <div className="w-full  flex justify-between">
           <span className='text-[12px]'>Sign Up</span>
           <span className='text-[12px]'>Verify identity</span>
-          <span className='text-[12px]'>Deposit</span>
+          <span className='text-[12px]'>Success</span>
         </div>
         <button
           className="w-fit text-[14px] font-medium py-[10px] px-[30px] bg-[#205BC9] rounded-[50px] text-white"

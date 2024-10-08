@@ -4,9 +4,11 @@ import { useTranslations } from "next-intl";
 
 import Copy from "../ui/Copy";
 import Avatar from "../ui/Avatar";
+import { useThemeStore } from "../../../../store";
 
 export const Profile_info = ({ verify, setVerify }) => {
   const t = useTranslations("profile");
+  const { theme } = useThemeStore();
 
   return (
     <section className="hidden sm:block profile__info profile_blocks_border">
@@ -18,17 +20,19 @@ export const Profile_info = ({ verify, setVerify }) => {
           <h3 className="profile__info__block__left__text_name ">Sergey Sergey</h3>
           <p className="profile__info__block__left__text_email">Sergey@mail.ru</p>
           <p className="profile__info__block__left__text__id">
-          888888888в8888888 <Copy />
+            888888888в8888888 <Copy color={theme === "dark" ? "white" : "black"} />
           </p>
         </div>
       </div>
-      
+
       <div className="profile__info__block__right">
         <div className="profile__info__block___right__block">
           <h5 className="profile__info__block___right__main__text">{t("Verification")}</h5>
           {!verify ? (
-            <button 
-            onClick={() => setVerify(prev => !prev)} className="profile__info__block___right__verification_block__button profile__info__block___right__additional__text">
+            <button
+              onClick={() => setVerify(prev => !prev)}
+              className="profile__info__block___right__verification_block__button profile__info__block___right__additional__text"
+            >
               {t("GoThroughVerification")}
             </button>
           ) : (

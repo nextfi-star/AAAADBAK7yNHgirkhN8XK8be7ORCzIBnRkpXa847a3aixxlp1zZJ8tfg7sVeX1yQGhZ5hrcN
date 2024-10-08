@@ -56,7 +56,7 @@ export const ProfileHeader = ({ auth = true }) => {
               </>
             ) : (
               <>
-                <div className="profile__header__icons hidden sm:flex ">
+                <div className="profile__header__icons hidden sm:flex gap-[20px]">
                   <select className="header__buttons-assets .header__content">
                     <option className="text-black" value="">
                       Assets
@@ -79,15 +79,15 @@ export const ProfileHeader = ({ auth = true }) => {
                     <Locale_Switcher />
                   </button>
                 </div>
-                <div className="flex sm:hidden">
+                <div className="flex sm:hidden gap-[18px]">
                   <a href="#" className="header__icons-item">
-                    <Theme_switch />
+                    <Theme_switch width={30}/>
                   </a>
                   <button href="" className="header__icons-item">
                     <Locale_Switcher />
                   </button>
                   <button href="" className="header__icons-item">
-                    <Chat color={theme === "dark" ? "white" : "black"} />
+                    <Chat width={20} height={30} color={theme === "dark" ? "white" : "black"} />
                   </button>
                 </div>
               </>

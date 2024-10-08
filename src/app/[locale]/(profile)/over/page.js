@@ -21,7 +21,7 @@ export default function Profile() {
   }, [initializeTheme]);
   return (
     <section className="profile">
-      <Profile_info setVerify={setVerify} verify={verify}/>
+      <Profile_info setVerify={setVerify} verify={verify} />
       <div className="profile__grid gap-[24px] max-xl:grid max-xl:grid-cols-1">
         <div className="">
           <hr />
@@ -32,11 +32,13 @@ export default function Profile() {
           )}
           <Profile_payments />
         </div>
-        <div className="">
-          <Profile_industry />
+
+        <div className="max-w-[1331px] order-1">
+          <Profile_industry unicClass="show__when" />
           <Profile_news />
           <Profile_qr />
         </div>
+
       </div>
     </section>
   );

@@ -12,9 +12,11 @@ import ArrowBracket from "../ui/ArrowBracket";
 import "./chart.scss";
 import { ChartBlock } from "./ChartBlock";
 import { Swiper, SwiperSlide } from "swiper/react";
-
+import { useThemeStore } from "../../../../store";
+import { StartupIcon } from "../shared/StartupIcon";
 export const Profile_balance = () => {
   const t = useTranslations("profile");
+  const { theme } = useThemeStore();
   const swiperRef = useRef(null);
   const [isActive, setIsActive] = useState(true);
 
@@ -23,19 +25,15 @@ export const Profile_balance = () => {
   };
   const [activeButton, setActiveButton] = useState("1 week");
 
-  const handler = () => {};
+  const handler = gap => {
+    setActiveButton(gap);
+  };
 
-  const buttons = [
-    { gap: "1 day", onClick: handler() },
-    { gap: "1 week", onClick: handler() },
-    { gap: "1 month", onClick: handler() },
-    { gap: "half-year", onClick: handler() },
-    { gap: "year", onClick: handler() },
-  ];
+  const buttons = [{ gap: "1 day" }, { gap: "1 week" }, { gap: "1 month" }, { gap: "half-year" }, { gap: "year" }];
 
   function scrollButtons(direction) {
     const buttonsContainer = document.querySelector(".profile__chart__buttons");
-    const scrollAmount = 100; // Количество пикселей для прокрутки
+    const scrollAmount = 100;
 
     if (direction === "left") {
       buttonsContainer.scrollBy({ left: -scrollAmount, behavior: "smooth" });
@@ -46,7 +44,7 @@ export const Profile_balance = () => {
 
   return (
     <section className="">
-      <div className="w-[212px] sm:hidden  flex  m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200">
+      <div className="w-[212px] sm:hidden flex m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200 mb-[30px]">
         <button
           className={`w-[104px] transition duration-300 ${
             isActive ? "bg-[#205BC9] text-white" : "text-[#205BC9]"
@@ -79,11 +77,11 @@ export const Profile_balance = () => {
             className="blanace__swiper"
           >
             <SwiperSlide>
-              <div className="w-full sm:hidden m-auto shadow-lg  border border-[#3A3939] border-solid gap-[10px] rounded-xl p-4 flex flex-col">
+              <div className="w-full sm:hidden m-auto border border-[#adadad] border-solid gap-[10px] rounded-xl p-4 flex flex-col">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
-                    <StarsMobile width="40px" />
-                    <h4 className="text-blue-600 text-[20px] font-semibold">Balance</h4>
+                    <StartupIcon width={44} />
+                    <h4 className="text-blue-600 text-[14px] md:text-[20px] font-semibold">Balance</h4>
                   </div>
                   <div>
                     <select className="bg-transparent text-[16px] font-medium">
@@ -103,19 +101,18 @@ export const Profile_balance = () => {
                 </div>
 
                 <div className="flex items-center gap-2 text-blue-600 text-[14px]">
-                  <Stonks />
                   <p>Today $0,00 (0,00 %)</p>
                 </div>
               </div>
             </SwiperSlide>
             <SwiperSlide>
-              <div className="w-full sm:hidden m-auto shadow-lg  border border-[#3A3939] border-solid gap-[10px] rounded-xl p-4 flex flex-col">
+              <div className="w-full sm:hidden m-auto border border-[#adadad] border-solid gap-[10px] rounded-xl p-4 flex flex-col">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
-                    <StarsMobile width="40px" />
-                    <h4 className="text-blue-600 text-[20px] font-semibold">Bonus Balance</h4>
+                    <StartupIcon width={44} />
+                    <h4 className="text-blue-600  text-[14px] md:text-[19px] font-semibold">Bonus Balance</h4>
                   </div>
-                  <div>
+                  <div className="flex items-center">
                     <select className="bg-transparent text-[16px] font-medium">
                       <option className="text-[12px] max-w-[1px] text-black" value="USDT">
                         USDT
@@ -133,7 +130,6 @@ export const Profile_balance = () => {
                 </div>
 
                 <div className="flex items-center gap-2 text-blue-600 text-[14px]">
-                  <Stonks />
                   <p>Today $0,00 (0,00 %)</p>
                 </div>
               </div>
@@ -190,7 +186,6 @@ export const Profile_balance = () => {
             <div className="profile_balance_buttons">
               <button className="profile_balance_button">Deposit</button>
               <button className="profile_balance_button">Withdraw</button>
-              <button className="profile_balance_button">Swap</button>
             </div>
           }
           rightside={"Chart"}
@@ -201,23 +196,17 @@ export const Profile_balance = () => {
             </div>
 
             <div className={"profile__chart__header__block"}>
-              <div className={"profile__chart__header"}>
-                <Link href="#" className={"profile__chart__downloadLink"}>
-                  <p>Download the Report</p> <ArrowUP />
-                </Link>
-              </div>
-
               <div className={"profile__chart__buttons-wrapper"}>
                 <button className="slider-arrow" onClick={() => scrollButtons("left")}>
-                  <ArrowBracket className={"rotate-90"} />
+                  <ArrowBracket color={theme === "dark" ? "white" : "black"} className={"rotate-90"} />
                 </button>
                 <div className={"profile__chart__buttons"}>
                   {buttons.map(btn => (
                     <button
                       key={btn.gap}
-                      onClick={btn.onClick}
+                      onClick={() => handler(btn.gap)}
                       className={`${"profile__chart__button"} ${
-                        activeButton === btn.gap ? "profile__chart__button--active" : ""
+                        activeButton === btn.gap ? "profile__chart__button active" : ""
                       }`}
                     >
                       {btn.gap}
@@ -225,12 +214,11 @@ export const Profile_balance = () => {
                   ))}
                 </div>
                 <button className="slider-arrow " onClick={() => scrollButtons("right")}>
-                  <ArrowBracket className={"rotate-270"} />
+                  <ArrowBracket color={theme === "dark" ? "white" : "black"} className={"rotate-270"} />
                 </button>
               </div>
             </div>
           </div>
-          
         </Accordion>
       </div>
 

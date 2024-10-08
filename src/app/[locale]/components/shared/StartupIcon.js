@@ -1,19 +1,19 @@
 import React from "react";
 
-const StarsMobile = ({ width = "40", height = "auto" }) => {
+export const StartupIcon = ({ width }) => {
   return (
     <svg
       width={width}
-      height={height}
+      height={width}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       <defs>
-        <clipPath id="clip4_3004">
+        <clipPath id="clip4_3030">
           <rect
-            id="Card/ ic_equalizer"
+            id="Card/ euro_symbol"
             rx="0.500000"
             width="23.000000"
             height="23.000000"
@@ -27,7 +27,7 @@ const StarsMobile = ({ width = "40", height = "auto" }) => {
           y1="6.181376"
           x2="3.907670"
           y2="19.817741"
-          id="paint_linear_4_3000_0"
+          id="paint_linear_4_3029_0"
           gradientUnits="userSpaceOnUse"
         >
           <stop offset="0.404729" stopColor="#205BC9" stopOpacity="0.000000" />
@@ -51,12 +51,12 @@ const StarsMobile = ({ width = "40", height = "auto" }) => {
       <path
         id="Star 1"
         d="M10.94 2.1L7.51 4.23L3.96 6.14C3.28 6.5 2.88 7.2 2.9 7.96L3.03 12L2.9 16.03C2.88 16.79 3.28 17.49 3.96 17.85L7.51 19.76L10.94 21.88C11.58 22.29 12.4 22.29 13.05 21.88L16.47 19.76L20.03 17.85C20.7 17.49 21.11 16.79 21.09 16.03L20.96 12L21.09 7.96C21.11 7.2 20.7 6.5 20.03 6.14L16.47 4.23L13.05 2.1C12.4 1.7 11.58 1.7 10.94 2.1Z"
-        fill="url(#paint_linear_4_3000_0)"
+        fill="url(#paint_linear_4_3029_0)"
         fillOpacity="1.000000"
         fillRule="evenodd"
       />
       <rect
-        id="Card/ ic_equalizer"
+        id="Card/ euro_symbol"
         rx="-0.500000"
         width="23.000000"
         height="23.000000"
@@ -64,10 +64,10 @@ const StarsMobile = ({ width = "40", height = "auto" }) => {
         fill="#FFFFFF"
         fillOpacity="0"
       />
-      <g clipPath="url(#clip4_3004)">
+      <g clipPath="url(#clip4_3030)">
         <path
           id="Vector"
-          d="M11 15C11 15.55 11.44 16 12 16C12.55 16 13 15.55 13 15L13 9C13 8.44 12.55 8 12 8C11.44 8 11 8.44 11 9L11 15ZM8 15C8 15.55 8.44 16 9 16C9.55 16 10 15.55 10 15L10 13C10 12.44 9.55 12 9 12C8.44 12 8 12.44 8 13L8 15ZM14 11.5L14 15C14 15.55 14.44 16 15 16C15.55 16 16 15.55 16 15L16 11.5C16 10.94 15.55 10.5 15 10.5C14.44 10.5 14 10.94 14 11.5Z"
+          d="M13.33 14.88C12.21 14.88 11.25 14.25 10.77 13.33L13.33 13.33L13.33 12.44L10.48 12.44C10.46 12.29 10.44 12.15 10.44 12C10.44 11.84 10.46 11.7 10.48 11.55L13.33 11.55L13.33 10.66L10.77 10.66C11.25 9.74 12.21 9.11 13.33 9.11C14.05 9.11 14.7 9.37 15.21 9.8L16 9.02C15.29 8.38 14.35 8 13.33 8C11.59 8 10.11 9.11 9.57 10.66L8 10.66L8 11.55L9.35 11.55C9.34 11.7 9.33 11.84 9.33 12C9.33 12.15 9.34 12.29 9.35 12.44L8 12.44L8 13.33L9.57 13.33C10.11 14.88 11.59 16 13.33 16C14.35 16 15.29 15.61 16 14.97L15.21 14.19C14.7 14.62 14.05 14.88 13.33 14.88Z"
           fill="#FFFFFF"
           fillOpacity="1.000000"
           fillRule="evenodd"
@@ -76,5 +76,3 @@ const StarsMobile = ({ width = "40", height = "auto" }) => {
     </svg>
   );
 };
-
-export default StarsMobile;

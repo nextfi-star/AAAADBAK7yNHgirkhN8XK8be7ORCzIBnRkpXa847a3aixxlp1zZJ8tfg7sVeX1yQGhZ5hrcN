@@ -12,6 +12,7 @@ import {
   Legend,
 } from "chart.js";
 import styles from "./chart.scss";
+import { useThemeStore } from "../../../../store";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -21,7 +22,7 @@ export const ChartBlock = () => {
     datasets: [
       {
         label: "Data",
-        data: [0, 0, 0, 0, 0, 0, 0],
+        data: [1520, 9630, 1140, 3540, 7880, 5670, 68420],
         borderColor: "#007bff",
         borderWidth: 2,
         fill: false,
@@ -35,7 +36,7 @@ export const ChartBlock = () => {
       datasets: [{ ...prevData.datasets[0], data: newData }],
     }));
   };
-
+  const { theme } = useThemeStore();
   return (
     <div className={styles.container}>
       <div className={styles.chart}>
@@ -50,21 +51,22 @@ export const ChartBlock = () => {
               y: {
                 min: -80000,
                 max: 80000,
+
                 grid: {
                   color: "#444444", // Цвет горизонтальных линий сетки
                   lineWidth: 1,
                 },
                 ticks: {
-                  color: "#cccccc", // Цвет текста на оси Y
+                  color: theme === "dark" ? " #cccccc " : "#000", 
                 },
               },
               x: {
                 grid: {
-                  color: "#444444", // Цвет вертикальных линий сетки
+                  color: "#444444", 
                   lineWidth: 1,
                 },
                 ticks: {
-                  color: "#cccccc", // Цвет текста на оси X
+                  color: theme === "dark" ? " #cccccc " : "#000", 
                 },
               },
             },
@@ -77,5 +79,4 @@ export const ChartBlock = () => {
       </div> */}
     </div>
   );
-}
-
+};

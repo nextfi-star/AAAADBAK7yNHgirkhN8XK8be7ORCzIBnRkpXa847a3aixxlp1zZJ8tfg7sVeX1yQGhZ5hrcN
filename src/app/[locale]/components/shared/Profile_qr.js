@@ -13,13 +13,13 @@ export const Profile_qr = () => {
           Download app <br /> and trade on the go
         </h2>
         <div className="flex justify-center items-center  gap-[12px] w-full">
-          <div className="flex justify-center shadow bg-[#3c3c3c66] w-[70px] h-[70px] rounded-[15px]">
+          <div className="flex justify-center items-center shadow bg-[#3c3c3c66] w-[70px] h-[70px] rounded-[15px]">
             <Image src="/main/download_icons/Aptoide.svg" alt="Aptoide" width={48} height={48} />
           </div>
-          <div className="flex justify-center shadow bg-[#3c3c3c66] w-[70px] h-[70px] rounded-[15px]">
+          <div className="flex justify-center items-center shadow bg-[#3c3c3c66] w-[70px] h-[70px] rounded-[15px]">
             <Image src="/main/download_icons/google-play.svg" alt="google" width={48} height={48} />
           </div>
-          <div className="flex justify-center shadow bg-[#3c3c3c66] w-[70px] h-[70px] rounded-[15px]">
+          <div className="flex justify-center items-center shadow bg-[#3c3c3c66] w-[70px] h-[70px] rounded-[15px]">
             <Image src="/main/download_icons/apple-app-store.svg" alt="Aptoide" width={48} height={48} />
           </div>
         </div>
