@@ -1,0 +1,27 @@
+<svg width="48.000000" height="48.000000" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip35_1007">
+			<rect id="Mobile/ ic_equalizer" rx="-0.500000" width="23.000000" height="23.000000" transform="translate(12.500000 12.500000)" fill="white" fill-opacity="0"/>
+		</clipPath>
+		<clipPath id="clip36_947">
+			<rect id="swap_icon_246206 1" rx="-0.500000" width="17.000000" height="17.000000" transform="translate(13.500000 15.500000)" fill="white" fill-opacity="0"/>
+		</clipPath>
+		<linearGradient x1="30.922411" y1="15.724141" x2="10.491375" y2="35.120693" id="paint_linear_43_1166_0" gradientUnits="userSpaceOnUse">
+			<stop offset="0.404729" stop-color="#205BC9" stop-opacity="0.000000"/>
+			<stop offset="1.000000" stop-color="#073D95"/>
+		</linearGradient>
+	</defs>
+	<path id="Star 2" d="M14.25 10.59L7.96 14.12C7 14.66 6.42 15.68 6.42 16.78L6.52 24L6.42 31.21C6.42 32.31 7 33.33 7.96 33.87L14.25 37.4L20.46 41.09C21.41 41.65 22.58 41.65 23.53 41.09L29.74 37.4L36.03 33.87C36.99 33.33 37.57 32.31 37.57 31.21L37.47 24L37.57 16.78C37.57 15.68 36.99 14.66 36.03 14.12L29.74 10.59L23.53 6.9C22.58 6.34 21.41 6.34 20.46 6.9L14.25 10.59ZM14.75 11.46L8.45 15C7.81 15.35 7.42 16.03 7.42 16.76L7.52 24L7.42 31.23C7.42 31.96 7.81 32.64 8.45 33L14.75 36.53L20.97 40.23C21.6 40.6 22.39 40.6 23.02 40.23L29.24 36.53L35.54 33C36.18 32.64 36.57 31.96 36.57 31.23L36.47 24L36.57 16.76C36.57 16.03 36.18 15.35 35.54 15L29.24 11.46L23.02 7.76C22.39 7.39 21.6 7.39 20.97 7.76L14.75 11.46Z" fill="#205BC9" fill-opacity="1.000000" fill-rule="evenodd"/>
+	<path id="Star 1" d="M20.97 9.6L15.54 12.82L10.04 15.91C9.4 16.27 9.02 16.95 9.02 17.68L9.1 24L9.02 30.31C9.02 31.04 9.4 31.72 10.04 32.08L15.54 35.17L20.97 38.39C21.6 38.76 22.39 38.76 23.02 38.39L28.45 35.17L33.95 32.08C34.59 31.72 34.97 31.04 34.97 30.31L34.89 24L34.97 17.68C34.97 16.95 34.59 16.27 33.95 15.91L28.45 12.82L23.02 9.6C22.39 9.23 21.6 9.23 20.97 9.6Z" fill="#205BC9" fill-opacity="1.000000" fill-rule="evenodd"/>
+	<path id="Star 1" d="M20.97 9.6L15.54 12.82L10.04 15.91C9.4 16.27 9.02 16.95 9.02 17.68L9.1 24L9.02 30.31C9.02 31.04 9.4 31.72 10.04 32.08L15.54 35.17L20.97 38.39C21.6 38.76 22.39 38.76 23.02 38.39L28.45 35.17L33.95 32.08C34.59 31.72 34.97 31.04 34.97 30.31L34.89 24L34.97 17.68C34.97 16.95 34.59 16.27 33.95 15.91L28.45 12.82L23.02 9.6C22.39 9.23 21.6 9.23 20.97 9.6Z" fill="url(#paint_linear_43_1166_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+	<g clip-path="url(#clip35_1007)"/>
+	<g clip-path="url(#clip36_947)">
+		<path id="Vector" d="M24.14 21.85L28.42 21.85L28.42 17.57" stroke="#FFFFFF" stroke-opacity="1.000000" stroke-width="1.000000" stroke-linejoin="round" stroke-linecap="round"/>
+		<path id="Vector" d="M28.42 21.85C25.99 19 23.56 17.57 21.14 17.57C18.71 17.57 16.57 18.42 14.71 20.14" stroke="#FFFFFF" stroke-opacity="1.000000" stroke-width="1.000000" stroke-linejoin="round" stroke-linecap="round"/>
+		<path id="Vector" d="M18.57 24.85L14.28 24.85L14.28 29.14" stroke="#FFFFFF" stroke-opacity="1.000000" stroke-width="1.000000" stroke-linejoin="round" stroke-linecap="round"/>
+		<path id="Vector" d="M14.28 24.85C16.71 27.71 19.14 29.14 21.57 29.14C24 29.14 26.14 28.28 28 26.57" stroke="#FFFFFF" stroke-opacity="1.000000" stroke-width="1.000000" stroke-linejoin="round" stroke-linecap="round"/>
+	</g>
+</svg>
