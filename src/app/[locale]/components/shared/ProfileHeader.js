@@ -42,7 +42,7 @@ export const ProfileHeader = ({ auth = true }) => {
 
   return (
     <header id="header" className="py-[1.5rem]">
-      <div className="header__content site-holder" data-aos="fade-down" data-aos-duration="1000">
+      <div className="flex justify-between items-center site-holder" data-aos="fade-down" data-aos-duration="1000">
         <a href="" className="header__logo">
           <Logo_header />
         </a>
