@@ -20,3 +20,6 @@ export { Profile_nav } from "./Profile_nav";
 export { Profile_news } from "./Profile_news";
 export { Profile_payments } from "./Profile_payments";
 export { Profile_qr } from "./Profile_qr";
+export { ProfileBurger_info } from "./ProfileBurger_info";
+export { ProfileBurger_shortcuts } from "./ProfileBurger_shortcuts";
+export { ProfileBurger_assets } from "./ProfileBurger_assets";
