@@ -91,14 +91,14 @@ export const ProfileHeader = ({ auth = true }) => {
                   </button>
                 </div>
 
-                <div className="flex sm:hidden gap-[18px]">
-                  <a href="#" className="header__icons-item">
-                    <Theme_switch width={30} />
+                <div className="flex items-center sm:hidden gap-[18px]">
+                  <a href="#" className="header__icons-item flex items-center">
+                    <Theme_switch width={35} />
                   </a>
-                  <button href="" className="header__icons-item">
+                  <button href="" className="header__icons-item flex items-center">
                     <Locale_Switcher />
                   </button>
-                  <button href="" className="header__icons-item">
+                  <button href="" className="header__icons-item flex items-center">
                     <Chat width={20} height={30} color={theme === "dark" ? "white" : "black"} />
                   </button>
                 </div>

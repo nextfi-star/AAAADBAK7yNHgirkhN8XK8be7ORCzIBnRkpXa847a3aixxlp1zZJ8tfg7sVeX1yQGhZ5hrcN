@@ -5,7 +5,7 @@ export const Navigation = () => {
 	const t = useTranslations('nav')
 
 	return (
-		<nav className='header__navigation header-nav'>
+		<nav className='header__navigation header-nav flex items-center gap-[24px]'>
 			<a href='' className='header__navigation-item'>
 				{t('home')}
 			</a>

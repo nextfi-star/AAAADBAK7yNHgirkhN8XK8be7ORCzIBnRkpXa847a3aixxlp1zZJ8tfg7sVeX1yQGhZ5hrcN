@@ -20,7 +20,7 @@ export const Burger_profile = ({ handleClick, show }) => {
       <div className={`${listClass} profile__burger`}>
         <Image
           src={"/header_icons/profile_burger/wave_dark.svg"}
-          width={570}
+          width={475}
           height={206}
           quality={100}
           priority
