@@ -54,14 +54,14 @@ export const TapBar = () => {
         data.map((item, index) => (
           <div
             key={item.animation}
-            className="Tapbar__item"
+            className={`Tapbar__item ${activeIndex === index ? "active" : ""}`}
             onClick={() => play(index)} 
-           
           >
             <DotLottieReact
               src={item.animation}
               className={`lottie ${item.class}`}
               autoplay
+              speed={2.5}
               dotLottieRefCallback={ref => dotLottieRefCallback(ref, index)}
             />
             <p className="Tapbar__item-text">{item.title}</p>
