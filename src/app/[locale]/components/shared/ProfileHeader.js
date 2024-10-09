@@ -4,7 +4,7 @@ import Theme_switch from "./Theme_switch";
 import Locale_Switcher from "./Locale_Switcher";
 import { Burger_profile } from "./Burger_profile";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "../../../../i18n/routing";
 import { User } from "../ui/User";
 import { Download2 } from "../ui/download2";
@@ -17,11 +17,20 @@ import clsx from "clsx";
 export const ProfileHeader = ({ auth = true }) => {
   const t = useTranslations("nav");
   const [show, setShow] = useState(true);
+  const menuRef = useRef(null);
   const { theme } = useThemeStore();
   const classChange = clsx("m_header__profile_menu", { active: !show });
-  const handleClick = e => {
+
+  const handleClick = () => {
     setShow(!show);
   };
+  const handleClickOutside = e => {
+    // Проверяем, есть ли клик вне меню
+    if (menuRef.current && !menuRef.current.contains(e.target)) {
+      setShow(true); // Закрываем меню
+    }
+  };
+
   useEffect(() => {
     const header = document.querySelector("header");
     const handleScroll = () => {
@@ -40,6 +49,16 @@ export const ProfileHeader = ({ auth = true }) => {
     };
   }, []);
 
+  useEffect(() => {
+    // Добавляем обработчик события клика
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Убираем обработчик при размонтировании компонента
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <header id="header" className="py-[1.5rem]">
       <div className="flex justify-between items-center site-holder" data-aos="fade-down" data-aos-duration="1000">
@@ -47,16 +66,12 @@ export const ProfileHeader = ({ auth = true }) => {
           <Logo_header />
         </a>
 
-        <div className={`${classChange}`} onClick={handleClick}>
-          <BurgerIcon color={theme === "dark" ? "white" : "black"} />
-        </div>
-
-        <Burger_profile show={show} handleClick={handleClick} />
+        <Burger_profile menuRef={menuRef} show={show} handleClick={handleClick} />
 
         <Navigation />
 
         <div className="header__actions">
-          <div className="header__buttons">
+          <div className="header__buttons flex gap-[20px] items-center">
             {!auth ? (
               <>
                 <Link href="/login" className="header__buttons-login">
@@ -91,19 +106,22 @@ export const ProfileHeader = ({ auth = true }) => {
                   </button>
                 </div>
 
-                <div className="flex sm:hidden gap-[18px]">
-                  <a href="#" className="header__icons-item">
-                    <Theme_switch width={30} />
+                <div className="flex items-center sm:hidden gap-[18px]">
+                  <a href="#" className="header__icons-item flex items-center">
+                    <Theme_switch width={35} />
                   </a>
-                  <button href="" className="header__icons-item">
+                  <button href="" className="header__icons-item flex items-center">
                     <Locale_Switcher />
                   </button>
-                  <button href="" className="header__icons-item">
+                  <button href="" className="header__icons-item flex items-center">
                     <Chat width={20} height={30} color={theme === "dark" ? "white" : "black"} />
                   </button>
                 </div>
               </>
             )}
+            <div className={`${classChange}`} onClick={handleClick}>
+              <BurgerIcon color={theme === "dark" ? "white" : "black"} />
+            </div>
           </div>
         </div>
       </div>
