@@ -6,8 +6,7 @@ import Image from "next/image";
 import ArrowBracket from "../ui/ArrowBracket";
 import { ProfileBurger_info, ProfileBurger_shortcuts, ProfileBurger_assets } from "./index";
 
-
-export const Burger_profile = ({ handleClick, show }) => {
+export const Burger_profile = ({ handleClick, show, menuRef }) => {
   const listClass = clsx("m_header__profile", { active: !show });
   const classChange = clsx("m_header__profile_menu", { active: !show });
 
@@ -16,7 +15,7 @@ export const Burger_profile = ({ handleClick, show }) => {
   const t = useTranslations("nav");
 
   return (
-    <div className="profile__wrapper">
+    <div className="profile__wrapper" ref={menuRef}>
       <div className={`${listClass} profile__burger`}>
         <Image
           src={"/header_icons/profile_burger/wave_dark.svg"}
@@ -38,11 +37,11 @@ export const Burger_profile = ({ handleClick, show }) => {
 
             <span className="profile__burger-devider"></span>
 
-           <ProfileBurger_shortcuts />
+            <ProfileBurger_shortcuts />
 
             <span className="profile__burger-devider"></span>
 
-           <ProfileBurger_assets />
+            <ProfileBurger_assets />
 
             <span className="profile__burger-devider"></span>
           </div>

@@ -1,49 +1,74 @@
 "use client";
-import { useState, useEffect } from "react";
-import HomeIcon from "../ui/HomeIcon";
-import ChartIcon from "../ui/CharIcon";
-import InvestingIcon from "../ui/InvestingIcon.js";
-import TokenIcon from "../ui/TokenIcon.js";
-import AssetsIcon from "../ui/AssetsIcon.js";
+import { useRef, useState } from "react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useThemeStore } from "../../../../store";
+
+const data = [
+  {
+    animation: "/tapbar/home.json",
+    title: "Home",
+  },
+  {
+    animation: "/tapbar/activity.json",
+    title: "Activity",
+  },
+  {
+    animation: "/tapbar/Blue_logo.json",
+    title: "Investments",
+    class: 'round',
+  },
+  {
+    animation: "/tapbar/Token.json",
+    title: "Token",
+  },
+  {
+    animation: "/tapbar/assets.json",
+    title: "Assets",
+  },
+];
 
 export const TapBar = () => {
   const { theme } = useThemeStore();
+  const dotLottieRefs = useRef([]); 
+  const [activeIndex, setActiveIndex] = useState(null); 
 
-  const [color, setColor] = useState(theme === "dark" ? "#fff" : "#000");
+  const play = index => {
+    const currentLottie = dotLottieRefs.current[index];
+    if (currentLottie) {
+      currentLottie.play(); 
+    }
+    setActiveIndex(index); 
+  };
 
-  useEffect(() => {
-    setColor(theme === "dark" ? "#fff" : "#000");
-  }, [theme]);
+  const dotLottieRefCallback = (ref, index) => {
+    dotLottieRefs.current[index] = ref;
+  };
 
   return (
     <div
-      className={`Tapbar fixed bottom-0 left-0 w-full flex justify-around items-center py-2 sm:hidden ${
+      className={`Tapbar w-full flex justify-between items-center sm:hidden ${
         theme === "dark" ? "bg-[#3a3939e8]" : "bg-[#efefefef]"
       }`}
     >
-      <div className="Tapbar__item">
-        <HomeIcon color={color} />
-        <p style={{ color }}>Home</p>
-      </div>
-      <div className="Tapbar__item">
-        <ChartIcon color={color} />
-        <p style={{ color }}>Activity</p>
-      </div>
-      <div className="Tapbar__item -mt-[40px]">
-        <div className="flex justify-center items-center rounded-full w-16 h-16 shadow-lg bg-blue-700">
-          <InvestingIcon color={color} />
-        </div>
-        <p style={{ color }}>Investing</p>
-      </div>
-      <div className="Tapbar__item">
-        <TokenIcon color={color} fill={color === "#fff" ? "#3a3939" : "#fff"} />
-        <p style={{ color }}>Token</p>
-      </div>
-      <div className="Tapbar__item">
-        <AssetsIcon color={color} />
-        <p style={{ color }}>Assets</p>
-      </div>
+      {data &&
+        data.map((item, index) => (
+          <div
+            key={item.animation}
+            className="Tapbar__item"
+            onClick={() => play(index)} 
+            style={{
+              filter: activeIndex === index ? "hue-rotate(290deg)" : "none", 
+            }}
+          >
+            <DotLottieReact
+              src={item.animation}
+              className={`lottie ${item.class}`}
+              autoplay
+              dotLottieRefCallback={ref => dotLottieRefCallback(ref, index)}
+            />
+            <p className="Tapbar__item-text">{item.title}</p>
+          </div>
+        ))}
     </div>
   );
 };
