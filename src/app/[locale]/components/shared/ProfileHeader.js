@@ -65,7 +65,9 @@ export const ProfileHeader = ({ auth = true }) => {
         <a href="" className="header__logo">
           <Logo_header />
         </a>
-
+        <div className={`${classChange}`} onClick={handleClick}>
+              <BurgerIcon color={theme === "dark" ? "white" : "black"} />
+            </div>
         <Burger_profile menuRef={menuRef} show={show} handleClick={handleClick} />
 
         <Navigation />
@@ -119,9 +121,6 @@ export const ProfileHeader = ({ auth = true }) => {
                 </div>
               </>
             )}
-            <div className={`${classChange}`} onClick={handleClick}>
-              <BurgerIcon color={theme === "dark" ? "white" : "black"} />
-            </div>
           </div>
         </div>
       </div>

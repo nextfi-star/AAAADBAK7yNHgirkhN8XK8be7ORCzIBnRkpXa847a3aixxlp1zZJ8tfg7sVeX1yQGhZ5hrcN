@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useThemeStore } from "../../../../store";
 
@@ -15,7 +15,7 @@ const data = [
   {
     animation: "/tapbar/Blue_logo.json",
     title: "Investments",
-    class: 'round',
+    class: "round",
   },
   {
     animation: "/tapbar/Token.json",
@@ -29,15 +29,13 @@ const data = [
 
 export const TapBar = () => {
   const { theme } = useThemeStore();
-  const dotLottieRefs = useRef([]); 
-  const [activeIndex, setActiveIndex] = useState(null); 
+  const dotLottieRefs = useRef([]);
 
   const play = index => {
     const currentLottie = dotLottieRefs.current[index];
     if (currentLottie) {
-      currentLottie.play(); 
+      currentLottie.play();
     }
-    setActiveIndex(index); 
   };
 
   const dotLottieRefCallback = (ref, index) => {
@@ -52,11 +50,7 @@ export const TapBar = () => {
     >
       {data &&
         data.map((item, index) => (
-          <div
-            key={item.animation}
-            className={`Tapbar__item ${activeIndex === index ? "active" : ""}`}
-            onClick={() => play(index)} 
-          >
+          <div key={item.animation} className={`Tapbar__item `} onClick={() => play(index)}>
             <DotLottieReact
               src={item.animation}
               className={`lottie ${item.class}`}

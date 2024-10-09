@@ -2545,7 +2545,7 @@ header {
     }
 
     .header__logo {
-      @media (max-width: 430px) {
+      @media (max-width: 1014px) {
         display: none;
       }
     }
@@ -4154,7 +4154,7 @@ header {
 .Tapbar {
   // padding: 10px;
   backdrop-filter: blur(4.5px);
-  z-index: 999999;
+  z-index: 998;
   max-height: 72px;
   position: fixed;
   bottom: 0;
