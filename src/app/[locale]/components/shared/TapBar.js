@@ -56,9 +56,7 @@ export const TapBar = () => {
             key={item.animation}
             className="Tapbar__item"
             onClick={() => play(index)} 
-            style={{
-              filter: activeIndex === index ? "hue-rotate(290deg)" : "none", 
-            }}
+           
           >
             <DotLottieReact
               src={item.animation}

@@ -4175,6 +4175,10 @@ header {
   max-height: 71px;
   min-height: 71px;
 
+  &-text {
+    margin-top: -10px;
+  }
+
   .lottie {
   
     display: flex;
@@ -4187,7 +4191,8 @@ header {
       border-radius: 50%;
       max-width: 70px !important;
       max-height: 70px !important;
-      
+      position: absolute;
+      bottom: 25px;
     }
 
     canvas {
