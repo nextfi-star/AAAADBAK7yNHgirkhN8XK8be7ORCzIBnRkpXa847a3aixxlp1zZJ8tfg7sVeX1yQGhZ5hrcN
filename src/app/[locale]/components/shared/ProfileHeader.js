@@ -25,12 +25,10 @@ export const ProfileHeader = ({ auth = true }) => {
     setShow(!show);
   };
   const handleClickOutside = e => {
-    // Проверяем, есть ли клик вне меню
     if (menuRef.current && !menuRef.current.contains(e.target)) {
-      setShow(true); // Закрываем меню
+      setShow(true);
     }
   };
-
   useEffect(() => {
     const header = document.querySelector("header");
     const handleScroll = () => {
@@ -48,12 +46,8 @@ export const ProfileHeader = ({ auth = true }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   useEffect(() => {
-    // Добавляем обработчик события клика
     document.addEventListener("mousedown", handleClickOutside);
-
-    // Убираем обработчик при размонтировании компонента
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -61,13 +55,13 @@ export const ProfileHeader = ({ auth = true }) => {
 
   return (
     <header id="header" className="py-[1.5rem]">
-      <div className="flex justify-between items-center site-holder" data-aos="fade-down" data-aos-duration="1000">
+      <div className="flex justify-between items-center site-holder">
         <a href="" className="header__logo">
           <Logo_header />
         </a>
         <div className={`${classChange}`} onClick={handleClick}>
-              <BurgerIcon color={theme === "dark" ? "white" : "black"} />
-            </div>
+          <BurgerIcon color={theme === "dark" ? "white" : "black"} />
+        </div>
         <Burger_profile menuRef={menuRef} show={show} handleClick={handleClick} />
 
         <Navigation />

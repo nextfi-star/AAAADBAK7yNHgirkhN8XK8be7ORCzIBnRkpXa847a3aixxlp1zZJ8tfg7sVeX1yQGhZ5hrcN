@@ -79,11 +79,15 @@ legend {
 .box-shadow {
   box-shadow: 0 0 20px 0 #0d28530f;
 }
-* {
- ::-webkit-scrollbar {
-  display: none;
- }
-}
+
 .checkbox:checked {
   background: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+   scrollbar-color: auto !important;
 }

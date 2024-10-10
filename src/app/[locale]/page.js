@@ -9,6 +9,7 @@ import { useThemeStore } from "../../store";
 export default function Home() {
   const { initializeTheme } = useThemeStore();
   const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);

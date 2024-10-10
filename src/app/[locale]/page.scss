@@ -88,6 +88,16 @@
 }
 
 :root {
+  // accordion
+  --size-header: 2.25rem;
+  --size-accordion-title: 1.25rem;
+  --size-accordion-content: 1rem;
+  --animation-speed: 100;
+  --slide-ease: cubic-bezier(0.86, 0, 0.07, 1);
+  --slide-duration: calc(400ms * 100 / var(--animation-speed));
+  --slide-delay: calc(450ms * 100 / var(--animation-speed));
+  --circle-duration: calc(900ms * 100 / var(--animation-speed));
+
   --news-time: #888888;
   --profile-balance-blue: #205bc9;
   --item-count: #205bc9;
@@ -203,6 +213,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 .preloader {
   position: fixed;
@@ -3104,7 +3118,7 @@ header {
             line-height: 28px;
             font-weight: 500;
             background-color: var(--blue);
-            padding: 10px 20px;
+            padding: 16px 20px;
             border-radius: 50px;
             max-width: 300px;
             cursor: pointer;
@@ -3216,7 +3230,7 @@ header {
         line-height: 28px;
         font-weight: 500;
         background-color: var(--blue);
-        padding: 10px 60px;
+        padding: 14px 80px;
         color: var(--white);
         border-radius: 50px;
         max-width: 300px;
@@ -3688,7 +3702,6 @@ header {
       }
     }
   }
-  // accordion
   .accordion {
     max-width: 1096px;
     border-radius: 30px;
@@ -3909,6 +3922,10 @@ header {
   overflow: hidden !important;
   z-index: 9999 !important;
 
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
+
   .m_header__profile_menu {
     position: absolute;
     top: 35px;
@@ -3925,6 +3942,7 @@ header {
     object-fit: contain;
     z-index: -1;
   }
+
   &-container {
     padding: 83px 0 38px 0;
     display: flex;
@@ -3960,7 +3978,6 @@ header {
     font-weight: 400;
     line-height: 20px;
   }
-
   &-info {
     display: flex;
     align-items: center;
@@ -4019,6 +4036,78 @@ header {
       font-weight: 400;
       line-height: 20px;
       color: var(--text-color);
+    }
+  }
+  .accor__wrapper {
+    @media (max-width: 414px) {
+      max-height: 444px;
+    }
+    @media (max-width: 360px) and (max-width: 370px) {
+      max-height: 387px;
+    }
+    @media (max-width: 320px) {
+      max-height: 320px;
+    }
+    &.scrollY {
+      overflow-y: auto;
+    }
+  }
+  .accordion__burger {
+    display: flex;
+    flex-direction: column;
+
+    h5 {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 28px;
+      color: var(--text-color);
+      padding-bottom: 8px;
+
+      @media (max-width: 375px) {
+        font-size: 18px;
+        padding-bottom: 6px;
+      }
+
+      img {
+        @media (max-width: 375px) {
+          max-width: 30px;
+          width: auto;
+        }
+      }
+    }
+
+    &__item {
+      .accordionHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+
+        p {
+          color: var(--text-color);
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 28px;
+          padding-bottom: 28px;
+
+          @media (max-width: 375px) {
+            padding-bottom: 14px;
+            font-size: 14px;
+          }
+        }
+
+        .toggle__btn {
+          font-size: 20px;
+        }
+      }
+
+      .accordionContent {
+        padding: 10px;
+        display: block;
+        p {
+          margin: 0;
+        }
+      }
     }
   }
 }
@@ -4183,8 +4272,6 @@ header {
   max-height: 71px;
   min-height: 71px;
 
-
-
   &-text {
     margin-top: -10px;
   }
@@ -4200,16 +4287,17 @@ header {
       background: rgb(63, 126, 243);
       position: absolute;
       bottom: 26px;
-      min-height: 70px;
+      min-height: 80px;
+      min-width: 80px !important;
       box-shadow: 4px 4px 56px 0px rgba(177, 177, 181, 0.25);
       backdrop-filter: blur(6px);
-      filter: none !important; 
+      filter: none !important;
     }
 
     &.active {
       filter: invert(38%) sepia(78%) saturate(542%) hue-rotate(189deg) brightness(94%) contrast(89%);
     }
-    
+
     canvas {
       width: 100%;
       min-width: 60px !important;
@@ -4218,4 +4306,8 @@ header {
       max-height: 70px !important;
     }
   }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

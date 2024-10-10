@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Image from "next/image";
 import { ProfilePage_guard } from "../../components/ui/ProfilePage_guard";
 import { useThemeStore } from "../../../../store";
@@ -48,23 +48,22 @@ export default function Page() {
         <h1 className="text-[32px]">Profile</h1>
 
         <div className="personal-inner flex flex-row justify-between mt-[20px] gap-[40px]">
-
-          <div className='relative h-fit w-fit'>
-					<Image
-            src={"/main/avatar.png"}
-            width={152}
-            height={152}
-            alt={"avatar"}
-            className="rounded-[50%] object-contain max-w-[152px] max-h-[152px]"
-          />
-					<Image
-            src={"/main/profile_page/edit_icon.svg"}
-            width={53}
-            height={53}
-            alt={"avatar"}
-            className="absolute bottom-0 -right-[10px] object-contain min-h-[20px] min-w-[20px] cursor-pointer"
-          />
-					</div>
+          <div className="relative h-fit w-fit">
+            <Image
+              src={"/main/avatar.png"}
+              width={152}
+              height={152}
+              alt={"avatar"}
+              className="rounded-[50%] object-contain max-w-[152px] max-h-[152px]"
+            />
+            <Image
+              src={"/main/profile_page/edit_icon.svg"}
+              width={53}
+              height={53}
+              alt={"avatar"}
+              className="absolute bottom-0 -right-[10px] object-contain min-h-[20px] min-w-[20px] cursor-pointer"
+            />
+          </div>
 
           <div className="flex flex-col w-full gap-[68px]">
             {data &&

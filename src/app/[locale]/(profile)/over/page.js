@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { useThemeStore } from "../../../../store";
 import {
@@ -13,16 +12,19 @@ import {
 } from "../../components/shared";
 
 export default function Profile() {
-  const [verify, setVerify] = useState(false); // Исправлена опечатка
+  const [verify, setVerify] = useState(false);
   const { initializeTheme } = useThemeStore();
+
 
   useEffect(() => {
     initializeTheme();
   }, [initializeTheme]);
+
   return (
     <section className="profile">
       <Profile_info setVerify={setVerify} verify={verify} />
-      <div className="profile__grid gap-[24px] max-xl:grid max-xl:grid-cols-1">
+      <div  className="profile__grid gap-[24px] max-xl:grid max-xl:grid-cols-1">
+
         <div className="">
           <hr />
           {verify ? (
@@ -38,7 +40,6 @@ export default function Profile() {
           <Profile_news />
           <Profile_qr />
         </div>
-
       </div>
     </section>
   );
