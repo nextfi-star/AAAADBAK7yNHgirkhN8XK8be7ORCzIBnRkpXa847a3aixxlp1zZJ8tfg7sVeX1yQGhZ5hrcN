@@ -41,7 +41,7 @@ export const Profile_verification = ({ setVerify }) => {
           <span className='text-[12px]'>Success</span>
         </div>
         <button
-          className="w-fit text-[14px] font-medium py-[10px] px-[30px] bg-[#205BC9] rounded-[50px] text-white"
+          className="w-fit text-[14px] font-medium mt-[5px] py-[10px] px-[40px] bg-[#205BC9] rounded-[50px] text-white"
           onClick={() => setVerify(prev => !prev)}
         >
           Verify now

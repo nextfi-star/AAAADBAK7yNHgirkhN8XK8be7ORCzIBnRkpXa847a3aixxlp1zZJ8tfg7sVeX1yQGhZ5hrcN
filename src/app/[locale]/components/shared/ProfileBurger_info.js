@@ -1,21 +1,22 @@
-import ArrowBracket from '../ui/ArrowBracket'
-import { useThemeStore } from '../../../../store'
-import Image from 'next/image'
+import ArrowBracket from "../ui/ArrowBracket";
+import { useThemeStore } from "../../../../store";
+import Image from "next/image";
 
-export const ProfileBurger_info = ({ username }) => {
+export const ProfileBurger_info = ({ username, setShowSection, showSection }) => {
   const { theme } = useThemeStore();
-
+  const handleClick = () => {
+    setShowSection(!showSection);
+  };
   return (
-    <section className="profile__burger-info">
+    <section className="profile__burger-info" onClick={handleClick}>
       <div className="flex items-center gap-[12px]">
-        <div className="avatar relative bg-slate-100 rounded-full min-h-[64px] min-w-[64px] overflow-hidden">
+        <div className="avatar relative rounded-full min-h-[64px] min-w-[64px] overflow-hidden">
           <Image
+            src={"/main/avatar.png"}
             width={63}
             height={63}
-            alt={"profile"}
-            priority
-            src={"/header_icons/profile_burger/profile_avatar.svg"}
-            className='absolute -bottom-[10px] left-[50%] translate-x-[-50%] '
+            alt={"avatar"}
+            className="absolute bottom-[0] left-[50%] translate-x-[-50%] "
           />
         </div>
         <div className="flex flex-col">

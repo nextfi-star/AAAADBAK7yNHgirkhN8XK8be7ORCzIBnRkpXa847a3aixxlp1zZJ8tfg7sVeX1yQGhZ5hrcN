@@ -12,7 +12,7 @@ export const Profile_info = ({ verify, setVerify }) => {
 
   return (
     <section className="hidden sm:block profile__info profile_blocks_border">
-      <div className="profile__info__block__left">
+      <div className="profile__info__block__left" >
         <div className="profile__info__block__left__avatar">
           <Avatar />
         </div>

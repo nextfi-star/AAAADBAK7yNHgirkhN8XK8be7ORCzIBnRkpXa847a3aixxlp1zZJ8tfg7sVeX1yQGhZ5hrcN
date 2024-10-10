@@ -44,7 +44,7 @@ export const Profile_balance = () => {
 
   return (
     <section className="">
-      <div className="w-[212px] sm:hidden flex m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200 mb-[30px]">
+      <div className="w-[212px] sm:hidden flex m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200 mb-[30px]" >
         <button
           className={`w-[104px] transition duration-300 ${
             isActive ? "bg-[#205BC9] text-white" : "text-[#205BC9]"

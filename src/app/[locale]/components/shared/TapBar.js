@@ -24,7 +24,7 @@ const data = [
     speed: "1.5",
   },
   {
-    animation_dark: "/tapbar/white/Token.json",
+    animation_dark: "/tapbar/white/Token_trans.json",
     animation_white: "/tapbar/Token.json",
     title: "Token",
     speed: "1.5",
