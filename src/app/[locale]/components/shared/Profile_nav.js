@@ -29,7 +29,10 @@ export const Profile_nav = () => {
           </Link>
         </li>
         <li>
-          <Link href={`/security`}  className={`profile__nav-navbar-item ${currentPath === `/${locale}/security` ? "active" : ""}`}>
+          <Link
+            href={`/security`}
+            className={`profile__nav-navbar-item ${currentPath === `/${locale}/security` ? "active" : ""}`}
+          >
             Security
           </Link>
         </li>
