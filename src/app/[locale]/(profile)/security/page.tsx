@@ -87,7 +87,7 @@ const Page: NextPage = () => {
                     <Image src={item.src} width={30} height={30} quality={100} alt="icon" />
                     <div className="flex flex-col gap-[8px]">
                       <p className="flex items-center gap-[11px]">{item.title}</p>
-                      <span>{item.desc}</span>
+                      <span className='text-[#888888] dark:text-[#FFFFFF66]'>{item.desc}</span>
                     </div>
                   </div>
                   <div className="flex gap-[12px] items-center">

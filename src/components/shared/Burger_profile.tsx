@@ -6,9 +6,7 @@ import ArrowBracket from '../ui/ArrowBracket'
 import { useState } from 'react'
 import { NextPage } from 'next'
 import { ProfileBurger_info } from './ProfileBurger_info'
-import { ProfileBurger_setMode } from './ProfileBurger_setMode'
 import { ProgileBurger_Tabsinfo } from './ProgileBurger_Tabsinfo'
-import { ProfileBurger_accordeon } from './ProfileBurger_accordeon'
 import { ProfileBurger_menu_list } from './ProfileBurger_menu_list'
 
 interface Props {

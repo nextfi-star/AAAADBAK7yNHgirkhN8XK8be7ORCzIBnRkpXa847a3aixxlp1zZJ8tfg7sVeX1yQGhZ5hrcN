@@ -2,6 +2,11 @@ import { NextPage } from 'next'
 import { ProfileBurger_profile_accor } from './ProfileBurger_profile_accor'
 import { ProfileBurger_security_accor } from './ProfileBurger_security_accor'
 import { Button } from '../ui/button'
+import { ChangeNick } from './ChangeNick'
+import { ViewRegion } from './ViewRegion'
+import { ChangeRegion } from './ChangeRegion'
+import { ChangeEmail } from './ChangeEmail'
+import { ChangePhone } from './ChangePhone'
 
 interface Props {
 	showSection: boolean
@@ -18,9 +23,7 @@ const profileData = [
 				content: (
 					<>
 						<span>zya***@rambler.ru</span>
-						<Button className='bg-transparent text-black dark:text-white border border-solid border-black dark:border-white rounded-[50px] hover:bg-transparent hover:text-blue-600 hover:border-blue-600'>
-							Change
-						</Button>
+						<ChangeNick propsItem={'Change nickname'} />
 					</>
 				),
 			},
@@ -41,9 +44,7 @@ const profileData = [
 				content: (
 					<>
 						<span>Identity</span>
-						<Button className='bg-transparent text-black dark:text-white border border-solid border-black dark:border-white rounded-[50px] hover:bg-transparent hover:text-blue-600 hover:border-blue-600'>
-							Change
-						</Button>
+						<ViewRegion propsItem={'Change'} />
 					</>
 				),
 			},
@@ -53,9 +54,7 @@ const profileData = [
 				content: (
 					<>
 						Russia/Moscow
-						<Button className='bg-transparent text-black dark:text-white border border-solid border-black dark:border-white rounded-[50px] hover:bg-transparent hover:text-blue-600 hover:border-blue-600'>
-							Change
-						</Button>
+						<ChangeRegion propsItem={'Change'} />
 					</>
 				),
 			},
@@ -71,9 +70,7 @@ const profileData = [
 				content: (
 					<>
 						<span>zya***@rambler.ru</span>
-						<Button className='bg-transparent text-black dark:text-white border border-solid border-black dark:border-white rounded-[50px] hover:bg-transparent hover:text-blue-600 hover:border-blue-600'>
-							Change
-						</Button>
+						<ChangeEmail propsItem={'Change'} />
 					</>
 				),
 			},
@@ -83,9 +80,7 @@ const profileData = [
 				content: (
 					<>
 						+7354654654
-						<Button className='bg-transparent text-black dark:text-white border border-solid border-black dark:border-white rounded-[50px] hover:bg-transparent hover:text-blue-600 hover:border-blue-600'>
-							Change
-						</Button>
+						<ChangePhone propsItem={'Change'} />
 					</>
 				),
 			},
@@ -129,9 +124,7 @@ const securityData = [
 				trigger: 'Email authentication',
 				content: (
 					<>
-						<span>
-							Change email
-						</span>
+						<span>Change email</span>
 						<Button className='bg-transparent text-black dark:text-white border border-solid border-black dark:border-white rounded-[50px] hover:bg-transparent hover:text-blue-600 hover:border-blue-600'>
 							Change
 						</Button>
@@ -144,9 +137,7 @@ const securityData = [
 				trigger: 'Login password',
 				content: (
 					<>
-						<span>
-							Change login/password
-						</span>
+						<span>Change login/password</span>
 						<Button className='bg-transparent text-black dark:text-white border border-solid border-black dark:border-white rounded-[50px] hover:bg-transparent hover:text-blue-600 hover:border-blue-600'>
 							Change
 						</Button>

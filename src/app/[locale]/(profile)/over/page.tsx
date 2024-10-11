@@ -29,7 +29,7 @@ const Profile: NextPage = () => {
           {verify ? (
             <Profile_balance />
           ) : (
-            <Profile_verification setVerify={setVerify} /> // Исправлено имя функции
+            <Profile_verification setVerify={setVerify} />
           )}
           <Profile_payments />
         </div>

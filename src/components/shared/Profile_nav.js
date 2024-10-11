@@ -7,11 +7,11 @@ export const Profile_nav = () => {
   const currentPath = usePathname();
   const localeRegex = /^\/([a-zA-Z-]{2,5})\//;
   const localeMatch = currentPath.match(localeRegex);
-  const locale = localeMatch ? localeMatch[1] : "en"; // по умолчанию "en"
+  const locale = localeMatch ? localeMatch[1] : "en"; 
 
   return (
     <nav className="flex items-end min-h-[11rem] mb-[4rem]">
-      <ul className="flex items-center gap-2 ">
+      <ul className="flex items-center gap-2 pb-[.8rem]">
         <li>
           <Link
             href={`/over`}
@@ -37,12 +37,12 @@ export const Profile_nav = () => {
           </Link>
         </li>
         <li>
-          <Link href={`/verification`} className="profile__nav-navbar-item">
+          <Link href={`/profile`} className="profile__nav-navbar-item">
             Verification
           </Link>
         </li>
         <li>
-          <Link href={`/thirdparty`} className="profile__nav-navbar-item">
+          <Link href={`/profile`} className="profile__nav-navbar-item">
             Third-party authorization
           </Link>
         </li>

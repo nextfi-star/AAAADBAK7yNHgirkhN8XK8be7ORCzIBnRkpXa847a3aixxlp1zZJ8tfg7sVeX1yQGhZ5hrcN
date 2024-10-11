@@ -26,7 +26,7 @@ export const ProfileBurger_info = ({
 				<div
 					className={
 						!showSection
-							? `relative rounded-full min-h-[152px] min-w-[152px] overflow-hidden mb-[10px] z-10 cursor-pointer`
+							? `relative rounded-full md:min-h-[152px] min-h-[80px] md:min-w-[152px] min-w-[80px] overflow-hidden mb-[10px] z-10 cursor-pointer`
 							: 'relative rounded-full min-h-[64px] min-w-[64px] overflow-hidden z-10 cursor-pointer'
 					}
 				>

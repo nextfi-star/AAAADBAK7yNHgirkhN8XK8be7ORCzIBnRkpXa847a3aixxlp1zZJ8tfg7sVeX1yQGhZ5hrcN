@@ -2620,38 +2620,41 @@ header {
 		}
 	}
 	nav {
+		overflow-x: auto;
 		@media (max-width: 640px) {
-			display: none;
+			margin-bottom: 1.5rem;
 		}
-		.profile__nav-navbar-item {
-			font-size: 20px;
-			line-height: 28px;
-			font-weight: 400;
-			color: var(--text-color);
-			transition: 0.2s ease-in-out;
-			padding: 10px 19px;
+	}
 
-			&:hover {
-				color: var(--blue-dark);
-			}
+	.profile__nav-navbar-item {
+		font-size: 20px;
+		line-height: 28px;
+		font-weight: 400;
+		color: var(--text-color);
+		transition: 0.2s ease-in-out;
+		padding: 10px 19px;
 
-			&.active {
-				border-bottom: 2px solid white;
-			}
+		&:hover {
+			color: var(--blue-dark);
+		}
 
-			@media (max-width: 1830px) {
-				font-size: 1.105vw;
-				line-height: 1.538vw;
-			}
+		&.active {
+			color: var(--blue);
+			border-bottom: 1px solid var(--text-color) !important;
+		}
 
-			@media (max-width: 1280px) {
-				font-size: 2vw;
-				line-height: 1.5625vw;
-			}
-			@media (max-width: 768px) {
-				font-size: 14px;
-				line-height: 1.5625vw;
-			}
+		@media (max-width: 1830px) {
+			font-size: 1.105vw;
+			line-height: 1.538vw;
+		}
+
+		@media (max-width: 1280px) {
+			font-size: 2vw;
+			line-height: 1.5625vw;
+		}
+		@media (max-width: 768px) {
+			font-size: 14px;
+			line-height: 1.5625vw;
 		}
 	}
 
@@ -4052,7 +4055,7 @@ header {
 		padding: 10px 30px;
 		width: 100%;
 		gap: 54px;
-		background: #000;
+		background: var(--body-color);
 
 		a {
 			font-size: 14px;
@@ -4170,7 +4173,7 @@ header {
 		padding: 40px 20px;
 	}
 	@media (max-width: 430px) {
-		margin-top: 7rem;
+		margin-top: 1.5rem;
 		background: var(--body-color);
 		padding: 40px 0px 48px 00px;
 		box-shadow: none;
@@ -4245,7 +4248,7 @@ header {
 			line-height: 24px;
 			width: fit-content;
 			border-radius: 50px;
-			padding: 10px 18px;
+			padding: 5px 18px;
 			border: 1px solid var(--profile-balance-blue);
 			transition: 0.3s all ease-in-out;
 			min-width: 104px;
@@ -4307,6 +4310,10 @@ header {
 					width: 100%;
 					height: auto;
 					max-width: 44px;
+
+					@media (min-width: 1280px) {
+						max-width: 60px;
+					}
 				}
 
 				button {
@@ -4319,9 +4326,25 @@ header {
 					padding: 5px 20px;
 					transition: 0.3s all ease-in-out;
 
+					@media (min-width: 1280px) {
+						padding: 15px 35px;
+						font-size: 20px;
+					}
+					@media (min-width: 1024px) {
+						font-size: 14px;
+						padding: 5px 12px;
+					}
+
 					&:hover {
 						color: var(--blue);
 					}
+				}
+
+				span {
+					font-size: 20px;
+					font-weight: 400;
+					line-height: 28px;
+      
 				}
 			}
 		}
