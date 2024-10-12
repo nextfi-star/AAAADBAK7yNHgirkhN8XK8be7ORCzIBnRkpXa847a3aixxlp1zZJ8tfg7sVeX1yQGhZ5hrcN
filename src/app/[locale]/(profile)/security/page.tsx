@@ -4,6 +4,7 @@ import ArrowBracket from '../../../../components/ui/ArrowBracket'
 import { useThemeStore } from '../../../../store'
 import { NextPage } from 'next'
 import { Change_logpass } from '@/components/shared/Change_logpass'
+import { FreezeAccount } from '@/components/shared/FreezeAccount'
 
 const data = [
 	{
@@ -40,11 +41,13 @@ const data2 = [
 		title: 'Freeze account',
 		desc: 'Your account will be frozen temporarily. To unfreeze it, start by logging in again.',
 		unic: '2',
+		btn: <FreezeAccount propsItem={'Freeze account'} />,
 	},
 	{
 		src: '/main/profile_security/account_close.svg',
 		title: 'Close account',
 		desc: "Once you close your account, it is permanent and can't be restored",
+		btn: <FreezeAccount propsItem={'Close account'} />,
 	},
 ]
 const Page: NextPage = () => {
@@ -112,12 +115,7 @@ const Page: NextPage = () => {
 										</div>
 									</div>
 									<div className='flex gap-[12px] items-center'>
-										<ArrowBracket
-											color={theme === 'dark' ? 'white' : 'black'}
-											width={25}
-											height={25}
-											className={'md:-rotate-90'}
-										/>
+										{item.btn}
 									</div>
 								</div>
 								{item.unic && (

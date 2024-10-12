@@ -31,7 +31,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] px-[30px] pt-[2.5rem] max-h-[100dvh] overflow-y-auto'>
+			<DrawerContent className='z-[9999] px-[30px] pt-[2.5rem] min-h-[100dvh] max-h-[70%]'>
 				<DrawerHeader>
 					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] md:text-[20px] lg:text-[32px] text-left'>
 						<span className='text-[14px] md:text-[20px] lg:text-[32px]'>
@@ -58,7 +58,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								/>
 								After freezing your account:
 							</span>
-							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[20px] lg:text-[25px]'>
+							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[20px] lg:text-[25px] text-left'>
 								<li>
 									• Your account zyabkin.vladislav2001@rambler.ru will be frozen
 									temporarily. To unfreeze it, start by logging in again.{' '}
@@ -81,7 +81,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 							</ul>
 						</DrawerDescription>
 						<div className='flex w-full flex-col items-start gap-[20px] md:gap-[40px] border border-solid border-gray-400 py-[10px] rounded-[4px]'>
-							<h5 className='text-[14px] md:text-[18px] lg:text-[20px] border-0 border-b border-solid border-b-gray-400 w-full text-center py-[10px]'>
+							<h5 className='text-[12px] md:text-[18px] lg:text-[20px] border-0 border-b border-solid border-b-gray-400 w-full text-center py-[10px] px-[5px]'>
 								Why do you want to freeze your account?
 							</h5>
 							<div className='px-[16px]'>

@@ -162,7 +162,82 @@ const securityData = [
 				content: (
 					<>
 						<span>Close account</span>
+						<FreezeAccount propsItem={'Close'} />
+					</>
+				),
+			},
+		],
+	},
+]
+const authData = [
+	{
+		title: 'Authentication methods',
+		items: [
+			{
+				value: 'item-1',
+				trigger: 'Authenticator app',
+				icon: '/main/profile_security/auth_app.svg',
+				content: (
+					<>
+						<span>
+							Use authentication codes when managing assets and other functions
+						</span>
 						<ChangeEmail propsItem={'Change'} />
+					</>
+				),
+			},
+			{
+				icon: '/main/profile_security/phone.svg',
+				value: 'item-2',
+				trigger: 'Phone authentication',
+				content: 'Phone authentication content',
+			},
+			{
+				icon: '/main/profile_security/email.svg',
+				value: 'item-3',
+				trigger: 'Email authentication',
+				content: (
+					<>
+						<span>Change email</span>
+						<ChangeEmail propsItem={'Change'} />
+					</>
+				),
+			},
+			{
+				icon: '/main/profile_security/login_pass.svg',
+				value: 'item-4',
+				trigger: 'Login password',
+				content: (
+					<>
+						<span>Change login/password</span>
+						<ChangeEmail propsItem={'Change'} />
+					</>
+				),
+			},
+		],
+	},
+	{
+		title: 'Account management',
+		items: [
+			{
+				value: 'item-1',
+				trigger: 'Freeze account',
+				icon: '/main/profile_security/account_freeze.svg',
+				content: (
+					<>
+						<span>Freeze account</span>
+						<FreezeAccount propsItem={'Freeze'} />
+					</>
+				),
+			},
+			{
+				icon: '/main/profile_security/account_close.svg',
+				value: 'item-2',
+				trigger: 'Close account',
+				content: (
+					<>
+						<span>Close account</span>
+						<FreezeAccount propsItem={'Close'} />
 					</>
 				),
 			},

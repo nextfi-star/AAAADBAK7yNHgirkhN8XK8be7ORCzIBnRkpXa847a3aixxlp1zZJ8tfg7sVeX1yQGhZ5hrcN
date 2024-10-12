@@ -4480,39 +4480,42 @@ header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: flex-end;
+	justify-content: space-between;
 	color: var(--text-color);
 	font-family: inherit;
 	font-size: 13px;
 	line-height: 16px;
 	font-weight: 400;
 	text-align: center;
-	height: 100%;
+	max-height: 70px;
+	max-width: 70px;
+
+	
+	&.active {
+		canvas {
+			filter: invert(38%) sepia(78%) saturate(542%) hue-rotate(189deg)
+			brightness(94%) contrast(89%);
+		}
+	}
+
+	canvas {
+		width: 100%;
+		min-width: 60px !important;
+		min-height: 60px !important;
+		max-width: 70px !important;
+		max-height: 70px !important;
+	}
 
 	&-text {
 		margin-top: -10px;
 	}
 
 	div {
-		position: relative;
-
 		&.round {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			position: relative;
-			min-width: 60px;
-			min-height: 60px;
-
-			.round2 {
-				position: absolute;
-				bottom: 10px;
-				width: 70px;
-				background: rgb(63, 126, 243);
-				box-shadow: 4px 4px 56px 0px rgba(177, 177, 181, 0.25);
-				filter: none !important;
-				border-radius: 50%;
-			}
+			background: var(--blue) !important;
+			border-radius: 50%;
+			min-width: 60px !important;
+			min-height: 60px !important
 		}
 	}
 

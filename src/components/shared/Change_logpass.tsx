@@ -32,7 +32,12 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 
 			<DrawerContent className='z-[9999] px-[30px] min-h-[100dvh] max-h-[70%]'>
 				<DrawerHeader>
-					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] md:text-[20px] lg:text-[32px] text-left'>
+					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] md:text-[20px] lg:text-[32px] text-left'>
+						<DrawerClose asChild>
+							<Button className=' text-white bg-transparent hover:text-[#fff] text-[14px] md:text-[18px] lg:text-[32px] lg:px-[50px] lg:py-[25px]'>
+								{'<'}
+							</Button>
+						</DrawerClose>
 						<span className='text-[14px] md:text-[20px] lg:text-[32px]'>
 							<Link
 								className='text-[14px] md:text-[20px] lg:text-[32px] text-[#888888]'
@@ -51,7 +56,7 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 								<Input
 									type='text'
 									placeholder='Enter your current password'
-									className='border border-solid border-white text-[14px] md:text-[20px] lg:text-[32px] w-full py-[30px] pl-[35px]'
+									className='border border-solid border-white text-[14px md:text-[20px] lg:text-[32px] w-full py-[10px] pl-[25px]'
 								/>
 							</label>
 							<label className='text-[#181818] dark:text-white text-[14px] md:text-[20px] lg:text-[32px] flex flex-col items-start gap-[7px] w-full'>
@@ -59,7 +64,7 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 								<Input
 									type='email'
 									placeholder='Enter your new password'
-									className='border border-solid border-white text-[14px] md:text-[20px] lg:text-[32px] w-full py-[30px] pl-[35px]'
+									className='border border-solid border-white text-[14px md:text-[20px] lg:text-[32px] w-full py-[10px] pl-[25px]'
 								/>
 							</label>
 							<label className='text-[#181818] dark:text-white text-[14px] md:text-[20px] lg:text-[32px] flex flex-col items-start gap-[7px] w-full'>
@@ -67,7 +72,7 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 								<Input
 									type='email'
 									placeholder='Enter your new password again'
-									className='border border-solid border-white text-[14px] md:text-[20px] lg:text-[32px] w-full py-[30px] pl-[35px]'
+									className='border border-solid border-white text-[14px]md:text-[20px] lg:text-[32px] w-full py-[10px] pl-[25px]'
 								/>
 							</label>
 							<label className='text-[#181818] dark:text-white text-[14px] md:text-[20px] lg:text-[32px] flex flex-col items-start gap-[7px] w-full'>
@@ -75,12 +80,15 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 								<Input
 									type='email'
 									placeholder='Enter code'
-									className='border border-solid border-white text-[14px] md:text-[20px] lg:text-[32px] w-full py-[30px] pl-[35px]'
+									className='border border-solid border-white text-[14px]md:text-[20px] lg:text-[32px] w-full py-[10px] pl-[25px]'
 								/>
 							</label>
 						</div>
 						<div className='privacy'>
-							<label htmlFor='checkbox-privacy' className='checkbox-label gap-[5px] md:gap-[18px]'>
+							<label
+								htmlFor='checkbox-privacy'
+								className='checkbox-label gap-[5px] md:gap-[18px]'
+							>
 								<input
 									type='checkbox'
 									id='checkbox-privacy'
@@ -99,7 +107,7 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 										/>
 									</svg>
 								</span>
-								<p className='text-[14px] md:text-[16px] lg:text-[22px] text-left'>
+								<p className='text-[12px] md:text-[16px] lg:text-[20px] text-left'>
 									To protect your account, you will not be able to withdraw
 									funds within 24 hours after resetting your settings or
 									changing your account password.

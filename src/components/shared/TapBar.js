@@ -94,31 +94,45 @@ export const TapBar = () => {
 								className={`Tapbar__item `}
 								onClick={() => play(index)}
 							>
-								<div className={`${item.class && 'round'}`}>
-									<DotLottieReact
-										src={
-											theme === 'dark'
-												? item.animation_dark
-												: item.animation_white
+								<div className={`Tapbar__item ${item.class && '-mt-[45px]'}`}>
+									<div
+										className={
+											item.class &&
+											'flex justify-center items-center bg-blue-700 rounded-full w-16 h-16 shadow-lg'
 										}
-										className={`lottie ${
-											activeIndex === index ? 'active' : ''
-										}  ${item.class2 && 'round2'}`}
-										autoplay
-										speed={item.speed}
-										dotLottieRefCallback={ref =>
-											dotLottieRefCallback(ref, index)
-										}
-										mode='forward'
-										backgroundColor='transparent'
-										autoresizecanvas
-										style={{
-											filter:
-												'invert(38%) sepia(78%) saturate(542%) hue-rotate(189deg) brightness(94%) contrast(89%)',
-										}}
-									/>
+									>
+										<DotLottieReact
+											src={
+												theme === 'dark'
+													? item.animation_dark
+													: item.animation_white
+											}
+											className={`lottie ${
+												activeIndex === index ? 'active' : ''
+											} ${item.class && '!filter-none'}  `}
+											autoplay
+											speed={item.speed}
+											dotLottieRefCallback={ref =>
+												dotLottieRefCallback(ref, index)
+											}
+											mode='forward'
+											backgroundColor='transparent'
+											autoresizecanvas
+											style={{
+												filter:
+													'invert(38%) sepia(78%) saturate(542%) hue-rotate(189deg) brightness(94%) contrast(89%)',
+											}}
+										/>
+									</div>
 								</div>
-								<p className='Tapbar__item-text'>{item.title}</p>
+
+								<p
+									className={`Tapbar__item-text -mt-[15px]  ${
+										item.class && '-mt-[0] -mb-[32.5px]'
+									}`}
+								>
+									{item.title}
+								</p>
 							</div>
 						))}
 				</div>
