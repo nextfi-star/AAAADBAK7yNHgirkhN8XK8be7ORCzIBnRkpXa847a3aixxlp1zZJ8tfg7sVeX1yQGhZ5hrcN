@@ -7,6 +7,7 @@ import { ViewRegion } from './ViewRegion'
 import { ChangeRegion } from './ChangeRegion'
 import { ChangeEmail } from './ChangeEmail'
 import { ChangePhone } from './ChangePhone'
+import { FreezeAccount } from './FreezeAccount'
 
 interface Props {
 	showSection: boolean
@@ -150,7 +151,7 @@ const securityData = [
 				content: (
 					<>
 						<span>Freeze account</span>
-						<ChangeEmail propsItem={'Change'} />
+						<FreezeAccount propsItem={'Freeze'} />
 					</>
 				),
 			},

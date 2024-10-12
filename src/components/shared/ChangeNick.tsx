@@ -39,13 +39,13 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] px-[30px] min-h-[100vh]'>
-				<DrawerHeader>
+			<DrawerContent className='z-[9999] px-[30px] min-h-[100dvh] max-h-[70%]'>
+				<DrawerHeader className='overflow-y-auto'>
 					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px]'>
-						<h1 className='text-[20px] md:text-[32px]'>Nickname</h1>
+						<h1 className='text-[20px] md:text-[32px] '>Nickname</h1>
 					</DrawerTitle>
 					<div className=' flex flex-col gap-[38px]'>
-						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex items-start gap-[16px]'>
+						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center md:flex-row md:items-start gap-[16px]'>
 							<Image
 								src={'/header_icons/profile_burger/info_icon.svg'}
 								width={40}
@@ -54,7 +54,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 								quality={100}
 								className='max-w-[20px] md:max-w-[40px] lg:max-w-[45px]'
 							/>
-							<span className='text-black dark:text-white text-[14px] md:text-[30px] leading-10'>
+							<span className='text-black dark:text-white text-[14px] md:text-[30px] leading-10 text-center'>
 								Make sure your nickname does not contain disrespectful language,
 								official names(i.e. product names), or names of other trading
 								platforms.

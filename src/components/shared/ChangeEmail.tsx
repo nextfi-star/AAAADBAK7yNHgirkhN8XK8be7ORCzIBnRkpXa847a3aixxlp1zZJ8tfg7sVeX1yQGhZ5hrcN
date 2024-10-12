@@ -29,7 +29,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] px-[30px] min-h-[100vh]'>
+			<DrawerContent className='z-[9999] px-[30px] min-h-[100dvh] max-h-[70%]'>
 				<DrawerHeader>
 					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] md:text-[20px] lg:text-[32px] text-left'>
 						<span className='text-[14px] md:text-[20px] lg:text-[32px]'>
