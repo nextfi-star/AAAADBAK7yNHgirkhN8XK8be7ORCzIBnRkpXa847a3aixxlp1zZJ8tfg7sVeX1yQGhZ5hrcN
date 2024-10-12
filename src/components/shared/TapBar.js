@@ -21,10 +21,11 @@ const data = [
 		animation_white: '/tapbar/Blue_logo.json',
 		title: 'Investments',
 		class: 'round',
+		class2: 'round2',
 		speed: '1.5',
 	},
 	{
-		animation_dark: '/tapbar/white/Token_trans.json',
+		animation_dark: '/tapbar/white/Token(1).json',
 		animation_white: '/tapbar/Token copy.json',
 		title: 'Token',
 		speed: '1.5',
@@ -90,29 +91,33 @@ export const TapBar = () => {
 						data.map((item, index) => (
 							<div
 								key={item.title}
-								className={`Tapbar__item`}
+								className={`Tapbar__item `}
 								onClick={() => play(index)}
 							>
-								<DotLottieReact
-									src={
-										theme === 'dark'
-											? item.animation_dark
-											: item.animation_white
-									}
-									className={`lottie ${activeIndex === index ? 'active' : ''} ${
-										item.class && 'round'
-									} `}
-									autoplay
-									speed={item.speed}
-									dotLottieRefCallback={ref => dotLottieRefCallback(ref, index)}
-									mode='forward'
-									backgroundColor='transparent'
-									autoresizecanvas
-									style={{
-										filter:
-											'invert(38%) sepia(78%) saturate(542%) hue-rotate(189deg) brightness(94%) contrast(89%)',
-									}}
-								/>
+								<div className={`${item.class && 'round'}`}>
+									<DotLottieReact
+										src={
+											theme === 'dark'
+												? item.animation_dark
+												: item.animation_white
+										}
+										className={`lottie ${
+											activeIndex === index ? 'active' : ''
+										}  ${item.class2 && 'round2'}`}
+										autoplay
+										speed={item.speed}
+										dotLottieRefCallback={ref =>
+											dotLottieRefCallback(ref, index)
+										}
+										mode='forward'
+										backgroundColor='transparent'
+										autoresizecanvas
+										style={{
+											filter:
+												'invert(38%) sepia(78%) saturate(542%) hue-rotate(189deg) brightness(94%) contrast(89%)',
+										}}
+									/>
+								</div>
 								<p className='Tapbar__item-text'>{item.title}</p>
 							</div>
 						))}

@@ -249,6 +249,7 @@ body {
 	color: var(--text-color);
 }
 .table {
+	width: 100%;
 	tr {
 		border-bottom: 1px solid var(--gray-color);
 		@media (max-width: 600px) {
@@ -259,6 +260,7 @@ body {
 	th {
 		padding-bottom: 1.9rem;
 		font-weight: 400;
+		text-align: left;
 		@media (max-width: 430px) {
 			font-size: 12px;
 		}
@@ -2548,7 +2550,7 @@ header {
 	padding-bottom: 1rem;
 
 	@media (max-width: 430px) {
-		padding-bottom: 5rem;
+		padding: 4.5rem 0 5rem 0;
 	}
 
 	.profile__burger {
@@ -2620,9 +2622,9 @@ header {
 		}
 	}
 	nav {
-		overflow-x: auto;
 		@media (max-width: 640px) {
 			margin-bottom: 1.5rem;
+			display: none;
 		}
 	}
 
@@ -2647,7 +2649,6 @@ header {
 			font-size: 1.105vw;
 			line-height: 1.538vw;
 		}
-
 		@media (max-width: 1280px) {
 			font-size: 2vw;
 			line-height: 1.5625vw;
@@ -2655,6 +2656,7 @@ header {
 		@media (max-width: 768px) {
 			font-size: 14px;
 			line-height: 1.5625vw;
+			padding: 10px 10px;
 		}
 	}
 
@@ -4064,8 +4066,17 @@ header {
 			color: var(--text-color);
 		}
 	}
+
+	.select-avatar {
+		img {
+			@media (max-width: 430px) {
+				max-width: 70px;
+			}
+		}
+	}
 	.accor__wrapper {
 		min-height: 200px;
+		padding: 0.5rem 0 0 0;
 
 		&.scrollY {
 			overflow-y: auto;
@@ -4150,9 +4161,10 @@ header {
 		&::after {
 			position: absolute;
 			left: 0;
-			bottom: -6px;
+			bottom: -5px;
+			z-index: 999;
 			width: 100%;
-			min-height: 1px;
+			min-height: 2px;
 			background: none;
 			content: '';
 		}
@@ -4277,12 +4289,21 @@ header {
 	border-radius: 30px;
 	padding: 40px 98px 48px 45px;
 
+	@media (max-width: 768px) {
+		padding: 40px 45px 48px 45px;
+		margin-top: 1.5rem;
+	}
+
 	&-container {
 		flex-grow: 1;
 		h1 {
 			font-size: 32px;
 			font-weight: 700;
 			line-height: 32px;
+			@media (max-width: 768px) {
+				text-align: center;
+				font-size: 20px;
+			}
 		}
 	}
 
@@ -4297,6 +4318,11 @@ header {
 			line-height: 40px;
 			color: var(--text-color);
 			padding-bottom: 19px;
+			@media (max-width: 768px) {
+				text-align: center;
+				font-size: 17px;
+				line-height: 30px;
+			}
 		}
 
 		&__item {
@@ -4306,6 +4332,12 @@ header {
 				align-items: center;
 				justify-content: space-between;
 
+				@media (max-width: 768px) {
+					flex-direction: column;
+					align-items: center;
+					gap: 15px;
+				}
+
 				img {
 					width: 100%;
 					height: auto;
@@ -4313,6 +4345,9 @@ header {
 
 					@media (min-width: 1280px) {
 						max-width: 60px;
+					}
+					@media (max-width: 768px) {
+						max-width: 55px;
 					}
 				}
 
@@ -4334,7 +4369,10 @@ header {
 						font-size: 14px;
 						padding: 5px 12px;
 					}
-
+					@media (max-width: 768px) {
+						font-size: 14px;
+						padding: 5px 7px;
+					}
 					&:hover {
 						color: var(--blue);
 					}
@@ -4344,13 +4382,63 @@ header {
 					font-size: 20px;
 					font-weight: 400;
 					line-height: 28px;
-      
 				}
 			}
 		}
 	}
 }
+.privacy {
+	font-family: inherit;
+	color: var(--form-text);
 
+	.checkbox {
+		position: absolute;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		color: var(--form-text);
+	}
+
+	.checkbox-label {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		color: var(--form-text);
+
+		@media (max-width: 430px) {
+			align-items: flex-start;
+		}
+	}
+
+	.checkbox-view {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid #515151;
+		color: var(--form-text);
+		background: #ffffff00;
+		transition: 0.3s;
+		margin-top: 0.5rem;
+	}
+
+	.checkbox-icon {
+		opacity: 0;
+		transition: 0.3s;
+		box-sizing: border-box;
+		border: 1px solid rgb(189, 189, 189);
+		border-radius: 4px;
+	}
+
+	.checkbox:checked + .checkbox-view {
+		background-color: rgba(0, 0, 0, 0);
+		color: var(--form-text);
+	}
+
+	.checkbox:checked + .checkbox-view .checkbox-icon {
+		opacity: 1;
+		color: var(--form-text);
+	}
+}
 // ! trash
 .react-datepicker {
 	background-color: var(--bg-mobile) !important; /* Задаем нужный цвет фона */
@@ -4399,11 +4487,33 @@ header {
 	line-height: 16px;
 	font-weight: 400;
 	text-align: center;
-	max-height: 71px;
-	min-height: 71px;
+	height: 100%;
 
 	&-text {
 		margin-top: -10px;
+	}
+
+	div {
+		position: relative;
+
+		&.round {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			min-width: 60px;
+			min-height: 60px;
+
+			.round2 {
+				position: absolute;
+				bottom: 10px;
+				width: 70px;
+				background: rgb(63, 126, 243);
+				box-shadow: 4px 4px 56px 0px rgba(177, 177, 181, 0.25);
+				filter: none !important;
+				border-radius: 50%;
+			}
+		}
 	}
 
 	.lottie {
@@ -4411,18 +4521,6 @@ header {
 		align-items: center;
 		justify-content: center;
 		transition: 0.3s all ease-in-out;
-
-		&.round {
-			border-radius: 50%;
-			background: rgb(63, 126, 243);
-			position: absolute;
-			bottom: 26px;
-			min-height: 80px;
-			min-width: 80px !important;
-			box-shadow: 4px 4px 56px 0px rgba(177, 177, 181, 0.25);
-			backdrop-filter: blur(6px);
-			filter: none !important;
-		}
 
 		&.active {
 			filter: invert(38%) sepia(78%) saturate(542%) hue-rotate(189deg)

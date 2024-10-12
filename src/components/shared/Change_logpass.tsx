@@ -10,15 +10,16 @@ import {
 } from '@/components/ui/drawer'
 import { Button } from '../ui/button'
 import { NextPage } from 'next'
-import Image from 'next/image'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/i18n/routing'
+import { useThemeStore } from '@/store'
 
 interface Props {
 	propsItem: React.ReactNode
 }
 
-export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
+export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
+	const { theme } = useThemeStore()
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
@@ -41,44 +42,31 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 							</Link>{' '}
 							{'>'}{' '}
 						</span>
-						Change Phone number
+						Change login password
 					</DrawerTitle>
-					<div className=' flex flex-col gap-[5px]'>
-						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] text-[14px] md:text-[20px] lg:text-[32px] flex flex-col items-center gap-[5px] md:flex-row md:items-start md:gap-[10px]'>
-							<Image
-								src={'/header_icons/profile_burger/info_icon.svg'}
-								width={20}
-								height={20}
-								alt='info'
-								quality={100}
-								className='max-w-[20px] md:max-w-[35px] w-full'
-							/>
-							To protect your account, you won't be able to withdraw funds for
-							24 hours after you reset or changing the email address in your
-							account.
-						</DrawerDescription>
+					<div className=' flex flex-col gap-[15px]'>
 						<div className='flex w-full flex-col items-start gap-[20px] md:gap-[40px]'>
 							<label className='text-[#181818] dark:text-white text-[14px] md:text-[20px] lg:text-[32px] flex flex-col items-start gap-[7px] w-full'>
-								New phone number
+								Current password
 								<Input
-									type='email'
-									placeholder='Enter phone number'
+									type='text'
+									placeholder='Enter your current password'
 									className='border border-solid border-white text-[14px] md:text-[20px] lg:text-[32px] w-full py-[30px] pl-[35px]'
 								/>
 							</label>
 							<label className='text-[#181818] dark:text-white text-[14px] md:text-[20px] lg:text-[32px] flex flex-col items-start gap-[7px] w-full'>
-								New phone SMS authentication
+								New password
 								<Input
 									type='email'
-									placeholder='Enter code'
+									placeholder='Enter your new password'
 									className='border border-solid border-white text-[14px] md:text-[20px] lg:text-[32px] w-full py-[30px] pl-[35px]'
 								/>
 							</label>
 							<label className='text-[#181818] dark:text-white text-[14px] md:text-[20px] lg:text-[32px] flex flex-col items-start gap-[7px] w-full'>
-								Current phone SMS authentication
+								Confirm new password
 								<Input
 									type='email'
-									placeholder='Enter code'
+									placeholder='Enter your new password again'
 									className='border border-solid border-white text-[14px] md:text-[20px] lg:text-[32px] w-full py-[30px] pl-[35px]'
 								/>
 							</label>
@@ -91,12 +79,39 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 								/>
 							</label>
 						</div>
+						<div className='privacy'>
+							<label htmlFor='checkbox-privacy' className='checkbox-label gap-[5px] md:gap-[18px]'>
+								<input
+									type='checkbox'
+									id='checkbox-privacy'
+									className='checkbox'
+								/>
+								<span className='checkbox-view'>
+									<svg
+										className='checkbox-icon max-w-[50px] md:max-w-[50px] max-h-[20px] md:max-h-[45px]'
+										xmlns='http://www.w3.org/2000/svg'
+										width='18'
+										viewBox='0 0 511.985 511.985'
+									>
+										<path
+											fill={theme === 'dark' ? '#fff' : '#3A3939'}
+											d='M500.088 83.681c-15.841-15.862-41.564-15.852-57.426 0L184.205 342.148 69.332 227.276c-15.862-15.862-41.574-15.862-57.436 0-15.862 15.862-15.862 41.574 0 57.436l143.585 143.585c7.926 7.926 18.319 11.899 28.713 11.899 10.394 0 20.797-3.963 28.723-11.899l287.171-287.181c15.862-15.851 15.862-41.574 0-57.435z'
+										/>
+									</svg>
+								</span>
+								<p className='text-[14px] md:text-[16px] lg:text-[22px] text-left'>
+									To protect your account, you will not be able to withdraw
+									funds within 24 hours after resetting your settings or
+									changing your account password.
+								</p>
+							</label>
+						</div>
 					</div>
 				</DrawerHeader>
 
 				<DrawerFooter className='flex flex-row justify-start gap-[40px]'>
 					<DrawerClose asChild>
-						<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] md:text-[18px] lg:text-[32px] lg:px-[50px] lg:py-[30px]'>
+						<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] md:text-[18px] lg:text-[32px] lg:px-[50px] lg:py-[25px]'>
 							Confirm
 						</Button>
 					</DrawerClose>

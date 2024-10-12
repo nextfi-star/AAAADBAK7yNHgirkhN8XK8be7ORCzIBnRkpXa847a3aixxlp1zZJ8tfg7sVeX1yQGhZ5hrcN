@@ -80,7 +80,7 @@ export const ChangeAvatar = () => {
 				</DrawerHeader>
 
 				{/* Tabs */}
-				<Tabs value={activeTab} onValueChange={setActiveTab}>
+				<Tabs value={activeTab} onValueChange={setActiveTab} className='flex flex-col items-center md:items-start'>
 					<TabsList className='mb-[30px]'>
 						<TabsTrigger value='select-avatar'>Select Avatar</TabsTrigger>
 						<TabsTrigger value='upload-avatar'>Upload Avatar</TabsTrigger>
@@ -88,12 +88,12 @@ export const ChangeAvatar = () => {
 
 					{/* Табка для выбора из существующих */}
 					<TabsContent value='select-avatar'>
-						<div className='flex flex-wrap gap-4 py-[20px] border-0 border-b border-solid border-b-white min-h-[421px] max-h-[321px] overflow-y-auto'>
+						<div className='flex justify-center flex-wrap gap-4 py-[20px] border-0 border-b border-solid border-b-white min-h-[421px] max-h-[321px] overflow-y-auto'>
 							{data &&
 								data.map((avatar, index) => (
 									<div
 										key={index}
-										className={`flex p-2`}
+										className={`flex`}
 										onClick={() => handleAvatarSelect(avatar.img)}
 									>
 										<Image
@@ -101,7 +101,7 @@ export const ChangeAvatar = () => {
 											width={116}
 											height={116}
 											alt={'avatar'}
-											className={`object-cover max-w-[116px] w-full rounded-[50%] hover:cursor-pointer border border-solid hover:border-[#205BC9]`}
+											className={`object-cover max-w-[116px] max-h-[116px] w-full rounded-[50%] hover:cursor-pointer border border-solid hover:border-[#205BC9]`}
 										/>
 									</div>
 								))}
@@ -123,7 +123,7 @@ export const ChangeAvatar = () => {
 							>
 								<PlusIcon color={theme === 'dark' ? 'white' : 'black'} />
 							</label>
-							<span>Upload a photo or drag and drop</span>
+							<span className='text-[14px] md:text-[20px]'>Upload a photo or drag and drop</span>
 							<span className='text-center text-[14px] md:text-[20px]'>
 								Supports JPG,PNG and GIF. Maximum upload file size 10 MB
 							</span>

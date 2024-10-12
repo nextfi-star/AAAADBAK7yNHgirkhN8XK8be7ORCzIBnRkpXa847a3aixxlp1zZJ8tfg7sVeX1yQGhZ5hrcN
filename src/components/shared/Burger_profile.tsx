@@ -12,7 +12,7 @@ import { ProfileBurger_menu_list } from './ProfileBurger_menu_list'
 interface Props {
 	handleClick: () => void
 	show: boolean
-	menuRef: any
+	menuRef?: any
 }
 
 export const Burger_profile: NextPage<Props> = ({
@@ -26,7 +26,7 @@ export const Burger_profile: NextPage<Props> = ({
 	const { theme } = useThemeStore()
 
 	return (
-		<div className='profile__wrapper' ref={menuRef}>
+		<div className='profile__wrapper' >
 			<div className={`${listClass} profile__burger`}>
 				<div className='px-[17px] pb-[39px] flex flex-col justify-between h-full relative'>
 					<div className={`${classChange}`} onClick={handleClick}>

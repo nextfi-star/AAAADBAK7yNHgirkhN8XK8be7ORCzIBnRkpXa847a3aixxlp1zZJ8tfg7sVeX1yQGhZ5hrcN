@@ -15,12 +15,12 @@ export const ProfileBurger_menu_list: NextPage<Props> = ({ showSection }) => {
 	}
 	return (
 		<>
-			<div className='flex justify-between items-center gap-[5px] mt-[30px]'>
+			<div className='flex justify-between items-center gap-[32px] mt-[30px] overflow-x-auto w-full min-h-[36px] border-0 border-b border-solid border-b-gray-300'>
 				{['Profile', 'Security', 'Verification', 'Authorized Devices'].map(tab => (
 					<span
 						key={tab}
 						onClick={() => handleTabClick(tab)}
-						className={`cursor-pointer ${
+						className={`cursor-pointer flex-shrink-0 ${
 							activeTab === tab ? 'tab__active' : ''
 						}`}
 					>
@@ -28,7 +28,6 @@ export const ProfileBurger_menu_list: NextPage<Props> = ({ showSection }) => {
 					</span>
 				))}
 			</div>
-			<span className='w-full min-h-[1px] bg-gray-700 mb-[19px]'></span>
 
 			<ProfileBurger_accordeon activeTab={activeTab} showSection={showSection} />
 		</>

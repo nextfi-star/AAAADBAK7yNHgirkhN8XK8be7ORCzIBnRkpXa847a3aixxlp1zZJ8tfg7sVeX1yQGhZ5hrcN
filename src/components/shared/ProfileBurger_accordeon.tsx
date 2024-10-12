@@ -106,9 +106,7 @@ const securityData = [
 						<span>
 							Use authentication codes when managing assets and other functions
 						</span>
-						<Button className='bg-transparent text-black dark:text-white border border-solid border-black dark:border-white rounded-[50px] hover:bg-transparent hover:text-blue-600 hover:border-blue-600'>
-							Change
-						</Button>
+						<ChangeEmail propsItem={'Change'} />
 					</>
 				),
 			},
@@ -125,9 +123,7 @@ const securityData = [
 				content: (
 					<>
 						<span>Change email</span>
-						<Button className='bg-transparent text-black dark:text-white border border-solid border-black dark:border-white rounded-[50px] hover:bg-transparent hover:text-blue-600 hover:border-blue-600'>
-							Change
-						</Button>
+						<ChangeEmail propsItem={'Change'} />
 					</>
 				),
 			},
@@ -138,9 +134,7 @@ const securityData = [
 				content: (
 					<>
 						<span>Change login/password</span>
-						<Button className='bg-transparent text-black dark:text-white border border-solid border-black dark:border-white rounded-[50px] hover:bg-transparent hover:text-blue-600 hover:border-blue-600'>
-							Change
-						</Button>
+						<ChangeEmail propsItem={'Change'} />
 					</>
 				),
 			},
@@ -156,9 +150,7 @@ const securityData = [
 				content: (
 					<>
 						<span>Freeze account</span>
-						<Button className='bg-transparent text-black dark:text-white border border-solid border-black dark:border-white rounded-[50px] hover:bg-transparent hover:text-blue-600 hover:border-blue-600'>
-							Change
-						</Button>
+						<ChangeEmail propsItem={'Change'} />
 					</>
 				),
 			},
@@ -166,7 +158,12 @@ const securityData = [
 				icon: '/main/profile_security/account_close.svg',
 				value: 'item-2',
 				trigger: 'Close account',
-				content: 'Close your account',
+				content: (
+					<>
+						<span>Close account</span>
+						<ChangeEmail propsItem={'Change'} />
+					</>
+				),
 			},
 		],
 	},
