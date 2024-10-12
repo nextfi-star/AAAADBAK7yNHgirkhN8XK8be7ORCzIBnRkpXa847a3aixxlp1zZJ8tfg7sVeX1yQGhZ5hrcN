@@ -35,8 +35,8 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 						</Button>
 					</DrawerTrigger>
 
-					<DrawerContent className='z-[9999] px-[30px] bg-white dark:bg-black max-h-[100dvh] min-h-[100vh] pt-[2.5rem]'>
-						<DrawerHeader className='flex flex-col gap-[16px]'>
+					<DrawerContent className='z-[9999] px-[30px] bg-white dark:bg-black max-h-[100dvh] min-h-[100dvh] pt-[2.5rem]'>
+						<DrawerHeader className='flex flex-col gap-[16px] pt-[3.5rem]'>
 							<DrawerTitle className='w-full border-transparent flex flex-col items-center gap-[15px]'>
 								<div className='w-full'>
 									<div className='relative flex justify-center'>
@@ -83,7 +83,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 					</DrawerTrigger>
 
 					<DrawerContent className='z-[9999] px-[30px] pb-[2px] bg-white dark:bg-black min-h-[100dvh] max-h-[70%]'>
-						<DrawerHeader>
+						<DrawerHeader className='pt-[3.5rem]'>
 							<DrawerTitle className='w-full border-transparent'>
 								<h1 className='text-[20px] md:text-[32px] lg:text-[42px]'>
 									Identity verification
@@ -119,8 +119,8 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 							</DrawerDescription>
 						</DrawerHeader>
 
-						<DrawerFooter className='flex flex-row justify-center py-0'>
-							<DrawerClose asChild>
+						<DrawerFooter className='flex flex-row justify-center !py-[1rem]'>
+							<DrawerClose asChild className='!py-[1rem]'>
 								<Button onClick={() => setIndex(!indexItem)} className='w-full max-w-[531px] lg:max-w-[631px] py-[px] md:py-[28px] lg:py-[38px] text-[14px] md:text-[20px] lg:text-[32px] rounded-[50px] min-w-[117px] bg-[#205BC9] text-[#fff]'>
 									Next
 								</Button>
