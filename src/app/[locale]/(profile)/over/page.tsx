@@ -34,7 +34,7 @@ const Profile: NextPage = () => {
           <Profile_payments />
         </div>
 
-        <div className="max-w-[1331px] order-1">
+        <div className="max-w-[1331px]">
           <Profile_industry unicClass="show__when" />
           <Profile_news />
           <Profile_qr />

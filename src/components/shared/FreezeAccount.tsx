@@ -33,15 +33,15 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 
 			<DrawerContent className='z-[9999] px-[30px] pt-[2.5rem] min-h-[100dvh] max-h-[70%]'>
 				<DrawerHeader>
-					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] md:text-[20px] lg:text-[32px] text-left'>
+					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left'>
 						<DrawerClose asChild>
-							<Button className=' text-white bg-transparent hover:text-[#fff] text-[14px] md:text-[18px] lg:text-[32px] lg:px-[50px] lg:py-[25px]'>
+							<Button className=' text-white bg-transparent hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[25px] lg:px-[50px] lg:py-[25px] hover:bg-transparent'>
 								{'<'}
 							</Button>
 						</DrawerClose>
-						<span className='text-[14px] md:text-[20px] lg:text-[32px]'>
+						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px]'>
 							<Link
-								className='text-[14px] md:text-[20px] lg:text-[32px] text-[#888888]'
+								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
 								href='/security'
 							>
 								Security center
@@ -51,7 +51,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 						Freeze account
 					</DrawerTitle>
 					<div className='flex flex-col items-center gap-[20px]'>
-						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center gap-[10px] justify-center w-full'>
+						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center gap-[10px] justify-center w-full max-w-[921px]'>
 							<span className='flex flex-col items-center gap-[5px] md:flex-row md:items-center justify-center md:gap-[10px] text-[14px] md:text-[20px] lg:text-[25px] w-full text-center'>
 								<Image
 									src={'/header_icons/profile_burger/info_icon.svg'}
@@ -59,7 +59,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 									height={20}
 									alt='info'
 									quality={100}
-									className='max-w-[20px] md:max-w-[35px] w-full'
+									className='max-w-[20px] md:max-w-[25px] w-full'
 								/>
 								After freezing your account:
 							</span>
@@ -88,25 +88,25 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								</li>
 							</ul>
 						</DrawerDescription>
-						<div className='flex w-full flex-col items-start gap-[20px] md:gap-[40px] border border-solid border-gray-400 py-[10px] rounded-[4px]'>
+						<div className='flex w-full max-w-[921px] flex-col items-start gap-[20px] md:gap-[40px] border border-solid border-gray-400 py-[10px] rounded-[4px]'>
 							<h5 className='text-[12px] md:text-[18px] lg:text-[20px] border-0 border-b border-solid border-b-gray-400 w-full text-center py-[10px] px-[5px]'>
 								Why do you want to freeze your account?
 							</h5>
 							<div className='px-[16px]'>
 								<RadioGroup defaultValue='option-one'>
 									<div className='flex items-center space-x-2'>
-										<label className='flex justify-start text-left items-center gap-[12px]'>
+										<label className='flex justify-start text-left items-center gap-[12px] text-[14px] md:text-[16px] lg:text-[20px] xl:text-[27px] w-full'>
 											<RadioGroupItem
 												value='option-one'
 												id='option-one'
-												className='border border-solid border-[#BDBDBD] dark:border-[#BDBDBD] text-[14px] md:text-[16px]'
+												className='border border-solid border-[#BDBDBD] dark:border-[#BDBDBD] '
 											/>
 											This account is not safe, so I want to freeze it
 											temporarily.
 										</label>
 									</div>
 									<div className='flex items-center space-x-2'>
-										<label className='flex justify-start text-left items-center gap-[12px]'>
+										<label className='flex justify-start text-left items-center gap-[12px] text-[14px] md:text-[16px] lg:text-[20px] xl:text-[27px] w-full'>
 											<RadioGroupItem
 												value='option-two'
 												id='option-two'
@@ -116,7 +116,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 										</label>
 									</div>
 									<div className='flex items-center space-x-2'>
-										<label className='flex justify-start text-left items-center gap-[12px]'>
+										<label className='flex justify-start text-left items-center gap-[12px] text-[14px] md:text-[16px] lg:text-[20px] xl:text-[27px] w-full'>
 											<RadioGroupItem
 												value='option-three'
 												id='option-three'
@@ -126,7 +126,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 										</label>
 									</div>
 									<div className='flex items-center space-x-2'>
-										<label className='flex justify-start text-left items-center gap-[12px]'>
+										<label className='flex justify-start text-left items-center gap-[12px] text-[14px] md:text-[16px] lg:text-[20px] xl:text-[27px] w-full'>
 											<RadioGroupItem
 												value='option-four'
 												id='option-four'
@@ -138,10 +138,10 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								</RadioGroup>
 							</div>
 						</div>
-						<div className='privacy flex flex-col self-start justify-start'>
+						<div className='privacy max-w-[921px] flex flex-col self-center	 justify-start'>
 							<label
 								htmlFor='checkbox-privacy'
-								className='checkbox-label gap-[5px] md:gap-[18px]'
+								className='checkbox-label gap-[5px] md:gap-[18px] !items-start'
 							>
 								<input
 									type='checkbox'
@@ -171,7 +171,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 					</div>
 				</DrawerHeader>
 
-				<DrawerFooter className='flex flex-row justify-start gap-[40px]'>
+				<DrawerFooter className='flex flex-row justify-center gap-[40px]'>
 					<DrawerClose asChild>
 						<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[32px] lg:px-[50px] lg:py-[30px]'>
 							Confirm

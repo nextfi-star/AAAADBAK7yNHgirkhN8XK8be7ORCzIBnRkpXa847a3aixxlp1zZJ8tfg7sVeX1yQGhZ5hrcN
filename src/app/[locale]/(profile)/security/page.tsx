@@ -1,6 +1,5 @@
 'use client'
 import Image from 'next/image'
-import ArrowBracket from '../../../../components/ui/ArrowBracket'
 import { useThemeStore } from '../../../../store'
 import { NextPage } from 'next'
 import { Change_logpass } from '@/components/shared/Change_logpass'

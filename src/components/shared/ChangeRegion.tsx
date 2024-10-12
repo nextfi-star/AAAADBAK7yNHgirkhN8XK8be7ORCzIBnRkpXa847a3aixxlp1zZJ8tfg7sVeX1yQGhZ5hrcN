@@ -65,12 +65,12 @@ export const ChangeRegion: NextPage<Props> = ({ propsItem }) => {
 							</p>
 
 							<DrawerClose asChild className='!py-[1rem]'>
-								<Button
-									onClick={() => setIndex(!indexItem)}
-									className='w-full lg:max-w-[631px] py-[1rem] md:py-[28px] lg:!py-[2rem] text-[14px] md:text-[20px] lg:text-[32px] rounded-[50px] min-w-[117px] bg-[#205BC9] text-[#fff]'
-								>
-									Next
-								</Button>
+							<Button
+								onClick={() => setIndex(!indexItem)}
+								className='w-full max-w-[531px] lg:max-w-[631px] py-[10px] sm:py-[18px] md:!py-[28px] lg:py-[38px] text-[14px] md:text-[20px] lg:text-[32px] rounded-[50px] min-w-[117px] bg-[#205BC9] hover:bg-[#205BC9] text-[#fff]'
+							>
+								Next
+							</Button>
 							</DrawerClose>
 						</div>
 					</DrawerDescription>

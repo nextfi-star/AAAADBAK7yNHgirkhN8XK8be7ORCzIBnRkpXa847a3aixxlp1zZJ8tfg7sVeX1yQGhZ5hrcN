@@ -1,13 +1,13 @@
 import { NextPage } from 'next'
 import { ProfileBurger_profile_accor } from './ProfileBurger_profile_accor'
 import { ProfileBurger_security_accor } from './ProfileBurger_security_accor'
-import { Button } from '../ui/button'
 import { ChangeNick } from './ChangeNick'
 import { ViewRegion } from './ViewRegion'
 import { ChangeRegion } from './ChangeRegion'
 import { ChangeEmail } from './ChangeEmail'
 import { ChangePhone } from './ChangePhone'
 import { FreezeAccount } from './FreezeAccount'
+import { Change_logpass } from './Change_logpass'
 
 interface Props {
 	showSection: boolean
@@ -135,7 +135,7 @@ const securityData = [
 				content: (
 					<>
 						<span>Change login/password</span>
-						<ChangeEmail propsItem={'Change'} />
+						<Change_logpass propsItem={'Change'} />
 					</>
 				),
 			},

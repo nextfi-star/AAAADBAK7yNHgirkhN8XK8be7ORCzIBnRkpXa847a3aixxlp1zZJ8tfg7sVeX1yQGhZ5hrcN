@@ -9,6 +9,7 @@ const Copy = ({color}) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      className='min-w-[20px]'
     >
       <defs>
         <clipPath id="clip834_5641">

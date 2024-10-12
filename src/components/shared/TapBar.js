@@ -19,7 +19,7 @@ const data = [
 	{
 		animation_dark: '/tapbar/Blue_logo.json',
 		animation_white: '/tapbar/Blue_logo.json',
-		title: 'Investments',
+		title: 'Investing',
 		class: 'round',
 		class2: 'round2',
 		speed: '1.5',
@@ -94,11 +94,11 @@ export const TapBar = () => {
 								className={`Tapbar__item `}
 								onClick={() => play(index)}
 							>
-								<div className={`Tapbar__item ${item.class && '-mt-[45px]'}`}>
+								<div className={`Tapbar__item`}>
 									<div
 										className={
 											item.class &&
-											'flex justify-center items-center bg-blue-700 rounded-full w-16 h-16 shadow-lg'
+											`flex justify-center items-center bg-[#3F7EF3] rounded-full w-16 h-16 shadow-custom-shadow backdrop-blur-custom-blur ${item.class && '-mt-[20px] shadow'} `
 										}
 									>
 										<DotLottieReact
@@ -109,7 +109,7 @@ export const TapBar = () => {
 											}
 											className={`lottie ${
 												activeIndex === index ? 'active' : ''
-											} ${item.class && '!filter-none'}  `}
+											} ${item.class && '!filter-none big'}  `}
 											autoplay
 											speed={item.speed}
 											dotLottieRefCallback={ref =>
@@ -127,9 +127,7 @@ export const TapBar = () => {
 								</div>
 
 								<p
-									className={`Tapbar__item-text -mt-[15px]  ${
-										item.class && '-mt-[0] -mb-[32.5px]'
-									}`}
+									className={`Tapbar__item-text -mt-[15px]  `}
 								>
 									{item.title}
 								</p>

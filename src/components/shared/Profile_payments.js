@@ -93,7 +93,7 @@ export const Profile_payments = () => {
             <thead>
               <tr className="text-[14px] sm:text-[16px] md:text-[20px] lg:text-[24px] text-white ">
                 <th>{t("Destination")}</th>
-                <th>{t("The amount")}</th>
+                <th>Amount</th>
                 <th>{t("Percent")}</th>
                 <th className="hidden xl:table-cell">{t("Sum Total")}</th>
                 <th className="hidden xl:inline-block">{t("Report")}</th>
