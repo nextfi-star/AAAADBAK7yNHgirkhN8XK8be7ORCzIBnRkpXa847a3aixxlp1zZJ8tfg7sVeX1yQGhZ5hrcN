@@ -28,7 +28,7 @@ export const Profile_personalverif: NextPage = () => {
 					Additional info needed
 				</span>
 
-				<ViewRegion propsItem={'View Details'} />
+				<ChangeRegion propsItem={'View Details'} />
 			</article>
 
 			<span className='devider w-full h-[1px] bg-slate-100 block my-[24px]' />
@@ -37,7 +37,7 @@ export const Profile_personalverif: NextPage = () => {
 				<span>Country/Region</span>
 				<span>Russia</span>
 
-				<ChangeRegion propsItem={'Change'} />
+				<ViewRegion propsItem={'Change'} />
 			</article>
 		</section>
 	)

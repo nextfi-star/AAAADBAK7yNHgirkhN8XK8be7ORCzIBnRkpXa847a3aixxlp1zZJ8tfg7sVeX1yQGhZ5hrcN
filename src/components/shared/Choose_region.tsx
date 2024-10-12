@@ -53,7 +53,7 @@ export function Choose_region() {
 					variant='outline'
 					role='combobox'
 					aria-expanded={open}
-					className='w-full max-w-[400px] justify-between z-[9999] border border-solid border-gray-400 text-[16px] md:text-[25px] lg:text-[30px]'
+					className='w-full justify-between z-[9999] border border-solid border-gray-400 text-[14px] sm:text-[16px] md:text-[25px] lg:text-[30px] py-[2rem]'
 				>
 					{value
 						? frameworks.find(framework => framework.value === value)?.label
@@ -61,11 +61,11 @@ export function Choose_region() {
 					<ChevronsUpDown className='ml-2 h-4 w-4 lg:h-6 lg:w-6 shrink-0 opacity-50' />
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className='w-[200px] lg:w-[400px] p-0'>
+			<PopoverContent className='w-full max-w-[623px] p-0'>
 				<Command>
-					<CommandInput className='text-[14px] md:text-[25px] lg:tetx-[30px]' placeholder='Search region/country...' />
+					<CommandInput className='text-[14px] md:text-[25px] lg:text-[30px] w-full min-h-[58px]' placeholder='Search region/country...' />
 					<CommandList>
-						<CommandEmpty className='text-[14px] md:text-[25px] lg:tetx-[30px]'>No one was found.</CommandEmpty>
+						<CommandEmpty className='text-[14px] md:text-[25px] lg:text-[30px] p-[.5rem]'>No one was found.</CommandEmpty>
 						<CommandGroup>
 							{frameworks.map(framework => (
 								<CommandItem

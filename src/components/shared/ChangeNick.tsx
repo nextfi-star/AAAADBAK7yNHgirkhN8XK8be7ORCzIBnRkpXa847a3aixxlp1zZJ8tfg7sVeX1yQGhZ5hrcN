@@ -44,36 +44,40 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px]'>
 						<h1 className='text-[20px] md:text-[32px] '>Nickname</h1>
 					</DrawerTitle>
-					<div className=' flex flex-col gap-[38px]'>
-						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center md:flex-row md:items-start gap-[16px]'>
-							<Image
-								src={'/header_icons/profile_burger/info_icon.svg'}
-								width={40}
-								height={40}
-								alt='info'
-								quality={100}
-								className='max-w-[20px] md:max-w-[40px] lg:max-w-[45px]'
-							/>
-							<span className='text-black dark:text-white text-[14px] md:text-[30px] leading-10 text-center'>
-								Make sure your nickname does not contain disrespectful language,
-								official names(i.e. product names), or names of other trading
-								platforms.
-							</span>
-						</DrawerDescription>
-						<div className='flex flex-col gap-[14px] lg:gap-[40px]'>
-							<span className='text-black dark:text-white text-left text-[14px] md:text-[18px] lg:text-[30px]'>
-								Your nickname is used for trading and in-app messages
-							</span>
-							<input
-								type='text'
-								className='bg-transparent text-black dark:text-white border border-solid border-[#000] dark:border-white rounded-[4px] px-[20px] py-[10px] text-[14px] md:text-[18px] lg:text-[30px]'
-								onChange={trackSymbols}
-								placeholder='zya***@rambler.ru'
-							/>
-							<span className='w-full flex justify-between text-black dark:text-white text-left text-[14px] md:text-[18px] lg:text-[30px]'>
-								Your nickname can be edited 3 more time(s) this year{' '}
-								<span className='text-black dark:text-white'>{symbols}/20</span>
-							</span>
+					<div className='flex flex-col justify-center items-center gap-[38px] w-full h-full'>
+						<div className='max-w-[760px] flex flex-col gap-[30px]'>
+							<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center md:flex-row md:items-start gap-[16px]'>
+								<Image
+									src={'/header_icons/profile_burger/info_icon.svg'}
+									width={40}
+									height={40}
+									alt='info'
+									quality={100}
+									className='w-full max-w-[20px] sm:max-w-[30px] md:max-w-[35px] lg:max-w-[45px]'
+								/>
+								<span className='text-black dark:text-white text-[14px] md:text-[30px] leading-10 text-left'>
+									Make sure your nickname does not contain disrespectful
+									language, official names(i.e. product names), or names of
+									other trading platforms.
+								</span>
+							</DrawerDescription>
+							<div className='flex flex-col gap-[14px] lg:gap-[40px]'>
+								<span className='text-black dark:text-white text-left text-[14px] md:text-[18px] lg:text-[30px]'>
+									Your nickname is used for trading and in-app messages
+								</span>
+								<input
+									type='text'
+									className='bg-transparent text-black dark:text-white border border-solid border-[#000] dark:border-white rounded-[4px] px-[20px] py-[10px] text-[14px] md:text-[18px] lg:text-[30px]'
+									onChange={trackSymbols}
+									placeholder='zya***@rambler.ru'
+								/>
+								<span className='w-full flex justify-between text-black dark:text-white text-left text-[14px] md:text-[18px] lg:text-[25px]'>
+									Your nickname can be edited 3 more time(s) this year{' '}
+									<span className='text-black dark:text-white'>
+										{symbols}/20
+									</span>
+								</span>
+							</div>
 						</div>
 					</div>
 				</DrawerHeader>

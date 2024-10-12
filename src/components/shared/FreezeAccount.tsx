@@ -20,7 +20,7 @@ interface Props {
 }
 
 export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
-	const {theme } = useThemeStore()
+	const { theme } = useThemeStore()
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
@@ -34,6 +34,11 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 			<DrawerContent className='z-[9999] px-[30px] pt-[2.5rem] min-h-[100dvh] max-h-[70%]'>
 				<DrawerHeader>
 					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] md:text-[20px] lg:text-[32px] text-left'>
+						<DrawerClose asChild>
+							<Button className=' text-white bg-transparent hover:text-[#fff] text-[14px] md:text-[18px] lg:text-[32px] lg:px-[50px] lg:py-[25px]'>
+								{'<'}
+							</Button>
+						</DrawerClose>
 						<span className='text-[14px] md:text-[20px] lg:text-[32px]'>
 							<Link
 								className='text-[14px] md:text-[20px] lg:text-[32px] text-[#888888]'
@@ -45,8 +50,8 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 						</span>
 						Freeze account
 					</DrawerTitle>
-					<div className='flex flex-col gap-[20px]'>
-						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center gap-[5px]'>
+					<div className='flex flex-col items-center gap-[20px]'>
+						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center gap-[10px] justify-center w-full'>
 							<span className='flex flex-col items-center gap-[5px] md:flex-row md:items-center justify-center md:gap-[10px] text-[14px] md:text-[20px] lg:text-[25px] w-full text-center'>
 								<Image
 									src={'/header_icons/profile_burger/info_icon.svg'}
@@ -58,22 +63,25 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								/>
 								After freezing your account:
 							</span>
-							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[20px] lg:text-[25px] text-left'>
+							<ul className='flex flex-col gap-[25px] items-start text-[14px] md:text-[20px] lg:text-[25px] text-left leading-[30px]'>
 								<li>
 									• Your account zyabkin.vladislav2001@rambler.ru will be frozen
 									temporarily. To unfreeze it, start by logging in again.{' '}
 								</li>
+
 								<li>
 									• Your account zyabkin.vladislav2001@rambler.ru will be frozen
 									temporarily. To unfreeze it, start by logging in again.{' '}
 								</li>
+
 								<li>
-									• All trading capabilities of this account will be disabled{' '}
+									• All trading capabilities of this account will be disabled
 								</li>
+
 								<li>• All API keys for this account will be deleted </li>
-								<li>
-									• All approved devices for this account will be removed{' '}
-								</li>
+
+								<li>• All approved devices for this account will be removed</li>
+
 								<li>
 									• Ongoing transactions such as perpetuals will not be canceled
 									automatically
@@ -130,8 +138,11 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								</RadioGroup>
 							</div>
 						</div>
-						<div className='privacy'>
-							<label htmlFor='checkbox-privacy' className='checkbox-label gap-[5px] md:gap-[18px]'>
+						<div className='privacy flex flex-col self-start justify-start'>
+							<label
+								htmlFor='checkbox-privacy'
+								className='checkbox-label gap-[5px] md:gap-[18px]'
+							>
 								<input
 									type='checkbox'
 									id='checkbox-privacy'
@@ -162,7 +173,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 
 				<DrawerFooter className='flex flex-row justify-start gap-[40px]'>
 					<DrawerClose asChild>
-						<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] md:text-[18px] lg:text-[32px] lg:px-[50px] lg:py-[30px]'>
+						<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[32px] lg:px-[50px] lg:py-[30px]'>
 							Confirm
 						</Button>
 					</DrawerClose>
