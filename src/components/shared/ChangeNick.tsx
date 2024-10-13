@@ -82,11 +82,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 								Your nickname can be edited 3 more time(s) this year{' '}
 								<span className='text-black dark:text-white'>{symbols}/20</span>
 							</span>
-						</div>
-					</div>
-				</div>
-
-				<div className='flex flex-row justify-center gap-[40px] mt-[15px]'>
+							<div className='flex flex-row justify-center gap-[40px] mt-[15px]'>
 					<DrawerClose asChild>
 						<Button
 							variant='outline'
@@ -101,6 +97,11 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 						</Button>
 					</DrawerClose>
 				</div>
+						</div>
+					</div>
+				</div>
+
+				
 			</DrawerContent>
 		</Drawer>
 	)
