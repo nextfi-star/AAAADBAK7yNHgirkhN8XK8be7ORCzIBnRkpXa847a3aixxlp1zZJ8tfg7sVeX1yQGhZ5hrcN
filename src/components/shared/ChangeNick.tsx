@@ -39,8 +39,10 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] px-[30px] min-h-[100dvh]'>
-				<div className='overflow-y-auto'>
+			<DrawerContent className='z-[9999] px-[30px] h-[100dvh]'>
+
+				<div className='overflow-hidden h-[100dvh]'>
+
 					<div className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[10px]'>
 						<h1 className='text-[20px] md:text-[32px] flex items-center gap-[15px]'>
 							<DrawerClose asChild>
@@ -51,6 +53,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 							Nickname
 						</h1>
 					</div>
+					
 					<div className='flex flex-col justify-center items-center gap-[38px] w-full h-full'>
 						<div className='max-w-[760px] flex flex-col gap-[30px]'>
 							<div className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center md:flex-row md:items-start gap-[16px]'>
@@ -87,6 +90,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 							</div>
 						</div>
 					</div>
+
 				</div>
 
 				<DrawerFooter className='flex flex-row justify-center gap-[40px]'>
@@ -104,6 +108,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 						</Button>
 					</DrawerClose>
 				</DrawerFooter>
+
 			</DrawerContent>
 		</Drawer>
 	)
