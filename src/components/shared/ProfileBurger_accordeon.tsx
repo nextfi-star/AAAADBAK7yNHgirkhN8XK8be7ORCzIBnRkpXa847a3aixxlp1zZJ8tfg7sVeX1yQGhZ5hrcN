@@ -55,7 +55,7 @@ const profileData = [
 				content: (
 					<>
 						Russia/Moscow
-						<ChangeRegion propsItem={'Change'} />
+						<ViewRegion propsItem={'Change'} />
 					</>
 				),
 			},

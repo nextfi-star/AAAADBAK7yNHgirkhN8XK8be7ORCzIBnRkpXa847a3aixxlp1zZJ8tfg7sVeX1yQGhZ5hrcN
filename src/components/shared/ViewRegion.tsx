@@ -55,7 +55,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 										Select country/region of residence
 									</p>
 									<label className='flex flex-col gap-[20px] lg:gap-[30px] w-full'>
-										<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'>
+										<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] text-left'>
 											Country/Region of residence
 										</span>
 										<Choose_region />

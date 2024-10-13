@@ -67,7 +67,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 								</span>
 								<input
 									type='text'
-									className='bg-transparent text-black dark:text-white border border-solid border-[#000] dark:border-white rounded-[4px] px-[20px] py-[10px] text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[25px]'
+									className='bg-transparent text-black dark:text-white border border-solid border-[#000] dark:border-white rounded-[4px] px-[20px] py-[7px] text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[25px]'
 									onChange={trackSymbols}
 									placeholder='zya***@rambler.ru'
 								/>
