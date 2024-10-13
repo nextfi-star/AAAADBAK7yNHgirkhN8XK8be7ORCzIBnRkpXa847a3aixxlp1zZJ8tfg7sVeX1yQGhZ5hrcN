@@ -31,13 +31,13 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] pt-[.5rem] min-h-[100dvh] max-h-[70%]'>
-				<DrawerHeader>
-					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left'>
+			<DrawerContent className='z-[9999] pt-[.5rem] min-h-[100dvh] max-h-[70%] mdoal-holder modal-holder mobile-holder !pb-[.5rem]'>
+				<div className='h-full overflow-y-auto'>
+					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[15px] pt-[2rem] pl-[1rem]'>
 						<DrawerClose asChild>
-							<Button className=' text-white bg-transparent hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[25px] lg:px-[50px] lg:py-[25px] hover:bg-transparent'>
-								{'<'}
-							</Button>
+							<span className='flex items-center gap-[5px] text-[18px] lg:text-[30px]'>
+								<span className='text-[18px] lg:text-[30px]'>{'<'}</span>
+							</span>
 						</DrawerClose>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px]'>
 							<Link
@@ -169,7 +169,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 							</label>
 						</div>
 					</div>
-				</DrawerHeader>
+				</div>
 
 				<DrawerFooter className='flex flex-row justify-center gap-[40px]'>
 					<DrawerClose asChild>
@@ -178,7 +178,6 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 						</Button>
 					</DrawerClose>
 				</DrawerFooter>
-
 			</DrawerContent>
 		</Drawer>
 	)

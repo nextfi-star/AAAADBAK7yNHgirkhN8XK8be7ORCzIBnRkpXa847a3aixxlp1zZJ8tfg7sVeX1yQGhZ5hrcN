@@ -31,6 +31,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 	}
 	return (
 		<Drawer>
+			<div>
 			<DrawerTrigger asChild>
 				<Button
 					className={`bg-transparent hover:bg-transparent border border-solid rounded-[50px] text-[#205bc9] dark:text-white border-gray-400`}
@@ -39,20 +40,20 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='px-[15px]'>
-				<div className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[40px]'>
-					<h1 className='text-[20px] md:text-[32px] flex items-center gap-[15px]'>
+			<DrawerContent className='px-[15px] modal-holder mobile-holder '>
+				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[40px]'>
+					<p className='text-[14px] md:text-[17px] lg:text-[25px] xl:text-[28px] 2xl:text-[35px] pt-[2rem] flex items-center gap-[15px]'>
 						<DrawerClose asChild>
 							<span className='flex items-center gap-[5px] text-[18px] lg:text-[30px]'>
 								<span className='text-[18px] lg:text-[30px]'>{'<'}</span>
 							</span>
 						</DrawerClose>
 						Nickname
-					</h1>
-				</div>
+					</p>
+				</DrawerTitle>
 
-				<div className='flex flex-col justify-flex-start items-center w-full h-full'>
-					<div className='max-w-[760px] flex flex-col gap-[10px]'>
+				<DrawerDescription className='flex flex-col justify-flex-start items-center w-full h-full'>
+					<div className='max-w-[760px] flex flex-col gap-[33px]'>
 						<div className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center md:flex-row md:items-start gap-[16px]'>
 							<Image
 								src={'/header_icons/profile_burger/info_icon.svg'}
@@ -62,7 +63,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 								quality={100}
 								className='w-full max-w-[20px] sm:max-w-[23px] md:max-w-[25px]'
 							/>
-							<span className='text-black dark:text-white text-[14px] md:text-[18px] lg:text-[20px] 2xl:text-[25px] text-left'>
+							<span className='text-black dark:text-white text-[14px] md:text-[18px] lg:text-[20px] 2xl:text-[25px] text-left leading-7'>
 								Make sure your nickname does not contain disrespectful language,
 								official names(i.e. product names), or names of other trading
 								platforms.
@@ -99,10 +100,11 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 				</div>
 						</div>
 					</div>
-				</div>
+				</DrawerDescription>
 
 				
 			</DrawerContent>
+			</div>
 		</Drawer>
 	)
 }

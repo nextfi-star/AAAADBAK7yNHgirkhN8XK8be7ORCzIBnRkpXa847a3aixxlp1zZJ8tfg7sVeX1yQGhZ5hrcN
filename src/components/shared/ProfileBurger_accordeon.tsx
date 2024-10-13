@@ -45,7 +45,7 @@ const profileData = [
 				content: (
 					<>
 						<span>Identity</span>
-						<ViewRegion propsItem={'Change'} />
+						<ChangeRegion propsItem={'Change'} />
 					</>
 				),
 			},

@@ -35,13 +35,13 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 						</Button>
 					</DrawerTrigger>
 
-					<DrawerContent className='z-[9999] px-[30px] pb-[2px] bg-white dark:bg-black min-h-[100dvh] max-h-[70%]'>
+					<DrawerContent className='z-[9999] px-[30px] pb-[2px] bg-white dark:bg-black min-h-[100dvh] modal-holder mobile-holder'>
 						<DrawerHeader className='pt-[3.5rem]'>
 							<div className='w-full border-transparent flex flex-col gap-[20px] mb-[20px]'>
 								<h1 className='text-[14px] md:text-[17px] lg:text-[25px] xl:text-[28px] 2xl:text-[35px] border-b-2 border-0 border-solid border-b-gray-400 pb-[20px] flex gap-[15px]'>
 									<span
 										onClick={() => setIndex(!indexItem)}
-										className='flex items-center gap-[5px] text-[18px] lg:text-[30px]'
+										className='flex items-center gap-[5px] text-[18px] lg:text-[30px] hover:cursor-pointer'
 									>
 										<span className='text-[18px] lg:text-[30px]'>{'<'}</span>
 									</span>
