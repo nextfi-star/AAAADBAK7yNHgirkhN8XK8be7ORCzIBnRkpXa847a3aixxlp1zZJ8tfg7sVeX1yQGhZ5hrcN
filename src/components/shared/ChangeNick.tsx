@@ -55,7 +55,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 									quality={100}
 									className='w-full max-w-[20px] sm:max-w-[23px] md:max-w-[25px]'
 								/>
-								<span className='text-black dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] leading-10 text-left'>
+								<span className='text-black dark:text-white text-[14px] md:text-[18px] lg:text-[20px] 2xl:text-[25px] leading-10 text-left'>
 									Make sure your nickname does not contain disrespectful
 									language, official names(i.e. product names), or names of
 									other trading platforms.
@@ -67,11 +67,11 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 								</span>
 								<input
 									type='text'
-									className='bg-transparent text-black dark:text-white border border-solid border-[#000] dark:border-white rounded-[4px] px-[20px] py-[10px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px]'
+									className='bg-transparent text-black dark:text-white border border-solid border-[#000] dark:border-white rounded-[4px] px-[20px] py-[10px] text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[25px]'
 									onChange={trackSymbols}
 									placeholder='zya***@rambler.ru'
 								/>
-								<span className='w-full flex justify-between text-black dark:text-white text-left text-[14px] md:text-[18px] lg:text-[25px]'>
+								<span className='w-full flex justify-between text-black dark:text-white text-left text-[14px] md:text-[18px] lg:text-[20px] 2xl:text-[25px]'>
 									Your nickname can be edited 3 more time(s) this year{' '}
 									<span className='text-black dark:text-white'>
 										{symbols}/20
@@ -86,13 +86,13 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 					<DrawerClose asChild>
 						<Button
 							variant='outline'
-							className='border border-solid dark:border-gray-300 border-black rounded-[50px] px-[35px] min-w-[117px] hover:bg-transparent hover:text-[#205BC9] text-[14px] md:text-[18px] lg:text-[32px] lg:px-[50px] lg:py-[30px]'
+							className='border border-solid dark:border-gray-300 border-black rounded-[50px] px-[35px] min-w-[117px] hover:bg-transparent hover:text-[#205BC9] text-[14px] md:text-[18px] lg:text-[20px] lg:px-[30px] lg:py-[15px]'
 						>
 							Cancel
 						</Button>
 					</DrawerClose>
 					<DrawerClose asChild>
-						<Button className='bg-[#205BC9] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#205BC9] hover:text-[#fff] text-[14px] md:text-[18px] lg:text-[32px] lg:px-[50px] lg:py-[30px]'>
+						<Button className='bg-[#205BC9] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#205BC9] hover:text-[#fff] text-[14px] md:text-[18px] lg:text-[20px] lg:px-[30px] lg:py-[15px]'>
 							Confirm
 						</Button>
 					</DrawerClose>

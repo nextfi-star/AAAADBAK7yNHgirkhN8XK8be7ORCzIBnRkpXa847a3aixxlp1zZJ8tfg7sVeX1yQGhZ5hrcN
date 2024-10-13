@@ -4,6 +4,8 @@ import { useThemeStore } from '../../../../store'
 import { NextPage } from 'next'
 import { Change_logpass } from '@/components/shared/Change_logpass'
 import { FreezeAccount } from '@/components/shared/FreezeAccount'
+import { ChangeEmail } from '@/components/shared/ChangeEmail'
+import { ChangePhone } from '@/components/shared/ChangePhone'
 
 const data = [
 	{
@@ -16,14 +18,14 @@ const data = [
 		src: '/main/profile_security/phone.svg',
 		title: 'Phone authentication',
 		desc: 'Get authentication codes via SMS, WhatsApp, or calls when managing assets and other functions',
-		btn: <Change_logpass propsItem={'Change phone number'} />,
+		btn: <ChangePhone propsItem={'Change phone number'} />,
 		contain: '****140',
 	},
 	{
 		src: '/main/profile_security/email.svg',
 		title: 'Email authentication',
 		desc: 'Get authentication codes via email for login and other functions',
-		btn: <Change_logpass propsItem={'Change email'} />,
+		btn: <ChangeEmail propsItem={'Change email'} />,
 		contain: 'zya***@rambler.ru',
 	},
 	{

@@ -53,7 +53,7 @@ export function Choose_region() {
 					variant='outline'
 					role='combobox'
 					aria-expanded={open}
-					className='w-full justify-between z-[9999] border border-solid border-gray-400 text-[14px] sm:text-[16px] md:text-[25px] lg:text-[30px] py-[2rem]'
+					className='w-full justify-between z-[9999] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] xl:py-[1.5rem]'
 				>
 					{value
 						? frameworks.find(framework => framework.value === value)?.label
@@ -63,9 +63,9 @@ export function Choose_region() {
 			</PopoverTrigger>
 			<PopoverContent className='w-full max-w-[623px] p-0'>
 				<Command>
-					<CommandInput className='text-[14px] md:text-[25px] lg:text-[30px] w-full min-h-[58px]' placeholder='Search region/country...' />
+					<CommandInput className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] w-full min-h-[58px]' placeholder='Search region/country...' />
 					<CommandList>
-						<CommandEmpty className='text-[14px] md:text-[25px] lg:text-[30px] p-[.5rem]'>No one was found.</CommandEmpty>
+						<CommandEmpty className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] p-[.5rem]'>No one was found.</CommandEmpty>
 						<CommandGroup>
 							{frameworks.map(framework => (
 								<CommandItem

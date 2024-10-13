@@ -31,10 +31,10 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 
 			<DrawerContent className='z-[9999] px-[30px] min-h-[100dvh] max-h-[70%]'>
 				<DrawerHeader>
-					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left'>
-						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] '>
+					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[15px]'>
+						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 							<DrawerClose asChild>
-								<Button className=' text-white bg-transparent hover:text-[#fff] text-[14px] md:text-[18px] lg:text-[25px] lg:px-[50px] lg:py-[25px] hover:bg-transparent'>
+								<Button className=' text-white bg-transparent hover:text-[#fff] text-[14px] md:text-[18px] lg:text-[25px] hover:bg-transparent p-0 px-[20px]'>
 									{'<'}
 								</Button>
 							</DrawerClose>
@@ -43,14 +43,14 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 								href='/security'
 							>
 								Security center
-							</Link>{' '}
+							</Link>
 							{'>'}{' '}
 						</span>
-						Change Email
+						{' '}Change Email
 					</DrawerTitle>
 					<div className='flex justify-center'>
-						<div className='flex flex-col items-start gap-[35px] mt-[20px] w-full max-w-[550px]'>
-							<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] text-[14px] sm:text-[16px] md:text-[16px] lg:text-[20px] flex flex-col items-center gap-[5px] md:flex-row md:items-start md:gap-[10px]'>
+						<div className='flex flex-col items-start gap-[9px] mt-[20px] w-full max-w-[550px]'>
+							<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] text-[14px] sm:text-[16px] lg:text-[18px] 2xl:text-[20px] flex flex-col items-center gap-[5px] md:flex-row md:items-start md:gap-[10px]'>
 								<Image
 									src={'/header_icons/profile_burger/info_icon.svg'}
 									width={20}
@@ -63,13 +63,13 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 								24 hours after you reset or changing the email address in your
 								account.
 							</DrawerDescription>
-							<div className='flex w-full flex-col items-start gap-[20px] md:gap-[40px]'>
+							<div className='flex w-full flex-col items-start gap-[7px]'>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
 									New email address
 									<Input
 										type='email'
 										placeholder='Enter new email address'
-										className='border border-solid border-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] w-full py-[10px] md:py-[20px] lg:py-[30px] pl-[25px]'
+										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
@@ -77,7 +77,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 									<Input
 										type='email'
 										placeholder='Enter code'
-										className='border border-solid border-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] w-full py-[10px] md:py-[20px] lg:py-[30px] pl-[25px]'
+										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
@@ -85,7 +85,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 									<Input
 										type='email'
 										placeholder='Enter code'
-										className='border border-solid border-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] w-full py-[10px] md:py-[20px] lg:py-[30px] pl-[25px]'
+										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
@@ -93,12 +93,12 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 									<Input
 										type='email'
 										placeholder='Enter code'
-										className='border border-solid border-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] w-full py-[10px] md:py-[20px] lg:py-[30px] pl-[25px]'
+										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
 							</div>
 							<DrawerClose asChild>
-								<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] lg:px-[50px] lg:py-[30px]'>
+								<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] lg:px-[50px] lg:py-[20px]'>
 									Confirm
 								</Button>
 							</DrawerClose>

@@ -31,7 +31,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] px-[30px] pt-[2.5rem] min-h-[100dvh] max-h-[70%]'>
+			<DrawerContent className='z-[9999] pt-[.5rem] min-h-[100dvh] max-h-[70%]'>
 				<DrawerHeader>
 					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left'>
 						<DrawerClose asChild>
@@ -88,7 +88,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								</li>
 							</ul>
 						</DrawerDescription>
-						<div className='flex w-full max-w-[921px] flex-col items-start gap-[20px] md:gap-[40px] border border-solid border-gray-400 py-[10px] rounded-[4px]'>
+						<div className='flex w-full max-w-[921px] flex-col items-start gap-[10px] md:gap-[20px] border border-solid border-gray-400 py-[10px] rounded-[4px]'>
 							<h5 className='text-[12px] md:text-[18px] lg:text-[20px] border-0 border-b border-solid border-b-gray-400 w-full text-center py-[10px] px-[5px]'>
 								Why do you want to freeze your account?
 							</h5>
@@ -178,6 +178,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 						</Button>
 					</DrawerClose>
 				</DrawerFooter>
+
 			</DrawerContent>
 		</Drawer>
 	)

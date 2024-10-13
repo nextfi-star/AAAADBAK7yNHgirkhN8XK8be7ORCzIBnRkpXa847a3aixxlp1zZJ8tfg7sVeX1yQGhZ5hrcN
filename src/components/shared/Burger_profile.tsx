@@ -26,7 +26,7 @@ export const Burger_profile: NextPage<Props> = ({
 	const { theme } = useThemeStore()
 
 	return (
-		<div className='profile__wrapper' >
+		<div className='profile__wrapper'>
 			<div className={`${listClass} profile__burger`}>
 				<div className='px-[17px] pb-[39px] flex flex-col justify-between h-full relative'>
 					<div className={`${classChange}`} onClick={handleClick}>
@@ -52,18 +52,20 @@ export const Burger_profile: NextPage<Props> = ({
 						)}
 					</div>
 
-					<footer className='profile__burger-footer'>
-						<a href='#' className='flex items-center gap-[8px]'>
-							<Image
-								src={'/header_icons/profile_burger/info_icon.svg'}
-								width={20}
-								height={20}
-								alt='question'
-							/>
-							About NextFi
-						</a>
-						<a href=''>v6.88.0 {'>'}</a>
-					</footer>
+					{showSection && (
+						<footer className='profile__burger-footer'>
+							<a href='#' className='flex items-center gap-[8px]'>
+								<Image
+									src={'/header_icons/profile_burger/info_icon.svg'}
+									width={20}
+									height={20}
+									alt='question'
+								/>
+								About NextFi
+							</a>
+							<a href=''>v6.88.0 {'>'}</a>
+						</footer>
+					)}
 				</div>
 				{showSection && (
 					<Image
