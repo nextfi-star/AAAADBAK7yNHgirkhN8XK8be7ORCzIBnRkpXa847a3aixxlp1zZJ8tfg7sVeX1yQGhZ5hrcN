@@ -36,7 +36,7 @@ export const CustomModal: NextPage<Props> = ({
 		}
 	}
 	return (
-		<div>
+		<div className=''>
 			<Button
 				onClick={handleClick}
 				className={`bg-transparent hover:bg-transparent border border-solid rounded-[50px] text-[#205bc9] dark:text-white border-gray-400`}
@@ -45,8 +45,8 @@ export const CustomModal: NextPage<Props> = ({
 			</Button>
 
 			{show && (
-				<div className='px-[30px] h-[100dvh] absolute inset-x-0 inset-y-0 bg-[#000000] z-[9999] flex flex-col items-center pt-[2rem] overflow-hidden'>
-					<div className='container'>
+				<div className='px-[30px] fixed inset-x-0 inset-y-0 bg-[#000000] z-[9999] flex flex-col items-center pt-[2rem] overflow-hidden'>
+					<div className='container !min-h-[100dvh]'>
 					<div className='mb-[2rem]'>
 						<div className='border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[15px] 2xl:mb-[30px] flex items-center justify-start gap-[15px]'>
 							<span
