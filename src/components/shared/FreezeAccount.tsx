@@ -31,8 +31,8 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] pt-[.5rem] min-h-[100dvh] max-h-[70%] mdoal-holder modal-holder mobile-holder !pb-[.5rem]'>
-				<div className='h-full overflow-y-auto'>
+			<DrawerContent className='z-[9999] pt-[.5rem] min-h-[100dvh] mdoal-holder modal-holder mobile-holder !pb-[.5rem]'>
+				<div className='h-full'>
 					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[15px] pt-[2rem] pl-[1rem]'>
 						<DrawerClose asChild>
 							<span className='flex items-center gap-[5px] text-[18px] lg:text-[30px]'>
@@ -44,13 +44,13 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
 								href='/security'
 							>
-								Security center
+								Security
 							</Link>{' '}
 							{'>'}{' '}
 						</span>
 						Freeze account
 					</DrawerTitle>
-					<div className='flex flex-col items-center gap-[20px]'>
+					<div className='flex flex-col items-center gap-[20px] max-h-[434px] 2xl:max-h-[827px] overflow-y-auto pb-[1rem]'>
 						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center gap-[10px] justify-center w-full max-w-[921px]'>
 							<span className='flex flex-col items-center gap-[5px] md:flex-row md:items-center justify-center md:gap-[10px] text-[14px] md:text-[20px] lg:text-[25px] w-full text-center'>
 								<Image
@@ -168,16 +168,15 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								</p>
 							</label>
 						</div>
-					</div>
-				</div>
-
-				<DrawerFooter className='flex flex-row justify-center gap-[40px]'>
+						<DrawerFooter className='flex flex-row justify-center gap-[40px]'>
 					<DrawerClose asChild>
 						<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[32px] lg:px-[50px] lg:py-[30px]'>
 							Confirm
 						</Button>
 					</DrawerClose>
 				</DrawerFooter>
+					</div>
+				</div>
 			</DrawerContent>
 		</Drawer>
 	)

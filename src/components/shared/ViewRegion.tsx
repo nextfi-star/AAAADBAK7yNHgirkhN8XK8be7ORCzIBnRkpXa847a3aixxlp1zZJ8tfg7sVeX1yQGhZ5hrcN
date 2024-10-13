@@ -49,8 +49,8 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 								</h1>
 							</div>
 
-							<DrawerDescription className='text-black dark:text-white flex gap-[30px] lg:gap-[40px] flex-col items-center w-full'>
-								<div className='flex flex-col gap-[20px] items-center max-w-[623px]'>
+							<DrawerDescription className='text-black dark:text-white flex gap-[30px] lg:gap-[40px] flex-col items-center w-full max-h-[550px] 2xl:max-h-[100%] overflow-y-auto pb-[6rem] 2xl:pb-0'>
+								<div className='flex flex-col gap-[20px] items-center max-w-[623px] pb-[1rem]'>
 									<p className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] text-left w-full'>
 										Select country/region of residence
 									</p>
@@ -93,7 +93,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 					</DrawerTrigger>
 
 					<DrawerContent className='z-[9999] px-[30px] bg-white dark:bg-black max-h-[100dvh] min-h-[100dvh] pt-[2.5rem]'>
-						<DrawerHeader className='flex flex-col gap-[16px] pt-[3.5rem]'>
+						<DrawerHeader className='flex flex-col gap-[16px]'>
 							<div className='w-full border-transparent flex flex-col items-center gap-[15px]'>
 								<div className='w-full'>
 									<div className='relative flex justify-center'>

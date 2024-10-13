@@ -44,15 +44,15 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
 								href='/security'
 							>
-								Security center
+								Security
 							</Link>
 							{'>'}{' '}
 						</span>{' '}
 						Change Email
 					</DrawerTitle>
-					<div className='flex justify-center'>
+					<div className='flex justify-center max-h-[434px] overflow-y-auto'>
 						<div
-							className={`flex flex-col items-start gap-[9px] mt-[20px] w-full  max-w-[550px]`}
+							className={`flex flex-col items-start gap-[9px] w-full  max-w-[550px]`}
 						>
 							<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] text-[14px] sm:text-[16px] lg:text-[18px] 2xl:text-[20px] flex flex-col items-center gap-[5px] md:flex-row md:items-start md:gap-[10px]'>
 								<Image

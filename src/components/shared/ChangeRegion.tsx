@@ -63,12 +63,11 @@ export const ChangeRegion: NextPage<Props> = ({ propsItem }) => {
 				</DrawerHeader>
 
 				<DrawerFooter className='flex flex-row justify-center'>
-					<Button
-						onClick={() => setIndex(!indexItem)}
-						className='w-full max-w-[531px] lg:max-w-[631px] py-[8px] md:py-[28px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] hover:bg-[#205BC9] text-[#fff]'
-					>
-						Update
-					</Button>
+					<DrawerClose asChild>
+						<Button className='w-full max-w-[531px] lg:max-w-[631px] py-[8px] md:py-[28px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] hover:bg-[#205BC9] text-[#fff]'>
+							Update
+						</Button>
+					</DrawerClose>
 				</DrawerFooter>
 			</DrawerContent>
 		</Drawer>

@@ -284,7 +284,7 @@ header {
 	right: 0;
 	height: fit-content;
 	width: 100%;
-	z-index: 999;
+	z-index: 99999;
 	transition: box-shadow 0.3s;
 
 	&.box-shadow {
@@ -4604,35 +4604,23 @@ header {
 	}
 }
 .modal-holder {
-	max-width: 1658px;
+	max-width: 1750px !important;
 	width: 100%;
-	padding: 0 45px;
+	height: 100%;
+	border-radius: 0 !important;
 	margin: 0 auto;
-	border-top-left-radius: 30px;
-	border-top-right-radius: 30px;
-	padding: 40px 98px 48px 45px;
+	padding: 0 60px;
+	background: var(--body-color) !important;
 
-	
-
-	@media (max-width: 1024px) {
-		padding: 40px 48px 48px 45px;
+	&::after {
+		display: none;
+	}
+	@media (max-width: 430px) {
+		padding: 0 30px;
 	}
 	@media (max-width: 1014px) {
 		&.mobile-holder {
-			top: 0;
+			top: 80px;
 		}
 	}
-	@media (max-width: 768px) {
-		padding: 40px 20px;
-	}
-	@media (max-width: 575px) {
-		padding: 0 32px;
-	}
-	@media (max-width: 430px) {
-		background: var(--body-color);
-		padding: 40px 0px 48px 00px;
-		box-shadow: none;
-	}
-	
-
 }

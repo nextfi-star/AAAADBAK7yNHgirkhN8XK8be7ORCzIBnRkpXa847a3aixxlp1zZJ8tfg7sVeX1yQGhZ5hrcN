@@ -32,7 +32,7 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 			<DrawerContent className='z-[9999] modal-holder mobile-holder min-h-[100dvh] max-h-[70%]'>
 				<DrawerHeader>
 					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[15px]'>
-						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
+						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[10px]'>
 						<DrawerClose asChild>
 								<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none lg:text-[25px] hover:bg-transparent p-0 pl-[20px]'>
 									{'<'}
@@ -42,14 +42,14 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
 								href='/security'
 							>
-								Security center
+								Security
 							</Link>
 							{'>'}{' '}
 						</span>
 						{' '}Change Phone number
 					</DrawerTitle>
-					<div className='flex justify-center'>
-						<div className='flex flex-col items-start gap-[15px] 2xl:gap-[20px]  mt-[20px] w-full max-w-[550px]'>
+					<div className='flex justify-center max-h-[434px] overflow-y-auto'>
+						<div className='flex flex-col items-start gap-[15px] 2xl:gap-[20px] mt-[20px] w-full max-w-[550px]'>
 							<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] text-[14px] sm:text-[16px] lg:text-[18px] 2xl:text-[20px] flex flex-col items-center gap-[5px] md:flex-row md:items-start md:gap-[10px]'>
 								<Image
 									src={'/header_icons/profile_burger/info_icon.svg'}
@@ -61,7 +61,7 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 								/>
 								To protect your account, you won't be able to withdraw funds for 24 hours after you reset or change your account phone.
 							</DrawerDescription>
-							<div className='flex w-full flex-col items-start gap-[15px] 2xl:gap-[20px]'>
+							<div className='flex w-full flex-col items-start gap-[15px] 2xl:gap-[20px] overflow-y-auto'>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
 								New phone number
 									<Input
