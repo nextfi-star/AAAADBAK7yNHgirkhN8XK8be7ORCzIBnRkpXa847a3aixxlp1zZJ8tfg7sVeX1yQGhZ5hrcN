@@ -45,7 +45,7 @@ export const CustomModal: NextPage<Props> = ({
 			</Button>
 
 			{show && (
-				<div className='px-[30px] h-[100dvh] fixed inset-x-0 inset-y-0 bg-[#000000] z-[9999] flex flex-col items-center pt-[2rem]'>
+				<div className='px-[30px] h-[100dvh] absolute inset-x-0 inset-y-0 bg-[#000000] z-[9999] flex flex-col items-center pt-[2rem] overflow-hidden'>
 					<div className='container'>
 					<div className='mb-[2rem]'>
 						<div className='border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[15px] 2xl:mb-[30px] flex items-center justify-start gap-[15px]'>
