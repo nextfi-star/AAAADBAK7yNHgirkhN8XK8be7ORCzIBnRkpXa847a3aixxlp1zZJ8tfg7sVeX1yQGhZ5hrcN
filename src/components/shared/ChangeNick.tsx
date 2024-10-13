@@ -40,13 +40,20 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 			</DrawerTrigger>
 
 			<DrawerContent className='z-[9999] px-[30px] min-h-[100dvh] max-h-[70%]'>
-				<DrawerHeader className='overflow-y-auto'>
-					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px]'>
-						<h1 className='text-[20px] md:text-[32px] '>Nickname</h1>
-					</DrawerTitle>
+				<div className='overflow-y-auto'>
+					<div className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[10px]'>
+						<h1 className='text-[20px] md:text-[32px] flex items-center gap-[15px]'>
+							<DrawerClose asChild>
+								<span className='flex items-center gap-[5px] text-[18px] lg:text-[30px]'>
+									<span className='text-[18px] lg:text-[30px]'>{'<'}</span>
+								</span>
+							</DrawerClose>
+							Nickname
+						</h1>
+					</div>
 					<div className='flex flex-col justify-center items-center gap-[38px] w-full h-full'>
 						<div className='max-w-[760px] flex flex-col gap-[30px]'>
-							<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center md:flex-row md:items-start gap-[16px]'>
+							<div className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center md:flex-row md:items-start gap-[16px]'>
 								<Image
 									src={'/header_icons/profile_burger/info_icon.svg'}
 									width={40}
@@ -60,7 +67,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 									language, official names(i.e. product names), or names of
 									other trading platforms.
 								</span>
-							</DrawerDescription>
+							</div>
 							<div className='flex flex-col gap-[14px] lg:gap-[40px]'>
 								<span className='text-black dark:text-white text-left text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px]'>
 									Your nickname is used for trading and in-app messages
@@ -80,7 +87,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 							</div>
 						</div>
 					</div>
-				</DrawerHeader>
+				</div>
 
 				<DrawerFooter className='flex flex-row justify-center gap-[40px]'>
 					<DrawerClose asChild>

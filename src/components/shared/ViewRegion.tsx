@@ -37,7 +37,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 
 					<DrawerContent className='z-[9999] px-[30px] pb-[2px] bg-white dark:bg-black min-h-[100dvh] max-h-[70%]'>
 						<DrawerHeader className='pt-[3.5rem]'>
-							<DrawerTitle className='w-full border-transparent flex flex-col gap-[20px] mb-[20px]'>
+							<div className='w-full border-transparent flex flex-col gap-[20px] mb-[20px]'>
 								<h1 className='text-[14px] md:text-[17px] lg:text-[25px] xl:text-[28px] 2xl:text-[35px] border-b-2 border-0 border-solid border-b-gray-400 pb-[20px] flex gap-[15px]'>
 									<span
 										onClick={() => setIndex(!indexItem)}
@@ -47,7 +47,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 									</span>
 									Identity verification
 								</h1>
-							</DrawerTitle>
+							</div>
 
 							<DrawerDescription className='text-black dark:text-white flex gap-[30px] lg:gap-[40px] flex-col items-center w-full'>
 								<div className='flex flex-col gap-[20px] items-center max-w-[623px]'>
@@ -94,7 +94,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 
 					<DrawerContent className='z-[9999] px-[30px] bg-white dark:bg-black max-h-[100dvh] min-h-[100dvh] pt-[2.5rem]'>
 						<DrawerHeader className='flex flex-col gap-[16px] pt-[3.5rem]'>
-							<DrawerTitle className='w-full border-transparent flex flex-col items-center gap-[15px]'>
+							<div className='w-full border-transparent flex flex-col items-center gap-[15px]'>
 								<div className='w-full'>
 									<div className='relative flex justify-center'>
 										<RussiaMap
@@ -113,13 +113,13 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 									Country/Region of residence:{' '}
 									<span className='text-[#205BC9] '>Russia</span>
 								</h1>
-							</DrawerTitle>
+							</div>
 							<DrawerDescription className='text-black dark:text-white flex gap-[5px] justify-center text-center text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px]'>
-							<span className='max-w-[70%]'>
-									You can only update your country/region of residence once every
-								90 days. Updating it also means you'll need to complete your
-								identity verification again.
-							</span>
+								<span className='max-w-[70%]'>
+									You can only update your country/region of residence once
+									every 90 days. Updating it also means you'll need to complete
+									your identity verification again.
+								</span>
 							</DrawerDescription>
 						</DrawerHeader>
 
