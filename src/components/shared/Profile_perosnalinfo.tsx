@@ -1,10 +1,18 @@
-import React from 'react'
+'use client'
+import { useState } from 'react'
 import { Button } from '../ui/button'
 import { ChangeNick } from './ChangeNick'
 import Image from 'next/image'
 import { NextPage } from 'next'
+import { CustomModal } from './CustomModal'
 
 export const Profile_perosnalinfo: NextPage = () => {
+	const [show, setShow] = useState(false)
+
+	const handleClick = () => {
+		setShow(!show)
+	}
+
 	return (
 		<section className='personal__content flex flex-col w-full'>
 			<h1 className='personal__content-title'>
@@ -21,7 +29,7 @@ export const Profile_perosnalinfo: NextPage = () => {
 				<span>Nickname</span>
 				<span>user****@main.ru</span>
 
-				<ChangeNick propsItem={'Change'} />
+				<CustomModal handleClick={handleClick} show={show} propsItem={'Change'} />
 			</article>
 
 			<span className='devider w-full h-[1px] bg-slate-100 block my-[24px]' />

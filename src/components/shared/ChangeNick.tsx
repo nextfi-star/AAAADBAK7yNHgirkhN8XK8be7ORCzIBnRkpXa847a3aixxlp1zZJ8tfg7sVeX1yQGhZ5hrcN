@@ -39,9 +39,9 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] px-[30px] h-[100dvh]'>
+			<DrawerContent className='px-[30px] h-[100dvh]'>
 
-				<div className='overflow-hidden h-[100dvh]'>
+				<div className='overflow-hidden'>
 
 					<div className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[10px]'>
 						<h1 className='text-[20px] md:text-[32px] flex items-center gap-[15px]'>
@@ -93,7 +93,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 
 				</div>
 
-				<DrawerFooter className='flex flex-row justify-center gap-[40px]'>
+				<div className='flex flex-row justify-center gap-[40px]'>
 					<DrawerClose asChild>
 						<Button
 							variant='outline'
@@ -107,7 +107,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 							Confirm
 						</Button>
 					</DrawerClose>
-				</DrawerFooter>
+				</div>
 
 			</DrawerContent>
 		</Drawer>
