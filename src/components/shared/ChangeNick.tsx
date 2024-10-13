@@ -39,7 +39,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] px-[30px] min-h-[100dvh] max-h-[70%]'>
+			<DrawerContent className='z-[9999] px-[30px] min-h-[100dvh]'>
 				<div className='overflow-y-auto'>
 					<div className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[10px]'>
 						<h1 className='text-[20px] md:text-[32px] flex items-center gap-[15px]'>
