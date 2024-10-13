@@ -33,8 +33,8 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 				<DrawerHeader>
 					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[15px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
-							<DrawerClose asChild>
-								<Button className=' text-white bg-transparent hover:text-[#fff] text-[14px] md:text-[18px] lg:text-[25px] hover:bg-transparent p-0 px-[20px]'>
+						<DrawerClose asChild>
+								<Button className=' text-black dark:text-white bg-transparent hover:text-[#fff] text-[14px] md:text-[18px] border-none shadow-none lg:text-[25px] hover:bg-transparent p-0 px-[20px]'>
 									{'<'}
 								</Button>
 							</DrawerClose>
