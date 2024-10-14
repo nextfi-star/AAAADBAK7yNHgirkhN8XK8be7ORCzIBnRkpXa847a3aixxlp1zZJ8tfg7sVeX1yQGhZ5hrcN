@@ -115,7 +115,12 @@ const securityData = [
 				icon: '/main/profile_security/phone.svg',
 				value: 'item-2',
 				trigger: 'Phone authentication',
-				content: 'Phone authentication content',
+				content: (
+					<>
+						<span>Change phone</span>
+						<ChangePhone propsItem={'Change'} />
+					</>
+				)
 			},
 			{
 				icon: '/main/profile_security/email.svg',
