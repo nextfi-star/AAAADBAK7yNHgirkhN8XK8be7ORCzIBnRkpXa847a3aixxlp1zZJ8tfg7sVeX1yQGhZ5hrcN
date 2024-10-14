@@ -32,7 +32,7 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='modal-holder mobile-holder min-h-[100dvh] max-h-[70%] overflow-y-auto'>
+			<DrawerContent className='modal-holder mobile-holder min-h-[100dvh] max-h-[70%]'>
 				<DrawerHeader>
 				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
@@ -51,9 +51,10 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 						</span>{' '}
 						Change login password
 					</DrawerTitle>
-					<div className='flex justify-center overflow-y-auto'>
+
+					<div className='flex justify-center h-full w-full overflow-y-auto'>
 						<div className='flex flex-col items-start gap-[15px] 2xl:gap-[20px] mt-[20px] w-full max-w-[550px] md:pb-[5.5rem]'>
-							<div className='flex w-full flex-col items-start gap-[15px] 2xl:gap-[20px] overflow-y-auto'>
+							<div className='flex w-full flex-col items-start gap-[15px] 2xl:gap-[20px]'>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
 								Current password
 									<Input
@@ -89,7 +90,7 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 								<div className='privacy max-w-[921px] flex flex-col self-center	 justify-start'>
 							<label
 								htmlFor='checkbox-privacy'
-								className='checkbox-label gap-[5px] md:gap-[18px] !items-start'
+								className='checkbox-label gap-[5px] md:gap-[18px] !items-start mb-[20px]'
 							>
 								<input
 									type='checkbox'

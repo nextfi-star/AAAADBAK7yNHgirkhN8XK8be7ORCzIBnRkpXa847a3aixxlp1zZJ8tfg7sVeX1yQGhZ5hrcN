@@ -29,7 +29,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='modal-holder mobile-holder min-h-[100dvh] max-h-[70%] overflow-y-auto'>
+			<DrawerContent className='modal-holder mobile-holder min-h-[100dvh] max-h-[70%] '>
 				<DrawerHeader>
 				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
@@ -48,7 +48,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 						</span>{' '}
 						Change email
 					</DrawerTitle>
-					<div className='flex justify-center overflow-y-auto'>
+					<div className='flex justify-center '>
 						<div className='flex flex-col items-start gap-[15px] 2xl:gap-[20px] mt-[20px] w-full max-w-[550px] md:pb-[5.5rem]'>
 							<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] text-[14px] sm:text-[16px] lg:text-[18px] 2xl:text-[20px] flex flex-col items-center gap-[5px] md:flex-row md:items-start md:gap-[10px]'>
 								<Image
@@ -61,7 +61,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 								/>
 								To protect your account, you won't be able to withdraw funds for 24 hours after you reset or change your account phone.
 							</DrawerDescription>
-							<div className='flex w-full flex-col items-start gap-[15px] 2xl:gap-[20px] overflow-y-auto'>
+							<div className='flex w-full flex-col items-start gap-[15px] 2xl:gap-[20px] '>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
 								New email address
 									<Input
@@ -86,7 +86,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
-								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
+								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full mb-[20px]'>
 									Authenticator app
 									<Input
 										type='email'

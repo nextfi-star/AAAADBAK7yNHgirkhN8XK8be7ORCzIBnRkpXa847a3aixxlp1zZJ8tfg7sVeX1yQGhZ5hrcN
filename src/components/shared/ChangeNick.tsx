@@ -21,6 +21,7 @@ interface Props {
 export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 	const [symbols, setSymbols] = useState<number | string | any>(0)
 
+
 	const trackSymbols = (e: any) => {
 		const inputLength = e.target.value.length
 
@@ -41,23 +42,23 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 			</DrawerTrigger>
 
 			<DrawerContent className='px-[15px] modal-holder mobile-holder '>
-			<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
-						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
-							<DrawerClose asChild>
-								<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 pl-[20px]'>
-									{'<'}
-								</Button>
-							</DrawerClose>
-							<Link
-								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
-								href='/profile'
-							>
-								Profile
-							</Link>
-							{'>'}{' '}
-						</span>{' '}
-						Change Nickname
-					</DrawerTitle>
+				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
+					<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
+						<DrawerClose asChild>
+							<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 pl-[20px]'>
+								{'<'}
+							</Button>
+						</DrawerClose>
+						<Link
+							className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
+							href='/profile'
+						>
+							Profile
+						</Link>
+						{'>'}{' '}
+					</span>{' '}
+					Change Nickname
+				</DrawerTitle>
 
 				<DrawerDescription className='flex flex-col justify-flex-start items-center w-full h-full'>
 					<p className='max-w-[760px] flex flex-col gap-[33px]'>
@@ -82,9 +83,9 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 							</span>
 							<input
 								type='text'
-								className='bg-transparent text-black dark:text-white border border-solid border-[#000] dark:border-white rounded-[4px] px-[20px] py-[7px] text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[25px]'
-								onChange={trackSymbols}
+								className='bg-transparent text-black dark:text-white border border-solid border-[#000] dark:border-white rounded-[4px] px-[20px] py-[7px] text-[14px] md:text-[18px] lg:text-[20px] 2xl:text-[25px]'
 								placeholder='zya***@rambler.ru'
+								onChange={trackSymbols}
 							/>
 							<span className='w-full flex justify-between text-black dark:text-white text-left text-[14px] md:text-[18px] lg:text-[20px] 2xl:text-[25px]'>
 								Your nickname can be edited 3 more time(s) this year{' '}

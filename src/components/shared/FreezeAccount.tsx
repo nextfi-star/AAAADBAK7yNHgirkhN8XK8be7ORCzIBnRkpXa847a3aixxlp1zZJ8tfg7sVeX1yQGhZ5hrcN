@@ -32,7 +32,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 			</DrawerTrigger>
 
 			<DrawerContent className='pt-[.5rem] min-h-[100dvh] mdoal-holder modal-holder mobile-holder'>
-				<div className='max-h-[85%] overflow-y-auto'>
+				<div className='max-h-[99%] overflow-y-auto'>
 					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[15px] pt-[2rem] pl-[1rem]'>
 						<DrawerClose asChild>
 							<Button className=' text-black dark:text-white bg-transparent  text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] border-none shadow-none hover:bg-transparent p-0 pl-[20px]'>

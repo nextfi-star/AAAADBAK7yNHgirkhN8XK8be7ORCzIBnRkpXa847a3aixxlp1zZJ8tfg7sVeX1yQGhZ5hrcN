@@ -8,6 +8,7 @@ import { ChangeEmail } from './ChangeEmail'
 import { ChangePhone } from './ChangePhone'
 import { FreezeAccount } from './FreezeAccount'
 import { Change_logpass } from './Change_logpass'
+import { Change_logpas_alert } from './Change_logpas_alert'
 
 interface Props {
 	showSection: boolean
@@ -24,6 +25,7 @@ const profileData = [
 				content: (
 					<>
 						<span>zya***@rambler.ru</span>
+						{/* <Change_logpas_alert propsItem={'Change nickname'} /> */}
 						<ChangeNick propsItem={'Change nickname'} />
 					</>
 				),

@@ -23,9 +23,9 @@ export const Profile_personalverif: NextPage = () => {
 			</h1>
 			<article className='flex items-center justify-between gap-[5px]'>
 				<span>Identity cerification</span>
-				<span>
+				<span className='after:content-["needed"] after:absolute relative after:text-white after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
 					<ProfilePage_guard color={theme === 'dark' ? '#fff' : '#000'} />
-					Additional info needed
+					Additional info
 				</span>
 
 				<ChangeRegion propsItem={'View Details'} />

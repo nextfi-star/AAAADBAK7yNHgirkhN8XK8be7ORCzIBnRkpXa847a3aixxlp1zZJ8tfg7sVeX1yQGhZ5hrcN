@@ -71,10 +71,10 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 										</span>
 									</p>
 
-									<DrawerClose asChild className='!py-[1rem]'>
+									<DrawerClose asChild>
 										<Button
 											onClick={() => setIndex(!indexItem)}
-											className='w-full lg:max-w-[631px] py-[8px] md:py-[28px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] text-[#fff] hover:bg-[#205BC9]'
+											className='w-full lg:max-w-[631px] py-[20px] md:py-[28px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] text-[#fff] hover:bg-[#205BC9] max-w-[490px]'
 										>
 											Next
 										</Button>
@@ -126,7 +126,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 						<DrawerFooter className='flex flex-row justify-center'>
 							<Button
 								onClick={() => setIndex(!indexItem)}
-								className='w-full max-w-[531px] lg:max-w-[631px] py-[8px] md:py-[28px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] hover:bg-[#205BC9] text-[#fff]'
+								className='w-full max-w-[400px] lg:max-w-[450px] py-[20px] md:py-[22px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] hover:bg-[#205BC9] text-[#fff]'
 							>
 								Update
 							</Button>
