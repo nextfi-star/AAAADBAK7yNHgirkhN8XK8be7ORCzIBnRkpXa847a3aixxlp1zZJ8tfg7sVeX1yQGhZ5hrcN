@@ -35,10 +35,10 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 						</Button>
 					</DrawerTrigger>
 
-					<DrawerContent className='z-[9999] px-[30px] pb-[2px] bg-white dark:bg-black min-h-[100dvh] modal-holder mobile-holder'>
+					<DrawerContent className='z-[9999] px-[30px] pb-[2px] bg-white dark:bg-black min-h-[100dvh] max-h-[70%] modal-holder mobile-holder'>
 						<DrawerHeader className='pt-[3.5rem]'>
 							<div className='w-full border-transparent flex flex-col gap-[20px] mb-[20px]'>
-								<h1 className='text-[14px] md:text-[17px] lg:text-[25px] xl:text-[28px] 2xl:text-[35px] border-b-2 border-0 border-solid border-b-gray-400 pb-[20px] flex gap-[15px]'>
+								<h1 className='text-[14px] md:text-[17px] lg:text-[25px] xl:text-[28px] 2xl:text-[35px] border-b-2 border-0 border-solid border-b-gray-400 pb-[20px] flex items-center gap-[15px]'>
 									<span
 										onClick={() => setIndex(!indexItem)}
 										className='flex items-center gap-[5px] text-[18px] lg:text-[30px] hover:cursor-pointer'
@@ -49,7 +49,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 								</h1>
 							</div>
 
-							<DrawerDescription className='text-black dark:text-white flex gap-[30px] lg:gap-[40px] flex-col items-center w-full max-h-[550px] 2xl:max-h-[100%] overflow-y-auto pb-[6rem] 2xl:pb-0'>
+							<DrawerDescription className='text-black dark:text-white flex gap-[30px] lg:gap-[40px] flex-col items-center w-full  pb-[6rem] 2xl:pb-0'>
 								<div className='flex flex-col gap-[20px] items-center max-w-[623px] pb-[1rem]'>
 									<p className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] text-left w-full'>
 										Select country/region of residence
@@ -99,7 +99,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 									<div className='relative flex justify-center'>
 										<RussiaMap
 											height={'auto'}
-											className='w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[450px] border-2 border-dashed rounded-[20px]'
+											className='w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[400px] border-2 border-dashed rounded-[20px]'
 											width={250}
 											color={theme === 'dark' ? '#fff' : '#000'}
 										/>

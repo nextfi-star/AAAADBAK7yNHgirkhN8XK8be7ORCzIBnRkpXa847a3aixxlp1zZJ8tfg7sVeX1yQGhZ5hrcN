@@ -284,7 +284,7 @@ header {
 	right: 0;
 	height: fit-content;
 	width: 100%;
-	z-index: 10;
+	z-index: 20;
 	transition: box-shadow 0.3s;
 
 	&.box-shadow {
@@ -484,22 +484,335 @@ header {
 			}
 		}
 	}
-	// .header__content {
-	// 	width: 100%;
-	// 	padding: 40px 30px;
-	// 	margin: 0 auto;
-	// 	display: flex;
-	// 	flex-direction: row;
-	// 	align-items: center;
-	// 	justify-content: space-between;
+	.header__content {
+		width: 100%;
+		padding: 40px 30px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
 
-	// 	@media (max-width: 1830px) {
-	// 		padding: 2.083vw 30px;
-	// 	}
-	// 	@media (max-width: 992px) {
-	// 		padding: 13px 32px;
-	// 	}
-	// }
+		@media (max-width: 1830px) {
+			padding: 2.083vw 30px;
+		}
+		@media (max-width: 992px) {
+			padding: 13px 32px;
+		}
+
+		.lan__change {
+			display: flex;
+			align-items: center;
+	
+			button {
+				font-family: inherit;
+				color: var(--text-color);
+				font-size: 1rem;
+			}
+		}
+		.header__logo {
+			display: block;
+			transform: translateY(-12px);
+			position: relative;
+	
+			span {
+				position: absolute;
+				bottom: -6px;
+				left: 39px;
+				font-size: 1.8rem;
+			}
+			svg {
+				width: auto;
+				height: auto;
+			}
+	
+			@media (max-width: 992px) {
+				img {
+					width: 88px;
+					height: auto;
+				}
+			}
+		}
+		.header__navigation {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 28px;
+	
+			@media (max-width: 1830px) {
+				gap: 1.538vw;
+			}
+			@media (max-width: 1280px) {
+				gap: 8px;
+			}
+			@media (max-width: 992px) {
+				display: none;
+			}
+	
+			&-item {
+				font-size: clamp(14px, 1.5vw, 30px);
+				line-height: 28px;
+				font-weight: 400;
+				color: var(--text-color);
+				transition: 0.2s ease-in-out;
+	
+				&:hover {
+					color: var(--blue-dark);
+				}
+				// @media (min-width: 1830px) {
+				// 	font-size: 1.405vw;
+				// 	line-height: 1.538vw;
+				// }
+				// @media (max-width: 1830px) {
+				// 	font-size: 1.405vw;
+				// 	line-height: 1.538vw;
+				// }
+				// @media (max-width: 1280px) {
+				// 	font-size: 1.4vw;
+				// 	line-height: 1.5625vw;
+				// }
+			}
+	
+			.header__actions {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 24px;
+	
+				.header__buttons {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					gap: 20px;
+	
+					&-login {
+						padding: 12px;
+						width: 132px;
+						font-size: 20px;
+						line-height: 28px;
+						font-weight: 500;
+						text-align: center;
+						color: var(--text-color);
+						transition: 0.2s ease-in-out;
+						&:hover {
+							color: var(--blue-dark);
+						}
+						@media (min-width: 1830px) {
+							font-size: 1.305vw;
+							line-height: 1.538vw;
+						}
+						@media (max-width: 1830px) {
+							font-size: 1.105vw;
+							line-height: 1.538vw;
+						}
+						@media (max-width: 1280px) {
+							font-size: 1.25vw;
+							line-height: 1.5625vw;
+							width: 9.375vw;
+						}
+						@media (max-width: 992px) {
+							font-size: 16px;
+							line-height: 24px;
+							width: 120px;
+						}
+						@media (max-width: 575px) {
+							display: none;
+						}
+					}
+					&-signup {
+						padding: 12px;
+						width: 155px;
+						font-size: 20px;
+						line-height: 28px;
+						font-weight: 500;
+						text-align: center;
+						border-radius: 50px;
+						background-color: var(--blue);
+						color: #fff;
+						transition: 0.2s ease-in-out;
+						margin-right: 20px;
+						&:hover {
+							background-color: var(--blue-light);
+						}
+						@media (min-width: 1830px) {
+							font-size: 1.305vw;
+							line-height: 1.538vw;
+						}
+						@media (max-width: 1830px) {
+							font-size: 1.105vw;
+							line-height: 1.538vw;
+							flex-shrink: 0;
+						}
+						@media (max-width: 1280px) {
+							font-size: 1.25vw;
+							line-height: 1.5625vw;
+							width: 9.375vw;
+						}
+						@media (max-width: 992px) {
+							font-size: 16px;
+							line-height: 24px;
+							width: 120px;
+						}
+						@media (max-width: 575px) {
+							display: none;
+						}
+					}
+					&-assets {
+						@media (max-width: 430px) {
+							display: none;
+						}
+					}
+				}
+				.header__icons {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: center;
+					gap: 12px;
+					@media (max-width: 992px) {
+						display: none;
+					}
+				}
+				.theme-switch {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+				.header__icons-item {
+					width: 44px;
+					height: 44px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					color: var(--logo-color);
+	
+					svg {
+						object-fit: contain;
+						object-position: center;
+					}
+				}
+			}
+		}
+		.header__actions {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 24px;
+
+			.header__buttons {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 20px;
+
+				&-login {
+					padding: 12px;
+					width: 132px;
+					font-size: 20px;
+					line-height: 28px;
+					font-weight: 500;
+					text-align: center;
+					color: var(--text-color);
+					transition: 0.2s ease-in-out;
+					&:hover {
+						color: var(--blue-dark);
+					}
+					@media (min-width: 1830px) {
+						font-size: 1.305vw;
+						line-height: 1.538vw;
+					}
+					@media (max-width: 1830px) {
+						font-size: 1.105vw;
+						line-height: 1.538vw;
+					}
+					@media (max-width: 1280px) {
+						font-size: 1.25vw;
+						line-height: 1.5625vw;
+						width: 9.375vw;
+					}
+					@media (max-width: 992px) {
+						font-size: 16px;
+						line-height: 24px;
+						width: 120px;
+					}
+					@media (max-width: 575px) {
+						display: none;
+					}
+				}
+				&-signup {
+					padding: 12px;
+					width: 155px;
+					font-size: 20px;
+					line-height: 28px;
+					font-weight: 500;
+					text-align: center;
+					border-radius: 50px;
+					background-color: var(--blue);
+					color: #fff;
+					transition: 0.2s ease-in-out;
+					margin-right: 20px;
+					&:hover {
+						background-color: var(--blue-light);
+					}
+					@media (min-width: 1830px) {
+						font-size: 1.305vw;
+						line-height: 1.538vw;
+					}
+					@media (max-width: 1830px) {
+						font-size: 1.105vw;
+						line-height: 1.538vw;
+						flex-shrink: 0;
+					}
+					@media (max-width: 1280px) {
+						font-size: 1.25vw;
+						line-height: 1.5625vw;
+						width: 9.375vw;
+					}
+					@media (max-width: 992px) {
+						font-size: 16px;
+						line-height: 24px;
+						width: 120px;
+					}
+					@media (max-width: 575px) {
+						display: none;
+					}
+				}
+				&-assets {
+					@media (max-width: 430px) {
+						display: none;
+					}
+				}
+			}
+			.header__icons {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: center;
+				gap: 12px;
+				@media (max-width: 992px) {
+					display: none;
+				}
+			}
+			.theme-switch {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.header__icons-item {
+				width: 44px;
+				height: 44px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: var(--logo-color);
+
+				svg {
+					object-fit: contain;
+					object-position: center;
+				}
+			}
+		}
+	}
 
 	// ? mob V.
 
@@ -1201,7 +1514,7 @@ header {
 					flex-shrink: 0;
 					align-items: center;
 					justify-content: center;
-					max-height: 75px;
+					max-height: 54px;
 				}
 
 				@media (max-width: 992px) {
@@ -2638,7 +2951,7 @@ header {
 		transition: 0.2s ease-in-out;
 		padding: 10px 19px;
 
-		@media (max-width: 1024px) {
+		@media (max-width: 768px) {
 			margin-bottom: 1.5rem;
 			display: none;
 		}
@@ -4500,12 +4813,17 @@ header {
 .Tapbar {
 	// padding: 10px;
 	backdrop-filter: blur(4.5px);
-	z-index: 998;
+	z-index: 9;
 	max-height: 72px;
 	position: fixed;
 	bottom: -3px;
 	left: 0;
 	padding-bottom: 10px;
+
+	@media (max-width: 430px) {
+	backdrop-filter: blur(8.5px);
+
+	}
 }
 .Tapbar__item {
 	display: flex;

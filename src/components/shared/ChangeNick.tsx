@@ -12,6 +12,7 @@ import { useState } from 'react'
 import { Button } from '../ui/button'
 import { NextPage } from 'next'
 import Image from 'next/image'
+import { Link } from '@/i18n/routing'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -40,16 +41,23 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 			</DrawerTrigger>
 
 			<DrawerContent className='px-[15px] modal-holder mobile-holder '>
-				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[40px]'>
-					<p className='text-[14px] md:text-[17px] lg:text-[25px] xl:text-[28px] 2xl:text-[35px] pt-[2rem] flex items-center gap-[15px]'>
-						<DrawerClose asChild>
-							<span className='flex items-center gap-[5px] text-[18px] lg:text-[30px] hover:cursor-pointer'>
-								<span className='text-[18px] lg:text-[30px]'>{'<'}</span>
-							</span>
-						</DrawerClose>
-						Nickname
-					</p>
-				</DrawerTitle>
+			<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
+						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
+							<DrawerClose asChild>
+								<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 pl-[20px]'>
+									{'<'}
+								</Button>
+							</DrawerClose>
+							<Link
+								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
+								href='/profile'
+							>
+								Profile
+							</Link>
+							{'>'}{' '}
+						</span>{' '}
+						Change Nickname
+					</DrawerTitle>
 
 				<DrawerDescription className='flex flex-col justify-flex-start items-center w-full h-full'>
 					<p className='max-w-[760px] flex flex-col gap-[33px]'>

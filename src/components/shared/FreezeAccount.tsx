@@ -31,15 +31,15 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] pt-[.5rem] min-h-[100dvh] mdoal-holder modal-holder mobile-holder !pb-[.5rem]'>
-				<div className='h-full'>
-					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[15px] pt-[2rem] pl-[1rem]'>
+			<DrawerContent className='pt-[.5rem] min-h-[100dvh] mdoal-holder modal-holder mobile-holder'>
+				<div className='max-h-[85%] overflow-y-auto'>
+					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[15px] pt-[2rem] pl-[1rem]'>
 						<DrawerClose asChild>
-							<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none lg:text-[25px] hover:bg-transparent p-0 pl-[20px]'>
+							<Button className=' text-black dark:text-white bg-transparent  text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] border-none shadow-none hover:bg-transparent p-0 pl-[20px]'>
 								{'<'}
 							</Button>
 						</DrawerClose>
-						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px]'>
+						<span className='text-[#888888] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px]'>
 							<Link
 								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
 								href='/security'
@@ -50,7 +50,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 						</span>
 						Freeze account
 					</DrawerTitle>
-					<div className='flex flex-col items-center gap-[20px] max-h-[434px] 2xl:max-h-[827px] overflow-y-auto pb-[1rem]'>
+					<div className='flex flex-col items-center gap-[20px]'>
 						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center gap-[10px] justify-center w-full max-w-[921px]'>
 							<span className='flex flex-col items-center gap-[5px] md:flex-row md:items-center justify-center md:gap-[10px] text-[14px] md:text-[18px] lg:text-[20px] 2xl:text-[25px] w-full text-center'>
 								<Image
@@ -63,7 +63,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								/>
 								After freezing your account:
 							</span>
-							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[30px]'>
+							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[18px] md:leading-[30px]'>
 								<li>
 									• Your account zyabkin.vladislav2001@rambler.ru will be frozen
 									temporarily. To unfreeze it, start by logging in again.{' '}
@@ -168,7 +168,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								</p>
 							</label>
 						</div>
-						<DrawerFooter className='flex flex-row justify-center gap-[40px]'>
+						<DrawerFooter className='flex flex-row justify-center gap-[40px] pb-[3rem]'>
 							<DrawerClose asChild>
 								<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] lg:px-[50px] lg:py-[25px] 2xl:py-[30px]'>
 									Confirm

@@ -1,4 +1,3 @@
-'use client'
 import {
 	Drawer,
 	DrawerContent,
@@ -14,7 +13,6 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/i18n/routing'
-import { useEffect, useState } from 'react'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -31,12 +29,12 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] modal-holder mobile-holder'>
+			<DrawerContent className='modal-holder mobile-holder min-h-[100dvh] max-h-[70%] overflow-y-auto'>
 				<DrawerHeader>
-					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[15px]'>
+				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 							<DrawerClose asChild>
-								<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none lg:text-[25px] hover:bg-transparent p-0 pl-[20px]'>
+								<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 pl-[20px]'>
 									{'<'}
 								</Button>
 							</DrawerClose>
@@ -48,12 +46,10 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 							</Link>
 							{'>'}{' '}
 						</span>{' '}
-						Change Email
+						Change email
 					</DrawerTitle>
-					<div className='flex justify-center max-h-[434px] md:max-h-[734px] xl:max-h-[100%]  md:pb-[5.5rem] overflow-y-auto'>
-						<div
-							className={`flex flex-col items-start gap-[9px] w-full max-w-[550px]`}
-						>
+					<div className='flex justify-center overflow-y-auto'>
+						<div className='flex flex-col items-start gap-[15px] 2xl:gap-[20px] mt-[20px] w-full max-w-[550px] md:pb-[5.5rem]'>
 							<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] text-[14px] sm:text-[16px] lg:text-[18px] 2xl:text-[20px] flex flex-col items-center gap-[5px] md:flex-row md:items-start md:gap-[10px]'>
 								<Image
 									src={'/header_icons/profile_burger/info_icon.svg'}
@@ -63,36 +59,31 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 									quality={100}
 									className='max-w-[19px] md:max-w-[23px] lg:max-w-[25px] w-full'
 								/>
-								To protect your account, you won't be able to withdraw funds for
-								24 hours after you reset or changing the email address in your
-								account.
+								To protect your account, you won't be able to withdraw funds for 24 hours after you reset or change your account phone.
 							</DrawerDescription>
-
-							<div
-								className={`flex w-full flex-col items-start gap-[15px] 2xl:gap-[20px] overflow-y-auto overflow-x-visible`}
-							>
+							<div className='flex w-full flex-col items-start gap-[15px] 2xl:gap-[20px] overflow-y-auto'>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
-									New email address
+								New email address
 									<Input
 										type='email'
 										placeholder='Enter new email address'
-										className='border border-solid border-black dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
-									New email authentication
+								New email authentication
 									<Input
 										type='email'
 										placeholder='Enter code'
-										className='border border-solid border-black dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
-									Current email authentication
+								Current phone SMS authentication
 									<Input
 										type='email'
 										placeholder='Enter code'
-										className='border border-solid border-black dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
@@ -100,15 +91,17 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 									<Input
 										type='email'
 										placeholder='Enter code'
-										className='border border-solid border-black dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
+
 								<DrawerClose asChild>
-									<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] lg:px-[50px] lg:py-[20px]'>
-										Confirm
-									</Button>
-								</DrawerClose>
+								<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] lg:px-[50px] lg:py-[20px]'>
+									Confirm
+								</Button>
+							</DrawerClose>
 							</div>
+							
 						</div>
 					</div>
 				</DrawerHeader>
