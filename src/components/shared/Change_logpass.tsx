@@ -21,7 +21,7 @@ interface Props {
 
 export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 	const { theme } = useThemeStore()
-	
+
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
@@ -37,7 +37,7 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 							<DrawerClose asChild>
-								<Button className=' text-black dark:text-white bg-transparent hover:text-[#fff] text-[14px] md:text-[18px] border-none shadow-none lg:text-[25px] hover:bg-transparent p-0 pl-[20px]'>
+								<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none lg:text-[25px] hover:bg-transparent p-0 pl-[20px]'>
 									{'<'}
 								</Button>
 							</DrawerClose>
@@ -51,9 +51,9 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 						</span>{' '}
 						Change login password
 					</DrawerTitle>
-					<div className='flex justify-center max-h-[434px] overflow-y-auto'>
+					<div className='flex justify-center max-h-[434px] md:max-h-[734px] xl:max-h-[100%]  md:pb-[5.5rem] overflow-y-auto'>
 						<div className='flex flex-col items-start gap-[9px] 2xl:gap-[15px] mt-[20px] w-full max-w-[550px]'>
-							<div className='flex w-full flex-col items-start gap-[7px] 2xl:gap-[15px]'>
+							<div className='flex w-full flex-col items-start gap-[7px] 2xl:gap-[15px] overflow-y-auto overflow-x-visible'>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
 									Current password
 									<Input
@@ -94,7 +94,6 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 										className='border border-solid border-[#BDBDBD] dark:border-[#BDBDBD] text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
-
 								<div className='privacy max-w-[921px] flex flex-col self-center justify-start'>
 									<label
 										htmlFor='checkbox-privacy'
@@ -125,13 +124,12 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 										</p>
 									</label>
 								</div>
+								<DrawerClose asChild>
+									<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] lg:px-[50px] lg:py-[20px]'>
+										Confirm
+									</Button>
+								</DrawerClose>
 							</div>
-
-							<DrawerClose asChild>
-								<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] lg:px-[50px] lg:py-[20px]'>
-									Confirm
-								</Button>
-							</DrawerClose>
 						</div>
 					</div>
 				</DrawerHeader>

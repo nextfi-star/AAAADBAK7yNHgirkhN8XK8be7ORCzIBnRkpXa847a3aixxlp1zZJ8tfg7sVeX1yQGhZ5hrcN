@@ -92,7 +92,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 						</Button>
 					</DrawerTrigger>
 
-					<DrawerContent className='z-[9999] px-[30px] bg-white dark:bg-black max-h-[100dvh] min-h-[100dvh] pt-[2.5rem]'>
+					<DrawerContent className='z-[99999] px-[30px] bg-white dark:bg-black max-h-[100dvh] min-h-[100dvh] pt-[2.5rem] modal-holder mobile-holder'>
 						<DrawerHeader className='flex flex-col gap-[16px]'>
 							<div className='w-full border-transparent flex flex-col items-center gap-[15px]'>
 								<div className='w-full'>

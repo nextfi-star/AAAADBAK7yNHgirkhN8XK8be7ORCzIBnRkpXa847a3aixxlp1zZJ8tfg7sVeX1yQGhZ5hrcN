@@ -43,7 +43,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[40px]'>
 					<p className='text-[14px] md:text-[17px] lg:text-[25px] xl:text-[28px] 2xl:text-[35px] pt-[2rem] flex items-center gap-[15px]'>
 						<DrawerClose asChild>
-							<span className='flex items-center gap-[5px] text-[18px] lg:text-[30px]'>
+							<span className='flex items-center gap-[5px] text-[18px] lg:text-[30px] hover:cursor-pointer'>
 								<span className='text-[18px] lg:text-[30px]'>{'<'}</span>
 							</span>
 						</DrawerClose>

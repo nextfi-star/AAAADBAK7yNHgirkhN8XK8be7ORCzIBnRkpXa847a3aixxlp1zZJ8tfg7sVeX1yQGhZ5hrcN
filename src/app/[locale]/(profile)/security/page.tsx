@@ -56,7 +56,7 @@ const Page: NextPage = () => {
 	return (
 		<section className='security'>
 			<div className='security-container'>
-				<h1>Security center</h1>
+				<h1>Security</h1>
 				<span className='block w-full bg-gray-200 min-h-[1px] my-[24px]'></span>
 				<div className='security__content'>
 					<h1>Authentication methods</h1>

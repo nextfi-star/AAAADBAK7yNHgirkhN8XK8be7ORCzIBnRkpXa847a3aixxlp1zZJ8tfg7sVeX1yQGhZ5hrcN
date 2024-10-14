@@ -71,7 +71,7 @@ export const ChangeAvatar = () => {
 				</div>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] px-[30px]'>
+			<DrawerContent className='z-[9999] px-[30px] drawer__without_after modal-holder'>
 				<DrawerHeader>
 					<DrawerTitle>Change profile picture</DrawerTitle>
 					<DrawerDescription className='text-black dark:text-white'>
@@ -80,7 +80,7 @@ export const ChangeAvatar = () => {
 				</DrawerHeader>
 
 				{/* Tabs */}
-				<Tabs value={activeTab} onValueChange={setActiveTab} className='flex flex-col items-center md:items-start'>
+				<Tabs value={activeTab} onValueChange={setActiveTab} className='flex flex-col items-center md:items-start overflow-y-auto max-h-[330px]'>
 					<TabsList className='mb-[30px]'>
 						<TabsTrigger value='select-avatar'>Select Avatar</TabsTrigger>
 						<TabsTrigger value='upload-avatar'>Upload Avatar</TabsTrigger>
@@ -88,7 +88,7 @@ export const ChangeAvatar = () => {
 
 					{/* Табка для выбора из существующих */}
 					<TabsContent value='select-avatar'>
-						<div className='flex justify-center flex-wrap gap-4 py-[20px] border-0 border-b border-solid border-b-white min-h-[421px] max-h-[321px] overflow-y-auto'>
+						<div className='flex justify-center flex-wrap gap-4 py-[20px] border-0 border-b border-solid border-b-white'>
 							{data &&
 								data.map((avatar, index) => (
 									<div
@@ -131,7 +131,7 @@ export const ChangeAvatar = () => {
 					</TabsContent>
 				</Tabs>
 
-				<DrawerFooter className='flex flex-row justify-center gap-[42px]'>
+				<DrawerFooter className='flex flex-row justify-center md:justify-start gap-[42px] pb-[6.5rem]'>
 					<DrawerClose asChild>
 						<Button
 							variant='outline'
