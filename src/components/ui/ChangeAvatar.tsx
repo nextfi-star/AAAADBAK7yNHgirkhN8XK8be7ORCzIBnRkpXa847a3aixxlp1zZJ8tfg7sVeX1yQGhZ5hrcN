@@ -71,7 +71,7 @@ export const ChangeAvatar = () => {
 				</div>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] px-[30px] drawer__without_after modal-holder'>
+			<DrawerContent className='z-[9999] px-[30px] drawer__without_after modal-holder mobile-holder'>
 				<DrawerHeader>
 					<DrawerTitle>Change profile picture</DrawerTitle>
 					<DrawerDescription className='text-black dark:text-white'>
@@ -80,7 +80,11 @@ export const ChangeAvatar = () => {
 				</DrawerHeader>
 
 				{/* Tabs */}
-				<Tabs value={activeTab} onValueChange={setActiveTab} className='flex flex-col items-center md:items-start overflow-y-auto max-h-[330px]'>
+				<Tabs
+					value={activeTab}
+					onValueChange={setActiveTab}
+					className='flex flex-col items-center md:items-start overflow-y-auto'
+				>
 					<TabsList className='mb-[30px]'>
 						<TabsTrigger value='select-avatar'>Select Avatar</TabsTrigger>
 						<TabsTrigger value='upload-avatar'>Upload Avatar</TabsTrigger>
@@ -88,7 +92,7 @@ export const ChangeAvatar = () => {
 
 					{/* Табка для выбора из существующих */}
 					<TabsContent value='select-avatar'>
-						<div className='flex justify-center flex-wrap gap-4 py-[20px] border-0 border-b border-solid border-b-white'>
+						<div className='flex justify-center flex-wrap gap-4 py-[20px] border-0 border-b border-solid border-b-white max-h-full '>
 							{data &&
 								data.map((avatar, index) => (
 									<div
@@ -123,7 +127,9 @@ export const ChangeAvatar = () => {
 							>
 								<PlusIcon color={theme === 'dark' ? 'white' : 'black'} />
 							</label>
-							<span className='text-[14px] md:text-[20px]'>Upload a photo or drag and drop</span>
+							<span className='text-[14px] md:text-[20px]'>
+								Upload a photo or drag and drop
+							</span>
 							<span className='text-center text-[14px] md:text-[20px]'>
 								Supports JPG,PNG and GIF. Maximum upload file size 10 MB
 							</span>
@@ -131,7 +137,7 @@ export const ChangeAvatar = () => {
 					</TabsContent>
 				</Tabs>
 
-				<DrawerFooter className='flex flex-row justify-center md:justify-start gap-[42px] pb-[6.5rem]'>
+				<DrawerFooter className='flex flex-row justify-center md:justify-start gap-[42px]'>
 					<DrawerClose asChild>
 						<Button
 							variant='outline'

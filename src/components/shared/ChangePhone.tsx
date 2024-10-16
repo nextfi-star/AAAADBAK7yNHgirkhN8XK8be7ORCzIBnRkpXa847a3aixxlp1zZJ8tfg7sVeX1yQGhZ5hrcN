@@ -13,12 +13,15 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/i18n/routing'
+import ArrowBracket from '../ui/ArrowBracket'
+import { useThemeStore } from '@/store'
 
 interface Props {
 	propsItem: React.ReactNode
 }
 
 export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
+	const { theme } = useThemeStore()
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
@@ -30,12 +33,17 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 			</DrawerTrigger>
 
 			<DrawerContent className='modal-holder mobile-holder min-h-[100dvh] max-h-[70%] '>
-				<DrawerHeader>
-				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
+				<DrawerHeader  className='!p-0'>
+					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 							<DrawerClose asChild>
-								<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 pl-[20px]'>
-									{'<'}
+								<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0'>
+									<ArrowBracket
+										color={theme === 'dark' ? 'white' : 'black'}
+										width={25}
+										height={25}
+										className={'rotate-90'}
+									/>
 								</Button>
 							</DrawerClose>
 							<Link
@@ -44,7 +52,12 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 							>
 								Security
 							</Link>
-							{'>'}{' '}
+							<ArrowBracket
+									color={theme === 'dark' ? 'white' : 'black'}
+									width={25}
+									height={25}
+									className={'-rotate-90'}
+								/>
 						</span>{' '}
 						Change Phone number
 					</DrawerTitle>
@@ -59,11 +72,12 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 									quality={100}
 									className='max-w-[19px] md:max-w-[23px] lg:max-w-[25px] w-full'
 								/>
-								To protect your account, you won't be able to withdraw funds for 24 hours after you reset or change your account phone.
+								To protect your account, you won't be able to withdraw funds for
+								24 hours after you reset or change your account phone.
 							</DrawerDescription>
 							<div className='flex w-full flex-col items-start gap-[15px] 2xl:gap-[20px] '>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
-								New phone number
+									New phone number
 									<Input
 										type='email'
 										placeholder='Enter phone number'
@@ -71,7 +85,7 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
-								New phone SMS authentication
+									New phone SMS authentication
 									<Input
 										type='email'
 										placeholder='Enter code'
@@ -79,7 +93,7 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
-								Current phone SMS authentication
+									Current phone SMS authentication
 									<Input
 										type='email'
 										placeholder='Enter code'
@@ -96,12 +110,11 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 								</label>
 
 								<DrawerClose asChild>
-								<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] lg:px-[50px] lg:py-[20px]'>
-									Confirm
-								</Button>
-							</DrawerClose>
+									<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] lg:px-[50px] lg:py-[20px]'>
+										Confirm
+									</Button>
+								</DrawerClose>
 							</div>
-							
 						</div>
 					</div>
 				</DrawerHeader>

@@ -13,6 +13,8 @@ import { Button } from '../ui/button'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
+import ArrowBracket from '../ui/ArrowBracket'
+import { useThemeStore } from '@/store'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -20,7 +22,6 @@ interface Props {
 
 export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 	const [symbols, setSymbols] = useState<number | string | any>(0)
-
 
 	const trackSymbols = (e: any) => {
 		const inputLength = e.target.value.length
@@ -31,6 +32,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 			setSymbols(inputLength)
 		}
 	}
+	const {theme} = useThemeStore()
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
@@ -45,8 +47,13 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 					<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 						<DrawerClose asChild>
-							<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 pl-[20px]'>
-								{'<'}
+							<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 '>
+								<ArrowBracket
+									color={theme === 'dark' ? 'white' : 'black'}
+									width={25}
+									height={25}
+									className={'rotate-90'}
+								/>
 							</Button>
 						</DrawerClose>
 						<Link
@@ -55,7 +62,12 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 						>
 							Profile
 						</Link>
-						{'>'}{' '}
+						<ArrowBracket
+									color={theme === 'dark' ? 'white' : 'black'}
+									width={25}
+									height={25}
+									className={'-rotate-90'}
+								/>
 					</span>{' '}
 					Change Nickname
 				</DrawerTitle>

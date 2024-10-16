@@ -20,7 +20,7 @@ interface Props {
 	propsItem: React.ReactNode
 }
 
-export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
+export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 	const { theme } = useThemeStore()
 	return (
 		<Drawer>
@@ -59,7 +59,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 									className={'-rotate-90'}
 								/>
 						</span>{' '}
-						Freeze account
+						Close account
 					</DrawerTitle>
 					<div className='flex flex-col items-center gap-[20px]'>
 						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center gap-[10px] justify-center w-full max-w-[921px]'>
@@ -72,7 +72,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 									quality={100}
 									className='max-w-[20px] md:max-w-[22px] 2xl:max-w-[30px] w-full'
 								/>
-								After freezing your account:
+								After clousing your account:
 							</span>
 							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[18px] md:leading-[30px]'>
 								<li>

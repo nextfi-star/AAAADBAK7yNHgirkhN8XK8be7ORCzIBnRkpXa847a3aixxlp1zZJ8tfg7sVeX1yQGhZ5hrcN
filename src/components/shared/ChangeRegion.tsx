@@ -3,7 +3,6 @@ import {
 	DrawerContent,
 	DrawerTrigger,
 	DrawerHeader,
-	DrawerTitle,
 	DrawerDescription,
 	DrawerFooter,
 	DrawerClose,
@@ -13,7 +12,6 @@ import { NextPage } from 'next'
 import { useThemeStore } from '@/store'
 import { useState } from 'react'
 import { RussiaMap } from '../ui/RussiaMap'
-import { Location } from '../ui/Location'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -42,10 +40,6 @@ export const ChangeRegion: NextPage<Props> = ({ propsItem }) => {
 									width={250}
 									color={theme === 'dark' ? '#fff' : '#000'}
 								/>
-								<Location
-									className='absolute top-[45px] md:top-[35%] right-[40%] md:w-full max-w-[40px] lg:max-w-[45px]'
-									color={theme === 'dark' ? '#205BC9' : '#205BC9'}
-								/>
 							</div>
 						</div>
 						<h1 className='text-[32px] lg:text-[40px] leading-[32px]'>
@@ -63,14 +57,12 @@ export const ChangeRegion: NextPage<Props> = ({ propsItem }) => {
 				</DrawerHeader>
 
 				<DrawerFooter className='flex flex-row justify-center'>
-					<DrawerClose asChild>
-						<Button
-							onClick={() => setIndex(!indexItem)}
-							className='w-full max-w-[531px] lg:max-w-[631px] py-[8px] md:py-[28px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] hover:bg-[#205BC9] text-[#fff]'
-						>
-							Update
-						</Button>
-					</DrawerClose>
+					<Button
+						onClick={() => setIndex(!indexItem)}
+						className='w-full max-w-[400px] lg:max-w-[450px] py-[20px] md:py-[22px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] hover:bg-[#205BC9] text-[#fff]'
+					>
+						Update
+					</Button>
 				</DrawerFooter>
 			</DrawerContent>
 		</Drawer>

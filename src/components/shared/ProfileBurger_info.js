@@ -1,6 +1,8 @@
+'use client'
 import ArrowBracket from '../ui/ArrowBracket'
 import { useThemeStore } from '../../store'
 import Image from 'next/image'
+import { ChangeAvatar } from '../ui/ChangeAvatar'
 
 export const ProfileBurger_info = ({
 	username,
@@ -19,25 +21,36 @@ export const ProfileBurger_info = ({
 			<div
 				className={`${
 					!showSection
-						? 'flex flex-col items-center'
-						: 'flex items-center gap-[12px] '
+						? 'flex flex-col items-center gap-[10px] relative mb-[20px]'
+						: 'flex items-center gap-[20px] relative'
 				}`}
 			>
+				{!showSection && (
+					<span className='-mt-[41px] mb-[40px] text-[24px] font-bold'>
+						User Center
+					</span>
+				)}
+
 				<div
+					onClick={e => e.stopPropagation()}
 					className={
 						!showSection
-							? `relative rounded-full md:min-h-[152px] min-h-[80px] md:min-w-[152px] min-w-[80px] overflow-hidden mb-[10px] z-10 cursor-pointer`
-							: 'relative rounded-full min-h-[64px] min-w-[64px] overflow-hidden z-10 cursor-pointer'
+							? `relative md:min-h-[152px] min-h-[80px] md:min-w-[152px] min-w-[80px] z-10 cursor-pointer`
+							: 'relative min-h-[64px] min-w-[64px] z-10 cursor-pointer'
 					}
 				>
 					<Image
 						src={'/main/avatar.png'}
-						width={!showSection ? 152 : 63}
-						height={!showSection ? 152 : 63}
+						width={!showSection ? 100 : 63}
+						height={!showSection ? 100 : 63}
 						alt={'avatar'}
-						className='absolute bottom-[0] left-[50%] translate-x-[-50%] object-cover w-full'
+						className=' bottom-[0] left-[50%] object-contain rounded-full min-w-[78px]'
 					/>
+					<div className='absolute -bottom-[5px] -right-[13px] max-w-[40px]'>
+						{!showSection && <ChangeAvatar />}
+					</div>
 				</div>
+
 				<div className='flex flex-col'>
 					<h5 className='text-[18px]'>{username} </h5>
 					{showSection && <span className='text-[14px]'>Profile Settings</span>}

@@ -69,7 +69,7 @@ export const ProfileHeader = ({ auth = true }) => {
 							</>
 						) : (
 							<>
-								<div className='profile__header__icons hidden sm:flex gap-[20px]'>
+								<div className='profile__header__icons hidden sm:flex gap-[5px]'>
 									<select className='header__buttons-assets .header__content'>
 										<option className='text-black' value=''>
 											Assets
