@@ -40,7 +40,7 @@ export const ProfileBurger_profile_accor: NextPage<Props> = ({
 								<AccordionTrigger className='hover:no-underline'>
 									{item.trigger}
 								</AccordionTrigger>
-								<AccordionContent className='flex justify-between'>
+								<AccordionContent className='flex justify-between items-center'>
 									{item.content}
 								</AccordionContent>
 							</AccordionItem>

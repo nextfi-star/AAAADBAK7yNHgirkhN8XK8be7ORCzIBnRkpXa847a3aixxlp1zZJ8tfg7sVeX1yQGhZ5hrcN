@@ -40,13 +40,13 @@ export const ProfileBurger_info = ({
 					}
 				>
 					<Image
-						src={'/main/avatar.png'}
+						src={'/main/avatar_noface.png'}
 						width={!showSection ? 100 : 63}
 						height={!showSection ? 100 : 63}
 						alt={'avatar'}
-						className=' bottom-[0] left-[50%] object-contain rounded-full min-w-[78px]'
+						className='absolute bottom-[0] left-[50%] -translate-x-[50%] object-contain rounded-full min-w-[60px]'
 					/>
-					<div className='absolute -bottom-[5px] -right-[13px] max-w-[40px]'>
+					<div className='absolute -bottom-[5px] right-[-13px] sm:right-[13px] max-w-[40px]'>
 						{!showSection && <ChangeAvatar />}
 					</div>
 				</div>

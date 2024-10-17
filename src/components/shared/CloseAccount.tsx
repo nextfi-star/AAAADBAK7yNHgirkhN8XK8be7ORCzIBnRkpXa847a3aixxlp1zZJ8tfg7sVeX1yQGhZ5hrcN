@@ -74,14 +74,14 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 								/>
 								After clousing your account:
 							</span>
-							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[18px] md:leading-[30px]'>
+							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
 								<li>
-									• Your account zyabkin.vladislav2001@rambler.ru will be frozen
+									• Your account Username@gmail.com will be frozen
 									temporarily. To unfreeze it, start by logging in again.{' '}
 								</li>
 
 								<li>
-									• Your account zyabkin.vladislav2001@rambler.ru will be frozen
+									• Your account Username@gmail.com will be frozen
 									temporarily. To unfreeze it, start by logging in again.{' '}
 								</li>
 

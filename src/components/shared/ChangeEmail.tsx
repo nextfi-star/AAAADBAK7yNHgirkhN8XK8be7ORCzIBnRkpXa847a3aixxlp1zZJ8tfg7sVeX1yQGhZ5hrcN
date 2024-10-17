@@ -5,7 +5,6 @@ import {
 	DrawerHeader,
 	DrawerTitle,
 	DrawerDescription,
-	DrawerFooter,
 	DrawerClose,
 } from '@/components/ui/drawer'
 import { Button } from '../ui/button'
@@ -74,13 +73,13 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 								/>
 								To protect your account, you won't be able to withdraw funds for 24 hours after you reset or change your account phone.
 							</DrawerDescription>
-							<div className='flex w-full flex-col items-start gap-[15px] 2xl:gap-[20px] '>
+							<div className='flex w-full flex-col items-start gap-[15px] xl:gap-[25px] 2xl:gap-[33px]'>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
 								New email address
 									<Input
 										type='email'
 										placeholder='Enter new email address'
-										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+										className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[20px]'
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
@@ -88,7 +87,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 									<Input
 										type='email'
 										placeholder='Enter code'
-										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+										className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[20px]'
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
@@ -96,7 +95,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 									<Input
 										type='email'
 										placeholder='Enter code'
-										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+										className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[20px]'
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full mb-[20px]'>
@@ -104,7 +103,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 									<Input
 										type='email'
 										placeholder='Enter code'
-										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+										className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[20px]'
 									/>
 								</label>
 

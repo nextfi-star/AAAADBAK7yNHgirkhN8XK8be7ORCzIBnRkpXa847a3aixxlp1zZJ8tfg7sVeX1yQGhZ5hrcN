@@ -23,8 +23,10 @@ export const Profile_accountdetails: NextPage = () => {
 			<article className='flex items-center justify-between gap-[5px]'>
 				<span>Email</span>
 				<span>user****@main.ru</span>
-
-				<ChangeEmail propsItem={'Change'} />
+				
+				<div className='min-w-[181px] flex justify-end'>
+					<ChangeEmail propsItem={'Change'} />
+				</div>
 			</article>
 
 			<span className='devider w-full h-[1px] bg-slate-100 block my-[24px]' />
@@ -33,7 +35,9 @@ export const Profile_accountdetails: NextPage = () => {
 				<span>Phone</span>
 				<span>****140</span>
 
-				<ChangePhone propsItem={'Change'} />
+				<div className='min-w-[181px] flex justify-end'>
+					<ChangePhone propsItem={'Change'} />
+				</div>
 			</article>
 
 			<span className='devider w-full h-[1px] bg-slate-100 block my-[24px]' />
@@ -41,10 +45,11 @@ export const Profile_accountdetails: NextPage = () => {
 			<article className='flex items-center justify-between gap-[5px]'>
 				<span>Trading fee tier</span>
 				<span>Level 1</span>
-
-				<Button variant={'outline'} className='bg-transparent'>
-					View Details
-				</Button>
+				<div className='min-w-[181px] flex justify-end'>
+					<Button variant={'outline'} className='bg-transparent'>
+						View Details
+					</Button>
+				</div>
 			</article>
 		</section>
 	)

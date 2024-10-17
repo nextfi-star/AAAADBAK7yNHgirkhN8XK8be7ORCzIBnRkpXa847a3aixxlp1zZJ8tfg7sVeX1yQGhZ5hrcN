@@ -2,18 +2,19 @@
 import Image from 'next/image'
 import { NextPage } from 'next'
 import { ChangeAvatar } from '@/components/ui/ChangeAvatar'
-import { Profile_perosnalinfo } from '@/components/shared/Profile_perosnalinfo'
-import { Profile_accountdetails } from '@/components/shared/Profile_accountdetails'
-import { Profile_personalverif } from '@/components/shared/Profile_personalverif'
+import { Profile_devices } from '@/components/shared/Profile_devices'
 
 const Page: NextPage = () => {
 	return (
 		<section className='personal'>
 			<div className='personal-container'>
+				<h1 className='text-[32px] font-bold w-full text-center lg:text-left'>
+					Authorized Devices
+				</h1>
 				<div className='personal-inner flex flex-row justify-between mt-[20px] gap-[40px]'>
 					<div className='relative h-fit w-fit'>
 						<Image
-							src={'/main/avatar_noface.png'}
+							src={'/main/avatar.png'}
 							width={152}
 							height={152}
 							alt={'avatar'}
@@ -23,11 +24,7 @@ const Page: NextPage = () => {
 					</div>
 
 					<div className='flex flex-col w-full gap-[68px]'>
-						<Profile_perosnalinfo />
-
-						<Profile_personalverif />
-
-						<Profile_accountdetails />
+						<Profile_devices />
 					</div>
 				</div>
 			</div>

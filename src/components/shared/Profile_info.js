@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import Copy from "../ui/Copy";
 import Avatar from "../ui/Avatar";
 import { useThemeStore } from "../../store";
+import Image from 'next/image'
 
 export const Profile_info = ({ verify, setVerify }) => {
   const t = useTranslations("profile");
@@ -14,7 +15,14 @@ export const Profile_info = ({ verify, setVerify }) => {
     <section className="hidden sm:block profile__info profile_blocks_border">
       <div className="profile__info__block__left" >
         <div className="profile__info__block__left__avatar">
-          <Avatar />
+        <Image
+						src={'/main/avatar_noface.png'}
+						width={63}
+						height={63}
+            priority
+						alt={'avatar'}
+						className='object-contain rounded-full min-w-[78px]'
+					/>
         </div>
         <div className="profile__info__block__left__text">
           <h3 className="profile__info__block__left__text_name ">Sergey Sergey</h3>

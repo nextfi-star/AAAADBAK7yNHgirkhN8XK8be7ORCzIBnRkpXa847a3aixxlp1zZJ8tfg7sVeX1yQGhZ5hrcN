@@ -42,8 +42,11 @@ export const Profile_nav = () => {
           </Link>
         </li>
         <li>
-          <Link href={`/profile`} className="profile__nav-navbar-item">
-            Third-party authorization
+        <Link
+            href={`/devices`}
+            className={`profile__nav-navbar-item ${currentPath === `/${locale}/devices` ? "active" : ""}`}
+          >
+            Authorized Devices
           </Link>
         </li>
       </ul>

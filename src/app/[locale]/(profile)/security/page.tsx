@@ -6,6 +6,7 @@ import { Change_logpass } from '@/components/shared/Change_logpass'
 import { FreezeAccount } from '@/components/shared/FreezeAccount'
 import { ChangeEmail } from '@/components/shared/ChangeEmail'
 import { ChangePhone } from '@/components/shared/ChangePhone'
+import { CloseAccount } from '@/components/shared/CloseAccount'
 
 const data = [
 	{
@@ -48,7 +49,7 @@ const data2 = [
 		src: '/main/profile_security/account_close.svg',
 		title: 'Close account',
 		desc: "Once you close your account, it is permanent and can't be restored",
-		btn: <FreezeAccount propsItem={'Close account'} />,
+		btn: <CloseAccount propsItem={'Close account'} />,
 	},
 ]
 const Page: NextPage = () => {

@@ -2,17 +2,20 @@ import React from 'react'
 
 interface Props {
 	color: string
+	width: string
+	className?: string
 }
 
-export const Device = ({ color }: Props) => {
+export const Device = ({ color, width, className }: Props) => {
 	return (
 		<svg
-			width='235.000000'
+			width={width}
 			height='160.000000'
 			viewBox='0 0 235 160'
 			fill={color}
 			xmlns='http://www.w3.org/2000/svg'
 			xmlnsXlink='http://www.w3.org/1999/xlink'
+			className={className}
 		>
 			<defs>
 				<pattern

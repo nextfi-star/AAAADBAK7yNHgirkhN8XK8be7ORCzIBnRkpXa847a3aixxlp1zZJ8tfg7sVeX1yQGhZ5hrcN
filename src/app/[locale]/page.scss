@@ -4419,13 +4419,6 @@ header {
 		}
 	}
 
-	.select-avatar {
-		img {
-			@media (max-width: 430px) {
-				max-width: 70px;
-			}
-		}
-	}
 	.accor__wrapper {
 		min-height: 200px;
 		padding: 0.5rem 0 0 0;
@@ -4583,14 +4576,20 @@ header {
 			font-size: 18px;
 			line-height: 24px;
 			font-weight: 400;
-			width: 100%;
-			text-align: left;
 			display: flex;
 			align-items: center;
+			justify-content: flex-start;
 			gap: 3px;
+			min-width: 161px;
 
+			@media (min-width: 1280px) {
+				font-size: 20px;
+			}
 			@media (max-width: 1024px) {
 				font-size: 14px;
+			}
+			@media (max-width: 768px) {
+				min-width: fit-content;
 			}
 			@media (max-width: 430px) {
 				font-size: 12px;
@@ -4604,6 +4603,12 @@ header {
 				@media (max-width: 1024px) {
 					max-height: 20px;
 				}
+			}
+		}
+
+		article div {
+			@media (max-width: 768px) {
+				min-width: fit-content;
 			}
 		}
 		button {
@@ -4621,11 +4626,15 @@ header {
 			justify-content: center;
 			flex-shrink: 0;
 
-			@media (max-width: 1024px) {
-				font-size: 14px;
+			@media (min-width: 1280px) {
+				font-size: 20px;
 			}
 			@media (max-width: 1024px) {
+				font-size: 14px;
 				padding: 0;
+			}
+			@media (max-width: 768px) {
+				min-width: 90px;
 			}
 
 			&:hover {
@@ -4946,8 +4955,21 @@ header {
 		z-index: 99 !important;
 	}
 }
-.drawer__without_after {
-	// &:after {
-	// 	z-index: -1 !important;
-	// }
+.svg-hidden svg {
+	display: none;
+}
+.idnex-1,
+.idnex-2,
+.idnex-3,
+.idnex-4 {
+	@media (max-width: 430px) {
+		display: none;
+	}
+}
+.avatar-holder {
+	img {
+		@media (max-width: 430px) {
+			max-width: 97px;
+		} 
+	}
 }

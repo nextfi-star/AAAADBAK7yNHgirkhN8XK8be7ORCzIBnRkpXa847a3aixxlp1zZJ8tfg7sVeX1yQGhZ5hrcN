@@ -65,13 +65,13 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 
 					<div className='flex justify-center h-full w-full overflow-y-auto'>
 						<div className='flex flex-col items-start gap-[15px] 2xl:gap-[20px] mt-[20px] w-full max-w-[550px] md:pb-[5.5rem]'>
-							<div className='flex w-full flex-col items-start gap-[15px] 2xl:gap-[20px]'>
+							<div className='flex w-full flex-col items-start gap-[15px] xl:gap-[25px] 2xl:gap-[33px]'>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
 								Current password
 									<Input
 										type='email'
 										placeholder='Enter your current password'
-										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+										className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
@@ -79,7 +79,7 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 									<Input
 										type='email'
 										placeholder='Enter your new password'
-										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+										className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
@@ -87,7 +87,7 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 									<Input
 										type='email'
 										placeholder='Enter your new password again'
-										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+										className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
@@ -95,7 +95,7 @@ export const Change_logpass: NextPage<Props> = ({ propsItem }) => {
 									<Input
 										type='email'
 										placeholder='Enter code'
-										className='border border-solid border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+										className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
 									/>
 								</label>
 								<div className='privacy max-w-[921px] flex flex-col self-center	 justify-start'>

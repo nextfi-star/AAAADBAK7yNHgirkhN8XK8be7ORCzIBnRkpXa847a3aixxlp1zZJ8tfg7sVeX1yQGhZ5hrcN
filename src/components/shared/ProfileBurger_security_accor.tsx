@@ -43,7 +43,7 @@ export const ProfileBurger_security_accor: NextPage<Props> = ({
 										{item.trigger}
 									</p>
 								</AccordionTrigger>
-								<AccordionContent className='flex justify-between'>
+								<AccordionContent className='flex justify-between items-center'>
 									{item.content}
 								</AccordionContent>
 							</AccordionItem>

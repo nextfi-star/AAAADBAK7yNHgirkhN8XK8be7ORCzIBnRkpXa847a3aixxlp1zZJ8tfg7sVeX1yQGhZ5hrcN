@@ -15,6 +15,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import ArrowBracket from '../ui/ArrowBracket'
+import { Alert } from './Alert'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -34,16 +35,16 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 
 			<DrawerContent className='pt-[.5rem] min-h-[100dvh] mdoal-holder modal-holder mobile-holder'>
 				<div className='max-h-[99%] overflow-y-auto'>
-				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
+					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 							<DrawerClose asChild>
 								<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0'>
-								<ArrowBracket
-									color={theme === 'dark' ? 'white' : 'black'}
-									width={25}
-									height={25}
-									className={'rotate-90'}
-								/>
+									<ArrowBracket
+										color={theme === 'dark' ? 'white' : 'black'}
+										width={25}
+										height={25}
+										className={'rotate-90'}
+									/>
 								</Button>
 							</DrawerClose>
 							<Link
@@ -53,11 +54,11 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								Security
 							</Link>
 							<ArrowBracket
-									color={theme === 'dark' ? 'white' : 'black'}
-									width={25}
-									height={25}
-									className={'-rotate-90'}
-								/>
+								color={theme === 'dark' ? 'white' : 'black'}
+								width={25}
+								height={25}
+								className={'-rotate-90'}
+							/>
 						</span>{' '}
 						Freeze account
 					</DrawerTitle>
@@ -74,15 +75,15 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								/>
 								After freezing your account:
 							</span>
-							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[18px] md:leading-[30px]'>
+							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
 								<li>
-									• Your account zyabkin.vladislav2001@rambler.ru will be frozen
-									temporarily. To unfreeze it, start by logging in again.{' '}
+									• Your account Username@gmail.com will be frozen temporarily.
+									To unfreeze it, start by logging in again.{' '}
 								</li>
 
 								<li>
-									• Your account zyabkin.vladislav2001@rambler.ru will be frozen
-									temporarily. To unfreeze it, start by logging in again.{' '}
+									• Your account Username@gmail.com will be frozen temporarily.
+									To unfreeze it, start by logging in again.{' '}
 								</li>
 
 								<li>
@@ -180,11 +181,13 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 							</label>
 						</div>
 						<DrawerFooter className='flex flex-row justify-center gap-[40px] pb-[3rem]'>
-							<DrawerClose asChild>
-								<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] lg:px-[50px] lg:py-[25px] 2xl:py-[30px]'>
-									Confirm
-								</Button>
-							</DrawerClose>
+							<Alert
+								title={'Are you absolutely sure?'}
+								content={
+									'This action cannot be undone. Your account will be freezed.'
+								}
+								titleTriger={'Confirm'}
+							/>
 						</DrawerFooter>
 					</div>
 				</div>

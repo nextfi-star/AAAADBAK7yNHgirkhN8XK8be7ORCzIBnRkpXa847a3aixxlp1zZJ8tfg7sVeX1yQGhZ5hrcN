@@ -15,6 +15,7 @@ import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import ArrowBracket from '../ui/ArrowBracket'
 import { useThemeStore } from '@/store'
+import { Input } from '../ui/input'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -73,8 +74,8 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 				</DrawerTitle>
 
 				<DrawerDescription className='flex flex-col justify-flex-start items-center w-full h-full'>
-					<p className='max-w-[760px] flex flex-col gap-[33px]'>
-						<p className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center md:flex-row md:items-start gap-[16px]'>
+					<p className='max-w-[760px] flex flex-col gap-[20px]'>
+						<p className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center md:flex-row md:items-start gap-[10px]'>
 							<Image
 								src={'/header_icons/profile_burger/info_icon.svg'}
 								width={40}
@@ -83,7 +84,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 								quality={100}
 								className='w-full max-w-[20px] sm:max-w-[23px] md:max-w-[25px]'
 							/>
-							<span className='text-black dark:text-white text-[14px] md:text-[18px] lg:text-[20px] 2xl:text-[25px] text-left leading-7'>
+							<span className='text-black dark:text-white text-[14px] md:text-[18px] lg:text-[20px] 2xl:text-[25px] text-left leading-[1.75rem] 2xl:leading-[1.75rem]'>
 								Make sure your nickname does not contain disrespectful language,
 								official names(i.e. product names), or names of other trading
 								platforms.
@@ -95,7 +96,7 @@ export const ChangeNick: NextPage<Props> = ({ propsItem }) => {
 							</span>
 							<input
 								type='text'
-								className='bg-transparent text-black dark:text-white border border-solid border-[#000] dark:border-white rounded-[4px] px-[20px] py-[7px] text-[14px] md:text-[18px] lg:text-[20px] 2xl:text-[25px]'
+								className='bg-transparent text-black dark:text-white border border-solid !border-[#000] dark:border-white rounded-[4px] px-[20px] py-[10px] 2xl:py-[20px] text-[16px] md:text-[18px] lg:text-[20px] 2xl:text-[25px]'
 								placeholder='zya***@rambler.ru'
 								onChange={trackSymbols}
 							/>
