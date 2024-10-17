@@ -19,9 +19,10 @@ export const ProfileBurger_info = ({
 			onClick={handleClick}
 		>
 			<div
+			onClick={e => e.stopPropagation()}
 				className={`${
 					!showSection
-						? 'flex flex-col items-center gap-[10px] relative mb-[20px]'
+						? 'flex flex-col items-center gap-[10px] w-full relative mb-[20px]'
 						: 'flex items-center gap-[20px] relative'
 				}`}
 			>
@@ -32,7 +33,7 @@ export const ProfileBurger_info = ({
 				)}
 
 				<div
-					onClick={e => e.stopPropagation()}
+				onClick={e => e.stopPropagation()}
 					className={
 						!showSection
 							? `relative md:min-h-[152px] min-h-[80px] md:min-w-[152px] min-w-[80px] z-10 cursor-pointer`
@@ -62,6 +63,7 @@ export const ProfileBurger_info = ({
 					width={25}
 					height={25}
 					className={'-rotate-90'}
+					onClick={handleClick}
 				/>
 			)}
 		</section>
