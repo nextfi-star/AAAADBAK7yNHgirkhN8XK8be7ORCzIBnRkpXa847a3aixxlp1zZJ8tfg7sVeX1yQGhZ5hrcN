@@ -19,7 +19,7 @@ export const ProfileBurger_info = ({
 			onClick={handleClick}
 		>
 			<div
-			onClick={e => e.stopPropagation()}
+			onClick={!showSection ? e => e.stopPropagation() : null}
 				className={`${
 					!showSection
 						? 'flex flex-col items-center gap-[10px] w-full relative mb-[20px]'
@@ -33,7 +33,6 @@ export const ProfileBurger_info = ({
 				)}
 
 				<div
-				onClick={e => e.stopPropagation()}
 					className={
 						!showSection
 							? `relative md:min-h-[152px] min-h-[80px] md:min-w-[152px] min-w-[80px] z-10 cursor-pointer`
