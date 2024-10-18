@@ -67,10 +67,10 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 							</DrawerTitle>
 
 							<DrawerDescription className='text-black dark:text-white flex gap-[30px] lg:gap-[40px] flex-col items-center w-full  pb-[6rem] 2xl:pb-0'>
-								<div className='flex flex-col gap-[20px] items-center max-w-[623px] pb-[1rem]'>
-									<p className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] text-left w-full'>
+								<p className='flex flex-col gap-[20px] items-center max-w-[623px] pb-[1rem]'>
+									<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] text-left w-full'>
 										Select country/region of residence
-									</p>
+									</span>
 									<label className='flex flex-col gap-[20px] lg:gap-[30px] w-full'>
 										<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] text-left'>
 											Country/Region of residence
@@ -96,7 +96,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 											Next
 										</Button>
 									</DrawerClose>
-								</div>
+								</p>
 							</DrawerDescription>
 						</DrawerHeader>
 					</DrawerContent>

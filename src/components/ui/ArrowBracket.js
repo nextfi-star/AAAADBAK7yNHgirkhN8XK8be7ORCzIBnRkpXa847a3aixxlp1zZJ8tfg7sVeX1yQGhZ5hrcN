@@ -5,7 +5,7 @@ const ArrowBracket = ({ className, width, height, color }) => {
     <svg
       className={className}
       width={width}
-      height={height}
+      height='24'
       viewBox="0 0 24 24"
       fill="black"
       xmlns="http://www.w3.org/2000/svg"

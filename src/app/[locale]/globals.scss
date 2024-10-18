@@ -39,8 +39,7 @@ p {
   font-size: inherit;
   font-weight: inherit;
 }
-ul,
-ul li {
+:is(ul, li) {
   list-style: none;
 }
 img {

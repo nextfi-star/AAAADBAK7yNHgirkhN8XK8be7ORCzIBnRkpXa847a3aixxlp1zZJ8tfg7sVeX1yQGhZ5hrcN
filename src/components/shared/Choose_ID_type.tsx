@@ -21,28 +21,16 @@ import {
 
 const frameworks = [
 	{
-		value: 'russia',
-		label: 'Russia',
+		value: 'id',
+		label: 'ID',
 	},
 	{
-		value: 'uzbekistan',
-		label: 'Uzbekistan',
-	},
-	{
-		value: 'usa',
-		label: 'USA',
-	},
-	{
-		value: 'china',
-		label: 'China',
-	},
-	{
-		value: 'japan',
-		label: 'Japan',
+		value: 'passport',
+		label: 'Passport',
 	},
 ]
 
-export function Choose_region() {
+export function Choose_ID_type() {
 	const [open, setOpen] = React.useState(false)
 	const [value, setValue] = React.useState('')
 
@@ -53,19 +41,19 @@ export function Choose_region() {
 					variant='outline'
 					role='combobox'
 					aria-expanded={open}
-					className='w-full justify-between z-[9999] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] xl:py-[1.5rem]'
+					className='w-full justify-between z-[9999] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] 2xl:py-[2.5rem]'
 				>
 					{value
 						? frameworks.find(framework => framework.value === value)?.label
-						: 'Select region...'}
+						: 'Select ID type'}
 					<ChevronsUpDown className='ml-2 h-4 w-4 lg:h-6 lg:w-6 shrink-0 opacity-50' />
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className='w-full max-w-[623px] p-0'>
 				<Command>
-					<CommandInput className='text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] w-full min-h-[58px]' placeholder='Search region/country...' />
+					<CommandInput className='text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] w-full min-h-[58px]' placeholder='Choose type' />
 					<CommandList>
-						<CommandEmpty className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[19px] xl:text-[20px] 2xl:text-[25px] p-[.5rem]'>No one was found.</CommandEmpty>
+						<CommandEmpty className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] p-[.5rem]'>No one was found.</CommandEmpty>
 						<CommandGroup>
 							{frameworks.map(framework => (
 								<CommandItem

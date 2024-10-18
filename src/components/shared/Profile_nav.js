@@ -37,7 +37,7 @@ export const Profile_nav = () => {
           </Link>
         </li>
         <li>
-          <Link href={`/profile`} className="profile__nav-navbar-item">
+          <Link href={`/verify`} className={`profile__nav-navbar-item ${currentPath === `/${locale}/verify` ? "active" : ""}`}>
             Verification
           </Link>
         </li>
