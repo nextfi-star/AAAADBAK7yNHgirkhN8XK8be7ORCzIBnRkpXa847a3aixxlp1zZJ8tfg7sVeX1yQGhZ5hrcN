@@ -23,7 +23,9 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover'
-const frameworks = [
+import { Verify_documents } from '@/components/shared/Verify_documents'
+
+const countries = [
 	{
 		value: 'russia',
 		label: 'Russia',
@@ -45,15 +47,63 @@ const frameworks = [
 		label: 'Japan',
 	},
 ]
+const typeID = [
+	{
+		value: 'national id card',
+		label: 'National ID card',
+	},
+	{
+		value: 'passport',
+		label: 'Passport',
+	},
+	{
+		value: 'driver license',
+		label: 'Driver license',
+	},
+]
 
 const Page: NextPage = () => {
 	const { theme } = useThemeStore()
 	const [change, SetChange] = useState<boolean>(false)
 	const [open, setOpen] = useState(false)
+	const [openID, setOpenID] = useState(false)
 	const [value, setValue] = useState('')
+	const [valueID, setValueID] = useState('')
+	const [step, setStep] = useState<number>(1)
+	const [photo, setPhoto] = useState<string | null>(null)
+	const [photo2, setPhoto2] = useState<string | null>(null)
+
+	const handlePhotoChange = (photoData: string) => {
+		setPhoto(photoData)
+		DataHolder(photoData, 1)
+	}
+	const handlePhotoChange2 = (photoData: string) => {
+		setPhoto2(photoData)
+		DataHolder(photoData, 2)
+	}
+
+	const DataHolder = (photoData: string, index: number) => {
+		console.log('Country/Region - ', value)
+		console.log('Type ID - ', valueID)
+		console.log(`img ${index} - `, photoData)
+	}
+
+	const handleNextStep = () => {
+		if (value && valueID) {
+			setStep(step + 1)
+		}
+	}
+
+	// const resetData = () => {
+	// 	setValue('')
+	// 	setValueID('')
+	// 	setPhoto('')
+	// 	SetChange(!change)
+	// 	setStep((prev) => prev - step + 1)
+	// }
 
 	return (
-		<section className='verify -mt-[8rem] sm:-mt-0'>
+		<section className='verify -mt-[8rem] sm:-mt-0 pb-[2rem] sm:pb-[0]'>
 			<div className='site-holder !px-[0]'>
 				{!change ? (
 					<div className='flex flex-col items-center pt-[86px] gap-[83px]'>
@@ -138,97 +188,198 @@ const Page: NextPage = () => {
 						</div>
 					</div>
 				) : (
-					<div className='flex flex-col items-center gap-[83px]'>
-						<h1 className='w-full border-transparent pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
-							<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
-								<Button
-									className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-[#205BC9]'
-									onClick={() => SetChange(!change)}
-								>
-									<ArrowBracket
-										color={theme === 'dark' ? 'white' : 'black'}
-										width={25}
-										height={25}
-										className={'rotate-90'}
-									/>
-								</Button>
-							</span>
-							Identity verification
-						</h1>
-
-						<div className='flex flex-col items-center w-full max-w-[724px] gap-[25px]'>
-							<h1 className='text-[24px] font-medium text-center'>
-								Select your ID type
-							</h1>
-							<label className='text-[18px] w-full flex flex-col gap-[5px]'>
-								Country/Region of residence
-								{/* <Verify_country /> */}
-								<Popover open={open} onOpenChange={setOpen}>
-									<PopoverTrigger asChild>
+					<>
+						{step === 1 && (
+							<div className='flex flex-col items-center gap-[83px]'>
+								<h1 className='w-full border-transparent pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
+									<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 										<Button
-											variant='outline'
-											role='combobox'
-											aria-expanded={open}
-											className='w-full justify-between z-[9999] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] 2xl:py-[2.5rem]'
+											className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-[#205BC9]'
+											onClick={() => SetChange(!change)}
 										>
-											{value
-												? frameworks.find(
-														framework => framework.value === value
-												  )?.label
-												: 'Select region...'}
-											<ChevronsUpDown className='ml-2 h-4 w-4 lg:h-6 lg:w-6 shrink-0 opacity-50' />
-										</Button>
-									</PopoverTrigger>
-									<PopoverContent className='w-full max-w-[623px] p-0'>
-										<Command>
-											<CommandInput
-												className='text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] w-full min-h-[58px]'
-												placeholder='Search region/country...'
+											<ArrowBracket
+												color={theme === 'dark' ? 'white' : 'black'}
+												width={25}
+												height={25}
+												className={'rotate-90'}
 											/>
-											<CommandList>
-												<CommandEmpty className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] p-[.5rem]'>
-													No one was found.
-												</CommandEmpty>
-												<CommandGroup>
-													{frameworks.map(framework => (
-														<CommandItem
-															key={framework.value}
-															value={framework.value}
-															onSelect={(
-																currentValue: React.SetStateAction<string>
-															) => {
-																setValue(
-																	currentValue === value ? '' : currentValue
-																)
-																setOpen(false)
-															}}
-														>
-															<Check
-																className={cn(
-																	'mr-2 h-4 w-4',
-																	value === framework.value
-																		? 'opacity-100'
-																		: 'opacity-0'
-																)}
-															/>
-															{framework.label}
-														</CommandItem>
-													))}
-												</CommandGroup>
-											</CommandList>
-										</Command>
-									</PopoverContent>
-								</Popover>
-							</label>
-							<label className='text-[18px] w-full flex flex-col gap-[5px]'>
-								ID type
-								<Choose_ID_type />
-							</label>
-							<button className={`text-[20px] md:text-[25px] 2xl:text-[32px] px-[40px] xl:px-[90px] py-[5px] bg-[#888888] rounded-[50px] mt-[80px] ${value && '!bg-[#205BC9]'}`}>
-								Next
-							</button>
-						</div>
-					</div>
+										</Button>
+									</span>
+									Identity verification
+								</h1>
+
+								<div className='flex flex-col items-center w-full max-w-[724px] gap-[25px]'>
+									<h1 className='text-[24px] font-medium text-center'>
+										Select your ID type
+									</h1>
+
+									<label className='text-[18px] w-full flex flex-col gap-[5px]'>
+										Country/Region of residence
+										{/* <Verify_country /> */}
+										<Popover open={open} onOpenChange={setOpen}>
+											<PopoverTrigger asChild>
+												<Button
+													variant='outline'
+													role='combobox'
+													aria-expanded={open}
+													className='w-full justify-between z-[9999] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] 2xl:py-[2.5rem]'
+												>
+													{value
+														? countries.find(
+																framework => framework.value === value
+														  )?.label
+														: 'Select region...'}
+													<ChevronsUpDown className='ml-2 h-4 w-4 lg:h-6 lg:w-6 shrink-0 opacity-50' />
+												</Button>
+											</PopoverTrigger>
+											<PopoverContent className='w-full p-0'>
+												<Command>
+													<CommandInput
+														className='text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] w-full min-h-[58px]'
+														placeholder='Search region/country...'
+													/>
+													<CommandList>
+														<CommandEmpty className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] p-[.5rem]'>
+															No one was found.
+														</CommandEmpty>
+														<CommandGroup>
+															{countries.map(framework => (
+																<CommandItem
+																	key={framework.value}
+																	value={framework.value}
+																	onSelect={(
+																		currentValue: React.SetStateAction<string>
+																	) => {
+																		setValue(
+																			currentValue === value ? '' : currentValue
+																		)
+																		setOpen(false)
+																	}}
+																	className='2xl:w-[724px]'
+																>
+																	<Check
+																		className={cn(
+																			'mr-2 h-4 w-4',
+																			value === framework.value
+																				? 'opacity-100'
+																				: 'opacity-0'
+																		)}
+																	/>
+																	{framework.label}
+																</CommandItem>
+															))}
+														</CommandGroup>
+													</CommandList>
+												</Command>
+											</PopoverContent>
+										</Popover>
+									</label>
+
+									<label className='text-[18px] w-full flex flex-col gap-[5px]'>
+										ID type
+										<Popover open={openID} onOpenChange={setOpenID}>
+											<PopoverTrigger asChild>
+												<Button
+													variant='outline'
+													role='combobox'
+													aria-expanded={openID}
+													className='w-full justify-between z-[9999] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] 2xl:py-[2.5rem]'
+												>
+													{valueID
+														? typeID.find(
+																framework => framework.value === valueID
+														  )?.label
+														: 'Select ID type'}
+													<ChevronsUpDown className='ml-2 h-4 w-4 lg:h-6 lg:w-6 shrink-0 opacity-50' />
+												</Button>
+											</PopoverTrigger>
+											<PopoverContent className='!w-full p-0'>
+												<Command>
+													<CommandList>
+														<CommandEmpty className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] p-[.5rem]'>
+															No one was found.
+														</CommandEmpty>
+														<CommandGroup>
+															{typeID.map(framework => (
+																<CommandItem
+																	key={framework.value}
+																	value={framework.value}
+																	onSelect={(
+																		currentValue: React.SetStateAction<string>
+																	) => {
+																		setValueID(
+																			currentValue === valueID
+																				? ''
+																				: currentValue
+																		)
+																		setOpenID(false)
+																	}}
+																	className='2xl:w-[724px]'
+																>
+																	<Check
+																		className={cn(
+																			'mr-2 h-4 w-4',
+																			value === framework.value
+																				? 'opacity-100'
+																				: 'opacity-0'
+																		)}
+																	/>
+																	{framework.label}
+																</CommandItem>
+															))}
+														</CommandGroup>
+													</CommandList>
+												</Command>
+											</PopoverContent>
+										</Popover>
+									</label>
+
+									<button
+										className={`text-[20px] md:text-[25px] 2xl:text-[32px] px-[40px] xl:px-[90px] py-[5px] 2xl:py-[10px] bg-[#888888] rounded-[50px] mt-[80px] ${
+											value && valueID && '!bg-[#205BC9]'
+										}`}
+										disabled={!value && !valueID}
+										onClick={handleNextStep}
+									>
+										Next
+									</button>
+								</div>
+							</div>
+						)}
+
+						{step === 2 && (
+							<Verify_documents
+								onPhotoChange={handlePhotoChange}
+								handlePhotoChange={handlePhotoChange}
+								handlePhotoChange2={handlePhotoChange2}
+								items={valueID}
+								setStep={setStep}
+								step={step}
+								// resetData={resetData}
+							/>
+						)}
+
+						{step === 3 && (
+							<div className='flex flex-col gap-[40px]'>
+								<h1 className='w-full border-transparent pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
+									<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
+										<Button
+											className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-[#205BC9]'
+											onClick={() => setStep(prev => prev - 1)}
+										>
+											<ArrowBracket
+												color={theme === 'dark' ? 'white' : 'black'}
+												width={25}
+												height={25}
+												className={'rotate-90'}
+											/>
+										</Button>
+									</span>
+									Identity verification
+								</h1>
+							</div>
+						)}
+					</>
 				)}
 			</div>
 		</section>
