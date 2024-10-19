@@ -21,47 +21,30 @@ export const Verify_documents: NextPage<Props> = ({
 	step,
 	setStep,
 	onPhotoChange,
-	handlePhotoChange, 
+	handlePhotoChange,
 	handlePhotoChange2,
 }) => {
 	const { theme } = useThemeStore()
 	const [change, setChange] = useState<boolean>(false)
 	const [photo, setPhoto] = useState<string | null>(null)
 	const [photo2, setPhoto2] = useState<string | null>(null)
+	const [privacy, setPrivacy] = useState(false)
 
-	// const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-	// 	const file = e.target.files && e.target.files[0]
-	// 	if (file) {
-	// 		const reader = new FileReader()
-	// 		reader.onloadend = () => {
-	// 			setPhoto(reader.result as string)
-	// 			onPhotoChange(reader.result as string)
-	// 		}
-	// 		reader.readAsDataURL(file)
-	// 	}
-	// }
-	// const handleFileChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-	// 	const file = e.target.files && e.target.files[0]
-	// 	if (file) {
-	// 		const reader = new FileReader()
-	// 		reader.onloadend = () => {
-	// 			setPhoto2(reader.result as string)
-	// 		}
-	// 		reader.readAsDataURL(file)
-	// 	}
-	// }
-
-	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, onPhotoChange: (photoData: string) => void, setPhoto: React.Dispatch<React.SetStateAction<string | null>>) => {
-    const file = e.target.files && e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        onPhotoChange(reader.result as string); // Передаем результат в соответствующий обработчик
-        setPhoto(reader.result as string); // Сохраняем результат в локальное состояние
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+	const handleFileChange = (
+		e: React.ChangeEvent<HTMLInputElement>,
+		onPhotoChange: (photoData: string) => void,
+		setPhoto: React.Dispatch<React.SetStateAction<string | null>>
+	) => {
+		const file = e.target.files && e.target.files[0]
+		if (file) {
+			const reader = new FileReader()
+			reader.onloadend = () => {
+				onPhotoChange(reader.result as string)
+				setPhoto(reader.result as string)
+			}
+			reader.readAsDataURL(file)
+		}
+	}
 
 	return (
 		<div className='w-full flex flex-col items-center'>
@@ -127,86 +110,161 @@ export const Verify_documents: NextPage<Props> = ({
 						<span className='text-[#205BC9]'> {items}</span>
 					</h1>
 					<div className='flex flex-col gap-[30px] items-center'>
+						<div className='flex flex-col xl:flex-row gap-[15px] items-start'>
+							<div className='flex flex-col gap-[15px] w-full max-w-[340px]'>
+								{!photo && (
+									<>
+										<div className='min-h-[321px] border-1 border-dashed border-gray-500 rounded-[10px] flex flex-col gap-[10px] items-center justify-center p-[15px]'>
+											<input
+												type='file'
+												id='file-upload'
+												className='hidden'
+												accept='image/*'
+												onChange={e =>
+													handleFileChange(e, handlePhotoChange, setPhoto)
+												}
+											/>
+											<label
+												htmlFor='file-upload'
+												className='flex flex-col items-center justify-center cursor-pointer rounded-[50%] border-1 border-solid dark:border-white border-black p-[13px] mb-[10px]'
+											>
+												<PlusIcon
+													color={theme === 'dark' ? 'white' : 'black'}
+												/>
+											</label>
+											<span className='text-[14px] md:text-[20px] text-center'>
+												Upload a photo or drag and drop
+											</span>
 
-						<div className="flex flex-col xl:flex-row gap-[15px] items-start">
-						<div className='flex flex-col gap-[15px] w-full max-w-[340px]'>
-							<div className='min-h-[321px] border-1 border-dashed border-gray-500 rounded-[10px] flex flex-col gap-[10px] items-center justify-center p-[15px]'>
-								<input
-									type='file'
-									id='file-upload'
-									className='hidden'
-									accept='image/*'
-									onChange={(e) => handleFileChange(e, handlePhotoChange, setPhoto)}
-								/>
-								<label
-									htmlFor='file-upload'
-									className='flex flex-col items-center justify-center cursor-pointer rounded-[50%] border-1 border-solid dark:border-white border-black p-[13px] mb-[10px]'
-								>
-									<PlusIcon color={theme === 'dark' ? 'white' : 'black'} />
-								</label>
-								<span className='text-[14px] md:text-[20px]'>
-									Upload a photo or drag and drop
-								</span>
-
-								<span className='text-center text-[14px] md:text-[20px]'>
-									Max size per file: 20 MB (png, jpeg, jpg)
-								</span>
+											<span className='text-center text-[14px] md:text-[20px]'>
+												Max size per file: 20 MB (png, jpeg, jpg)
+											</span>
+										</div>
+									</>
+								)}
+								{photo && (
+									<div className='relative'>
+										<Image
+											src={photo}
+											width={100}
+											height={100}
+											alt='Uploaded photo'
+											className='w-full h-full max-w-[340px] max-h-[191px] transition duration-300'
+										/>
+										<button
+											className='absolute top-0 right-0 text-[20px] bg-[#BDBDBD] w-[24px] h-[24px] rounded-[5px] flex items-center justify-center'
+											onClick={() => setPhoto(null)}
+										>
+											<Image
+												src={'/header_icons/profile_burger/close.svg'}
+												width={20}
+												height={20}
+												alt='close X'
+												className='w-full h-auto max-w-[10px] '
+											/>
+										</button>
+									</div>
+								)}
 							</div>
-							{photo && (
-								<Image
-									src={photo}
-									width={100}
-									height={100}
-									alt='Uploaded photo'
-									className='w-auto h-auto max-w-[340px] transition duration-300 hover:scale-[1.5]'
-								/>
-							)}
+
+							<div className='flex flex-col gap-[15px] w-full max-w-[340px]'>
+								{!photo2 && (
+									<>
+										<div className='min-h-[321px] border-1 border-dashed border-gray-500 rounded-[10px] flex flex-col gap-[10px] items-center justify-center p-[15px]'>
+											<input
+												type='file'
+												id='file-upload-2'
+												className='hidden'
+												accept='image/*'
+												onChange={e =>
+													handleFileChange(e, handlePhotoChange2, setPhoto2)
+												}
+											/>
+											<label
+												htmlFor='file-upload-2'
+												className='flex flex-col items-center justify-center cursor-pointer rounded-[50%] border-1 border-solid dark:border-white border-black p-[13px] mb-[10px]'
+											>
+												<PlusIcon
+													color={theme === 'dark' ? 'white' : 'black'}
+												/>
+											</label>
+											<span className='text-[14px] md:text-[20px] text-center'>
+												Upload a photo or drag and drop
+											</span>
+
+											<span className='text-center text-[14px] md:text-[20px]'>
+												Max size per file: 20 MB (png, jpeg, jpg)
+											</span>
+										</div>
+									</>
+								)}
+								{photo2 && (
+									<div className='relative'>
+										<Image
+											src={photo2}
+											width={100}
+											height={100}
+											alt='Uploaded photo'
+											className='w-full h-full max-w-[340px] max-h-[191px] transition duration-300'
+										/>
+										<button
+											className='absolute top-0 right-0 text-[20px] bg-[#BDBDBD] w-[24px] h-[24px] rounded-[5px] flex items-center justify-center'
+											onClick={() => setPhoto2(null)}
+										>
+											<Image
+												src={'/header_icons/profile_burger/close.svg'}
+												width={20}
+												height={20}
+												alt='close X'
+												className='w-full h-auto max-w-[10px] '
+											/>
+										</button>
+									</div>
+								)}
+							</div>
 						</div>
 
-						<div className='flex flex-col gap-[15px] w-full max-w-[340px]'>
-							<div className='min-h-[321px] border-1 border-dashed border-gray-500 rounded-[10px] flex flex-col gap-[10px] items-center justify-center p-[15px]'>
+						<div className='privacy max-w-[691px] flex flex-col self-center	 justify-start'>
+							<label
+								htmlFor='checkbox-privacy'
+								className='checkbox-label gap-[5px] md:gap-[18px] !items-start'
+							>
 								<input
-									type='file'
-									id='file-upload-2'
-									className='hidden'
-									accept='image/*'
-									onChange={(e) => handleFileChange(e, handlePhotoChange2, setPhoto2)}
+									type='checkbox'
+									id='checkbox-privacy'
+									className='checkbox'
+									onChange={() => setPrivacy(!privacy)}
 								/>
-								<label
-									htmlFor='file-upload-2'
-									className='flex flex-col items-center justify-center cursor-pointer rounded-[50%] border-1 border-solid dark:border-white border-black p-[13px] mb-[10px]'
-								>
-									<PlusIcon color={theme === 'dark' ? 'white' : 'black'} />
-								</label>
-								<span className='text-[14px] md:text-[20px]'>
-									Upload a photo or drag and drop
+								<span className='checkbox-view'>
+									<svg
+										className='checkbox-icon max-w-[50px] md:max-w-[50px] max-h-[20px] md:max-h-[45px]'
+										xmlns='http://www.w3.org/2000/svg'
+										width='18'
+										viewBox='0 0 511.985 511.985'
+									>
+										<path
+											fill={theme === 'dark' ? '#fff' : '#3A3939'}
+											d='M500.088 83.681c-15.841-15.862-41.564-15.852-57.426 0L184.205 342.148 69.332 227.276c-15.862-15.862-41.574-15.862-57.436 0-15.862 15.862-15.862 41.574 0 57.436l143.585 143.585c7.926 7.926 18.319 11.899 28.713 11.899 10.394 0 20.797-3.963 28.723-11.899l287.171-287.181c15.862-15.851 15.862-41.574 0-57.435z'
+										/>
+									</svg>
 								</span>
-
-								<span className='text-center text-[14px] md:text-[20px]'>
-									Max size per file: 20 MB (png, jpeg, jpg)
-								</span>
-							</div>
-							{photo2 && (
-								<Image
-									src={photo2}
-									width={100}
-									height={100}
-									alt='Uploaded photo'
-									className='w-auto h-auto max-w-[340px] transition duration-300 hover:scale-[1.5]'
-								/>
-							)}
-						</div>
-
+								<p className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] text-left'>
+									I consent to NextFi's collection, processing and transfer of
+									my personal information, which may include biometric data, as
+									set forth in{' '}
+									<span className='text-[#3F7EF3]'>the Privacy Notice.</span>
+								</p>
+							</label>
 						</div>
 
 						<button
 							className={`text-[20px] ${
-								!photo || !photo2? 'bg-[#888888]' : 'bg-[#205BC9]'
+								!photo || !photo2 || !privacy ? 'bg-[#888888]' : 'bg-[#205BC9]'
 							} rounded-[50px] py-[16px] max-w-[248px] w-full mb-[40px]`}
-							disabled={!photo || !photo2}
+							disabled={!photo || !photo2 || !privacy}
 							onClick={() => setStep(step + 1)}
 						>
-							Next
+							Send
 						</button>
 					</div>
 				</div>

@@ -379,6 +379,12 @@ const Page: NextPage = () => {
 								</h1>
 							</div>
 						)}
+
+						{step === 3 && (
+							<div className='flex items-start justify-center'>
+								<video src='/aniamtion/loading.mp4'  autoPlay loop className='bg-black' />
+							</div>
+						)}
 					</>
 				)}
 			</div>
