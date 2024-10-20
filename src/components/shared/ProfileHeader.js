@@ -13,6 +13,7 @@ import { Logo_header } from '../ui/Logo_header'
 import { Chat } from '../ui/Chat'
 import { BurgerIcon } from './BurgerIcon'
 import clsx from 'clsx'
+import { Platform_mode } from './Platform_mode'
 
 export const ProfileHeader = ({ auth = true }) => {
 	const t = useTranslations('nav')
@@ -52,6 +53,8 @@ export const ProfileHeader = ({ auth = true }) => {
 				<div className={`${classChange}`} onClick={handleClick}>
 					<BurgerIcon color={theme === 'dark' ? 'white' : 'black'} />
 				</div>
+				<Platform_mode />
+
 				<Burger_profile show={show} handleClick={handleClick} />
 
 				<Navigation />

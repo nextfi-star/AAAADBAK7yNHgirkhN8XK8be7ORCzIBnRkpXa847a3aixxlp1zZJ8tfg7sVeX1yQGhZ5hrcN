@@ -32,7 +32,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 			</DrawerTrigger>
 
 			<DrawerContent className='modal-holder mobile-holder min-h-[100dvh] max-h-[70%] '>
-				<DrawerHeader  className='!p-0'>
+				<DrawerHeader className='!p-0 overflow-y-auto'>
 				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 							<DrawerClose asChild>

@@ -169,7 +169,7 @@ const Page: NextPage = () => {
 							</article>
 
 							<article className='flex flex-col items-center gap-[24px]'>
-								<p className='text-[14px] sm:text-[18px] text-[#BDBDBD] inline-flex items-center gap-[7px]'>
+								<p className='text-[14px] sm:text-[18px] text-[#BDBDBD] flex items-center text-center gap-[5px] sm:gap-[7px]'>
 									<ProfilePage_guard
 										color={theme === 'dark' ? '#fff' : '#000'}
 									/>
