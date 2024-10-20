@@ -27,7 +27,7 @@ export const Verify_documents: NextPage<Props> = ({
 	const { theme } = useThemeStore()
 	const [change, setChange] = useState<boolean>(false)
 	const [photo, setPhoto] = useState<string | null>(null)
-	const [photo2, setPhoto2] = useState<string | null>(null)
+	// const [photo2, setPhoto2] = useState<string | null>(null)
 	const [privacy, setPrivacy] = useState(false)
 
 	const handleFileChange = (
@@ -50,7 +50,7 @@ export const Verify_documents: NextPage<Props> = ({
 		<div className='w-full flex flex-col items-center'>
 			<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex justify-start items-center w-full  gap-[15px] mb-[15px]'>
 				<Button
-					className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-[#205BC9]'
+					className=' text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-transparent'
 					onClick={() => setStep(step - 1)}
 				>
 					<ArrowBracket
@@ -97,7 +97,7 @@ export const Verify_documents: NextPage<Props> = ({
 						Make sure you capture a clear and complete image.
 					</span>
 					<button
-						className='text-[20px] bg-[#205BC9] rounded-[50px] py-[16px] px-[60px] mb-[40px]'
+						className='text-[20px] bg-[#205BC9] rounded-[50px] py-[16px] px-[60px] mb-[40px] text-white'
 						onClick={() => setChange(!change)}
 					>
 						Start verification
@@ -106,11 +106,12 @@ export const Verify_documents: NextPage<Props> = ({
 			) : (
 				<div className='w-full flex flex-col items-center gap-[24px] pb-[40px]'>
 					<h1 className='text-[24px] font-medium pb-[8px]'>
-						Upload page 1-2 of your{' '}
+						Upload page of your{' '}
 						<span className='text-[#205BC9]'> {items}</span>
 					</h1>
 					<div className='flex flex-col gap-[30px] items-center'>
 						<div className='flex flex-col xl:flex-row gap-[15px] items-start'>
+
 							<div className='flex flex-col gap-[15px] w-full max-w-[340px]'>
 								{!photo && (
 									<>
@@ -167,7 +168,7 @@ export const Verify_documents: NextPage<Props> = ({
 								)}
 							</div>
 
-							<div className='flex flex-col gap-[15px] w-full max-w-[340px]'>
+							{/* <div className='flex flex-col gap-[15px] w-full max-w-[340px]'>
 								{!photo2 && (
 									<>
 										<div className='min-h-[321px] border-1 border-dashed border-gray-500 rounded-[10px] flex flex-col gap-[10px] items-center justify-center p-[15px]'>
@@ -221,7 +222,8 @@ export const Verify_documents: NextPage<Props> = ({
 										</button>
 									</div>
 								)}
-							</div>
+							</div> */}
+
 						</div>
 
 						<div className='privacy max-w-[691px] flex flex-col self-center	 justify-start'>
@@ -259,9 +261,9 @@ export const Verify_documents: NextPage<Props> = ({
 
 						<button
 							className={`text-[20px] ${
-								!photo || !photo2 || !privacy ? 'bg-[#888888]' : 'bg-[#205BC9]'
-							} rounded-[50px] py-[16px] max-w-[248px] w-full mb-[40px]`}
-							disabled={!photo || !photo2 || !privacy}
+								!photo || !privacy ? 'bg-[#888888]' : 'bg-[#205BC9]'
+							} rounded-[50px] py-[16px] max-w-[248px] w-full mb-[40px] text-white`}
+							disabled={!photo || !privacy}
 							onClick={() => setStep(step + 1)}
 						>
 							Send

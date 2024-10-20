@@ -1,6 +1,4 @@
 'use client'
-import { Choose_ID_type } from '@/components/shared/Choose_ID_type'
-import { Verify_country } from '@/components/shared/Verify_country'
 import ArrowBracket from '@/components/ui/ArrowBracket'
 import { ProfilePage_guard } from '@/components/ui/ProfilePage_guard'
 import { useThemeStore } from '@/store'
@@ -24,6 +22,8 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { Verify_documents } from '@/components/shared/Verify_documents'
+import VerifyAnimation from '@/components/shared/VerifyAnimation'
+import { FAQ_howVerify } from '@/components/shared/FAQ_howVerify'
 
 const countries = [
 	{
@@ -72,6 +72,7 @@ const Page: NextPage = () => {
 	const [step, setStep] = useState<number>(1)
 	const [photo, setPhoto] = useState<string | null>(null)
 	const [photo2, setPhoto2] = useState<string | null>(null)
+	const [showFaq, setShowFaq] = useState<boolean>(false)
 
 	const handlePhotoChange = (photoData: string) => {
 		setPhoto(photoData)
@@ -103,7 +104,7 @@ const Page: NextPage = () => {
 	// }
 
 	return (
-		<section className='verify -mt-[8rem] sm:-mt-0 pb-[2rem] sm:pb-[0]'>
+		<section className={`verify -mt-[8rem] sm:-mt-0 pb-[2rem] sm:pb-[0] ${showFaq ? 'fixed' : ''}`}>
 			<div className='site-holder !px-[0]'>
 				{!change ? (
 					<div className='flex flex-col items-center pt-[86px] gap-[83px]'>
@@ -175,15 +176,21 @@ const Page: NextPage = () => {
 									Your information is only used for identity verification.
 								</p>
 								<Button
-									className='text-[14px] sm:text-[20px] text-white rounded-[50px] bg-[#205BC9] hover:bg-[#205BC9] px-[50px] py-[4px] hover:opacity-[.9]'
+									className='text-[14px] sm:text-[20px] text-white rounded-[50px] bg-[#205BC9] px-[50px] py-[4px] xl:py-[20px] hover:opacity-[.9] hover:bg-[#205BC9]'
 									onClick={() => SetChange(!change)}
 								>
 									Verify now
 								</Button>
 
-								<span className='tetx-[16px] text-[#3F7EF3] leading-[24px]'>
-									How do I verify an individual account?
-								</span>
+								{showFaq ? (
+									<>
+										<FAQ_howVerify showFaq={showFaq} setShowFaq={setShowFaq} />
+									</>
+								) : (
+									<span className='text-[16px] text-[#205BC9] leading-[24px] cursor-pointer' onClick={() => setShowFaq(prev => !prev)}>
+										How do I verify an individual account?
+									</span>
+								)}
 							</article>
 						</div>
 					</div>
@@ -194,7 +201,7 @@ const Page: NextPage = () => {
 								<h1 className='w-full border-transparent pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 									<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 										<Button
-											className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-[#205BC9]'
+											className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-transparent'
 											onClick={() => SetChange(!change)}
 										>
 											<ArrowBracket
@@ -335,7 +342,7 @@ const Page: NextPage = () => {
 									</label>
 
 									<button
-										className={`text-[20px] md:text-[25px] 2xl:text-[32px] px-[40px] xl:px-[90px] py-[5px] 2xl:py-[10px] bg-[#888888] rounded-[50px] mt-[80px] ${
+										className={`text-[20px] md:text-[25px] 2xl:text-[32px] px-[40px] xl:px-[90px] py-[5px] 2xl:py-[10px] bg-[#888888] rounded-[50px] mt-[80px] text-white ${
 											value && valueID && '!bg-[#205BC9]'
 										}`}
 										disabled={!value && !valueID}
@@ -364,7 +371,7 @@ const Page: NextPage = () => {
 								<h1 className='w-full border-transparent pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 									<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 										<Button
-											className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-[#205BC9]'
+											className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-transparent'
 											onClick={() => setStep(prev => prev - 1)}
 										>
 											<ArrowBracket
@@ -377,12 +384,9 @@ const Page: NextPage = () => {
 									</span>
 									Identity verification
 								</h1>
-							</div>
-						)}
-
-						{step === 3 && (
-							<div className='flex items-start justify-center'>
-								<video src='/aniamtion/loading.mp4'  autoPlay loop className='bg-black' />
+								<div className='flex items-start justify-center'>
+									<VerifyAnimation />
+								</div>
 							</div>
 						)}
 					</>

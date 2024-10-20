@@ -9,11 +9,11 @@ const Preloader = () => {
     <>
       {theme.toString() !== "light" ? (
         <div className="preloader preloader__black">
-          <Lottie animationData={animationData} className="lottie" loop={false} autoPlay background="#000" />
+          <Lottie animationData={animationData} className="lottie" loop={false} autoPlay/>
         </div>
       ) : (
         <div className="preloader preloader__white">
-          <Lottie animationData={animationData2} className="lottie" loop={false} autoPlay background="#fff" />
+          <Lottie animationData={animationData2} className="lottie" loop={false} autoPlay/>
         </div>
       )}
     </>
