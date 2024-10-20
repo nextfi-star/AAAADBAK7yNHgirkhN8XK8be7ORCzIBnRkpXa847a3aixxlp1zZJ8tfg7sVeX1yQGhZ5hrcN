@@ -163,7 +163,7 @@
 	--black-light: #fff;
 	--dark-gray: #d3d3d3;
 	--item-count: #a3c3ff;
-	--body-color: #0C0C0C;
+	--body-color: #0c0c0c;
 	--text-color: #ffffff;
 	--text-gray: #fff;
 	--hightLight-text: #3f7ef3;
@@ -4968,6 +4968,24 @@ header {
 	img {
 		@media (max-width: 430px) {
 			max-width: 97px;
+		}
+	}
+}
+
+.lock-btn:hover {
+	&:hover .lock {
+		animation: bounce 0.5s alternate ease-in-out;
+	}
+	.lock {
+		transition: 0.3s all ease-in-out;
+	}
+	@keyframes bounce {
+		0% {
+			transform: translateY(-2px);
+		}
+
+		100% {
+			transform: translateY(0);
 		}
 	}
 }
