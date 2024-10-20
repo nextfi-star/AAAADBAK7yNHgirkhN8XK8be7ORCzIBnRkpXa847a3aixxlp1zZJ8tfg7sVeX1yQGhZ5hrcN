@@ -4973,7 +4973,7 @@ header {
 }
 
 .lock-btn:hover {
-	&:hover .lock {
+	&:active .lock {
 		animation: bounce 0.5s alternate ease-in-out;
 	}
 	.lock {
