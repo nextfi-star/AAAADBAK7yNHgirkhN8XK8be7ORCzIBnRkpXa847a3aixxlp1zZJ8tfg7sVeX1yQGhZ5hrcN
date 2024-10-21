@@ -1,6 +1,6 @@
 import React from "react";
 
-const ArrowBracket = ({ className, width, color }) => {
+const ArrowBracket = ({ className, width, color, height }) => {
   return (
     <svg
       className={className}
