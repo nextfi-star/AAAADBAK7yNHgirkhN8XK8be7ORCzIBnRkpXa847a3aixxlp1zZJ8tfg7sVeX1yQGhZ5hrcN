@@ -207,6 +207,7 @@ const Page: NextPage = () => {
 											<ArrowBracket
 												color={theme === 'dark' ? 'white' : 'black'}
 												width={25}
+												height={25}
 												className={'rotate-90'}
 											/>
 										</Button>
@@ -376,6 +377,7 @@ const Page: NextPage = () => {
 											<ArrowBracket
 												color={theme === 'dark' ? 'white' : 'black'}
 												width={25}
+												height={25}
 												className={'rotate-90'}
 											/>
 										</Button>

@@ -20,7 +20,7 @@ interface Props {
 }
 
 export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
-	const {theme} = useThemeStore()
+	const { theme } = useThemeStore()
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
@@ -33,15 +33,16 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 
 			<DrawerContent className='modal-holder mobile-holder min-h-[100dvh]  '>
 				<DrawerHeader className='!p-0 max-h-[99dvh] overflow-y-auto'>
-				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
+					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 							<DrawerClose asChild>
 								<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0'>
-								<ArrowBracket
-									color={theme === 'dark' ? 'white' : 'black'}
-									width={25}
-									className={'rotate-90'}
-								/>
+									<ArrowBracket
+										color={theme === 'dark' ? 'white' : 'black'}
+										width={25}
+										height={25}
+										className={'rotate-90'}
+									/>
 								</Button>
 							</DrawerClose>
 							<Link
@@ -51,10 +52,11 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 								Security
 							</Link>
 							<ArrowBracket
-									color={theme === 'dark' ? 'white' : 'black'}
-									width={25}
-									className={'-rotate-90'}
-								/>
+								color={theme === 'dark' ? 'white' : 'black'}
+								width={25}
+								height={25}
+								className={'-rotate-90'}
+							/>
 						</span>{' '}
 						Change email
 					</DrawerTitle>
@@ -69,11 +71,12 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 									quality={100}
 									className='max-w-[19px] md:max-w-[23px] lg:max-w-[25px] w-full'
 								/>
-								To protect your account, you won't be able to withdraw funds for 24 hours after you reset or change your account phone.
+								To protect your account, you won't be able to withdraw funds for
+								24 hours after you reset or change your account phone.
 							</DrawerDescription>
 							<div className='flex w-full flex-col items-start gap-[15px] xl:gap-[25px] 2xl:gap-[33px] pb-[1.5rem]'>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
-								New email address
+									New email address
 									<Input
 										type='email'
 										placeholder='Enter new email address'
@@ -81,7 +84,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
-								New email authentication
+									New email authentication
 									<Input
 										type='email'
 										placeholder='Enter code'
@@ -89,7 +92,7 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 									/>
 								</label>
 								<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[7px] w-full'>
-								Current phone SMS authentication
+									Current phone SMS authentication
 									<Input
 										type='email'
 										placeholder='Enter code'
@@ -106,12 +109,11 @@ export const ChangeEmail: NextPage<Props> = ({ propsItem }) => {
 								</label>
 
 								<DrawerClose asChild>
-								<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] lg:px-[50px] lg:py-[20px]'>
-									Confirm
-								</Button>
-							</DrawerClose>
+									<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] lg:px-[50px] lg:py-[20px]'>
+										Confirm
+									</Button>
+								</DrawerClose>
 							</div>
-							
 						</div>
 					</div>
 				</DrawerHeader>

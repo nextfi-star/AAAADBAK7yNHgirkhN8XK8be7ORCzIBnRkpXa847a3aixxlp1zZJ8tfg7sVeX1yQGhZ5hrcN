@@ -34,15 +34,16 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 
 			<DrawerContent className='pt-[.5rem] min-h-[100dvh] mdoal-holder modal-holder mobile-holder'>
 				<div className='max-h-[99%] overflow-y-auto'>
-				<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
+					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 							<DrawerClose asChild>
 								<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0'>
-								<ArrowBracket
-									color={theme === 'dark' ? 'white' : 'black'}
-									width={25}
-									className={'rotate-90'}
-								/>
+									<ArrowBracket
+										color={theme === 'dark' ? 'white' : 'black'}
+										width={25}
+										height={25}
+										className={'rotate-90'}
+									/>
 								</Button>
 							</DrawerClose>
 							<Link
@@ -52,10 +53,11 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 								Security
 							</Link>
 							<ArrowBracket
-									color={theme === 'dark' ? 'white' : 'black'}
-									width={25}
-									className={'-rotate-90'}
-								/>
+								color={theme === 'dark' ? 'white' : 'black'}
+								width={25}
+								height={25}
+								className={'-rotate-90'}
+							/>
 						</span>{' '}
 						Close account
 					</DrawerTitle>
@@ -74,13 +76,13 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 							</span>
 							<span className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
 								<li>
-									• Your account Username@gmail.com will be frozen
-									temporarily. To unfreeze it, start by logging in again.{' '}
+									• Your account Username@gmail.com will be frozen temporarily.
+									To unfreeze it, start by logging in again.{' '}
 								</li>
 
 								<li>
-									• Your account Username@gmail.com will be frozen
-									temporarily. To unfreeze it, start by logging in again.{' '}
+									• Your account Username@gmail.com will be frozen temporarily.
+									To unfreeze it, start by logging in again.{' '}
 								</li>
 
 								<li>

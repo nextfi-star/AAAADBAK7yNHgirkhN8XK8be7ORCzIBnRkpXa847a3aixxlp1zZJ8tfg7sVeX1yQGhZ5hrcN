@@ -56,6 +56,7 @@ export const Verify_documents: NextPage<Props> = ({
 					<ArrowBracket
 						color={theme === 'dark' ? 'white' : 'black'}
 						width={25}
+						height={25}
 						className={'rotate-90'}
 					/>
 					Step Back

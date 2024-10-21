@@ -45,6 +45,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 											<ArrowBracket
 												color={theme === 'dark' ? 'white' : 'black'}
 												width={25}
+												height={25}
 												className={'rotate-90'}
 											/>
 										</Button>
@@ -58,6 +59,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 									<ArrowBracket
 										color={theme === 'dark' ? 'white' : 'black'}
 										width={25}
+										height={25}
 										className={'-rotate-90'}
 									/>
 								</span>{' '}

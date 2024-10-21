@@ -45,7 +45,7 @@ export const Platform_mode = () => {
 						alt='lock icon'
 						className='lock max-w-[15px]'
 					/>
-					<ArrowBracket color={theme === 'dark' ? 'white' : 'black'} width={18} className={'-rotate-[90deg]'}/>
+					<ArrowBracket color={theme === 'dark' ? 'white' : 'black'} width={18} height={18} className={'-rotate-[90deg]'}/>
 				</button>
 				<button className='lock-btn flex items-center min-h-[30px] max-h-[30px] pr-[5px] text-[14px] text-black dark:text-white pl-[6px]'>
 					<Image
@@ -55,7 +55,7 @@ export const Platform_mode = () => {
 						alt='lock icon'
 						className='lock max-w-[15px]'
 					/>
-					<ArrowBracket color={theme === 'dark' ? 'white' : 'black'} width={18} className={'-rotate-[90deg]'}/>
+					<ArrowBracket color={theme === 'dark' ? 'white' : 'black'} height={18} width={18} className={'-rotate-[90deg]'}/>
 				</button>
 			</div>
 		</>
