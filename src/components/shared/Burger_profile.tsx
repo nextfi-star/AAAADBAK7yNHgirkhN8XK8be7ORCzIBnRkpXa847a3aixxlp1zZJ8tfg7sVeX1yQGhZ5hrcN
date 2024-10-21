@@ -39,7 +39,6 @@ export const Burger_profile: NextPage<Props> = ({
 							<ArrowBracket
 								color={theme === 'dark' ? 'white' : 'black'}
 								width={25}
-								height={25}
 								className={'rotate-90 min-w-[25px] min-h-[25px]'}
 							/>
 						</div>
@@ -51,7 +50,6 @@ export const Burger_profile: NextPage<Props> = ({
 							<ArrowBracket
 								color={theme === 'dark' ? 'white' : 'black'}
 								width={25}
-								height={25}
 								className={'rotate-90 min-w-[25px] min-h-[25px]'}
 							/>
 						</div>

@@ -204,7 +204,6 @@
 .theme-icon {
 	color: var(--icon-color);
 }
-
 body {
 	overflow-y: auto;
 	background: var(--body-color);
@@ -349,9 +348,8 @@ header {
 				color: var(--blue-dark);
 			}
 			@media (min-width: 1830px) {
-				font-size: 25px;
+				font-size: 22px;
 			}
-
 			@media (max-width: 1280px) {
 				font-size: 16px;
 			}
@@ -697,7 +695,7 @@ header {
 			font-size: 20px;
 
 			@media (min-width: 1820px) {
-				font-size: 25px;
+				font-size: 22px;
 			}
 
 			@media (max-width: 1280px) {
@@ -886,7 +884,7 @@ header {
 		right: 0;
 		bottom: 0;
 		overflow-y: auto;
-		background-color: var(--bg-mobile);
+		background: var(--body-color);
 		transform-origin: 0 0;
 		list-style-type: none;
 		transition: 0.3s all ease-in-out;
@@ -2915,7 +2913,7 @@ header {
 		right: 0;
 		bottom: 0;
 		overflow-y: auto;
-		background-color: var(--bg-mobile);
+		background: var(--body-color);
 		transform-origin: 0 0;
 		list-style-type: none;
 		transition: 0.3s all ease-in-out;
@@ -2950,13 +2948,19 @@ header {
 	}
 
 	.profile__nav-navbar-item {
-		font-size: clamp(14px, 1.5vw, 20px);
+		font-size: 18px;
 		line-height: 28px;
 		font-weight: 400;
 		color: var(--text-color);
 		transition: 0.2s ease-in-out;
 		padding: 10px 19px;
 
+		@media (min-width: 1850px) {
+			font-size: 22px;
+		}
+		@media (max-width: 1024px) {
+			font-size: 16px;
+		}
 		@media (max-width: 768px) {
 			margin-bottom: 1.5rem;
 			display: none;
@@ -4375,7 +4379,8 @@ header {
 		gap: 8px;
 
 		img {
-			max-width: 50px;
+			max-width: 70px;
+			min-width: 70px;
 			width: 100%;
 			height: auto;
 			object-fit: contain;
@@ -4390,7 +4395,8 @@ header {
 			max-height: 70px;
 		}
 		img {
-			max-width: 50px;
+			max-width: 70px;
+			min-width: 70px;
 			width: 100%;
 			height: auto;
 			object-fit: contain;
@@ -4956,14 +4962,6 @@ header {
 .svg-hidden svg {
 	display: none;
 }
-.idnex-1,
-.idnex-2,
-.idnex-3,
-.idnex-4 {
-	@media (max-width: 430px) {
-		display: none;
-	}
-}
 .avatar-holder {
 	img {
 		@media (max-width: 430px) {
@@ -4971,8 +4969,8 @@ header {
 		}
 	}
 }
+.lock-btn {
 
-.lock-btn:hover {
 	&:active .lock {
 		animation: bounce 0.5s alternate ease-in-out;
 	}
@@ -4983,7 +4981,6 @@ header {
 		0% {
 			transform: translateY(-2px);
 		}
-
 		100% {
 			transform: translateY(0);
 		}

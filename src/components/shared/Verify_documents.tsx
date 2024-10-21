@@ -56,7 +56,6 @@ export const Verify_documents: NextPage<Props> = ({
 					<ArrowBracket
 						color={theme === 'dark' ? 'white' : 'black'}
 						width={25}
-						height={25}
 						className={'rotate-90'}
 					/>
 					Step Back
@@ -73,10 +72,10 @@ export const Verify_documents: NextPage<Props> = ({
 						To verify your identity and prevent fraud, you need to take a photo
 						of your {items}
 					</p>
-					<div className='min-w-[392px] md:min-w-[536px] border-1 border-solid border-[#888888] rounded-[10px] py-[16px] px-[24px] flex flex-col justify-evenly gap-[16px] mb-0 md:mb-[24px]'>
+					<div className='max-w-[392px] w-full md:max-w-[536px] border-1 border-solid border-[#888888] rounded-[10px] py-[16px] px-[24px] flex flex-col justify-evenly gap-[16px] mb-0 md:mb-[24px]'>
 						<h5 className='text-[20px] text-center'>{items.toUpperCase()}</h5>
 						<div className='flex items-start gap-[20px] md:gap-[40px] pb-[24px]'>
-							<div className='min-h-[70px] min-w-[70px] md:min-h-[100px] md:min-w-[100px] border border-solid border-[#888888] rounded-[5px]'></div>
+							<div className='min-h-[50px] min-w-[50px] md:min-h-[100px] md:min-w-[100px] border border-solid border-[#888888] rounded-[5px]'></div>
 							<div className='flex flex-col w-full gap-[16px]'>
 								<span className='bg-[#888888] min-h-[10px] md:min-h-[20px] rounded-[5px] w-full'></span>
 								<span className='bg-[#888888] min-h-[10px] md:min-h-[20px] rounded-[5px] w-full'></span>
@@ -90,14 +89,14 @@ export const Verify_documents: NextPage<Props> = ({
 								<span className='bg-[#888888] min-h-[10px] md:min-h-[20px] rounded-[5px] w-full'></span>
 								<span className='bg-[#888888] min-h-[10px] md:min-h-[20px] rounded-[5px] w-full'></span>
 							</div>
-							<div className='min-h-[70px] min-w-[60px] md:min-h-[100px] md:min-w-[90px] -mt-[19px] border border-solid border-[#888888] rounded-[5px]'></div>
+							<div className='min-h-[60px] min-w-[50px] md:min-h-[100px] md:min-w-[90px] -mt-[19px] border border-solid border-[#888888] rounded-[5px]'></div>
 						</div>
 					</div>
 					<span className='text-[20px] text-center'>
 						Make sure you capture a clear and complete image.
 					</span>
 					<button
-						className='text-[20px] bg-[#205BC9] rounded-[50px] py-[16px] px-[60px] mb-[40px] text-white'
+						className='text-[16px] sm:text-[20px] bg-[#205BC9] rounded-[50px] py-[5px] sm:py-[16px] px-[60px] mb-[40px] text-white'
 						onClick={() => setChange(!change)}
 					>
 						Start verification
@@ -262,7 +261,7 @@ export const Verify_documents: NextPage<Props> = ({
 						<button
 							className={`text-[20px] ${
 								!photo || !privacy ? 'bg-[#888888]' : 'bg-[#205BC9]'
-							} rounded-[50px] py-[16px] max-w-[248px] w-full mb-[40px] text-white`}
+							} rounded-[50px] py-[10px] sm:py-[16px] max-w-[248px] w-full mb-[40px] text-white`}
 							disabled={!photo || !privacy}
 							onClick={() => setStep(step + 1)}
 						>

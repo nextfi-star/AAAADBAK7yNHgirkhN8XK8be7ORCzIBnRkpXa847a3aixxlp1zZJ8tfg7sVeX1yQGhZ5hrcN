@@ -31,8 +31,8 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='modal-holder mobile-holder min-h-[100dvh] max-h-[70%] '>
-				<DrawerHeader  className='!p-0'>
+			<DrawerContent className='modal-holder mobile-holder min-h-[100dvh]'>
+				<DrawerHeader  className='!p-0 max-h-[95dvh] overflow-y-auto'>
 					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 							<DrawerClose asChild>
@@ -40,7 +40,6 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 									<ArrowBracket
 										color={theme === 'dark' ? 'white' : 'black'}
 										width={25}
-										height={25}
 										className={'rotate-90'}
 									/>
 								</Button>
@@ -54,7 +53,6 @@ export const ChangePhone: NextPage<Props> = ({ propsItem }) => {
 							<ArrowBracket
 									color={theme === 'dark' ? 'white' : 'black'}
 									width={25}
-									height={25}
 									className={'-rotate-90'}
 								/>
 						</span>{' '}

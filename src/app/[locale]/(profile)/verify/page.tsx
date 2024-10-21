@@ -152,7 +152,7 @@ const Page: NextPage = () => {
 								Verify your identity
 							</h1>
 							<article className='flex flex-col items-center'>
-								<p className='text-[14px] sm:text-[18px] leading-[24px] pb-[7px] max-w-[50%] text-center'>
+								<p className='text-[14px] sm:text-[18px] leading-[24px] pb-[7px] max-w-[60%%] text-center'>
 									To comply with regulations, we need to verify your identity.
 									Doing so helps secure your account and allows you to access
 									our services.
@@ -169,7 +169,7 @@ const Page: NextPage = () => {
 							</article>
 
 							<article className='flex flex-col items-center gap-[24px]'>
-								<p className='text-[14px] sm:text-[18px] text-[#BDBDBD] flex items-center text-center gap-[5px] sm:gap-[7px]'>
+								<p className='text-[14px] sm:text-[18px] text-[#BDBDBD] flex items-center text-center gap-[0px] sm:gap-[7px]'>
 									<ProfilePage_guard
 										color={theme === 'dark' ? '#fff' : '#000'}
 									/>
@@ -198,7 +198,7 @@ const Page: NextPage = () => {
 					<>
 						{step === 1 && (
 							<div className='flex flex-col items-center gap-[83px]'>
-								<h1 className='w-full border-transparent pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
+								<h1 className='w-full border-transparent pb-[20px] mb-[20px] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[19px] xl:text-[22px] text-left flex items-center gap-[10px]'>
 									<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 										<Button
 											className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-transparent'
@@ -207,7 +207,6 @@ const Page: NextPage = () => {
 											<ArrowBracket
 												color={theme === 'dark' ? 'white' : 'black'}
 												width={25}
-												height={25}
 												className={'rotate-90'}
 											/>
 										</Button>
@@ -229,7 +228,7 @@ const Page: NextPage = () => {
 													variant='outline'
 													role='combobox'
 													aria-expanded={open}
-													className='w-full justify-between z-[9999] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] 2xl:py-[2.5rem]'
+													className='w-full justify-between z-[98] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] 2xl:py-[2.5rem]'
 												>
 													{value
 														? countries.find(
@@ -290,7 +289,7 @@ const Page: NextPage = () => {
 													variant='outline'
 													role='combobox'
 													aria-expanded={openID}
-													className='w-full justify-between z-[9999] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] 2xl:py-[2.5rem]'
+													className='w-full justify-between z-[98] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] 2xl:py-[2.5rem]'
 												>
 													{valueID
 														? typeID.find(
@@ -377,7 +376,6 @@ const Page: NextPage = () => {
 											<ArrowBracket
 												color={theme === 'dark' ? 'white' : 'black'}
 												width={25}
-												height={25}
 												className={'rotate-90'}
 											/>
 										</Button>

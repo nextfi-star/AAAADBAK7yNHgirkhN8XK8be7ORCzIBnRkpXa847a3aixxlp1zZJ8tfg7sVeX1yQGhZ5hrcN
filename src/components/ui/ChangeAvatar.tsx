@@ -34,19 +34,7 @@ const data = [
 	{
 		img: '/main/avatar_noface.png',
 	},
-	{
-		img: '/main/avatar_noface.png',
-	},
-	{
-		img: '/main/avatar_noface.png',
-	},
-	{
-		img: '/main/avatar_noface.png',
-	},
-	{
-		img: '/main/avatar_noface.png',
-	},
-	
+
 ]
 
 export const ChangeAvatar = () => {
@@ -98,7 +86,7 @@ export const ChangeAvatar = () => {
 								data.map((avatar, index) => (
 									<div
 										key={index}
-										className={`flex py-[5px] avatar-holder`}
+										className={`flex py-[5px] px-[5px] avatar-holder`}
 										onClick={() => handleAvatarSelect(avatar.img)}
 									>
 										<Image

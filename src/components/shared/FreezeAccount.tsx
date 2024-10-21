@@ -42,7 +42,6 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 									<ArrowBracket
 										color={theme === 'dark' ? 'white' : 'black'}
 										width={25}
-										height={25}
 										className={'rotate-90'}
 									/>
 								</Button>
@@ -56,7 +55,6 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 							<ArrowBracket
 								color={theme === 'dark' ? 'white' : 'black'}
 								width={25}
-								height={25}
 								className={'-rotate-90'}
 							/>
 						</span>{' '}
@@ -75,7 +73,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 								/>
 								After freezing your account:
 							</span>
-							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
+							<span className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
 								<li>
 									• Your account Username@gmail.com will be frozen temporarily.
 									To unfreeze it, start by logging in again.{' '}
@@ -98,7 +96,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 									• Ongoing transactions such as perpetuals will not be canceled
 									automatically
 								</li>
-							</ul>
+							</span>
 						</DrawerDescription>
 						<div className='flex w-full max-w-[921px] flex-col items-start gap-[10px] md:gap-[20px] border border-solid border-gray-400 py-[10px] rounded-[4px]'>
 							<h5 className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] border-0 border-b border-solid border-b-gray-400 w-full text-center py-[10px] px-[5px]'>

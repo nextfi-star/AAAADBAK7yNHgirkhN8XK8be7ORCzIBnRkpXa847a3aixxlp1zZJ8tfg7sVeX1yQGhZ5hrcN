@@ -50,7 +50,7 @@ const VerifyAnimation: NextPage = () => {
 								</p>
 								<span
 									onClick={() => setShowStatus(prev => !prev)}
-									className='text-[20px] font-medium max-w-[256px] w-full py-[16px] bg-[#205BC9] rounded-[50px] text-white text-center'
+									className='text-[20px] font-medium max-w-[256px] w-full py-[10px] sm:py-[16px] bg-[#205BC9] rounded-[50px] text-white text-center'
 								>
 									Check Status
 								</span>

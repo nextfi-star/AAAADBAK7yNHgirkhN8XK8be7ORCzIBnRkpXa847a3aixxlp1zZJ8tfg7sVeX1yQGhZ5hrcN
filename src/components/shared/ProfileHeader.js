@@ -60,7 +60,7 @@ export const ProfileHeader = ({ auth = true }) => {
 				<Navigation />
 
 				<div className='header__actions'>
-					<div className='header__buttons flex gap-[20px] items-center'>
+					<div className='header__buttons flex gap-[10px] sm:gap-[20px] items-center'>
 						{!auth ? (
 							<>
 								<Link href='/login' className='header__buttons-login'>
@@ -98,18 +98,18 @@ export const ProfileHeader = ({ auth = true }) => {
 									</button>
 								</div>
 
-								<div className='flex items-center sm:hidden gap-[18px]'>
+								<div className='flex items-center sm:hidden gap-[5px] sm:gap-[18px]'>
 									<a href='#' className='header__icons-item flex items-center'>
 										<Theme_switch width={35} />
 									</a>
 									<button
-										href=''
+									
 										className='header__icons-item flex items-center'
 									>
 										<Locale_Switcher />
 									</button>
 									<button
-										href=''
+									
 										className='header__icons-item flex items-center'
 									>
 										<Chat

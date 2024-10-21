@@ -50,6 +50,7 @@ const data2 = [
 		title: 'Close account',
 		desc: "Once you close your account, it is permanent and can't be restored",
 		btn: <CloseAccount propsItem={'Close account'} />,
+		unic: '3',
 	},
 ]
 const Page: NextPage = () => {
@@ -63,8 +64,8 @@ const Page: NextPage = () => {
 					<h1>Authentication methods</h1>
 					{data &&
 						data.map(item => (
-							<>
-								<article key={item.title} className='security__content__item'>
+							<div key={item.title}>
+								<article className='security__content__item'>
 									<div className='security__content__item__list'>
 										<div className='flex flex-col items-center md:items-start md:flex-row'>
 											<Image
@@ -90,14 +91,14 @@ const Page: NextPage = () => {
 									</div>
 								</article>
 								<span className='block w-full bg-gray-200 min-h-[1px] my-[24px]'></span>
-							</>
+							</div>
 						))}
 				</div>
 				<div className='security__content'>
 					<h1>Authentication methods</h1>
 					{data2 &&
 						data2.map(item => (
-							<article key={item.title} className='security__content__item'>
+							<article key={item.unic} className='security__content__item'>
 								<div className='security__content__item__list'>
 									<div className='flex flex-col md:flex-row items-center md:items-start'>
 										<Image

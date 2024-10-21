@@ -35,8 +35,8 @@ export const ProfileBurger_shortcuts = () => {
 							<Link className='flex flex-col items-center' href={item.href}>
 								<Image
 									src={item.src}
-									width={36}
-									height={36}
+									width={70}
+									height={70}
 									quality={100}
 									priority
 									alt={item.title}

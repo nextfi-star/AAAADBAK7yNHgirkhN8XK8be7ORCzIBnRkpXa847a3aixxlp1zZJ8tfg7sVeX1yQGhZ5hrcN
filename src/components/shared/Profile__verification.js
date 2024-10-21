@@ -4,6 +4,7 @@ import React from "react";
 import { Accept_icon } from "../ui/Accept_icon";
 import { useTranslations } from "next-intl";
 import { useThemeStore } from "../../store";
+import { Link } from '@/i18n/routing'
 
 export const Profile_verification = ({ setVerify }) => {
   const t = useTranslations("profile");
@@ -23,9 +24,9 @@ export const Profile_verification = ({ setVerify }) => {
             <h5 className="profile__verification__info__block_step_text">{t("StepTwo")}</h5>
             <h4 className="profile__verification__info__block_main_text">{t("VerificationPersonality")}</h4>
             <p className="profile__verification__info__block_additional_text">{t("AdditionalTextInVerification")}</p>
-            <button className="profile__verification__info__block_button" onClick={() => setVerify(prev => !prev)}>
+            <Link href={"/verify"} className="profile__verification__info__block_button" onClick={() => setVerify(prev => !prev)}>
               {t("VerificationButton")}
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -40,12 +41,12 @@ export const Profile_verification = ({ setVerify }) => {
           <span className='text-[12px]'>Verify identity</span>
           <span className='text-[12px]'>Success</span>
         </div>
-        <button
+        <Link href={"/verify"}
           className="w-fit text-[14px] font-medium mt-[5px] py-[10px] px-[40px] bg-[#205BC9] rounded-[50px] text-white"
           onClick={() => setVerify(prev => !prev)}
         >
           Verify now
-        </button>
+        </Link>
       </section>
     </>
   );

@@ -39,7 +39,7 @@ export const ProfileBurger_security_accor: NextPage<Props> = ({
 							<AccordionItem key={idx} value={item.value}>
 								<AccordionTrigger className='hover:no-underline'>
 									<p className='flex items-center gap-[5px]'>
-										<Image src={item.icon} width={30} height={30} alt='icon' />
+										<Image src={item.icon} width={40} height={40} alt='icon' />
 										{item.trigger}
 									</p>
 								</AccordionTrigger>
