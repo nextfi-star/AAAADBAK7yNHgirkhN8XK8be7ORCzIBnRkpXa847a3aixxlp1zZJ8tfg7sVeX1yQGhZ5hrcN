@@ -38,7 +38,7 @@ export const Get_started = () => {
 								Simple and quick registration on our platform. In just a few
 								minutes, you"ll gain access to all the features of NextFi.
 							</p>
-							<a href='' className='btn btn-blue'>
+							<a href='#' className='btn btn-blue'>
 								Sign Up
 							</a>
 							<Image

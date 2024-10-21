@@ -32,11 +32,14 @@ export const ProfileBurger_shortcuts = () => {
 				{data &&
 					data.map(item => (
 						<div key={item.title} className='flex flex-col items-center'>
-							<Link className='flex flex-col items-center' href={item.href}>
+							<Link
+								className='flex flex-col items-center gap-[5px]'
+								href={item.href}
+							>
 								<Image
 									src={item.src}
-									width={70}
-									height={70}
+									width={90}
+									height={90}
 									quality={100}
 									priority
 									alt={item.title}

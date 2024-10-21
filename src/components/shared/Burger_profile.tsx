@@ -86,17 +86,7 @@ export const Burger_profile: NextPage<Props> = ({
 						</footer>
 					)}
 				</div>
-				{showSection && (
-					<Image
-						src={'/header_icons/profile_burger/wave_dark.svg'}
-						width={475}
-						height={206}
-						quality={100}
-						priority
-						alt={'profile'}
-						className='profile__burger-bg'
-					/>
-				)}
+				
 			</div>
 		</div>
 	)
