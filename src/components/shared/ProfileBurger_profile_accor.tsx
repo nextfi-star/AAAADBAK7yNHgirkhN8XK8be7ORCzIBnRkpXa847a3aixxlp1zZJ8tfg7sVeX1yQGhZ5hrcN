@@ -19,15 +19,15 @@ interface AccordionSectionType {
 	items: AccordionItemType[]
 }
 interface Props {
-	profileData: AccordionSectionType[]
+	data: AccordionSectionType[]
 }
 
 export const ProfileBurger_profile_accor: NextPage<Props> = ({
-	profileData,
+	data,
 }) => {
 	return (
-		<div className='flex flex-col gap-[20px] pb-[3.5rem]'>
-			{profileData.map((section, index) => (
+		<div className='flex flex-col gap-[20px]'>
+			{data.map((section, index) => (
 				<div key={index}>
 					<Accordion className='' type='single' collapsible>
 						<h5 className='sec__title flex items-center gap-[5px]'>
@@ -40,7 +40,7 @@ export const ProfileBurger_profile_accor: NextPage<Props> = ({
 								<AccordionTrigger className='hover:no-underline'>
 									{item.trigger}
 								</AccordionTrigger>
-								<AccordionContent className='flex justify-between'>
+								<AccordionContent className='flex justify-between items-center'>
 									{item.content}
 								</AccordionContent>
 							</AccordionItem>

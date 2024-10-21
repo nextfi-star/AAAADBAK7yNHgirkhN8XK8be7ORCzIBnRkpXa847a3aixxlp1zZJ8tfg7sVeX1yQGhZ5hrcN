@@ -17,35 +17,24 @@ import { useThemeStore } from '@/store'
 
 const data = [
 	{
-		img: '/main/avatar.png',
+		img: '/main/avatar_noface.png',
 	},
 	{
-		img: '/main/avatar.png',
+		img: '/main/avatar_noface.png',
 	},
 	{
-		img: '/main/avatar.png',
+		img: '/main/avatar_noface.png',
 	},
 	{
-		img: '/main/avatar.png',
+		img: '/main/avatar_noface.png',
 	},
 	{
-		img: '/main/avatar.png',
+		img: '/main/avatar_noface.png',
 	},
 	{
-		img: '/main/avatar.png',
+		img: '/main/avatar_noface.png',
 	},
-	{
-		img: '/main/avatar.png',
-	},
-	{
-		img: '/main/avatar.png',
-	},
-	{
-		img: '/main/avatar.png',
-	},
-	{
-		img: '/main/avatar.png',
-	},
+
 ]
 
 export const ChangeAvatar = () => {
@@ -66,12 +55,12 @@ export const ChangeAvatar = () => {
 						width={53}
 						height={53}
 						alt={'avatar'}
-						className='absolute bottom-0 -right-[10px] object-contain min-h-[20px] min-w-[20px] cursor-pointer'
+						className={`absolute bottom-0 -right-[10px] object-contain min-h-[20px] min-w-[20px] cursor-pointer`}
 					/>
 				</div>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] px-[30px]'>
+			<DrawerContent className='z-[90] px-[30px] drawer__without_after modal-holder mobile-holder'>
 				<DrawerHeader>
 					<DrawerTitle>Change profile picture</DrawerTitle>
 					<DrawerDescription className='text-black dark:text-white'>
@@ -80,20 +69,24 @@ export const ChangeAvatar = () => {
 				</DrawerHeader>
 
 				{/* Tabs */}
-				<Tabs value={activeTab} onValueChange={setActiveTab} className='flex flex-col items-center md:items-start'>
-					<TabsList className='mb-[30px]'>
+				<Tabs
+					value={activeTab}
+					onValueChange={setActiveTab}
+					className='flex flex-col items-center md:items-start overflow-y-auto'
+				>
+					<TabsList className='mb-[0px]'>
 						<TabsTrigger value='select-avatar'>Select Avatar</TabsTrigger>
 						<TabsTrigger value='upload-avatar'>Upload Avatar</TabsTrigger>
 					</TabsList>
 
 					{/* Табка для выбора из существующих */}
 					<TabsContent value='select-avatar'>
-						<div className='flex justify-center flex-wrap gap-4 py-[20px] border-0 border-b border-solid border-b-white min-h-[421px] max-h-[321px] overflow-y-auto'>
+						<div className='flex justify-center sm:justify-start flex-wrap border-0 border-b border-solid border-b-white max-h-full max-w-[233px] sm:max-w-[100%]'>
 							{data &&
 								data.map((avatar, index) => (
 									<div
 										key={index}
-										className={`flex`}
+										className={`flex py-[5px] px-[5px] avatar-holder`}
 										onClick={() => handleAvatarSelect(avatar.img)}
 									>
 										<Image
@@ -101,7 +94,7 @@ export const ChangeAvatar = () => {
 											width={116}
 											height={116}
 											alt={'avatar'}
-											className={`object-cover max-w-[116px] max-h-[116px] w-full rounded-[50%] hover:cursor-pointer border border-solid hover:border-[#205BC9]`}
+											className={`object-cover max-w-[116px] max-h-[116px] w-full rounded-[50%] hover:cursor-pointer border border-solid hover:border-[#205BC9] idnex-${index}`}
 										/>
 									</div>
 								))}
@@ -123,7 +116,9 @@ export const ChangeAvatar = () => {
 							>
 								<PlusIcon color={theme === 'dark' ? 'white' : 'black'} />
 							</label>
-							<span className='text-[14px] md:text-[20px]'>Upload a photo or drag and drop</span>
+							<span className='text-[14px] md:text-[20px]'>
+								Upload a photo or drag and drop
+							</span>
 							<span className='text-center text-[14px] md:text-[20px]'>
 								Supports JPG,PNG and GIF. Maximum upload file size 10 MB
 							</span>
@@ -131,7 +126,7 @@ export const ChangeAvatar = () => {
 					</TabsContent>
 				</Tabs>
 
-				<DrawerFooter className='flex flex-row justify-center gap-[42px]'>
+				<DrawerFooter className='flex flex-row justify-center md:justify-start gap-[42px]'>
 					<DrawerClose asChild>
 						<Button
 							variant='outline'
@@ -142,7 +137,7 @@ export const ChangeAvatar = () => {
 					</DrawerClose>
 					<Button
 						onClick={() => console.log('Selected Avatar:', selectedAvatar)}
-						className='bg-[#205BC9] text-white rounded-[50px] px-[35px] border border-solid border-[#205BC9] min-w-[117px] hover:bg-transparent hover:text-[#205BC9] hover:border-white'
+						className='bg-[#205BC9] text-white rounded-[50px] px-[35px] border border-solid border-[#205BC9] min-w-[117px] hover:bg-[#205BC9] hover:text-white hover:opacity-[.8] transition duration-300'
 					>
 						Save
 					</Button>

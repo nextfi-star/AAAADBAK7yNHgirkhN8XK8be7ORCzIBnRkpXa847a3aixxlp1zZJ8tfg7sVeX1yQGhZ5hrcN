@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { useThemeStore } from '../../store'
+import { Link } from '@/i18n/routing'
 
 const data = [
 	{
@@ -9,12 +10,14 @@ const data = [
 		animation_white: '/tapbar/home.json',
 		title: 'Home',
 		speed: '1.5',
+		href: '/over',
 	},
 	{
 		animation_dark: '/tapbar/white/activity.json',
 		animation_white: '/tapbar/activity.json',
 		title: 'Activity',
 		speed: '2.5',
+		href: '/over',
 	},
 	{
 		animation_dark: '/tapbar/Blue_logo.json',
@@ -23,18 +26,21 @@ const data = [
 		class: 'round',
 		class2: 'round2',
 		speed: '1.5',
+		href: '/over',
 	},
 	{
 		animation_dark: '/tapbar/white/Token(1).json',
 		animation_white: '/tapbar/Token copy.json',
 		title: 'Token',
 		speed: '1.5',
+		href: '/over',
 	},
 	{
 		animation_dark: '/tapbar/white/assets.json',
 		animation_white: '/tapbar/assets.json',
 		title: 'Assets',
 		speed: '1.5',
+		href: '/over',
 	},
 ]
 
@@ -101,6 +107,7 @@ export const TapBar = () => {
 											`flex justify-center items-center bg-[#3F7EF3] rounded-full w-16 h-16 shadow-custom-shadow backdrop-blur-custom-blur ${item.class && '-mt-[20px] shadow'} `
 										}
 									>
+										<Link href={"/over"}>
 										<DotLottieReact
 											src={
 												theme === 'dark'
@@ -123,6 +130,7 @@ export const TapBar = () => {
 													'invert(38%) sepia(78%) saturate(542%) hue-rotate(189deg) brightness(94%) contrast(89%)',
 											}}
 										/>
+										</Link>
 									</div>
 								</div>
 

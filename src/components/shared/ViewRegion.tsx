@@ -13,9 +13,10 @@ import { Button } from '../ui/button'
 import { NextPage } from 'next'
 import { RussiaMap } from '../ui/RussiaMap'
 import { useThemeStore } from '@/store'
-import { Location } from '../ui/Location'
 import { useState } from 'react'
 import { Choose_region } from './Choose_region'
+import { Link } from '@/i18n/routing'
+import ArrowBracket from '../ui/ArrowBracket'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -35,25 +36,41 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 						</Button>
 					</DrawerTrigger>
 
-					<DrawerContent className='z-[9999] px-[30px] pb-[2px] bg-white dark:bg-black min-h-[100dvh] max-h-[70%]'>
-						<DrawerHeader className='pt-[3.5rem]'>
-							<div className='w-full border-transparent flex flex-col gap-[20px] mb-[20px]'>
-								<h1 className='text-[14px] md:text-[17px] lg:text-[25px] xl:text-[28px] 2xl:text-[35px] border-b-2 border-0 border-solid border-b-gray-400 pb-[20px] flex gap-[15px]'>
-									<span
-										onClick={() => setIndex(!indexItem)}
-										className='flex items-center gap-[5px] text-[18px] lg:text-[30px]'
+					<DrawerContent className='z-[90] pb-[2px] bg-white dark:bg-black min-h-[100dvh] max-h-[70%] modal-holder mobile-holder'>
+						<DrawerHeader className='pt-[.5rem]'>
+							<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
+								<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
+									<DrawerClose asChild>
+										<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0'>
+											<ArrowBracket
+												color={theme === 'dark' ? 'white' : 'black'}
+												width={25}
+												height={25}
+												className={'rotate-90'}
+											/>
+										</Button>
+									</DrawerClose>
+									<Link
+										className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
+										href='/profile'
 									>
-										<span className='text-[18px] lg:text-[30px]'>{'<'}</span>
-									</span>
-									Identity verification
-								</h1>
-							</div>
+										profile
+									</Link>
+									<ArrowBracket
+										color={theme === 'dark' ? 'white' : 'black'}
+										width={25}
+										height={25}
+										className={'-rotate-90'}
+									/>
+								</span>{' '}
+								Country/Region
+							</DrawerTitle>
 
-							<DrawerDescription className='text-black dark:text-white flex gap-[30px] lg:gap-[40px] flex-col items-center w-full'>
-								<div className='flex flex-col gap-[20px] items-center max-w-[623px]'>
-									<p className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] text-left w-full'>
+							<DrawerDescription className='text-black dark:text-white flex gap-[30px] lg:gap-[40px] flex-col items-center w-full  pb-[6rem] 2xl:pb-0'>
+								<p className='flex flex-col gap-[20px] items-center max-w-[623px] pb-[1rem]'>
+									<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] text-left w-full'>
 										Select country/region of residence
-									</p>
+									</span>
 									<label className='flex flex-col gap-[20px] lg:gap-[30px] w-full'>
 										<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] text-left'>
 											Country/Region of residence
@@ -71,15 +88,15 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 										</span>
 									</p>
 
-									<DrawerClose asChild className='!py-[1rem]'>
+									<DrawerClose asChild>
 										<Button
 											onClick={() => setIndex(!indexItem)}
-											className='w-full lg:max-w-[631px] py-[8px] md:py-[28px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] text-[#fff] hover:bg-[#205BC9]'
+											className='w-full lg:max-w-[631px] py-[20px] md:py-[28px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] text-[#fff] hover:bg-[#205BC9] max-w-[490px]'
 										>
 											Next
 										</Button>
 									</DrawerClose>
-								</div>
+								</p>
 							</DrawerDescription>
 						</DrawerHeader>
 					</DrawerContent>
@@ -92,20 +109,16 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 						</Button>
 					</DrawerTrigger>
 
-					<DrawerContent className='z-[9999] px-[30px] bg-white dark:bg-black max-h-[100dvh] min-h-[100dvh] pt-[2.5rem]'>
-						<DrawerHeader className='flex flex-col gap-[16px] pt-[3.5rem]'>
+					<DrawerContent className='z-[90] px-[30px] bg-white dark:bg-black max-h-[100dvh] min-h-[100dvh] pt-[2.5rem] modal-holder mobile-holder'>
+						<DrawerHeader className='flex flex-col gap-[16px]'>
 							<div className='w-full border-transparent flex flex-col items-center gap-[15px]'>
 								<div className='w-full'>
 									<div className='relative flex justify-center'>
 										<RussiaMap
 											height={'auto'}
-											className='w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[450px] border-2 border-dashed rounded-[20px]'
+											className='w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[400px] border-2 border-dashed rounded-[20px]'
 											width={250}
 											color={theme === 'dark' ? '#fff' : '#000'}
-										/>
-										<Location
-											className='absolute top-[45px] md:top-[35%] right-[40%] md:w-full max-w-[40px] lg:max-w-[45px]'
-											color={theme === 'dark' ? '#205BC9' : '#205BC9'}
 										/>
 									</div>
 								</div>
@@ -126,7 +139,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 						<DrawerFooter className='flex flex-row justify-center'>
 							<Button
 								onClick={() => setIndex(!indexItem)}
-								className='w-full max-w-[531px] lg:max-w-[631px] py-[8px] md:py-[28px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] hover:bg-[#205BC9] text-[#fff]'
+								className='w-full max-w-[400px] lg:max-w-[450px] py-[20px] md:py-[22px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] hover:bg-[#205BC9] text-[#fff]'
 							>
 								Update
 							</Button>

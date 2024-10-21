@@ -18,7 +18,7 @@ export const ProgileBurger_Tabsinfo: NextPage<Props> = () => {
 
 				<ProfileBurger_assets />
 
-				<span className='profile__burger-devider'></span>
+				<span className='profile__burger-devider my-[27px]'></span>
 			</>
 	)
 }

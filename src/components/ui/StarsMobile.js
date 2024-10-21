@@ -57,7 +57,7 @@ const StarsMobile = ({ width = "40", height = "auto" }) => {
       />
       <rect
         id="Card/ ic_equalizer"
-        rx="-0.500000"
+        rx="0.500000"
         width="23.000000"
         height="23.000000"
         transform="translate(0.500000 0.500000)"

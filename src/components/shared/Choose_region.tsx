@@ -65,7 +65,7 @@ export function Choose_region() {
 				<Command>
 					<CommandInput className='text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] w-full min-h-[58px]' placeholder='Search region/country...' />
 					<CommandList>
-						<CommandEmpty className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] p-[.5rem]'>No one was found.</CommandEmpty>
+						<CommandEmpty className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[19px] xl:text-[20px] 2xl:text-[25px] p-[.5rem]'>No one was found.</CommandEmpty>
 						<CommandGroup>
 							{frameworks.map(framework => (
 								<CommandItem

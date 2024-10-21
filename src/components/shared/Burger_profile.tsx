@@ -24,19 +24,38 @@ export const Burger_profile: NextPage<Props> = ({
 	const classChange = clsx('m_header__profile_menu', { active: !show })
 	const [showSection, setShowSection] = useState<boolean>(true)
 	const { theme } = useThemeStore()
-
+	const stepback = () => {
+		setShowSection(!showSection)
+	}
 	return (
 		<div className='profile__wrapper'>
 			<div className={`${listClass} profile__burger`}>
 				<div className='px-[17px] pb-[39px] flex flex-col justify-between h-full relative'>
-					<div className={`${classChange}`} onClick={handleClick}>
-						<ArrowBracket
-							color={theme === 'dark' ? 'white' : 'black'}
-							width={25}
-							height={25}
-							className={'rotate-90'}
-						/>
-					</div>
+					{showSection ? (
+						<div
+							className={`absolute top-[35px] left-[32px]`}
+							onClick={handleClick}
+						>
+							<ArrowBracket
+								color={theme === 'dark' ? 'white' : 'black'}
+								width={25}
+								height={25}
+								className={'rotate-90 min-w-[25px] min-h-[25px]'}
+							/>
+						</div>
+					) : (
+						<div
+							className={`absolute top-[35px] left-[32px]`}
+							onClick={stepback}
+						>
+							<ArrowBracket
+								color={theme === 'dark' ? 'white' : 'black'}
+								width={25}
+								height={25}
+								className={'rotate-90 min-w-[25px] min-h-[25px]'}
+							/>
+						</div>
+					)}
 
 					<div className={`profile__burger-container `}>
 						<ProfileBurger_info
@@ -67,17 +86,7 @@ export const Burger_profile: NextPage<Props> = ({
 						</footer>
 					)}
 				</div>
-				{showSection && (
-					<Image
-						src={'/header_icons/profile_burger/wave_dark.svg'}
-						width={475}
-						height={206}
-						quality={100}
-						priority
-						alt={'profile'}
-						className='profile__burger-bg'
-					/>
-				)}
+				
 			</div>
 		</div>
 	)

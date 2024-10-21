@@ -1,5 +1,6 @@
 import { Metadata, NextPage } from "next";
 import { TapBar, ProfileHeader, Profile_nav } from "../../../components/shared/index";
+import FramerMotion from '@/components/shared/FramerMotion'
 
 export const metadata: Metadata = {
   title: "Profile | Home",
@@ -16,7 +17,7 @@ const FormLayout: NextPage<RootLayoutProps> = ({ children }) => {
       <ProfileHeader />
       <main className="profile__main site-holder">
         <Profile_nav />
-        {children}
+        <FramerMotion>{children}</FramerMotion>
       </main>
       <TapBar />
     </div>

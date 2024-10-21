@@ -15,7 +15,7 @@ export const ProfileBurger_menu_list: NextPage<Props> = ({ showSection }) => {
 	}
 	return (
 		<>
-			<div className='flex justify-between items-center gap-[32px] mt-[30px] overflow-x-auto w-full min-h-[36px] border-0 border-b border-solid border-b-gray-300'>
+			<div className='flex justify-between items-center gap-[32px] overflow-x-auto w-full min-h-[36px] border-0 border-b border-solid border-b-gray-300'>
 				{['Profile', 'Security', 'Verification', 'Authorized Devices'].map(tab => (
 					<span
 						key={tab}

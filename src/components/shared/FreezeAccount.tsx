@@ -14,6 +14,8 @@ import Image from 'next/image'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
+import ArrowBracket from '../ui/ArrowBracket'
+import { Alert } from './Alert'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -31,47 +33,57 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 				</Button>
 			</DrawerTrigger>
 
-			<DrawerContent className='z-[9999] pt-[.5rem] min-h-[100dvh] max-h-[70%]'>
-				<DrawerHeader>
-					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left'>
-						<DrawerClose asChild>
-							<Button className=' text-white bg-transparent hover:text-[#fff] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[25px] lg:px-[50px] lg:py-[25px] hover:bg-transparent'>
-								{'<'}
-							</Button>
-						</DrawerClose>
-						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px]'>
+			<DrawerContent className='pt-[.5rem] min-h-[100dvh] mdoal-holder modal-holder mobile-holder'>
+				<div className='max-h-[99%] overflow-y-auto'>
+					<DrawerTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
+						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
+							<DrawerClose asChild>
+								<Button className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0'>
+									<ArrowBracket
+										color={theme === 'dark' ? 'white' : 'black'}
+										width={25}
+										height={25}
+										className={'rotate-90'}
+									/>
+								</Button>
+							</DrawerClose>
 							<Link
 								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
 								href='/security'
 							>
-								Security center
-							</Link>{' '}
-							{'>'}{' '}
-						</span>
+								Security
+							</Link>
+							<ArrowBracket
+								color={theme === 'dark' ? 'white' : 'black'}
+								width={25}
+								height={25}
+								className={'-rotate-90'}
+							/>
+						</span>{' '}
 						Freeze account
 					</DrawerTitle>
 					<div className='flex flex-col items-center gap-[20px]'>
 						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center gap-[10px] justify-center w-full max-w-[921px]'>
-							<span className='flex flex-col items-center gap-[5px] md:flex-row md:items-center justify-center md:gap-[10px] text-[14px] md:text-[20px] lg:text-[25px] w-full text-center'>
+							<span className='flex flex-col items-center gap-[5px] md:flex-row md:items-center justify-center md:gap-[10px] text-[14px] md:text-[18px] lg:text-[20px] 2xl:text-[25px] w-full text-center'>
 								<Image
 									src={'/header_icons/profile_burger/info_icon.svg'}
 									width={20}
 									height={20}
 									alt='info'
 									quality={100}
-									className='max-w-[20px] md:max-w-[25px] w-full'
+									className='max-w-[20px] md:max-w-[22px] 2xl:max-w-[30px] w-full'
 								/>
 								After freezing your account:
 							</span>
-							<ul className='flex flex-col gap-[25px] items-start text-[14px] md:text-[20px] lg:text-[25px] text-left leading-[30px]'>
+							<span className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
 								<li>
-									• Your account zyabkin.vladislav2001@rambler.ru will be frozen
-									temporarily. To unfreeze it, start by logging in again.{' '}
+									• Your account Username@gmail.com will be frozen temporarily.
+									To unfreeze it, start by logging in again.{' '}
 								</li>
 
 								<li>
-									• Your account zyabkin.vladislav2001@rambler.ru will be frozen
-									temporarily. To unfreeze it, start by logging in again.{' '}
+									• Your account Username@gmail.com will be frozen temporarily.
+									To unfreeze it, start by logging in again.{' '}
 								</li>
 
 								<li>
@@ -86,16 +98,16 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 									• Ongoing transactions such as perpetuals will not be canceled
 									automatically
 								</li>
-							</ul>
+							</span>
 						</DrawerDescription>
 						<div className='flex w-full max-w-[921px] flex-col items-start gap-[10px] md:gap-[20px] border border-solid border-gray-400 py-[10px] rounded-[4px]'>
-							<h5 className='text-[12px] md:text-[18px] lg:text-[20px] border-0 border-b border-solid border-b-gray-400 w-full text-center py-[10px] px-[5px]'>
+							<h5 className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] border-0 border-b border-solid border-b-gray-400 w-full text-center py-[10px] px-[5px]'>
 								Why do you want to freeze your account?
 							</h5>
 							<div className='px-[16px]'>
 								<RadioGroup defaultValue='option-one'>
 									<div className='flex items-center space-x-2'>
-										<label className='flex justify-start text-left items-center gap-[12px] text-[14px] md:text-[16px] lg:text-[20px] xl:text-[27px] w-full'>
+										<label className='flex justify-start text-left items-center gap-[12px] text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] w-full'>
 											<RadioGroupItem
 												value='option-one'
 												id='option-one'
@@ -106,7 +118,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 										</label>
 									</div>
 									<div className='flex items-center space-x-2'>
-										<label className='flex justify-start text-left items-center gap-[12px] text-[14px] md:text-[16px] lg:text-[20px] xl:text-[27px] w-full'>
+										<label className='flex justify-start text-left items-center gap-[12px] text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] w-full'>
 											<RadioGroupItem
 												value='option-two'
 												id='option-two'
@@ -116,7 +128,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 										</label>
 									</div>
 									<div className='flex items-center space-x-2'>
-										<label className='flex justify-start text-left items-center gap-[12px] text-[14px] md:text-[16px] lg:text-[20px] xl:text-[27px] w-full'>
+										<label className='flex justify-start text-left items-center gap-[12px] text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] w-full'>
 											<RadioGroupItem
 												value='option-three'
 												id='option-three'
@@ -126,7 +138,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 										</label>
 									</div>
 									<div className='flex items-center space-x-2'>
-										<label className='flex justify-start text-left items-center gap-[12px] text-[14px] md:text-[16px] lg:text-[20px] xl:text-[27px] w-full'>
+										<label className='flex justify-start text-left items-center gap-[12px] text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] w-full'>
 											<RadioGroupItem
 												value='option-four'
 												id='option-four'
@@ -161,24 +173,24 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 										/>
 									</svg>
 								</span>
-								<p className='text-[14px] md:text-[16px] lg:text-[22px] text-left'>
+								<p className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] text-left'>
 									To protect your account, you will not be able to withdraw
 									funds within 24 hours after resetting your settings or
 									changing your account password.
 								</p>
 							</label>
 						</div>
+						<DrawerFooter className='flex flex-row justify-center gap-[40px] pb-[3rem]'>
+							<Alert
+								title={'Are you absolutely sure?'}
+								content={
+									'This action cannot be undone. Your account will be freezed.'
+								}
+								titleTriger={'Confirm'}
+							/>
+						</DrawerFooter>
 					</div>
-				</DrawerHeader>
-
-				<DrawerFooter className='flex flex-row justify-center gap-[40px]'>
-					<DrawerClose asChild>
-						<Button className='bg-[#515151] text-white rounded-[50px] px-[35px] min-w-[117px] hover:bg-[#515151] hover:text-[#fff] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[32px] lg:px-[50px] lg:py-[30px]'>
-							Confirm
-						</Button>
-					</DrawerClose>
-				</DrawerFooter>
-
+				</div>
 			</DrawerContent>
 		</Drawer>
 	)

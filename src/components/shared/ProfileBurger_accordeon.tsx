@@ -8,6 +8,9 @@ import { ChangeEmail } from './ChangeEmail'
 import { ChangePhone } from './ChangePhone'
 import { FreezeAccount } from './FreezeAccount'
 import { Change_logpass } from './Change_logpass'
+import { Change_logpas_alert } from './Change_logpas_alert'
+import { CloseAccount } from './CloseAccount'
+import { ProfileBurger_devices__accor } from './ProfileBurger_devices__accor'
 
 interface Props {
 	showSection: boolean
@@ -24,6 +27,7 @@ const profileData = [
 				content: (
 					<>
 						<span>zya***@rambler.ru</span>
+						{/* <Change_logpas_alert propsItem={'Change nickname'} /> */}
 						<ChangeNick propsItem={'Change nickname'} />
 					</>
 				),
@@ -45,7 +49,7 @@ const profileData = [
 				content: (
 					<>
 						<span>Identity</span>
-						<ViewRegion propsItem={'Change'} />
+						<ChangeRegion propsItem={'Change'} />
 					</>
 				),
 			},
@@ -115,7 +119,12 @@ const securityData = [
 				icon: '/main/profile_security/phone.svg',
 				value: 'item-2',
 				trigger: 'Phone authentication',
-				content: 'Phone authentication content',
+				content: (
+					<>
+						<span>Change phone</span>
+						<ChangePhone propsItem={'Change'} />
+					</>
+				),
 			},
 			{
 				icon: '/main/profile_security/email.svg',
@@ -162,7 +171,7 @@ const securityData = [
 				content: (
 					<>
 						<span>Close account</span>
-						<FreezeAccount propsItem={'Close'} />
+						<CloseAccount propsItem={'Close'} />
 					</>
 				),
 			},
@@ -175,44 +184,23 @@ const authData = [
 		items: [
 			{
 				value: 'item-1',
-				trigger: 'Authenticator app',
-				icon: '/main/profile_security/auth_app.svg',
+				trigger: 'Device',
+				icon: '/header_icons/profile_burger/device_phone.svg',
 				content: (
 					<>
-						<span>
-							Use authentication codes when managing assets and other functions
-						</span>
-						<ChangeEmail propsItem={'Change'} />
+						<span className='text-[14px] text-[#BDBDBD]'>Iphone 15</span>
+						<span className='h-[17px] w-[1px] bg-[#BDBDBD]'></span>
+						<span className='text-[14px] text-[#BDBDBD]'>MacBook PRO</span>
+						<span className='h-[17px] w-[1px] bg-[#BDBDBD]'></span>
+						<span className='text-[14px] text-[#BDBDBD]'>Ipad mini 6</span>
 					</>
 				),
 			},
 			{
-				icon: '/main/profile_security/phone.svg',
+				icon: '/header_icons/profile_burger/device_location.svg',
 				value: 'item-2',
-				trigger: 'Phone authentication',
-				content: 'Phone authentication content',
-			},
-			{
-				icon: '/main/profile_security/email.svg',
-				value: 'item-3',
-				trigger: 'Email authentication',
-				content: (
-					<>
-						<span>Change email</span>
-						<ChangeEmail propsItem={'Change'} />
-					</>
-				),
-			},
-			{
-				icon: '/main/profile_security/login_pass.svg',
-				value: 'item-4',
-				trigger: 'Login password',
-				content: (
-					<>
-						<span>Change login/password</span>
-						<ChangeEmail propsItem={'Change'} />
-					</>
-				),
+				trigger: 'Location of autorization',
+				content: 'Location of autorization content',
 			},
 		],
 	},
@@ -237,7 +225,7 @@ const authData = [
 				content: (
 					<>
 						<span>Close account</span>
-						<FreezeAccount propsItem={'Close'} />
+						<CloseAccount propsItem={'Close'} />
 					</>
 				),
 			},
@@ -250,12 +238,14 @@ export const ProfileBurger_accordeon: NextPage<Props> = ({
 }) => {
 	return (
 		<div className={`accor__wrapper ${!showSection ? 'scrollY' : ''}`}>
-			{/* Аккордеон  */}
 			{activeTab === 'Profile' && (
-				<ProfileBurger_profile_accor profileData={profileData} />
+				<ProfileBurger_profile_accor data={profileData} />
 			)}
 			{activeTab === 'Security' && (
-				<ProfileBurger_security_accor securityData={securityData} />
+				<ProfileBurger_security_accor data={securityData} />
+			)}
+			{activeTab === 'Authorized Devices' && (
+				<ProfileBurger_devices__accor />
 			)}
 		</div>
 	)

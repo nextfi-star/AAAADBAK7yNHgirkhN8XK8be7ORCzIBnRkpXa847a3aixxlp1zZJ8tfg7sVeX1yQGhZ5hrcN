@@ -10,16 +10,10 @@ const Page: NextPage = () => {
 	return (
 		<section className='personal'>
 			<div className='personal-container'>
-				<div>
-					<h1 className='text-[32px] text-center md:text-center lg:text-left '>
-						User center
-					</h1>
-				</div>
-
 				<div className='personal-inner flex flex-row justify-between mt-[20px] gap-[40px]'>
 					<div className='relative h-fit w-fit'>
 						<Image
-							src={'/main/avatar.png'}
+							src={'/main/avatar_noface.png'}
 							width={152}
 							height={152}
 							alt={'avatar'}

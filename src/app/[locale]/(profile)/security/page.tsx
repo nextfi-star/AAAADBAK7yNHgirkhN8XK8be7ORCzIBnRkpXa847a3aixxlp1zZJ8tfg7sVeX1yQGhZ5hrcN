@@ -6,6 +6,7 @@ import { Change_logpass } from '@/components/shared/Change_logpass'
 import { FreezeAccount } from '@/components/shared/FreezeAccount'
 import { ChangeEmail } from '@/components/shared/ChangeEmail'
 import { ChangePhone } from '@/components/shared/ChangePhone'
+import { CloseAccount } from '@/components/shared/CloseAccount'
 
 const data = [
 	{
@@ -48,7 +49,8 @@ const data2 = [
 		src: '/main/profile_security/account_close.svg',
 		title: 'Close account',
 		desc: "Once you close your account, it is permanent and can't be restored",
-		btn: <FreezeAccount propsItem={'Close account'} />,
+		btn: <CloseAccount propsItem={'Close account'} />,
+		unic: '3',
 	},
 ]
 const Page: NextPage = () => {
@@ -56,14 +58,14 @@ const Page: NextPage = () => {
 	return (
 		<section className='security'>
 			<div className='security-container'>
-				<h1>Security center</h1>
+				<h1>Security</h1>
 				<span className='block w-full bg-gray-200 min-h-[1px] my-[24px]'></span>
 				<div className='security__content'>
 					<h1>Authentication methods</h1>
 					{data &&
 						data.map(item => (
-							<>
-								<article key={item.title} className='security__content__item'>
+							<div key={item.title}>
+								<article className='security__content__item'>
 									<div className='security__content__item__list'>
 										<div className='flex flex-col items-center md:items-start md:flex-row'>
 											<Image
@@ -89,14 +91,14 @@ const Page: NextPage = () => {
 									</div>
 								</article>
 								<span className='block w-full bg-gray-200 min-h-[1px] my-[24px]'></span>
-							</>
+							</div>
 						))}
 				</div>
 				<div className='security__content'>
 					<h1>Authentication methods</h1>
 					{data2 &&
 						data2.map(item => (
-							<article key={item.title} className='security__content__item'>
+							<article key={item.unic} className='security__content__item'>
 								<div className='security__content__item__list'>
 									<div className='flex flex-col md:flex-row items-center md:items-start'>
 										<Image

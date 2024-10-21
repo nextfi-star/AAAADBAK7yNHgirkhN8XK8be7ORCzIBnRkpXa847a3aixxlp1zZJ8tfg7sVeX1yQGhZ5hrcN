@@ -19,9 +19,10 @@ export const Profile_perosnalinfo: NextPage = () => {
 			</h1>
 			<article className='flex items-center justify-between gap-[5px]'>
 				<span>Nickname</span>
-				<span>user****@main.ru</span>
-
-				<ChangeNick propsItem={'Change'} />
+				<span>username123</span>
+				<div className='min-w-[181px] flex justify-end'>
+					<ChangeNick propsItem={'Change'} />
+				</div>
 			</article>
 
 			<span className='devider w-full h-[1px] bg-slate-100 block my-[24px]' />
@@ -30,9 +31,11 @@ export const Profile_perosnalinfo: NextPage = () => {
 				<span>User ID</span>
 				<span>589511219100</span>
 
-				<Button variant={'outline'} className='bg-transparent'>
-					Copy
-				</Button>
+				<div className='min-w-[181px] flex justify-end'>
+					<Button variant={'outline'} className='bg-transparent'>
+						Copy
+					</Button>
+				</div>
 			</article>
 		</section>
 	)

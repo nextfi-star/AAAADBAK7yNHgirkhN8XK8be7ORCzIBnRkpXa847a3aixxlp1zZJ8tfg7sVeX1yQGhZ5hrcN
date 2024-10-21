@@ -13,6 +13,7 @@ import { Logo_header } from '../ui/Logo_header'
 import { Chat } from '../ui/Chat'
 import { BurgerIcon } from './BurgerIcon'
 import clsx from 'clsx'
+import { Platform_mode } from './Platform_mode'
 
 export const ProfileHeader = ({ auth = true }) => {
 	const t = useTranslations('nav')
@@ -52,12 +53,14 @@ export const ProfileHeader = ({ auth = true }) => {
 				<div className={`${classChange}`} onClick={handleClick}>
 					<BurgerIcon color={theme === 'dark' ? 'white' : 'black'} />
 				</div>
+				<Platform_mode />
+
 				<Burger_profile show={show} handleClick={handleClick} />
 
 				<Navigation />
 
 				<div className='header__actions'>
-					<div className='header__buttons flex gap-[20px] items-center'>
+					<div className='header__buttons flex gap-[10px] sm:gap-[20px] items-center'>
 						{!auth ? (
 							<>
 								<Link href='/login' className='header__buttons-login'>
@@ -69,7 +72,7 @@ export const ProfileHeader = ({ auth = true }) => {
 							</>
 						) : (
 							<>
-								<div className='profile__header__icons hidden sm:flex gap-[20px]'>
+								<div className='profile__header__icons hidden sm:flex gap-[5px]'>
 									<select className='header__buttons-assets .header__content'>
 										<option className='text-black' value=''>
 											Assets
@@ -95,18 +98,18 @@ export const ProfileHeader = ({ auth = true }) => {
 									</button>
 								</div>
 
-								<div className='flex items-center sm:hidden gap-[18px]'>
+								<div className='flex items-center sm:hidden gap-[5px] sm:gap-[18px]'>
 									<a href='#' className='header__icons-item flex items-center'>
 										<Theme_switch width={35} />
 									</a>
 									<button
-										href=''
+									
 										className='header__icons-item flex items-center'
 									>
 										<Locale_Switcher />
 									</button>
 									<button
-										href=''
+									
 										className='header__icons-item flex items-center'
 									>
 										<Chat

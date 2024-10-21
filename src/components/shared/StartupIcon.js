@@ -57,7 +57,7 @@ export const StartupIcon = ({ width }) => {
       />
       <rect
         id="Card/ euro_symbol"
-        rx="-0.500000"
+        rx="0.500000"
         width="23.000000"
         height="23.000000"
         transform="translate(0.500000 0.500000)"

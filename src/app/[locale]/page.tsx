@@ -2,10 +2,10 @@
 import type { NextPage } from 'next';
 import AOS from "aos";
 import "aos/dist/aos.css";
-import Preloader from "../../components/shared/Preloader";
 import { Era, Get_started, How, Intro, Invest, Levels, Faq, Header } from "../../components/shared/index";
 import { useEffect, useState } from "react";
 import { useThemeStore } from "../../store";
+import Preloader from '@/components/shared/Preloader'
 
 const Home: NextPage = () => {
   const { initializeTheme } = useThemeStore();
