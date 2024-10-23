@@ -27,7 +27,7 @@ export const ProfileBurger_info = ({
 				}`}
 			>
 				{!showSection && (
-					<span className='-mt-[41px] mb-[40px] text-[24px] font-bold'>
+					<span className='-mt-[60px] mb-[40px] text-[24px] font-bold'>
 						User Center
 					</span>
 				)}

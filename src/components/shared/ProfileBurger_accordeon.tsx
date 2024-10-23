@@ -1,16 +1,15 @@
 import { NextPage } from 'next'
+import { Alert_email } from './Alert_email'
+import { Alert_logpass } from './Alert_logpass'
+import { Alert_nickname } from './Alert_nickname'
+import { Alert_phone } from './Alert_phone'
+import { ChangeRegion } from './ChangeRegion'
+import { CloseAccount } from './CloseAccount'
+import { FreezeAccount } from './FreezeAccount'
+import { ProfileBurger_devices__accor } from './ProfileBurger_devices__accor'
 import { ProfileBurger_profile_accor } from './ProfileBurger_profile_accor'
 import { ProfileBurger_security_accor } from './ProfileBurger_security_accor'
-import { ChangeNick } from './ChangeNick'
 import { ViewRegion } from './ViewRegion'
-import { ChangeRegion } from './ChangeRegion'
-import { ChangeEmail } from './ChangeEmail'
-import { ChangePhone } from './ChangePhone'
-import { FreezeAccount } from './FreezeAccount'
-import { Change_logpass } from './Change_logpass'
-import { Change_logpas_alert } from './Change_logpas_alert'
-import { CloseAccount } from './CloseAccount'
-import { ProfileBurger_devices__accor } from './ProfileBurger_devices__accor'
 
 interface Props {
 	showSection: boolean
@@ -27,8 +26,7 @@ const profileData = [
 				content: (
 					<>
 						<span>zya***@rambler.ru</span>
-						{/* <Change_logpas_alert propsItem={'Change nickname'} /> */}
-						<ChangeNick propsItem={'Change nickname'} />
+						<Alert_nickname propsItem={'Change'} />
 					</>
 				),
 			},
@@ -75,7 +73,7 @@ const profileData = [
 				content: (
 					<>
 						<span>zya***@rambler.ru</span>
-						<ChangeEmail propsItem={'Change'} />
+						<Alert_email propsItem={'Change'} />
 					</>
 				),
 			},
@@ -85,7 +83,7 @@ const profileData = [
 				content: (
 					<>
 						+7354654654
-						<ChangePhone propsItem={'Change'} />
+						<Alert_phone propsItem={'Change'} />
 					</>
 				),
 			},
@@ -111,7 +109,7 @@ const securityData = [
 						<span>
 							Use authentication codes when managing assets and other functions
 						</span>
-						<ChangeEmail propsItem={'Change'} />
+						<Alert_email propsItem={'Change'} />
 					</>
 				),
 			},
@@ -122,7 +120,7 @@ const securityData = [
 				content: (
 					<>
 						<span>Change phone</span>
-						<ChangePhone propsItem={'Change'} />
+						<Alert_nickname propsItem={'Change'} />
 					</>
 				),
 			},
@@ -133,7 +131,7 @@ const securityData = [
 				content: (
 					<>
 						<span>Change email</span>
-						<ChangeEmail propsItem={'Change'} />
+						<Alert_email propsItem={'Change'} />
 					</>
 				),
 			},
@@ -144,7 +142,7 @@ const securityData = [
 				content: (
 					<>
 						<span>Change login/password</span>
-						<Change_logpass propsItem={'Change'} />
+						<Alert_logpass propsItem={'Change'} />
 					</>
 				),
 			},
@@ -244,9 +242,7 @@ export const ProfileBurger_accordeon: NextPage<Props> = ({
 			{activeTab === 'Security' && (
 				<ProfileBurger_security_accor data={securityData} />
 			)}
-			{activeTab === 'Authorized Devices' && (
-				<ProfileBurger_devices__accor />
-			)}
+			{activeTab === 'Authorized Devices' && <ProfileBurger_devices__accor />}
 		</div>
 	)
 }

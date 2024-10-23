@@ -1,39 +1,39 @@
 'use client'
+import { Alert_email } from '@/components/shared/Alert_email'
+import { Alert_logpass } from '@/components/shared/Alert_logpass'
+import { Alert_phone } from '@/components/shared/Alert_phone'
+import { CloseAccount } from '@/components/shared/CloseAccount'
+import { FreezeAccount } from '@/components/shared/FreezeAccount'
+import { NextPage } from 'next'
 import Image from 'next/image'
 import { useThemeStore } from '../../../../store'
-import { NextPage } from 'next'
-import { Change_logpass } from '@/components/shared/Change_logpass'
-import { FreezeAccount } from '@/components/shared/FreezeAccount'
-import { ChangeEmail } from '@/components/shared/ChangeEmail'
-import { ChangePhone } from '@/components/shared/ChangePhone'
-import { CloseAccount } from '@/components/shared/CloseAccount'
 
 const data = [
 	{
 		src: '/main/profile_security/auth_app.svg',
 		title: 'Authenticator app',
 		desc: 'Use authentication codes when managing assets and other functions',
-		btn: <Change_logpass propsItem={'Change authenticator app'} />,
+		btn: <Alert_logpass propsItem={'Change authenticator app'} />,
 	},
 	{
 		src: '/main/profile_security/phone.svg',
 		title: 'Phone authentication',
 		desc: 'Get authentication codes via SMS, WhatsApp, or calls when managing assets and other functions',
-		btn: <ChangePhone propsItem={'Change phone number'} />,
+		btn: <Alert_phone propsItem={'Change phone number'} />,
 		contain: '****140',
 	},
 	{
 		src: '/main/profile_security/email.svg',
 		title: 'Email authentication',
 		desc: 'Get authentication codes via email for login and other functions',
-		btn: <ChangeEmail propsItem={'Change email'} />,
+		btn: <Alert_email propsItem={'Change email'} />,
 		contain: 'zya***@rambler.ru',
 	},
 	{
 		src: '/main/profile_security/login_pass.svg',
 		title: 'Login password',
 		desc: 'Use this password for account login',
-		btn: <Change_logpass propsItem={'Change password'} />,
+		btn: <Alert_logpass propsItem={'Change password'} />,
 		contain: '********',
 	},
 ]
@@ -117,9 +117,7 @@ const Page: NextPage = () => {
 											</span>
 										</div>
 									</div>
-									<div className='flex gap-[12px] items-center'>
-										{item.btn}
-									</div>
+									<div className='flex gap-[12px] items-center'>{item.btn}</div>
 								</div>
 								{item.unic && (
 									<span className='block w-full bg-gray-200 min-h-[1px] my-[24px]'></span>

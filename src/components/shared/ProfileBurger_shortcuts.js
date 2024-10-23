@@ -6,7 +6,7 @@ const data = [
 	{
 		src: '/header_icons/profile_burger/support.svg',
 		title: 'Support',
-		href: '/verify',
+		href: '/over',
 	},
 	{
 		src: '/header_icons/profile_burger/security.svg',

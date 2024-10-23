@@ -5,6 +5,7 @@ import {
 	DrawerHeader,
 	DrawerDescription,
 	DrawerFooter,
+	DrawerTitle,
 	DrawerClose,
 } from '@/components/ui/drawer'
 import { Button } from '../ui/button'
@@ -31,11 +32,11 @@ export const ChangeRegion: NextPage<Props> = ({ propsItem }) => {
 
 			<DrawerContent className='z-[90] px-[30px] bg-white dark:bg-black max-h-[100dvh] min-h-[100dvh] pt-[2.5rem] modal-holder mobile-holder'>
 				<DrawerHeader className='flex flex-col gap-[16px]'>
+					<DrawerTitle></DrawerTitle>
 					<div className='w-full border-transparent flex flex-col items-center gap-[15px]'>
 						<div className='w-full'>
 							<div className='relative flex justify-center'>
 								<RussiaMap
-									height={'auto'}
 									className='w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[400px] border-2 border-dashed rounded-[20px]'
 									width={250}
 									color={theme === 'dark' ? '#fff' : '#000'}
@@ -57,12 +58,14 @@ export const ChangeRegion: NextPage<Props> = ({ propsItem }) => {
 				</DrawerHeader>
 
 				<DrawerFooter className='flex flex-row justify-center'>
-					<Button
-						onClick={() => setIndex(!indexItem)}
-						className='w-full max-w-[400px] lg:max-w-[450px] py-[20px] md:py-[22px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] hover:bg-[#205BC9] text-[#fff]'
-					>
-						Update
-					</Button>
+					<DrawerClose asChild>
+						<Button
+							onClick={() => setIndex(!indexItem)}
+							className='w-full max-w-[400px] lg:max-w-[450px] py-[20px] md:py-[22px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] hover:bg-[#205BC9] text-[#fff]'
+						>
+							Update
+						</Button>
+					</DrawerClose>
 				</DrawerFooter>
 			</DrawerContent>
 		</Drawer>

@@ -1,10 +1,11 @@
 'use client'
-import Image from 'next/image'
-import { NextPage } from 'next'
-import { ChangeAvatar } from '@/components/ui/ChangeAvatar'
-import { Profile_perosnalinfo } from '@/components/shared/Profile_perosnalinfo'
+import { Alert_nickname } from '@/components/shared/Alert_nickname'
 import { Profile_accountdetails } from '@/components/shared/Profile_accountdetails'
+import { Profile_perosnalinfo } from '@/components/shared/Profile_perosnalinfo'
 import { Profile_personalverif } from '@/components/shared/Profile_personalverif'
+import { ChangeAvatar } from '@/components/ui/ChangeAvatar'
+import { NextPage } from 'next'
+import Image from 'next/image'
 
 const Page: NextPage = () => {
 	return (
@@ -18,15 +19,14 @@ const Page: NextPage = () => {
 							height={152}
 							alt={'avatar'}
 							className='rounded-[50%] object-contain max-w-[152px] max-h-[152px]'
+							priority
 						/>
 						<ChangeAvatar />
 					</div>
 
 					<div className='flex flex-col w-full gap-[68px]'>
 						<Profile_perosnalinfo />
-
 						<Profile_personalverif />
-
 						<Profile_accountdetails />
 					</div>
 				</div>

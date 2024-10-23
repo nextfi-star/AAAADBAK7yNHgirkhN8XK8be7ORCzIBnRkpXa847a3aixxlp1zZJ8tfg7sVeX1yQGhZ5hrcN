@@ -4,7 +4,7 @@ import React from 'react'
 interface Props {
 	color: string
 	width: number
-	height: number | string
+	height?: number | string
 	className?: string
 }
 
@@ -13,7 +13,7 @@ export const RussiaMap: NextPage<Props> = ({ color, width, height, className }) 
 		<svg
 			className={className}
 			width={width}
-			height={height}
+			height='200'
 			viewBox='0 0 487.008 286.914'
 			fill={color}
 			xmlns='http://www.w3.org/2000/svg'

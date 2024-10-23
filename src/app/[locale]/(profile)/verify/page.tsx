@@ -1,12 +1,9 @@
 'use client'
+import { FAQ_howVerify } from '@/components/shared/FAQ_howVerify'
+import VerifyAnimation from '@/components/shared/VerifyAnimation'
+import { Verify_documents } from '@/components/shared/Verify_documents'
 import ArrowBracket from '@/components/ui/ArrowBracket'
 import { ProfilePage_guard } from '@/components/ui/ProfilePage_guard'
-import { useThemeStore } from '@/store'
-import { NextPage } from 'next'
-import Image from 'next/image'
-import { useState } from 'react'
-import { Check, ChevronsUpDown } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import {
 	Command,
@@ -21,9 +18,12 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover'
-import { Verify_documents } from '@/components/shared/Verify_documents'
-import VerifyAnimation from '@/components/shared/VerifyAnimation'
-import { FAQ_howVerify } from '@/components/shared/FAQ_howVerify'
+import { cn } from '@/lib/utils'
+import { useThemeStore } from '@/store'
+import { Check, ChevronsUpDown } from 'lucide-react'
+import { NextPage } from 'next'
+import Image from 'next/image'
+import { useState } from 'react'
 
 const countries = [
 	{
@@ -104,7 +104,11 @@ const Page: NextPage = () => {
 	// }
 
 	return (
-		<section className={`verify -mt-[8rem] sm:-mt-0 pb-[2rem] sm:pb-[0] ${showFaq ? 'fixed' : ''}`}>
+		<section
+			className={`verify -mt-[8rem] sm:-mt-0 pb-[2rem] sm:pb-[0] ${
+				showFaq ? 'fixed' : ''
+			}`}
+		>
 			<div className='site-holder !px-[0]'>
 				{!change ? (
 					<div className='flex flex-col items-center pt-[86px] gap-[83px]'>
@@ -146,7 +150,6 @@ const Page: NextPage = () => {
 								className='h-auto w-auto absolute -right-[74px] -top-[64px] sm:-right-[151px] sm:-top-[114px]'
 							/>
 						</div>
-
 						<div className='w-full flex flex-col gap-[25px] items-center'>
 							<h1 className='text-[25px] sm:text-[32px] font-medium leading-[35px]'>
 								Verify your identity
@@ -167,7 +170,6 @@ const Page: NextPage = () => {
 									</ul>
 								</div>
 							</article>
-
 							<article className='flex flex-col items-center gap-[24px]'>
 								<p className='text-[14px] sm:text-[18px] text-[#BDBDBD] flex items-center text-center gap-[0px] sm:gap-[7px]'>
 									<ProfilePage_guard
@@ -187,7 +189,10 @@ const Page: NextPage = () => {
 										<FAQ_howVerify showFaq={showFaq} setShowFaq={setShowFaq} />
 									</>
 								) : (
-									<span className='text-[16px] text-[#205BC9] leading-[24px] cursor-pointer' onClick={() => setShowFaq(prev => !prev)}>
+									<span
+										className='text-[16px] text-[#205BC9] leading-[24px] cursor-pointer'
+										onClick={() => setShowFaq(prev => !prev)}
+									>
 										How do I verify an individual account?
 									</span>
 								)}
@@ -229,7 +234,7 @@ const Page: NextPage = () => {
 													variant='outline'
 													role='combobox'
 													aria-expanded={open}
-													className='w-full justify-between z-[98] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] 2xl:py-[2.5rem]'
+													className='w-full justify-between z-[97] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] 2xl:py-[2.5rem]'
 												>
 													{value
 														? countries.find(
@@ -262,7 +267,7 @@ const Page: NextPage = () => {
 																		)
 																		setOpen(false)
 																	}}
-																	className='2xl:w-[724px]'
+																	className='w-[370px] sm:w-[560px] md:w-[700px]'
 																>
 																	<Check
 																		className={cn(
@@ -290,7 +295,7 @@ const Page: NextPage = () => {
 													variant='outline'
 													role='combobox'
 													aria-expanded={openID}
-													className='w-full justify-between z-[98] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] 2xl:py-[2.5rem]'
+													className='w-full justify-between z-[97] border border-solid border-gray-400 text-[16px] sm:text-[18px] md:text-[19px] xl:text-[20px] 2xl:text-[25px] py-[1rem] lg:py-[1.3rem] 2xl:py-[2.5rem]'
 												>
 													{valueID
 														? typeID.find(
@@ -321,7 +326,7 @@ const Page: NextPage = () => {
 																		)
 																		setOpenID(false)
 																	}}
-																	className='2xl:w-[724px]'
+																		className='w-[370px] sm:w-[560px] md:w-[700px]'
 																>
 																	<Check
 																		className={cn(

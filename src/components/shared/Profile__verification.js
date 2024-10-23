@@ -24,7 +24,7 @@ export const Profile_verification = ({ setVerify }) => {
             <h5 className="profile__verification__info__block_step_text">{t("StepTwo")}</h5>
             <h4 className="profile__verification__info__block_main_text">{t("VerificationPersonality")}</h4>
             <p className="profile__verification__info__block_additional_text">{t("AdditionalTextInVerification")}</p>
-            <Link href={"/verify"} className="profile__verification__info__block_button" onClick={() => setVerify(prev => !prev)}>
+            <Link href={"/verify"} className="profile__verification__info__block_button flex justify-center" onClick={() => setVerify(prev => !prev)}>
               {t("VerificationButton")}
             </Link>
           </div>

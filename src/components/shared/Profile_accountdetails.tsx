@@ -1,10 +1,9 @@
-import React from 'react'
-import { Button } from '../ui/button'
-import Image from 'next/image'
-import { NextPage } from 'next'
 import { useThemeStore } from '@/store'
-import { ChangeEmail } from './ChangeEmail'
-import { ChangePhone } from './ChangePhone'
+import { NextPage } from 'next'
+import Image from 'next/image'
+import { Button } from '../ui/button'
+import { Alert_email } from './Alert_email'
+import { Alert_phone } from './Alert_phone'
 
 export const Profile_accountdetails: NextPage = () => {
 	const { theme } = useThemeStore()
@@ -23,9 +22,9 @@ export const Profile_accountdetails: NextPage = () => {
 			<article className='flex items-center justify-between gap-[5px]'>
 				<span>Email</span>
 				<span>user****@main.ru</span>
-				
+
 				<div className='min-w-[181px] flex justify-end'>
-					<ChangeEmail propsItem={'Change'} />
+					<Alert_email propsItem={'Change'} />
 				</div>
 			</article>
 
@@ -36,7 +35,7 @@ export const Profile_accountdetails: NextPage = () => {
 				<span>****140</span>
 
 				<div className='min-w-[181px] flex justify-end'>
-					<ChangePhone propsItem={'Change'} />
+					<Alert_phone propsItem={'Change'} />
 				</div>
 			</article>
 

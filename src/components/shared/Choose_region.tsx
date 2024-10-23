@@ -75,6 +75,7 @@ export function Choose_region() {
 										setValue(currentValue === value ? '' : currentValue)
 										setOpen(false)
 									}}
+									className='w-[320px] sm:w-[560px] md:w-[700px]'
 								>
 									<Check
 										className={cn(

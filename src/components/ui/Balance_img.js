@@ -20,7 +20,7 @@ export const Balance_img = () => {
 						quality={100}
 					/>
 				</div>
-				<a href='' className='btn btn-blue btn-none'>
+				<a href='#' className='btn btn-blue btn-none'>
 					Top up your balance
 				</a>
 			</div>
@@ -39,7 +39,7 @@ export const Balance_img = () => {
 						quality={100}
 					/>
 				</div>
-				<a href='' className='btn btn-blue btn-none'>
+				<a href='#' className='btn btn-blue btn-none'>
 					Withdraw money
 				</a>
 			</div>

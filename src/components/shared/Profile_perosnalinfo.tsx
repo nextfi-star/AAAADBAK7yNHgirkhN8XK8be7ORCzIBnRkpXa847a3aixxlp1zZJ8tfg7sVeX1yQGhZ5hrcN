@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button } from '../ui/button'
-import { ChangeNick } from './ChangeNick'
 import Image from 'next/image'
 import { NextPage } from 'next'
+import { Alert_nickname } from './Alert_nickname'
 
 export const Profile_perosnalinfo: NextPage = () => {
 	return (
@@ -21,7 +21,7 @@ export const Profile_perosnalinfo: NextPage = () => {
 				<span>Nickname</span>
 				<span>username123</span>
 				<div className='min-w-[181px] flex justify-end'>
-					<ChangeNick propsItem={'Change'} />
+					<Alert_nickname propsItem={'Change'} />
 				</div>
 			</article>
 

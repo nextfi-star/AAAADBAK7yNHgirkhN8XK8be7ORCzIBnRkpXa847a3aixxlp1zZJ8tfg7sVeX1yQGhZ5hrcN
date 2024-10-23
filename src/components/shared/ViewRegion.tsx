@@ -28,10 +28,13 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 
 	return (
 		<>
-			{!indexItem ? (
+			{indexItem ? (
 				<Drawer>
 					<DrawerTrigger asChild>
-						<Button className='bg-transparent hover:bg-transparent text-[#205bc9] dark:text-white border border-solid rounded-[50px] border-gray-400'>
+						<Button
+							variant='outline'
+							className='bg-transparent border border-solid border-[#0c0c0c] dark:border-white !rounded-[0px]'
+						>
 							{propsItem}
 						</Button>
 					</DrawerTrigger>
@@ -52,9 +55,9 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 									</DrawerClose>
 									<Link
 										className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
-										href='/profile'
+										href='/verify'
 									>
-										profile
+										Verify
 									</Link>
 									<ArrowBracket
 										color={theme === 'dark' ? 'white' : 'black'}
@@ -62,12 +65,12 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 										height={25}
 										className={'-rotate-90'}
 									/>
-								</span>{' '}
+								</span>
 								Country/Region
 							</DrawerTitle>
 
-							<DrawerDescription className='text-black dark:text-white flex gap-[30px] lg:gap-[40px] flex-col items-center w-full  pb-[6rem] 2xl:pb-0'>
-								<p className='flex flex-col gap-[20px] items-center max-w-[623px] pb-[1rem]'>
+							<DrawerDescription className='text-black dark:text-white flex gap-[30px] lg:gap-[40px] flex-col items-center w-full b-[6rem] 2xl:pb-0'>
+								<span className='flex flex-col gap-[20px] items-center max-w-[623px] pb-[1rem]'>
 									<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] text-left w-full'>
 										Select country/region of residence
 									</span>
@@ -77,7 +80,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 										</span>
 										<Choose_region />
 									</label>
-									<p className='flex flex-col items-start gap-[18px] lg:gap-[30px] font-medium bg-[#F5F5F5] dark:bg-[#181818] pt-[15px] px-[20px] pb-[15px] rounded-[6px] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px]'>
+									<span className='flex flex-col items-start gap-[18px] lg:gap-[30px] font-medium bg-[#F5F5F5] dark:bg-[#181818] pt-[15px] px-[20px] pb-[15px] rounded-[6px] text-[14px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px]'>
 										Reminder
 										<span className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] font-normal leading-8 text-left text-[#3A3939] dark:text-[#EEEEEE]'>
 											Once your country/region is changed, some of your tag/memo
@@ -86,7 +89,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 											trading your assets before proceeding as withdrawals may
 											incur high fees.
 										</span>
-									</p>
+									</span>
 
 									<DrawerClose asChild>
 										<Button
@@ -96,7 +99,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 											Next
 										</Button>
 									</DrawerClose>
-								</p>
+								</span>
 							</DrawerDescription>
 						</DrawerHeader>
 					</DrawerContent>
@@ -111,11 +114,11 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
 
 					<DrawerContent className='z-[90] px-[30px] bg-white dark:bg-black max-h-[100dvh] min-h-[100dvh] pt-[2.5rem] modal-holder mobile-holder'>
 						<DrawerHeader className='flex flex-col gap-[16px]'>
+							<DrawerTitle></DrawerTitle>
 							<div className='w-full border-transparent flex flex-col items-center gap-[15px]'>
 								<div className='w-full'>
 									<div className='relative flex justify-center'>
 										<RussiaMap
-											height={'auto'}
 											className='w-full max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[400px] border-2 border-dashed rounded-[20px]'
 											width={250}
 											color={theme === 'dark' ? '#fff' : '#000'}

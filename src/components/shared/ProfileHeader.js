@@ -53,6 +53,7 @@ export const ProfileHeader = ({ auth = true }) => {
 				<div className={`${classChange}`} onClick={handleClick}>
 					<BurgerIcon color={theme === 'dark' ? 'white' : 'black'} />
 				</div>
+				
 				<Platform_mode />
 
 				<Burger_profile show={show} handleClick={handleClick} />
