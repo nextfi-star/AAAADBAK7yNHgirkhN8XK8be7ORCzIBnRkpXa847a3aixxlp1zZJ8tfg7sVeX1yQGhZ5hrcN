@@ -70,7 +70,7 @@ export const Profile_devices: NextPage = () => {
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
 											MacBook PRO
 										</span>
-
+									
 										<Alert
 											title={'Are you absolutely sure?'}
 											content={
@@ -78,6 +78,7 @@ export const Profile_devices: NextPage = () => {
 											}
 											titleTriger={'Log out'}
 										/>
+									
 									</div>
 								</div>
 							</div>

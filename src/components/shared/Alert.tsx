@@ -11,7 +11,6 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { NextPage } from 'next'
-import { DrawerClose } from '../ui/drawer'
 
 interface Props {
 	content: string
@@ -33,9 +32,7 @@ export const Alert: NextPage<Props> = ({ title, content, titleTriger }) => {
 				</AlertDialogHeader>
 				<AlertDialogFooter className='items-end gap-[20px]'>
 					<AlertDialogCancel className='h-fit'>Cancel</AlertDialogCancel>
-					<DrawerClose asChild>
 					<AlertDialogAction className='h-fit'>Continue</AlertDialogAction>
-					</DrawerClose>
 				</AlertDialogFooter>
 			</AlertDialogContent>
 		</AlertDialog>

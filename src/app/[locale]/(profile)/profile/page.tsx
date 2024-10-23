@@ -1,4 +1,5 @@
 'use client'
+import { Alert_auntef } from '@/components/shared/Alert_auntef'
 import { Alert_nickname } from '@/components/shared/Alert_nickname'
 import { Profile_accountdetails } from '@/components/shared/Profile_accountdetails'
 import { Profile_perosnalinfo } from '@/components/shared/Profile_perosnalinfo'
@@ -26,6 +27,7 @@ const Page: NextPage = () => {
 
 					<div className='flex flex-col w-full gap-[68px]'>
 						<Profile_perosnalinfo />
+						<Alert_auntef propsItem={'TEST QR'}/>
 						<Profile_personalverif />
 						<Profile_accountdetails />
 					</div>

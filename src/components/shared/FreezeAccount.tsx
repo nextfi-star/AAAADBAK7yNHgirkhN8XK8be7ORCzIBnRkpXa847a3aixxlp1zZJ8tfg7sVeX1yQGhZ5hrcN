@@ -182,18 +182,17 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
 						</div>
 						<DrawerFooter className='flex flex-row justify-center gap-[40px] pb-[3rem]'>
 							<DrawerClose asChild>
-								<Button className='dark:text-white text-black px-[15px] py-[5px] bg-transparent border border-solid dark:border-white border-black rounded-[50px] text-[14px] xl:!text-[20px] 2xl:!text-[25px] xl:!px-[40px] 2xl:!px-[70px] font-medium h-fit w-[98px] hover:bg-transparent'>Close</Button>
+								<Button className='dark:text-white text-black px-[15px] py-[5px] bg-transparent border border-solid dark:border-white border-black rounded-[50px] text-[14px] xl:!text-[20px] 2xl:!text-[25px] xl:!px-[40px] 2xl:!px-[70px] font-medium h-fit w-[98px] hover:bg-transparent'>
+									Close
+								</Button>
 							</DrawerClose>
-							<DrawerClose asChild>
-							<Alert
-								title={'Are you absolutely sure?'}
-								content={
-									'This action cannot be undone. Your account will be freezed.'
-								}
-								titleTriger={'Confirm'}
-							/>
-							</DrawerClose>
-						
+								<Alert
+									title={'Are you absolutely sure?'}
+									content={
+										'This action cannot be undone. Your account will be freezed.'
+									}
+									titleTriger={'Confirm'}
+								/>
 						</DrawerFooter>
 					</div>
 				</div>

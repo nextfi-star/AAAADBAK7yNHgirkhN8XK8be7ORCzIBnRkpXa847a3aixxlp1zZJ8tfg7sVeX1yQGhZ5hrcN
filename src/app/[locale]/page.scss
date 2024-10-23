@@ -351,7 +351,7 @@ header {
 				font-size: 22px;
 			}
 			@media (max-width: 1280px) {
-				font-size: 16px;
+				font-size: 16px !important;
 			}
 		}
 
@@ -709,6 +709,9 @@ header {
 			align-items: center;
 			gap: 20px;
 
+			@media (max-width: 1280px) {
+				gap: 10px;
+			}
 			&-login {
 				padding: 12px;
 				width: 132px;
@@ -754,7 +757,6 @@ header {
 				background-color: var(--blue);
 				color: #fff;
 				transition: 0.2s ease-in-out;
-				margin-right: 20px;
 				&:hover {
 					background-color: var(--blue-light);
 				}
@@ -2889,13 +2891,19 @@ header {
 
 		.header__navigation {
 			gap: 16px;
+			@media (max-width: 1024px) {
+				gap: 5px;
+				a {
+					font-size: 14px !important;
+				}
+			}
 			@media (max-width: 1014px) {
 				display: none;
 			}
 		}
 
 		.header__logo {
-			@media (max-width: 1014px) {
+			@media (max-width: 1024px) {
 				display: none;
 			}
 		}
@@ -4321,14 +4329,11 @@ header {
 		padding: 83px 0 38px 0;
 		display: flex;
 		flex-direction: column;
-		gap: 15px;
 
 		@media (max-width: 768px) {
-			gap: 5px;
 			padding: 70px 0 0 0;
 		}
 		@media (max-width: 430px) {
-			gap: 5px;
 			padding: 90px 0 0 0;
 		}
 	}
@@ -4391,7 +4396,7 @@ header {
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
-	
+
 		img {
 			max-width: 60px;
 			min-width: 60px;
@@ -4981,7 +4986,6 @@ header {
 	}
 }
 .lock-btn {
-
 	&:active .lock {
 		animation: bounce 0.5s alternate ease-in-out;
 	}
