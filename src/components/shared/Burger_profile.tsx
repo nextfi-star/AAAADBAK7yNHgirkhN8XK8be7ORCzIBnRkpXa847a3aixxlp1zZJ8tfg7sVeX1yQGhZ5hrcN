@@ -8,6 +8,7 @@ import { NextPage } from 'next'
 import { ProfileBurger_info } from './ProfileBurger_info'
 import { ProgileBurger_Tabsinfo } from './ProgileBurger_Tabsinfo'
 import { ProfileBurger_menu_list } from './ProfileBurger_menu_list'
+import { ProfileBurger_settigns } from './ProfileBurger_settigns'
 
 interface Props {
 	handleClick: () => void
@@ -26,6 +27,16 @@ export const Burger_profile: NextPage<Props> = ({
 	const { theme } = useThemeStore()
 	const stepback = () => {
 		setShowSection(!showSection)
+	}
+
+	const [activeTab, setActiveTab] = useState<string>('Profile')
+
+	const handleShortcutClick = (tab: string) => {
+		setShowSection(false)
+		setActiveTab(tab)
+	}
+	const handleTabClick = (tab: string) => {
+		setActiveTab(tab)
 	}
 	return (
 		<div className='profile__wrapper'>
@@ -58,16 +69,30 @@ export const Burger_profile: NextPage<Props> = ({
 					)}
 
 					<div className={`profile__burger-container `}>
-						<ProfileBurger_info
-							username='username****gmail.com'
-							setShowSection={setShowSection}
-							showSection={showSection}
-						/>
+						{showSection ? (
+							<ProfileBurger_info
+								username='username****gmail.com'
+								setShowSection={setShowSection}
+								showSection={showSection}
+							/>
+						) : (
+							<ProfileBurger_settigns
+								username='username****gmail.com'
+								setShowSection={setShowSection}
+								showSection={showSection}
+							/>
+						)}
 
 						{showSection ? (
-							<ProgileBurger_Tabsinfo />
+							<ProgileBurger_Tabsinfo
+								handleShortcutClick={handleShortcutClick}
+							/>
 						) : (
-							<ProfileBurger_menu_list showSection={showSection} />
+							<ProfileBurger_menu_list
+								handleTabClick={handleTabClick}
+								activeTab={activeTab}
+								showSection={showSection}
+							/>
 						)}
 					</div>
 
@@ -86,7 +111,6 @@ export const Burger_profile: NextPage<Props> = ({
 						</footer>
 					)}
 				</div>
-				
 			</div>
 		</div>
 	)

@@ -12,12 +12,12 @@ export const useThemeStore = create((set) => ({
     });
   },
   initializeTheme: () => {
-    
     const savedTheme = localStorage.getItem('theme') || 'dark';
     set(() => {
       document.documentElement.classList.toggle('dark', savedTheme === 'dark');
       return { theme: savedTheme };
     });
   },
+  activeTab: 'Profile',
 }));
 

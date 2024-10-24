@@ -6,32 +6,32 @@ const data = [
 	{
 		src: '/header_icons/profile_burger/deposit.svg',
 		title: 'Deposit',
-    href: '/verify',
+		tabName: 'Profile',
 	},
 	{
 		src: '/header_icons/profile_burger/withdraw.svg',
 		title: 'Witharaw',
-    href: '/security',
+		tabName: 'Security',
 	},
 	{
 		src: '/header_icons/profile_burger/swap.svg',
 		title: 'Swap',
-    href: '/verify',
+		tabName: 'Verification',
 	},
 	{
 		src: '/header_icons/profile_burger/commission.svg',
 		title: 'Commission',
-    href: '/devices',
+		tabName: 'Authorized Devices',
 	},
 ]
-export const ProfileBurger_assets = () => {
+export const ProfileBurger_assets = ({ handleShortcutClick }) => {
 	return (
 		<section className='profile__burger-assets'>
 			<h5 className='sec__title'>Manage Assets</h5>
 			<div className='flex items-center justify-between'>
 				{data &&
 					data.map(item => (
-						<Link href={item.href} key={item.title} className='flex flex-col items-center'>
+						<div key={item.title} className='flex flex-col items-center' onClick={() => handleShortcutClick(item.tabName)}>
 							<Image
 								src={item.src}
 								width={90}
@@ -41,8 +41,8 @@ export const ProfileBurger_assets = () => {
 								alt={item.title}
 								className='w-full'
 							/>
-					{item.title} 
-						</Link>
+							{item.title}
+						</div>
 					))}
 			</div>
 		</section>

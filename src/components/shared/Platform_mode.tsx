@@ -15,7 +15,7 @@ export const Platform_mode = () => {
 						className='text-[14px] !text-black dark:!text-white !bg-white dark:!bg-black shadow'
 						value='Platform'
 					>
-						<Link href='/over'>Platform</Link>
+						<Link href='/over' >Platform</Link>
 					</TabsTrigger>
 
 					<TabsTrigger className='lock-btn text-[14px] data-[state=active]:bg-transparent data-[state=active]:shadow-none' value='Exchange'>
@@ -42,7 +42,7 @@ export const Platform_mode = () => {
 			</Tabs>
 
 			<Tabs defaultValue='account' className='sm:hidden'>
-				<TabsList className=' grid-cols-3'>
+				<TabsList className='grid-cols-3 items-center'>
 					<TabsTrigger
 						className='text-[14px] !text-black dark:!text-white !bg-white dark:!bg-black shadow px-[3px]'
 						value='Platform'

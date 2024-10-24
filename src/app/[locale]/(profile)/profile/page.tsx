@@ -27,7 +27,6 @@ const Page: NextPage = () => {
 
 					<div className='flex flex-col w-full gap-[68px]'>
 						<Profile_perosnalinfo />
-						<Alert_auntef propsItem={'TEST QR'}/>
 						<Profile_personalverif />
 						<Profile_accountdetails />
 					</div>

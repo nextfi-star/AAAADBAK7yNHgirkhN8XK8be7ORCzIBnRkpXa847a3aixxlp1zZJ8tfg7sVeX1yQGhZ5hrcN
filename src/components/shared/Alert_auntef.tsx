@@ -18,6 +18,8 @@ import { Link } from '@/i18n/routing'
 import ArrowBracket from '../ui/ArrowBracket'
 import { useThemeStore } from '@/store'
 import { useState } from 'react'
+import Copy from '../ui/Copy'
+import { CheckCheck } from 'lucide-react'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -37,9 +39,9 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>
-			
-			<AlertDialogContent className='px-[40px] gap-[10px] min-h-[100dvh] max-h-[90dvh] overflow-y-auto sm:pb-[7rem] !max-w-[1306px] !mx-auto items-center  bg-white dark:!bg-[#0c0c0c] modal-new pb-[3.5rem]'>
-			<AlertDialogHeader className=''>
+
+			<AlertDialogContent className='px-[20px] md:px-[40px] xl:px-[80px] gap-[10px] min-h-[100dvh] max-h-[90dvh] overflow-y-auto sm:pb-[7rem] !max-w-[1306px] !mx-auto items-center  bg-white dark:!bg-[#0c0c0c] modal-new pb-[3.5rem] '>
+				<AlertDialogHeader className=''>
 					<AlertDialogTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px] mb-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 							<AlertDialogCancel className='text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0'>
@@ -66,9 +68,9 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 						Change authenticator app
 					</AlertDialogTitle>
 				</AlertDialogHeader>
-				<div className='flex justify-center gap-[10px] w-full overflow-x-hidden'>
-					<div className={'flex flex-col max-w-[600px] gap-[20px]'}>
-						<AlertDialogDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] text-[14px] sm:text-[16px] lg:text-[18px] 2xl:text-[20px] flex flex-col items-center gap-[5px] md:flex-row md:items-start md:gap-[10px]'>
+				<div className='flex justify-center gap-[10px] w-full overflow-x-hidden pb-[4.5rem]'>
+					<div className={'flex flex-col gap-[20px]'}>
+						<AlertDialogDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] text-[14px] sm:text-[16px] lg:text-[18px] 2xl:text-[20px] flex items-start gap-[5px] md:gap-[10px] sm:max-w-[50%]'>
 							<Image
 								src={'/header_icons/profile_burger/info_icon.svg'}
 								width={20}
@@ -90,7 +92,8 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 											step === 1 ? 'bg-[#205BC9]' : 'bg-[#64718a]'
 										} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
 									>
-										1
+										{step > 1 ? <CheckCheck /> : 1}
+										
 									</span>
 									<span className='text-[18px] xl:text-[24px]'>
 										Download authenticator
@@ -98,12 +101,12 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 								</div>
 
 								{step === 1 && (
-									<div className='flex flex-col gap-[15px] w-full ml-[47px]'>
+									<div className={`flex flex-col gap-[15px] w-full ml-[47px]`}>
 										<span className='text-[16px] xl:text-[20px] text-[#888888]'>
 											Download an authenticator app such as Google
 											Authenticator.
 										</span>
-										<div className={'flex items-center gap-[20px]'}>
+										<div className={'flex items-center gap-[40px]'}>
 											<div className='flex flex-col items-center gap-[5px]'>
 												<Image
 													src={'/main/profile_security/qr_iphone.png'}
@@ -129,14 +132,13 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 											By continuing, you agree to our{' '}
 											<span className='underline'>disclamer</span>
 										</span>
-										<button
-											className='bg-[#3F7EF3] text-white text-[16px] xl:text-[20px] flex items-center justify-center rounded-[50px] max-w-[108px] px-[30px] xl:px-[60px] h-8 xl:h-14'
-											onClick={() =>
-												setStep(prev => (prev >= 1 ? prev + 1 : prev))
-											}
+										<Button
+											variant={'default'}
+											className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
+											onClick={() => setStep(prev => (prev = 2))}
 										>
 											Next
-										</button>
+										</Button>
 									</div>
 								)}
 							</div>
@@ -148,7 +150,7 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 											step === 2 ? 'bg-[#205BC9]' : 'bg-[#64718a]'
 										} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
 									>
-										2
+									{step > 2 ? <CheckCheck /> : 2}
 									</span>
 									<span className='text-[18px] xl:text-[24px]'>
 										Scan QR code
@@ -158,8 +160,8 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 								{step === 2 && (
 									<div className='flex flex-col gap-[15px] w-full ml-[47px]'>
 										<span className='text-[16px] xl:text-[20px] text-[#888888]'>
-											Launch the authenticator app and scan the QR code or enter
-											the key.
+											Launch the authenticator app and scan
+											<br /> the QR code or enter the key.
 										</span>
 										<div className={'flex items-center gap-[20px]'}>
 											<div className='flex flex-col items-center gap-[5px]'>
@@ -176,53 +178,44 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 										</span>
 										<span className='text-[16px] text-[#888888] flex items-center gap-[10px]'>
 											UJY3HM5ATJBQW2IB
-											<Image
-												src={'/main/Copy.svg'}
-												width={20}
-												height={20}
-												alt='icon copy'
-											/>
+											<Copy color={theme === 'dark' ? 'white' : '#0c0c0c'} />
 										</span>
 										<div className='flex items-center gap-[10px]'>
-											<button
-												className='bg-[#3F7EF3] text-white text-[16px] xl:text-[20px] flex items-center justify-center rounded-[50px] max-w-[108px] px-[30px] xl:px-[60px] h-8 xl:h-14'
+											<Button
+												variant={'outline'}
+												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
 												onClick={() => setStep(prev => (prev = 1))}
 											>
 												Back
-											</button>
-											<button
-												className='bg-[#3F7EF3] text-white text-[16px] xl:text-[20px] flex items-center justify-center rounded-[50px] max-w-[108px] px-[30px] xl:px-[60px] h-8 xl:h-14'
-												onClick={() =>
-													setStep(prev => (prev >= 1 ? prev + 1 : prev))
-												}
+											</Button>
+											<Button
+												variant={'default'}
+												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
+												onClick={() => setStep(prev => (prev = 3))}
 											>
 												Next
-											</button>
+											</Button>
 										</div>
 									</div>
 								)}
 							</div>
 
-							<div className='flex flex-col gap-[14px]'>
+							<div className='flex flex-col gap-[14px] max-w-[553px]'>
 								<div className='flex items-start gap-[15px]'>
 									<span
 										className={`text-white text-[18px] ${
 											step === 3 ? 'bg-[#205BC9]' : 'bg-[#64718a]'
 										} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
 									>
-										3
+											{step > 3 ? <CheckCheck /> :3}
 									</span>
 									<span className='text-[18px] xl:text-[28px]'>
-									Security authentication
+										Security authentication
 									</span>
 								</div>
 								{step === 3 && (
 									<div className='flex flex-col gap-[15px] w-full ml-[47px]'>
-										<span className='text-[16px] lg:text-[20px] xl:text-[25px] text-[#888888] max-w-[250px] md:max-w-[100%]'>
-											Launch the authenticator app and scan the QR code or enter
-											the key.
-										</span>
-										<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full max-w-[210px] md:max-w-[100%]'>
+										<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
 											Email authentication
 											<div className='relative w-full'>
 												<Input
@@ -230,34 +223,38 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 													placeholder='Enter code'
 													className='border border-solid border-black shadow-none dark:border-white text-[16px] xl:text-[25px] py-[10px] lg:py-[1.5rem] 2xl:py-[1.9rem]'
 												/>
-												<button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[14px] xl:text-[20px] border border-solid rounded-[5px] dark:border-white border-black py-[2px] px-[7px] cursor-pointer dark:bg-[#0c0c0c] bg-white'>
+												<button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[14px] xl:text-[20px] border border-solid rounded-[50px] dark:border-white border-black py-[2px] px-[7px] cursor-pointer dark:bg-[#0c0c0c] bg-white'>
 													Send Code
 												</button>
 											</div>
 										</label>
-										<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full max-w-[210px] md:max-w-[100%]'>
-											Email authentication
-											<div className='relative w-full'>
+										<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
+											Current authenticator app
+											<div className='w-full'>
 												<Input
 													type='text'
-													placeholder='Enter code'
+													placeholder='Enter 6-digit generated code from your app'
 													className='border border-solid border-black shadow-none dark:border-white text-[16px] xl:text-[25px] py-[10px] lg:py-[1.5rem] 2xl:py-[1.9rem]'
 												/>
 											</div>
 										</label>
 
 										<div className='flex items-center gap-[10px] bg-transparent'>
-											<button
-												className='bg-[#3F7EF3] text-white text-[16px] xl:text-[20px] flex items-center justify-center rounded-[50px] max-w-[108px] px-[30px] xl:px-[60px] h-8 xl:h-14'
+											<Button
+												variant={'outline'}
+												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
 												onClick={() => setStep(prev => (prev = 2))}
 											>
 												Back
-											</button>
-											<AlertDialogCancel
-												className='bg-[#3F7EF3] text-white text-[16px] xl:text-[20px] flex items-center justify-center rounded-[50px] max-w-[108px] px-[30px] xl:px-[60px] h-8 xl:h-14 m-0'
-												onClick={() => setStep(prev => (prev = 3))}
-											>
-												Next
+											</Button>
+											<AlertDialogCancel className='mt-0 !bg-transparent'>
+												<Button
+													variant={'default'}
+													className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
+													onClick={() => setStep(prev => (prev = 1))}
+												>
+													Confirm
+												</Button>
 											</AlertDialogCancel>
 										</div>
 									</div>

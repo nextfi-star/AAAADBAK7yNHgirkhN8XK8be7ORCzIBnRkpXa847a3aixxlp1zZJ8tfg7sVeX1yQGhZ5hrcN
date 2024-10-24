@@ -7,13 +7,14 @@ import { FreezeAccount } from '@/components/shared/FreezeAccount'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { useThemeStore } from '../../../../store'
+import { Alert_auntef } from '@/components/shared/Alert_auntef'
 
 const data = [
 	{
 		src: '/main/profile_security/auth_app.svg',
 		title: 'Authenticator app',
 		desc: 'Use authentication codes when managing assets and other functions',
-		btn: <Alert_logpass propsItem={'Change authenticator app'} />,
+		btn: <Alert_auntef propsItem={'Change authenticator app'} />,
 	},
 	{
 		src: '/main/profile_security/phone.svg',

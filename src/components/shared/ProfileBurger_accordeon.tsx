@@ -10,6 +10,7 @@ import { ProfileBurger_devices__accor } from './ProfileBurger_devices__accor'
 import { ProfileBurger_profile_accor } from './ProfileBurger_profile_accor'
 import { ProfileBurger_security_accor } from './ProfileBurger_security_accor'
 import { ViewRegion } from './ViewRegion'
+import { Alert_auntef } from './Alert_auntef'
 
 interface Props {
 	showSection: boolean
@@ -109,7 +110,7 @@ const securityData = [
 						<span>
 							Use authentication codes when managing assets and other functions
 						</span>
-						<Alert_email propsItem={'Change'} />
+						<Alert_auntef propsItem={'Change'} />
 					</>
 				),
 			},
@@ -120,7 +121,7 @@ const securityData = [
 				content: (
 					<>
 						<span>Change phone</span>
-						<Alert_nickname propsItem={'Change'} />
+						<Alert_phone propsItem={'Change'} />
 					</>
 				),
 			},

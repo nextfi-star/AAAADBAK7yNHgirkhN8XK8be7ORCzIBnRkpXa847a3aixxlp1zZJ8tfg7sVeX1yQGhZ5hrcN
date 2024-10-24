@@ -14,7 +14,7 @@ const Page: NextPage = () => {
 				<div className='personal-inner flex flex-row justify-between mt-[20px] gap-[40px]'>
 					<div className='relative h-fit w-fit'>
 						<Image
-							src={'/main/avatar.png'}
+							src={'/main/avatar_noface.png'}
 							width={152}
 							height={152}
 							alt={'avatar'}
