@@ -84,7 +84,7 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 							your account phone.
 						</AlertDialogDescription>
 
-						<div className={`flex flex-col gap-[89px] max-w-[553px]`}>
+						<div className={`flex flex-col gap-[89px] max-w-[553px] relative after:absolute after:left-[14px] after:border-l after:border-dotted after:border-gray-400 after:w-[1px] after:bottom-[15px] after:top-[6px] after:-z-[99]`}>
 							<div className='flex flex-col gap-[14px]'>
 								<div className='flex items-center gap-[15px]'>
 									<span

@@ -1,95 +1,147 @@
-"use client";
+'use client'
 // В вашем компоненте Profile_payments.js
-import React, { useState, useEffect } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import StarsMobile from "../../components/ui/StarsMobile.js";
-import ArrowUp from "../../components/ui/ArrowUP.js";
-import ArrowBracket from "../ui/ArrowBracket.js";
-import { useTranslations } from "next-intl";
-import { useThemeStore } from "../../store/index.js";
-import { Profile_industry } from "./Profile__industry.js";
+import React, { useState, useEffect } from 'react'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import StarsMobile from '../../components/ui/StarsMobile.js'
+import ArrowUp from '../../components/ui/ArrowUP.js'
+import {
+	Table,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from '@/components/ui/table'
+import ArrowBracket from '../ui/ArrowBracket.js'
+import { useTranslations } from 'next-intl'
+import { useThemeStore } from '../../store/index.js'
+import { Profile_industry } from './Profile__industry.js'
+import { DataTableDemo } from './DataTableDemo.tsx'
 
 export const Profile_payments = () => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-  const t = useTranslations("profile");
-  const { theme } = useThemeStore();
+	const [startDate, setStartDate] = useState(null)
+	const [endDate, setEndDate] = useState(null)
+	const [isOpen, setIsOpen] = useState(false)
+	const [isMounted, setIsMounted] = useState(false)
+	const t = useTranslations('profile')
+	const { theme } = useThemeStore()
 
-  const dataPay = Array(6)
-    .fill()
-    .map((_, index) => ({
-      icon: <StarsMobile />,
-      destination: `Company Stocks`,
-      amount: `$000.00`,
-      percent: `${index % 2 === 0 ? "+ 0.4%" : "- 0.4%"}`, // Меняем знак через один
-      total: `$000.00`,
-      id: index,
-    }));
+	const dataPay = Array(6)
+		.fill()
+		.map((_, index) => ({
+			icon: <StarsMobile />,
+			destination: `Company Stocks`,
+			amount: `$000.00`,
+			percent: `${index % 2 === 0 ? '+ 0.4%' : '- 0.4%'}`,
+			total: `$000.00`,
+			id: index,
+		}))
 
-  useEffect(() => {
-    setStartDate(new Date());
-    setEndDate(new Date());
-    setIsMounted(true);
-  }, []);
+	useEffect(() => {
+		setStartDate(new Date())
+		setEndDate(new Date())
+		setIsMounted(true)
+	}, [])
 
-  const handleDateChange = dates => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-  };
+	const handleDateChange = dates => {
+		const [start, end] = dates
+		setStartDate(start)
+		setEndDate(end)
+	}
 
-  if (!isMounted) {
-    return null;
-  }
+	if (!isMounted) {
+		return null
+	}
+	return (
+		<>
+			<Profile_industry unicClass={'hidden__when'} />
 
-  return (
-    <>
-      <Profile_industry unicClass={"hidden__when"} />
+			<div className='payments'>
+				<div className='flex justify-between gap-[32px] max-w-[1016px] items-center py-4 my-[20px]'>
+					<h3 className='text-[18px] md:text-[32px] font-semibold'>Payments</h3>
+					<span className='flex items-center text-[10px] md:text-[14px] gap-[15px] data__picker relative '>
+						Date:{' '}
+						{startDate
+							? startDate
+									.toLocaleDateString('en-GB', {
+										day: '2-digit',
+										month: '2-digit',
+										year: 'numeric',
+									})
+									.replace(/\./g, '/')
+							: 'Select start date'}{' '}
+						-
+						{endDate
+							? endDate
+									.toLocaleDateString('en-GB', {
+										day: '2-digit',
+										month: '2-digit',
+										year: 'numeric',
+									})
+									.replace(/\./g, '/')
+							: 'Select end date'}
+						{/* Кнопка для открытия календаря с иконкой */}
+						<button
+							onClick={() => setIsOpen(!isOpen)}
+							className='cursor-pointer'
+						>
+							<ArrowBracket
+								color={theme === 'dark' ? 'white' : 'black'}
+								width={25}
+								height={25}
+								className={'text-[#515151] dark:text-red-500'}
+							/>
+						</button>
+						{isOpen && (
+							<div className='absolute top-[100%] right-0 z-10 mt-2 border border-gray-300 rounded-md  shadow-lg text-white'>
+								<DatePicker
+									selected={startDate}
+									onChange={handleDateChange}
+									startDate={startDate}
+									endDate={endDate}
+									selectsRange
+									inline
+								/>
+							</div>
+						)}
+					</span>
+				</div>
+				<div className='overflow-x-auto flex'>
 
-      <div className="payments">
-        <div className="flex justify-between gap-[32px] max-w-[1016px] items-center py-4 my-[20px]">
-          <h3 className="text-[18px] md:text-[32px] font-semibold">Payments</h3>
-          <span className="flex items-center text-[10px] md:text-[14px] gap-[15px] data__picker relative ">
-            Date:{" "}
-            {startDate
-              ? startDate
-                  .toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" })
-                  .replace(/\./g, "/")
-              : "Select start date"}{" "}
-            -
-            {endDate
-              ? endDate
-                  .toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" })
-                  .replace(/\./g, "/")
-              : "Select end date"}
-            {/* Кнопка для открытия календаря с иконкой */}
-            <button onClick={() => setIsOpen(!isOpen)} className="cursor-pointer">
-              <ArrowBracket
-                color={theme === "dark" ? "white" : "black"}
-                width={25}
-                height={25}
-                className={"text-[#515151] dark:text-red-500"}
-              />
-            </button>
-            {isOpen && (
-              <div className="absolute top-[100%] right-0 z-10 mt-2 border border-gray-300 rounded-md  shadow-lg text-white">
-                <DatePicker
-                  selected={startDate}
-                  onChange={handleDateChange}
-                  startDate={startDate}
-                  endDate={endDate}
-                  selectsRange
-                  inline
-                />
-              </div>
-            )}
-          </span>
-        </div>
-        <div className="overflow-x-auto flex">
-          <table className="table">
+						<DataTableDemo />
+
+
+
+					{/* <Table>
+						<TableCaption>A list of your recent invoices.</TableCaption>
+						<TableHeader>
+							<TableRow>
+								<TableHead className='w-[100px]'>Destination</TableHead>
+								<TableHead className='text-right'>The amount</TableHead>
+								<TableHead className='text-right'>Percent</TableHead>
+								<TableHead className='text-right'>Sum total</TableHead>
+								<TableHead className='text-right'>Report</TableHead>
+							</TableRow>
+						</TableHeader>
+						<TableBody>
+							<TableRow>
+								<TableCell className='text-[#3F7EF3] block'>
+									Company Stocks
+								</TableCell>
+								<TableCell className='text-right'>Paid</TableCell>
+								<TableCell className='text-right'>Credit Card</TableCell>
+								<TableCell className='text-right'>$250.00</TableCell>
+								<TableCell className='text-right flex items-center gap-[5px] justify-end'>
+									View Report
+									<ArrowUp />
+								</TableCell>
+							</TableRow>
+						</TableBody>
+					</Table> */}
+
+					{/* <table className="table">
             <thead>
               <tr className="text-[14px] sm:text-[16px] md:text-[20px] lg:text-[24px] text-white ">
                 <th>{t("Destination")}</th>
@@ -121,10 +173,10 @@ export const Profile_payments = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
-        </div>
-        <button className='view__more'>View More</button>
-      </div>
-    </>
-  );
-};
+          </table> */}
+				</div>
+				<button className='view__more'>View More</button>
+			</div>
+		</>
+	)
+}
