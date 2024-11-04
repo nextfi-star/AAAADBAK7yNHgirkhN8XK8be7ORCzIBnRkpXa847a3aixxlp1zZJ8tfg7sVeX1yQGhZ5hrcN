@@ -1,0 +1,18 @@
+<svg width="48.000000" height="48.000000" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_571_8046_dd" x="0.000000" y="0.000000" width="48.000000" height="48.000000" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feGaussianBlur in="BackgroundImage" stdDeviation="2"/>
+			<feComposite in2="SourceAlpha" operator="in" result="effect_backgroundBlur_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_backgroundBlur_1" result="shape"/>
+		</filter>
+	</defs>
+	<g filter="url(#filter_571_8046_dd)">
+		<rect id="Snapchat/black" rx="-0.500000" width="47.000000" height="47.000000" transform="translate(0.500000 0.500000)" fill="#FFFFFF" fill-opacity="0"/>
+		<path id="Subtract" d="M0 24C0 10.7452 10.7422 0 24 0C37.2578 0 48 10.7452 48 24C48 37.2548 37.2578 48 24 48C10.7422 48 0 37.2548 0 24Z" clip-rule="evenodd" fill="#BDBDBD" fill-opacity="1.000000" fill-rule="evenodd"/>
+		<path id="Vector" d="M36.86 30.87C32.21 28.62 31.47 25.15 31.44 24.89C31.4 24.58 31.35 24.33 31.7 24.02C32.03 23.71 33.5 22.8 33.92 22.51C34.59 22.04 34.89 21.57 34.67 20.99C34.51 20.59 34.14 20.44 33.75 20.44C33.63 20.44 33.5 20.45 33.38 20.48C32.64 20.64 31.92 21.01 31.5 21.11C31.45 21.13 31.4 21.13 31.35 21.13C31.13 21.13 31.04 21.04 31.06 20.77C31.11 19.96 31.22 18.37 31.1 16.9C30.92 14.86 30.26 13.85 29.49 12.96C29.11 12.53 27.36 10.67 23.99 10.67C20.62 10.67 18.87 12.53 18.5 12.96C17.71 13.85 17.07 14.86 16.89 16.89C16.76 18.37 16.88 19.95 16.92 20.76C16.94 21.02 16.86 21.13 16.64 21.13C16.59 21.13 16.53 21.12 16.49 21.11C16.07 21.01 15.35 20.64 14.6 20.47C14.49 20.45 14.36 20.43 14.24 20.43C13.84 20.43 13.47 20.59 13.32 20.99C13.1 21.56 13.39 22.04 14.07 22.51C14.48 22.79 15.96 23.7 16.28 24.01C16.63 24.33 16.58 24.57 16.54 24.89C16.51 25.15 15.77 28.62 11.13 30.86C10.85 31 10.39 31.28 11.21 31.73C12.49 32.43 13.34 32.36 14 32.79C14.57 33.15 14.23 33.93 14.64 34.21C15.14 34.56 16.63 34.19 18.55 34.82C20.16 35.35 21.14 36.85 24 36.85C26.85 36.85 27.85 35.34 29.43 34.82C31.35 34.19 32.84 34.56 33.35 34.21C33.75 33.93 33.42 33.15 33.99 32.79C34.64 32.36 35.5 32.43 36.78 31.73C37.6 31.28 37.14 31 36.86 30.87Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+	</g>
+</svg>
