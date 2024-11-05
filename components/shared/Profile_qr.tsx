@@ -1,6 +1,7 @@
-import { NextPage } from 'next'
-import { Qr } from "../ui/Qr";
+import { NextPage } from "next";
 import Image from "next/image.js";
+
+import { Qr } from "../ui/Qr";
 
 export const Profile_qr: NextPage = () => {
   return (
@@ -11,13 +12,31 @@ export const Profile_qr: NextPage = () => {
         </h2>
         <div className="flex justify-center items-center  gap-[12px] w-full">
           <div className="flex justify-center items-center shadow bg-[#3c3c3c66] w-[50px] h-[50px] rounded-[15px]">
-            <Image src="/main/download_icons/Aptoide.svg" alt="Aptoide" width={48} height={48} className='qr__icon'/>
+            <Image
+              alt="Aptoide"
+              className="qr__icon"
+              height={48}
+              src="/main/download_icons/Aptoide.svg"
+              width={48}
+            />
           </div>
           <div className="flex justify-center items-center shadow bg-[#3c3c3c66] w-[50px] h-[50px] rounded-[15px]">
-            <Image src="/main/download_icons/google-play.svg" alt="google" width={48} height={48} className='qr__icon'/>
+            <Image
+              alt="google"
+              className="qr__icon"
+              height={48}
+              src="/main/download_icons/google-play.svg"
+              width={48}
+            />
           </div>
           <div className="flex justify-center items-center shadow bg-[#3c3c3c66] w-[50px] h-[50px] rounded-[15px]">
-            <Image src="/main/download_icons/apple-app-store.svg" alt="Aptoide" width={48} height={48} className='qr__icon'/>
+            <Image
+              alt="Aptoide"
+              className="qr__icon"
+              height={48}
+              src="/main/download_icons/apple-app-store.svg"
+              width={48}
+            />
           </div>
         </div>
         <p className="text-[20px]">NextFi App</p>

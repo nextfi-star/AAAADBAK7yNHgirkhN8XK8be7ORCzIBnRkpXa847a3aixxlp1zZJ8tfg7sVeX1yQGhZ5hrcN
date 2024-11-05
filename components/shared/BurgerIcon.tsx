@@ -1,12 +1,18 @@
 import React from "react";
 
 interface Props {
-  color?: string
+  color?: string;
 }
-export const BurgerIcon = ({color}: Props) => {
+export const BurgerIcon = ({ color }: Props) => {
   return (
     <>
-      <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        fill="none"
+        height="23"
+        viewBox="0 0 23 23"
+        width="23"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path
           d="M2.5 4C3.32843 4 4 3.32843 4 2.5C4 1.67157 3.32843 1 2.5 1C1.67157 1 1 1.67157 1 2.5C1 3.32843 1.67157 4 2.5 4Z"
           fill={color}

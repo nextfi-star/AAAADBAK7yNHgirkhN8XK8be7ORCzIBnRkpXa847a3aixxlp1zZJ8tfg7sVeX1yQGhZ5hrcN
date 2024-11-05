@@ -2,9 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import ArrowUP from "../ui/ArrowUP";
 import { useTranslations } from "next-intl";
-import { NextPage } from 'next'
+import { NextPage } from "next";
+
+import ArrowUP from "../ui/ArrowUP";
 
 export const Profile_news: NextPage = () => {
   const t = useTranslations("profile");
@@ -26,8 +27,12 @@ export const Profile_news: NextPage = () => {
       <span className="profile-news-date">September 25, 2024</span>
       <ul className="profile-news-list">
         <li className="profile-news-list-item">
-          {dataNews.map(news => (
-            <Link key={news.id} href="#" className="profile-news-list-item-link">
+          {dataNews.map((news) => (
+            <Link
+              key={news.id}
+              className="profile-news-list-item-link"
+              href="#"
+            >
               <span className="news-date">{news.date}</span>
               {news.news}
             </Link>

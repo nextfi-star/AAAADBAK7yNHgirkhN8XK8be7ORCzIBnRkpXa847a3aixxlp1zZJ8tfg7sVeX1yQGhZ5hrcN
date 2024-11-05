@@ -1,12 +1,18 @@
 interface Props {
-  color: string
-  width: number
-  height: number
+  color: string;
+  width: number;
+  height: number;
 }
 export const Chat = ({ color, width, height }: Props) => {
   return (
-    <svg width={width} height={height} viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <mask id="path-1-inside-1_2_1665" fill={color}>
+    <svg
+      fill="none"
+      height={height}
+      viewBox="0 0 22 18"
+      width={width}
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <mask fill={color} id="path-1-inside-1_2_1665">
         <path d="M7 5.66699C6.44867 5.66699 6 6.11499 6 6.66699C6 7.21833 6.44867 7.66699 7 7.66699C7.55133 7.66699 8 7.21833 8 6.66699C8 6.11499 7.55133 5.66699 7 5.66699ZM7 7.00033C6.816 7.00033 6.66667 6.85099 6.66667 6.66699C6.66667 6.48299 6.816 6.33366 7 6.33366C7.184 6.33366 7.33333 6.48299 7.33333 6.66699C7.33333 6.85099 7.184 7.00033 7 7.00033Z" />
       </mask>
       <path

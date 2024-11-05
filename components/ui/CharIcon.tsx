@@ -1,10 +1,16 @@
 interface Props {
-  width: number
-  color: string
+  width: number;
+  color: string;
 }
 const CharIcon = ({ width = 22, color }: Props) => {
   return (
-    <svg width={width} height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      fill="none"
+      height="22"
+      viewBox="0 0 22 22"
+      width={width}
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M21.5417 22.0007H0.458333C0.205333 22.0007 0 21.7953 0 21.5423C0 21.2893 0.205333 21.084 0.458333 21.084H21.5417C21.7947 21.084 22 21.2893 22 21.5423C22 21.7953 21.7947 22.0007 21.5417 22.0007Z"
         fill={color}

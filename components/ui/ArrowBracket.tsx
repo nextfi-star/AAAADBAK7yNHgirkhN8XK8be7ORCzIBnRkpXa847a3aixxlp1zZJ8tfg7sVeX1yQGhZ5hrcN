@@ -1,17 +1,17 @@
 interface Props {
-  className?:string
-  width?:number
-  color?:string
-  height?:number
+  className?: string;
+  width?: number;
+  color?: string;
+  height?: number;
 }
 const ArrowBracket = ({ className, width, color, height }: Props) => {
   return (
     <svg
       className={className}
-      width={width}
-      height='24'
-      viewBox="0 0 24 24"
       fill="black"
+      height="24"
+      viewBox="0 0 24 24"
+      width={width}
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

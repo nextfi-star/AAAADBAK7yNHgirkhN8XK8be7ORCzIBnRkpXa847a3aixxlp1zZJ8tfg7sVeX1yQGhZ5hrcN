@@ -1,12 +1,19 @@
 import React from "react";
 
 interface Props {
-  color: string
-  className?:string
+  color: string;
+  className?: string;
 }
 export const User = ({ color, className }: Props) => {
   return (
-    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" className={`${className} !bg-transparent`}>
+    <svg
+      className={`${className} !bg-transparent`}
+      fill="none"
+      height="44"
+      viewBox="0 0 44 44"
+      width="44"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M31.5652 31.9999C31.3252 31.9999 31.1304 31.8137 31.1304 31.5843C31.1304 26.7717 27.0348 22.8568 22 22.8568C16.9652 22.8568 12.8696 26.7717 12.8696 31.5843C12.8696 31.8137 12.6748 31.9999 12.4348 31.9999C12.1948 31.9999 12 31.8137 12 31.5843C12 26.3137 16.4861 22.0256 22 22.0256C27.5139 22.0256 32 26.3129 32 31.5843C32 31.8137 31.8052 31.9999 31.5652 31.9999Z"
         fill={color}

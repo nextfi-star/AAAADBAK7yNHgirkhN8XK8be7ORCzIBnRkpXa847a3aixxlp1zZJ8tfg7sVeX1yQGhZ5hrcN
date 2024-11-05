@@ -5,18 +5,18 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 };
 
 export interface IStore {
-  activeTab: string
-  theme: string
-  setTheme: (newTheme: string) => void
-  initializeTheme: () => void
-  modeToogle: (selected: string) => void
-  mode: string
+  activeTab: string;
+  theme: string;
+  setTheme: (newTheme: string) => void;
+  initializeTheme: () => void;
+  modeToogle: (selected: string) => void;
+  mode: string;
   email: string;
   phone: string;
-  password: string
+  password: string;
   setEmail: (email: string) => void;
   setPhone: (phone: string) => void;
   setPassword: (password: string) => void;
   verifyState: boolean;
-  setVerifyState: (state: boolean) => void
+  setVerifyState: (state: boolean) => void;
 }

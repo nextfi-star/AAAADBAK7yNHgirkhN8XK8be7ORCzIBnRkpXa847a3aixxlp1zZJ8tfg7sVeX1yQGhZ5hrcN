@@ -1,24 +1,25 @@
-import { How_options, Mobile_swiper } from './index'
-import { NextPage } from 'next'
+import { NextPage } from "next";
+
+import { How_options, Mobile_swiper } from "./index";
 
 export const How: NextPage = () => {
-	return (
-		<section className='how'>
-			<div className='site-holder'>
-				<h2
-					className='section-title'
-					data-aos='fade-up'
-					data-aos-duration='1000'
-					data-aos-once='true'
-				>
-					How is income <b>from investments formed?</b>
-				</h2>
+  return (
+    <section className="how">
+      <div className="site-holder">
+        <h2
+          className="section-title"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-once="true"
+        >
+          How is income <b>from investments formed?</b>
+        </h2>
 
-				<How_options />
+        <How_options />
 
-				{/* Mobile =>  */}
-				<Mobile_swiper />
-			</div>
-		</section>
-	)
-}
+        {/* Mobile =>  */}
+        <Mobile_swiper />
+      </div>
+    </section>
+  );
+};

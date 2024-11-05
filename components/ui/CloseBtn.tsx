@@ -1,26 +1,27 @@
-'use client'
-import {useEffect} from "react";
-import { useThemeStore } from '../../store'
+"use client";
+import { useEffect } from "react";
+
+import { useThemeStore } from "../../store";
 
 export const CloseBtn = () => {
-	const {theme, initializeTheme} = useThemeStore()
+  const { theme, initializeTheme } = useThemeStore();
 
-	useEffect(() => {
-		initializeTheme()
-	}, [initializeTheme])
+  useEffect(() => {
+    initializeTheme();
+  }, [initializeTheme]);
 
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
+      className="lucide lucide-x"
       fill="none"
-      stroke={theme === 'dark' ? 'white' : '#3a3939'}
-      strokeWidth="2"
+      height="24"
+      stroke={theme === "dark" ? "white" : "#3a3939"}
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="lucide lucide-x"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
     >
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
