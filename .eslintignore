@@ -4,6 +4,7 @@
 dist
 esm/*
 public/*
+components/*
 tests/*
 scripts/*
 *.config.js
