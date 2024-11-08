@@ -14,7 +14,7 @@ import { Providers } from "./providers";
 
 import { routing } from "@/i18n/routing";
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+import { fontSans } from '@/config/fonts'
 
 export const metadata: Metadata = {
   title: siteConfig.name,

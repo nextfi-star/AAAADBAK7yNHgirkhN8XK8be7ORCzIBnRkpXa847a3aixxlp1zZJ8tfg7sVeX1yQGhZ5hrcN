@@ -45,7 +45,7 @@ const Allocation = () => {
   const { theme } = useThemeStore();
 
   return (
-    <section className="dark:bg-[#3c3c3c66] bg-white shadow-lg rounded-[30px] p-[27px_40px] flex flex-col gap-[20px] mb-[40px]">
+    <section className="dark:bg-[#3c3c3c66] bg-white shadow-lg rounded-[30px] p-[33.5px_40px] flex flex-col gap-[20px] mb-[40px]">
       <h3 className="text-[14px] md:text-[20px] 2xl:text-[25px] w-full flex items-center justify-between">
         Allocation{" "}
         <ArrowBracket color={theme === "dark" ? "white" : "black"} width={24} />{" "}
@@ -54,9 +54,8 @@ const Allocation = () => {
       <div className="flex flex-col gap-[10px]">
         {data &&
           data.map((item) => (
-            <>
+            <div key={item.name}>
               <div
-                key={item.name}
                 className="flex items-center w-full justify-between"
               >
                 <div className="flex gap-[10px] items-center">
@@ -70,7 +69,7 @@ const Allocation = () => {
                 {item.cell}
               </div>
               <span className="min-h-[1px] w-full bg-white block" />
-            </>
+            </div>
           ))}
       </div>
     </section>

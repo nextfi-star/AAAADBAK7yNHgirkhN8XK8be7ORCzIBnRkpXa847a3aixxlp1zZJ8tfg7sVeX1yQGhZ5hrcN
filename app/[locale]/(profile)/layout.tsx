@@ -1,8 +1,6 @@
 "use client";
 import { NextPage } from "next";
-
 import Template from "./Template";
-
 import { TapBar, ProfileHeader, Profile_nav } from "@/components/shared/index";
 import { ADMIN } from "@/components/shared/ADMIN";
 
@@ -19,7 +17,6 @@ const FormLayout: NextPage<RootLayoutProps> = ({ children }) => {
         <Template>{children}</Template>
       </main>
       <TapBar />
-      <ADMIN />
     </div>
   );
 };

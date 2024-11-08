@@ -42,7 +42,7 @@ export const Header: NextPage<Props> = ({ auth = true }) => {
   }, []);
 
   return (
-    <header className="header" id="header">
+    <header className="initial_header" id="header">
       <div className="site-holder">
         <div
           className="header__content"

@@ -81,7 +81,7 @@ export default function Chart() {
     <Card>
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
-          <CardTitle>NextFi Chart - Interactive</CardTitle>
+          <CardTitle className='text-[20px] 2xl:text-[32px]'>NextFi Chart - Interactive</CardTitle>
           <CardDescription>
             Showing total income for the last 30 days
           </CardDescription>

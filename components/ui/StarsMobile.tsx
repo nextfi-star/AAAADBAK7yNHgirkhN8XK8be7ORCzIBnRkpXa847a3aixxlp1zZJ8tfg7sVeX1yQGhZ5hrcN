@@ -3,7 +3,7 @@ interface Props {
   width?: string;
   height?: string;
 }
-const StarsMobile = ({ width = "40", height = "auto" }: Props) => {
+const StarsMobile = ({ width = "40", height = "40" }: Props) => {
   return (
     <svg
       className="min-w-[40px]"

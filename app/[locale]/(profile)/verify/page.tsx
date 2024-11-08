@@ -3,7 +3,6 @@ import { Check, ChevronsUpDown } from "lucide-react";
 import { NextPage } from "next";
 import Image from "next/image";
 import { useState } from "react";
-
 import { FAQ_howVerify } from "@/components/shared/FAQ_howVerify";
 import VerifyAnimation from "@/components/shared/VerifyAnimation";
 import { Verify_documents } from "@/components/shared/Verify_documents";
@@ -126,7 +125,7 @@ const Page: NextPage = () => {
               <Image
                 priority
                 alt="file icon"
-                className="h-auto w-auto absolute -right-[24px] -top-[40px] sm:-top-[68px] sm:-right-[68px] max-w-[65px] sm:max-w-[100%] -z-[1]"
+                className="h-auto w-auto absolute -right-[24px] -top-[40px] sm:-top-[68px] sm:-right-[68px] max-w-[65px] sm:max-w-[100%] z-[1]"
                 height={158}
                 quality={100}
                 src={"/main/profile_verify/File.svg"}

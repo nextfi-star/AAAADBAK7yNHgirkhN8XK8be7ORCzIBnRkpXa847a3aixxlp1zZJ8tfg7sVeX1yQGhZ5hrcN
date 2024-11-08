@@ -40,7 +40,7 @@ export const Profile_verification: NextPage<Props> = ({ toggleActive }) => {
             </p>
             <Link
               className="profile__verification__info__block_button flex justify-center"
-              href={"#"}
+              href={"/verify"}
               onClick={toggleActive}
             >
               {t("VerificationButton")}

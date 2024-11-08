@@ -3,7 +3,6 @@ import { useRef, useState } from "react";
 import { Swiper as SwiperType } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { NextPage } from "next";
-
 import Eye from "../ui/Eye";
 import StarsMobile from "../ui/StarsMobile";
 import Stonks from "../ui/Stonks";
