@@ -1,6 +1,6 @@
 {
-	"name": "next-app-template",
-	"version": "0.0.1",
+	"name": "nextfi_platform",
+	"version": "0.0.5",
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbo",
