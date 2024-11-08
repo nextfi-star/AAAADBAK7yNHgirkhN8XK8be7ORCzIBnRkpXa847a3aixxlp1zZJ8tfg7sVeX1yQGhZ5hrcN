@@ -17,7 +17,6 @@ import Theme_switch from './Theme_switch'
 import { Navigation } from './Navigation'
 import { BurgerIcon } from './BurgerIcon'
 import { Platform_mode } from './Platform_mode'
-import { Button } from '@nextui-org/button'
 
 interface Props {
 	auth: boolean

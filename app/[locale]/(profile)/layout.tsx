@@ -16,6 +16,7 @@ const FormLayout: NextPage<RootLayoutProps> = ({ children }) => {
         <Profile_nav />
         <Template>{children}</Template>
       </main>
+      <ADMIN />
       <TapBar />
     </div>
   );

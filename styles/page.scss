@@ -5702,19 +5702,19 @@ body {
 		left: 50% !important;
 		top: 50% !important;
 		translate: -50%, -50% !important;
-		z-index: 99 !important;
+		z-index: 100 !important;
 	}
 }
 .modal-fillBg {
 	@media (max-width: 768px) {
 		background: #0c0c0c;
 		top: 0;
-		z-index: 99 !important;
+		z-index: 100 !important;
 	}
 }
 @media (max-width: 1014px) {
 	.drawer__content {
-		z-index: 99 !important;
+		z-index: 100 !important;
 	}
 }
 .svg-hidden svg {
