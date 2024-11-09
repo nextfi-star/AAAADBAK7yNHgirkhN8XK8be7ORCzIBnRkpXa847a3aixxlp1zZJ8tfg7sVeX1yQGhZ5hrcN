@@ -19,4 +19,6 @@ export interface IStore {
   setPassword: (password: string) => void;
   verifyState: boolean;
   setVerifyState: (state: boolean) => void;
+  progress: number,
+  setProgress: (state: number) => void
 }

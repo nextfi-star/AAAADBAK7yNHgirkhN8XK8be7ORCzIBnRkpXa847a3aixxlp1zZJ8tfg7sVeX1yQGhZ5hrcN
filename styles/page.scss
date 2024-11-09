@@ -5743,3 +5743,16 @@ body {
 		}
 	}
 }
+.activity {
+	.swiper-pagination {
+		bottom: 8px !important;
+		&-bullet {
+			background-color: #515151;
+			width: 16px;
+			height: 16px;
+			&-active {
+				background-color: #073D95;
+			}
+		}
+	}
+}

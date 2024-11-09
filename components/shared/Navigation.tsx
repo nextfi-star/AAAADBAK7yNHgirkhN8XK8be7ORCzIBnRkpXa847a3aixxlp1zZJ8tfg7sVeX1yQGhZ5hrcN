@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { NextPage } from "next";
+import { Link } from '@/i18n/routing'
 
 export const Navigation: NextPage = () => {
   const t = useTranslations("nav");
@@ -12,9 +13,9 @@ export const Navigation: NextPage = () => {
       <a className="header__navigation-item" href="#">
         {t("token")}
       </a>
-      <a className="header__navigation-item" href="#">
+      <Link className="header__navigation-item" href="/activity">
         {t("activity")}
-      </a>
+      </Link>
       <a className="header__navigation-item" href="#">
         {t("how")}
       </a>

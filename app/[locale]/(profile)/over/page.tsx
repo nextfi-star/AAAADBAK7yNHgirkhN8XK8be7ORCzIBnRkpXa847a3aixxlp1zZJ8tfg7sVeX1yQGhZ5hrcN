@@ -11,8 +11,6 @@ import {
 	Profile_qr,
 	Profile_verification,
 } from '@/components/shared'
-import Allocation from '@/components/shared/Allocation'
-import Transaction from '@/components/shared/Transactions'
 
 const Profile: NextPage = () => {
 	const [verify, setVerify] = useState<boolean>(false)

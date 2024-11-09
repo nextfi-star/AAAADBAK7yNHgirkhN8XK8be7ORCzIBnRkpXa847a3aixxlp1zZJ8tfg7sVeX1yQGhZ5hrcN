@@ -34,11 +34,13 @@ export const useThemeStore = create<IStore>()(
 			setEmail: email => set({ email }),
 			setPhone: phone => set({ phone }),
 			setPassword: password => set({ password }),
-			verifyState: false, //! for admin
-			setVerifyState: state => set({ verifyState: state }), //! for admin
+			verifyState: false, 
+			setVerifyState: state => set({ verifyState: state }),
+			progress: 0,
+			setProgress: state => set({ progress: state }),
 		}),
 		{
-			name: 'verify-storage',
+			name: 'zustand-store',
 		}
 	)
 )

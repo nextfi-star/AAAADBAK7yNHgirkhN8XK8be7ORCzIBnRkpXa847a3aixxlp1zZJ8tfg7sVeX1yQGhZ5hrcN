@@ -1,14 +1,12 @@
 "use client";
 import { NextPage } from "next";
-import Template from "./Template";
+import Template from "../Template";
 import { TapBar, ProfileHeader, Profile_nav } from "@/components/shared/index";
-import { ADMIN } from "@/components/shared/ADMIN";
 
 interface RootLayoutProps {
   children: React.ReactNode;
 }
-
-const FormLayout: NextPage<RootLayoutProps> = ({ children }) => {
+const ProfileRoot: NextPage<RootLayoutProps> = ({ children }) => {
   return (
     <div className="profile__body ">
       <ProfileHeader auth />
@@ -21,4 +19,4 @@ const FormLayout: NextPage<RootLayoutProps> = ({ children }) => {
   );
 };
 
-export default FormLayout;
+export default ProfileRoot;
