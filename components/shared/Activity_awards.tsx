@@ -92,18 +92,18 @@ const Activity_awards: NextPage<Props> = ({
 		<section className='flex items-center flex-col gap-[40px] lg:mt-[80px]'>
 			<h1 className='text-[20px] 2xl:text-[42px] font-bold'>AWARDS</h1>
 
-			<div className='hidden lg:grid max-w-[1096px] w-full grid-cols-[1fr] md:grid-cols-[1fr_1fr] xl:grid-cols-[1fr_1fr] 2xl:grid-cols-[1fr_1fr_1fr] auto-rows-auto gap-[20px]'>
+			<div className='hidden max-w-[1096px] w-full lg:grid grid-cols-[1fr_1fr_1fr] auto-rows-auto gap-[20px]'>
 				{visibleItems &&
 					visibleItems.map((item, index) => (
 						<div
-							className='p-[24px] border-2 border-dashed border-[#3F7EF3] rounded-[30px]'
+							className='p-[24px] border-2 border-dashed border-[#3F7EF3] rounded-[30px] min-w-[304px]'
 							key={item.id}
 						>
 							<div className='p-[40px] flex flex-col items-center bg-[#073D95] rounded-[30px] gap-[12px]'>
-								<h2 className='text-[20px] 2xl:text-[54px]'>
+								<h2 className='text-[20px] 2xl:text-[54px] text-white'>
 									{item.percent} %
 								</h2>
-								<p className='text-[20px] 2xl:text-[32px] mb-[60px]'>
+								<p className='text-[20px] 2xl:text-[32px] mb-[60px] !text-white'>
 									{item.title}
 								</p>
 								<Button
@@ -117,27 +117,29 @@ const Activity_awards: NextPage<Props> = ({
 					))}
 			</div>
 
-			<div className='lg:hidden'>
+			<div className='lg:hidden max-w-[360px]'>
 				<Swiper
-					className='w-[400px] mb-[5rem]'
+					className='mb-[5rem]x'
 					modules={[Pagination]}
 					pagination={{ clickable: true }}
+					loop
 				>
 					{visibleItems &&
 						visibleItems.map((item, index) => (
-							<SwiperSlide
-								className='p-[38px] border-2 border-dashed border-[#3F7EF3] rounded-[30px]'
-								key={item.id}
-							>
-								<div className='p-[40px] flex flex-col items-center bg-[#073D95] rounded-[30px] gap-[12px]'>
-									<h2 className='text-[32px]'>{item.percent} %</h2>
-									<p className='text-[24px] mb-[40px]'>{item.title}</p>
-									<Button
-										className='bg-transparent border border-solid border-white text-white text-[20px] rounded-[50px] px-[30px] py-[25px]'
-										onClick={() => handleItemClick(index)}
-									>
-										Upgrade
-									</Button>
+							<SwiperSlide key={item.id} className='backdrop-blur-[6px]'>
+								<div className='p-[50px] border-2 border-dashed border-[#3F7EF3] rounded-[30px]'>
+									<div className='p-[40px] flex flex-col items-center bg-[#073D95] rounded-[30px] gap-[12px] w-full max-w-[320px] '>
+										<h2 className='text-[32px] text-white'>{item.percent} %</h2>
+										<p className='text-[24px] mb-[40px] text-white'>
+											{item.title}
+										</p>
+										<Button
+											className='bg-transparent border border-solid border-white text-white text-[20px] rounded-[50px] px-[30px] py-[25px]'
+											onClick={() => handleItemClick(index)}
+										>
+											Upgrade
+										</Button>
+									</div>
 								</div>
 							</SwiperSlide>
 						))}

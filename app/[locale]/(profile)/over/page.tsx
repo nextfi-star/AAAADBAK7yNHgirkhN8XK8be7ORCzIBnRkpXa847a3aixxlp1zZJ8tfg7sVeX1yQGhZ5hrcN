@@ -14,14 +14,15 @@ import {
 
 const Profile: NextPage = () => {
 	const [verify, setVerify] = useState<boolean>(false)
-	const { initializeTheme, verifyState } = useThemeStore()
+	const { initializeTheme, setVerifyState, verifyState } = useThemeStore()
 	const toggleActive = () => {
 		setVerify(prev => !prev)
 	}
 
 	useEffect(() => {
 		initializeTheme()
-	}, [initializeTheme])
+		setVerifyState(false)
+	}, [initializeTheme, verifyState])
 
 	return (
 		<section className='profile'>
