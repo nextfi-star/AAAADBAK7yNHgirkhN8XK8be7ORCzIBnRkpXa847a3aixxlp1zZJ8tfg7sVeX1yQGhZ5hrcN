@@ -1,13 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import { NextPage } from "next";
-
 import { Device } from "../ui/Device";
-
 import { Alert } from "./Alert";
-
 import { useThemeStore } from "@/store";
 import { Accordion, AccordionItem } from "@/components/ui/AccordionBurger";
+
 
 export const ProfileBurger_devices__accor: NextPage = () => {
   const { theme } = useThemeStore();
