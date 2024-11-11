@@ -51,7 +51,7 @@ export default function Withdrawal_table() {
 		new Set(INITIAL_VISIBLE_COLUMNS)
 	)
 	const [statusFilter, setStatusFilter] = React.useState<Selection>('all')
-	const [rowsPerPage, setRowsPerPage] = React.useState(15)
+	const [rowsPerPage, setRowsPerPage] = React.useState(5)
 	const [sortDescriptor, setSortDescriptor] = React.useState<SortDescriptor>({
 		column: 'age',
 		direction: 'ascending',

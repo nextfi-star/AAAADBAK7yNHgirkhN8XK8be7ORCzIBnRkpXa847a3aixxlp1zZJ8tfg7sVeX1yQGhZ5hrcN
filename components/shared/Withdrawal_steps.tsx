@@ -159,9 +159,9 @@ const Withdrawal_steps: NextPage = () => {
 										defaultItems={cryptoData}
 										variant='underlined'
 										label='Select crypto'
-										placeholder='Select a user'
+										placeholder='Select crypto'
 										labelPlacement='inside'
-										className='rounded-[4px] md:border-1 md:border-solid  border-[#606060] max-w-[94%]'
+										className='rounded-[4px] md:border-1 md:border-solid  border-[#606060] max-w-[94%] outline-1 outline outline-[#BDBDBD]'
 									>
 										{cryptoData => (
 											<AutocompleteItem
@@ -223,34 +223,19 @@ const Withdrawal_steps: NextPage = () => {
 							{step === 2 && (
 								<div className='flex flex-col gap-[31px] ml-[47px]'>
 									<div className='flex flex-col gap-[15px] md:gap-[65px]'>
-										<Autocomplete
-											label='Network'
+										<Input
+											type='text'
 											placeholder='Select network'
 											variant='underlined'
-											labelPlacement='inside'
-											className='rounded-[4px] md:border-1 md:border-solid  border-[#606060] max-w-[94%]'
-											defaultItems={dataCrypto}
-										>
-											{item => (
-												<AutocompleteItem key={item.value}>
-													{item.value}
-												</AutocompleteItem>
-											)}
-										</Autocomplete>
+											className='text-[16px] rounded-[4px] max-w-[94%] md:border-1 md:border-solid  border-[#606060] outline-1 outline outline-[#BDBDBD]'
+										/>
 
-										<Autocomplete
-											label='Address'
-											placeholder='Select address'
-											defaultItems={dataCrypto}
+										<Input
+											type='text'
+											placeholder='Select network'
 											variant='underlined'
-											className='rounded-[4px] md:border-1 md:border-solid  border-[#606060] max-w-[94%]'
-										>
-											{item => (
-												<AutocompleteItem key={item.value}>
-													{item.value}
-												</AutocompleteItem>
-											)}
-										</Autocomplete>
+											className='text-[16px] rounded-[4px] max-w-[94%] md:border-1 md:border-solid  border-[#606060] outline-1 outline outline-[#BDBDBD]'
+										/>
 									</div>
 
 									<div className='flex items-center gap-[10px]'>
@@ -291,7 +276,7 @@ const Withdrawal_steps: NextPage = () => {
 											type='text'
 											placeholder='Enter the amount'
 											variant='underlined'
-											className='rounded-[4px] md:border-1 md:border-solid  border-[#606060]'
+											className='rounded-[4px] md:border-1 md:border-solid  border-[#606060] outline-1 outline outline-[#BDBDBD]'
 										/>
 										<span className='text-[14px] md:text-[18px] text-[#888888]'>
 											Transaction Fee: <span>3.25 TRX</span>
@@ -307,15 +292,6 @@ const Withdrawal_steps: NextPage = () => {
 												</Button>
 											</div>
 										</div>
-									</div>
-
-									<div className='flex items-center gap-[10px] bg-transparent mt-[10px]'>
-										<Button
-											className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
-											onClick={() => setStep(prev => (prev = 2))}
-										>
-											Back
-										</Button>
 									</div>
 								</div>
 							)}

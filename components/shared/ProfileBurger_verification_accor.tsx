@@ -28,7 +28,7 @@ interface Props {
 export const ProfileBurger_verification_accor: NextPage<Props> = ({ data }) => {
 	const { theme } = useThemeStore()
 	return (
-		<div className='flex flex-col items-center gap-[60px] mt-[5rem]'>
+		<div className='flex flex-col items-center gap-[60px] mt-[50%]'>
 			<div className='w-fit relative'>
 				<Image
 					priority
@@ -68,7 +68,7 @@ export const ProfileBurger_verification_accor: NextPage<Props> = ({ data }) => {
 				/>
 			</div>
 			<article className='flex flex-col items-center gap-[24px]'>
-				<p className='text-[14px] sm:text-[18px] text-[#BDBDBD] flex items-center text-center gap-[2px] sm:gap-[7px]'>
+				<p className='text-[14px] sm:text-[18px] text-[#BDBDBD] flex items-start text-center gap-[2px] sm:gap-[7px]'>
 					<ProfilePage_guard color={theme === 'dark' ? '#fff' : '#000'} />
 					Your information is only used for identity verification.
 				</p>

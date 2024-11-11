@@ -14,7 +14,7 @@ import { Avatar } from '@nextui-org/react'
 import { Link } from '@/i18n/routing'
 
 export const Profile_balance: NextPage = () => {
-	const { theme } = useThemeStore()
+	const { theme, verifyState } = useThemeStore()
 	const [isActive, setIsActive] = useState<boolean>(true)
 	const [show, setShow] = useState<boolean>(false)
 	const swiperRef = useRef<SwiperType | null>(null)
@@ -183,7 +183,8 @@ export const Profile_balance: NextPage = () => {
 				</div>
 
 				<div className='flex w-full flex-col md:flex-row justify-between gap-[40px] md:pr-[70px]'>
-        <div className='md:max-w-[70%] w-full flex items-center justify-between'>
+        
+				{verifyState && <div className='md:max-w-[70%] w-full flex items-center justify-between'>
 					<Link href='#' className='flex flex-col items-center text-[14px]'>
 						<Avatar
 							src='/header_icons/profile_burger/deposit.svg'
@@ -219,7 +220,7 @@ export const Profile_balance: NextPage = () => {
 						/>
 						Investment
 					</Link>
-				</div>
+				</div>}
 
 				<span
 					className='flex items-center gap-[10px] cursor-pointer'

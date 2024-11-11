@@ -5163,7 +5163,7 @@ body {
 	}
 
 	.accor__wrapper {
-		min-height: 200px;
+		min-height: 400px;
 		padding: 0.5rem 0 0 0;
 
 		&.scrollY {
@@ -5235,11 +5235,10 @@ body {
 		}
 	}
 	.cursor-pointer {
-		padding-bottom: 5px;
 		cursor: pointer;
 		position: relative;
 		border-bottom: none;
-		font-size: 14px;
+		font-size: 16px;
 
 		&.tab__active::after {
 			background: var(--text-color);
@@ -5248,7 +5247,7 @@ body {
 		&::after {
 			position: absolute;
 			left: 0;
-			bottom: -5px;
+			bottom: -10px;
 			z-index: 999;
 			width: 100%;
 			min-height: 2px;
