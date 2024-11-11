@@ -11,19 +11,27 @@ import {
 	Profile_qr,
 	Profile_verification,
 } from '@/components/shared'
+import { usePathname } from 'next/navigation'
 
-const Profile: NextPage = () => {
+const Overview: NextPage = () => {
+	const pathname = usePathname();
 	const [verify, setVerify] = useState<boolean>(false)
 	const { initializeTheme, setVerifyState, verifyState } = useThemeStore()
 	const toggleActive = () => {
 		setVerify(prev => !prev)
 	}
-
 	useEffect(() => {
 		initializeTheme()
-		setVerifyState(false)
-	}, [initializeTheme, verifyState])
+	}, [initializeTheme])
 
+useEffect(() => {
+	if(pathname !== '/assets') {
+		setVerifyState(false)
+	} else {
+		setVerifyState(true)
+	}
+	}, [pathname])
+	
 	return (
 		<section className='profile'>
 			<Profile_info toggleActive={toggleActive} verify={verify} />
@@ -48,4 +56,4 @@ const Profile: NextPage = () => {
 	)
 }
 
-export default Profile
+export default Overview

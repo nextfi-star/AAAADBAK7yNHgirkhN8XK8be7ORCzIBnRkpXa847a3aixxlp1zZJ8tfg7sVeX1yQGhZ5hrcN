@@ -5,7 +5,7 @@ import { NextPage } from "next";
 import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 import { Profile_devices } from "@/components/shared/Profile_devices";
 
-const Page: NextPage = () => {
+const Devices: NextPage = () => {
   return (
     <section className="personal">
       <div className="personal-container">
@@ -33,4 +33,4 @@ const Page: NextPage = () => {
   );
 };
 
-export default Page;
+export default Devices;

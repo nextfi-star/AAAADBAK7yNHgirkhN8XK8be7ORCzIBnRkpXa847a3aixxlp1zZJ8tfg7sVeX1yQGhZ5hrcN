@@ -10,9 +10,11 @@
 	},
 	"dependencies": {
 		"@lottiefiles/dotlottie-react": "^0.9.3",
+		"@nextui-org/autocomplete": "^2.1.7",
 		"@nextui-org/button": "2.0.38",
 		"@nextui-org/code": "2.0.33",
 		"@nextui-org/date-picker": "^2.1.8",
+		"@nextui-org/divider": "^2.0.32",
 		"@nextui-org/input": "2.2.5",
 		"@nextui-org/kbd": "2.0.34",
 		"@nextui-org/link": "2.0.35",

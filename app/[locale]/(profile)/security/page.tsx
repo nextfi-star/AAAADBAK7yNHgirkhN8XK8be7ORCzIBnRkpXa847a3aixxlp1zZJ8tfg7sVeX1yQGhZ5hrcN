@@ -55,7 +55,7 @@ const data2 = [
     unic: "3",
   },
 ];
-const Page: NextPage = () => {
+const Security: NextPage = () => {
   const { theme } = useThemeStore();
 
   return (
@@ -131,4 +131,4 @@ const Page: NextPage = () => {
   );
 };
 
-export default Page;
+export default Security;

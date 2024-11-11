@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { NextPage } from "next";
 import Template from "../Template";
 import { TapBar, ProfileHeader, Profile_nav } from "@/components/shared/index";

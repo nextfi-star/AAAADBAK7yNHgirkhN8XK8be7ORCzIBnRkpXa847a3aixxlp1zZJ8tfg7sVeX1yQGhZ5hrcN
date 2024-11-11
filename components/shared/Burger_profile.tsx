@@ -3,10 +3,8 @@ import clsx from "clsx";
 import Image from "next/image";
 import { useState } from "react";
 import { NextPage } from "next";
-
 import ArrowBracket from "../ui/ArrowBracket";
 import { useThemeStore } from "../../store";
-
 import { ProfileBurger_info } from "./ProfileBurger_info";
 import { ProgileBurger_Tabsinfo } from "./ProgileBurger_Tabsinfo";
 import { ProfileBurger_menu_list } from "./ProfileBurger_menu_list";

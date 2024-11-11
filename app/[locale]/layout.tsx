@@ -46,7 +46,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html suppressHydrationWarning lang={locale}>
+    <html suppressHydrationWarning lang={locale} className='!bg-[#0c0c0c]'>
       <head />
       <body
         className={clsx(

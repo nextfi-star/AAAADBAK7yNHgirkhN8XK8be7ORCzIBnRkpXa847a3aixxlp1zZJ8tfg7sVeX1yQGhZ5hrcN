@@ -6,11 +6,9 @@ import { Profile_balance, Profile_payments } from '@/components/shared'
 import Allocation from '@/components/shared/Allocation'
 import Transaction from '@/components/shared/Transactions'
 
-const Profile: NextPage = () => {
-	const { initializeTheme, verifyState } = useThemeStore()
-	useEffect(() => {
-		initializeTheme()
-	}, [initializeTheme])
+const Assets: NextPage = () => {
+	const { initializeTheme, verifyState, setVerifyState } = useThemeStore()
+	
 
 	return (
 		<>
@@ -34,4 +32,4 @@ const Profile: NextPage = () => {
 	)
 }
 
-export default Profile
+export default Assets

@@ -34,20 +34,22 @@ const Activity_personal = () => {
 
 					<Activity_progress progress={progress} />
 					{/* MOBILE */}
+					<div className='w-full flex flex-col items-center gap-[10px]'>
 					<div className='w-full flex lg:hidden items-center justify-between gap-[5px]'>
 						<h5 className='text-[#3F7EF3] text-[20px] font-medium '>
 							Level {level}
 						</h5>
-						<Button
+						<span className='min-w-[54px] text-[20px] font-medium text-end'>
+							{progress}%
+						</span>
+					</div>
+					<Button
 							className={`${progress === 100 ? '!bg-[#3F7EF3]' : ''}  rounded-[50px] text-[18px] text-white px-[30px] py-[25px] lg:hidden`}
 							disabled={progress < 100}
 							onClick={levelUp}
 						>
 							Next Level
 						</Button>
-						<span className='min-w-[54px] text-[20px] font-medium text-end'>
-							{progress}%
-						</span>
 					</div>
 					{showConfetti && (
 								<Confetti

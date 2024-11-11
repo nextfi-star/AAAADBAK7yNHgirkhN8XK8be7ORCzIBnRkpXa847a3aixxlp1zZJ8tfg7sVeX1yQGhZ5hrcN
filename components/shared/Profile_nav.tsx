@@ -20,9 +20,9 @@ export const Profile_nav: NextPage = () => {
           <li>
             <Link
               className={`profile__nav-navbar-item ${
-                currentPath === `/${locale}/over` ? "active" : ""
+                currentPath === `/${locale}/assets` ? "active" : ""
               }`}
-              href={`/over`}
+              href={`/assets`}
             >
               Assets
             </Link>
@@ -50,11 +50,11 @@ export const Profile_nav: NextPage = () => {
           <li>
             <Link
               className={`profile__nav-navbar-item ${
-                currentPath === `/${locale}/verify` ? "active" : ""
+                currentPath === `/${locale}/withdrawal` ? "active" : ""
               }`}
-              href={`/verify`}
+              href={`/withdrawal`}
             >
-              Withdrawl
+              Withdrawal
             </Link>
           </li>
           <li>

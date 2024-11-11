@@ -62,7 +62,7 @@ const typeID = [
 	},
 ]
 
-const Page: NextPage = () => {
+const Verify: NextPage = () => {
 	const { theme } = useThemeStore()
 	const [change, SetChange] = useState<boolean>(false)
 	const [open, setOpen] = useState(false)
@@ -150,6 +150,7 @@ const Page: NextPage = () => {
 								width={208}
 							/>
 						</div>
+
 						<div className='w-full flex flex-col gap-[25px] items-center'>
 							<h1 className='text-[25px] sm:text-[32px] font-medium leading-[35px]'>
 								Verify your identity
@@ -171,7 +172,7 @@ const Page: NextPage = () => {
 								</div>
 							</article>
 							<article className='flex flex-col items-center gap-[24px]'>
-								<p className='text-[14px] sm:text-[18px] text-[#BDBDBD] flex items-center text-center gap-[0px] sm:gap-[7px]'>
+								<p className='text-[14px] sm:text-[18px] text-[#BDBDBD] flex items-center gap-[10px] sm:gap-[7px]'>
 									<ProfilePage_guard
 										color={theme === 'dark' ? '#fff' : '#000'}
 									/>
@@ -401,4 +402,4 @@ const Page: NextPage = () => {
 	)
 }
 
-export default Page
+export default Verify
