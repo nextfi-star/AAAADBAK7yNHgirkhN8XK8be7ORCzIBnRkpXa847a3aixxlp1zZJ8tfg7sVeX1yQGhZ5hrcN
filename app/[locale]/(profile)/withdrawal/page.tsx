@@ -7,11 +7,11 @@ import { NextPage } from 'next'
 const Withdrawal: NextPage = () => {
 	return (
 		<section className='withdrawal -mt-[6rem] md:mt-0 pb-[1.5rem]'>
+			<h1 className='w-full text-center text-[32px] my-[30px]'>Withdrawal</h1>
 			<div className='grid xl:grid-cols-[2fr_1fr] gap-[31px] mb-[33px]'>
 				<div className=''>
 					<Withdrawal_steps />
 				</div>
-
 				<Withdrawal_faq />
 			</div>
 			<Withdrawal_table />

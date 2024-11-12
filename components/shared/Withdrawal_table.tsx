@@ -7,7 +7,6 @@ import {
 	TableBody,
 	TableRow,
 	TableCell,
-	Input,
 	Button,
 	DropdownTrigger,
 	Dropdown,
@@ -19,11 +18,10 @@ import {
 	Selection,
 	ChipProps,
 	SortDescriptor,
+	Snippet,
 } from '@nextui-org/react'
-
 import { VerticalDotsIcon } from './VerticalDotsIcon'
 import { ChevronDownIcon } from './ChevronDownIcon'
-import { SearchIcon } from './SearchIcon'
 import { capitalize } from './utils'
 import { columnsDataW, statusOptionsDataW, usersDataW } from './data'
 import { Copy } from 'lucide-react'
@@ -115,11 +113,15 @@ export default function Withdrawal_table() {
 				return <span>{user.time}</span>
 			case 'address':
 				return (
-					<div className='flex flex-col items-start'>
-						<p className='text-bold text-small capitalize flex items-center gap-[5px] overflow-ellipsis whitespace-nowrap overflow-hidden'>
-							{user.subaddress}
-							<Copy className='cursor-pointer min-w-[10px]' />
-						</p>
+					<div className='flex flex-col items-center'>
+						<div className=' flex items-center gap-[5px] '>
+							<Snippet
+								symbol=''
+								className='text-bold text-small capitalize overflow-ellipsis whitespace-nowrap overflow-hidden'
+							>
+								{user.subaddress}
+							</Snippet>
+						</div>
 					</div>
 				)
 			case 'crypto':
@@ -244,8 +246,8 @@ export default function Withdrawal_table() {
 			bottomContentPlacement='outside'
 			classNames={{
 				wrapper: 'max-h-[382px]',
-				td: 'text-left',
-				th: 'text-left',
+				td: 'text-center',
+				th: 'text-center',
 			}}
 			sortDescriptor={sortDescriptor}
 			topContent={topContent}

@@ -217,7 +217,7 @@ const usersDataW = [
 		time: '19/04/2024, 23:19:21', //! time name group-1
 		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
 		subaddress: 'Tron(TRC 20)',
-		crypto: 'USDT', //! sub-subaddress group-1
+		crypto: 'TRX', //! sub-subaddress group-1
 		amount: '112.720',
 		fee: '1',
 		status: 'sent', //! status independent element
@@ -228,7 +228,7 @@ const usersDataW = [
 		time: '25/04/2024, 23:19:21', //! time name group-1
 		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
 		subaddress: 'Tron(TRC 20)',
-		crypto: 'USDT', //! sub-subaddress group-1
+		crypto: 'ZRO', //! sub-subaddress group-1
 		amount: '112.720',
 		fee: '1',
 		status: 'denied', //! status independent element
@@ -250,7 +250,7 @@ const usersDataW = [
 		time: '14/04/2024, 23:19:21', //! time name group-1
 		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
 		subaddress: 'Tron(TRC 20)',
-		crypto: 'USDT', //! sub-subaddress group-1
+		crypto: 'TRX', //! sub-subaddress group-1
 		amount: '112.720',
 		fee: '1',
 		status: 'pending', //! status independent element
@@ -272,7 +272,7 @@ const usersDataW = [
 		time: '14/04/2024, 23:19:21', //! time name group-1
 		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
 		subaddress: 'Tron(TRC 20)',
-		crypto: 'USDT', //! sub-subaddress group-1
+		crypto: 'ZRO', //! sub-subaddress group-1
 		amount: '112.720',
 		fee: '1',
 		status: 'pending', //! status independent element
@@ -283,7 +283,7 @@ const usersDataW = [
 		time: '14/04/2024, 23:19:21', //! time name group-1
 		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
 		subaddress: 'Tron(TRC 20)',
-		crypto: 'USDT', //! sub-subaddress group-1
+		crypto: 'ZRO', //! sub-subaddress group-1
 		amount: '112.720',
 		fee: '1',
 		status: 'pending', //! status independent element

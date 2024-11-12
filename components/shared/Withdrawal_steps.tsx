@@ -2,25 +2,11 @@
 import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete'
 import { Button } from '@nextui-org/button'
 import { Input } from '@nextui-org/input'
-import { Avatar, Image } from '@nextui-org/react'
+import { Avatar } from '@nextui-org/react'
 import { CheckCheck } from 'lucide-react'
 import { NextPage } from 'next'
 import { useState } from 'react'
 
-const dataCrypto = [
-	{
-		label: 'TRON',
-		value: 'TRX',
-	},
-	{
-		label: 'USDT',
-		value: 'USDT',
-	},
-	{
-		label: 'ZRO',
-		value: 'ZRO',
-	},
-]
 const cryptoData = [
 	{
 		id: 1,
@@ -129,7 +115,34 @@ const cryptoData = [
 ]
 const Withdrawal_steps: NextPage = () => {
 	const [step, setStep] = useState<number>(1)
-
+	const [inputStep2, setInputStep2] = useState<string>('')
+	const [input2Step2, setInput2Step2] = useState<string>('')
+	const [input3, setInput3] = useState('')
+	const [selectedCrypto, setSelectedCrypto] = useState<{
+		name: string
+		avatar: string
+	} | null>(null)
+	const [inputValue, setInputValue] = useState('')
+	const handleSelectionChange = (selectedId: React.Key | null) => {
+		if (selectedId === null) return
+		const selectedItem = cryptoData.find(item => item.id === Number(selectedId))
+		if (selectedItem) {
+			setSelectedCrypto({
+				name: selectedItem.name,
+				avatar: selectedItem.avatar,
+			})
+		}
+	}
+	const handleInputChange = (value: string) => {
+		setStep(prev => (prev = 2))
+		setInputValue(value)
+	}
+	const inputStep2Handler = (e: any) => {
+		setInputStep2(e.target.value)
+	}
+	const input2Step2Handler = (e: any) => {
+		setInput2Step2(e.target.value)
+	}
 	return (
 		<div className='shadow-lg dark:shadow-none dark:bg-[#181818] rounded-[30px] p-[29px_16px] md:p-[29px]'>
 			<div className='flex justify-start gap-[10px] w-full overflow-x-hidden pb-[1.5rem]'>
@@ -153,15 +166,15 @@ const Withdrawal_steps: NextPage = () => {
 
 							{step === 1 && (
 								<div
-									className={`flex flex-col gap-[31px] w-full ml-[47px] pr-[35px]`}
+									className={`flex flex-col gap-[31px] max-w-[83%] w-full ml-[47px]`}
 								>
 									<Autocomplete
 										defaultItems={cryptoData}
 										variant='underlined'
-										label='Select crypto'
 										placeholder='Select crypto'
-										labelPlacement='inside'
-										className='rounded-[4px] md:border-1 md:border-solid  border-[#606060] max-w-[94%] outline-1 outline outline-[#BDBDBD]'
+										className='rounded-[4px] md:border-1 md:border-solid  border-[#606060]  outline-1 outline outline-[#BDBDBD]'
+										onSelectionChange={handleSelectionChange}
+										onInputChange={handleInputChange}
 									>
 										{cryptoData => (
 											<AutocompleteItem
@@ -195,13 +208,22 @@ const Withdrawal_steps: NextPage = () => {
 											</AutocompleteItem>
 										)}
 									</Autocomplete>
-
-									<Button
-										className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
-										onClick={() => setStep(prev => (prev = 2))}
-									>
-										Next
-									</Button>
+								</div>
+							)}
+							{step > 1 && (
+								<div className='ml-[40px]'>
+									{selectedCrypto && (
+										<div className='pb-[5px] max-w-[83%] flex items-center gap-2 border-1 border-solid border-[#BDBDBD] p-[5px] rounded-medium'>
+											<Avatar
+												src={selectedCrypto.avatar}
+												alt={selectedCrypto.name}
+												size='md'
+											/>
+											<span className='text-lg text-[#636363]'>
+												{inputValue}
+											</span>
+										</div>
+									)}
 								</div>
 							)}
 						</div>
@@ -227,14 +249,16 @@ const Withdrawal_steps: NextPage = () => {
 											type='text'
 											placeholder='Select network'
 											variant='underlined'
-											className='text-[16px] rounded-[4px] max-w-[94%] md:border-1 md:border-solid  border-[#606060] outline-1 outline outline-[#BDBDBD]'
+											className='text-[16px] rounded-[4px] max-w-[83%] md:border-1 md:border-solid  border-[#606060] outline-1 outline outline-[#BDBDBD]'
+											onChange={inputStep2Handler}
 										/>
 
 										<Input
 											type='text'
-											placeholder='Select network'
+											placeholder='Select address'
 											variant='underlined'
-											className='text-[16px] rounded-[4px] max-w-[94%] md:border-1 md:border-solid  border-[#606060] outline-1 outline outline-[#BDBDBD]'
+											className='text-[16px] rounded-[4px] max-w-[83%] md:border-1 md:border-solid  border-[#606060] outline-1 outline outline-[#BDBDBD]'
+											onChange={input2Step2Handler}
 										/>
 									</div>
 
@@ -246,12 +270,29 @@ const Withdrawal_steps: NextPage = () => {
 											Back
 										</Button>
 										<Button
-											className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
+											className={`text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14 ${inputStep2.length > 3 && input2Step2.length > 3 ? 'bg-[#205BC9]' : ''}`}
+											disabled={inputStep2.length < 4 || input2Step2.length < 4}
 											onClick={() => setStep(prev => (prev = 3))}
 										>
 											Next
 										</Button>
 									</div>
+								</div>
+							)}
+							{step > 2 && (
+								<div className='ml-[40px]'>
+									{inputStep2 && input2Step2 && (
+										<div className='pb-[5px] border-0 border-b border-solid border-[#BDBDBD] max-w-[81%] flex flex-col items-start gap-2'>
+											<span className='text-[16px]'>
+												Network -{' '}
+												<span className='text-[#205BC9]'> {inputStep2}</span>
+											</span>
+											<span className='text-[16px]'>
+												Address -{' '}
+												<span className='text-[#205BC9]'>{input2Step2}</span>
+											</span>
+										</div>
+									)}
 								</div>
 							)}
 						</div>
@@ -276,19 +317,32 @@ const Withdrawal_steps: NextPage = () => {
 											type='text'
 											placeholder='Enter the amount'
 											variant='underlined'
-											className='rounded-[4px] md:border-1 md:border-solid  border-[#606060] outline-1 outline outline-[#BDBDBD]'
+											className='rounded-[4px] md:border-1 md:border-solid  border-[#606060] outline-1 outline outline-[#BDBDBD] max-w-[83%]'
+											onChange={e => setInput3(e.target.value)}
 										/>
 										<span className='text-[14px] md:text-[18px] text-[#888888]'>
-											Transaction Fee: <span>3.25 TRX</span>
+											Transaction Fee: <span>3.25 {inputValue}</span>
 										</span>
 										<div className='flex flex-col gap-[10px] md:gap-0 items-start md:flex-row md:items-center md:justify-between w-full'>
-											<span className='text-[#BDBDBD] text-[14px] md:text-[20px]'>
-												Amount Received
-											</span>
+											<p className='text-[#BDBDBD] text-[14px] md:text-[20px] flex items-center justify-between gap-[5px]'>
+												Amount Received:
+												<span className='text-[14px] md:text-[18px] xl:text-[25px]'>
+													111.25 {inputValue}
+												</span>
+											</p>
 											<div className='flex items-center gap-[34px]'>
-												<p className='text-[14px] lg:text-[32px]'>111.25 TRX</p>
-												<Button className='bg-[#205BC9] text-white text-[14px] lg:text-[20px] rounded-[50px] !p-[2px_15px] '>
+												<Button
+													className={`text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14 rounded-[50px] ${input3.length > 3 ? 'bg-[#205BC9]' : ''}`}
+													disabled={input3.length <= 3}
+												>
 													Withdrawal
+												</Button>
+												<Button
+													className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14 rounded-[50px]'
+													onClick={() => setStep(prev => (prev = 2))}
+													title='не ругайся насяйника'
+												>
+													Back
 												</Button>
 											</div>
 										</div>
