@@ -25,7 +25,7 @@ const data = [
 	{
 		src: '/header_icons/profile_burger/commission.svg',
 		title: 'Commission',
-		tabName: 'Authorized Devices',
+		tabName: 'Devices',
 		href: '/devices',
 	},
 ]

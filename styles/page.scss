@@ -5163,9 +5163,7 @@ body {
 	}
 
 	.accor__wrapper {
-		min-height: 400px;
-		padding: 0.5rem 0 0 0;
-
+		padding: 1.5rem 0 2.5rem 0;
 		&.scrollY {
 			overflow-y: auto;
 		}
@@ -5247,10 +5245,10 @@ body {
 		&::after {
 			position: absolute;
 			left: 0;
-			bottom: -10px;
+			bottom: -11px;
 			z-index: 999;
 			width: 100%;
-			min-height: 2px;
+			min-height: 3px;
 			background: none;
 			content: '';
 		}

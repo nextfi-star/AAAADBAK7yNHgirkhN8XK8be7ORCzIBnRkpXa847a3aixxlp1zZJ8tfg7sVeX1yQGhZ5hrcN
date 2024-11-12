@@ -25,7 +25,7 @@ const data = [
   {
     src: "/header_icons/profile_burger/devices.svg",
     title: "Devices",
-    tabName: "Authorized Devices",
+    tabName: "Devices",
     href: '/devices',
   },
 ];

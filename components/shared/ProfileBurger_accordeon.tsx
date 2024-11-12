@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-
+import { ScrollShadow } from '@nextui-org/scroll-shadow'
 import { Alert_email } from './Alert_email'
 import { Alert_logpass } from './Alert_logpass'
 import { Alert_nickname } from './Alert_nickname'
@@ -262,17 +262,17 @@ export const ProfileBurger_accordeon: NextPage<Props> = ({
 	activeTab,
 }) => {
 	return (
-		<div className={`accor__wrapper ${!showSection ? 'scrollY' : ''}`}>
-			{activeTab === 'Profile' && (
-				<ProfileBurger_profile_accor data={profileData} />
-			)}
-			{activeTab === 'Security' && (
-				<ProfileBurger_security_accor data={securityData} />
-			)}
-			{activeTab === 'Verification' && (
-				<ProfileBurger_verification_accor data={verifData} />
-			)}
-			{activeTab === 'Authorized Devices' && <ProfileBurger_devices__accor />}
-		</div>
+			<div className={`accor__wrapper ${!showSection ? 'scrollY' : ''} `}>
+				{activeTab === 'Profile' && (
+					<ProfileBurger_profile_accor data={profileData} />
+				)}
+				{activeTab === 'Security' && (
+					<ProfileBurger_security_accor data={securityData} />
+				)}
+				{activeTab === 'Verification' && (
+					<ProfileBurger_verification_accor data={verifData} />
+				)}
+				{activeTab === 'Devices' && <ProfileBurger_devices__accor />}
+			</div>
 	)
 }
