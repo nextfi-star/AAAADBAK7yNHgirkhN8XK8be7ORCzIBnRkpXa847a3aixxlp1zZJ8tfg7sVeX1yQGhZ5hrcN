@@ -1,5 +1,5 @@
 'use client'
-import { Check, ChevronsUpDown } from 'lucide-react'
+import { Check, ChevronsUpDown, X } from 'lucide-react'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -373,22 +373,29 @@ const Verify: NextPage = () => {
 
 						{step === 3 && (
 							<div className='flex flex-col gap-[40px]'>
-								<h1 className='w-full border-transparent pb-[20px] mb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]'>
-									<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
-										<Button
-											className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-transparent'
-											onClick={() => setStep(prev => prev - 1)}
-										>
-											<ArrowBracket
-												className={'rotate-90'}
-												color={theme === 'dark' ? 'white' : 'black'}
-												height={25}
-												width={25}
-											/>
-										</Button>
-									</span>
-									Identity verification
-								</h1>
+								<div className='w-full border-transparent pb-[20px] mb-[20px]  text-left flex items-center justify-between gap-[10px]'>
+									<div className='flex items-center'>
+										<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
+											<Button
+												className=' text-black dark:text-white bg-transparent  text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-transparent'
+												onClick={() => setStep(prev => prev - 1)}
+											>
+												<ArrowBracket
+													className={'rotate-90'}
+													color={theme === 'dark' ? 'white' : 'black'}
+													height={25}
+													width={25}
+												/>
+											</Button>
+										</span>
+										<h1 className='text-[20px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px]'>
+											Identity verification
+										</h1>
+									</div>
+										<div onClick={() => setStep(1)}>
+										<X />
+										</div>
+								</div>
 								<div className='flex items-start justify-center'>
 									<VerifyAnimation />
 								</div>

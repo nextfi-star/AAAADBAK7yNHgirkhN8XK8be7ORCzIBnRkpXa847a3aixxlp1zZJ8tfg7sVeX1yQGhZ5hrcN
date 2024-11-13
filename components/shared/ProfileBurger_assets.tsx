@@ -24,7 +24,7 @@ const data = [
 	},
 	{
 		src: '/header_icons/profile_burger/commission.svg',
-		title: 'Commission',
+		title: 'Fee Tier',
 		tabName: 'Devices',
 		href: '/devices',
 	},

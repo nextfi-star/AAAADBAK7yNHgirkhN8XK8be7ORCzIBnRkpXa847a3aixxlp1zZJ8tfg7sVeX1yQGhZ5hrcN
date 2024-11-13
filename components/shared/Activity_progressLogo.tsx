@@ -47,7 +47,7 @@ const Activity_progressLogo = () => {
 		[]
 	)
 	return (
-		<section className='w-full max-h-[476px] min-h-[476px] lg:shadow-xl bg-none lg:dark:bg-[#3C3C3C66] lg:rounded-[1000px] backdrop-blur-[6px] flex flex-col items-center justify-center gap-[30px] lg:pr-[40px]'>
+		<section className='w-full max-h-[476px] min-h-[476px] xl:shadow-xl bg-none xl:dark:bg-[#3C3C3C66] lg:rounded-[1000px] backdrop-blur-[6px] flex flex-col items-center justify-center gap-[30px] lg:pr-[40px]'>
 			<div className='w-full lg:max-w-[70%] flex items-end justify-center gap-[10px] lg:gap-[20px] select-none relative'>
 				<div className='flex flex-col gap-[5px] lg:gap-[24px] items-start '>
 					{data &&
@@ -81,20 +81,20 @@ const Activity_progressLogo = () => {
 						))}
 				</div>
 
-				<ul className='absolute -right-[64px] hidden lg:flex flex-col text-[#888888] text-[18px] gap-[10px]'>
-				<li className="before:content-['•'] before:mr-2 list-none">
-					Participate in project activities
-				</li>
-				<li className="before:content-['•'] before:mr-2 list-none">
-					Make trading operations
-				</li>
-				<li className="before:content-['•'] before:mr-2 list-none">
-					Upgrade reward cards
-				</li>
-			</ul>
+				<ul className='absolute -right-[94px] hidden xl:flex flex-col text-[#888888] text-[18px] gap-[10px]'>
+					<li className="before:content-['•'] before:mr-2 list-none">
+						Participate in project activities
+					</li>
+					<li className="before:content-['•'] before:mr-2 list-none">
+						Make trading operations
+					</li>
+					<li className="before:content-['•'] before:mr-2 list-none">
+						Upgrade reward cards
+					</li>
+				</ul>
 			</div>
 
-			<ul className='flex lg:hidden flex-col text-[#888888] text-[18px]'>
+			<ul className='flex xl:hidden flex-col text-[#888888] text-[18px]'>
 				<li className="before:content-['•'] before:mr-2 list-none">
 					Participate in project activities
 				</li>
@@ -106,7 +106,7 @@ const Activity_progressLogo = () => {
 				</li>
 			</ul>
 			<Button
-				className='flex lg:hidden items-center rounded-[50px] text-[14px]  font-medium border border-solid dark:border-white border-black'
+				className='flex xl:hidden items-center rounded-[50px] text-[14px]  font-medium border border-solid dark:border-white border-black'
 				variant='bordered'
 			>
 				Description and criteria for upgrading

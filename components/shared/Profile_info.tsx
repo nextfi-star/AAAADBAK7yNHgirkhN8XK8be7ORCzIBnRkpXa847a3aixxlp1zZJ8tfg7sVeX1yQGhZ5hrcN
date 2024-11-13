@@ -67,9 +67,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 						{t('CountryRegion')}
 					</h5>
 					<select
-						className='profile__info__block___right__additional__text'
-						id=''
-						name=''
+						className='profile__info__block___right__additional__text border-1 border-gray-300 border-solid rounded-[50px] px-[10px]'
 					>
 						<option value=''>UAE</option>
 					</select>
@@ -78,7 +76,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 					<h5 className='profile__info__block___right__main__text'>
 						{t('CommisionLevel')}
 					</h5>
-					<p className='profile__info__block___right__additional__text'>
+					<p className='profile__info__block___right__additional__text border-1 border-gray-300 border-solid rounded-[50px] px-[10px]'>
 						Level 1
 					</p>
 				</div>

@@ -18,6 +18,7 @@ import { Navigation } from './Navigation'
 import { BurgerIcon } from './BurgerIcon'
 import { Platform_mode } from './Platform_mode'
 import { Button } from '@nextui-org/button'
+import { LogOut } from 'lucide-react'
 
 interface Props {
 	auth: boolean
@@ -55,7 +56,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 	return (
 		<header className='header py-[1.5rem]' id='header'>
 			<div className='flex justify-between items-center site-holder'>
-				<a className='header__logo' href=''>
+				<a className='hidden xl:block' href=''>
 					<Logo_header />
 				</a>
 				<div className={`${classChange}`} onClick={handleClick}>
@@ -95,15 +96,16 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 											color={theme === 'dark' ? 'white' : 'black'}
 										/>
 									</Link>
-									<Link href='/'>
+									<Link href='#'>
 										<Download2 color={theme === 'dark' ? 'white' : 'black'} />
 									</Link>
-									<a className='header__icons-item' href='#'>
+									<div className='header__icons-item'>
 										<Theme_switch />
-									</a>
+									</div>
 									<button className='header__icons-item'>
 										<Locale_Switcher />
 									</button>
+									<LogOut className='w-full max-w-[23px]' />
 								</div>
 
 								<div className='flex items-center sm:hidden gap-[5px] sm:gap-[18px]'>
@@ -120,6 +122,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 											width={20}
 										/>
 									</button>
+									<LogOut className='w-full max-w-[23px]' />
 								</div>
 							</>
 						)}

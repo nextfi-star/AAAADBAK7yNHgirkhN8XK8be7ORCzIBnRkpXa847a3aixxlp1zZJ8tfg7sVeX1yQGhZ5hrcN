@@ -121,7 +121,7 @@
 	--header: #000000;
 	--bd: #000000;
 	--hightLight-text: #073d95;
-	--body-color: #fff;
+	--body-color: #F9F9FA;
 	--icon-color: #000000;
 	--getstarted-item: #ffffff66;
 	--logo-color: #3b3b3b;
@@ -1066,7 +1066,7 @@ body {
 			@media (min-width: 1830px) {
 				font-size: 22px;
 			}
-			@media (max-width: 1280px) {
+			@media (max-width: 1440px) {
 				font-size: 16px !important;
 			}
 		}
@@ -5675,9 +5675,6 @@ body {
 	padding: 0 60px;
 	background: var(--body-color) !important;
 
-	// &::after {
-	// 	display: none;
-	// }
 	@media (max-width: 1014px) {
 		&.mobile-holder {
 			top: 0px;
@@ -5691,7 +5688,7 @@ body {
 .modal-new {
 	@media (max-width: 768px) {
 		top: 0;
-		z-index: 99 !important;
+		z-index: 100 !important;
 	}
 }
 .modal-freezeClose {
@@ -5711,7 +5708,7 @@ body {
 }
 @media (max-width: 1014px) {
 	.drawer__content {
-		z-index: 99 !important;
+		z-index: 100 !important;
 	}
 }
 .svg-hidden svg {

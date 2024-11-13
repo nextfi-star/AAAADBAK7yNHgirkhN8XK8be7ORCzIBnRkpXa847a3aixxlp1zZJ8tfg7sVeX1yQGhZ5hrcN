@@ -24,7 +24,7 @@ const VerifyCode: NextPage = () => {
   }, [initializeTheme]);
 
   return (
-    <div className="form__verify">
+    <div className="form__verify w-full">
       <h2>
         Confirm your {mode === "email" ? "email address" : "phone number"}
       </h2>

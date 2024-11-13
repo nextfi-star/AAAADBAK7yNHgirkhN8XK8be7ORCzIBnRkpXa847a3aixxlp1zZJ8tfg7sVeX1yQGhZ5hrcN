@@ -182,57 +182,57 @@ export const Profile_balance: NextPage = () => {
 					</div>
 				</div>
 
-				<div className='flex w-full flex-col md:flex-row justify-between gap-[40px] md:pr-[70px]'>
-        
-				{verifyState && <div className='md:max-w-[70%] w-full flex items-center justify-between'>
-					<Link href='#' className='flex flex-col items-center text-[14px]'>
-						<Avatar
-							src='/header_icons/profile_burger/deposit.svg'
-							className='flex-shrink-0 bg-transparent'
-							size='lg'
-						/>
-						Deposit
-					</Link>
-					<Link
-						href='/withdrawal'
-						className='flex flex-col items-center text-[14px]'
-					>
-						<Avatar
-							src='/header_icons/profile_burger/deposit.svg'
-							className='flex-shrink-0 bg-transparent'
-							size='lg'
-						/>
-						Withdrawal
-					</Link>
-					<Link href='#' className='flex flex-col items-center text-[14px]'>
-						<Avatar
-							src='/header_icons/profile_burger/swap.svg'
-							className='flex-shrink-0 bg-transparent'
-							size='lg'
-						/>
-						Swap
-					</Link>
-					<Link href='#' className='flex flex-col items-center text-[14px]'>
-						<Avatar
-							src='/header_icons/profile_burger/commission.svg'
-							className='flex-shrink-0 bg-transparent'
-							size='lg'
-						/>
-						Investment
-					</Link>
-				</div>}
+				<div className='flex w-full flex-col items-center gap-[40px] '>
+					{verifyState && (
+						<div className='w-full flex items-center justify-start gap-[25px]'>
+							<Link href='#' className='flex flex-col items-center text-[14px]'>
+								<Avatar
+									src='/header_icons/profile_burger/deposit.svg'
+									className='flex-shrink-0 bg-transparent'
+									size='lg'
+								/>
+								Deposit
+							</Link>
+							<Link
+								href='/withdrawal'
+								className='flex flex-col items-center text-[14px]'
+							>
+								<Avatar
+									src='/header_icons/profile_burger/deposit.svg'
+									className='flex-shrink-0 bg-transparent'
+									size='lg'
+								/>
+								Withdrawal
+							</Link>
+							<Link href='#' className='flex flex-col items-center text-[14px]'>
+								<Avatar
+									src='/header_icons/profile_burger/swap.svg'
+									className='flex-shrink-0 bg-transparent'
+									size='lg'
+								/>
+								Swap
+							</Link>
+							<Link href='#' className='flex flex-col items-center text-[14px]'>
+								<Avatar
+									src='/header_icons/profile_burger/commission.svg'
+									className='flex-shrink-0 bg-transparent'
+									size='lg'
+								/>
+								Investment
+							</Link>
+						</div>
+					)}
 
-				<span
-					className='flex items-center gap-[10px] cursor-pointer'
-					onClick={handleCLick}
-				>
-					Chart
-					<ArrowBracket
-						className={`min-w-[20px] ${!show ? 'rotate-[-90deg]' : 'rotate-[0deg]'} transition-all duration-300`}
-						color={theme === 'dark' ? 'white' : '#0c0c0c'}
-					/>
-				</span>
-        </div>
+					<span
+						className='flex items-center gap-[10px] cursor-pointer'
+						onClick={handleCLick}
+					>
+						<ArrowBracket
+							className={`min-w-[40px] transition-all duration-300`}
+							color={theme === 'dark' ? 'white' : '#0c0c0c'}
+						/>
+					</span>
+				</div>
 
 				<div
 					className={`overflow-hidden ${!show ? 'max-h-[0]' : 'max-h-[450px] '} transition-all duration-300`}

@@ -69,7 +69,7 @@ export const Burger_profile: NextPage<Props> = ({
             </div>
           )}
 
-          <div className={`profile__burger-container `}>
+          <div className={`profile__burger-container`}>
             {showSection ? (
               <ProfileBurger_info
                 setShowSection={setShowSection}

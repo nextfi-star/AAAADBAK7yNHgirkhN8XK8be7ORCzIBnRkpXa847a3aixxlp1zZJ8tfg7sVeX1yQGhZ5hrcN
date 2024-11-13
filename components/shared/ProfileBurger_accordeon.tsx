@@ -262,7 +262,7 @@ export const ProfileBurger_accordeon: NextPage<Props> = ({
 	activeTab,
 }) => {
 	return (
-			<div className={`accor__wrapper ${!showSection ? 'scrollY' : ''} `}>
+			<div className={`accor__wrapper  overscroll-contain ${!showSection ? 'scrollY' : ''} `}>
 				{activeTab === 'Profile' && (
 					<ProfileBurger_profile_accor data={profileData} />
 				)}

@@ -18,12 +18,14 @@ interface Props {
   titleTriger: string;
   title: string;
   className?: string;
+  unic?: string
 }
 export const Alert: NextPage<Props> = ({
   title,
   content,
   titleTriger,
   className,
+  unic
 }) => {
   return (
     <AlertDialog>

@@ -62,12 +62,12 @@ const Security: NextPage = () => {
     <section className="security">
       <div className="security-container">
         <div className="security__content">
-          <h1>Authentication methods</h1>
+          <h1 className='!text-[32px]'>Authentication methods</h1>
           {data &&
             data.map((item) => (
               <div key={item.title}>
                 <article className="security__content__item">
-                  <div className="security__content__item__list">
+                  <div className="flex flex-col items-center gap-[15px] xl:justify-between">
                     <div className="flex flex-col items-center md:items-start md:flex-row">
                       <Image
                         alt="icon"
@@ -75,6 +75,7 @@ const Security: NextPage = () => {
                         quality={100}
                         src={item.src}
                         width={30}
+                        className='min-w-[55px]'
                       />
                       <div className="flex flex-col items-center md:items-start gap-[8px]">
                         <p className="flex items-center gap-[11px] text-[18px] sm:text-[20px] md:text-[22px] 2xl:text-[25px]">

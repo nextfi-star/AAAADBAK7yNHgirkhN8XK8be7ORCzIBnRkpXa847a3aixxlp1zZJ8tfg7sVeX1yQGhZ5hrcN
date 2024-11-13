@@ -44,6 +44,7 @@ export const Profile_devices: NextPage = () => {
                       }
                       title={"Are you absolutely sure?"}
                       titleTriger={"Log out"}
+                      unic="half"
                     />
                   </div>
 

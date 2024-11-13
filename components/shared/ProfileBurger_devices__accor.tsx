@@ -5,6 +5,7 @@ import { Device } from "../ui/Device";
 import { Alert } from "./Alert";
 import { useThemeStore } from "@/store";
 import { Accordion, AccordionItem } from "@/components/ui/AccordionBurger";
+import { Confirmation_dialog } from './Confirmation_dialog'
 
 
 export const ProfileBurger_devices__accor: NextPage = () => {
@@ -37,7 +38,7 @@ export const ProfileBurger_devices__accor: NextPage = () => {
                     <span className='text-[14px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[10px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-10px] after:left-[50%] after:translate-x-[-50%] '>
                       MacBook PRO
                     </span>
-                    <Alert
+                    <Confirmation_dialog
                       content={
                         "This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers"
                       }
@@ -53,7 +54,7 @@ export const ProfileBurger_devices__accor: NextPage = () => {
                     <span className='text-[14px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[10px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-10px] after:left-[50%] after:translate-x-[-50%] '>
                       MacBook PRO
                     </span>
-                    <Alert
+                    <Confirmation_dialog
                       content={
                         "This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers"
                       }
@@ -69,7 +70,7 @@ export const ProfileBurger_devices__accor: NextPage = () => {
                     <span className='text-[14px] flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[10px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-10px] after:left-[50%] after:translate-x-[-50%] '>
                       MacBook PRO
                     </span>
-                    <Alert
+                    <Confirmation_dialog
                       content={
                         "This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers"
                       }

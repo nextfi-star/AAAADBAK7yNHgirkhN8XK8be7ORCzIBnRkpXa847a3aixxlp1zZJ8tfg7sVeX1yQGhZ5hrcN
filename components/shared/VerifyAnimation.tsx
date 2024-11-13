@@ -2,12 +2,10 @@
 import Lottie from "lottie-react";
 import { NextPage } from "next";
 import { useEffect, useState } from "react";
-
 import { useThemeStore } from "../../store";
-
-import animationData from "@/public/animation/file.json";
-import animationData2 from "@/public/animation/sphera.json";
-import animationData3 from "@/public/animation/sphera_dark.json";
+import animationData from "@/public/animation/verify_anim_mini.json";
+import animationData2 from "@/public/animation/verify_passed.json";
+import animationData3 from "@/public/animation/verify_passed.json";
 
 const VerifyAnimation: NextPage = () => {
   const { theme } = useThemeStore();
@@ -17,7 +15,6 @@ const VerifyAnimation: NextPage = () => {
   useEffect(() => {
     if (progress < 100) {
       const timer = setTimeout(() => setProgress(progress + 1), 50);
-
       return () => clearTimeout(timer);
     }
   }, [progress]);

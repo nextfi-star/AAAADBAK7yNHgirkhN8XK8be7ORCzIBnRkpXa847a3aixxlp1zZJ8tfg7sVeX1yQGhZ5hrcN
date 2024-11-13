@@ -182,7 +182,8 @@ export default function Withdrawal_table() {
 	const topContent = React.useMemo(() => {
 		return (
 			<div className='flex flex-col gap-4'>
-				<div className='flex justify-end gap-3 items-end'>
+				<div className='flex justify-between gap-3 items-end'>
+					<h1 className='text-[20px] xl:text-[32px]'>All withdrawals</h1>
 					<div className='flex gap-3'>
 						<Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
