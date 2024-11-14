@@ -89,7 +89,7 @@ const Activity_awards: NextPage<Props> = ({
 		}
 	}
 	return (
-		<section className='flex items-center flex-col gap-[40px] lg:mt-[80px]'>
+		<section className='flex items-center flex-col gap-[40px] lg:mt-[40px]'>
 			<h1 className='text-[20px] 2xl:text-[42px] font-bold'>AWARDS</h1>
 
 			<div className='hidden max-w-[1096px] w-full lg:grid grid-cols-[1fr_1fr_1fr] auto-rows-auto gap-[20px]'>

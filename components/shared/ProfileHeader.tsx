@@ -19,6 +19,7 @@ import { BurgerIcon } from './BurgerIcon'
 import { Platform_mode } from './Platform_mode'
 import { Button } from '@nextui-org/button'
 import { LogOut } from 'lucide-react'
+import { Confirmation_dialog } from './Confirmation_dialog'
 
 interface Props {
 	auth: boolean
@@ -105,7 +106,14 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 									<button className='header__icons-item'>
 										<Locale_Switcher />
 									</button>
-									<LogOut className='w-full max-w-[23px]' />
+									<Confirmation_dialog
+										title='Are you absolutelu sure?'
+										content='This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'
+										titleTriger={
+											<LogOut className=' min-w-[23px] hidden xl:block' />
+										}
+										className='!border-0 w-[44px] !p-0 !px-0'
+									/>
 								</div>
 
 								<div className='flex items-center sm:hidden gap-[5px] sm:gap-[18px]'>
@@ -122,7 +130,6 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 											width={20}
 										/>
 									</button>
-									<LogOut className='w-full max-w-[23px]' />
 								</div>
 							</>
 						)}

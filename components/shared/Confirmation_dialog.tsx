@@ -12,7 +12,7 @@ import {
 import { NextPage } from 'next'
 interface Props {
 	content: string
-	titleTriger: string
+	titleTriger: string | any
 	title: string
 	className?: string
 	unic?: string
@@ -27,7 +27,7 @@ export const Confirmation_dialog: NextPage<Props> = ({
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button className='dark:text-white text-black px-[15px] py-[5px] bg-transparent border border-solid dark:border-white border-black rounded-[50px] text-[14px] xl:!text-[20px] 2xl:!text-[25px] xl:!px-[40px] 2xl:!px-[70px] font-medium h-fit w-[98px] hover:bg-transparent'>
+				<Button className={`dark:text-white text-black px-[15px] py-[5px] bg-transparent border border-solid dark:border-white border-black rounded-[50px] text-[14px] xl:!text-[20px] 2xl:!text-[25px] xl:px-[40px] 2xl:px-[70px] font-medium h-fit w-[98px] hover:bg-transparent ${className}`}>
 					{titleTriger}
 				</Button>
 			</DialogTrigger>

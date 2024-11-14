@@ -237,18 +237,18 @@ const Withdrawal_steps: NextPage = () => {
 
 							{step === 1 && (
 								<div
-									className={`flex flex-col gap-[31px] max-w-[83%] w-full ml-[47px]`}
+									className={`id-1 flex flex-col gap-[31px] max-w-[81%] w-full ml-[47px]`}
 								>
 									<Autocomplete
 										defaultItems={cryptoData}
 										aria-labelledby='Select crypto'
 										placeholder='Select crypto'
-										className='dark:bg-[#19191A] !p-0'
 										onSelectionChange={handleSelectionChange}
 										onInputChange={handleInputChange}
-										size='sm'
+										size='lg'
+										className='!bg-[#7676801F]'
 										classNames={{
-											base: '!bg-[#7676801F], rounded-[4px] !p-0',
+											base: '!bg-[#7676801F] rounded-[4px] flex items-center rounded-medium',
 											listboxWrapper:
 												'!p-0 dark:!bg-[#19191A] overscroll-contain',
 											popoverContent: 'dark:bg-[#19191A]',
@@ -293,7 +293,7 @@ const Withdrawal_steps: NextPage = () => {
 							{step > 1 && (
 								<div className='ml-[40px]'>
 									{selectedCrypto && (
-										<div className='pb-[5px] max-w-[83%] flex items-center gap-2 dark:bg-[#7676801F] dark:shadow-none shadow-lg p-[5px] pl-[10px] rounded-medium'>
+										<div className='pb-[5px] max-w-[83%] h-[48px] flex items-center gap-2 dark:bg-[#7676801F] dark:shadow-none shadow-lg p-[5px] pl-[10px] rounded-medium'>
 											<Avatar
 												src={selectedCrypto.avatar}
 												alt={selectedCrypto.name}
@@ -326,21 +326,21 @@ const Withdrawal_steps: NextPage = () => {
 							</div>
 
 							{step === 2 && (
-								<div className='flex flex-col gap-[31px] ml-[47px]'>
+								<div className='id-1 flex flex-col gap-[31px] ml-[47px]'>
 									<div className='flex flex-col gap-[15px] md:gap-[45px]'>
 										<Autocomplete
 											defaultItems={networkData}
 											aria-labelledby='Select network'
 											placeholder='Select network'
-											className='dark:bg-[#19191A] !p-0  max-w-[83%]'
+											className='!bg-[#7676801F] !p-0 max-w-[83%]'
 											onInputChange={inputStep2Handler}
-											size='sm'
+											size='lg'
 											classNames={{
-												base: '!bg-[#7676801F], rounded-[4px] !p-0',
+												base: '!bg-[#7676801F], flex items-center rounded-medium h-[48px] !p-0',
 												listboxWrapper:
-													'!p-0 dark:!bg-[#19191A] overscroll-contain',
+													'!p-0 dark:!bg-[#19191A] overscroll-contain ',
 												popoverContent: 'dark:bg-[#19191A]',
-												listbox: 'py-0',
+												listbox: 'py-0 gap-[20px]',
 											}}
 										>
 											{networkData => (
@@ -350,12 +350,10 @@ const Withdrawal_steps: NextPage = () => {
 													className='p-0 dark:!bg-[#19191A]'
 												>
 													<div className='flex gap-2 items-center justify-between rounded-[4px]'>
-														<div className='flex gap-1 items-center px-[10px]'>
-															<div className='flex flex-col'>
-																<span className='text-small text-[#205BC9]'>
-																	{networkData.name}
-																</span>
-															</div>
+														<div className='flex flex-col'>
+															<span className='text-small text-[#205BC9]'>
+																{networkData.name}
+															</span>
 														</div>
 														<div className='flex flex-col items-end'>
 															<span>{networkData.cryptoNumbers}</span>
@@ -368,12 +366,10 @@ const Withdrawal_steps: NextPage = () => {
 											)}
 										</Autocomplete>
 
-										<Input
-											size='sm'
+										<input
 											type='text'
 											placeholder='Select address'
-											className='text-[16px] rounded-[4px] max-w-[83%] '
-											variant='faded'
+											className='px-2 text-[16px] max-w-[83%] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
 											onChange={input2Step2Handler}
 										/>
 									</div>
@@ -398,14 +394,12 @@ const Withdrawal_steps: NextPage = () => {
 							{step > 2 && (
 								<div className='ml-[40px]'>
 									{inputStep2 && input2Step2 && (
-										<div className='pb-[5px] border-0 border-b border-solid border-[#BDBDBD] max-w-[81%] flex flex-col items-start gap-2'>
-											<span className='text-[16px]'>
-												Network -{' '}
-												<span className='text-[#205BC9]'> {inputStep2}</span>
+										<div className='pb-[5px]  max-w-[81%] flex flex-col items-start gap-2'>
+											<span className='text-[16px] text-[#205BC9] bg-[#7676801F] rounded-medium w-full h-[48px] flex items-center px-2'>
+												{inputStep2}
 											</span>
-											<span className='text-[16px]'>
-												Address -{' '}
-												<span className='text-[#205BC9]'>{input2Step2}</span>
+											<span className='text-[16px] text-[#205BC9] bg-[#7676801F] rounded-medium w-full h-[48px] flex items-center px-2'>
+												{input2Step2}
 											</span>
 										</div>
 									)}
@@ -431,17 +425,11 @@ const Withdrawal_steps: NextPage = () => {
 							{step === 3 && (
 								<div className='flex flex-col gap-[15px] w-full ml-[47px] pr-[35px]'>
 									<div className='flex flex-col gap-[16px] w-full'>
-										<Input
+										<input
 											type='text'
 											placeholder='Enter the amount'
-											className='rounded-[4px] max-w-[83%]'
+											className='px-2 text-[16px] max-w-[83%] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
 											onChange={e => setInput3(e.target.value)}
-											classNames={{
-												inputWrapper:
-													'data-[hover=true]:!bg-[#7676801F] .group[data-focus="true"] .group-data-[focus=true]:bg-[#7676801F !bg-[#7676801F]',
-												base: 'bg-transparent',
-												innerWrapper: ' rounded-medium px-2',
-											}}
 										/>
 										<span className='text-[14px] md:text-[18px] text-[#888888]'>
 											Transaction Fee: <span>3.25 {inputValue}</span>
