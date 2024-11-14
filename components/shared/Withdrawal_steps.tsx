@@ -291,16 +291,16 @@ const Withdrawal_steps: NextPage = () => {
 								</div>
 							)}
 							{step > 1 && (
-								<div className='ml-[40px]'>
+								<div className='ml-[47px]'>
 									{selectedCrypto && (
-										<div className='pb-[5px] max-w-[83%] h-[48px] flex items-center gap-2 dark:bg-[#7676801F] dark:shadow-none shadow-lg p-[5px] pl-[10px] rounded-medium'>
+										<div className='pb-[5px] max-w-[81%] h-[48px] flex items-center gap-2 dark:bg-[#7676801F] dark:shadow-none shadow-lg p-[5px] pl-[10px] rounded-medium'>
 											<Avatar
 												src={selectedCrypto.avatar}
 												alt={selectedCrypto.name}
 												size='md'
 												className='max-w-[40px]'
 											/>
-											<span className='text-lg text-[#205BC9]'>
+											<span className='text-lg text-[#BDBDBD]'>
 												{inputValue}
 											</span>
 										</div>
@@ -332,7 +332,7 @@ const Withdrawal_steps: NextPage = () => {
 											defaultItems={networkData}
 											aria-labelledby='Select network'
 											placeholder='Select network'
-											className='!bg-[#7676801F] !p-0 max-w-[83%]'
+											className='!bg-[#7676801F] !p-0 max-w-[81%]'
 											onInputChange={inputStep2Handler}
 											size='lg'
 											classNames={{
@@ -369,18 +369,18 @@ const Withdrawal_steps: NextPage = () => {
 										<input
 											type='text'
 											placeholder='Select address'
-											className='px-2 text-[16px] max-w-[83%] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
+											className='px-2 text-[16px] max-w-[81%] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
 											onChange={input2Step2Handler}
 										/>
 									</div>
 
 									<div className='flex items-center gap-[10px]'>
-										<Button
+										{/* <Button
 											className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-9 xl:h-9'
 											onClick={() => setStep(prev => (prev = 1))}
 										>
 											Back
-										</Button>
+										</Button> */}
 										<Button
 											className={`text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-9 xl:h-9 ${inputStep2.length > 3 && input2Step2.length > 3 ? 'bg-[#205BC9] text-white' : ''}`}
 											disabled={inputStep2.length < 4 || input2Step2.length < 4}
@@ -392,13 +392,13 @@ const Withdrawal_steps: NextPage = () => {
 								</div>
 							)}
 							{step > 2 && (
-								<div className='ml-[40px]'>
+								<div className='ml-[47px]'>
 									{inputStep2 && input2Step2 && (
-										<div className='pb-[5px]  max-w-[81%] flex flex-col items-start gap-2'>
-											<span className='text-[16px] text-[#205BC9] bg-[#7676801F] rounded-medium w-full h-[48px] flex items-center px-2'>
+										<div className='pb-[5px] max-w-[81%] flex flex-col items-start gap-2'>
+											<span className='text-[16px] text-[#BDBDBD] bg-[#7676801F] rounded-medium w-full h-[48px] flex items-center px-2'>
 												{inputStep2}
 											</span>
-											<span className='text-[16px] text-[#205BC9] bg-[#7676801F] rounded-medium w-full h-[48px] flex items-center px-2'>
+											<span className='text-[16px] text-[#BDBDBD] bg-[#7676801F] rounded-medium w-full h-[48px] flex items-center px-2'>
 												{input2Step2}
 											</span>
 										</div>
@@ -407,7 +407,7 @@ const Withdrawal_steps: NextPage = () => {
 							)}
 						</div>
 
-						<div className='flex flex-col gap-[14px] relative z-[1] max-w-[94%]'>
+						<div className='flex flex-col gap-[14px] relative z-[1]'>
 							<div className='flex items-start gap-[15px] md:mb-[44px]'>
 								<span
 									className={`text-white text-[18px] ${
@@ -428,34 +428,34 @@ const Withdrawal_steps: NextPage = () => {
 										<input
 											type='text'
 											placeholder='Enter the amount'
-											className='px-2 text-[16px] max-w-[83%] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
+											className='px-2 text-[16px] max-w-[81%] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
 											onChange={e => setInput3(e.target.value)}
 										/>
 										<span className='text-[14px] md:text-[18px] text-[#888888]'>
 											Transaction Fee: <span>3.25 {inputValue}</span>
 										</span>
-										<div className='flex flex-col gap-[10px] md:gap-0 items-start md:flex-row md:items-center md:justify-between w-full'>
+										<div className='flex flex-col gap-[10px] md:gap-0 items-start md:flex-row md:items-center md:justify-between w-full max-w-[81%]'>
 											<p className=' text-[14px] md:text-[20px] flex items-center justify-between gap-[5px] text-[#3A3939] dark:text-[#BDBDBD]'>
 												Amount Received:
 												<span className='text-[14px] md:text-[18px] xl:text-[25px] text-[#3A3939] dark:text-[#EFEFEF]'>
-													111.25 {inputValue}
+													111.25 {' '}{inputValue}
 												</span>
 											</p>
-											<div className='flex items-center gap-[34px]'>
+											<div className='flex items-center gap-[34px] '>
 												<Button
-													className={`text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-9 xl:h-9 rounded-[50px] ${input3.length > 3 ? 'bg-[#205BC9] text-white' : 'bg-[#7676801F] text-[#888888]'}`}
+													className={`text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-9 xl:h-9 rounded-[50px] ${input3.length > 3 ? 'bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#EFEFEF]'}`}
 													disabled={input3.length <= 3}
 													onClick={DropCache}
 												>
 													Withdrawal
 												</Button>
-												<Button
+												{/* <Button
 													className={`text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-9 xl:h-9`}
 													onClick={() => setStep(prev => (prev = 2))}
 													title='не ругайся насяйника'
 												>
 													Back
-												</Button>
+												</Button> */}
 											</div>
 										</div>
 									</div>
