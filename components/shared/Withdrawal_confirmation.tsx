@@ -15,6 +15,7 @@ import { NextPage } from 'next'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import { Image } from '@nextui-org/react'
 import { useState } from 'react'
+import Withdrawal_animation from './Withdrawal_animation'
 
 interface Props {
 	titleTrigger: string
@@ -24,9 +25,9 @@ interface Props {
 export const Withdrawal_confirmation: NextPage<Props> = ({
 	titleTrigger,
 	input3,
-	setInput3
+	setInput3,
 }) => {
-	const { theme, confirmationStep, setConfirmStep, setStep, } = useThemeStore()
+	const { theme, confirmationStep, setConfirmStep, setStep } = useThemeStore()
 	const [checked, setChecked] = useState(false)
 	const DropSteps = () => {
 		setStep(1)
@@ -185,12 +186,46 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 					</DialogHeader>
 					<Divider className='m-0' />
 					<DialogFooter className='flex flex-row justify-center items-center gap-[15px] p-[30px_40px]'>
+							<Button
+								onClick={() => setConfirmStep(3)}
+								type='button'
+								variant='secondary'
+								className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] min-w-[124px] h-[48px] flex items-center justify-center'
+							>
+								Confrim
+							</Button>
+					</DialogFooter>
+				</DialogContent>
+			)}
+
+			{confirmationStep === 3 && (
+				<DialogContent className='max-w-[24rem] md:max-w-3xl w-full p-0 rounded-[20px]'>
+					<DialogHeader>
+						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
+							<DialogClose asChild>
+								<Cross2Icon className='h-[32px] w-[32px] pointer-events-none opacity-0' />
+							</DialogClose>
+						</DialogTitle>
+						<Divider className='m-0' />
+						<div className='p-[21px] flex flex-col gap-[28px]'>
+							<article className='relative rounded-[6px] flex flex-col items-center justify-end p-[21px__21px__0__21px]'>
+								<div className='absolute left-[50%] top-[-10%] md:top-[-52%] translate-x-[-50%]'>
+									<Withdrawal_animation />
+								</div>
+								<DialogDescription className='text-[32px] font-bold dark:text-white text-[#0c0c0c] min-h-[150px] flex flex-col justify-end'>
+									Swap
+								</DialogDescription>
+							</article>
+						</div>
+					</DialogHeader>
+					<Divider className='m-0' />
+					<DialogFooter className='flex flex-row justify-center items-center gap-[15px] p-[30px_40px]'>
 						<DialogClose asChild>
 							<Button
 								onClick={DropSteps}
 								type='button'
 								variant='secondary'
-								className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] min-w-[124px] h-[48px] flex items-center justify-center'
+								className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] max-w-[124px] h-[48px] flex items-center justify-center'
 							>
 								Confrim
 							</Button>
