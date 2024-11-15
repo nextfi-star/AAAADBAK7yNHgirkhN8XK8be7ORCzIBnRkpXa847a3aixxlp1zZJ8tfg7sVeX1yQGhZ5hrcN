@@ -2,12 +2,10 @@
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { NextPage } from 'next'
-
-import Copy from '../ui/Copy'
 import { useThemeStore } from '../../store'
-
 import { Link } from '@/i18n/routing'
 import { Snippet } from '@nextui-org/snippet'
+import { Button } from '@nextui-org/button'
 
 interface Props {
 	verify: boolean
@@ -36,7 +34,9 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 						user@gmail.com
 					</p>
 					<div className='profile__info__block__left__text__id'>
-						<Snippet className='bg-transparent p-[5px]' symbol=''>888888888в8888888 </Snippet>
+						<Snippet className='bg-transparent p-[5px]' symbol=''>
+							888888888в8888888{' '}
+						</Snippet>
 					</div>
 				</div>
 			</div>
@@ -47,38 +47,35 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 						{t('Verification')}
 					</h5>
 					{!verify ? (
-						<Link
-							className='profile__info__block___right__verification_block__button profile__info__block___right__additional__text'
-							href='/verify'
-							onClick={toggleActive}
-						>
-							{t('GoThroughVerification')}
+						<Link href='#' onClick={toggleActive}>
+							<Button className='profile__info__block___right__additional__text border-1 border-gray-300 border-solid rounded-[50px] px-[10px] !bg-transparent'>
+								{t('GoThroughVerification')}
+							</Button>
 						</Link>
 					) : (
-						<button
+						<Button
+							variant='bordered'
 							className={`profile__info__block___right__verification_block__button passed profile__info__block___right__additional__text border-0`}
 						>
 							Verification passed
-						</button>
+						</Button>
 					)}
 				</div>
 				<div className='profile__info__block___right__block'>
 					<h5 className='profile__info__block___right__main__text'>
 						{t('CountryRegion')}
 					</h5>
-					<select
-						className='profile__info__block___right__additional__text border-1 border-gray-300 border-solid rounded-[50px] px-[10px]'
-					>
-						<option value=''>UAE</option>
-					</select>
+					<Button className='profile__info__block___right__additional__text border-1 border-gray-300 border-solid rounded-[50px] px-[10px] !bg-transparent'>
+						UAE
+					</Button>
 				</div>
 				<div className='profile__info__block___right__block'>
 					<h5 className='profile__info__block___right__main__text'>
 						{t('CommisionLevel')}
 					</h5>
-					<p className='profile__info__block___right__additional__text border-1 border-gray-300 border-solid rounded-[50px] px-[10px]'>
+					<Button className='profile__info__block___right__additional__text border-1 border-gray-300 border-solid rounded-[50px] px-[10px] !bg-transparent'>
 						Level 1
-					</p>
+					</Button>
 				</div>
 			</div>
 		</section>

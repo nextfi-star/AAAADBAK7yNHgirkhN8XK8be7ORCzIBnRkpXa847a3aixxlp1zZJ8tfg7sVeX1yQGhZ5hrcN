@@ -1,5 +1,4 @@
 import { NextPage } from 'next'
-import { ScrollShadow } from '@nextui-org/scroll-shadow'
 import { Alert_email } from './Alert_email'
 import { Alert_logpass } from './Alert_logpass'
 import { Alert_nickname } from './Alert_nickname'

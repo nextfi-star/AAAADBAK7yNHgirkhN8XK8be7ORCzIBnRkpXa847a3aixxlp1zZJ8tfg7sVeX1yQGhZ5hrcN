@@ -20,7 +20,7 @@ const data = [
 		src: '/header_icons/profile_burger/swap.svg',
 		title: 'Swap',
 		tabName: 'Verification',
-		href: '/verify',
+		href: '/swap',
 	},
 	{
 		src: '/header_icons/profile_burger/commission.svg',

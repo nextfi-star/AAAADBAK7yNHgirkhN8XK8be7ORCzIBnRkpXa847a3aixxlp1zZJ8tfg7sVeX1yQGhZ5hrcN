@@ -34,10 +34,24 @@ export const useThemeStore = create<IStore>()(
 			setEmail: email => set({ email }),
 			setPhone: phone => set({ phone }),
 			setPassword: password => set({ password }),
-			verifyState: false, 
+			verifyState: false,
 			setVerifyState: state => set({ verifyState: state }),
 			progress: 0,
 			setProgress: state => set({ progress: state }),
+			step: 1,
+			setStep: value => set({ step: value }),
+			confirmationStep: 1,
+			setConfirmStep: val => set({ confirmationStep: val }),
+			swapPoppover_1: '',
+			swapPoppover_2: '',
+			swapCheck: val1 =>
+				set({
+					swapPoppover_1: val1,
+				}),
+			swapCheck2: val2 =>
+				set({
+					swapPoppover_2: val2,
+				}),
 		}),
 		{
 			name: 'zustand-store',

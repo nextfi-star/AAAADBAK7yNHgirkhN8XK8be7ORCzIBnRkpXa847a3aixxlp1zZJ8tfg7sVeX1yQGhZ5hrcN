@@ -2,6 +2,7 @@
 import { NextPage } from "next";
 import Template from "../Template";
 import { TapBar, ProfileHeader, Profile_nav } from "@/components/shared/index";
+import { ADMIN } from '@/components/shared/ADMIN'
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ const ProfileRoot: NextPage<RootLayoutProps> = ({ children }) => {
         <Profile_nav />
         <Template>{children}</Template>
       </main>
+      <ADMIN />
       <TapBar />
     </div>
   );

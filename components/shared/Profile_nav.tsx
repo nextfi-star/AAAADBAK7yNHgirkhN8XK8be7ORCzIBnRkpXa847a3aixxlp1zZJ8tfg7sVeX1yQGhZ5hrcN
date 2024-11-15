@@ -40,9 +40,9 @@ export const Profile_nav: NextPage = () => {
           <li>
             <Link
               className={`profile__nav-navbar-item ${
-                currentPath === `/${locale}/security` ? "active" : ""
+                currentPath === `/${locale}/swap` ? "active" : ""
               }`}
-              href={`/security`}
+              href={`/swap`}
             >
               Swap
             </Link>

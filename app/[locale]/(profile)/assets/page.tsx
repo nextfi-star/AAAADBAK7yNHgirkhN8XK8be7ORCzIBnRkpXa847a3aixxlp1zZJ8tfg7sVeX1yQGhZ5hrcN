@@ -1,5 +1,4 @@
 'use client'
-import React, { useEffect } from 'react'
 import { NextPage } from 'next'
 import { useThemeStore } from '@/store'
 import { Profile_balance, Profile_payments } from '@/components/shared'
@@ -7,8 +6,7 @@ import Allocation from '@/components/shared/Allocation'
 import Transaction from '@/components/shared/Transactions'
 
 const Assets: NextPage = () => {
-	const { initializeTheme, verifyState, setVerifyState } = useThemeStore()
-	
+	const { verifyState } = useThemeStore()
 
 	return (
 		<>

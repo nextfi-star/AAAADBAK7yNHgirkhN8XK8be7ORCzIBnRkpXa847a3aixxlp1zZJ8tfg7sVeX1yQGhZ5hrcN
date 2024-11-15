@@ -184,7 +184,7 @@ export const Profile_balance: NextPage = () => {
 
 				<div className='flex w-full flex-col items-center gap-[40px] '>
 					{verifyState && (
-						<div className='w-full flex items-center justify-start gap-[25px]'>
+						<div className='w-full flex items-center justify-center sm:justify-start gap-[25px]'>
 							<Link href='#' className='flex flex-col items-center text-[14px]'>
 								<Avatar
 									src='/header_icons/profile_burger/deposit.svg'
@@ -204,7 +204,7 @@ export const Profile_balance: NextPage = () => {
 								/>
 								Withdrawal
 							</Link>
-							<Link href='#' className='flex flex-col items-center text-[14px]'>
+							<Link href='/swap' className='flex flex-col items-center text-[14px]'>
 								<Avatar
 									src='/header_icons/profile_burger/swap.svg'
 									className='flex-shrink-0 bg-transparent'

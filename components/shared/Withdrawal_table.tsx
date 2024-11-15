@@ -12,7 +12,6 @@ import {
 	Dropdown,
 	DropdownMenu,
 	DropdownItem,
-	Chip,
 	User,
 	Pagination,
 	Selection,
@@ -24,7 +23,6 @@ import { VerticalDotsIcon } from './VerticalDotsIcon'
 import { ChevronDownIcon } from './ChevronDownIcon'
 import { capitalize } from './utils'
 import { columnsDataW, statusOptionsDataW, usersDataW } from './data'
-import { Copy } from 'lucide-react'
 
 const statusColorMap: Record<string, ChipProps['color']> = {
 	sent: 'success',
@@ -113,15 +111,16 @@ export default function Withdrawal_table() {
 				return <span>{user.time}</span>
 			case 'address':
 				return (
-					<div className='flex flex-col items-center'>
-						<div className=' flex items-center gap-[5px] '>
+					<div className='flex flex-col items-start gap-[5px]'>
+						<div className='flex items-center gap-[5px] '>
 							<Snippet
 								symbol=''
-								className='text-bold text-small capitalize overflow-ellipsis whitespace-nowrap overflow-hidden'
+								className='text-bold text-small capitalize overflow-ellipsis whitespace-nowrap overflow-hidden bg-transparent px-0'
 							>
-								{user.subaddress}
+								{user.address}
 							</Snippet>
 						</div>
+						<span>{user.subaddress}</span>
 					</div>
 				)
 			case 'crypto':
@@ -132,14 +131,15 @@ export default function Withdrawal_table() {
 				return <span> {user.fee}</span>
 			case 'status':
 				return (
-					<Chip
-						className='capitalize'
-						color={statusColorMap[user.status]}
-						size='sm'
-						variant='flat'
-					>
-						{user.status}
-					</Chip>
+					// <Chip
+					// 	className='capitalize'
+					// 	color={statusColorMap[user.status]}
+					// 	size='sm'
+					// 	variant='flat'
+					// >
+					// 	{user.status}
+					// </Chip>
+					<span className='capitalize'>{user.status}</span>
 				)
 			case 'actions':
 				return (
@@ -246,7 +246,7 @@ export default function Withdrawal_table() {
 			bottomContent={bottomContent}
 			bottomContentPlacement='outside'
 			classNames={{
-				wrapper: 'max-h-[382px]',
+				wrapper: 'min-h-[503px] max-h-[503px]',
 				td: 'text-center',
 				th: 'text-center',
 			}}

@@ -24,7 +24,6 @@ export const ProfileBurger_info: NextPage<Props> = ({
     <section className={`profile__burger-info`} onClick={handleClick}>
       <div
         className={`flex items-center gap-[20px]`}
-        onClick={(e) => e.stopPropagation()}
       >
         <div
           className={"relative min-h-[64px] min-w-[64px] z-10 cursor-pointer"}

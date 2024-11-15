@@ -17,7 +17,7 @@ export const Profile_news: NextPage = () => {
   }));
 
   return (
-    <div className="profile-news">
+    <div className="profile-news dark:!bg-[#1e1e1e66]">
       <div className="profile-news-title">
         <span className="profile-news-title-first">{t("News")}</span>
         <span>

@@ -21,4 +21,13 @@ export interface IStore {
   setVerifyState: (state: boolean) => void;
   progress: number,
   setProgress: (state: number) => void
+  step: number
+  setStep: (value: number) => void
+  confirmationStep: number
+  setConfirmStep: (val: number) => void
+  swapPoppover_1: string | null
+  swapPoppover_2: string | null
+  swapCheck: (val1: string | null) => void
+  swapCheck2: (val2: string | null) => void
+
 }

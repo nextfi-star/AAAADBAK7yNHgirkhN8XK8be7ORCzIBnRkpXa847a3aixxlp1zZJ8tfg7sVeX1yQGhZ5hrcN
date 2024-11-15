@@ -16,7 +16,7 @@ export const Profile_verification: NextPage<Props> = ({ toggleActive }) => {
 
   return (
     <>
-      <section className="profile__verification profile_blocks_border">
+      <section className="profile__verification profile_blocks_border dark:!bg-[#1e1e1e66]">
         <h3>{t("GetFullAccess")}</h3>
         <div className="profile__verification__blocks__list">
           <div className="profile__verification__info__block profile_blocks_border">

@@ -6,6 +6,9 @@ import { Avatar } from '@nextui-org/react'
 import { CheckCheck } from 'lucide-react'
 import { NextPage } from 'next'
 import { useState } from 'react'
+import { useThemeStore } from '@/store'
+import { Withdrawal_confirmation } from './Withdrawal_confirmation'
+
 const cryptoData = [
 	{
 		id: 1,
@@ -175,7 +178,8 @@ const networkData = [
 	},
 ]
 const Withdrawal_steps: NextPage = () => {
-	const [step, setStep] = useState<number>(1)
+	const { step, setStep } = useThemeStore()
+	// const [step, setStep] = useState<number>(1)
 	const [inputStep2, setInputStep2] = useState<string>('')
 	const [input2Step2, setInput2Step2] = useState<string>('')
 	const [input3, setInput3] = useState('')
@@ -196,7 +200,8 @@ const Withdrawal_steps: NextPage = () => {
 	}
 	const handleInputChange = (value: string) => {
 		if (selectedCrypto?.name || selectedCrypto?.avatar) {
-			setStep(prev => (prev = 2))
+			// setStep(prev => (prev = 2))
+			setStep(2)
 		}
 		setInputValue(value)
 	}
@@ -214,7 +219,7 @@ const Withdrawal_steps: NextPage = () => {
 	}
 	return (
 		<div className='shadow-lg dark:shadow-none rounded-[30px] p-[29px_16px] md:p-[29px]'>
-			<div className='flex justify-start gap-[10px] w-full overflow-x-hidden pb-[1.5rem]'>
+			<div className='flex justify-start gap-[10px] w-full  pb-[1.5rem]'>
 				<div className={'flex flex-col gap-[20px] w-full'}>
 					<div
 						className={`flex flex-col gap-[20px] md:gap-[89px] relative after:absolute after:content-[''] after:min-w-[1px] after:min-h-[90%] after:border after:border-dashed after:border-[#BDBDBD] after:left-[14px] after:bottom-[15px] after:top-[6px]`}
@@ -237,7 +242,7 @@ const Withdrawal_steps: NextPage = () => {
 
 							{step === 1 && (
 								<div
-									className={`id-1 flex flex-col gap-[31px] max-w-[81%] w-full ml-[47px]`}
+									className={`id-1 flex flex-col gap-[31px] max-w-[294px] sm:max-w-[962px] w-full ml-[47px]`}
 								>
 									<Autocomplete
 										defaultItems={cryptoData}
@@ -293,14 +298,14 @@ const Withdrawal_steps: NextPage = () => {
 							{step > 1 && (
 								<div className='ml-[47px]'>
 									{selectedCrypto && (
-										<div className='pb-[5px] max-w-[81%] h-[48px] flex items-center gap-2 dark:bg-[#7676801F] dark:shadow-none shadow-lg p-[5px] pl-[10px] rounded-medium'>
+										<div className='pb-[5px] max-w-[294px] sm:max-w-[962px] h-[48px] flex items-center gap-2 bg-[#7676801F] p-[5px] pl-[10px] rounded-medium'>
 											<Avatar
 												src={selectedCrypto.avatar}
 												alt={selectedCrypto.name}
 												size='md'
 												className='max-w-[40px]'
 											/>
-											<span className='text-lg text-[#BDBDBD]'>
+											<span className='text-lg text-[#3A3939] dark:text-[#BDBDBD]'>
 												{inputValue}
 											</span>
 										</div>
@@ -327,19 +332,19 @@ const Withdrawal_steps: NextPage = () => {
 
 							{step === 2 && (
 								<div className='id-1 flex flex-col gap-[31px] ml-[47px]'>
-									<div className='flex flex-col gap-[15px] md:gap-[45px]'>
+									<div className='flex flex-col max-w-[294px] sm:max-w-[962px] gap-[15px] md:gap-[45px]'>
 										<Autocomplete
 											defaultItems={networkData}
 											aria-labelledby='Select network'
 											placeholder='Select network'
-											className='!bg-[#7676801F] !p-0 max-w-[81%]'
+											className='!bg-[#7676801F] !p-0 '
 											onInputChange={inputStep2Handler}
 											size='lg'
 											classNames={{
 												base: '!bg-[#7676801F], flex items-center rounded-medium h-[48px] !p-0',
 												listboxWrapper:
 													'!p-0 dark:!bg-[#19191A] overscroll-contain ',
-												popoverContent: 'dark:bg-[#19191A]',
+												popoverContent: 'dark:bg-[#19191A] bg-[#EEEEEE]',
 												listbox: 'py-0 gap-[20px]',
 											}}
 										>
@@ -369,22 +374,16 @@ const Withdrawal_steps: NextPage = () => {
 										<input
 											type='text'
 											placeholder='Select address'
-											className='px-2 text-[16px] max-w-[81%] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
+											className='px-2 text-[16px] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
 											onChange={input2Step2Handler}
 										/>
 									</div>
 
 									<div className='flex items-center gap-[10px]'>
-										{/* <Button
-											className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-9 xl:h-9'
-											onClick={() => setStep(prev => (prev = 1))}
-										>
-											Back
-										</Button> */}
 										<Button
-											className={`text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-9 xl:h-9 ${inputStep2.length > 3 && input2Step2.length > 3 ? 'bg-[#205BC9] text-white' : ''}`}
+											className={`text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px]  px-[40px] xl:px-[80px] h-9 xl:h-9 ${inputStep2.length > 3 && input2Step2.length > 3 ? 'bg-[#205BC9] text-white' : ''}`}
 											disabled={inputStep2.length < 4 || input2Step2.length < 4}
-											onClick={() => setStep(prev => (prev = 3))}
+											onClick={() => setStep(3)}
 										>
 											Next
 										</Button>
@@ -394,11 +393,11 @@ const Withdrawal_steps: NextPage = () => {
 							{step > 2 && (
 								<div className='ml-[47px]'>
 									{inputStep2 && input2Step2 && (
-										<div className='pb-[5px] max-w-[81%] flex flex-col items-start gap-2'>
-											<span className='text-[16px] text-[#BDBDBD] bg-[#7676801F] rounded-medium w-full h-[48px] flex items-center px-2'>
+										<div className='pb-[5px] max-w-[294px] sm:max-w-[962px] flex flex-col items-start gap-2'>
+											<span className='text-[16px] text-[#3A3939] dark:text-[#BDBDBD] bg-[#7676801F] rounded-medium w-full h-[48px] flex items-center px-2'>
 												{inputStep2}
 											</span>
-											<span className='text-[16px] text-[#BDBDBD] bg-[#7676801F] rounded-medium w-full h-[48px] flex items-center px-2'>
+											<span className='text-[16px] text-[#3A3939] dark:text-[#BDBDBD] bg-[#7676801F] rounded-medium w-full h-[48px] flex items-center px-2'>
 												{input2Step2}
 											</span>
 										</div>
@@ -424,38 +423,29 @@ const Withdrawal_steps: NextPage = () => {
 							</div>
 							{step === 3 && (
 								<div className='flex flex-col gap-[15px] w-full ml-[47px] pr-[35px]'>
-									<div className='flex flex-col gap-[16px] w-full'>
+									<div className='flex flex-col gap-[16px] max-w-[294px] sm:max-w-[962px]'>
 										<input
 											type='text'
 											placeholder='Enter the amount'
-											className='px-2 text-[16px] max-w-[81%] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
+											className='px-2 text-[16px] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center max-w-[962px]'
 											onChange={e => setInput3(e.target.value)}
 										/>
 										<span className='text-[14px] md:text-[18px] text-[#888888]'>
 											Transaction Fee: <span>3.25 {inputValue}</span>
 										</span>
-										<div className='flex flex-col gap-[10px] md:gap-0 items-start md:flex-row md:items-center md:justify-between w-full max-w-[81%]'>
+										<div className='flex flex-col gap-[10px] md:gap-0 items-start md:flex-row md:items-center md:justify-between w-full '>
 											<p className=' text-[14px] md:text-[20px] flex items-center justify-between gap-[5px] text-[#3A3939] dark:text-[#BDBDBD]'>
 												Amount Received:
 												<span className='text-[14px] md:text-[18px] xl:text-[25px] text-[#3A3939] dark:text-[#EFEFEF]'>
-													111.25 {' '}{inputValue}
+													111.25 {inputValue}
 												</span>
 											</p>
-											<div className='flex items-center gap-[34px] '>
-												<Button
-													className={`text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-9 xl:h-9 rounded-[50px] ${input3.length > 3 ? 'bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#EFEFEF]'}`}
-													disabled={input3.length <= 3}
-													onClick={DropCache}
-												>
-													Withdrawal
-												</Button>
-												{/* <Button
-													className={`text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-9 xl:h-9`}
-													onClick={() => setStep(prev => (prev = 2))}
-													title='не ругайся насяйника'
-												>
-													Back
-												</Button> */}
+											<div className='flex items-center gap-[34px]'>
+												<Withdrawal_confirmation
+													input3={input3}
+													setInput3={setInput3}
+													titleTrigger={'Withdrawal'}
+												/>
 											</div>
 										</div>
 									</div>

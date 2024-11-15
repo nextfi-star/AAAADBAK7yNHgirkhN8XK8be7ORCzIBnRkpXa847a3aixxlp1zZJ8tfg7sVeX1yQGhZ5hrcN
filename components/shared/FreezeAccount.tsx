@@ -189,7 +189,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
                 </Button>
               </DrawerClose>
               <Confirmation_dialog
-                className={"z"}
+                className={"max-w-[23rem]"}
                 content={
                   "This action cannot be undone. Your account will be freezed."
                 }

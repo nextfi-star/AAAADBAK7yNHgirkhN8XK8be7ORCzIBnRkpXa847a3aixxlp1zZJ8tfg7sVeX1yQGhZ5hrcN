@@ -86,7 +86,7 @@ export const Burger_profile: NextPage<Props> = ({
 									titleTriger={
 										<LogOut className=' min-w-[23px] min-h-[23px]' />
 									}
-									className='!border-0 w-[44px] !p-0 !px-0'
+									className='!border-none !outline-0 w-[44px] !p-0 !px-0'
 								/>
 							</div>
 						</>
