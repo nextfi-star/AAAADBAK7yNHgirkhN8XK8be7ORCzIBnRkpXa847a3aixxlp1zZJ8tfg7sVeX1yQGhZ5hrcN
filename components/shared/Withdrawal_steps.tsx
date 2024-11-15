@@ -1,6 +1,5 @@
 'use client'
 import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete'
-import { Button } from '@nextui-org/button'
 import { Input } from '@nextui-org/input'
 import { Avatar } from '@nextui-org/react'
 import { CheckCheck } from 'lucide-react'
@@ -240,16 +239,15 @@ const Withdrawal_steps: NextPage = () => {
 								</span>
 							</div>
 
-							{step === 1 && (
-								<div
-									className={`id-1 flex flex-col gap-[31px] max-w-[294px] sm:max-w-[962px] w-full ml-[47px]`}
-								>
+							{step >= 1 && (
+								<div className={`id-1 flex flex-col gap-[31px] ml-[47px]`}>
 									<Autocomplete
 										defaultItems={cryptoData}
 										aria-labelledby='Select crypto'
 										placeholder='Select crypto'
 										onSelectionChange={handleSelectionChange}
 										onInputChange={handleInputChange}
+										startContent={<Avatar className='w-[60px]' src={'/payment_table/trx.svg'} />}
 										size='lg'
 										className='!bg-[#7676801F]'
 										classNames={{
@@ -295,7 +293,7 @@ const Withdrawal_steps: NextPage = () => {
 									</Autocomplete>
 								</div>
 							)}
-							{step > 1 && (
+							{/* {step > 1 && (
 								<div className='ml-[47px]'>
 									{selectedCrypto && (
 										<div className='pb-[5px] max-w-[294px] sm:max-w-[962px] h-[48px] flex items-center gap-2 bg-[#7676801F] p-[5px] pl-[10px] rounded-medium'>
@@ -311,7 +309,7 @@ const Withdrawal_steps: NextPage = () => {
 										</div>
 									)}
 								</div>
-							)}
+							)} */}
 						</div>
 
 						<div className='flex flex-col gap-[14px] relative z-[1]'>
@@ -378,16 +376,6 @@ const Withdrawal_steps: NextPage = () => {
 											onChange={input2Step2Handler}
 										/>
 									</div>
-
-									<div className='flex items-center gap-[10px]'>
-										<Button
-											className={`text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px]  px-[40px] xl:px-[80px] h-9 xl:h-9 ${inputStep2.length > 3 && input2Step2.length > 3 ? 'bg-[#205BC9] text-white' : ''}`}
-											disabled={inputStep2.length < 4 || input2Step2.length < 4}
-											onClick={() => setStep(3)}
-										>
-											Next
-										</Button>
-									</div>
 								</div>
 							)}
 							{step > 2 && (
@@ -421,7 +409,7 @@ const Withdrawal_steps: NextPage = () => {
 									Set withdrawal amount
 								</span>
 							</div>
-							{step === 3 && (
+							{step > 1 && (
 								<div className='flex flex-col gap-[15px] w-full ml-[47px] pr-[35px]'>
 									<div className='flex flex-col gap-[16px] max-w-[294px] sm:max-w-[962px]'>
 										<input

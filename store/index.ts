@@ -52,6 +52,8 @@ export const useThemeStore = create<IStore>()(
 				set({
 					swapPoppover_2: val2,
 				}),
+			globalVeriState: false,
+			setGlobalVerifState: state => set({ globalVeriState: state }),
 		}),
 		{
 			name: 'zustand-store',

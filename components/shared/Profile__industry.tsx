@@ -48,7 +48,7 @@ export const Profile_industry: NextPage<Props> = ({ unicClass }) => {
   return (
     <>
       <section
-        className={`profile__industy profile_blocks_border ${unicClass} `}
+        className={`profile__industy profile_blocks_border !bg-[#1e1e1e66] ${unicClass} `}
       >
         <div className="w-full flex justify-between gap-[5px] md:gap-[15px] pt-[34px] px-[10px] md:pt-0">
           <h3 className="profile__industry__main_text">

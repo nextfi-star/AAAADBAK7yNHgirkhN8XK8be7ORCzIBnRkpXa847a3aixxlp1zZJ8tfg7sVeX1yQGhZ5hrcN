@@ -36,12 +36,12 @@ export const Swap_fromTo: NextPage<Props> = ({ statusesFromTo }) => {
 
 	return (
 		<div className='flex items-center space-x-4'>
-			<Popover open={open} onOpenChange={setOpen}>
+			<Popover modal={true} open={open} onOpenChange={setOpen}>
 				<PopoverTrigger asChild>
 					<Button
 						variant='secondary'
 						size='sm'
-						className='max-w-[150px] justify-start shadow-none py-[25px] px-0 bg-transparent'
+						className='min-w-[134px] max-w-[150px] justify-start shadow-none py-[25px] px-0 bg-transparent'
 					>
 						{selectedStatus ? (
 							<div className='flex items-center gap-[8px]'>
@@ -62,10 +62,13 @@ export const Swap_fromTo: NextPage<Props> = ({ statusesFromTo }) => {
 						)}
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent className='p-0' side='bottom' align='end'>
-					<Command>
-						<CommandInput placeholder='Your choice' />
-						<CommandList className='w-full md:w-[679px]'>
+				<PopoverContent className='p-0 bg-[#3c3c3c]'>
+					<Command className='bg-[#3c3c3c]'>
+						<CommandInput
+							placeholder='Your choice'
+							className='bg-[transparent] md:text-[20px] text-[16px]'
+						/>
+						<CommandList className='w-full md:w-[679px] bg-[#3c3c3c]'>
 							<CommandEmpty>No results found.</CommandEmpty>
 							<CommandGroup>
 								{statusesFromTo?.map(status => (
@@ -87,14 +90,14 @@ export const Swap_fromTo: NextPage<Props> = ({ statusesFromTo }) => {
 												<Avatar src={status.icon} />
 												<span className='text-[20px] text-[#205BC9] flex flex-col items-start'>
 													{status.label}
-													<span className='text-[14px] text-[#BDBDBD]'>
+													<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
 														{status.value}
 													</span>
 												</span>
 											</div>
 											<span className='flex flex-col text-[20px]'>
 												{status.cryptoNumbers}
-												<span className='text-[14px] text-[#BDBDBD]'>
+												<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
 													{status.moreLess}
 												</span>
 											</span>

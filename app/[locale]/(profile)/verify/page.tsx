@@ -2,12 +2,15 @@
 import { Check, ChevronsUpDown, X } from 'lucide-react'
 import { NextPage } from 'next'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import VerifyAnimation from '@/components/shared/VerifyAnimation'
 import { Verify_documents } from '@/components/shared/Verify_documents'
 import ArrowBracket from '@/components/ui/ArrowBracket'
 import { ProfilePage_guard } from '@/components/ui/ProfilePage_guard'
 import { Button } from '@/components/ui/button'
+import Lottie, { LottieRefCurrentProps } from 'lottie-react'
+import animationData2 from '@/public/animation/verify_anim_mini.json'
+
 import {
 	Command,
 	CommandEmpty,
@@ -62,7 +65,7 @@ const typeID = [
 ]
 
 const Verify: NextPage = () => {
-	const { theme } = useThemeStore()
+	const { theme, setGlobalVerifState, globalVeriState } = useThemeStore()
 	const [change, SetChange] = useState<boolean>(false)
 	const [open, setOpen] = useState(false)
 	const [openID, setOpenID] = useState(false)
@@ -87,7 +90,15 @@ const Verify: NextPage = () => {
 		console.log('Type ID - ', valueID)
 		console.log(`img ${index} - `, photoData)
 	}
-
+	const lottieRef = useRef<LottieRefCurrentProps>(null)
+	const handleComplete = () => {
+		const duration = lottieRef.current?.getDuration(true) || 0
+		lottieRef.current?.goToAndStop(duration * 0.2, true)
+	}
+	const ClearState = () => {
+		setStep(1)
+		SetChange(false)
+	}
 	const handleNextStep = () => {
 		if (value && valueID) {
 			setStep(step + 1)
@@ -110,9 +121,11 @@ const Verify: NextPage = () => {
 		>
 			<div className='site-holder !px-[0]'>
 				{!change ? (
-					<div className='flex flex-col items-center pt-[86px] gap-[83px]'>
-						<div className='w-fit relative'>
-							<Image
+					<div className='flex flex-col items-center pt-[86px] gap-[9px] md:gap-[83px]'>
+						{!globalVeriState ? (
+							<>
+								<div className='w-fit relative'>
+									{/* <Image
 								priority
 								alt='protection icon'
 								className='h-auto w-auto max-w-[80px] sm:max-w-[100%]'
@@ -147,44 +160,61 @@ const Verify: NextPage = () => {
 								quality={100}
 								src={'/main/profile_verify/decor2.svg'}
 								width={208}
-							/>
-						</div>
-
-						<div className='w-full flex flex-col gap-[25px] items-center'>
-							<h1 className='text-[25px] sm:text-[32px] font-medium leading-[35px]'>
-								Verify your identity
-							</h1>
-							<article className='flex flex-col items-center'>
-								<p className='text-[14px] sm:text-[18px] leading-[24px] pb-[7px] max-w-[60%%] text-center'>
-									To comply with regulations, we need to verify your identity.
-									Doing so helps secure your account and allows you to access
-									our services.
-								</p>
-								<div className='flex flex-col gap-[4px]'>
-									<p className='text-[18px]'>You’ll need to provide: </p>
-									<ul className='pl-[24px] text-[14px] sm:text-[18px]"'>
-										<li className='!list-disc'>
-											Password, Id or Driver license
-										</li>
-										<li className='!list-disc'>Personal information</li>
-									</ul>
-								</div>
-							</article>
-							<article className='flex flex-col items-center gap-[24px]'>
-								<p className='text-[14px] sm:text-[18px] text-[#BDBDBD] flex items-center gap-[10px] sm:gap-[7px]'>
-									<ProfilePage_guard
-										color={theme === 'dark' ? '#fff' : '#000'}
+							/> */}
+									<Image
+										priority
+										alt='decor icon'
+										className='h-auto md:w-[200px]'
+										height={200}
+										quality={100}
+										src={
+											'/main/profile_verify/Basic_verification_completed.svg'
+										}
+										width={200}
 									/>
-									Your information is only used for identity verification.
-								</p>
-								<Button
-									className='text-[14px] sm:text-[20px] text-white rounded-[50px] bg-[#205BC9] px-[50px] py-[4px] xl:py-[20px] hover:opacity-[.9] hover:bg-[#205BC9]'
-									onClick={() => SetChange(!change)}
-								>
-									Verify now
-								</Button>
+								</div>
 
-								{/* {showFaq ? (
+								<div className='max-w-[641px] w-full flex flex-col gap-[25px] items-center'>
+									<h1 className='text-[25px] sm:text-[32px] font-medium leading-[35px]'>
+										Confirm your identity
+									</h1>
+									<article className='flex flex-col items-start md:items-center gap-[20px] md:gap-[50px]'>
+										<p className='text-[14px] sm:text-[18px] md:text-[20px] leading-[24px] pb-[7px] max-w-[60%%] text-left'>
+											According to the law, you need to verify your identity,
+											which will enhance the security of your account and grant
+											access to services.
+										</p>
+										<p className='text-[14px] sm:text-[18px] md:text-[20px] leading-[24px] pb-[7px] max-w-[60%%] text-left'>
+											Upon completion of the verification, you will receive
+											rewards.
+										</p>
+										<div className='flex flex-col items-start gap-[4px]'>
+											<p className='text-[18px] md:text-[20px]'>
+												You’ll need to provide:{' '}
+											</p>
+											<ul className='pl-[24px] text-[14px] sm:text-[18px] md:text-[20px]'>
+												<li className='!list-disc'>
+													Password, Id or Driver license
+												</li>
+												<li className='!list-disc'>Personal information</li>
+											</ul>
+										</div>
+									</article>
+									<article className='flex flex-col items-center gap-[24px]'>
+										<p className='text-[14px] sm:text-[18px] md:text-[20px] text-[#BDBDBD] flex items-center gap-[10px] sm:gap-[7px] w-full'>
+											<ProfilePage_guard
+												color={theme === 'dark' ? '#fff' : '#000'}
+											/>
+											Your information is only used for identity verification.
+										</p>
+										<Button
+											className='text-[14px] md:text-[20px] text-white rounded-[50px] bg-[#205BC9] px-[50px] py-[4px] xl:py-[20px] hover:opacity-[.9] hover:bg-[#205BC9] w-full'
+											onClick={() => SetChange(!change)}
+										>
+											Verify now
+										</Button>
+
+										{/* {showFaq ? (
                   <>
                     <FAQ_howVerify setShowFaq={setShowFaq} showFaq={showFaq} />
                   </>
@@ -196,8 +226,27 @@ const Verify: NextPage = () => {
                     How do I verify an individual account?
                   </span>
                 )} */}
-							</article>
-						</div>
+									</article>
+								</div>
+							</>
+						) : (
+							<>
+								<Lottie
+									lottieRef={lottieRef}
+									autoPlay={true}
+									animationData={animationData2}
+									className='max-w-[281px] w-full h-auto'
+									loop={true}
+								/>
+								<h3 className='text-[20px] md:text-[32px] font-bold'>
+									Basic verification completed
+								</h3>
+								<p className='text-[20px] text-center'>
+									You have passed identity verification. Start your journey into
+									the world of cryptocurrencies now!
+								</p>
+							</>
+						)}
 					</div>
 				) : (
 					<>
@@ -392,9 +441,9 @@ const Verify: NextPage = () => {
 											Identity verification
 										</h1>
 									</div>
-										<div onClick={() => setStep(1)}>
+									<div onClick={ClearState}>
 										<X />
-										</div>
+									</div>
 								</div>
 								<div className='flex items-start justify-center'>
 									<VerifyAnimation />

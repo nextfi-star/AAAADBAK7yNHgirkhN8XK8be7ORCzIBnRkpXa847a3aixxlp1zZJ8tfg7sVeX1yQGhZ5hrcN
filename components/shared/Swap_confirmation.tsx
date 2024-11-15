@@ -23,30 +23,28 @@ export const Swap_confirmation: NextPage<Props> = ({ titleTrigger }) => {
 		theme,
 		confirmationStep,
 		setConfirmStep,
-		setStep,
 		swapPoppover_1,
 		swapPoppover_2,
 		swapCheck,
 		swapCheck2,
 	} = useThemeStore()
 	const DropSteps = () => {
-		setStep(1)
 		setConfirmStep(1)
 		swapCheck('')
 		swapCheck2('')
 	}
 	return (
 		<Dialog>
-			<DialogTrigger asChild className='!hover:bg-[#205BC9]'>
+			<DialogTrigger asChild >
 				<Button
-					className={`rounded-[50px] text-[#888888] text-[24px] w-full max-w-[124px] md:max-w-[707px] !py-[8px] h-fit ${!swapPoppover_1 || !swapPoppover_2 ? 'bg-[#7676801F]' : 'bg-[#205BC9] text-white'}`}
-					disabled={!swapPoppover_1 || !swapPoppover_2}
+					className={`rounded-[50px] text-[#888888] text-[24px] w-full max-w-[124px] md:max-w-[707px] !py-[8px] hover:!bg-[#205BC9] h-fit ${!swapPoppover_1 || !swapPoppover_2 ? 'bg-[#7676801F]' : 'bg-[#205BC9] text-white'}`}
+					disabled={!swapPoppover_1?.length && !swapPoppover_2?.length}
 				>
 					{titleTrigger}
 				</Button>
 			</DialogTrigger>
 			{confirmationStep === 1 && (
-				<DialogContent className='max-w-[24rem] md:max-w-[90%] xl:max-w-[60%] w-full p-0 rounded-[20px]'>
+				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full p-0 rounded-[20px]'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
 							Confirm to Swap
@@ -56,15 +54,19 @@ export const Swap_confirmation: NextPage<Props> = ({ titleTrigger }) => {
 						</DialogTitle>
 						<Divider className='m-0' />
 						<div className='p-[21px] flex flex-col gap-[28px]'>
-							<article className='dark:bg-[#7676801F] rounded-[6px] flex flex-col gap-[28px] p-[21px]'>
+							<article className='dark:bg-[#7676801F] bg-[#fff] rounded-[6px] flex flex-col gap-[28px] p-[21px]'>
 								<div className='flex items-center w-full justify-between'>
 									<DialogDescription>Convert from</DialogDescription>
 
-									<DialogDescription>100.486 TRX</DialogDescription>
+									<DialogDescription>
+										100.486 {swapPoppover_1}
+									</DialogDescription>
 								</div>
 								<div className='flex items-center w-full justify-between'>
 									<DialogDescription>Convert to</DialogDescription>
-									<DialogDescription>100.486 USDT</DialogDescription>
+									<DialogDescription>
+										100.486 {swapPoppover_2}
+									</DialogDescription>
 								</div>
 							</article>
 							<div className='privacy max-w-[921px] flex flex-col 	 justify-center'>
@@ -112,7 +114,7 @@ export const Swap_confirmation: NextPage<Props> = ({ titleTrigger }) => {
 							onClick={() => setConfirmStep(2)}
 							type='button'
 							variant='secondary'
-							className='bg-[#205BC9] w-fit rounded-[50px] hover:bg-[#205BC9] min-w-[124px]'
+							className='bg-[#205BC9] w-fit rounded-[50px] text-white hover:bg-[#205BC9] min-w-[124px]'
 						>
 							Continue
 						</Button>
@@ -120,7 +122,7 @@ export const Swap_confirmation: NextPage<Props> = ({ titleTrigger }) => {
 				</DialogContent>
 			)}
 			{confirmationStep === 2 && (
-				<DialogContent className='max-w-[24rem] md:max-w-3xl w-full rounded-[20px] p-0'>
+				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full rounded-[20px] p-0'>
 					<DialogHeader>
 						<DialogTitle className='text-[32px] min-h-[96px] opacity-0 pointer-events-none'></DialogTitle>
 						<Divider className='m-0' />
@@ -142,7 +144,7 @@ export const Swap_confirmation: NextPage<Props> = ({ titleTrigger }) => {
 								onClick={DropSteps}
 								type='button'
 								variant='secondary'
-								className='bg-[#205BC9] rounded-[50px] hover:bg-[#205BC9] min-w-[124px]'
+								className='bg-[#205BC9] rounded-[50px] text-white hover:bg-[#205BC9] min-w-[124px]'
 							>
 								Confirm
 							</Button>

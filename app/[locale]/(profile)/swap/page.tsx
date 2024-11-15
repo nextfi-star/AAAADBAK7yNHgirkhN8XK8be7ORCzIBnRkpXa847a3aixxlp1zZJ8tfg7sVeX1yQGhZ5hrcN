@@ -44,6 +44,7 @@ const Swap: NextPage<Props> = () => {
 			</article>
 
 			<div className='md:dark:bg-[#1e1e1e66] md:shadow-lg dark:shadow-none flex flex-col items-center gap-[15px] md:gap-[35px] w-full md:min-h-[871px] md:p-[46px_36px] rounded-[30px]'>
+				
 				<Swap_from />
 
 				<div className='w-full flex items-center justify-between gap-[5px] md:px-[32px]'>
@@ -93,11 +94,15 @@ const Swap: NextPage<Props> = () => {
 
 				<div className='flex items-center gap-[5px]'>
 					<span className='md:text-[20px] text-[#888888]'>Exchange rate:</span>
-					<span className='md:text-[20px] text-[#888888]'>1 {swapPoppover_1} = </span>
-					<span className='md:text-[20px] text-[#888888]'>6.05521141 {swapPoppover_2}</span>
+					<span className='md:text-[20px] text-[#888888]'>
+						1 {swapPoppover_1} ={' '}
+					</span>
+					<span className='md:text-[20px] text-[#888888]'>
+						6.05521141 {swapPoppover_2}
+					</span>
 				</div>
 
-				<Swap_confirmation titleTrigger='Confirm'  />
+				<Swap_confirmation titleTrigger='Confirm' />
 
 				<div className='flex items-center gap-[30px] md:gap-[100px]'>
 					<div className='flex flex-col items-center justify-between gap-[11px]'>

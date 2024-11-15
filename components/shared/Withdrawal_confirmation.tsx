@@ -47,7 +47,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 			</DialogTrigger>
 
 			{confirmationStep === 1 && (
-				<DialogContent className='max-w-[24rem] md:max-w-[90%] xl:max-w-[60%]  w-full p-0 rounded-[20px]'>
+				<DialogContent className='max-w-[90%] md:max-w-[38rem] w-full p-0 rounded-[20px]'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
 							Confirm to Withdraw
@@ -57,17 +57,17 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 						</DialogTitle>
 						<Divider className='m-0 space-0' />
 						<div className='p-[21px] flex flex-col gap-[28px]'>
-							<article className='dark:bg-[#7676801F] rounded-[6px] flex flex-col gap-[28px] p-[21px]'>
-								<div className='flex items-center w-full justify-between'>
+							<article className='dark:bg-[#7676801F] rounded-[6px] flex flex-col gap-[28px] py-[21px] px-[18px] md:px-[21px]'>
+								<div className='flex items-center w-full justify-between overflow-hidden'>
 									<DialogDescription className='flex flex-col gap-[1px] text-[14px] md:text-[20px]'>
 										On-Chain <span>Withdrawal</span>
 									</DialogDescription>
 
-									<DialogDescription className='flex items-center gap-[16px] dark:text-white text-[14px] md:text-[20px] w-full max-w-[167px] md:max-w-full truncate'>
-										<span className='p-[5px] text-white bg-[#205BC9] rounded-[4px]'>
+									<DialogDescription className='flex items-center justify-end gap-[1px] md:gap-[16px] dark:text-white text-[12px] md:text-[20px] w-full '>
+										<span className='p-[5px] text-white bg-[#205BC9] rounded-[4px] ]'>
 											TRC20
 										</span>
-										QnC4NssoQ3Mn34SlrY1N k2bb3l0Iue1Own
+										QnC4Nssok2bb3l0Iue1Own
 									</DialogDescription>
 								</div>
 								<div className='flex items-center w-full justify-between'>
@@ -136,7 +136,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 			)}
 
 			{confirmationStep === 2 && (
-				<DialogContent className='max-w-[24rem] md:max-w-3xl w-full p-0 rounded-[20px]'>
+				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full p-0 rounded-[20px]'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
 							Security Verification
@@ -152,10 +152,11 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 										<div className='flex items-start gap-[10px]'>
 											<Image
 												src={'/main/withdraw_confirmation/mail.svg'}
-												className='min-w-[28px]'
+												className='min-w-[28px] rounded-none'
+												
 											/>
 											<span className='text-[20px] text-[#888888]'>
-												A verification cade will be sent to asdadasd@mail.ru
+												A verification code will be sent to asdadasd@mail.ru
 											</span>
 										</div>
 										<input
@@ -168,7 +169,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 										<div className='flex items-start gap-[10px]'>
 											<Image
 												src={'/main/withdraw_confirmation/google.svg'}
-												className='min-w-[28px]'
+												className='min-w-[28px] rounded-none'
 											/>
 											<span className='text-[20px] text-[#888888]'>
 												Google 2FA Code
@@ -186,20 +187,20 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 					</DialogHeader>
 					<Divider className='m-0' />
 					<DialogFooter className='flex flex-row justify-center items-center gap-[15px] p-[30px_40px]'>
-							<Button
-								onClick={() => setConfirmStep(3)}
-								type='button'
-								variant='secondary'
-								className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] min-w-[124px] h-[48px] flex items-center justify-center'
-							>
-								Confrim
-							</Button>
+						<Button
+							onClick={() => setConfirmStep(3)}
+							type='button'
+							variant='secondary'
+							className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] min-w-[124px] h-[48px] flex items-center justify-center'
+						>
+							Confrim
+						</Button>
 					</DialogFooter>
 				</DialogContent>
 			)}
 
 			{confirmationStep === 3 && (
-				<DialogContent className='max-w-[24rem] md:max-w-3xl w-full p-0 rounded-[20px]'>
+				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full p-0 rounded-[20px]'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
 							<DialogClose asChild>
@@ -219,13 +220,13 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 						</div>
 					</DialogHeader>
 					<Divider className='m-0' />
-					<DialogFooter className='flex flex-row justify-center items-center gap-[15px] p-[30px_40px]'>
+					<DialogFooter className='flex sm:justify-center items-center gap-[15px] p-[30px_40px]'>
 						<DialogClose asChild>
 							<Button
 								onClick={DropSteps}
 								type='button'
 								variant='secondary'
-								className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] max-w-[124px] h-[48px] flex items-center justify-center'
+								className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] max-w-[124px] h-[48px]'
 							>
 								Confrim
 							</Button>

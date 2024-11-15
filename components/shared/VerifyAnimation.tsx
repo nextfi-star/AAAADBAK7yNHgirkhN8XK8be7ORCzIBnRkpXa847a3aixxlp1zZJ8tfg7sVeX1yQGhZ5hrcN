@@ -8,9 +8,14 @@ import animationData2 from "@/public/animation/sphera.json";
 import animationData3 from "@/public/animation/sphera_dark.json";
 
 const VerifyAnimation: NextPage = () => {
-  const { theme } = useThemeStore();
+  const { theme, setGlobalVerifState } = useThemeStore();
   const [progress, setProgress] = useState(0);
   const [showStatus, setShowStatus] = useState(false);
+  
+  const Handler = () => {
+    setShowStatus((prev) => !prev)
+    setGlobalVerifState(true)
+  }
 
   useEffect(() => {
     if (progress < 100) {
@@ -49,7 +54,7 @@ const VerifyAnimation: NextPage = () => {
                 </p>
                 <span
                   className="text-[20px] font-medium max-w-[256px] w-full py-[10px] sm:py-[16px] bg-[#205BC9] rounded-[50px] text-white text-center"
-                  onClick={() => setShowStatus((prev) => !prev)}
+                  onClick={Handler}
                 >
                   Check Status
                 </span>
