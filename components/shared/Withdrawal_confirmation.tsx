@@ -16,16 +16,25 @@ import { Cross2Icon } from '@radix-ui/react-icons'
 import { Image } from '@nextui-org/react'
 import { useState } from 'react'
 import Withdrawal_animation from './Withdrawal_animation'
+import { CryptoData } from './Withdrawal_steps'
 
 interface Props {
 	titleTrigger: string
 	input3: string
 	setInput3: (val: string) => void
+	selectedCrypto: CryptoData | null
+	setSelectedCrypto: (val: null) => void
+	setInputStep2: (val: string) => void
+	setInput2Step2: (val: string) => void
 }
 export const Withdrawal_confirmation: NextPage<Props> = ({
 	titleTrigger,
 	input3,
 	setInput3,
+	setInputStep2,
+	setInput2Step2,
+	selectedCrypto,
+	setSelectedCrypto,
 }) => {
 	const { theme, confirmationStep, setConfirmStep, setStep } = useThemeStore()
 	const [checked, setChecked] = useState(false)
@@ -34,12 +43,15 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 		setConfirmStep(1)
 		setChecked(false)
 		setInput3('')
+		setSelectedCrypto(null)
+		setInputStep2('')
+		setInput2Step2('')
 	}
 	return (
 		<Dialog>
 			<DialogTrigger asChild className='!hover:bg-[#205BC9]'>
 				<Button
-					className={`text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] hover:!bg-[#205BC9] h-9 xl:h-9 rounded-[50px] ${input3.length > 3 ? '!bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#888888]'}`}
+					className={`text-[16px] xl:text-[20px] flex items-center justify-center w-[156px] h-[44px] !py-[8px] hover:!bg-[#205BC9] rounded-[50px] ${input3.length > 3 ? '!bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#888888]'}`}
 					disabled={input3.length <= 3}
 				>
 					{titleTrigger}
@@ -76,7 +88,8 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 									</DialogDescription>
 
 									<DialogDescription className='flex items-center gap-[4px] dark:text-white text-[14px] md:text-[20px]'>
-										112.720 TRX (Fee: 10TRX)
+										112.720 {selectedCrypto?.name} (Fee: 10
+										{selectedCrypto?.name})
 									</DialogDescription>
 								</div>
 							</article>
@@ -153,17 +166,21 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 											<Image
 												src={'/main/withdraw_confirmation/mail.svg'}
 												className='min-w-[28px] rounded-none'
-												
 											/>
-											<span className='text-[20px] text-[#888888]'>
+											<DialogDescription className='text-[20px] text-[#888888]'>
 												A verification code will be sent to asdadasd@mail.ru
-											</span>
+											</DialogDescription>
 										</div>
-										<input
-											type='text'
-											placeholder='Please enter the email verification'
-											className='text-[16px] bg-[#7676801F] rounded-[20px] h-[50px] px-[15px]'
-										/>
+										<div className='relative w-full'>
+											<input
+												type='text'
+												placeholder='Please enter the email verification'
+												className='text-[16px] bg-[#7676801F] rounded-[20px] h-[50px] px-[15px] w-full'
+											/>
+											<p className='text-[#205BC9] font-bold text-[16px] absolute top-[13px] right-[17px]'>
+												Send verification code
+											</p>
+										</div>
 									</label>
 									<label className='flex flex-col gap-[8px]'>
 										<div className='flex items-start gap-[10px]'>
@@ -171,9 +188,9 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 												src={'/main/withdraw_confirmation/google.svg'}
 												className='min-w-[28px] rounded-none'
 											/>
-											<span className='text-[20px] text-[#888888]'>
+											<DialogDescription className='text-[20px] text-[#888888]'>
 												Google 2FA Code
-											</span>
+											</DialogDescription>
 										</div>
 										<input
 											type='text'
@@ -200,7 +217,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 			)}
 
 			{confirmationStep === 3 && (
-				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full p-0 rounded-[20px]'>
+				<DialogContent className='max-w-[90%] md:max-w-[576px] w-full p-0 rounded-[20px]'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
 							<DialogClose asChild>
@@ -210,11 +227,11 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 						<Divider className='m-0' />
 						<div className='p-[21px] flex flex-col gap-[28px]'>
 							<article className='relative rounded-[6px] flex flex-col items-center justify-end p-[21px__21px__0__21px]'>
-								<div className='absolute left-[50%] top-[-10%] md:top-[-52%] translate-x-[-50%]'>
+								<div className='absolute left-[50%]  md:-top-[95%] translate-x-[-50%]'>
 									<Withdrawal_animation />
 								</div>
-								<DialogDescription className='text-[32px] font-bold dark:text-white text-[#0c0c0c] min-h-[150px] flex flex-col justify-end'>
-									Swap
+								<DialogDescription className='text-[25px] font-bold dark:text-white text-[#0c0c0c] min-h-[150px] w-full flex flex-col justify-end items-center'>
+									Withdrawal Application Submitetted
 								</DialogDescription>
 							</article>
 						</div>
@@ -226,7 +243,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 								onClick={DropSteps}
 								type='button'
 								variant='secondary'
-								className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] max-w-[124px] h-[48px]'
+								className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] max-w-[124px] h-[48px] relative'
 							>
 								Confrim
 							</Button>

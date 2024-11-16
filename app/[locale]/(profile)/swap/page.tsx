@@ -2,26 +2,52 @@
 import { Swap_confirmation } from '@/components/shared/Swap_confirmation'
 import Swap_faq from '@/components/shared/Swap_faq'
 import Swap_from from '@/components/shared/Swap_from'
-import { Swap_fromTo } from '@/components/shared/Swap_fromTo'
 import Swap_To from '@/components/shared/Swap_To'
+import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { Divider } from '@nextui-org/divider'
-import { Avatar, Image } from '@nextui-org/react'
-import { ArrowDownUp } from 'lucide-react'
+import { Image } from '@nextui-org/react'
+import { ArrowDownUp, ChevronLeft, X } from 'lucide-react'
 import { NextPage } from 'next'
 import React from 'react'
 
 interface Props {}
 
 const Swap: NextPage<Props> = () => {
-	const { theme, swapPoppover_1, swapPoppover_2 } = useThemeStore()
-
+	const {
+		theme,
+		swapPoppover_1,
+		swapPoppover_2,
+		setReplaceCurrency,
+		replaceCurrency,
+		setConfirmStep,
+		swapCheck,
+		swapCheck2,
+		setStep,
+	} = useThemeStore()
+	const DropSteps = () => {
+		setStep(1)
+		setConfirmStep(1)
+		swapCheck('')
+		swapCheck2('')
+	}
 	return (
-		<section className='mt-[-7rem] lg:mt-0 flex flex-col gap-[40px] w-full min-h-screen pb-[1.5rem]'>
+		<section className='mt-[-7rem] lg:mt-0 flex flex-col gap-[40px] w-full min-h-screen pb-[1.5rem] top-mobile'>
 			<article className='md:dark:bg-[#1e1e1e66] md:shadow-lg dark:shadow-none flex flex-col items-center gap-[19px] md:gap-[35px] w-full md:py-[51px] rounded-[30px]'>
-				<h1 className='text-[30px] xl:text-[68px] font-bold xl:leading-[32px]'>
+				<h1 className='hide-mobile text-[30px] xl:text-[68px] font-bold xl:leading-[32px]'>
 					Swap
 				</h1>
+				<div className='show-mobile w-full flex items-center justify-between'>
+					<Link href={'/assets'} onClick={DropSteps}>
+						<ChevronLeft strokeWidth={1} className='w-[30px]' />
+					</Link>
+					<h1 className='text-[30px] xl:text-[68px] font-bold xl:leading-[32px]'>
+						Swap
+					</h1>
+					<Link href={'/assets'} onClick={DropSteps}>
+						<X className='w-[30px]' />
+					</Link>
+				</div>
 				<div className='flex items-center justify-center w-full'>
 					<span className='text-[14px] sm:text-[18px] text-[#888888]'>
 						Zero swap Fee
@@ -44,7 +70,6 @@ const Swap: NextPage<Props> = () => {
 			</article>
 
 			<div className='md:dark:bg-[#1e1e1e66] md:shadow-lg dark:shadow-none flex flex-col items-center gap-[15px] md:gap-[35px] w-full md:min-h-[871px] md:p-[46px_36px] rounded-[30px]'>
-				
 				<Swap_from />
 
 				<div className='w-full flex items-center justify-between gap-[5px] md:px-[32px]'>
@@ -82,7 +107,10 @@ const Swap: NextPage<Props> = () => {
 							</label>
 						</div>
 					</article>
-					<div className='rounded-full border-1 md:border-3 border-solid border-[#EFEFEF] p-[13px]'>
+					<div
+						className='rounded-full border-1 md:border-3 border-solid border-[#EFEFEF] p-[13px]'
+						onClick={() => setReplaceCurrency(!replaceCurrency)}
+					>
 						<ArrowDownUp
 							strokeWidth={1}
 							className='w-full max-w-[36px] max-h-[36px]'

@@ -12,6 +12,7 @@ import { StartupIcon } from './StartupIcon'
 import Chart from './Chart'
 import { Avatar } from '@nextui-org/react'
 import { Link } from '@/i18n/routing'
+import { Swap_modal } from './swap_modal/Swap_modal'
 
 export const Profile_balance: NextPage = () => {
 	const { theme, verifyState } = useThemeStore()

@@ -44,7 +44,7 @@ interface Props {
 	statuses?: Status[]
 }
 export const Swap_FromTo_alert: NextPage<Props> = ({ statuses }) => {
-	const { swapPoppover_1, swapCheck, theme } = useThemeStore()
+	const { swapPoppover_1, swapCheck, theme, replaceCurrency } = useThemeStore()
 	const [open, setOpen] = useState(false)
 	const [selectedStatus, setSelectedStatus] = useState<Status | null>(null)
 
@@ -101,8 +101,8 @@ export const Swap_FromTo_alert: NextPage<Props> = ({ statuses }) => {
 								<CommandGroup>
 									{statuses?.map(status => (
 										<CommandItem
-											key={status.value}
 											value={status.value}
+											key={status.value}
 											onSelect={value => {
 												setSelectedStatus(
 													statuses?.find(
@@ -113,23 +113,25 @@ export const Swap_FromTo_alert: NextPage<Props> = ({ statuses }) => {
 												swapCheck(status.label)
 											}}
 										>
-											<div className='flex items-center justify-between w-full'>
-												<div className='flex items-center gap-[3px]'>
-													<Avatar src={status.icon} />
-													<DialogDescription className='text-[20px] text-[#205BC9] flex flex-col items-start'>
-														{status.label}
+											<DialogClose asChild>
+												<div className='flex items-center justify-between w-full'>
+													<div className='flex items-center gap-[3px]'>
+														<Avatar src={status.icon} />
+														<DialogDescription className='text-[20px] text-[#205BC9] flex flex-col items-start'>
+															{status.label}
+															<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
+																{status.value}
+															</span>
+														</DialogDescription>
+													</div>
+													<DialogDescription className='flex flex-col text-[20px]'>
+														{status.cryptoNumbers}
 														<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
-															{status.value}
+															{status.moreLess}
 														</span>
 													</DialogDescription>
 												</div>
-												<DialogDescription className='flex flex-col text-[20px]'>
-													{status.cryptoNumbers}
-													<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
-														{status.moreLess}
-													</span>
-												</DialogDescription>
-											</div>
+											</DialogClose>
 										</CommandItem>
 									))}
 								</CommandGroup>

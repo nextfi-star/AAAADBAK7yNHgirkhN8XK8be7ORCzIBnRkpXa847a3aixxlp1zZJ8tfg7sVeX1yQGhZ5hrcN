@@ -35,9 +35,9 @@ export const Swap_confirmation: NextPage<Props> = ({ titleTrigger }) => {
 	}
 	return (
 		<Dialog>
-			<DialogTrigger asChild >
+			<DialogTrigger asChild>
 				<Button
-					className={`rounded-[50px] text-[#888888] text-[24px] w-full max-w-[124px] md:max-w-[707px] !py-[8px] hover:!bg-[#205BC9] h-fit ${!swapPoppover_1 || !swapPoppover_2 ? 'bg-[#7676801F]' : 'bg-[#205BC9] text-white'}`}
+					className={`rounded-[50px] text-[#888888] text-[16px] md:text-[24px] w-full max-w-[124px] md:max-w-[707px] !py-[8px] hover:!bg-[#205BC9] h-fit ${!swapPoppover_1 || !swapPoppover_2 ? 'bg-[#7676801F]' : 'bg-[#205BC9] text-white'}`}
 					disabled={!swapPoppover_1?.length && !swapPoppover_2?.length}
 				>
 					{titleTrigger}
@@ -122,13 +122,13 @@ export const Swap_confirmation: NextPage<Props> = ({ titleTrigger }) => {
 				</DialogContent>
 			)}
 			{confirmationStep === 2 && (
-				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full rounded-[20px] p-0'>
+				<DialogContent className='max-w-[90%] md:max-w-[576px]  w-full rounded-[20px] p-0'>
 					<DialogHeader>
-						<DialogTitle className='text-[32px] min-h-[96px] opacity-0 pointer-events-none'></DialogTitle>
+						<DialogTitle className='text-[32px] min-h-[40px] md:min-h-[70px] opacity-0 pointer-events-none'></DialogTitle>
 						<Divider className='m-0' />
 						<div className='p-[21px] flex flex-col gap-[28px]'>
 							<article className='relative rounded-[6px] flex flex-col items-center justify-end p-[21px__21px__0__21px]'>
-								<div className='absolute left-[50%] top-[-10%] md:top-[-52%] translate-x-[-50%]'>
+								<div className='absolute left-[50%] -top-[46%] md:-top-[95%] translate-x-[-50%]'>
 									<Withdrawal_animation />
 								</div>
 								<DialogDescription className='text-[32px] font-bold dark:text-white text-[#0c0c0c] min-h-[150px] flex flex-col justify-end'>
@@ -138,13 +138,13 @@ export const Swap_confirmation: NextPage<Props> = ({ titleTrigger }) => {
 						</div>
 					</DialogHeader>
 					<Divider className='m-0' />
-					<DialogFooter className='flex !flex-col items-center justify-start p-[30px_40px]'>
+					<DialogFooter className='flex !flex-col items-center justify-start md:p-[30px_40px] p-[12px_40px]'>
 						<DialogClose asChild>
 							<Button
 								onClick={DropSteps}
 								type='button'
 								variant='secondary'
-								className='bg-[#205BC9] rounded-[50px] text-white hover:bg-[#205BC9] min-w-[124px]'
+								className='bg-[#205BC9] rounded-[50px] text-white hover:bg-[#205BC9] min-w-[124px] relative'
 							>
 								Confirm
 							</Button>

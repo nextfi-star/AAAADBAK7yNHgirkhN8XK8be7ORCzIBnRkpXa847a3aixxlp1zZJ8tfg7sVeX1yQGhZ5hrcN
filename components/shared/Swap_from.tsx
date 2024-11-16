@@ -1,9 +1,7 @@
-import { Divider } from '@nextui-org/divider'
 import { NextPage } from 'next'
 import React from 'react'
-import { Swap_fromTo } from './Swap_fromTo'
-import { useThemeStore } from '@/store'
 import { Swap_FromTo_alert } from './Swap_FromTo_alert'
+import { Input } from '@nextui-org/input'
 type Status = {
 	value: string
 	label: string
@@ -13,7 +11,7 @@ type Status = {
 }
 const statusesFrom: Status[] = [
 	{
-		value: 'Layer Zero',
+		value: 'zero',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 		label: 'ZRO',
@@ -34,14 +32,14 @@ const statusesFrom: Status[] = [
 		icon: '/payment_table/teater.svg',
 	},
 	{
-		value: 'zroo',
+		value: 'xzroo',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 		label: 'ZROO',
 		icon: '/payment_table/zro.svg',
 	},
 	{
-		value: 'trxx',
+		value: 'xtrxx',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 		label: 'TRXX',
@@ -55,9 +53,12 @@ const Swap_from: NextPage = () => {
 				From
 			</h1>
 			<div className='w-full flex items-center gap-[5px] justify-between'>
-				<span className='md:text-[20px] text-[#BDBDBD] md:font-medium flex-shrink-0'>
-					10.3595-250,000
-				</span>
+				<Input
+					type='text'
+					variant='underlined'
+					className='md:text-[20px] text-[#BDBDBD] md:font-medium flex-shrink-0 w-[60%] md:w-fit'
+					placeholder='Enter the amount'
+				/>
 
 				<div className='flex items-center'>
 					<Swap_FromTo_alert statuses={statusesFrom} />

@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import React from 'react'
 import { Swap_ToFrom_alert } from './Swap_ToFrom_alert'
+import { Input } from '@nextui-org/input'
 type Status = {
 	value: string
 	label: string
@@ -52,13 +53,14 @@ const Swap_To: NextPage = () => {
 				To
 			</h1>
 			<div className='w-full flex items-center gap-[5px] justify-between'>
-				<span className='md:text-[20px] text-[#BDBDBD] font-medium'>
-					10.3595-250,000
-				</span>
+				<Input
+					type='text'
+					variant='underlined'
+					placeholder='Enter the amount'
+					className='md:text-[20px] text-[#BDBDBD] font-medium w-[60%] md:w-fit'
+				/>
 				<div className='flex items-center'>
-					<Swap_ToFrom_alert
-						statuses={statusesTo}
-					/>
+					<Swap_ToFrom_alert statuses={statusesTo} />
 				</div>
 			</div>
 		</article>

@@ -38,9 +38,7 @@ type Status = {
 interface Props {
 	statuses?: Status[]
 }
-export const Swap_ToFrom_alert: NextPage<Props> = ({
-	statuses,
-}) => {
+export const Swap_ToFrom_alert: NextPage<Props> = ({ statuses }) => {
 	const { swapPoppover_2, swapCheck2, theme } = useThemeStore()
 	const [open, setOpen] = useState(false)
 	const [selectedStatus, setSelectedStatus] = useState<Status | null>(null)
@@ -54,7 +52,9 @@ export const Swap_ToFrom_alert: NextPage<Props> = ({
 					{selectedStatus ? (
 						<div className='flex gap-[8px] items-center'>
 							<Avatar src={selectedStatus.icon} />
-							<DialogDescription className='text-[16px] text-[#0c0c0c] dark:text-white'>{swapPoppover_2}</DialogDescription>
+							<DialogDescription className='text-[16px] text-[#0c0c0c] dark:text-white'>
+								{swapPoppover_2}
+							</DialogDescription>
 							<ChevronDown
 								strokeWidth={1}
 								color={theme === 'dark' ? 'white' : 'black'}
@@ -63,7 +63,9 @@ export const Swap_ToFrom_alert: NextPage<Props> = ({
 					) : (
 						<div className='flex gap-[8px] items-center'>
 							<Avatar src={'/'} />
-							<DialogDescription className='text-[16px] text-[#0c0c0c] dark:text-white'>{swapPoppover_2}</DialogDescription>
+							<DialogDescription className='text-[16px] text-[#0c0c0c] dark:text-white'>
+								{swapPoppover_2}
+							</DialogDescription>
 							<ChevronDown
 								strokeWidth={1}
 								color={theme === 'dark' ? 'white' : 'black'}
@@ -106,23 +108,25 @@ export const Swap_ToFrom_alert: NextPage<Props> = ({
 												swapCheck2(status.label)
 											}}
 										>
-											<div className='flex items-center justify-between w-full'>
-												<div className='flex items-center gap-[3px]'>
-													<Avatar src={status.icon} />
-													<DialogDescription className='text-[20px] text-[#205BC9] flex flex-col items-start'>
-														{status.label}
+											<DialogClose asChild>
+												<div className='flex items-center justify-between w-full'>
+													<div className='flex items-center gap-[3px]'>
+														<Avatar src={status.icon} />
+														<DialogDescription className='text-[20px] text-[#205BC9] flex flex-col items-start'>
+															{status.label}
+															<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
+																{status.value}
+															</span>
+														</DialogDescription>
+													</div>
+													<DialogDescription className='flex flex-col text-[20px]'>
+														{status.cryptoNumbers}
 														<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
-															{status.value}
+															{status.moreLess}
 														</span>
 													</DialogDescription>
 												</div>
-												<DialogDescription className='flex flex-col text-[20px]'>
-													{status.cryptoNumbers}
-													<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
-														{status.moreLess}
-													</span>
-												</DialogDescription>
-											</div>
+											</DialogClose>
 										</CommandItem>
 									))}
 								</CommandGroup>

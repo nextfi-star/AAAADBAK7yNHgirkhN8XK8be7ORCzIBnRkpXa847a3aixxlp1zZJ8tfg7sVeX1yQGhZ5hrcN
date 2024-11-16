@@ -24,7 +24,7 @@ const Withdrawal_animation: NextPage = () => {
 					lottieRef={lottieRef}
 					autoPlay={true}
 					animationData={animationData2}
-					className='max-w-[281px] w-full h-auto'
+					className='w-[277px] md:w-[445px] h-auto'
 					loop={false}
 				/>
 			</div>

@@ -31,4 +31,6 @@ export interface IStore {
 	swapCheck2: (val2: string | null) => void
 	globalVeriState: boolean
 	setGlobalVerifState: (state: boolean) => void
+	replaceCurrency: boolean
+	setReplaceCurrency: (val: boolean) => void
 }

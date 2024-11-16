@@ -1,23 +1,26 @@
-"use client"
-import { NextPage } from "next";
-import Template from "../Template";
-import { TapBar, ProfileHeader, Profile_nav } from "@/components/shared/index";
-import { ADMIN } from '@/components/shared/ADMIN'
+'use client'
+import { useResponsiveVisibility } from '@/hooks/useResponsiveVisibility'
+import Template from '../Template'
+import { TapBar, ProfileHeader, Profile_nav } from '@/components/shared/index'
 
 interface RootLayoutProps {
-  children: React.ReactNode;
+	children: React.ReactNode
 }
-const ProfileRoot: NextPage<RootLayoutProps> = ({ children }) => {
-  return (
-    <div className="profile__body ">
-      <ProfileHeader auth />
-      <main className="profile__main site-holder">
-        <Profile_nav />
-        <Template>{children}</Template>
-      </main>
-      <TapBar />
-    </div>
-  );
-};
+export default function ProfileRoot({
+	children,
+}: {
+	children: React.ReactNode
+}) {
+	const { showHeader, showTapbar } = useResponsiveVisibility();
 
-export default ProfileRoot;
+	return (
+		<div className='profile__body'>
+			{showHeader && <ProfileHeader auth />}
+			<main className='profile__main site-holder'>
+				<Profile_nav />
+				<Template>{children}</Template>
+			</main>
+			{showTapbar && <TapBar />}
+		</div>
+	)
+}

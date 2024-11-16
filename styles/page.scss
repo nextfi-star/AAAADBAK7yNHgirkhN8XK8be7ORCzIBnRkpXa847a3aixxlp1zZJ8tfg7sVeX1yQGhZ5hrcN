@@ -5774,3 +5774,19 @@ body {
 		background-color: none !important;
 	}
 }
+.top-mobile {
+	@media (max-width: 430px) {
+		margin-top: -13rem;
+	}
+}
+.hide-mobile {
+	@media (max-width: 430px) {
+		display: none;
+	}
+}
+.show-mobile {
+	display: none;
+	@media (max-width: 430px) {
+		display: flex;
+	}
+}

@@ -32,10 +32,7 @@ const statusColorMap: Record<string, ChipProps['color']> = {
 
 const INITIAL_VISIBLE_COLUMNS = [
 	'time',
-	'address',
-	'crypto',
 	'amount',
-	'fee',
 	'status',
 ]
 
@@ -209,6 +206,30 @@ export default function Withdrawal_table() {
 								))}
 							</DropdownMenu>
 						</Dropdown>
+						<Dropdown>
+              <DropdownTrigger className="flex">
+                <Button
+                  endContent={<ChevronDownIcon className="text-small" />}
+                  variant="flat"
+                >
+                  Columns
+                </Button>
+              </DropdownTrigger>
+              <DropdownMenu
+                disallowEmptySelection
+                aria-label="Table Columns"
+                closeOnSelect={false}
+                selectedKeys={visibleColumns}
+                selectionMode="multiple"
+                onSelectionChange={setVisibleColumns}
+              >
+                {columnsDataW.map((column) => (
+                  <DropdownItem key={column.uid} className="capitalize">
+                    {capitalize(column.name)}
+                  </DropdownItem>
+                ))}
+              </DropdownMenu>
+            </Dropdown>
 					</div>
 				</div>
 			</div>

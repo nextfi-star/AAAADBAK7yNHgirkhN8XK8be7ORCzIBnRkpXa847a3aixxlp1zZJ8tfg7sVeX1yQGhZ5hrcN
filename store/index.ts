@@ -54,6 +54,8 @@ export const useThemeStore = create<IStore>()(
 				}),
 			globalVeriState: false,
 			setGlobalVerifState: state => set({ globalVeriState: state }),
+			replaceCurrency: false,
+			setReplaceCurrency: (val) => set({replaceCurrency: val}),
 		}),
 		{
 			name: 'zustand-store',
