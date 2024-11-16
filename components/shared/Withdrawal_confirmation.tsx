@@ -227,7 +227,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 						<Divider className='m-0' />
 						<div className='p-[21px] flex flex-col gap-[28px]'>
 							<article className='relative rounded-[6px] flex flex-col items-center justify-end p-[21px__21px__0__21px]'>
-								<div className='absolute left-[50%]  md:-top-[95%] translate-x-[-50%]'>
+								<div className='absolute left-[50%] -top-[46%] md:-top-[84%] translate-x-[-50%]'>
 									<Withdrawal_animation />
 								</div>
 								<DialogDescription className='text-[25px] font-bold dark:text-white text-[#0c0c0c] min-h-[150px] w-full flex flex-col justify-end items-center'>

@@ -128,25 +128,25 @@ export const Swap_confirmation: NextPage<Props> = ({ titleTrigger }) => {
 						<Divider className='m-0' />
 						<div className='p-[21px] flex flex-col gap-[28px]'>
 							<article className='relative rounded-[6px] flex flex-col items-center justify-end p-[21px__21px__0__21px]'>
-								<div className='absolute left-[50%] -top-[46%] md:-top-[95%] translate-x-[-50%]'>
+								<div className='absolute left-[50%] -top-[46%] md:-top-[84%] translate-x-[-50%]'>
 									<Withdrawal_animation />
 								</div>
-								<DialogDescription className='text-[32px] font-bold dark:text-white text-[#0c0c0c] min-h-[150px] flex flex-col justify-end'>
+								<DialogDescription className='text-[25px] font-bold dark:text-white text-[#0c0c0c] min-h-[150px] w-full flex flex-col justify-end items-center'>
 									Swap
 								</DialogDescription>
 							</article>
 						</div>
 					</DialogHeader>
 					<Divider className='m-0' />
-					<DialogFooter className='flex !flex-col items-center justify-start md:p-[30px_40px] p-[12px_40px]'>
+					<DialogFooter className='flex sm:justify-center items-center gap-[15px] p-[30px_40px]'>
 						<DialogClose asChild>
 							<Button
 								onClick={DropSteps}
 								type='button'
 								variant='secondary'
-								className='bg-[#205BC9] rounded-[50px] text-white hover:bg-[#205BC9] min-w-[124px] relative'
+								className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] max-w-[124px] h-[48px] relative'
 							>
-								Confirm
+								Confrim
 							</Button>
 						</DialogClose>
 					</DialogFooter>

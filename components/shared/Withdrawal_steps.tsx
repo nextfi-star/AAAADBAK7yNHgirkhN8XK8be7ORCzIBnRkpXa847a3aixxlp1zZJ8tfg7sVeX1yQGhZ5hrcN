@@ -151,7 +151,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 						className={`flex flex-col gap-[20px] md:gap-[89px] relative after:absolute after:content-[''] after:min-w-[1px] after:min-h-[90%] after:border after:border-dashed after:border-[#BDBDBD] after:left-[14px] after:bottom-[15px] after:top-[6px]`}
 					>
 						<div className='flex flex-col gap-[14px] relative z-[1]'>
-							<div className='flex items-center gap-[15px] mb-[20px] md:mb-[44px]'>
+							<div className='flex items-center gap-[15px] mb-[15px] md:mb-[15px]'>
 								<span
 									className={`text-white text-[18px] ${
 										step === 1 ? 'bg-[#205BC9]' : 'bg-[#3A3939]'
@@ -257,7 +257,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 						</div>
 
 						<div className='flex flex-col gap-[14px] relative z-[1]'>
-							<div className='flex items-center gap-[15px] mb-[20px] md:mb-[44px]'>
+							<div className='flex items-center gap-[15px] mb-[15px] md:mb-[15px]'>
 								<span
 									className={`text-white text-[18px] ${
 										step === 2 ? 'bg-[#205BC9]' : 'bg-[#3A3939]'
@@ -336,7 +336,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 						</div>
 
 						<div className='flex flex-col gap-[14px] relative z-[1]'>
-							<div className='flex items-start gap-[15px] md:mb-[44px]'>
+							<div className='flex items-start gap-[15px] mb-[15px] md:mb-[15px]'>
 								<span
 									className={`text-white text-[18px] ${
 										inputStep2.length > 3 && input2Step2.length > 3
