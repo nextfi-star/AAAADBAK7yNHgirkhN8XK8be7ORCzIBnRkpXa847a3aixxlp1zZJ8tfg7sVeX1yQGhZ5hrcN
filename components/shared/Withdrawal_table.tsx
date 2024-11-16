@@ -34,6 +34,9 @@ const INITIAL_VISIBLE_COLUMNS = [
 	'time',
 	'amount',
 	'status',
+	'address',
+	'crypto',
+	'fee',
 ]
 
 type User = (typeof usersDataW)[0]
@@ -105,27 +108,27 @@ export default function Withdrawal_table() {
 
 		switch (columnKey) {
 			case 'time':
-				return <span>{user.time}</span>
+				return <span className='md:text-[20px]'>{user.time}</span>
 			case 'address':
 				return (
 					<div className='flex flex-col items-start gap-[5px]'>
 						<div className='flex items-center gap-[5px] '>
 							<Snippet
 								symbol=''
-								className='text-bold text-small capitalize overflow-ellipsis whitespace-nowrap overflow-hidden bg-transparent px-0'
+								className='text-bold md:text-[20px] text-small capitalize overflow-ellipsis whitespace-nowrap overflow-hidden bg-transparent px-0'
 							>
 								{user.address}
 							</Snippet>
 						</div>
-						<span>{user.subaddress}</span>
+						<span className='md:text-[20px] font-medium text-[#BDBDBD]'>{user.subaddress}</span>
 					</div>
 				)
 			case 'crypto':
-				return <span> {user.crypto}</span>
+				return <span className='md:text-[20px]'> {user.crypto}</span>
 			case 'amount':
-				return <span> {user.amount}</span>
+				return <span className='md:text-[20px]'> {user.amount}</span>
 			case 'fee':
-				return <span> {user.fee}</span>
+				return <span className='md:text-[20px]'> {user.fee}</span>
 			case 'status':
 				return (
 					// <Chip
@@ -136,7 +139,7 @@ export default function Withdrawal_table() {
 					// >
 					// 	{user.status}
 					// </Chip>
-					<span className='capitalize'>{user.status}</span>
+					<span className='capitalize md:text-[20px]'>{user.status}</span>
 				)
 			case 'actions':
 				return (
@@ -185,7 +188,7 @@ export default function Withdrawal_table() {
 						<Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
 								<Button
-									endContent={<ChevronDownIcon className='text-small' />}
+									endContent={<ChevronDownIcon className='md:!text-[20px]' />}
 									variant='flat'
 								>
 									Status
@@ -200,7 +203,7 @@ export default function Withdrawal_table() {
 								onSelectionChange={setStatusFilter}
 							>
 								{statusOptionsDataW.map(status => (
-									<DropdownItem key={status.uid} className='capitalize'>
+									<DropdownItem key={status.uid} className='capitalize md:!text-[20px]'>
 										{capitalize(status.name)}
 									</DropdownItem>
 								))}
@@ -209,7 +212,7 @@ export default function Withdrawal_table() {
 						<Dropdown>
               <DropdownTrigger className="flex">
                 <Button
-                  endContent={<ChevronDownIcon className="text-small" />}
+                  endContent={<ChevronDownIcon className="md:!text-[20px]" />}
                   variant="flat"
                 >
                   Columns
@@ -224,7 +227,7 @@ export default function Withdrawal_table() {
                 onSelectionChange={setVisibleColumns}
               >
                 {columnsDataW.map((column) => (
-                  <DropdownItem key={column.uid} className="capitalize">
+                  <DropdownItem key={column.uid} className="capitalize md:text-[20px] ">
                     {capitalize(column.name)}
                   </DropdownItem>
                 ))}
@@ -269,7 +272,7 @@ export default function Withdrawal_table() {
 			classNames={{
 				wrapper: 'max-h-[503px]',
 				td: 'text-center',
-				th: 'text-center',
+				th: 'text-center md:text-[20px]',
 			}}
 			sortDescriptor={sortDescriptor}
 			topContent={topContent}
@@ -287,9 +290,9 @@ export default function Withdrawal_table() {
 					</TableColumn>
 				)}
 			</TableHeader>
-			<TableBody emptyContent={'No users found'} items={sortedItems}>
+			<TableBody emptyContent={'Not found'} items={sortedItems} >
 				{item => (
-					<TableRow key={item.id}>
+					<TableRow key={item.id} >
 						{columnKey => <TableCell>{renderCell(item, columnKey)}</TableCell>}
 					</TableRow>
 				)}
