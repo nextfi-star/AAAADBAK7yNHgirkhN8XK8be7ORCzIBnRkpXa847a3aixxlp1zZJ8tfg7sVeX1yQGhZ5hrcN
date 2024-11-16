@@ -18,7 +18,7 @@ export const useResponsiveVisibility = () => {
 	const hiddenRoutes = [
 		/^\/[a-z]{2}\/swap$/, // /en/profile/swap, /ru/profile/swap
 		/^\/[a-z]{2}\/withdrawal$/, // /en/swap, /ru/swap
-		/^\/[a-z]{2}\/dashboard$/, // /en/dashboard, /ru/dashboard
+		/^\/[a-z]{2}\/invest$/, // /en/dashboard, /ru/dashboard
 		/^\/[a-z]{2}\/settings$/, // /en/settings, /ru/settings
 	]
 

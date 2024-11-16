@@ -11,9 +11,9 @@ import {
 } from '@/components/ui/dialog'
 import { useThemeStore } from '@/store'
 import { Divider } from '@nextui-org/divider'
+import { Cross2Icon } from '@radix-ui/react-icons'
 import { NextPage } from 'next'
 import Withdrawal_animation from './Withdrawal_animation'
-import { Cross2Icon } from '@radix-ui/react-icons'
 
 interface Props {
 	titleTrigger: string

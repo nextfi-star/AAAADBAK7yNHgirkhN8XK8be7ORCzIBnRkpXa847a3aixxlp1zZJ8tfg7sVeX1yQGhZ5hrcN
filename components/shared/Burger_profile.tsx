@@ -1,16 +1,15 @@
 'use client'
+import { useThemeStore } from '@/store'
 import clsx from 'clsx'
+import { LogOut } from 'lucide-react'
+import { NextPage } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
-import { NextPage } from 'next'
+import { ProfileBurger_info, ProgileBurger_Tabsinfo } from '.'
 import ArrowBracket from '../ui/ArrowBracket'
-import { useThemeStore } from '../../store'
-import { ProfileBurger_info } from './ProfileBurger_info'
-import { ProgileBurger_Tabsinfo } from './ProgileBurger_Tabsinfo'
+import { Confirmation_dialog } from './Confirmation_dialog'
 import { ProfileBurger_menu_list } from './ProfileBurger_menu_list'
 import { ProfileBurger_settigns } from './ProfileBurger_settigns'
-import { LogOut } from 'lucide-react'
-import { Confirmation_dialog } from './Confirmation_dialog'
 
 interface Props {
 	handleClick: () => void

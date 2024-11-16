@@ -120,7 +120,7 @@ const networkData = [
 		moreLess: '<$0.01',
 	},
 ]
-const Withdrawal_steps: NextPage<Props> = () => {
+const Invest_steps: NextPage<Props> = () => {
 	const { step, setStep, theme } = useThemeStore()
 	const [open, setOpen] = useState(false)
 	const [inputStep2, setInputStep2] = useState<string>('')
@@ -161,7 +161,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 1 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
 								>
-									Select crypto
+									Select industry
 								</span>
 							</div>
 
@@ -267,7 +267,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 2 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
 								>
-									Set distination
+									Investment period
 								</span>
 							</div>
 
@@ -348,7 +348,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 3 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
 								>
-									Set withdrawal amount
+									Set amount
 								</span>
 							</div>
 							{step >= 2 && (
@@ -377,7 +377,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 													setInputStep2={setInputStep2}
 													setInput2Step2={setInput2Step2}
 													setSelectedCrypto={setSelectedCrypto}
-													titleTrigger={'Withdrawal'}
+													titleTrigger={'Invest'}
 													selectedCrypto={selectedCrypto}
 												/>
 											</div>
@@ -393,4 +393,4 @@ const Withdrawal_steps: NextPage<Props> = () => {
 	)
 }
 
-export default Withdrawal_steps
+export default Invest_steps

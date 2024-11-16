@@ -5,9 +5,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperType } from "swiper";
 import Image from "next/image";
 import { NextPage } from "next";
-
-import ArrowBracket from "../ui/ArrowBracket";
-import { useThemeStore } from "../../store";
+import ArrowBracket from "@/components/ui/ArrowBracket";
+import { useThemeStore } from "@/store";
 
 const data = [
   {

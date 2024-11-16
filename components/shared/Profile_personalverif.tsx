@@ -3,10 +3,8 @@ import Image from "next/image";
 import { NextPage } from "next";
 
 import { ProfilePage_guard } from "../ui/ProfilePage_guard";
-
 import { ViewRegion } from "./ViewRegion";
 import { ChangeRegion } from "./ChangeRegion";
-
 import { useThemeStore } from "@/store";
 
 export const Profile_personalverif: NextPage = () => {

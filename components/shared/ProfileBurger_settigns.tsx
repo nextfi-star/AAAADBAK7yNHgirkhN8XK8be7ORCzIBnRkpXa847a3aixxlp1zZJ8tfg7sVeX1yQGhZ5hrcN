@@ -2,9 +2,9 @@
 import Image from "next/image";
 import { NextPage } from "next";
 
-import ArrowBracket from "../ui/ArrowBracket";
-import { useThemeStore } from "../../store";
-import { ChangeAvatar } from "../ui/ChangeAvatar";
+import ArrowBracket from "@/components/ui/ArrowBracket";
+import { useThemeStore } from "@/store";
+import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 
 interface Props {
   username: string;

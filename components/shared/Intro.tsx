@@ -2,7 +2,6 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { NextPage } from "next";
 import { Button } from "@nextui-org/react";
-
 import { Intro__wave } from "../ui/Intro__wave";
 import { Glow } from "../ui/Glow";
 import { Link } from "../../i18n/routing";

@@ -41,7 +41,7 @@ const INITIAL_VISIBLE_COLUMNS = [
 
 type User = (typeof usersDataW)[0]
 
-export default function Withdrawal_table() {
+export default function Invest_Table() {
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
 		new Set(INITIAL_VISIBLE_COLUMNS)

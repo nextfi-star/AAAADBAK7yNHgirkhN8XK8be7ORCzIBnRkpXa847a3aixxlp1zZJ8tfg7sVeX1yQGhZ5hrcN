@@ -4,9 +4,9 @@ import { NextPage } from 'next'
 import Lottie, { LottieRefCurrentProps } from 'lottie-react'
 import animationData2 from '@/public/animation/verify_anim_mini.json'
 import { Button } from '@nextui-org/button'
-import { ProfilePage_guard } from '../ui/ProfilePage_guard'
 import { useThemeStore } from '@/store'
 import { Link } from '@/i18n/routing'
+import { ProfilePage_guard } from '@/components/ui/ProfilePage_guard'
 
 interface AccordionItemType {
 	value: string

@@ -1,4 +1,7 @@
+import { Link } from '@/i18n/routing'
+import { Button } from '@nextui-org/button'
 import { NextPage } from 'next'
+import { Alert_auntef } from './Alert_auntef'
 import { Alert_email } from './Alert_email'
 import { Alert_logpass } from './Alert_logpass'
 import { Alert_nickname } from './Alert_nickname'
@@ -7,13 +10,10 @@ import { ChangeRegion } from './ChangeRegion'
 import { CloseAccount } from './CloseAccount'
 import { FreezeAccount } from './FreezeAccount'
 import { ProfileBurger_devices__accor } from './ProfileBurger_devices__accor'
+import { ProfileBurger_verification_accor } from './ProfileBurger_verification_accor'
 import { ProfileBurger_profile_accor } from './ProfileBurger_profile_accor'
 import { ProfileBurger_security_accor } from './ProfileBurger_security_accor'
 import { ViewRegion } from './ViewRegion'
-import { Alert_auntef } from './Alert_auntef'
-import { ProfileBurger_verification_accor } from './ProfileBurger_verification_accor'
-import { Button } from '@nextui-org/button'
-import { Link } from '@/i18n/routing'
 
 interface Props {
 	showSection: boolean
@@ -261,17 +261,19 @@ export const ProfileBurger_accordeon: NextPage<Props> = ({
 	activeTab,
 }) => {
 	return (
-			<div className={`accor__wrapper  overscroll-contain ${!showSection ? 'scrollY' : ''} `}>
-				{activeTab === 'Profile' && (
-					<ProfileBurger_profile_accor data={profileData} />
-				)}
-				{activeTab === 'Security' && (
-					<ProfileBurger_security_accor data={securityData} />
-				)}
-				{activeTab === 'Verification' && (
-					<ProfileBurger_verification_accor data={verifData} />
-				)}
-				{activeTab === 'Devices' && <ProfileBurger_devices__accor />}
-			</div>
+		<div
+			className={`accor__wrapper  overscroll-contain ${!showSection ? 'scrollY' : ''} `}
+		>
+			{activeTab === 'Profile' && (
+				<ProfileBurger_profile_accor data={profileData} />
+			)}
+			{activeTab === 'Security' && (
+				<ProfileBurger_security_accor data={securityData} />
+			)}
+			{activeTab === 'Verification' && (
+				<ProfileBurger_verification_accor data={verifData} />
+			)}
+			{activeTab === 'Devices' && <ProfileBurger_devices__accor />}
+		</div>
 	)
 }

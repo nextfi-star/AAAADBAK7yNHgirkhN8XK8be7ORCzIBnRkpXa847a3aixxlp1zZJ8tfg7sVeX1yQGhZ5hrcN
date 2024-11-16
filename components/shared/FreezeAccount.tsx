@@ -2,8 +2,6 @@ import { NextPage } from "next";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import ArrowBracket from "../ui/ArrowBracket";
-import { Alert } from "./Alert";
-
 import {
   Drawer,
   DrawerContent,

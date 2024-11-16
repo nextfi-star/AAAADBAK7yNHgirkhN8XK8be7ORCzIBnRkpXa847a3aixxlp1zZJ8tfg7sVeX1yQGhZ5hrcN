@@ -1,15 +1,15 @@
 'use client'
-import { Check, ChevronsUpDown, X } from 'lucide-react'
-import { NextPage } from 'next'
-import Image from 'next/image'
-import { useRef, useState } from 'react'
 import VerifyAnimation from '@/components/shared/VerifyAnimation'
 import { Verify_documents } from '@/components/shared/Verify_documents'
 import ArrowBracket from '@/components/ui/ArrowBracket'
 import { ProfilePage_guard } from '@/components/ui/ProfilePage_guard'
 import { Button } from '@/components/ui/button'
-import Lottie, { LottieRefCurrentProps } from 'lottie-react'
 import animationData2 from '@/public/animation/verify_anim_mini.json'
+import Lottie, { LottieRefCurrentProps } from 'lottie-react'
+import { Check, ChevronsUpDown, X } from 'lucide-react'
+import { NextPage } from 'next'
+import Image from 'next/image'
+import { useRef, useState } from 'react'
 
 import {
 	Command,

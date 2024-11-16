@@ -1,5 +1,4 @@
 'use client'
-import { ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
 	Command,
@@ -14,10 +13,11 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover'
+import { useThemeStore } from '@/store'
 import { Avatar } from '@nextui-org/react'
+import { ChevronDown } from 'lucide-react'
 import { NextPage } from 'next'
 import { useState } from 'react'
-import { useThemeStore } from '@/store'
 import NotFoundItem from './NotFoundItem'
 type Status = {
 	value: string

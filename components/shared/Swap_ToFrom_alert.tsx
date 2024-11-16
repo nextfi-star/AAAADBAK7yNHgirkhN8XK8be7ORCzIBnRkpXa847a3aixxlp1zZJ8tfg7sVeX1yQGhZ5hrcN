@@ -1,5 +1,13 @@
 import { Button } from '@/components/ui/button'
 import {
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from '@/components/ui/command'
+import {
 	Dialog,
 	DialogClose,
 	DialogContent,
@@ -9,25 +17,14 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import {
-	Command,
-	CommandEmpty,
-	CommandGroup,
-	CommandInput,
-	CommandItem,
-	CommandList,
-	CommandSeparator,
-	CommandShortcut,
-} from '@/components/ui/command'
-import { Avatar } from '@nextui-org/react'
-import { NextPage } from 'next'
-import { useState } from 'react'
 import { useThemeStore } from '@/store'
-import NotFoundItem from './NotFoundItem'
 import { Divider } from '@nextui-org/divider'
+import { Avatar } from '@nextui-org/react'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import { ChevronDown } from 'lucide-react'
-import { Span } from 'next/dist/trace'
+import { NextPage } from 'next'
+import { useState } from 'react'
+import NotFoundItem from './NotFoundItem'
 type Status = {
 	value: string
 	label: string

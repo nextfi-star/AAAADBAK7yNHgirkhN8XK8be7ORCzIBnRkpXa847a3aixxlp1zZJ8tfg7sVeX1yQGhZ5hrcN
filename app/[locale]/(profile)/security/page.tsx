@@ -2,13 +2,13 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
 
+import { Alert_auntef } from '@/components/shared/Alert_auntef'
 import { Alert_email } from '@/components/shared/Alert_email'
 import { Alert_logpass } from '@/components/shared/Alert_logpass'
 import { Alert_phone } from '@/components/shared/Alert_phone'
 import { CloseAccount } from '@/components/shared/CloseAccount'
 import { FreezeAccount } from '@/components/shared/FreezeAccount'
 import { useThemeStore } from '@/store'
-import { Alert_auntef } from '@/components/shared/Alert_auntef'
 
 const data = [
 	{
@@ -100,34 +100,34 @@ const Security: NextPage = () => {
 					<h1 className='!text-[28px]'>Authentication methods</h1>
 					{data2 &&
 						data2.map(item => (
-              <div key={item.title}>
-              <article className='security__content__item'>
-                <div className='flex flex-col sm:flex-row items-center gap-[15px] justify-between'>
-                  <div className='flex flex-col items-center sm:items-start md:flex-row'>
-                    <Image
-                      alt='icon'
-                      height={30}
-                      quality={100}
-                      src={item.src}
-                      width={30}
-                      className='min-w-[55px]'
-                    />
-                    <div className='flex flex-col items-center sm:items-start gap-[8px]'>
-                      <p className='flex gap-[11px] text-[18px] sm:text-[20px] md:text-[22px] 2xl:text-[25px]'>
-                        {item.title}
-                      </p>
-                      <span className='text-[#888888] dark:text-[#FFFFFF66] text-center md:text-left !text-[14px] md:!text-[17px] 2xl:!text-[20px]'>
-                        {item.desc}
-                      </span>
-                    </div>
-                  </div>
-                  <div className='flex gap-[12px] flex-col md:flex-row items-center'>
-                    {item.btn}
-                  </div>
-                </div>
-              </article>
-              <span className='block w-full bg-gray-200 min-h-[1px] my-[24px]' />
-            </div>
+							<div key={item.title}>
+								<article className='security__content__item'>
+									<div className='flex flex-col sm:flex-row items-center gap-[15px] justify-between'>
+										<div className='flex flex-col items-center sm:items-start md:flex-row'>
+											<Image
+												alt='icon'
+												height={30}
+												quality={100}
+												src={item.src}
+												width={30}
+												className='min-w-[55px]'
+											/>
+											<div className='flex flex-col items-center sm:items-start gap-[8px]'>
+												<p className='flex gap-[11px] text-[18px] sm:text-[20px] md:text-[22px] 2xl:text-[25px]'>
+													{item.title}
+												</p>
+												<span className='text-[#888888] dark:text-[#FFFFFF66] text-center md:text-left !text-[14px] md:!text-[17px] 2xl:!text-[20px]'>
+													{item.desc}
+												</span>
+											</div>
+										</div>
+										<div className='flex gap-[12px] flex-col md:flex-row items-center'>
+											{item.btn}
+										</div>
+									</div>
+								</article>
+								<span className='block w-full bg-gray-200 min-h-[1px] my-[24px]' />
+							</div>
 						))}
 				</div>
 			</div>

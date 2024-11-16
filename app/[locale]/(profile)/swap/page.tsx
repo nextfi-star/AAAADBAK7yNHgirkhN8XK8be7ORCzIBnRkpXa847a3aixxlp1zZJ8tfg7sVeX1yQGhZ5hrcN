@@ -9,7 +9,6 @@ import { Divider } from '@nextui-org/divider'
 import { Image } from '@nextui-org/react'
 import { ArrowDownUp, ChevronLeft, X } from 'lucide-react'
 import { NextPage } from 'next'
-import React from 'react'
 
 interface Props {}
 
@@ -37,11 +36,11 @@ const Swap: NextPage<Props> = () => {
 				<h1 className='hide-mobile text-[30px] xl:text-[68px] font-bold xl:leading-[32px]'>
 					Swap
 				</h1>
-				<div className='show-mobile w-full flex items-center justify-between'>
+				<div className='show-mobile w-full flex items-center justify-between fixed top-[0] left-0 right-0 z-[200] px-[28px] py-[15px] bg-[#f9f9fa] dark:bg-[#0c0c0c]'>
 					<Link href={'/assets'} onClick={DropSteps}>
 						<ChevronLeft strokeWidth={1} className='w-[30px]' />
 					</Link>
-					<h1 className='text-[30px] xl:text-[68px] font-bold xl:leading-[32px]'>
+					<h1 className='w-full text-center lg:text-left text-[32px] dark:text-[#EFEFEF] text-[#0c0c0c]'>
 						Swap
 					</h1>
 					<Link href={'/assets'} onClick={DropSteps}>
