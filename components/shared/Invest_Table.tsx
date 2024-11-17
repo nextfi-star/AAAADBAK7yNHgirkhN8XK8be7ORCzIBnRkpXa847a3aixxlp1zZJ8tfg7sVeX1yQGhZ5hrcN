@@ -20,7 +20,7 @@ import {
 } from '@nextui-org/react'
 import React from 'react'
 import { ChevronDownIcon } from './ChevronDownIcon'
-import { columnsDataW, statusOptionsDataW, usersDataW } from './data'
+import { columnsDataI, statusOptionsDataI, usersDataI } from './data'
 import { capitalize } from './utils'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
 
@@ -31,15 +31,14 @@ const statusColorMap: Record<string, ChipProps['color']> = {
 }
 
 const INITIAL_VISIBLE_COLUMNS = [
-	'time',
+	'industry',
 	'amount',
+	'period',
+	'current amount',
 	'status',
-	'address',
-	'crypto',
-	'fee',
 ]
 
-type User = (typeof usersDataW)[0]
+type User = (typeof usersDataI)[0]
 
 export default function Invest_Table() {
 	const [filterValue, setFilterValue] = React.useState('')
@@ -57,24 +56,24 @@ export default function Invest_Table() {
 	const hasSearchFilter = Boolean(filterValue)
 
 	const headerColumns = React.useMemo(() => {
-		if (visibleColumns === 'all') return columnsDataW
+		if (visibleColumns === 'all') return columnsDataI
 
-		return columnsDataW.filter(column =>
+		return columnsDataI.filter(column =>
 			Array.from(visibleColumns).includes(column.uid)
 		)
 	}, [visibleColumns])
 
 	const filteredItems = React.useMemo(() => {
-		let filteredUsers = [...usersDataW]
+		let filteredUsers = [...usersDataI]
 
 		if (hasSearchFilter) {
 			filteredUsers = filteredUsers.filter(user =>
-				user.time.toLowerCase().includes(filterValue.toLowerCase())
+				user.industry.toLowerCase().includes(filterValue.toLowerCase())
 			)
 		}
 		if (
 			statusFilter !== 'all' &&
-			Array.from(statusFilter).length !== statusOptionsDataW.length
+			Array.from(statusFilter).length !== statusOptionsDataI.length
 		) {
 			filteredUsers = filteredUsers.filter(user =>
 				Array.from(statusFilter).includes(user.status)
@@ -82,7 +81,7 @@ export default function Invest_Table() {
 		}
 
 		return filteredUsers
-	}, [usersDataW, filterValue, statusFilter])
+	}, [usersDataI, filterValue, statusFilter])
 
 	const pages = Math.ceil(filteredItems.length / rowsPerPage)
 
@@ -107,9 +106,9 @@ export default function Invest_Table() {
 		const cellValue = user[columnKey as keyof User]
 
 		switch (columnKey) {
-			case 'time':
-				return <span className='md:text-[20px]'>{user.time}</span>
-			case 'address':
+			case 'industry':
+				return <span className='md:text-[20px]'>{user.industry}</span>
+			case 'amount':
 				return (
 					<div className='flex flex-col items-start gap-[5px]'>
 						<div className='flex items-center gap-[5px] '>
@@ -117,32 +116,20 @@ export default function Invest_Table() {
 								symbol=''
 								className='text-bold md:text-[20px] text-small capitalize overflow-ellipsis whitespace-nowrap overflow-hidden bg-transparent px-0'
 							>
-								{user.address}
+								{user.amount}
 							</Snippet>
 						</div>
-						<span className='md:text-[20px] font-medium text-[#BDBDBD]'>
-							{user.subaddress}
-						</span>
+						{/* <span className='md:text-[20px] font-medium text-[#BDBDBD]'>
+							{user.subAmount}
+						</span> */}
 					</div>
 				)
-			case 'crypto':
-				return <span className='md:text-[20px]'> {user.crypto}</span>
-			case 'amount':
-				return <span className='md:text-[20px]'> {user.amount}</span>
-			case 'fee':
-				return <span className='md:text-[20px]'> {user.fee}</span>
+			case 'period':
+				return <span className='md:text-[20px]'> {user.period}</span>
+			case 'current amount':
+				return <span className='md:text-[20px]'> {user.currentAmount}</span>
 			case 'status':
-				return (
-					// <Chip
-					// 	className='capitalize'
-					// 	color={statusColorMap[user.status]}
-					// 	size='sm'
-					// 	variant='flat'
-					// >
-					// 	{user.status}
-					// </Chip>
-					<span className='capitalize md:text-[20px]'>{user.status}</span>
-				)
+				return <span className='md:text-[20px]'> {user.status}</span>
 			case 'actions':
 				return (
 					<div className='relative flex justify-center items-center gap-2'>
@@ -185,7 +172,7 @@ export default function Invest_Table() {
 		return (
 			<div className='flex flex-col gap-4'>
 				<div className='flex justify-between gap-3 items-end'>
-					<h1 className='text-[20px] xl:text-[32px]'>All withdrawals</h1>
+					<h1 className='text-[20px] xl:text-[32px]'>Investment history</h1>
 					<div className='flex gap-3'>
 						<Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
@@ -204,7 +191,7 @@ export default function Invest_Table() {
 								selectionMode='multiple'
 								onSelectionChange={setStatusFilter}
 							>
-								{statusOptionsDataW.map(status => (
+								{statusOptionsDataI.map(status => (
 									<DropdownItem
 										key={status.uid}
 										className='capitalize md:!text-[20px]'
@@ -231,7 +218,7 @@ export default function Invest_Table() {
 								selectionMode='multiple'
 								onSelectionChange={setVisibleColumns}
 							>
-								{columnsDataW.map(column => (
+								{columnsDataI.map(column => (
 									<DropdownItem
 										key={column.uid}
 										className='capitalize md:text-[20px] '
@@ -251,7 +238,7 @@ export default function Invest_Table() {
 		visibleColumns,
 		onSearchChange,
 		onRowsPerPageChange,
-		usersDataW.length,
+		usersDataI.length,
 		hasSearchFilter,
 	])
 
@@ -278,9 +265,12 @@ export default function Invest_Table() {
 			bottomContent={bottomContent}
 			bottomContentPlacement='outside'
 			classNames={{
-				wrapper: 'max-h-[503px]',
-				td: 'text-center',
-				th: 'text-center md:text-[20px]',
+				tr: 'bg-transparent !outline-0 !border-0 !shadow-none',
+				wrapper: 'max-h-[510px] dark:bg-[#1E1E1E66] bg-[#fff]',
+				td: '!pt-[17px] text-center border-0 border-b border-solid border-white',
+				th: 'text-center md:text-[20px] !bg-transparent outline-0 border-0 shadow-none',
+				base: '!shadow-none',
+				tbody: '!shadow-none'
 			}}
 			sortDescriptor={sortDescriptor}
 			topContent={topContent}

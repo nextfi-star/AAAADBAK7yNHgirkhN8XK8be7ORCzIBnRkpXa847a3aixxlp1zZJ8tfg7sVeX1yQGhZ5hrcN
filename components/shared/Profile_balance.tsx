@@ -27,6 +27,7 @@ export const Profile_balance: NextPage = () => {
 
 	return (
 		<section className=''>
+
 			<div className='w-[212px] sm:hidden flex m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200 mb-[30px]'>
 				<button
 					className={`w-[104px] transition duration-300 ${
@@ -212,7 +213,7 @@ export const Profile_balance: NextPage = () => {
 								/>
 								Swap
 							</Link>
-							<Link href='#' className='flex flex-col items-center text-[14px]'>
+							<Link href='/invest' className='flex flex-col items-center text-[14px]'>
 								<Avatar
 									src='/header_icons/profile_burger/commission.svg'
 									className='flex-shrink-0 bg-transparent'

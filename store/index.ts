@@ -55,7 +55,14 @@ export const useThemeStore = create<IStore>()(
 			globalVeriState: false,
 			setGlobalVerifState: state => set({ globalVeriState: state }),
 			replaceCurrency: false,
-			setReplaceCurrency: (val) => set({replaceCurrency: val}),
+			setReplaceCurrency: val => set({ replaceCurrency: val }),
+			// cards Investing
+			globalCompany: null,
+			setGlboalCompany: val => set({ globalCompany: val }),
+			globalCompanyIcon: null,
+			setGlboalCompanyIcon: val => set({ globalCompanyIcon: val }),
+			globalPeriod: null,
+			setGlobalPeriod: (val) => set({globalPeriod: val})
 		}),
 		{
 			name: 'zustand-store',

@@ -314,3 +314,62 @@ const usersDataW = [
 ]
 
 export { columnsDataW, usersDataW, statusOptionsDataW }
+
+// ! Datatable for Invest_table
+
+const columnsDataI = [
+	{ name: 'INDUSTRY', uid: 'industry', sortable: true },
+	{ name: 'AMOUNT', uid: 'amount', sortable: true },
+	{ name: 'PERIOD', uid: 'period', sortable: true },
+	{ name: 'Current amount', uid: 'current amount', sortable: true },
+	{ name: 'STATUS', uid: 'status', sortable: true },
+]
+const statusOptionsDataI = [
+	{ name: 'IN PROCESS', uid: 'in process' },
+	{ name: 'SUCCESS', uid: 'Succsess' },
+	{ name: 'WITHDRAWN', uid: 'Withdrawn' },
+]
+const usersDataI = [
+	{
+		id: 1,
+		industry: 'Company stocks',
+		amount: '1706 NextFi',
+		period: '30 days',
+		currentAmount: '7806 nextFi',
+		status: 'In process'
+	},
+	{
+		id: 2,
+		industry: 'Corporate Bonds',
+		amount: '1285 NextFi',
+		period: '150 days',
+		currentAmount: '1512 nextFi',
+		status: 'Success'
+	},
+	{
+		id: 3,
+		industry: 'Oil Sector',
+		amount: '285 NextFi',
+		period: '90 days',
+		currentAmount: '301 nextFi',
+		status: 'In process'
+	},
+	{
+		id: 4,
+		industry: 'Precious Metals',
+		amount: '285 NextFi',
+		period: '30 days',
+		currentAmount: '291 nextFi',
+		status: 'In process'
+	},
+	{
+		id: 5,
+		industry: 'Innovative Startups',
+		amount: '78514 NextFi',
+		period: '120 days',
+		currentAmount: '78614 nextFi',
+		status: 'Withdrawn'
+	},
+]
+
+export { columnsDataI, statusOptionsDataI, usersDataI }

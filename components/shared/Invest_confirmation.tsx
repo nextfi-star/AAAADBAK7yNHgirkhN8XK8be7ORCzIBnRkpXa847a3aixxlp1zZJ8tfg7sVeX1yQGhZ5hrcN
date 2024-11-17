@@ -16,27 +16,26 @@ import { Cross2Icon } from '@radix-ui/react-icons'
 import { Image } from '@nextui-org/react'
 import { useState } from 'react'
 import Withdrawal_animation from './Withdrawal_animation'
-import { CryptoData } from './Withdrawal_steps'
+import { InvestData } from './Invest_steps'
+import { Checkbox } from './Checkbox'
 
 interface Props {
 	titleTrigger: string
 	input3: string
 	setInput3: (val: string) => void
-	selectedCrypto: CryptoData | null
-	setSelectedCrypto: (val: null) => void
+	selectedInvest: InvestData | null
+	setSelectedInvest: (val: null) => void
 	setInputStep2: (val: string) => void
-	setInput2Step2: (val: string) => void
 	className?: string
 }
-export const Withdrawal_confirmation: NextPage<Props> = ({
+export const Invest_confirmation: NextPage<Props> = ({
 	className,
 	titleTrigger,
 	input3,
 	setInput3,
 	setInputStep2,
-	setInput2Step2,
-	selectedCrypto,
-	setSelectedCrypto,
+	selectedInvest,
+	setSelectedInvest,
 }) => {
 	const { theme, confirmationStep, setConfirmStep, setStep } = useThemeStore()
 	const [checked, setChecked] = useState(false)
@@ -45,15 +44,14 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 		setConfirmStep(1)
 		setChecked(false)
 		setInput3('')
-		setSelectedCrypto(null)
+		setSelectedInvest(null)
 		setInputStep2('')
-		setInput2Step2('')
 	}
 	return (
 		<Dialog>
 			<DialogTrigger asChild className='!hover:bg-[#205BC9]'>
 				<Button
-					className={`text-[16px] xl:text-[20px] flex items-center justify-center w-[156px] h-[44px] !py-[8px] hover:!bg-[#205BC9] rounded-[50px] ${input3.length > 3 ? '!bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#888888]'} ${className}`}
+					className={`text-[16px] xl:text-[20px] flex items-center justify-center w-[156px] h-[52px] !py-[8px] hover:!bg-[#205BC9] rounded-[50px] ${input3.length > 3 ? '!bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#888888]'} ${className}`}
 					disabled={input3.length <= 3}
 				>
 					{titleTrigger}
@@ -90,40 +88,15 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 									</DialogDescription>
 
 									<DialogDescription className='flex items-center gap-[4px] dark:text-white text-[14px] md:text-[20px]'>
-										112.720 {selectedCrypto?.name} (Fee: 10
-										{selectedCrypto?.name})
+										112.720 {selectedInvest?.name} (Fee: 10
+										{selectedInvest?.name})
 									</DialogDescription>
 								</div>
 							</article>
-							<div className='privacy max-w-[921px] flex flex-col 	 justify-center'>
-								<label
-									className='checkbox-label gap-[5px] md:gap-[18px] !items-center md:items-center'
-									htmlFor='checkbox-privacy'
-								>
-									<input
-										className='checkbox'
-										id='checkbox-privacy'
-										type='checkbox'
-										onChange={() => setChecked(!checked)}
-									/>
-									<span className='checkbox-view !m-0'>
-										<svg
-											className='checkbox-icon max-w-[50px] md:max-w-[50px] max-h-[20px] md:max-h-[45px]'
-											viewBox='0 0 511.985 511.985'
-											width='18'
-											xmlns='http://www.w3.org/2000/svg'
-										>
-											<path
-												d='M500.088 83.681c-15.841-15.862-41.564-15.852-57.426 0L184.205 342.148 69.332 227.276c-15.862-15.862-41.574-15.862-57.436 0-15.862 15.862-15.862 41.574 0 57.436l143.585 143.585c7.926 7.926 18.319 11.899 28.713 11.899 10.394 0 20.797-3.963 28.723-11.899l287.171-287.181c15.862-15.851 15.862-41.574 0-57.435z'
-												fill={theme === 'dark' ? '#fff' : '#3A3939'}
-											/>
-										</svg>
-									</span>
-									<DialogDescription className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] text-left text-[#888888] leading-[1]'>
-										I confirm the withdrawal of funds to the address
-									</DialogDescription>
-								</label>
-							</div>
+							<Checkbox
+								forBox='confirm'
+								content='I confirm the withdrawal of funds to the address'
+							/>
 						</div>
 					</DialogHeader>
 					<Divider className='m-0' />
@@ -142,7 +115,6 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 							type='button'
 							variant='secondary'
 							className='bg-[#205BC9] text-white w-fit rounded-[50px] hover:bg-[#205BC9] min-w-[124px]'
-							disabled={!checked}
 						>
 							Continue
 						</Button>

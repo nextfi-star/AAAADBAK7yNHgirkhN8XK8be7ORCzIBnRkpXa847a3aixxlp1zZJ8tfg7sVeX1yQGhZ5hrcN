@@ -1,3 +1,4 @@
+import { InvestData, PeriodData } from '@/components/shared/Invest_steps'
 import { SVGProps } from 'react'
 
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
@@ -33,4 +34,11 @@ export interface IStore {
 	setGlobalVerifState: (state: boolean) => void
 	replaceCurrency: boolean
 	setReplaceCurrency: (val: boolean) => void
+	// Investing cards
+	globalCompany: InvestData | null
+	setGlboalCompany: (val: InvestData | null) => void
+	globalCompanyIcon: InvestData | null
+	setGlboalCompanyIcon: (val: InvestData | null) => void
+	globalPeriod: PeriodData | null
+	setGlobalPeriod: (val: PeriodData | null) => void
 }

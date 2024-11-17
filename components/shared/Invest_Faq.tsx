@@ -1,30 +1,71 @@
+import React from 'react'
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from '@/components/ui/AccordionBurger'
 import { Divider } from '@nextui-org/divider'
 import { NextPage } from 'next'
-
-const Invest_Faq: NextPage = () => {
+const data = [
+	{
+		title: 'How do I convert crypto NextFi Platform?',
+		content:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		id: 1,
+		val: '1',
+	},
+	{
+		title: 'Which crypto can I convert on NextFi Platform?',
+		content:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		id: 2,
+		val: '2',
+	},
+	{
+		title: 'How is crypto conversion different from trading?',
+		content:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		id: 3,
+		val: '3',
+	},
+	{
+		title: 'Where can I find my converted crypto?',
+		content:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		id: 4,
+		val: '4',
+	},
+	{
+		title: 'How can I deposit/withdraw the crypto converted?',
+		content:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		id: 5,
+		val: '5',
+	},
+]
+export const Invest_Faq: NextPage = () => {
 	return (
-		<div className='shadow-lg dark:shadow-none dark:bg-[#181818] rounded-[30px] p-[40px_44px] h-fit'>
-			<h5 className='text-[18px] md:text-[32px] mb-[23px]'>FAQ</h5>
+		<div className='dark:bg-[#1e1e1e66] md:shadow-lg dark:shadow-none w-full p-[26px_16px] md:p-[26px_36px] rounded-[30px]'>
+			<Accordion
+				collapsible
+				className='w-full flex flex-col items-center justify-between'
+				type='single'
+			>
+				{data &&
+					data.map(item => (
+						<AccordionItem value={item.val} className='w-full' key={item.val}>
+							<AccordionTrigger className='hover:no-underline w-full md:text-[20px] text-left font-normal text-[16px]'>
+								{item.title}
+							</AccordionTrigger>
 
-			<div className='flex flex-col '>
-				<p className='text-[15px] md:text-[20px]'>How do I make withdrawal?</p>
-				<Divider className='my-[15px]' />
-				<p className='text-[15px] md:text-[20px]'>
-					Why have I still not recelved my withdrawal?
-				</p>
-				<Divider className='my-[15px]' />
-				<p className='text-[15px] md:text-[20px]'>
-					How do I select the correct network for my crypto withdrawals and
-					deposits?
-				</p>
-				<Divider className='my-[15px]' />
-				<p className='text-[15px] md:text-[20px]'>
-					Do I need to pay fees for deposit and withdrawal?{' '}
-				</p>
-				<Divider className='my-[15px]' />
-			</div>
+							<AccordionContent className='flex w-full justify-between items-center text-[16px] md:text-[20px]'>
+								{item.content}
+							</AccordionContent>
+							<Divider />
+						</AccordionItem>
+					))}
+			</Accordion>
 		</div>
 	)
 }
-
-export default Invest_Faq
