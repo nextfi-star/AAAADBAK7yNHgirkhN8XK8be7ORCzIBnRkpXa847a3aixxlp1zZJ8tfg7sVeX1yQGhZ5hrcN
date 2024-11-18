@@ -1,23 +1,20 @@
 'use client'
 import { useTranslations } from 'next-intl'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import { NextPage } from 'next'
-
 import { Link } from '../../i18n/routing'
 import { User } from '../ui/User'
 import { Download2 } from '../ui/download2'
 import { useThemeStore } from '../../store'
 import { Logo_header } from '../ui/Logo_header'
 import { Chat } from '../ui/Chat'
-
 import { Burger_profile } from './Burger_profile'
 import Locale_Switcher from './Locale_Switcher'
 import Theme_switch from './Theme_switch'
 import { Navigation } from './Navigation'
 import { BurgerIcon } from './BurgerIcon'
 import { Platform_mode } from './Platform_mode'
-import { Button } from '@nextui-org/button'
 import { LogOut } from 'lucide-react'
 import { Confirmation_dialog } from './Confirmation_dialog'
 
@@ -27,7 +24,6 @@ interface Props {
 export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 	const t = useTranslations('nav')
 	const [show, setShow] = useState(true)
-	const menuRef = useRef(null)
 	const { theme, setVerifyState } = useThemeStore()
 	const classChange = clsx('m_header__profile_menu', { active: !show })
 

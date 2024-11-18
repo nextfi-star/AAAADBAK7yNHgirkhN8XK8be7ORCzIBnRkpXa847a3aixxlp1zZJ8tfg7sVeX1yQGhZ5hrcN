@@ -16,10 +16,10 @@ export const useResponsiveVisibility = () => {
 	}, [])
 
 	const hiddenRoutes = [
-		/^\/[a-z]{2}\/swap$/, // /en/profile/swap, /ru/profile/swap
-		/^\/[a-z]{2}\/withdrawal$/, // /en/swap, /ru/swap
-		/^\/[a-z]{2}\/invest$/, // /en/dashboard, /ru/dashboard
-		/^\/[a-z]{2}\/tier$/, // /en/settings, /ru/settings
+		/^\/[a-z]{2}\/swap$/,
+		/^\/[a-z]{2}\/withdrawal$/, 
+		/^\/[a-z]{2}\/invest$/,
+		/^\/[a-z]{2}\/tier$/, 
 	]
 
 	const isHiddenRoute = hiddenRoutes.some(regex => regex.test(pathname))
@@ -27,5 +27,6 @@ export const useResponsiveVisibility = () => {
 	return {
 		showHeader: !isMobile || !isHiddenRoute,
 		showTapbar: !isMobile || !isHiddenRoute,
+		showFooter: !isMobile || !isHiddenRoute,
 	}
 }
