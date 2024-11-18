@@ -114,18 +114,12 @@ const Invest_steps: NextPage<Props> = () => {
 	const [selectedInvest, setSelectedInvest] = useState<InvestData | null>(null)
 	const [selectedPeriod, setSelectedPeriod] = useState<PeriodData | null>(null)
 
-	const inputStep2Handler = (value: string) => {
-		setInputStep2(value)
-		setStep(3)
-	}
-	const popoverPushStep = () => {
-		setStep(3)
-	}
 	const DropCache = () => {
 		setStep(1)
 		setInputStep2('')
 		setSelectedInvest(null)
 	}
+
 	return (
 		<div className='shadow-lg dark:shadow-none rounded-[30px] p-[0px_16px_29px_16px] md:p-[0px_29px_29px_29px]'>
 			<div className='flex justify-start gap-[10px] w-full pb-[1.5rem]'>
@@ -386,8 +380,6 @@ const Invest_steps: NextPage<Props> = () => {
 										aria-labelledby='Enter the amount'
 										placeholder='Enter the amount'
 										type='number'
-										maxLength={1}
-										className=''
 										classNames={{
 											base: 'bg-tranparent ',
 											inputWrapper:
@@ -406,7 +398,7 @@ const Invest_steps: NextPage<Props> = () => {
 										<p className='flex items-center justify-between text-[20px] font-medium text-[#3A3939] dark:text-[#BDBDBD] w-full pr-[45px] pb-[44px]'>
 											Amount of investment
 											<span className='text-[20px] font-bold md:text-[32px]'>
-												{input3} NextFi
+												7050 NextFi
 											</span>
 										</p>
 										<Invest_confirmation

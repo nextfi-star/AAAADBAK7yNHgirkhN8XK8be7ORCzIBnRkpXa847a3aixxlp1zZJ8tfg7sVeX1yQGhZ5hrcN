@@ -37,7 +37,7 @@ export const Invest_confirmation: NextPage<Props> = ({
 	selectedInvest,
 	setSelectedInvest,
 }) => {
-	const { theme, confirmationStep, setConfirmStep, setStep } = useThemeStore()
+	const { confirmationStep, setConfirmStep, setStep, setGlboalCompany, setGlboalCompanyIcon, setGlobalPeriod } = useThemeStore()
 	const [checked, setChecked] = useState(false)
 	const DropSteps = () => {
 		setStep(1)
@@ -46,6 +46,9 @@ export const Invest_confirmation: NextPage<Props> = ({
 		setInput3('')
 		setSelectedInvest(null)
 		setInputStep2('')
+		setGlboalCompany(null)
+		setGlboalCompanyIcon(null)
+		setGlobalPeriod(null)
 	}
 	return (
 		<Dialog>

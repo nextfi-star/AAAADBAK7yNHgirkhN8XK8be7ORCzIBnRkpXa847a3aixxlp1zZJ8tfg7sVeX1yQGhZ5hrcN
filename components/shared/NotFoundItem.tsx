@@ -1,11 +1,22 @@
 import { Avatar } from '@nextui-org/react'
+import { NextPage } from 'next'
 import React from 'react'
 
-const NotFoundItem = () => {
+interface Props {
+	content?: string
+	subContent?: string
+}
+const NotFoundItem: NextPage<Props> = ({ content, subContent }) => {
 	return (
 		<div className='flex flex-col items-center gap-[15px]'>
-			<Avatar src='/main/nofoundItem.svg' className='h-[70px] max-w-[70px] md:h-[130px]  md:max-w-[130px] w-full'/>
-			<p className='text-[32px] font-medium'>No crypto for withdrawal</p>
+			<Avatar
+				src='/main/nofoundItem.svg'
+				className='h-[70px] max-w-[70px] md:h-[130px]  md:max-w-[130px] w-full'
+			/>
+			<p className='text-[32px] font-medium'>
+				{content ? content : 'No crypto for withdrawal'}
+			</p>
+			{subContent && <p className='text-[20px]'>{subContent}</p>}
 		</div>
 	)
 }

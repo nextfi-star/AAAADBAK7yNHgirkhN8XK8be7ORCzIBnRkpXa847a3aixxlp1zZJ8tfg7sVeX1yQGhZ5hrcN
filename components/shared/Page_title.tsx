@@ -4,8 +4,8 @@ import { NextPage } from 'next'
 import React from 'react'
 
 interface Props {
-	DropSteps: () => void
-	title: string
+	DropSteps?: () => void
+	title?: string
 }
 export const Page_title: NextPage<Props> = ({ DropSteps, title }) => {
 	return (
