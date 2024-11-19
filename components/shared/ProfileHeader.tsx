@@ -106,9 +106,9 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 										title='Are you absolutelu sure?'
 										content='This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'
 										titleTriger={
-											<LogOut className=' min-w-[23px] hidden xl:block' />
+											<LogOut className=' min-w-[23px]' />
 										}
-										className='!border-0 w-[44px] !p-0 !px-0'
+										className='!border-0 w-[44px] !p-0 !px-0 hidden xl:block'
 									/>
 								</div>
 

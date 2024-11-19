@@ -3,6 +3,7 @@ import { useResponsiveVisibility } from '@/hooks/useResponsiveVisibility'
 import Template from '../Template'
 import { TapBar, ProfileHeader, Profile_nav } from '@/components/shared/index'
 import { Footer } from '@/components/shared/Footer'
+import A_Chat from '@/components/shared/A_Chat'
 
 interface RootLayoutProps {
 	children: React.ReactNode
@@ -12,7 +13,7 @@ export default function ProfileRoot({
 }: {
 	children: React.ReactNode
 }) {
-	const { showHeader, showTapbar, showFooter } = useResponsiveVisibility()
+	const { showHeader, showTapbar } = useResponsiveVisibility()
 
 	return (
 		<div className='profile__body !pb-0'>
@@ -21,7 +22,8 @@ export default function ProfileRoot({
 				<Profile_nav />
 				<Template>{children}</Template>
 			</main>
-			{showFooter && <Footer />}
+			<A_Chat />
+			<Footer />
 			{showTapbar && <TapBar />}
 		</div>
 	)

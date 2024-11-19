@@ -6,8 +6,9 @@ import React from 'react'
 interface Props {
 	DropSteps?: () => void
 	title?: string
+	className?:string
 }
-export const Page_title: NextPage<Props> = ({ DropSteps, title }) => {
+export const Page_title: NextPage<Props> = ({ DropSteps, title, className }) => {
 	return (
 		<>
 			<h1 className='hide-mobile w-full text-center text-[32px] 2xl:text-[62px] font-bold my-[30px] dark:text-[#EFEFEF] text-[#0c0c0c]'>

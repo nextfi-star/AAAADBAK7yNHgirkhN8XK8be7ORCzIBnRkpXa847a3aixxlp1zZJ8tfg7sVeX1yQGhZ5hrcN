@@ -46,7 +46,7 @@ const data = [
 ]
 export const Invest_Faq: NextPage = () => {
 	return (
-		<div className='dark:bg-[#1e1e1e66] md:shadow-lg dark:shadow-none w-full p-[26px_16px] md:p-[26px_36px] rounded-[30px]'>
+		<div className='dark:bg-[#1e1e1e66] md:shadow-lg dark:shadow-none w-full p-[26px_16px] md:p-[26px_36px_6px] rounded-[30px]'>
 			<Accordion
 				collapsible
 				className='w-full flex flex-col items-center justify-between'
@@ -62,7 +62,7 @@ export const Invest_Faq: NextPage = () => {
 							<AccordionContent className='flex w-full justify-between items-center text-[16px] md:text-[20px]'>
 								{item.content}
 							</AccordionContent>
-							<Divider />
+							<Divider className={`${item.id === 5 ? 'opacity-0' : ''}`}/>
 						</AccordionItem>
 					))}
 			</Accordion>

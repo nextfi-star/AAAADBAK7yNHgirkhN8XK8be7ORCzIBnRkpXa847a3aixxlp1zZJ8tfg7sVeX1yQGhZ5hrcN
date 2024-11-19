@@ -172,7 +172,7 @@ export default function Invest_Table() {
 		return (
 			<div className='flex flex-col gap-4'>
 				<div className='flex justify-between gap-3 items-end'>
-					<h1 className='text-[20px] xl:text-[32px]'>Investment history</h1>
+				<h1 className='text-[20px] xl:text-[32px]'>Investment history</h1>
 					<div className='flex gap-3'>
 						<Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
@@ -264,9 +264,10 @@ export default function Invest_Table() {
 			aria-label='-Datatable for NextFi-'
 			bottomContent={bottomContent}
 			bottomContentPlacement='outside'
+			title='Investment history'
 			classNames={{
 				tr: 'bg-transparent !outline-0 !border-0 !shadow-none',
-				wrapper: 'max-h-[510px] dark:bg-[#1E1E1E66] bg-[#fff]',
+				wrapper: 'max-h-[562px] h-full dark:bg-[#1E1E1E66] bg-[#fff] dark:!shadow-none',
 				td: '!pt-[17px] text-center border-0 border-b border-solid border-white',
 				th: 'text-center md:text-[20px] !bg-transparent outline-0 border-0 shadow-none',
 				base: '!shadow-none',
