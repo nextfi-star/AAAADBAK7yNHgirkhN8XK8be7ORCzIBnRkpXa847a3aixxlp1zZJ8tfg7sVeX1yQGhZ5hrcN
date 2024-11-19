@@ -14,6 +14,7 @@ import { useEffect, useRef, useState } from 'react'
 import { socket } from '@/app/socket'
 import { ChevronLeft, Images, SendHorizontal, X } from 'lucide-react'
 import { NextPage } from 'next'
+import { Chat } from '../ui/Chat'
 import { useThemeStore } from '@/store'
 type Message = {
 	content: string
@@ -21,7 +22,7 @@ type Message = {
 	sender: 'me' | 'other'
 }
 
-export const A_Chat: NextPage = () => {
+export const A_Chat_mobile: NextPage = () => {
 	const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
 	const messagesEndRef = useRef<HTMLDivElement>(null)
 	const [show, setShow] = useState(false)
@@ -113,33 +114,34 @@ export const A_Chat: NextPage = () => {
 		<>
 			<Button
 				onPress={onOpen}
-				className={`fixed z-[80] md:bottom-[3.5rem] bottom-[2.5rem] md:right-[3.5rem] right-[2.5rem] p-0 m-0 min-w-[64px] min-h-[64px] rounded-full hidden md:flex items-center justify-center`}
+				className={`p-0 m-0 rounded-full flex items-center justify-center bg-transparent`}
+				disableAnimation={true}
 			>
-				<Image
-					src={'/chatIcon.svg'}
-					width={37}
-					height={37}
-					priority
-					alt='Chat icon'
-					className='bg-transparent'
+				<Chat
+					color={theme === 'dark' ? 'white' : 'black'}
+					height={20}
+					width={20}
 				/>
 			</Button>
 			<Modal
 				isOpen={isOpen}
 				onOpenChange={onOpenChange}
-				className='!max-w-[428px]'
 				classNames={{
-					base: 'z-[9999] rounded-0 m-0 xl:rounded-[50px] dark:bg-[#0C0C0C] px-[20px] pt-[30px] !max-w-[428px] min-h-[737px]',
-					wrapper: '!items-end !justify-end z-[9999999]',
+					base: 'z-[9999] rounded-0 m-0 xl:rounded-[50px] bg-[#fff] dark:bg-[#0C0C0C] w-full',
+					wrapper: 'z-[9999999]',
 					closeButton: 'hidden',
+					backdrop: 'bg-transparent ',
 				}}
+				size='full'
 			>
-				<ModalContent className='!m-[0_40px_40px] '>
+				<ModalContent className='pt-[26px] px-[20px]'>
 					{onClose => (
 						<>
 							<ModalHeader className='flex items-center justify-between w-full'>
 								<ChevronLeft onClick={onClose} />
-								<h1 className='text-[24px]'>Support Chat</h1>
+								<h1 className='text-[24px] dark:text-[#fff] text-[#3A3939]'>
+									Support Chat
+								</h1>
 								<X onClick={DeleteChat} />
 							</ModalHeader>
 							<ModalBody className='flex flex-col items-center justify-between min-h-[522px] px-0 !m-0'>
@@ -155,7 +157,7 @@ export const A_Chat: NextPage = () => {
 										priority
 										alt='Chat icon'
 									/>
-									<span className='text-[18px] font-medium text-[#FFFFFF66]'>
+									<span className='text-[18px] dark:text-[#FFFFFF66] text-[#3A3939] font-medium'>
 										Your assistant in any questions{' '}
 									</span>
 								</div>
@@ -165,35 +167,35 @@ export const A_Chat: NextPage = () => {
 										<div className='flex flex-col items-center w-full rounded-[30px] bg-[#7676801F] px-[24px] py-[25px]'>
 											<span
 												onClick={() => setShow(prev => !prev)}
-												className='text-[15px] font-medium cursor-pointer'
+												className='text-[15px] font-medium cursor-pointer dark:text-[#fff] text-[#3A3939]'
 											>
 												English
 											</span>
 											<Divider className='mt-[16px] mb-[12px]' />
 											<span
 												onClick={() => setShow(prev => !prev)}
-												className='text-[15px] font-medium cursor-pointer'
+												className='text-[15px] font-medium cursor-pointer dark:text-[#fff] text-[#3A3939]'
 											>
 												Russian
 											</span>
 											<Divider className='mt-[16px] mb-[12px]' />
 											<span
 												onClick={() => setShow(prev => !prev)}
-												className='text-[15px] font-medium cursor-pointer'
+												className='text-[15px] font-medium cursor-pointer dark:text-[#fff] text-[#3A3939]'
 											>
 												العربية
 											</span>
 											<Divider className='mt-[16px] mb-[12px]' />
 											<span
 												onClick={() => setShow(prev => !prev)}
-												className='text-[15px] font-medium cursor-pointer'
+												className='text-[15px] font-medium cursor-pointer dark:text-[#fff] text-[#3A3939]'
 											>
 												中文
 											</span>
 										</div>
 									) : (
 										<div className='flex flex-col w-full'>
-											<div className='md:max-h-[450px] max-h-[524px] overflow-y-auto'>
+											<div className='overflow-y-auto max-h-[645.5px]'>
 												{messages.map((message, index) => (
 													<div
 														key={index}
@@ -218,7 +220,7 @@ export const A_Chat: NextPage = () => {
 																/>
 															)}
 															{message.sender === 'me' && (
-																<span className='text-[13px] font-medium text-[#888888]'>
+																<span className='text-[13px] font-medium dark:text-[#fff] text-[#515151]'>
 																	{message.time}
 																</span>
 															)}
@@ -228,7 +230,7 @@ export const A_Chat: NextPage = () => {
 																	: message.content}
 															</span>
 															{message.sender === 'other' && (
-																<span className='text-[13px] font-medium text-[#888888]'>
+																<span className='text-[13px] font-medium dark:text-[#fff] text-[#515151]'>
 																	{message.time}
 																</span>
 															)}
