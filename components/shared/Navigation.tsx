@@ -17,16 +17,7 @@ export const Navigation: NextPage = () => {
         {t("activity")}
       </Link>
       <a className="header__navigation-item" href="#">
-        {t("how")}
-      </a>
-      <a className="header__navigation-item" href="#">
-        {t("listing")}
-      </a>
-      <a className="header__navigation-item" href="#">
         {t("app")}
-      </a>
-      <a className="header__navigation-item" href="#">
-        {t("faq")}
       </a>
     </nav>
   );

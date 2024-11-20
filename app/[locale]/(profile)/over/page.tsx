@@ -16,7 +16,7 @@ import { usePathname } from 'next/navigation'
 const Overview: NextPage = () => {
 	const pathname = usePathname();
 	const [verify, setVerify] = useState<boolean>(false)
-	const { initializeTheme, setVerifyState, verifyState } = useThemeStore()
+	const { initializeTheme, setVerifyState } = useThemeStore()
 	const toggleActive = () => {
 		setVerify(prev => !prev)
 	}

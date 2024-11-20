@@ -3,11 +3,9 @@ import {
 	ModalContent,
 	ModalHeader,
 	ModalBody,
-	ModalFooter,
 	Button,
 	useDisclosure,
 	Divider,
-	Avatar,
 } from '@nextui-org/react'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
@@ -29,7 +27,7 @@ export const A_Chat: NextPage = () => {
 	const [transport, setTransport] = useState('N/A')
 	const [messages, setMessages] = useState<Message[]>([])
 	const [newMessage, setNewMessage] = useState('')
-
+	const [showCancel, setShowCancel] = useState(false)
 	const scrollToBottom = () => {
 		if (messagesEndRef.current) {
 			messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -106,6 +104,8 @@ export const A_Chat: NextPage = () => {
 	const DeleteChat = () => {
 		setNewMessage('')
 		setMessages([])
+		setShow(!show)
+		setShowCancel(!showCancel)
 		onClose()
 	}
 	const { theme } = useThemeStore()
@@ -140,7 +140,7 @@ export const A_Chat: NextPage = () => {
 							<ModalHeader className='flex items-center justify-between w-full'>
 								<ChevronLeft onClick={onClose} />
 								<h1 className='text-[24px]'>Support Chat</h1>
-								<X onClick={DeleteChat} />
+								<X onClick={() => setShowCancel(!showCancel)} />
 							</ModalHeader>
 							<ModalBody className='flex flex-col items-center justify-between min-h-[522px] px-0 !m-0'>
 								<div className='flex flex-col items-center gap-[26px]'>
@@ -192,77 +192,126 @@ export const A_Chat: NextPage = () => {
 											</span>
 										</div>
 									) : (
-										<div className='flex flex-col w-full'>
-											<div className='md:max-h-[450px] max-h-[524px] overflow-y-auto'>
-												{messages.map((message, index) => (
-													<div
-														key={index}
-														className={`flex items-center w-full gap-[10px] mb-4 ${
-															message.sender === 'me'
-																? 'justify-end'
-																: 'justify-start'
-														}`}
-													>
-														<div className='flex items-center gap-[10px] mb-4 '>
-															{message.sender === 'other' && (
-																<Image
-																	src={
-																		theme === 'dark'
-																			? '/chat/operator.svg'
-																			: '/chat/operator_light.svg'
-																	}
-																	width={40}
-																	height={40}
-																	priority
-																	alt='Operator icon'
-																/>
-															)}
-															{message.sender === 'me' && (
-																<span className='text-[13px] font-medium text-[#888888]'>
-																	{message.time}
-																</span>
-															)}
-															<span className='text-[15px] font-medium p-[7px_27px] bg-[#7676801F] rounded-[20px] break-words max-w-[256px]'>
-																{!message.content
-																	? 'Please select the language you prefer to continue'
-																	: message.content}
-															</span>
-															{message.sender === 'other' && (
-																<span className='text-[13px] font-medium text-[#888888]'>
-																	{message.time}
-																</span>
-															)}
+										<>
+											{!showCancel ? (
+												<div className='flex flex-col w-full'>
+													<div className='md:max-h-[450px] max-h-[524px] overflow-y-auto'>
+														{messages.map((message, index) => (
+															<div
+																key={index}
+																className={`flex items-center w-full gap-[10px] mb-4 ${
+																	message.sender === 'me'
+																		? 'justify-end'
+																		: 'justify-start'
+																}`}
+															>
+																<div className='flex items-center gap-[10px] mb-4 '>
+																	{message.sender === 'other' && (
+																		<Image
+																			src={
+																				theme === 'dark'
+																					? '/chat/operator.svg'
+																					: '/chat/operator_light.svg'
+																			}
+																			width={40}
+																			height={40}
+																			priority
+																			alt='Operator icon'
+																		/>
+																	)}
+																	{message.sender === 'me' && (
+																		<span className='text-[13px] font-medium text-[#888888]'>
+																			{message.time}
+																		</span>
+																	)}
+																	<span className='text-[15px] font-medium p-[7px_27px] bg-[#7676801F] rounded-[20px] break-words max-w-[256px]'>
+																		{!message.content
+																			? 'Please select the language you prefer to continue'
+																			: message.content}
+																	</span>
+																	{message.sender === 'other' && (
+																		<span className='text-[13px] font-medium text-[#888888]'>
+																			{message.time}
+																		</span>
+																	)}
+																</div>
+																<div ref={messagesEndRef} />
+															</div>
+														))}
+														<div className='BOT flex flex-wrap gap-[7px] items-center mb-[20px]'>
+															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+																Account security
+															</button>
+															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+																Swap
+															</button>
+															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+																Account security
+															</button>
+															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+																Swap
+															</button>
+															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+																Account security
+															</button>
+															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+																Swap
+															</button>
+															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+																Account security
+															</button>
+															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+																Swap
+															</button>
 														</div>
-														<div ref={messagesEndRef} />
 													</div>
-												))}
-											</div>
-											<form
-												onSubmit={e => e.preventDefault()}
-												className='relative flex items-center gap-[10px] w-full pb-[.5rem]'
-											>
-												<Images
-													className='bg-transparent absolute top-[11px] left-[17px] max-w-[32px] w-full'
-													strokeWidth={1}
-												/>
-												<input
-													type='text'
-													value={newMessage}
-													onChange={e => setNewMessage(e.target.value)}
-													className='flex-1 border px-[65px] py-4 rounded-[30px] bg-[#7676801F] w-full overflow-hidden'
-												/>
-												<button
-													type='submit'
-													className='w-fit !m-0 !p-0 absolute top-[11px] right-[18px] bg-transparent hover:bg-transparent'
-													onClick={sendMessage}
-												>
-													<SendHorizontal
-														strokeWidth={1}
-														className='bg-transparent w-[32px] h-[32px]'
-													/>
-												</button>
-											</form>
-										</div>
+													<form
+														onSubmit={e => e.preventDefault()}
+														className='relative flex items-center gap-[10px] w-full pb-[.5rem]'
+													>
+														<Images
+															className='bg-transparent absolute top-[11px] left-[17px] max-w-[32px] w-full'
+															strokeWidth={1}
+														/>
+														<input
+															type='text'
+															value={newMessage}
+															onChange={e => setNewMessage(e.target.value)}
+															className='flex-1 border px-[65px] py-4 rounded-[30px] bg-[#7676801F] w-full overflow-hidden'
+														/>
+														<button
+															type='submit'
+															className='w-fit !m-0 !p-0 absolute top-[11px] right-[18px] bg-transparent hover:bg-transparent'
+															onClick={sendMessage}
+														>
+															<SendHorizontal
+																strokeWidth={1}
+																className='bg-transparent w-[32px] h-[32px]'
+															/>
+														</button>
+													</form>
+												</div>
+											) : (
+												<div className='flex flex-col items-center justify-center w-full rounded-[30px] gap-[10px] bg-[#7676801F] py-[10px] px-[14px]'>
+													<span className='text-[15px] dark:text-[#EFEFEF] text-[#3A3939] font-medium'>
+														Are you sure you want to end chat?
+													</span>
+													<Button
+														className='dark:text-[#EFEFEF] text-[#3A3939] text-[18px] font-semibold bg-[#EEEEEE] dark:bg-[#000] w-full rounded-[20px] py-[8px]'
+														onClick={DeleteChat}
+													>
+														End Chat
+													</Button>
+													<Button
+														className='dark:text-[#FFFFFF66] text-[#3A3939] text-[18px] font-semibold bg-transparent dark:bg-transparent w-full py-[8px]'
+														disableAnimation
+														onClick={() => setShowCancel(!showCancel)}
+													>
+														Cancel
+													</Button>
+												</div>
+											)}
+										</>
 									)}
 								</>
 							</ModalBody>

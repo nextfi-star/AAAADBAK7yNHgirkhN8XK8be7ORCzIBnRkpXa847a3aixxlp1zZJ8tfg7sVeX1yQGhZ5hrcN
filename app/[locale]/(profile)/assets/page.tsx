@@ -4,10 +4,20 @@ import { useThemeStore } from '@/store'
 import { Profile_balance, Profile_payments } from '@/components/shared'
 import Allocation from '@/components/shared/Allocation'
 import Transaction from '@/components/shared/Transactions'
+import { usePathname } from 'next/navigation'
+import { useEffect } from 'react'
 
 const Assets: NextPage = () => {
-	const { verifyState } = useThemeStore()
+	const { verifyState, setVerifyState } = useThemeStore()
+	const pathname = usePathname();
 
+	useEffect(() => {
+		if(pathname === '/assets') {
+			setVerifyState(false)
+		} else {
+			setVerifyState(true)
+		}
+		}, [pathname])
 	return (
 		<>
 			{verifyState && (

@@ -186,7 +186,7 @@ const columnsVip = [
 
 const Tier: NextPage = () => {
 	return (
-		<div className='flex flex-col gap-[40px] w-full -mt-[7.5rem]'>
+		<div className='flex flex-col gap-[40px] w-full xl:-mt-[7.5rem]'>
 			<Page_title title='My fee tier' />
 
 			<article className='rounded-[30px] sm:shadow-xl dark:shadow-none sm:dark:bg-[#181818] p-[44px_0px] md:p-[44px_26px] xl:p-[44px] w-full flex flex-col xl:flex-row items-center justify-between gap-[40px] xl:gap-[146px]'>

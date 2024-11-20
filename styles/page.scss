@@ -1405,19 +1405,6 @@ body {
 		align-items: center;
 		gap: 24px;
 
-		select,
-		option {
-			font-size: 20px;
-
-			@media (min-width: 1820px) {
-				font-size: 22px;
-			}
-
-			@media (max-width: 1280px) {
-				font-size: 16px;
-			}
-		}
-
 		.header__buttons {
 			display: flex;
 			flex-direction: row;
