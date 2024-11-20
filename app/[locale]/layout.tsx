@@ -9,9 +9,7 @@ import clsx from "clsx";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-
 import { Providers } from "./providers";
-
 import { routing } from "@/i18n/routing";
 import { siteConfig } from "@/config/site";
 import { fontSans } from '@/config/fonts'

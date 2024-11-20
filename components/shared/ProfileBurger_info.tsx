@@ -36,7 +36,6 @@ export const ProfileBurger_info: NextPage<Props> = ({
             width={!showSection ? 100 : 63}
           />
         </div>
-
         <div className="flex flex-col">
           <h5 className="text-[18px]">{username}</h5>
           {showSection && <span className="text-[14px]">Profile Settings</span>}

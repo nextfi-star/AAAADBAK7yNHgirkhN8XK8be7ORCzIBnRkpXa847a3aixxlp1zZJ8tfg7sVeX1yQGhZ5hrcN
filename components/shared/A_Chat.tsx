@@ -113,7 +113,7 @@ export const A_Chat: NextPage = () => {
 		<>
 			<Button
 				onPress={onOpen}
-				className={`fixed z-[80] md:bottom-[3.5rem] bottom-[2.5rem] md:right-[3.5rem] right-[2.5rem] p-0 m-0 min-w-[64px] min-h-[64px] rounded-full hidden md:flex items-center justify-center`}
+				className={`fixed z-[80] md:bottom-[3.5rem] bottom-[2.5rem] md:right-[3.5rem] right-[2.5rem] p-0 m-0 min-w-[64px] min-h-[64px] rounded-full hidden md:flex items-center justify-center bg-[#19191A] dark:bg-foreground-50`}
 			>
 				<Image
 					src={'/chatIcon.svg'}

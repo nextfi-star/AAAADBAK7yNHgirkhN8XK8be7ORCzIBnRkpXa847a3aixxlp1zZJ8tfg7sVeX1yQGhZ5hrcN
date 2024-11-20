@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from 'react'
 import clsx from 'clsx'
 import { NextPage } from 'next'
 import { Link } from '../../i18n/routing'
-import { User } from '../ui/User'
 import { useThemeStore } from '../../store'
 import { Logo_header } from '../ui/Logo_header'
 import { Burger_profile } from './Burger_profile'
@@ -15,6 +14,16 @@ import { BurgerIcon } from './BurgerIcon'
 import { Platform_mode } from './Platform_mode'
 import { A_Chat_mobile } from './A_Chat_mobile'
 import { DropDown_menu } from './DropDown_menu'
+import {
+	ArrowDown,
+	ChartPie,
+	IdCard,
+	Power,
+	ShieldCheck,
+	TabletSmartphone,
+	User2,
+} from 'lucide-react'
+import { User } from '../ui/User'
 
 interface Props {
 	auth: boolean
@@ -24,6 +33,7 @@ export interface DropData {
 	key: string
 	href: string
 	verify?: () => void
+	icon?: string | JSX.Element
 }
 
 const dropData2 = [
@@ -31,31 +41,43 @@ const dropData2 = [
 		title: 'Overview',
 		key: 'over',
 		href: '/over',
+		icon: <ChartPie strokeWidth={1} />,
 	},
 	{
 		title: 'Profile',
 		key: 'profile',
 		href: '/profile',
+		icon: <User2 strokeWidth={1} />,
 	},
 	{
 		title: 'Security',
 		key: 'security',
 		href: '/security',
+		icon: <ShieldCheck strokeWidth={1} />,
 	},
 	{
 		title: 'Verification',
 		key: 'verification',
-		href: '/verif',
+		href: '/verify',
+		icon: <IdCard strokeWidth={1} />,
 	},
 	{
 		title: 'Authorized Devices',
 		key: 'devices',
 		href: '/devices',
+		icon: <TabletSmartphone strokeWidth={1} />,
 	},
 	{
 		title: 'Deposit',
 		key: 'deposit',
 		href: '/over',
+		icon: <ArrowDown strokeWidth={1} />,
+	},
+	{
+		title: 'Log out',
+		key: 'out',
+		href: '#',
+		icon: <Power strokeWidth={1} />,
 	},
 ]
 
@@ -109,7 +131,6 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 	const handleClick = () => {
 		setShow(!show)
 	}
-
 	useEffect(() => {
 		const header = document.querySelector('header')
 		const handleScroll = () => {
@@ -167,9 +188,9 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 									<DropDown_menu
 										data={dropData2}
 										defaultItem={
-											<User
+											<User2
+											strokeWidth={1}
 												className={'user'}
-												color={theme === 'dark' ? 'white' : 'black'}
 											/>
 										}
 									/>
