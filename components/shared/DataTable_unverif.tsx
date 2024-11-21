@@ -136,8 +136,7 @@ export default function DataTable_unverif() {
       case "percent":
         return (
           <Chip
-            className="capitalize"
-            color={statusColorMap[user.pnl]}
+            className="capitalize !bg-transparent"
             size="sm"
             variant="flat"
           >
@@ -302,12 +301,12 @@ export default function DataTable_unverif() {
       bottomContent={bottomContent}
       bottomContentPlacement="outside"
       classNames={{
-        wrapper: "max-h-[382px]",
+        table: '!bg-transparent',
+        tbody: '!shadow-none',
+        wrapper: "max-h-[382px] !bg-transparent shadow-none",
         td: "text-center",
         th: "text-center",
       }}
-      // selectedKeys={selectedKeys} //! Отвечает за создание checkbox inputs
-      // selectionMode='multiple' //! Отвечает за создание checkbox inputs
       sortDescriptor={sortDescriptor}
       topContent={topContent}
       topContentPlacement="outside"

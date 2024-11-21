@@ -17,6 +17,7 @@ import { DropDown_menu } from './DropDown_menu'
 import {
 	ArrowDown,
 	ChartPie,
+	CircleDollarSign,
 	IdCard,
 	Power,
 	ShieldCheck,
@@ -35,51 +36,6 @@ export interface DropData {
 	verify?: () => void
 	icon?: string | JSX.Element
 }
-
-const dropData2 = [
-	{
-		title: 'Overview',
-		key: 'over',
-		href: '/over',
-		icon: <ChartPie strokeWidth={1} />,
-	},
-	{
-		title: 'Profile',
-		key: 'profile',
-		href: '/profile',
-		icon: <User2 strokeWidth={1} />,
-	},
-	{
-		title: 'Security',
-		key: 'security',
-		href: '/security',
-		icon: <ShieldCheck strokeWidth={1} />,
-	},
-	{
-		title: 'Verification',
-		key: 'verification',
-		href: '/verify',
-		icon: <IdCard strokeWidth={1} />,
-	},
-	{
-		title: 'Authorized Devices',
-		key: 'devices',
-		href: '/devices',
-		icon: <TabletSmartphone strokeWidth={1} />,
-	},
-	{
-		title: 'Deposit',
-		key: 'deposit',
-		href: '/over',
-		icon: <ArrowDown strokeWidth={1} />,
-	},
-	{
-		title: 'Log out',
-		key: 'out',
-		href: '#',
-		icon: <Power strokeWidth={1} />,
-	},
-]
 
 export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 	const t = useTranslations('nav')
@@ -128,6 +84,67 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 		],
 		[setVerifyState]
 	)
+	const dropData2: DropData[] = useMemo(
+		() => [
+			{
+				title: 'Overview',
+				key: 'over',
+				href: '/over',
+				icon: <ChartPie strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Profile',
+				key: 'profile',
+				href: '/profile',
+				icon: <User2 strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Security',
+				key: 'security',
+				href: '/security',
+				icon: <ShieldCheck strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Verification',
+				key: 'verification',
+				href: '/verify',
+				icon: <IdCard strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Authorized Devices',
+				key: 'devices',
+				href: '/devices',
+				icon: <TabletSmartphone strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Deposit',
+				key: 'deposit',
+				href: '/over',
+				icon: <ArrowDown strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Invest',
+				key: 'invest',
+				href: '/invest',
+				icon: <CircleDollarSign strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Log out',
+				key: 'out',
+				href: '#',
+				icon: <Power strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+		],
+		[setVerifyState]
+	)
 	const handleClick = () => {
 		setShow(!show)
 	}
@@ -142,9 +159,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 				header?.classList.remove('box-shadow')
 			}
 		}
-
 		window.addEventListener('scroll', handleScroll)
-
 		return () => {
 			window.removeEventListener('scroll', handleScroll)
 		}
@@ -153,16 +168,16 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 	return (
 		<header className='header py-[1.5rem]' id='header'>
 			<div className='flex justify-between items-center site-holder'>
-				<a className='hidden xl:block' href=''>
-					<Logo_header />
-				</a>
-				<div className={`${classChange}`} onClick={handleClick}>
-					<BurgerIcon color={theme === 'dark' ? 'white' : 'black'} />
+				<div className='flex items-center gap-[10px]'>
+					<a className='hidden xl:block' href=''>
+						<Logo_header className='min-w-[123px] -mt-[20px]' />
+					</a>
+					<div className={`${classChange}`} onClick={handleClick}>
+						<BurgerIcon color={theme === 'dark' ? 'white' : 'black'} />
+					</div>
+					<Platform_mode />
+					<Burger_profile handleClick={handleClick} show={show} />
 				</div>
-
-				<Platform_mode />
-
-				<Burger_profile handleClick={handleClick} show={show} />
 
 				<Navigation />
 
@@ -181,19 +196,17 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 							<>
 								<div className='profile__header__icons hidden sm:flex items-center gap-[10px]'>
 									<DropDown_menu
+										hasProfile={false}
 										data={dropData}
 										defaultItem={'Assets'}
 										triggerTitle='Assets'
 									/>
 									<DropDown_menu
+										hasProfile={true}
 										data={dropData2}
-										defaultItem={
-											<User2
-											strokeWidth={1}
-												className={'user'}
-											/>
-										}
+										defaultItem={<User2 strokeWidth={1} className={'user'} />}
 									/>
+
 									<div className='header__icons-item'>
 										<Theme_switch />
 									</div>

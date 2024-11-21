@@ -2,7 +2,6 @@
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { NextPage } from 'next'
-import { useThemeStore } from '../../store'
 import { Link } from '@/i18n/routing'
 import { Snippet } from '@nextui-org/snippet'
 import { Button } from '@nextui-org/button'
@@ -13,7 +12,6 @@ interface Props {
 }
 export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 	const t = useTranslations('profile')
-	const { theme } = useThemeStore()
 
 	return (
 		<section className='hidden sm:block profile__info profile_blocks_border'>
@@ -34,7 +32,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 						user@gmail.com
 					</p>
 					<div className='profile__info__block__left__text__id'>
-						<Snippet className='bg-transparent p-[5px]' symbol=''>
+						<Snippet className='bg-transparent py-[5px] px-0' symbol=''>
 							888888888в8888888{' '}
 						</Snippet>
 					</div>

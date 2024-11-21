@@ -24,19 +24,25 @@ interface Props {
 	triggerTitle?: string
 	data: DropData[]
 	defaultItem?: string | JSX.Element
+	hasProfile: boolean
 }
 
 export const DropDown_menu: NextPage<Props> = ({
 	triggerTitle,
 	data,
 	defaultItem,
+	hasProfile,
 }) => {
 	const [selectedKeys, setSelectedKeys] = useState<DropData | null>(null)
 	const [open, setOpen] = useState(false)
 
 	return (
-		<Popover open={open} onOpenChange={setOpen}>
-			<PopoverTrigger asChild onMouseEnter={() => setOpen(true)}>
+		<div onMouseLeave={() => setOpen(!open)}>
+			<Popover
+			open={open}
+			onOpenChange={() => setOpen(!open)}
+		>
+			<PopoverTrigger asChild onMouseEnter={() => setOpen(!open)}>
 				<Button
 					size='sm'
 					className='!w-fit !min-w-fit flex justify-end bg-transparent p-0 m-0'
@@ -53,30 +59,36 @@ export const DropDown_menu: NextPage<Props> = ({
 					)}
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className='p-0 w-full' side='bottom' align='end'>
+			<PopoverContent
+				className='p-0 w-full -mt-[10px]'
+				side='bottom'
+				align='end'
+				onMouseLeave={() => setOpen(!open)}
+			>
 				<Command>
-					<CommandList className='bg-[#eee] dark:bg-[#1e1e1e66]'>
+					<CommandList className='bg-[#eee] dark:bg-[#1e1e1e66] py-[10px] px-[7px]'>
 						<CommandGroup>
-							<div
-								className={
-									'cursor-pointer flex items-center gap-[7px] py-[10px] px-[7px]'
-								}
-							>
-								<Image
-									alt={'avatar'}
-									className='object-contain rounded-full'
-									height={35}
-									src={'/main/avatar_noface.png'}
-									width={35}
-								/>
-								<div className='flex flex-col items-stretch'>
-									<p className='text-[13px] dark:text-[#eeeeee] text-[#1e1e1e66]'>
-										user***@gmail.com
-									</p>
-									<p className='text-[13px] text-[#888888]'>UID: 987987</p>
-								</div>
-							</div>
-							<CommandSeparator className='mb-[10px] h-[1px] w-full ml-0' />
+							{hasProfile && (
+								<>
+									<div className={'cursor-pointer flex items-center gap-[7px]'}>
+										<Image
+											alt={'avatar'}
+											className='object-contain rounded-full'
+											height={42}
+											src={'/main/avatar_noface.png'}
+											width={42}
+										/>
+										<div className='flex flex-col items-stretch'>
+											<p className='text-[13px] dark:text-[#eeeeee] text-[#1e1e1e66]'>
+												user***@gmail.com
+											</p>
+											<p className='text-[13px] text-[#888888]'>UID: 987987</p>
+										</div>
+									</div>
+									<CommandSeparator className='mb-[10px] h-[1px] w-full ml-0 my-[10px]' />
+								</>
+							)}
+
 							{data.map(item => (
 								<div key={item.key}>
 									{item.key === 'out' && (
@@ -111,5 +123,6 @@ export const DropDown_menu: NextPage<Props> = ({
 				</Command>
 			</PopoverContent>
 		</Popover>
+		</div>
 	)
 }

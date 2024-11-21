@@ -62,7 +62,9 @@ export const useThemeStore = create<IStore>()(
 			globalCompanyIcon: null,
 			setGlboalCompanyIcon: val => set({ globalCompanyIcon: val }),
 			globalPeriod: null,
-			setGlobalPeriod: (val) => set({globalPeriod: val})
+			setGlobalPeriod: (val) => set({globalPeriod: val}),
+			open: false,
+			setOpen: (val) => set({open: val})
 		}),
 		{
 			name: 'zustand-store',

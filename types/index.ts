@@ -41,4 +41,6 @@ export interface IStore {
 	setGlboalCompanyIcon: (val: InvestData | null) => void
 	globalPeriod: PeriodData | null
 	setGlobalPeriod: (val: PeriodData | null) => void
+	open: boolean
+	setOpen: (val: boolean) => void
 }

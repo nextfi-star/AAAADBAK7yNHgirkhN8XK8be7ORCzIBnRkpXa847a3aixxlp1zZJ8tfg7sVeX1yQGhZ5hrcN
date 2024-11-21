@@ -1,6 +1,6 @@
 'use client'
 import { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
 	InputOTP,
 	InputOTPGroup,
@@ -20,7 +20,7 @@ export const OTPInput: NextPage<Props> = ({ length = 6, onChange }) => {
 	const callbackHandler = () => {
 		onChange(value)
 	}
-		if (value.length === 6) callbackHandler()
+	if (value.length === 6) callbackHandler()
 	return (
 		<InputOTP
 			maxLength={6}

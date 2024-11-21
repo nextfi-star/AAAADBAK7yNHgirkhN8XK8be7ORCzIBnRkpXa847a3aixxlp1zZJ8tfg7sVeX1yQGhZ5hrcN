@@ -312,7 +312,9 @@ export default function DataTable_verif() {
       bottomContent={bottomContent}
       bottomContentPlacement="outside"
       classNames={{
-        wrapper: "max-h-[382px]",
+        table: '!bg-transparent',
+        tbody: '!shadow-none',
+        wrapper: "max-h-[382px] !bg-transparent shadow-none",
         td: "text-center",
         th: "text-center",
       }}
