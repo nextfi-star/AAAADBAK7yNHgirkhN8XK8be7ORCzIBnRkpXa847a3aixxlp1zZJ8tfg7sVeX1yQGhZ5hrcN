@@ -179,7 +179,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 	return (
 		<header className='header py-[1.5rem]' id='header'>
 			<div className='flex justify-between items-center site-holder'>
-				<div className='flex items-center gap-[20px]'>
+				<div className='flex items-center gap-[40px]'>
 					<a className='hidden xl:block' href=''>
 						<Logo_header className='min-w-[123px] -mt-[20px]' />
 					</a>
@@ -217,12 +217,6 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 										data={dropData2}
 										defaultItem={<User2 strokeWidth={1} className={'user'} />}
 									/>
-									<Link
-										href={'/invest'}
-										className='flex items-center gap-[5px]'
-									>
-										Investing
-									</Link>
 									<div className='header__icons-item'>
 										<Theme_switch />
 									</div>

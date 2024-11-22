@@ -2,26 +2,26 @@ import React from 'react'
 
 const data = [
 	{
-		title: 'Deposit',
+		title: 'Spot',
 		subTitle: 'Daily assets',
 		numbers: '0.0000',
 		subNumbers: '0.0000',
 		currency: 'USD',
 	},
 	{
-		title: 'All investments',
+		title: 'Futures',
 		subTitle: '30-day average assets',
 		numbers: '0.0000',
 		subNumbers: '0.0000',
 		currency: 'USD',
 	},
 	{
-		title: 'In investment',
+		title: 'Options',
 		numbers: '0.0000',
 		currency: 'USD',
 	},
 	{
-		title: 'Withdrawal',
+		title: 'Spreads',
 		numbers: '0.0000',
 		currency: 'USD',
 	},
@@ -72,42 +72,12 @@ const Tier_initData = () => {
 					<div className='w-full flex items-center justify-between gap-[23px]'>
 						<div className='flex flex-col'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								Deposit
+								Spot
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								0.0000 USD
 							</p>
 						</div>
-						<div className='flex flex-col'>
-							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								Deposit
-							</p>
-							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
-								0.0000 USD
-							</p>
-						</div>
-					</div>
-
-					<div className='w-full flex items-center justify-between gap-[23px]'>
-						<div className='flex flex-col'>
-							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								In investment
-							</p>
-							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
-								0.0000 USD
-							</p>
-						</div>
-						<div className='flex flex-col'>
-							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								Deposit
-							</p>
-							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
-								0.0000 USD
-							</p>
-						</div>
-					</div>
-
-					<div className='w-full flex items-center justify-between gap-[23px]'>
 						<div className='flex flex-col'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
 								Daily assets
@@ -116,9 +86,39 @@ const Tier_initData = () => {
 								0.0000 USD
 							</p>
 						</div>
+					</div>
+
+					<div className='w-full flex items-center justify-between gap-[23px]'>
+						<div className='flex flex-col'>
+							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
+								Futures
+							</p>
+							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
+								0.0000 USD
+							</p>
+						</div>
+						<div className='flex flex-col'>
+							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
+							30-day average assets
+							</p>
+							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
+								0.0000 USD
+							</p>
+						</div>
+					</div>
+
+					<div className='w-full flex items-center justify-between gap-[23px]'>
+						<div className='flex flex-col'>
+							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
+								Options
+							</p>
+							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
+								0.0000 USD
+							</p>
+						</div>
 						<div className='flex flex-col text-right'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								30-day average assets
+								Spreads
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								0.0000 USD
