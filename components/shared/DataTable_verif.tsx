@@ -27,10 +27,10 @@ import { SearchIcon } from "./SearchIcon";
 import { capitalize } from "./utils";
 import { columns, statusOptions, users } from "./data";
 
-const statusColorMap: Record<string, ChipProps["color"]> = {
-  "+": "success",
-  "-": "danger",
-};
+// const statusColorMap: Record<string, ChipProps["color"]> = {
+//   "+": "success",
+//   "-": "danger",
+// };
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "holdings", "pnl", "actions"];
 
@@ -134,8 +134,8 @@ export default function DataTable_verif() {
       case "pnl":
         return (
           <Chip
-            className="capitalize"
-            color={statusColorMap[user.pnl]}
+            className="capitalize bg-transparent"
+            // color={statusColorMap[user.pnl]}
             size="sm"
             variant="flat"
           >

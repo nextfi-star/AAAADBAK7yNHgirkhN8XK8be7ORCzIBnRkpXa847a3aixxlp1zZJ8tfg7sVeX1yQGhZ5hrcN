@@ -29,10 +29,10 @@ import { SearchIcon } from "./SearchIcon";
 import { capitalize } from "./utils";
 import { columnsData, statusOptionsData, usersData } from "./data";
 
-const statusColorMap: Record<string, ChipProps["color"]> = {
-  "+": "success",
-  "-": "danger",
-};
+// const statusColorMap: Record<string, ChipProps["color"]> = {
+//   "+": "success",
+//   "-": "danger",
+// };
 
 const INITIAL_VISIBLE_COLUMNS = ["destination", "amount", "percent", "actions"];
 

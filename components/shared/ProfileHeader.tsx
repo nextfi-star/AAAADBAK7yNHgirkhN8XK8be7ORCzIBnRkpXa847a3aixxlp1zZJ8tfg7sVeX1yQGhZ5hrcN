@@ -168,7 +168,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 	return (
 		<header className='header py-[1.5rem]' id='header'>
 			<div className='flex justify-between items-center site-holder'>
-				<div className='flex items-center gap-[10px]'>
+				<div className='flex items-center gap-[20px]'>
 					<a className='hidden xl:block' href=''>
 						<Logo_header className='min-w-[123px] -mt-[20px]' />
 					</a>
