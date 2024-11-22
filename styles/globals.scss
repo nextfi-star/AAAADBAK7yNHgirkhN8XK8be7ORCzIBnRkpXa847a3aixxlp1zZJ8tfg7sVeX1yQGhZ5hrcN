@@ -174,24 +174,24 @@ legend {
 }
 
 
-.spec {
-	@layer utilities {
-		th:nth-child(2),
-		td:nth-child(2) {
-			@apply hidden md:table-cell;
-		}
+// .spec {
+// 	@layer utilities {
+// 		th:nth-child(2),
+// 		td:nth-child(2) {
+// 			@apply hidden md:table-cell;
+// 		}
 	
-		th:nth-child(3),
-		td:nth-child(3) {
-			@apply hidden md:table-cell;
-		}
+// 		th:nth-child(3),
+// 		td:nth-child(3) {
+// 			@apply hidden md:table-cell;
+// 		}
 	
-		th:nth-child(5),
-		td:nth-child(5) {
-			@apply hidden md:table-cell;
-		}
-	}
-}
+// 		th:nth-child(5),
+// 		td:nth-child(5) {
+// 			@apply hidden md:table-cell;
+// 		}
+// 	}
+// }
 
 @layer utilities {
 	tr:nth-child(2),

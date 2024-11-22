@@ -9,83 +9,92 @@ import React from 'react'
 export type Rows = typeof rows
 export type Columns = typeof columns
 const rows = [
-	{
-		key: '1',
-		tier: 'lvl 1',
-		total: '< 100',
-		assets: '< 100,000 / < 5,000,000',
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-	{
-		key: '12',
-		tier: 'lvl 2',
-		total: '> 100',
-		assets: '< 100,000 / < 5,000,000',
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-	{
-		key: '13',
-		tier: 'lvl 3',
-		total: '> 200',
-		assets: '< 100,000 / < 5,000,000',
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-	{
-		key: '14',
-		tier: 'lvl 4',
-		total: '> 500',
-		assets: '< 100,000 / < 5,000,000',
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-	{
-		key: '15',
-		tier: 'lvl 5',
-		total: '> 1000',
-		assets: `< 100,000 / < 5,000,000`,
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-]
+  {
+    key: '1',
+    tier: 'Beginner',
+    total: '0 опыта',
+    assets: '10 очков',
+    maker: 'Нет бонусов',
+    taker: '10% от реферального опыта',
+    withdrawal: 'Отсутствуют',
+  },
+  {
+    key: '2',
+    tier: 'Investor',
+    total: '10 опыта',
+    assets: '10 очков',
+    maker: '+1% к доходности',
+    taker: '10% от реферального опыта',
+    withdrawal: 'Отсутствуют',
+  },
+  {
+    key: '3',
+    tier: 'Advanced Investor',
+    total: '30 опыта',
+    assets: '10 очков',
+    maker: '+1% к доходности',
+    taker: '10% от реферального опыта',
+    withdrawal: '-1% комиссия за досрочный вывод',
+  },
+  {
+    key: '4',
+    tier: 'Experienced Investor',
+    total: '60 опыта',
+    assets: '10 очков',
+    maker: '+1.5% к доходности',
+    taker: '10% от реферального опыта',
+    withdrawal: 'Частичный вывод (до 20%)',
+  },
+  {
+    key: '5',
+    tier: 'Expert',
+    total: '100 опыта',
+    assets: '10 очков',
+    maker: '+2% к доходности',
+    taker: '10% от реферального опыта',
+    withdrawal: '-2% комиссия за досрочный вывод, -20% срока инвестирования для опр. типов активов',
+  },
+  {
+    key: '6',
+    tier: 'VIP',
+    total: '150 опыта',
+    assets: '10 очков',
+    maker: '+2% к доходности',
+    taker: '10% от реферального опыта',
+    withdrawal: 'Отмена комиссии за досрочный вывод, -30% срока инвестирования для любых активов',
+  },
+];
 const columns = [
-	{
-		key: 'tier',
-		label: 'Tier',
-	},
-	{
-		key: 'total',
-		label: 'Total holding',
-	},
-	{
-		key: 'assets',
-		label: 'Assets (USD) or Assets (USD)',
-	},
-	{
-		key: 'maker',
-		label: 'Maker fee',
-	},
-	{
-		key: 'taker',
-		label: 'Taker fee',
-	},
-	{
-		key: 'withdrawal',
-		label: '24h crypto withdrawal limit (USD)',
-	},
-]
+  {
+    key: 'tier',
+    label: 'Уровень',
+  },
+  {
+    key: 'total',
+    label: 'Требуемый опыт',
+  },
+  {
+    key: 'assets',
+    label: 'Очки за успешную инвестицию',
+  },
+  {
+    key: 'maker',
+    label: 'Бонусы',
+  },
+  {
+    key: 'taker',
+    label: 'Реферальные бонусы',
+  },
+  {
+    key: 'withdrawal',
+    label: 'Особенности вывода',
+  },
+];
 
 const Tier: NextPage = () => {
 	return (
-		<div className='flex flex-col gap-[40px] w-full xl:-mt-[7.5rem]'>
-			<Page_title title='My fee tier' />
+		<div className='flex flex-col gap-[40px] w-full -mt-[7.5rem] xl:-mt-[0]'>
+			<Page_title title='Levels Activity' />
 
 			<article className='rounded-[30px] sm:shadow-xl dark:shadow-none sm:dark:bg-[#181818] p-[44px_0px] md:p-[44px_26px] xl:p-[44px] w-full flex flex-col xl:flex-row items-center justify-between gap-[40px] xl:gap-[146px]'>
 				<div className='flex flex-col sm:flex-row items-center gap-[31px]'>
