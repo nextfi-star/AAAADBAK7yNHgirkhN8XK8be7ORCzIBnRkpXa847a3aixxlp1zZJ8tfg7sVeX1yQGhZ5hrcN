@@ -3,9 +3,8 @@ import { useTranslations } from 'next-intl'
 import { useEffect, useMemo, useState } from 'react'
 import clsx from 'clsx'
 import { NextPage } from 'next'
-import { Link } from '../../i18n/routing'
-import { useThemeStore } from '../../store'
-import { Logo_header } from '../ui/Logo_header'
+import { Link } from '@/i18n/routing'
+import { useThemeStore } from '@/store'
 import { Burger_profile } from './Burger_profile'
 import Locale_Switcher from './Locale_Switcher'
 import Theme_switch from './Theme_switch'
@@ -16,15 +15,21 @@ import { A_Chat_mobile } from './A_Chat_mobile'
 import { DropDown_menu } from './DropDown_menu'
 import {
 	ArrowDown,
+	BriefcaseBusiness,
+	ChartBarDecreasing,
 	ChartPie,
+	CircleArrowDown,
 	CircleDollarSign,
+	CircleFadingArrowUp,
 	IdCard,
 	Power,
+	Repeat,
 	ShieldCheck,
 	TabletSmartphone,
+	TrendingUp,
 	User2,
 } from 'lucide-react'
-import { User } from '../ui/User'
+import { Logo_header } from '../ui/Logo_header'
 
 interface Props {
 	auth: boolean
@@ -49,36 +54,42 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 				title: 'Assets',
 				key: 'assets',
 				href: '/assets',
+				icon: <BriefcaseBusiness strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
 				title: 'Swap',
 				key: 'swap',
 				href: '/swap',
+				icon: <Repeat strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
 				title: 'Withdrawal',
 				key: 'withdrawal',
 				href: '/withdrawal',
+				icon: <CircleArrowDown strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
 				title: 'Invest',
 				key: 'invest',
 				href: '/invest',
+				icon: <TrendingUp strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
 				title: 'Fee tier',
 				key: 'fee',
 				href: '/tier',
+				icon: <ChartBarDecreasing strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
 				title: 'Deposit',
 				key: 'deposit',
 				href: '/assets',
+				icon: <CircleFadingArrowUp strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 		],
@@ -132,7 +143,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 				title: 'Invest',
 				key: 'invest',
 				href: '/invest',
-				icon: <CircleDollarSign strokeWidth={1} />,
+				icon: <TrendingUp strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
@@ -194,7 +205,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 							</>
 						) : (
 							<>
-								<div className='profile__header__icons hidden sm:flex items-center gap-[10px]'>
+								<div className='profile__header__icons hidden sm:flex items-center gap-[20px]'>
 									<DropDown_menu
 										hasProfile={false}
 										data={dropData}
@@ -206,7 +217,12 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 										data={dropData2}
 										defaultItem={<User2 strokeWidth={1} className={'user'} />}
 									/>
-
+									<Link
+										href={'/invest'}
+										className='flex items-center gap-[5px]'
+									>
+										Investing
+									</Link>
 									<div className='header__icons-item'>
 										<Theme_switch />
 									</div>

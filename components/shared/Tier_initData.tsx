@@ -64,7 +64,7 @@ const Tier_initData = () => {
 					))}
 			</div>
 
-			<div className='w-full flex flex-col gap-[20px] bg-[#EEEEEE] dark:bg-[#181818] px-[20px] py-[14px] rounded-[30px]'>
+			<div className='w-full flex sm:hidden flex-col gap-[20px] bg-[#EEEEEE] dark:bg-[#181818] px-[20px] py-[14px] rounded-[30px]'>
 				<h3 className='block sm:hidden text-[20px] dark:text-[#eee] text-[#0c0c0c]'>
 					30-day trading volume (as of yesterday)
 				</h3>

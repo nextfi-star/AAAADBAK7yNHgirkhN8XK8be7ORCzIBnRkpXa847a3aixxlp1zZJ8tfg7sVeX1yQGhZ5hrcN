@@ -81,108 +81,6 @@ const columns = [
 		label: '24h crypto withdrawal limit (USD)',
 	},
 ]
-export type RowsVip = typeof rowsVip
-export type ColumnsVip = typeof columnsVip
-const rowsVip = [
-	{
-		key: '1',
-		tier: 'VIP 1',
-		total: '< 100',
-		assets: '< 100,000 /  < 5,000,000',
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-	{
-		key: '12',
-		tier: 'VIP 2',
-		total: '> 100',
-		assets: '< 100,000 / < 5,000,000',
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-	{
-		key: '13',
-		tier: 'VIP 3',
-		total: '> 200',
-		assets: '< 100,000 / < 5,000,000',
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-	{
-		key: '14',
-		tier: 'VIP 4',
-		total: '> 500',
-		assets: '< 100,000 / < 5,000,000',
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-	{
-		key: '15',
-		tier: 'VIP 5',
-		total: '> 1000',
-		assets: `< 100,000 / < 5,000,000`,
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-	{
-		key: '16',
-		tier: 'VIP 6',
-		total: '-',
-		assets: `< 100,000 / < 5,000,000`,
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-	{
-		key: '17',
-		tier: 'VIP 7',
-		total: '-',
-		assets: `< 100,000 / < 5,000,000`,
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-	{
-		key: '18',
-		tier: 'VIP 8',
-		total: '-',
-		assets: `< 100,000 / < 5,000,000`,
-		maker: '0.080%',
-		taker: '0.100%',
-		withdrawal: '0.100%',
-	},
-]
-const columnsVip = [
-	{
-		key: 'tier',
-		label: 'Tier',
-	},
-	{
-		key: 'total',
-		label: 'Total holding',
-	},
-	{
-		key: 'assets',
-		label: 'Assets (USD) or Assets (USD)',
-	},
-	{
-		key: 'maker',
-		label: 'Maker fee',
-	},
-	{
-		key: 'taker',
-		label: 'Taker fee',
-	},
-	{
-		key: 'withdrawal',
-		label: '24h crypto withdrawal limit (USD)',
-	},
-]
 
 const Tier: NextPage = () => {
 	return (
@@ -214,18 +112,18 @@ const Tier: NextPage = () => {
 				rows={rows}
 				title='Regular users'
 			/>
-			<Tier_table_regUsers
-				columns={columnsVip}
-				rows={rowsVip}
-				title='Vip users'
-			/>
 			<p className='text-[16px] sm:text-[20px] dark:text-[#D9D9D9]'>
 				30-day trading volume (USD) is the total trading volume for the
 				corresponding market
 			</p>
 			<div className='flex flex-col w-full'>
 				<h5 className='text-[20px] font-bold'>About fii tier</h5>
-				<p className='text-[20px] dark:text-[#EFEFEF]'>Our trading fees different for regular and VIP users. Regular users are categorized into tiers by their total holdings whereas VIP users are categorized by 30-day trading volume and asset balances. Tiers are updated daily.</p>
+				<p className='text-[20px] dark:text-[#EFEFEF]'>
+					Our trading fees different for regular and VIP users. Regular users
+					are categorized into tiers by their total holdings whereas VIP users
+					are categorized by 30-day trading volume and asset balances. Tiers are
+					updated daily.
+				</p>
 			</div>
 		</div>
 	)

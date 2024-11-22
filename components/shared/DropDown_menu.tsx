@@ -49,11 +49,11 @@ export const DropDown_menu: NextPage<Props> = ({
 					disableAnimation
 				>
 					{selectedKeys ? (
-						<p className='text-[14px] text-[#0c0c0c] dark:text-white'>
+						<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
 							{defaultItem ? defaultItem : selectedKeys.title}
 						</p>
 					) : (
-						<p className='text-[14px] flex items-center justify-center min-w-[44px] text-[#0c0c0c] dark:text-white'>
+						<p className='text-[16px] flex items-center justify-center min-w-[44px] text-[#0c0c0c] dark:text-white'>
 							{defaultItem}
 						</p>
 					)}

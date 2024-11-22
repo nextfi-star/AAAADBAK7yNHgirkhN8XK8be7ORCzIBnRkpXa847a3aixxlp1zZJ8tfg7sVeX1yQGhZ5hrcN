@@ -280,7 +280,8 @@ export default function Withdrawal_table() {
 			bottomContent={bottomContent}
 			bottomContentPlacement='outside'
 			classNames={{
-				base: '!bg-[#1e1e1e66] rounded-[30px]',
+				table: '!bg-transparent',
+				base: 'dark:!bg-[#1e1e1e66] rounded-[30px]',
 				tbody: '!shadow-none',
 				wrapper: 'max-h-[503px] !bg-transparent shadow-none',
 				td: 'text-center',
