@@ -336,7 +336,7 @@ const usersDataI = [
 		amount: '1706 NextFi',
 		period: '30 days',
 		currentAmount: '7806 nextFi',
-		status: 'In process'
+		status: 'In process',
 	},
 	{
 		id: 2,
@@ -344,7 +344,7 @@ const usersDataI = [
 		amount: '1285 NextFi',
 		period: '150 days',
 		currentAmount: '1512 nextFi',
-		status: 'Success'
+		status: 'Success',
 	},
 	{
 		id: 3,
@@ -352,7 +352,7 @@ const usersDataI = [
 		amount: '285 NextFi',
 		period: '90 days',
 		currentAmount: '301 nextFi',
-		status: 'In process'
+		status: 'In process',
 	},
 	{
 		id: 4,
@@ -360,7 +360,7 @@ const usersDataI = [
 		amount: '285 NextFi',
 		period: '30 days',
 		currentAmount: '291 nextFi',
-		status: 'In process'
+		status: 'In process',
 	},
 	{
 		id: 5,
@@ -368,7 +368,7 @@ const usersDataI = [
 		amount: '78514 NextFi',
 		period: '120 days',
 		currentAmount: '78614 nextFi',
-		status: 'Withdrawn'
+		status: 'Withdrawn',
 	},
 ]
 
@@ -398,7 +398,7 @@ const usersDataD = [
 		crypto: 'TRX', //! sub-subaddress group-1
 		amount: '112.720',
 		fee: '1',
-		status: 'sent', //! status independent element
+		status: 'completed', //! status independent element
 		percent: '+<$0.1',
 	},
 	{
@@ -409,7 +409,7 @@ const usersDataD = [
 		crypto: 'ZRO', //! sub-subaddress group-1
 		amount: '112.720',
 		fee: '1',
-		status: 'denied', //! status independent element
+		status: 'completed', //! status independent element
 		percent: '+<$0.1',
 	},
 	{
@@ -420,7 +420,7 @@ const usersDataD = [
 		crypto: 'USDT', //! sub-subaddress group-1
 		amount: '112.720',
 		fee: '1',
-		status: 'pending', //! status independent element
+		status: 'completed', //! status independent element
 		percent: '+<$0.1',
 	},
 	{
@@ -431,7 +431,7 @@ const usersDataD = [
 		crypto: 'TRX', //! sub-subaddress group-1
 		amount: '112.720',
 		fee: '1',
-		status: 'pending', //! status independent element
+		status: 'canceled', //! status independent element
 		percent: '+<$0.1',
 	},
 	{
@@ -442,7 +442,7 @@ const usersDataD = [
 		crypto: 'USDT', //! sub-subaddress group-1
 		amount: '112.720',
 		fee: '1',
-		status: 'pending', //! status independent element
+		status: 'canceled', //! status independent element
 		percent: '+<$0.1',
 	},
 	{
@@ -453,7 +453,7 @@ const usersDataD = [
 		crypto: 'ZRO', //! sub-subaddress group-1
 		amount: '112.720',
 		fee: '1',
-		status: 'pending', //! status independent element
+		status: 'canceled', //! status independent element
 		percent: '+<$0.1',
 	},
 	{
@@ -486,7 +486,7 @@ const usersDataD = [
 		crypto: 'USDT', //! sub-subaddress group-1
 		amount: '112.720',
 		fee: '1',
-		status: 'pending', //! status independent element
+		status: 'in progress', //! status independent element
 		percent: '+<$0.1',
 	},
 ]

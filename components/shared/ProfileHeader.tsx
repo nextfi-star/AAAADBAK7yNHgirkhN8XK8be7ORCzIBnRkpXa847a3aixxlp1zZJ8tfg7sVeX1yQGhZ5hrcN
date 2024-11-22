@@ -89,7 +89,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 				title: 'Deposit',
 				key: 'deposit',
 				href: '/deposit',
-				icon: <CircleFadingArrowUp strokeWidth={1} />,
+				icon: <ArrowDown strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 		],
@@ -135,7 +135,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 			{
 				title: 'Deposit',
 				key: 'deposit',
-				href: '/over',
+				href: '/deposit',
 				icon: <ArrowDown strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},

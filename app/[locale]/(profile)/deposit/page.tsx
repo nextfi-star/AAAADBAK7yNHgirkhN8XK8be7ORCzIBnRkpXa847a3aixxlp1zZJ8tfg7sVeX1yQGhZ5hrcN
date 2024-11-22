@@ -1,8 +1,7 @@
 'use client'
+import Deposit_faq from '@/components/shared/Deposit_faq'
 import Deposit_steps from '@/components/shared/Deposit_steps'
 import Deposit_table from '@/components/shared/Deposit_table'
-import Withdrawal_faq from '@/components/shared/Withdrawal_faq'
-import Withdrawal_steps from '@/components/shared/Withdrawal_steps'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { ChevronLeft, X } from 'lucide-react'
@@ -36,7 +35,7 @@ const Deposit: NextPage = () => {
 				<div className=''>
 					<Deposit_steps />
 				</div>
-				<Withdrawal_faq />
+				<Deposit_faq />
 			</div>
 			<Deposit_table />
 		</section>
