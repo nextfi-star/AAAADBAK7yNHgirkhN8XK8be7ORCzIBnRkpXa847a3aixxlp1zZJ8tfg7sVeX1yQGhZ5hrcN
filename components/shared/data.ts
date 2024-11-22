@@ -373,3 +373,122 @@ const usersDataI = [
 ]
 
 export { columnsDataI, statusOptionsDataI, usersDataI }
+
+// ! Datatable for Withdrawal_table
+
+const columnsDataD = [
+	{ name: 'TIME', uid: 'time', sortable: true },
+	{ name: 'ADDRESS', uid: 'address' },
+	{ name: 'CRYPTO', uid: 'crypto', sortable: true },
+	{ name: 'AMOUNT', uid: 'amount', sortable: true },
+	{ name: 'FEE', uid: 'fee' },
+	{ name: 'STATUS', uid: 'status', sortable: true },
+]
+const statusOptionsDataD = [
+	{ name: 'Completed', uid: 'completed' },
+	{ name: 'Canceled', uid: 'canceled' },
+	{ name: 'In process', uid: 'process' },
+]
+const usersDataD = [
+	{
+		id: 1,
+		time: '19/04/2024, 23:19:21', //! time name group-1
+		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
+		subaddress: 'Tron(TRC 20)',
+		crypto: 'TRX', //! sub-subaddress group-1
+		amount: '112.720',
+		fee: '1',
+		status: 'sent', //! status independent element
+		percent: '+<$0.1',
+	},
+	{
+		id: 2,
+		time: '25/04/2024, 23:19:21', //! time name group-1
+		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
+		subaddress: 'Tron(TRC 20)',
+		crypto: 'ZRO', //! sub-subaddress group-1
+		amount: '112.720',
+		fee: '1',
+		status: 'denied', //! status independent element
+		percent: '+<$0.1',
+	},
+	{
+		id: 4,
+		time: '14/04/2024, 23:19:21', //! time name group-1
+		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
+		subaddress: 'Tron(TRC 20)',
+		crypto: 'USDT', //! sub-subaddress group-1
+		amount: '112.720',
+		fee: '1',
+		status: 'pending', //! status independent element
+		percent: '+<$0.1',
+	},
+	{
+		id: 6,
+		time: '14/04/2024, 23:19:21', //! time name group-1
+		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
+		subaddress: 'Tron(TRC 20)',
+		crypto: 'TRX', //! sub-subaddress group-1
+		amount: '112.720',
+		fee: '1',
+		status: 'pending', //! status independent element
+		percent: '+<$0.1',
+	},
+	{
+		id: 7,
+		time: '14/04/2024, 23:19:21', //! time name group-1
+		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
+		subaddress: 'Tron(TRC 20)',
+		crypto: 'USDT', //! sub-subaddress group-1
+		amount: '112.720',
+		fee: '1',
+		status: 'pending', //! status independent element
+		percent: '+<$0.1',
+	},
+	{
+		id: 8,
+		time: '14/04/2024, 23:19:21', //! time name group-1
+		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
+		subaddress: 'Tron(TRC 20)',
+		crypto: 'ZRO', //! sub-subaddress group-1
+		amount: '112.720',
+		fee: '1',
+		status: 'pending', //! status independent element
+		percent: '+<$0.1',
+	},
+	{
+		id: 9,
+		time: '14/04/2024, 23:19:21', //! time name group-1
+		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
+		subaddress: 'Tron(TRC 20)',
+		crypto: 'ZRO', //! sub-subaddress group-1
+		amount: '112.720',
+		fee: '1',
+		status: 'pending', //! status independent element
+		percent: '+<$0.1',
+	},
+	{
+		id: 10,
+		time: '14/04/2024, 23:19:21', //! time name group-1
+		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
+		subaddress: 'Tron(TRC 20)',
+		crypto: 'USDT', //! sub-subaddress group-1
+		amount: '112.720',
+		fee: '1',
+		status: 'pending', //! status independent element
+		percent: '+<$0.1',
+	},
+	{
+		id: 11,
+		time: '14/04/2024, 23:19:21', //! time name group-1
+		address: 'QnC4NssoQ3Mn34SlrY1Nk2bb3l0Iue1Own',
+		subaddress: 'Tron(TRC 20)',
+		crypto: 'USDT', //! sub-subaddress group-1
+		amount: '112.720',
+		fee: '1',
+		status: 'pending', //! status independent element
+		percent: '+<$0.1',
+	},
+]
+
+export { columnsDataD, usersDataD, statusOptionsDataD }

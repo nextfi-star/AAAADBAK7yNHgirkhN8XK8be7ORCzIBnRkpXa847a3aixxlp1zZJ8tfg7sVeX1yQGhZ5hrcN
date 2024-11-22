@@ -20,14 +20,16 @@ const Tier_table_regUsers: NextPage<Props> = ({ title, rows, columns }) => {
 		<Table
 			aria-label='Data tabel for reg Users'
 			topContent={
-				<h1 className='text-[32px] font-medium w-full text-center'>{title}</h1>
+				<h1 className='text-[32px] font-medium w-full text-center flex-shrink-0 whitespace-nowrap'>
+					{title}
+				</h1>
 			}
 			classNames={{
 				table: 'border-1 border-solid border-white',
 				tr: 'bg-transparent !outline-0 !border-0 !shadow-none',
 				wrapper: 'dark:bg-[#1E1E1E66] bg-[#fff] px-[20px] pb-[20px]',
 				td: 'text-center border-1 border-solid border-white whitespace-nowrap',
-				th: 'text-center md:text-[20px] outline-0 border-0 border-t border-b border-solid border-white shadow-none ',
+				th: 'text-center md:text-[20px] outline-0 border-1 border-solid border-white shadow-none bg-transparent',
 				base: '!shadow-none ',
 				tbody: '!shadow-none',
 			}}

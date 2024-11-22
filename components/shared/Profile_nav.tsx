@@ -30,9 +30,9 @@ export const Profile_nav: NextPage = () => {
           <li>
             <Link
               className={`profile__nav-navbar-item ${
-                currentPath === `/${locale}/profile` ? "active" : ""
+                currentPath === `/${locale}/deposit` ? "active" : ""
               }`}
-              href={`/profile`}
+              href={`/deposit`}
             >
               Deposit
             </Link>
@@ -64,7 +64,7 @@ export const Profile_nav: NextPage = () => {
               }`}
               href={`/tier`}
             >
-              Fee Tier
+              Levels activity
             </Link>
           </li>
         </ul>

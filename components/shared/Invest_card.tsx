@@ -11,6 +11,7 @@ import { Checkbox } from './Checkbox'
 import { Skeleton } from '@nextui-org/skeleton'
 import { divider } from '@nextui-org/theme'
 import NotFoundItem from './NotFoundItem'
+import { Spinner } from '@nextui-org/spinner'
 
 interface Props {
 	selectedCompany?: string
@@ -44,7 +45,7 @@ export const Invest_card: NextPage<Props> = () => {
 			) : (
 				<>
 					{isLoading ? (
-						<Skeleton className='rounded-[30px] min-h-[405px] overflow-hidden max-w-[650px] w-full' />
+						<Spinner className='rounded-[30px] min-h-[405px] overflow-hidden max-w-[650px] w-full' />
 					) : change ? (
 						<div className='bg-[#fff] shadow-xl dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px] overflow-hidden max-w-[650px] w-full'>
 							<div className='p-[18px_23px] flex w-full flex-col sm:flex-row items-center justify-between'>

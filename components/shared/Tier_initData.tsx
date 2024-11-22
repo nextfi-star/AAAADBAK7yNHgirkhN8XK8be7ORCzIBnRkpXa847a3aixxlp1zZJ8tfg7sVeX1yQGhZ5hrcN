@@ -2,28 +2,32 @@ import React from 'react'
 
 const data = [
 	{
-		title: 'Spot',
+		title: 'Deposit',
 		subTitle: 'Daily assets',
 		numbers: '0.0000',
 		subNumbers: '0.0000',
 		currency: 'USD',
 	},
 	{
-		title: 'Futures',
+		title: 'All investments',
 		subTitle: '30-day average assets',
 		numbers: '0.0000',
 		subNumbers: '0.0000',
 		currency: 'USD',
 	},
 	{
-		title: 'Options',
+		title: 'In investment',
+		subTitle: 'Experience Points',
 		numbers: '0.0000',
+		subNumbers: '0.0000',
 		currency: 'USD',
 	},
 	{
-		title: 'Spreads',
+		title: 'Withdrawal',
+		subTitle: 'Referrals invited',
 		numbers: '0.0000',
-		currency: 'USD',
+		subNumbers: '2',
+		currency: 'users',
 	},
 ]
 const Tier_initData = () => {
@@ -72,7 +76,7 @@ const Tier_initData = () => {
 					<div className='w-full flex items-center justify-between gap-[23px]'>
 						<div className='flex flex-col'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								Spot
+								Deposit
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								0.0000 USD
@@ -91,17 +95,17 @@ const Tier_initData = () => {
 					<div className='w-full flex items-center justify-between gap-[23px]'>
 						<div className='flex flex-col'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								Futures
+								All investments
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								0.0000 USD
 							</p>
 						</div>
 						<div className='flex flex-col'>
-							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-							30-day average assets
+							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px] text-right'>
+								30-day average assets
 							</p>
-							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
+							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD] text-right'>
 								0.0000 USD
 							</p>
 						</div>
@@ -110,7 +114,7 @@ const Tier_initData = () => {
 					<div className='w-full flex items-center justify-between gap-[23px]'>
 						<div className='flex flex-col'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								Options
+								In investment
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								0.0000 USD
@@ -118,10 +122,29 @@ const Tier_initData = () => {
 						</div>
 						<div className='flex flex-col text-right'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								Spreads
+								Experience Points
+							</p>
+							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
+								25 EXP
+							</p>
+						</div>
+					</div>
+
+					<div className='w-full flex items-center justify-between gap-[23px]'>
+						<div className='flex flex-col'>
+							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
+								Withdrawal
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								0.0000 USD
+							</p>
+						</div>
+						<div className='flex flex-col text-right'>
+							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
+								Referrals invited
+							</p>
+							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
+								2 users
 							</p>
 						</div>
 					</div>

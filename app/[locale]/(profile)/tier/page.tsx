@@ -94,7 +94,7 @@ const columns = [
 const Tier: NextPage = () => {
 	return (
 		<div className='flex flex-col gap-[40px] w-full -mt-[7.5rem] xl:-mt-[0]'>
-			<Page_title title='Levels Activity' />
+			<Page_title title='Levels Activity' className='!my-0'/>
 
 			<article className='rounded-[30px] sm:shadow-xl dark:shadow-none sm:dark:bg-[#181818] p-[44px_0px] md:p-[44px_26px] xl:p-[44px] w-full flex flex-col xl:flex-row items-center justify-between gap-[40px] xl:gap-[146px]'>
 				<div className='flex flex-col sm:flex-row items-center gap-[31px]'>
@@ -119,19 +119,12 @@ const Tier: NextPage = () => {
 			<Tier_table_regUsers
 				columns={columns}
 				rows={rows}
-				title='Regular users'
+				title='Levels and their description'
 			/>
-			<p className='text-[16px] sm:text-[20px] dark:text-[#D9D9D9]'>
-				30-day trading volume (USD) is the total trading volume for the
-				corresponding market
-			</p>
 			<div className='flex flex-col w-full'>
-				<h5 className='text-[20px] font-bold'>About fii tier</h5>
+				<h5 className='text-[20px] font-bold'>Getting partial experience</h5>
 				<p className='text-[20px] dark:text-[#EFEFEF]'>
-					Our trading fees different for regular and VIP users. Regular users
-					are categorized into tiers by their total holdings whereas VIP users
-					are categorized by 30-day trading volume and asset balances. Tiers are
-					updated daily.
+        Users who withdraw investments ahead of time receive a partial experience proportional to the percentage they have already earned. For example, if a user has earned 50% of the possible income, then they will receive 50% of the total experience (5 points instead of 10).
 				</p>
 			</div>
 		</div>

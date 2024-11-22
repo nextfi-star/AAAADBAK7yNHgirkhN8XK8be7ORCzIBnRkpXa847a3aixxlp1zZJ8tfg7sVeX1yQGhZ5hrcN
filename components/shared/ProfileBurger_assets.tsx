@@ -24,9 +24,9 @@ const data = [
 	},
 	{
 		src: '/header_icons/profile_burger/commission.svg',
-		title: 'Fee Tier',
-		tabName: 'Devices',
-		href: '/devices',
+		title: 'Levels activity',
+		tabName: 'Profile',
+		href: '/tier',
 	},
 ]
 

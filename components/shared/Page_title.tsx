@@ -6,12 +6,18 @@ import React from 'react'
 interface Props {
 	DropSteps?: () => void
 	title?: string
-	className?:string
+	className?: string
 }
-export const Page_title: NextPage<Props> = ({ DropSteps, title, className }) => {
+export const Page_title: NextPage<Props> = ({
+	DropSteps,
+	title,
+	className,
+}) => {
 	return (
 		<>
-			<h1 className='hide-mobile w-full text-center text-[32px] 2xl:text-[62px] font-bold my-[30px] dark:text-[#EFEFEF] text-[#0c0c0c]'>
+			<h1
+				className={`hide-mobile w-full text-center text-[32px] 2xl:text-[62px] font-bold my-[30px] dark:text-[#EFEFEF] text-[#0c0c0c] ${className}`}
+			>
 				{title}
 			</h1>
 			<div className='show-mobile w-full flex items-center justify-between fixed top-[0] left-0 right-0 z-[200] px-[28px] py-[15px] bg-[#f9f9fa] dark:bg-[#0c0c0c]'>

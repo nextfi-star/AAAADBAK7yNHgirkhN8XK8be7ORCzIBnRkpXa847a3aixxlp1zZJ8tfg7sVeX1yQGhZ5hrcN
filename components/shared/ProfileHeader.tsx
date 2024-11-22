@@ -79,8 +79,8 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 				verify: () => setVerifyState(true),
 			},
 			{
-				title: 'Fee tier',
-				key: 'fee',
+				title: 'Levels',
+				key: 'levels',
 				href: '/tier',
 				icon: <ChartBarDecreasing strokeWidth={1} />,
 				verify: () => setVerifyState(true),
@@ -88,7 +88,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 			{
 				title: 'Deposit',
 				key: 'deposit',
-				href: '/assets',
+				href: '/deposit',
 				icon: <CircleFadingArrowUp strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
