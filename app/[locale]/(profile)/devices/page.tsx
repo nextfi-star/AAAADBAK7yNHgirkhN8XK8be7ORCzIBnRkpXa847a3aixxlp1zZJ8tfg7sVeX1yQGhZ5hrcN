@@ -5,9 +5,9 @@ import { NextPage } from "next";
 import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 import { Profile_devices } from "@/components/shared/Profile_devices";
 
-const Page: NextPage = () => {
+const Devices: NextPage = () => {
   return (
-    <section className="personal">
+    <section className="personal ">
       <div className="personal-container">
         <h1 className="text-[32px] font-bold w-full text-center lg:text-left">
           Authorized Devices
@@ -33,4 +33,4 @@ const Page: NextPage = () => {
   );
 };
 
-export default Page;
+export default Devices;

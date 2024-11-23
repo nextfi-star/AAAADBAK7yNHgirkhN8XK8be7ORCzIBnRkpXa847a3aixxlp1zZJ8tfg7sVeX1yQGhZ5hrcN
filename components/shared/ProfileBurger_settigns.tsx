@@ -2,9 +2,9 @@
 import Image from "next/image";
 import { NextPage } from "next";
 
-import ArrowBracket from "../ui/ArrowBracket";
-import { useThemeStore } from "../../store";
-import { ChangeAvatar } from "../ui/ChangeAvatar";
+import ArrowBracket from "@/components/ui/ArrowBracket";
+import { useThemeStore } from "@/store";
+import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 
 interface Props {
   username: string;
@@ -27,7 +27,7 @@ export const ProfileBurger_settigns: NextPage<Props> = ({
     >
       <div className="flex flex-col items-center gap-[10px] w-full relative mb-[20px]">
         {!showSection && (
-          <span className="-mt-[60px] mb-[40px] text-[24px] font-bold">
+          <span className="-mt-[60px] sm:-mt-[39px] mb-[40px] text-[24px] font-bold">
             User Center
           </span>
         )}
@@ -51,7 +51,7 @@ export const ProfileBurger_settigns: NextPage<Props> = ({
         </div>
 
         <div className="flex flex-col">
-          <h5 className="text-[18px]">{username} </h5>
+          <h5 className="text-[18px]">{username}</h5>
           {showSection && <span className="text-[14px]">Profile Settings</span>}
         </div>
       </div>

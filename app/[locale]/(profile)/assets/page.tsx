@@ -1,17 +1,23 @@
 'use client'
-import React, { useEffect } from 'react'
 import { NextPage } from 'next'
 import { useThemeStore } from '@/store'
 import { Profile_balance, Profile_payments } from '@/components/shared'
 import Allocation from '@/components/shared/Allocation'
 import Transaction from '@/components/shared/Transactions'
+import { usePathname } from 'next/navigation'
+import { useEffect } from 'react'
 
-const Profile: NextPage = () => {
-	const { initializeTheme, verifyState } = useThemeStore()
+const Assets: NextPage = () => {
+	const { verifyState, setVerifyState } = useThemeStore()
+	const pathname = usePathname();
+
 	useEffect(() => {
-		initializeTheme()
-	}, [initializeTheme])
-
+		if(pathname === '/assets') {
+			setVerifyState(false)
+		} else {
+			setVerifyState(true)
+		}
+		}, [pathname])
 	return (
 		<>
 			{verifyState && (
@@ -34,4 +40,4 @@ const Profile: NextPage = () => {
 	)
 }
 
-export default Profile
+export default Assets

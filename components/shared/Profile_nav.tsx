@@ -20,9 +20,9 @@ export const Profile_nav: NextPage = () => {
           <li>
             <Link
               className={`profile__nav-navbar-item ${
-                currentPath === `/${locale}/over` ? "active" : ""
+                currentPath === `/${locale}/assets` ? "active" : ""
               }`}
-              href={`/over`}
+              href={`/assets`}
             >
               Assets
             </Link>
@@ -30,9 +30,9 @@ export const Profile_nav: NextPage = () => {
           <li>
             <Link
               className={`profile__nav-navbar-item ${
-                currentPath === `/${locale}/profile` ? "active" : ""
+                currentPath === `/${locale}/deposit` ? "active" : ""
               }`}
-              href={`/profile`}
+              href={`/deposit`}
             >
               Deposit
             </Link>
@@ -40,9 +40,9 @@ export const Profile_nav: NextPage = () => {
           <li>
             <Link
               className={`profile__nav-navbar-item ${
-                currentPath === `/${locale}/security` ? "active" : ""
+                currentPath === `/${locale}/swap` ? "active" : ""
               }`}
-              href={`/security`}
+              href={`/swap`}
             >
               Swap
             </Link>
@@ -50,21 +50,21 @@ export const Profile_nav: NextPage = () => {
           <li>
             <Link
               className={`profile__nav-navbar-item ${
-                currentPath === `/${locale}/verify` ? "active" : ""
+                currentPath === `/${locale}/withdrawal` ? "active" : ""
               }`}
-              href={`/verify`}
+              href={`/withdrawal`}
             >
-              Withdrawl
+              Withdrawal
             </Link>
           </li>
           <li>
             <Link
               className={`profile__nav-navbar-item ${
-                currentPath === `/${locale}/devices` ? "active" : ""
+                currentPath === `/${locale}/tier` ? "active" : ""
               }`}
-              href={`/devices`}
+              href={`/tier`}
             >
-              Commision Level
+              Levels activity
             </Link>
           </li>
         </ul>

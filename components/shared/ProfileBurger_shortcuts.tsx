@@ -1,3 +1,4 @@
+import { Link } from '@/i18n/routing'
 import { NextPage } from "next";
 import Image from "next/image";
 import React from "react";
@@ -7,21 +8,25 @@ const data = [
     src: "/header_icons/profile_burger/support.svg",
     title: "Support",
     tabName: "Profile",
+    href: '/profile',
   },
   {
     src: "/header_icons/profile_burger/security.svg",
     title: "Security",
     tabName: "Security",
+    href: '/security',
   },
   {
     src: "/header_icons/profile_burger/verifciation.svg",
     title: "Verification",
     tabName: "Verification",
+    href: '/verify',
   },
   {
     src: "/header_icons/profile_burger/devices.svg",
     title: "Devices",
-    tabName: "Authorized Devices",
+    tabName: "Devices",
+    href: '/devices',
   },
 ];
 
@@ -37,7 +42,8 @@ export const ProfileBurger_shortcuts: NextPage<Props> = ({
       <div className="flex items-center justify-between">
         {data &&
           data.map((item) => (
-            <div
+            <Link
+            href={item.href}
               key={item.title}
               className="flex flex-col items-center"
               onClick={() => handleShortcutClick(item.tabName)}
@@ -52,7 +58,7 @@ export const ProfileBurger_shortcuts: NextPage<Props> = ({
                 width={90}
               />
               {item.title}
-            </div>
+            </Link>
           ))}
       </div>
     </section>

@@ -61,7 +61,7 @@ export const ChangeAvatar = () => {
         </div>
       </DrawerTrigger>
 
-      <DrawerContent className="z-[90] px-[30px] drawer__without_after modal-holder mobile-holder flex flex-col items-center">
+      <DrawerContent className="z-[99] px-[30px] drawer__without_after modal-holder mobile-holder flex flex-col items-center">
         <div>
           <DrawerHeader className="flex flex-col items-start">
             <DrawerTitle>Change profile picture</DrawerTitle>

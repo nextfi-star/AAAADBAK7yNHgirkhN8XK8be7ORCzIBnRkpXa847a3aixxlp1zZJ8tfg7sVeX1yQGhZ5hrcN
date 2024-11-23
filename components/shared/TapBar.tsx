@@ -23,7 +23,7 @@ export const TapBar: NextPage = () => {
 				animation_white: '/tapbar/activity.json',
 				title: 'Activity',
 				speed: 2.5,
-				href: '/assets',
+				href: '/activity',
 				onclick: () => setVerifyState(true),
 			},
 			{
@@ -49,8 +49,8 @@ export const TapBar: NextPage = () => {
 				animation_white: '/tapbar/assets.json',
 				title: 'Assets',
 				speed: 1.5,
-				href: '/over',
-				onclick: () => setVerifyState(false),
+				href: '/assets',
+				onclick: () => setVerifyState(true),
 			},
 		],
 		[setVerifyState]

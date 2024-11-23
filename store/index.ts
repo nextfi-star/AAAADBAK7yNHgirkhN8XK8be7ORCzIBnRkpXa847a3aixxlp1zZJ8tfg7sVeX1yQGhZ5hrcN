@@ -34,11 +34,40 @@ export const useThemeStore = create<IStore>()(
 			setEmail: email => set({ email }),
 			setPhone: phone => set({ phone }),
 			setPassword: password => set({ password }),
-			verifyState: false, //! for admin
-			setVerifyState: state => set({ verifyState: state }), //! for admin
+			verifyState: false,
+			setVerifyState: state => set({ verifyState: state }),
+			progress: 0,
+			setProgress: state => set({ progress: state }),
+			step: 1,
+			setStep: value => set({ step: value }),
+			confirmationStep: 1,
+			setConfirmStep: val => set({ confirmationStep: val }),
+			swapPoppover_1: '',
+			swapPoppover_2: '',
+			swapCheck: val1 =>
+				set({
+					swapPoppover_1: val1,
+				}),
+			swapCheck2: val2 =>
+				set({
+					swapPoppover_2: val2,
+				}),
+			globalVeriState: false,
+			setGlobalVerifState: state => set({ globalVeriState: state }),
+			replaceCurrency: false,
+			setReplaceCurrency: val => set({ replaceCurrency: val }),
+			// cards Investing
+			globalCompany: null,
+			setGlboalCompany: val => set({ globalCompany: val }),
+			globalCompanyIcon: null,
+			setGlboalCompanyIcon: val => set({ globalCompanyIcon: val }),
+			globalPeriod: null,
+			setGlobalPeriod: (val) => set({globalPeriod: val}),
+			open: false,
+			setOpen: (val) => set({open: val})
 		}),
 		{
-			name: 'verify-storage',
+			name: 'zustand-store',
 		}
 	)
 )

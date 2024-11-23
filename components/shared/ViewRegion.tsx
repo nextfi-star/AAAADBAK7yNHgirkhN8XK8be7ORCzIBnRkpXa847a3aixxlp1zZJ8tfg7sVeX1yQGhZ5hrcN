@@ -1,13 +1,10 @@
 "use client";
 import { NextPage } from "next";
 import { useState } from "react";
-
 import { Button } from "../ui/button";
 import { RussiaMap } from "../ui/RussiaMap";
 import ArrowBracket from "../ui/ArrowBracket";
-
 import { Choose_region } from "./Choose_region";
-
 import {
   Drawer,
   DrawerContent,
@@ -42,7 +39,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
             </Button>
           </DrawerTrigger>
 
-          <DrawerContent className="z-[90] pb-[2px] bg-white dark:bg-black min-h-[100dvh] max-h-[70%] modal-holder mobile-holder">
+          <DrawerContent className="!z-[100] pb-[2px] bg-white dark:bg-black min-h-[100dvh] max-h-[70%] modal-holder mobile-holder modal-new">
             <DrawerHeader className="pt-[.5rem]">
               <DrawerTitle className="w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]">
                 <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]">
@@ -115,7 +112,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
             </Button>
           </DrawerTrigger>
 
-          <DrawerContent className="z-[90] px-[30px] bg-white dark:bg-black max-h-[100dvh] min-h-[100dvh] pt-[2.5rem] modal-holder mobile-holder">
+          <DrawerContent className="z-[99] px-[30px] bg-white dark:bg-black max-h-[100dvh] min-h-[100dvh] pt-[2.5rem] modal-holder mobile-holder">
             <DrawerHeader className="flex flex-col gap-[16px]">
               <DrawerTitle />
               <div className="w-full border-transparent flex flex-col items-center gap-[15px]">

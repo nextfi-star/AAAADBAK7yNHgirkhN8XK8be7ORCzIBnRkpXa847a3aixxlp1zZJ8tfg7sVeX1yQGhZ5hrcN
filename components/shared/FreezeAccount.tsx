@@ -2,7 +2,10 @@ import { NextPage } from "next";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import ArrowBracket from "../ui/ArrowBracket";
+<<<<<<< HEAD
 import { Alert } from "./Alert";
+=======
+>>>>>>> arti
 import {
   Drawer,
   DrawerContent,
@@ -15,6 +18,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Link } from "@/i18n/routing";
 import { useThemeStore } from "@/store";
+import { Confirmation_dialog } from './Confirmation_dialog'
 
 interface Props {
   propsItem: React.ReactNode;
@@ -186,8 +190,8 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
                   Close
                 </Button>
               </DrawerClose>
-              <Alert
-                className={"z"}
+              <Confirmation_dialog
+                className={"max-w-[23rem]"}
                 content={
                   "This action cannot be undone. Your account will be freezed."
                 }

@@ -9,9 +9,7 @@ import clsx from "clsx";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-
 import { Providers } from "./providers";
-
 import { routing } from "@/i18n/routing";
 import { siteConfig } from "@/config/site";
 import { fontSans } from '@/config/fonts'
@@ -46,7 +44,7 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html suppressHydrationWarning lang={locale}>
+    <html suppressHydrationWarning lang={locale} className='!bg-[#0c0c0c]'>
       <head />
       <body
         className={clsx(

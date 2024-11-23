@@ -1,8 +1,12 @@
-export const Logo_header = () => {
+import { NextPage } from 'next'
+interface Props {
+  className?: string
+}
+export const Logo_header: NextPage<Props> = ({className}) => {
   return (
     <div className="svg__container">
       <svg
-        className="theme-icon"
+        className={`theme-icon ${className}`}
         fill="none"
         height="52.000000"
         viewBox="0 0 124 52"

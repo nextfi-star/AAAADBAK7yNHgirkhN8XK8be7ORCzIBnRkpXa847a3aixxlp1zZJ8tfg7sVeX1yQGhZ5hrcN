@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { NextPage } from 'next'
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { Button } from '@nextui-org/button'
 import { Link } from '@/i18n/routing'
 import { FormLogo } from '@/components/ui/FormLogo'
@@ -25,7 +25,7 @@ const LogIn: NextPage = () => {
 	const [getAccess] = useState<boolean>(false)
 	const [errorMessage, setErrorMessage] = useState('')
 	const router = useRouter()
-
+	const params = useParams()
 	useEffect(() => {
 		initializeTheme()
 	}, [initializeTheme])
@@ -53,20 +53,23 @@ const LogIn: NextPage = () => {
 	}
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		const res = await fetch('/api/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ email, password }),
-		})
-		const data = await res.json()
+		try {
+			const res = await fetch('/api/login', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ email, password }),
+			})
+			const data = await res.json()
 
-		if (res.status === 200) {
-			console.log('Login successful', data)
-			router.push('/en/over')
-		} else {
-			console.error('Login failed', data)
+			if (res.ok) {
+				localStorage.setItem('token', data.token)
+				router.push(`/${params.locale}/over`)
+			} else {
+				setErrorMessage(data.message || 'Login failed')
+			}
+		} catch (error) {
+			console.error('Error logging in:', error)
+			setErrorMessage('Something went wrong. Please try again later.')
 		}
 	}
 
@@ -89,7 +92,7 @@ const LogIn: NextPage = () => {
 					Phone number
 				</Button>
 			</div>
-			<form className='form login__form' onSubmit={handleSubmit}>
+			<form className='form login__form'>
 				<input
 					id='login'
 					placeholder={mode === 'email' ? 'E-mail' : 'Phone number'}

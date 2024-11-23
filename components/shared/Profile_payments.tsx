@@ -5,7 +5,6 @@ import { NextPage } from "next";
 import { DateRangePicker } from "@nextui-org/date-picker";
 
 import { useThemeStore } from "../../store/index";
-
 import { Profile_industry } from "./Profile__industry";
 import DataTable_verif from "./DataTable_verif";
 import DataTable_unverif from "./DataTable_unverif";

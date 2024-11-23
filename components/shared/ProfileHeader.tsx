@@ -1,37 +1,167 @@
 'use client'
 import { useTranslations } from 'next-intl'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import clsx from 'clsx'
 import { NextPage } from 'next'
-
-import { Link } from '../../i18n/routing'
-import { User } from '../ui/User'
-import { Download2 } from '../ui/download2'
-import { useThemeStore } from '../../store'
-import { Logo_header } from '../ui/Logo_header'
-import { Chat } from '../ui/Chat'
-
+import { Link } from '@/i18n/routing'
+import { useThemeStore } from '@/store'
 import { Burger_profile } from './Burger_profile'
 import Locale_Switcher from './Locale_Switcher'
 import Theme_switch from './Theme_switch'
 import { Navigation } from './Navigation'
 import { BurgerIcon } from './BurgerIcon'
 import { Platform_mode } from './Platform_mode'
+<<<<<<< HEAD
+=======
+import { A_Chat_mobile } from './A_Chat_mobile'
+import { DropDown_menu } from './DropDown_menu'
+import {
+	ArrowDown,
+	BriefcaseBusiness,
+	ChartBarDecreasing,
+	ChartPie,
+	CircleArrowDown,
+	CircleDollarSign,
+	CircleFadingArrowUp,
+	IdCard,
+	Power,
+	Repeat,
+	ShieldCheck,
+	TabletSmartphone,
+	TrendingUp,
+	User2,
+} from 'lucide-react'
+import { Logo_header } from '../ui/Logo_header'
+>>>>>>> arti
 
 interface Props {
 	auth: boolean
 }
+export interface DropData {
+	title: string
+	key: string
+	href: string
+	verify?: () => void
+	icon?: string | JSX.Element
+}
+
 export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 	const t = useTranslations('nav')
 	const [show, setShow] = useState(true)
-	const menuRef = useRef(null)
 	const { theme, setVerifyState } = useThemeStore()
 	const classChange = clsx('m_header__profile_menu', { active: !show })
 
+	const dropData: DropData[] = useMemo(
+		() => [
+			{
+				title: 'Assets',
+				key: 'assets',
+				href: '/assets',
+				icon: <BriefcaseBusiness strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Swap',
+				key: 'swap',
+				href: '/swap',
+				icon: <Repeat strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Withdrawal',
+				key: 'withdrawal',
+				href: '/withdrawal',
+				icon: <CircleArrowDown strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Invest',
+				key: 'invest',
+				href: '/invest',
+				icon: <TrendingUp strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Levels',
+				key: 'levels',
+				href: '/tier',
+				icon: <ChartBarDecreasing strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Deposit',
+				key: 'deposit',
+				href: '/deposit',
+				icon: <ArrowDown strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+		],
+		[setVerifyState]
+	)
+	const dropData2: DropData[] = useMemo(
+		() => [
+			{
+				title: 'Overview',
+				key: 'over',
+				href: '/over',
+				icon: <ChartPie strokeWidth={1} />,
+				verify: () => setVerifyState(false),
+			},
+			{
+				title: 'Profile',
+				key: 'profile',
+				href: '/profile',
+				icon: <User2 strokeWidth={1} />,
+				verify: () => setVerifyState(false),
+			},
+			{
+				title: 'Security',
+				key: 'security',
+				href: '/security',
+				icon: <ShieldCheck strokeWidth={1} />,
+				verify: () => setVerifyState(false),
+			},
+			{
+				title: 'Verification',
+				key: 'verification',
+				href: '/verify',
+				icon: <IdCard strokeWidth={1} />,
+				verify: () => setVerifyState(false),
+			},
+			{
+				title: 'Authorized Devices',
+				key: 'devices',
+				href: '/devices',
+				icon: <TabletSmartphone strokeWidth={1} />,
+				verify: () => setVerifyState(false),
+			},
+			{
+				title: 'Deposit',
+				key: 'deposit',
+				href: '/deposit',
+				icon: <ArrowDown strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Invest',
+				key: 'invest',
+				href: '/invest',
+				icon: <TrendingUp strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+			{
+				title: 'Log out',
+				key: 'out',
+				href: '#',
+				icon: <Power strokeWidth={1} />,
+				verify: () => setVerifyState(true),
+			},
+		],
+		[setVerifyState]
+	)
 	const handleClick = () => {
 		setShow(!show)
 	}
-
 	useEffect(() => {
 		const header = document.querySelector('header')
 		const handleScroll = () => {
@@ -43,9 +173,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 				header?.classList.remove('box-shadow')
 			}
 		}
-
 		window.addEventListener('scroll', handleScroll)
-
 		return () => {
 			window.removeEventListener('scroll', handleScroll)
 		}
@@ -54,16 +182,16 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 	return (
 		<header className='header py-[1.5rem]' id='header'>
 			<div className='flex justify-between items-center site-holder'>
-				<a className='header__logo' href=''>
-					<Logo_header />
-				</a>
-				<div className={`${classChange}`} onClick={handleClick}>
-					<BurgerIcon color={theme === 'dark' ? 'white' : 'black'} />
+				<div className='flex items-center gap-[40px]'>
+					<a className='hidden xl:block' href=''>
+						<Logo_header className='min-w-[123px] -mt-[20px]' />
+					</a>
+					<div className={`${classChange}`} onClick={handleClick}>
+						<BurgerIcon color={theme === 'dark' ? 'white' : 'black'} />
+					</div>
+					<Platform_mode />
+					<Burger_profile handleClick={handleClick} show={show} />
 				</div>
-
-				<Platform_mode />
-
-				<Burger_profile handleClick={handleClick} show={show} />
 
 				<Navigation />
 
@@ -80,29 +208,30 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 							</>
 						) : (
 							<>
-								<div className='profile__header__icons hidden sm:flex items-center gap-[5px]'>
-									<Link href={'/assets'} onClick={() => setVerifyState(true)}>
-										Assets
-									</Link>
-									<Link
-										className='user'
-										href='/over'
-										onClick={() => setVerifyState(false)}
-									>
-										<User
-											className={'user'}
-											color={theme === 'dark' ? 'white' : 'black'}
-										/>
-									</Link>
-									<Link href='/'>
-										<Download2 color={theme === 'dark' ? 'white' : 'black'} />
-									</Link>
-									<a className='header__icons-item' href='#'>
+								<div className='profile__header__icons hidden sm:flex items-center gap-[20px]'>
+									<DropDown_menu
+										hasProfile={false}
+										data={dropData}
+										defaultItem={'Assets'}
+										triggerTitle='Assets'
+									/>
+									<DropDown_menu
+										hasProfile={true}
+										data={dropData2}
+										defaultItem={<User2 strokeWidth={1} className={'user'} />}
+									/>
+									<div className='header__icons-item'>
 										<Theme_switch />
-									</a>
+									</div>
 									<button className='header__icons-item'>
 										<Locale_Switcher />
 									</button>
+									{/* <Confirmation_dialog
+										title='Are you absolutelu sure?'
+										content='This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'
+										titleTriger={<LogOut className=' min-w-[23px]' />}
+										className='!border-0 w-[44px] !p-0 !px-0 hidden xl:block'
+									/> */}
 								</div>
 
 								<div className='flex items-center sm:hidden gap-[5px] sm:gap-[18px]'>
@@ -112,13 +241,9 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 									<button className='header__icons-item flex items-center'>
 										<Locale_Switcher />
 									</button>
-									<button className='header__icons-item flex items-center'>
-										<Chat
-											color={theme === 'dark' ? 'white' : 'black'}
-											height={30}
-											width={20}
-										/>
-									</button>
+									<div className='header__icons-item'>
+										<A_Chat_mobile />
+									</div>
 								</div>
 							</>
 						)}
