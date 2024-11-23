@@ -11,8 +11,6 @@ import Theme_switch from './Theme_switch'
 import { Navigation } from './Navigation'
 import { BurgerIcon } from './BurgerIcon'
 import { Platform_mode } from './Platform_mode'
-<<<<<<< HEAD
-=======
 import { A_Chat_mobile } from './A_Chat_mobile'
 import { DropDown_menu } from './DropDown_menu'
 import {
@@ -32,7 +30,6 @@ import {
 	User2,
 } from 'lucide-react'
 import { Logo_header } from '../ui/Logo_header'
->>>>>>> arti
 
 interface Props {
 	auth: boolean
