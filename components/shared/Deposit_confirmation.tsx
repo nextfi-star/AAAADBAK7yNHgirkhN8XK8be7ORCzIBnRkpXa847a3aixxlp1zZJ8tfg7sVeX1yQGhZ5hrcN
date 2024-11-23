@@ -13,8 +13,8 @@ import { useThemeStore } from '@/store'
 import { Divider } from '@nextui-org/divider'
 import { NextPage } from 'next'
 import { Cross2Icon } from '@radix-ui/react-icons'
-import { Image } from '@nextui-org/react'
-import { useState } from 'react'
+import { Image, Snippet, Spinner } from '@nextui-org/react'
+import { useEffect, useState } from 'react'
 import Withdrawal_animation from './Withdrawal_animation'
 import { CryptoData } from './Withdrawal_steps'
 
@@ -38,7 +38,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 	selectedCrypto,
 	setSelectedCrypto,
 }) => {
-	const { theme, confirmationStep, setConfirmStep, setStep } = useThemeStore()
+	const { theme, confirmationStep, setConfirmStep, setStep, step } = useThemeStore()
 	const [checked, setChecked] = useState(false)
 	const DropSteps = () => {
 		setStep(1)
@@ -49,6 +49,16 @@ export const Deposit_confirmation: NextPage<Props> = ({
 		setInputStep2('')
 		setInput2Step2('')
 	}
+
+	useEffect(() => {
+		if (confirmationStep === 2) {
+			const timer = setTimeout(() => {
+				setConfirmStep(3)
+				clearTimeout(timer)
+			}, 5000)
+		}
+	}, [confirmationStep])
+	
 	return (
 		<Dialog>
 			<DialogTrigger asChild className='!hover:bg-[#205BC9]'>
@@ -61,10 +71,10 @@ export const Deposit_confirmation: NextPage<Props> = ({
 			</DialogTrigger>
 
 			{confirmationStep === 1 && (
-				<DialogContent className='max-w-[90%] md:max-w-[38rem] w-full p-0 rounded-[20px]'>
+				<DialogContent className='max-w-[90%] md:max-w-[38rem] w-full p-0 rounded-[20px] !bg-[#000]'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
-							Confirm to deposit
+							Make a deposit
 							<DialogClose asChild>
 								<Cross2Icon className='h-[32px] w-[32px]' />
 							</DialogClose>
@@ -72,26 +82,30 @@ export const Deposit_confirmation: NextPage<Props> = ({
 						<Divider className='m-0 space-0' />
 						<div className='p-[21px] flex flex-col gap-[28px]'>
 							<article className='dark:bg-[#7676801F] rounded-[6px] flex flex-col gap-[28px] py-[21px] px-[18px] md:px-[21px]'>
-								<div className='flex items-center w-full justify-between overflow-hidden'>
+								<div className='flex flex-col items-center w-full justify-between overflow-hidden'>
 									<DialogDescription className='flex flex-col gap-[1px] text-[14px] md:text-[20px]'>
-										On-Chain <span>Withdrawal</span>
+										On-chain Deposit address
 									</DialogDescription>
 
-									<DialogDescription className='flex items-center justify-end gap-[1px] md:gap-[16px] dark:text-white text-[12px] md:text-[20px] w-full '>
+									<DialogDescription className='flex items-center justify-center gap-[1px] md:gap-[16px] dark:text-white text-[12px] md:text-[20px] w-full '>
 										<span className='p-[5px] text-white bg-[#205BC9] rounded-[4px] ]'>
 											TRC20
-										</span>
-										QnC4Nssok2bb3l0Iue1Own
+										</span>{' '}
+										<Snippet
+											symbol=''
+											className='text-bold md:text-[20px] text-small capitalize overflow-ellipsis whitespace-nowrap overflow-hidden bg-transparent px-0'
+										>
+											QnC4Nssok2bb3l0Iue1Own
+										</Snippet>
 									</DialogDescription>
 								</div>
-								<div className='flex items-center w-full justify-between'>
+								<div className='flex flex-col items-center w-full justify-between'>
 									<DialogDescription className='flex flex-col gap-[1px] text-[14px] md:text-[20px]'>
-										Actual Amount <span>Received</span>
+										The amount of the deposit
 									</DialogDescription>
 
 									<DialogDescription className='flex items-center gap-[4px] dark:text-white text-[14px] md:text-[20px]'>
-										112.720 {selectedCrypto?.name} (Fee: 10
-										{selectedCrypto?.name})
+										112.720 {selectedCrypto?.name}
 									</DialogDescription>
 								</div>
 							</article>
@@ -120,7 +134,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 										</svg>
 									</span>
 									<DialogDescription className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] text-left text-[#888888] leading-[1]'>
-										I confirm the withdrawal of funds to the address
+										I confirm that the transfer of funds has been completed
 									</DialogDescription>
 								</label>
 							</div>
@@ -134,7 +148,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 								variant='secondary'
 								className={`border-1 w-fit border-solid dark:border-[#fff] rounded-[50px] bg-transparent hover:bg-transparent min-w-[124px]`}
 							>
-								Close
+								Back
 							</Button>
 						</DialogClose>
 						<Button
@@ -144,62 +158,27 @@ export const Deposit_confirmation: NextPage<Props> = ({
 							className='bg-[#205BC9] text-white w-fit rounded-[50px] hover:bg-[#205BC9] min-w-[124px]'
 							disabled={!checked}
 						>
-							Continue
+							Confirm
 						</Button>
 					</DialogFooter>
 				</DialogContent>
 			)}
 
 			{confirmationStep === 2 && (
-				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full p-0 rounded-[20px]'>
+				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full p-0 rounded-[20px] !bg-[#000]'>
 					<DialogHeader>
-						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
-							Security Verification
-							<DialogClose asChild>
-								<Cross2Icon className='h-[32px] w-[32px]' />
-							</DialogClose>
+						<DialogTitle className='text-[22px] lg:text-[27px] p-[20px_41px_19px] flex items-center justify-between w-full'>
+							Waiting for confirmation from the network
 						</DialogTitle>
 						<Divider className='m-0' />
 						<div className='p-[21px] flex flex-col gap-[28px]'>
 							<article className='rounded-[6px] flex flex-col gap-[28px] py-[21px]'>
 								<div className='flex flex-col gap-[36px]'>
-									<label className='flex flex-col gap-[8px]'>
-										<div className='flex items-start gap-[10px]'>
-											<Image
-												src={'/main/withdraw_confirmation/mail.svg'}
-												className='min-w-[28px] rounded-none'
-											/>
-											<DialogDescription className='text-[20px] text-[#888888]'>
-												A verification code will be sent to asdadasd@mail.ru
-											</DialogDescription>
-										</div>
-										<div className='relative w-full'>
-											<input
-												type='text'
-												placeholder='Please enter the email verification'
-												className='text-[16px] bg-[#7676801F] rounded-[20px] h-[50px] px-[15px] w-full'
-											/>
-											<p className='text-[#205BC9] font-bold text-[16px] absolute top-[13px] right-[17px]'>
-												Send verification code
-											</p>
-										</div>
-									</label>
-									<label className='flex flex-col gap-[8px]'>
-										<div className='flex items-start gap-[10px]'>
-											<Image
-												src={'/main/withdraw_confirmation/google.svg'}
-												className='min-w-[28px] rounded-none'
-											/>
-											<DialogDescription className='text-[20px] text-[#888888]'>
-												Google 2FA Code
-											</DialogDescription>
-										</div>
-										<input
-											type='text'
-											placeholder='Please enter the Google Aunteficator code'
-											className='text-[16px] bg-[#7676801F] rounded-[20px] h-[50px] px-[15px]'
-										/>
-									</label>
+									<Spinner className='' />
+									<p className='text-[20px] dark:text-[#888] text-[#0c0c0]'>
+										You can interrupt the waiting and go to the overview, the
+										funds will be credited to the balance automatically
+									</p>
 								</div>
 							</article>
 						</div>
@@ -209,22 +188,20 @@ export const Deposit_confirmation: NextPage<Props> = ({
 						<Button
 							onClick={() => setConfirmStep(3)}
 							type='button'
-							variant='secondary'
-							className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] min-w-[124px] h-[48px] flex items-center justify-center'
+							variant='default'
+							className='bg-transparent w-full text-white rounded-[50px] hover:bg-transparent min-w-[124px] h-[48px] flex items-center justify-center shadow-none text-[20px]'
 						>
-							Confrim
+							Back to overview
 						</Button>
 					</DialogFooter>
 				</DialogContent>
 			)}
 
 			{confirmationStep === 3 && (
-				<DialogContent className='max-w-[90%] md:max-w-[576px] w-full p-0 rounded-[20px]'>
+				<DialogContent className='max-w-[90%] md:max-w-[576px] w-full p-0 rounded-[20px] !bg-[#000]'>
 					<DialogHeader>
-						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
-							<DialogClose asChild>
-								<Cross2Icon className='h-[32px] w-[32px] pointer-events-none opacity-0' />
-							</DialogClose>
+						<DialogTitle className='text-[22px] md:text-[27px] p-[20px_41px_19px] flex items-center justify-center w-full'>
+							Success
 						</DialogTitle>
 						<Divider className='m-0' />
 						<div className='p-[21px] flex flex-col gap-[28px]'>
@@ -232,8 +209,8 @@ export const Deposit_confirmation: NextPage<Props> = ({
 								<div className='absolute left-[50%] -top-[46%] md:-top-[84%] translate-x-[-50%]'>
 									<Withdrawal_animation />
 								</div>
-								<DialogDescription className='text-[25px] font-bold dark:text-white text-[#0c0c0c] min-h-[150px] w-full flex flex-col justify-end items-center'>
-									Withdrawal Application Submitetted
+								<DialogDescription className='text-[20px] font-bold dark:text-white text-[#888] min-h-[150px] w-full flex flex-col justify-end items-center'>
+									The funds will be credited to your balance soon
 								</DialogDescription>
 							</article>
 						</div>

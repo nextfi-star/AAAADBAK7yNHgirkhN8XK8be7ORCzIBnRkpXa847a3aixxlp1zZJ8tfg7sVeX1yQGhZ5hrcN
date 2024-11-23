@@ -53,7 +53,6 @@ export const A_Chat: NextPage = () => {
 		if (socket.connected) {
 			onConnect()
 		}
-
 		function onConnect() {
 			setIsConnected(true)
 			setTransport(socket.io.engine.transport.name)
@@ -61,36 +60,28 @@ export const A_Chat: NextPage = () => {
 				setTransport(transport.name)
 			})
 		}
-
 		function onDisconnect() {
 			setIsConnected(false)
 			setTransport('N/A')
 		}
-
-		// Получаем историю сообщений
 		socket.on('allMessages', messages => {
-			setMessages(messages) // Устанавливаем историю сообщений
+			setMessages(messages)
 		})
-
-		// Обработка нового сообщения
 		socket.on('message', message => {
 			setMessages(prev => {
-				// Проверяем, если такое сообщение уже есть
 				if (
 					!prev.some(
 						msg =>
 							msg.content === message.content && msg.sender === message.sender
 					)
 				) {
-					return [...prev, message] // Добавляем новое сообщение
+					return [...prev, message]
 				}
-				return prev // Если сообщение уже есть, не добавляем
+				return prev
 			})
 		})
-
 		socket.on('connect', onConnect)
 		socket.on('disconnect', onDisconnect)
-
 		return () => {
 			socket.off('connect', onConnect)
 			socket.off('disconnect', onDisconnect)

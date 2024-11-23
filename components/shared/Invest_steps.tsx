@@ -149,7 +149,7 @@ const Invest_steps: NextPage<Props> = () => {
 										<Button
 											variant='outline'
 											size='sm'
-											className='w-full h-[58px] rounded-[20px] max-w-[655px] justify-start bg-[#7676801F] hover:bg-[#7676801F] text-[20px] font-medium'
+											className='w-full h-[58px] rounded-[20px] max-w-[294px] sm:max-w-[962px] justify-start bg-[#7676801F] hover:bg-[#7676801F] text-[20px] font-medium'
 										>
 											{selectedInvest ? (
 												<div className='flex w-full justify-between gap-[8px] items-center'>
@@ -191,7 +191,7 @@ const Invest_steps: NextPage<Props> = () => {
 										side='bottom'
 										align='start'
 									>
-										<Command className='bg-[#eee] dark:bg-[#19191A] w-[286px] md:w-[600px] lg:w-[650px] xl:w-[569px] 2xl:w-[650px]'>
+										<Command className='bg-[#eee] dark:bg-[#19191A]  w-[285px] md:w-[603px] lg:w-[799px] xl:w-[794px] 2xl:w-[962px]'>
 											<CommandList className='bg-[#eee] dark:bg-[#19191A] px-[10px]'>
 												<CommandEmpty>
 													<NotFoundItem />
@@ -271,7 +271,7 @@ const Invest_steps: NextPage<Props> = () => {
 
 						{step >= 2 && (
 							<div className='id-1 flex flex-col gap-[31px] ml-[47px]'>
-								<div className='flex flex-col max-w-[655px] gap-[15px] md:gap-[45px]'>
+								<div className='flex flex-col max-w-[294px] sm:max-w-[962px] gap-[15px] md:gap-[45px]'>
 									<Popover open={openPeriod} onOpenChange={setOpenPeriod}>
 										<PopoverTrigger asChild>
 											<Button
@@ -311,7 +311,7 @@ const Invest_steps: NextPage<Props> = () => {
 											side='bottom'
 											align='start'
 										>
-											<Command className='bg-[#eee] dark:bg-[#19191A] w-[286px] md:w-[600px] lg:w-[650px] xl:w-[569px] 2xl:w-[650px]'>
+											<Command className='bg-[#eee] dark:bg-[#19191A] w-[285px] md:w-[603px] lg:w-[799px] xl:w-[794px] 2xl:w-[962px]'>
 												<CommandList className='bg-[#eee] dark:bg-[#19191A] px-[10px]'>
 													<CommandEmpty>
 														<NotFoundItem />
@@ -375,7 +375,7 @@ const Invest_steps: NextPage<Props> = () => {
 						</div>
 						{step >= 2 && (
 							<div className='flex flex-col gap-[15px] w-full ml-[47px] pr-[35px]'>
-								<div className='flex flex-col gap-[10px] w-full max-w-[655px]'>
+								<div className='flex flex-col gap-[10px] w-full max-w-[294px] sm:max-w-[962px]'>
 									<Input
 										aria-labelledby='Enter the amount'
 										placeholder='Enter the amount'

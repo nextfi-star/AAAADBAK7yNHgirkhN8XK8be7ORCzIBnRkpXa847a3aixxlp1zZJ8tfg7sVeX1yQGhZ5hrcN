@@ -4,7 +4,7 @@ import { NextPage } from 'next'
 export const SkeletonCard_invest: NextPage = () => {
 	return (
 		<Card
-			className='w-full  bg-[#1E1E1E66] rounded-[30px] min-h-[360px] max-w-[650px] flex items-center justify-center'
+			className='w-full bg-[#1E1E1E66] rounded-[30px] min-h-[360px] max-w-[650px] flex items-center justify-center'
 			radius='lg'
 		>
 			<Spinner className='' />

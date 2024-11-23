@@ -79,10 +79,10 @@ export const DropDown_menu: NextPage<Props> = ({
 											width={42}
 										/>
 										<div className='flex flex-col items-stretch'>
-											<p className='text-[13px] dark:text-[#eeeeee] text-[#1e1e1e66]'>
+											<p className='text-[13px] dark:text-[#eeeeee] text-[#0c0c0c]'>
 												user***@gmail.com
 											</p>
-											<p className='text-[13px] text-[#888888]'>UID: 987987</p>
+											<p className='text-[13px] text-[#0c0c0c] dark:text-[#eeeeee]'>UID: 987987</p>
 										</div>
 									</div>
 									<CommandSeparator className='mb-[10px] h-[1px] w-full ml-0 my-[10px]' />

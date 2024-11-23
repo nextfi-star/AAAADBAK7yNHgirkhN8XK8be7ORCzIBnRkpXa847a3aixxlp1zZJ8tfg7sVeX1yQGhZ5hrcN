@@ -3721,7 +3721,7 @@ body {
 	}
 
 	.profile {
-		max-width: 1656px;
+		max-width: 1920px;
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
@@ -5250,7 +5250,6 @@ body {
 	flex-direction: column;
 	border-radius: 30px;
 	padding: 40px 98px 48px 45px;
-	box-shadow: 0 0 5px #3333;
 
 	@media (max-width: 1024px) {
 		padding: 40px 48px 48px 45px;

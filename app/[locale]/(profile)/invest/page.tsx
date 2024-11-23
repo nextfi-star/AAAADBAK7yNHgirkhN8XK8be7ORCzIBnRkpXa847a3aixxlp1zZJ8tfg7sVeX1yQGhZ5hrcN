@@ -28,7 +28,7 @@ const Invest: NextPage = () => {
 	return (
 		<section className='invest -mt-[8rem] md:-mt-[4rem] lg:mt-[4.5rem] pb-[1.5rem] top-mobile'>
 			<Page_title title='Investing' DropSteps={DropSteps} />
-			<div className='grid xl:grid-cols-[1fr_1fr] gap-[31px] mb-[33px]'>
+			<div className='grid xl:grid-cols-[2fr_1fr] gap-[31px] mb-[33px]'>
 				<div className=''>
 					<Invest_steps />
 				</div>
