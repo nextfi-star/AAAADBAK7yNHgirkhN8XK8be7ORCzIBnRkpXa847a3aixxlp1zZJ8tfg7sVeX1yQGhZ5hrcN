@@ -1,10 +1,8 @@
 "use client";
 import type { NextPage } from "next";
-
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
-
 import Preloader from "@/components/shared/Preloader";
 import { useThemeStore } from "@/store";
 import {
@@ -31,7 +29,6 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 3000);
-
     return () => clearTimeout(timer);
   }, []);
 

@@ -2,15 +2,12 @@
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { NextPage } from "next";
-
 import { Download2 } from "../ui/download2";
 import { User } from "../ui/User";
-
 import { Navigation } from "./Navigation";
 import Theme_switch from "./Theme_switch";
 import Locale_Switcher from "./Locale_Switcher";
 import { Burger } from "./Burger";
-
 import { useThemeStore } from "@/store";
 import { Link } from "@/i18n/routing";
 import { Logo_header } from "@/components/ui/Logo_header";
@@ -51,7 +48,7 @@ export const Header: NextPage<Props> = ({ auth = true }) => {
         >
           {!auth && (
             <a className="header__logo" href="">
-              <Logo_header />
+              <Logo_header className='min-w-[123px]'/>
             </a>
           )}
 

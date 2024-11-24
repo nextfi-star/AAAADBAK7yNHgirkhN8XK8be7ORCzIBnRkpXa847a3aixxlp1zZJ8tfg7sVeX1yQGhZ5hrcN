@@ -130,7 +130,7 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 											<span className='underline'>disclamer</span>
 										</span>
 										<Button
-											className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9'
+											className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9 rounded-[30px]'
 											onClick={() => setStep(prev => (prev = 2))}
 										>
 											Next
@@ -178,13 +178,13 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 										</span>
 										<div className='flex items-center gap-[10px]'>
 											<Button
-												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9'
+												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9 rounded-[30px]'
 												onClick={() => setStep(prev => (prev = 1))}
 											>
 												Back
 											</Button>
 											<Button
-												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9'
+												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9 rounded-[30px]'
 												onClick={() => setStep(prev => (prev = 3))}
 											>
 												Next
@@ -213,20 +213,20 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 											Email authentication
 											<div className='relative w-full'>
 												<Input
-													className='border border-solid border-black shadow-none dark:border-white text-[16px] xl:text-[25px] py-[10px] lg:py-[1.5rem] 2xl:py-[1.9rem]'
+													className='border border-solid shadow-none text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px]'
 													placeholder='Enter code'
 													type='text'
 												/>
-												<button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[14px] xl:text-[20px] border border-solid rounded-[50px] dark:border-white border-black py-[2px] px-[7px] cursor-pointer dark:bg-[#0c0c0c] bg-white'>
+												<button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[16px] border border-solid rounded-[50px] dark:border-white border-black py-[2px] px-[7px] cursor-pointer dark:bg-[#0c0c0c] bg-white'>
 													Send Code
 												</button>
 											</div>
 										</label>
-										<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
+										<label className='text-[#181818] dark:text-white text-[16px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
 											Current authenticator app
 											<div className='w-full'>
 												<Input
-													className='border border-solid border-black shadow-none dark:border-white text-[16px] xl:text-[25px] py-[10px] lg:py-[1.5rem] 2xl:py-[1.9rem]'
+													className='border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] shadow-none text-[16px] rounded-[30px] '
 													placeholder='Enter 6-digit generated code from your app'
 													type='text'
 												/>

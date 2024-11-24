@@ -66,7 +66,7 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
 								Current password
 								<Input
-									className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
+									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
 									placeholder='Enter your current password'
 									type='text'
 								/>
@@ -78,8 +78,8 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
 								New password
 								<Input
-									className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
-									placeholder='Enter your new password'
+									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
+									placeholder='Enter your current password'
 									type='text'
 								/>
 							</label>
@@ -90,8 +90,8 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
 								Confirm new password
 								<Input
-									className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
-									placeholder='Enter your new password again'
+									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
+									placeholder='Enter your current password'
 									type='text'
 								/>
 							</label>
@@ -102,8 +102,8 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
 								Email authentication
 								<Input
-									className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
-									placeholder='Enter code'
+									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
+									placeholder='Enter your current password'
 									type='text'
 								/>
 							</label>
@@ -114,8 +114,8 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
 								Authenticator app
 								<Input
-									className='border border-solid border-black shadow-none dark:border-white text-[16px] py-[10px] 2xl:py-[1rem]'
-									placeholder='Enter code'
+									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
+									placeholder='Enter your current password'
 									type='text'
 								/>
 							</label>
@@ -154,7 +154,9 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 				</div>
 				<AlertDialogFooter className='px-[30px] pt-[15px] h-fit items-center gap-[30px]'>
 					<AlertDialogAction
-						className={'text-[16px] xl:text-[22px] px-[20px] 2xl:px-[40px]'}
+						className={
+							'text-[16px] xl:text-[22px] px-[20px] 2xl:px-[40px] rounded-[30px]'
+						}
 					>
 						Confirm
 					</AlertDialogAction>
