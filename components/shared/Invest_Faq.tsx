@@ -43,6 +43,13 @@ const data = [
 		id: 5,
 		val: '5',
 	},
+	{
+		title: 'How can I deposit/withdraw the crypto converted?',
+		content:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		id: 6,
+		val: '6',
+	},
 ]
 export const Invest_Faq: NextPage = () => {
 	return (

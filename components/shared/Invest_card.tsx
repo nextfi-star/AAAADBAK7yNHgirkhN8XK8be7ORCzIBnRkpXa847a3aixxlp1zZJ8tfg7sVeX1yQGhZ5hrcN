@@ -98,7 +98,7 @@ export const Invest_card: NextPage<Props> = () => {
 										content={'I confirm the early withdrawal with percent'}
 									/>
 									<Button
-										className='max-w-[188px] w-full p-[8px_4px] bg-[#205BC9] rounded-[50px]'
+										className='max-w-[188px] w-full p-[8px_4px] text-white bg-[#205BC9] rounded-[50px]'
 										onClick={handleChange}
 									>
 										Withdraw funds
@@ -208,7 +208,7 @@ export const Invest_card: NextPage<Props> = () => {
 									</p>
 								</div>
 
-								<Button className='max-w-[188px] w-full p-[8px_4px] bg-[#29292B] rounded-[50px]'>
+								<Button className='max-w-[188px] w-full p-[8px_4px] bg-[#29292B] text-white rounded-[50px]'>
 									Get
 								</Button>
 							</div>

@@ -379,7 +379,7 @@ const Invest_steps: NextPage<Props> = () => {
 									<Input
 										aria-labelledby='Enter the amount'
 										placeholder='Enter the amount'
-										type='number'
+										type='text'
 										classNames={{
 											base: 'bg-tranparent ',
 											inputWrapper:
