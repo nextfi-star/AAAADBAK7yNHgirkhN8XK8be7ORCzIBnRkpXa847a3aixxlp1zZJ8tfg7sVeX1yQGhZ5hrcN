@@ -121,7 +121,7 @@ const Invest_steps: NextPage<Props> = () => {
 	}
 
 	return (
-		<div className='shadow-lg dark:shadow-none rounded-[30px] p-[0px_16px_29px_16px] md:p-[0px_29px_29px_29px]'>
+		<div className='shadow-none dark:shadow-none rounded-[30px] p-[0px_16px_29px_16px] md:p-[0px_29px_29px_29px]'>
 			<div className='flex justify-start gap-[10px] w-full pb-[1.5rem]'>
 				<div
 					className={`flex flex-col gap-[20px] md:gap-[89px] relative after:absolute after:content-[''] after:min-w-[1px] after:min-h-[90%] after:border after:border-dashed after:border-[#BDBDBD] after:left-[14px] after:bottom-[15px] after:top-[6px] w-full`}

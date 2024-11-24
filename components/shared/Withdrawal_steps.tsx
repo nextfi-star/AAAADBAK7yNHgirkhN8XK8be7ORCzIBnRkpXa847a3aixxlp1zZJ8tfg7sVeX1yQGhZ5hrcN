@@ -143,7 +143,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 		setSelectedCrypto(null)
 	}
 	return (
-		<div className='shadow-lg dark:shadow-none rounded-[30px] p-[29px_16px] md:p-[29px]'>
+		<div className='shadow-none dark:shadow-none rounded-[30px] p-[29px_16px] md:p-[29px]'>
 			<div className='flex justify-start gap-[10px] w-full  pb-[1.5rem]'>
 				<div className={'flex flex-col gap-[20px] w-full'}>
 					<div

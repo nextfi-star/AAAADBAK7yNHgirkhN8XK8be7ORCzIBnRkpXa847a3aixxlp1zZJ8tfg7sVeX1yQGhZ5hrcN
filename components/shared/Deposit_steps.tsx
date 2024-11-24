@@ -144,7 +144,7 @@ const Deposit_steps: NextPage<Props> = () => {
 		setSelectedCrypto(null)
 	}
 	return (
-		<div className='shadow-lg dark:shadow-none rounded-[30px] p-[29px_16px] md:p-[29px]'>
+		<div className=' dark:shadow-none rounded-[30px] p-[29px_16px] md:p-[29px]'>
 			<div className='flex justify-start gap-[10px] w-full  pb-[1.5rem]'>
 				<div className={'flex flex-col gap-[20px] w-full'}>
 					<div
@@ -173,13 +173,13 @@ const Deposit_steps: NextPage<Props> = () => {
 											<Button
 												variant='outline'
 												size='sm'
-												className='w-full h-[48px] rounded-medium max-w-[294px] sm:max-w-[962px] justify-start bg-[#7676801F] hover:bg-[#7676801F]'
+												className='w-full h-[48px] rounded-medium max-w-[294px] sm:max-w-[962px] justify-start bg-[#7676801F] hover:bg-[#7676801F] pl-[20px]'
 											>
 												{selectedCrypto ? (
 													<div className='flex w-full justify-between gap-[8px] items-center'>
 														<div className='flex items-center gap-[3px]'>
 															<Avatar src={selectedCrypto.avatar} />
-															<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
+															<p className='text-[18px] text-[#0c0c0c] dark:text-white'>
 																{selectedCrypto.name}
 															</p>
 														</div>
@@ -191,7 +191,7 @@ const Deposit_steps: NextPage<Props> = () => {
 													</div>
 												) : (
 													<div className='flex w-full justify-between gap-[8px] items-center'>
-														<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
+														<p className='text-[18px] text-[#0c0c0c] dark:text-white'>
 															Select crypto
 														</p>
 														<ChevronDown
@@ -231,9 +231,9 @@ const Deposit_steps: NextPage<Props> = () => {
 																<div className='flex items-center justify-between w-full'>
 																	<div className='flex items-center gap-[3px]'>
 																		<Avatar src={status.avatar} />
-																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
+																		<p className='text-[18px] text-[#205BC9] flex flex-col items-start'>
 																			{status.name}
-																			<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
+																			<span className='text-[18px] md:text-[20px] text-[#BDBDBD]'>
 																				{status.name}
 																			</span>
 																		</p>
@@ -309,13 +309,13 @@ const Deposit_steps: NextPage<Props> = () => {
 												>
 													<div className='flex gap-2 items-center justify-between rounded-[4px]'>
 														<div className='flex flex-col'>
-															<span className='text-small text-[#205BC9]'>
+															<span className='text-[18px] text-[#205BC9]'>
 																{networkData.name}
 															</span>
 														</div>
 														<div className='flex flex-col items-end'>
-															<span>{networkData.cryptoNumbers}</span>
-															<span className='text-[#BDBDBD]'>
+															<span className='text-[18px]'>{networkData.cryptoNumbers}</span>
+															<span className='text-[#BDBDBD] text-[18px]'>
 																{networkData.moreLess}
 															</span>
 														</div>
@@ -327,7 +327,7 @@ const Deposit_steps: NextPage<Props> = () => {
 										<input
 											type='text'
 											placeholder='Select address'
-											className='px-3 text-[16px] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
+											className='px-[20px] text-[18px] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
 											onChange={input2Step2Handler}
 										/>
 									</div>
@@ -358,7 +358,7 @@ const Deposit_steps: NextPage<Props> = () => {
 										<input
 											type='text'
 											placeholder='Enter the amount'
-											className='px-2 text-[16px] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center max-w-[962px]'
+											className='px-[20px] text-[18px] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center max-w-[962px]'
 											onChange={e => setInput3(e.target.value)}
 										/>
 										<span className='text-[18px] font-bold text-[#888888]'>

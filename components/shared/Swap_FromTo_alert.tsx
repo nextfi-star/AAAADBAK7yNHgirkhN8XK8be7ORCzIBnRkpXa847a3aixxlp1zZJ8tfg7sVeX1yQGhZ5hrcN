@@ -59,9 +59,9 @@ export const Swap_FromTo_alert: NextPage<Props> = ({ statuses }) => {
 						</div>
 					) : (
 						<div className='flex gap-[8px] items-center'>
-							<Avatar src={'/'} />
+							<Avatar src={'/payment_table/zro.svg'} />
 							<DialogDescription className='text-[16px] text-[#0c0c0c] dark:text-white'>
-								{swapPoppover_1}
+								Layer Zero
 							</DialogDescription>
 							<ChevronDown
 								strokeWidth={1}

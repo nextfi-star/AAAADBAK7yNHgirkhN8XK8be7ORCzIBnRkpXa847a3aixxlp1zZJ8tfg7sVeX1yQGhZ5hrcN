@@ -41,7 +41,7 @@ const INITIAL_VISIBLE_COLUMNS = [
 
 type User = (typeof usersDataW)[0]
 
-export default function Withdrawal_table() {
+export default function () {
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
 		new Set(INITIAL_VISIBLE_COLUMNS)
@@ -281,7 +281,7 @@ export default function Withdrawal_table() {
 			bottomContentPlacement='outside'
 			classNames={{
 				table: '!bg-transparent',
-				base: 'dark:!bg-[#1e1e1e66] rounded-[30px]',
+				base: 'dark:!bg-[#1e1e1e66] shadow-lg !bg-[#FFFFFF66] rounded-[30px]',
 				tbody: '!shadow-none',
 				wrapper: 'max-h-[503px] !bg-transparent shadow-none',
 				td: 'text-center',

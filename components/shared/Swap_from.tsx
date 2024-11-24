@@ -59,7 +59,7 @@ const Swap_from: NextPage = () => {
 					className='md:text-[20px] text-[#BDBDBD] md:font-medium flex-shrink-0 '
 					placeholder='Enter the amount'
 					classNames={{
-						base: 'max-w-[90%]'
+						base: 'max-w-[80%]'
 					}}
 				/>
 

@@ -59,7 +59,7 @@ const Swap_To: NextPage = () => {
 					placeholder='Enter the amount'
 					className='md:text-[20px] text-[#BDBDBD] font-medium'
 					classNames={{
-						base: 'max-w-[90%]'
+						base: 'max-w-[80%]'
 					}}
 				/>
 				<div className='flex items-center'>

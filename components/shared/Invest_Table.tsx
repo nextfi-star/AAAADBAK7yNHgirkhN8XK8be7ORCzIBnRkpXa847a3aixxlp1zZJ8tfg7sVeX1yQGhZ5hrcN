@@ -171,8 +171,8 @@ export default function Invest_Table() {
 	const topContent = React.useMemo(() => {
 		return (
 			<div className='flex flex-col gap-4'>
-				<div className='flex justify-between gap-3 items-end'>
-				<h1 className='text-[20px] xl:text-[32px]'>Investment history</h1>
+				<div className='flex justify-between gap-3 items-end p-[25px_20px_0px]'>
+					<h1 className='text-[20px] xl:text-[32px]'>Investment history</h1>
 					<div className='flex gap-3'>
 						<Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
@@ -266,12 +266,13 @@ export default function Invest_Table() {
 			bottomContentPlacement='outside'
 			title='Investment history'
 			classNames={{
+				table: '!bg-transparent',
+				base: 'dark:!bg-[#1e1e1e66] shadow-lg !bg-[#FFFFFF66] rounded-[30px]',
+				tbody: '!shadow-none',
+				wrapper: 'max-h-[503px] !bg-transparent shadow-none',
 				tr: 'bg-transparent !outline-0 !border-0 !shadow-none',
-				wrapper: 'max-h-[562px] h-full dark:bg-[#1E1E1E66] bg-[#fff] dark:!shadow-none',
 				td: '!pt-[17px] text-center border-0 border-b border-solid border-white',
 				th: 'text-center md:text-[20px] !bg-transparent outline-0 border-0 shadow-none',
-				base: '!shadow-none',
-				tbody: '!shadow-none'
 			}}
 			sortDescriptor={sortDescriptor}
 			topContent={topContent}
