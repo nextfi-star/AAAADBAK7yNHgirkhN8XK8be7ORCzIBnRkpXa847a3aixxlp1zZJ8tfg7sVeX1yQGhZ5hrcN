@@ -12,6 +12,7 @@ import { Skeleton } from '@nextui-org/skeleton'
 import { divider } from '@nextui-org/theme'
 import NotFoundItem from './NotFoundItem'
 import { Spinner } from '@nextui-org/spinner'
+import { SkeletonCard_invest } from '../ui/skeleton/SkeletonCard_invest'
 
 interface Props {
 	selectedCompany?: string
@@ -36,7 +37,7 @@ export const Invest_card: NextPage<Props> = () => {
 	return (
 		<>
 			{!globalCompany && !globalCompanyIcon && !globalPeriod ? (
-				<div className='bg-[#fff] shadow-xl dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px] overflow-hidden max-w-[650px] w-full flex justify-center items-center'>
+				<div className='bg-[#fff] shadow-xl dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px]  max-w-[650px] w-full flex justify-center items-center'>
 					<NotFoundItem
 						content='No records found'
 						subContent='Get started with your investment transaction '
@@ -45,9 +46,9 @@ export const Invest_card: NextPage<Props> = () => {
 			) : (
 				<>
 					{isLoading ? (
-						<Spinner className='rounded-[30px] min-h-[405px] overflow-hidden max-w-[650px] w-full' />
+						<SkeletonCard_invest />
 					) : change ? (
-						<div className='bg-[#fff] shadow-xl dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px] overflow-hidden max-w-[650px] w-full'>
+						<div className='bg-[#fff] shadow-xl dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px]  max-w-[650px] w-full'>
 							<div className='p-[18px_23px] flex w-full flex-col sm:flex-row items-center justify-between'>
 								<div className='flex items-center'>
 									<Image
@@ -56,7 +57,7 @@ export const Invest_card: NextPage<Props> = () => {
 										height={60}
 										alt='icon'
 									/>
-									<p className='text-[20px] text-[#BDBDBD] font-medium'>
+									<p className='text-[20px] text-[#3A3939] dark:text-[#eeeeee] font-medium'>
 										{globalCompany?.name}
 									</p>
 								</div>
@@ -107,7 +108,7 @@ export const Invest_card: NextPage<Props> = () => {
 							</div>
 						</div>
 					) : (
-						<div className='bg-[#fff] shadow-xl dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px] max-w-[650px] w-full overflow-hidden'>
+						<div className='bg-[#fff] shadow-xl dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px] max-w-[650px] w-full x'>
 							<div className='p-[18px_41px] flex w-full flex-row items-center justify-between'>
 								<h1 className='text-[18px] sm:text-[24px] font-medium dark:text-[rgb(239,239,239)]'>
 									Early receipt of funds
@@ -123,7 +124,7 @@ export const Invest_card: NextPage<Props> = () => {
 										height={60}
 										alt='icon'
 									/>
-									<p className='text-[19px] sm:text-[20px] text-[#BDBDBD] font-medium'>
+									<p className='text-[19px] sm:text-[20px] text-[#3A3939] dark:text-[#eeeeee] font-medium'>
 										{globalCompany?.name ?? 'Company Stocks'}
 									</p>
 								</div>
@@ -138,10 +139,10 @@ export const Invest_card: NextPage<Props> = () => {
 								</div>
 
 								<div className='w-full flex items-center justify-between pb-[23px]'>
-									<p className='text-[16px] sm:text-[20px] text-[#BDBDBD] font-medium'>
+									<p className='text-[16px] sm:text-[20px] text-[#888888] font-medium'>
 										Amount to be received
 									</p>
-									<p className='text-[20px] sm:text-[32px] text-[#EFEFEF] font-bold'>
+									<p className='text-[20px] sm:text-[32px] text-[#888888] font-bold'>
 										7389 NextFi
 									</p>
 								</div>
@@ -152,7 +153,7 @@ export const Invest_card: NextPage<Props> = () => {
 										content={'I confirm that the withdrawal will take 24 hours'}
 									/>
 									<Button
-										className='max-w-[188px] w-full p-[8px_4px] bg-[#205BC9] rounded-[50px]'
+										className='max-w-[188px] w-full p-[8px_4px] text-white bg-[#205BC9] rounded-[50px]'
 										onClick={handleChange}
 									>
 										Confirm
@@ -168,7 +169,7 @@ export const Invest_card: NextPage<Props> = () => {
 			{globalCompany && globalCompanyIcon && globalPeriod && (
 				<>
 					{!state && (
-						<div className='bg-[#fff] shadow-xl dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px] overflow-hidden max-w-[650px]  w-full'>
+						<div className='bg-[#fff] shadow-xl dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px] max-w-[650px] w-full'>
 							<div className='p-[18px_41px]'>
 								<h1 className='text-[18px] sm:text-[24px] font-medium dark:text-[rgb(239,239,239)]'>
 									Transaction processing
@@ -183,7 +184,7 @@ export const Invest_card: NextPage<Props> = () => {
 										height={60}
 										alt='icon'
 									/>
-									<p className='text-[19px] sm:text-[20px] text-[#BDBDBD] font-medium'>
+									<p className='text-[19px] sm:text-[20px] text-[#3A3939] dark:text-[#eeeeee] font-medium'>
 										{globalCompany?.name ?? 'Company Stocks'}
 									</p>
 								</div>
@@ -200,10 +201,10 @@ export const Invest_card: NextPage<Props> = () => {
 								</div>
 
 								<div className='w-full flex items-center justify-between pb-[23px]'>
-									<p className='text-[16px] sm:text-[20px] text-[#BDBDBD] font-medium'>
+									<p className='text-[16px] sm:text-[20px] text-[#888888] font-medium'>
 										Amount to be received
 									</p>
-									<p className='text-[20px] sm:text-[32px] text-[#EFEFEF] font-bold'>
+									<p className='text-[20px] sm:text-[32px] text-[#888888] font-bold'>
 										7389 NextFi
 									</p>
 								</div>

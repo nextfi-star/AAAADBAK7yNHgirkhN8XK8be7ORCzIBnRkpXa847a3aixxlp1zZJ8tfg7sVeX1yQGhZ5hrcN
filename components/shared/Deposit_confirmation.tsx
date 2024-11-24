@@ -71,7 +71,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 			</DialogTrigger>
 
 			{confirmationStep === 1 && (
-				<DialogContent className='max-w-[90%] md:max-w-[38rem] w-full p-0 rounded-[20px] !bg-[#000]'>
+				<DialogContent className='max-w-[90%] md:max-w-[38rem] w-full p-0 rounded-[20px] !dark:bg-[#000]'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
 							Make a deposit
@@ -81,14 +81,14 @@ export const Deposit_confirmation: NextPage<Props> = ({
 						</DialogTitle>
 						<Divider className='m-0 space-0' />
 						<div className='p-[21px] flex flex-col gap-[28px]'>
-							<article className='dark:bg-[#7676801F] rounded-[6px] flex flex-col gap-[28px] py-[21px] px-[18px] md:px-[21px]'>
+							<article className='dark:bg-[#7676801F] bg-[#7676801F] rounded-[6px] flex flex-col gap-[28px] py-[21px] px-[18px] md:px-[21px]'>
 								<div className='flex flex-col items-center w-full justify-between overflow-hidden'>
 									<DialogDescription className='flex flex-col gap-[1px] text-[14px] md:text-[20px]'>
 										On-chain Deposit address
 									</DialogDescription>
 
 									<DialogDescription className='flex items-center justify-center gap-[1px] md:gap-[16px] dark:text-white text-[12px] md:text-[20px] w-full '>
-										<span className='p-[5px] text-white bg-[#205BC9] rounded-[4px] ]'>
+										<span className='p-[1px] text-white bg-[#205BC9] rounded-[4px] ]'>
 											TRC20
 										</span>{' '}
 										<Snippet
@@ -165,7 +165,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 			)}
 
 			{confirmationStep === 2 && (
-				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full p-0 rounded-[20px] !bg-[#000]'>
+				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full p-0 rounded-[20px] dark:!bg-[#000]'>
 					<DialogHeader>
 						<DialogTitle className='text-[22px] lg:text-[27px] p-[20px_41px_19px] flex items-center justify-between w-full'>
 							Waiting for confirmation from the network
@@ -175,7 +175,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 							<article className='rounded-[6px] flex flex-col gap-[28px] py-[21px]'>
 								<div className='flex flex-col gap-[36px]'>
 									<Spinner className='' />
-									<p className='text-[20px] dark:text-[#888] text-[#0c0c0]'>
+									<p className='text-[20px] dark:text-[#888] text-[#0c0c0c]'>
 										You can interrupt the waiting and go to the overview, the
 										funds will be credited to the balance automatically
 									</p>
@@ -189,7 +189,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 							onClick={() => setConfirmStep(3)}
 							type='button'
 							variant='default'
-							className='bg-transparent w-full text-white rounded-[50px] hover:bg-transparent min-w-[124px] h-[48px] flex items-center justify-center shadow-none text-[20px]'
+							className='bg-transparent w-full dark:text-white text-[#0c0c0c] rounded-[50px] hover:bg-transparent min-w-[124px] h-[48px] flex items-center justify-center shadow-none text-[20px]'
 						>
 							Back to overview
 						</Button>
@@ -198,7 +198,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 			)}
 
 			{confirmationStep === 3 && (
-				<DialogContent className='max-w-[90%] md:max-w-[576px] w-full p-0 rounded-[20px] !bg-[#000]'>
+				<DialogContent className='max-w-[90%] md:max-w-[576px] w-full p-0 rounded-[20px] dark:!bg-[#000]'>
 					<DialogHeader>
 						<DialogTitle className='text-[22px] md:text-[27px] p-[20px_41px_19px] flex items-center justify-center w-full'>
 							Success

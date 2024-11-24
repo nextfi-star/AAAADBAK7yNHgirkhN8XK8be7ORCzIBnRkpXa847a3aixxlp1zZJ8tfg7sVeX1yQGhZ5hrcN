@@ -32,7 +32,7 @@ export const Profile_perosnalinfo: NextPage = () => {
 				<span>589511219100</span>
 
 				<div className='min-w-[181px] flex justify-end'>
-					<Button className='border-1 !border-gray-300 text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]'>Copy</Button>
+					<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]'>Copy</Button>
 				</div>
 			</article>
 		</section>

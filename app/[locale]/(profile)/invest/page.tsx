@@ -32,7 +32,7 @@ const Invest: NextPage = () => {
 				<div className=''>
 					<Invest_steps />
 				</div>
-				<div className='flex flex-col gap-[16px] w-full items-center lg:items-end overflow-x-scroll'>
+				<div className='flex flex-col gap-[16px] w-full items-center lg:items-end'>
 					{!isLoaded ? <SkeletonCard_invest /> : <Invest_card />}
 				</div>
 			</div>

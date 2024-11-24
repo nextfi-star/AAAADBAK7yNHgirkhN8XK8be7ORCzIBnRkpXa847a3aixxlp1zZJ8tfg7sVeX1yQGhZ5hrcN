@@ -1,8 +1,6 @@
 import { NextPage } from "next";
 import Image from "next/image";
-import { Button } from "../ui/button";
 import ArrowBracket from "../ui/ArrowBracket";
-import { Alert } from "./Alert";
 import {
   Drawer,
   DrawerContent,
@@ -16,6 +14,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Link } from "@/i18n/routing";
 import { useThemeStore } from "@/store";
 import { Confirmation_dialog } from './Confirmation_dialog'
+import { Button } from '@nextui-org/button'
 
 interface Props {
   propsItem: React.ReactNode;
@@ -28,7 +27,7 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
     <Drawer>
       <DrawerTrigger asChild>
         <Button
-          className={`border-1 !border-gray-300 text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]`}
+          className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]`}
         >
           {propsItem}
         </Button>
@@ -183,7 +182,7 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
             </div>
             <DrawerFooter className="flex flex-row justify-center gap-[40px] pb-[3rem]">
               <DrawerClose asChild>
-                <Button className="dark:text-white text-black px-[15px] py-[5px] bg-transparent border border-solid dark:border-white border-black rounded-[50px] text-[14px] xl:!text-[20px] 2xl:!text-[25px] xl:!px-[40px] 2xl:!px-[70px] font-medium h-fit w-[98px] hover:bg-transparent">
+                <Button className="dark:text-white text-black px-[15px] py-[5px] bg-transparent border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] rounded-[50px] text-[14px] xl:!text-[20px] 2xl:!text-[25px] xl:!px-[40px] 2xl:!px-[70px] font-medium h-fit w-[98px] hover:bg-transparent">
                   Close
                 </Button>
               </DrawerClose>

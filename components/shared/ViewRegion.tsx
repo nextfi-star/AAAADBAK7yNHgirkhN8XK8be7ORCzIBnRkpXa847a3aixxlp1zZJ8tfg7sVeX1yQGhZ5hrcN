@@ -32,13 +32,13 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
         <Drawer>
           <DrawerTrigger asChild>
             <Button
-              className="border-1 !border-gray-300 text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]"
+              className="border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]"
             >
               {propsItem}
             </Button>
           </DrawerTrigger>
 
-          <DrawerContent className="!z-[100] pb-[2px] bg-white dark:bg-black min-h-[100dvh] max-h-[70%] modal-holder mobile-holder modal-new">
+          <DrawerContent className="!z-[99] pb-[2px] bg-white dark:bg-black min-h-[100dvh] max-h-[70%] modal-holder mobile-holder modal-new">
             <DrawerHeader className="pt-[.5rem]">
               <DrawerTitle className="w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]">
                 <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]">
@@ -106,7 +106,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
       ) : (
         <Drawer>
           <DrawerTrigger asChild>
-            <Button className="border-1 !border-gray-300 text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]">
+            <Button className="border-1 border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]">
               {propsItem}
             </Button>
           </DrawerTrigger>

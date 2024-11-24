@@ -25,20 +25,18 @@ interface Props {
 
 export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 	const { theme } = useThemeStore()
-	const [show, setShow] = useState(true)
-	const [show2, setShow2] = useState(false)
-	const [show3, setShow3] = useState(false)
+
 	const [step, setStep] = useState<number>(1)
 
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='border-1 !border-gray-300 text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]'>
+				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]'>
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>
 
-			<AlertDialogContent className='px-[20px] md:px-[40px] xl:px-[80px] gap-[10px] min-h-[100dvh] max-h-[90dvh] overflow-y-auto sm:pb-[7rem] !max-w-[1306px] !mx-auto items-center  bg-white dark:!bg-[#0c0c0c] modal-new pb-[3.5rem] '>
+			<AlertDialogContent className='px-[20px] md:px-[40px] xl:px-[80px] gap-[10px] min-h-[100dvh] max-h-[90dvh] overflow-y-auto sm:pb-[7rem] !max-w-[1306px] !mx-auto items-center  bg-[#f9f9fa] dark:!bg-[#0c0c0c] modal-new pb-[3.5rem] '>
 				<AlertDialogHeader className=''>
 					<AlertDialogTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px] mb-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>

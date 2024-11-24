@@ -16,6 +16,13 @@ const data = [
 		val: '1',
 	},
 	{
+		title: 'How do I convert crypto NextFi Platform?',
+		content:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		id: 22,
+		val: '22',
+	},
+	{
 		title: 'Which crypto can I convert on NextFi Platform?',
 		content:
 			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
@@ -42,13 +49,6 @@ const data = [
 			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
 		id: 5,
 		val: '5',
-	},
-	{
-		title: 'How can I deposit/withdraw the crypto converted?',
-		content:
-			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-		id: 6,
-		val: '6',
 	},
 ]
 export const Invest_Faq: NextPage = () => {

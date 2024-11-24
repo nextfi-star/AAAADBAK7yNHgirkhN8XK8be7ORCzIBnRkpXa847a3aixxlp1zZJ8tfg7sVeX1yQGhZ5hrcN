@@ -46,7 +46,7 @@ export const Profile_accountdetails: NextPage = () => {
         <span>Trading fee tier</span>
         <span>Level 1</span>
         <div className="min-w-[181px] flex justify-end">
-          <Button className="border-1 !border-gray-300 text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]">
+          <Button className="border-1 !border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]">
             View Details
           </Button>
         </div>

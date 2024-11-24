@@ -57,7 +57,10 @@ const Swap_To: NextPage = () => {
 					type='text'
 					variant='underlined'
 					placeholder='Enter the amount'
-					className='md:text-[20px] text-[#BDBDBD] font-medium w-[60%] md:w-fit'
+					className='md:text-[20px] text-[#BDBDBD] font-medium'
+					classNames={{
+						base: 'max-w-[90%]'
+					}}
 				/>
 				<div className='flex items-center'>
 					<Swap_ToFrom_alert statuses={statusesTo} />
