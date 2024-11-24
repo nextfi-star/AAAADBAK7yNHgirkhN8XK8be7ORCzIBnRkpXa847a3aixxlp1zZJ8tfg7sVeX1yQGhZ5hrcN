@@ -1,7 +1,6 @@
 "use client";
 import { NextPage } from "next";
 import { useState } from "react";
-import { Button } from "../ui/button";
 import { RussiaMap } from "../ui/RussiaMap";
 import ArrowBracket from "../ui/ArrowBracket";
 import { Choose_region } from "./Choose_region";
@@ -17,6 +16,7 @@ import {
 } from "@/components/ui/drawer";
 import { useThemeStore } from "@/store";
 import { Link } from "@/i18n/routing";
+import { Button } from '@nextui-org/button'
 
 interface Props {
   propsItem: React.ReactNode;
@@ -32,8 +32,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
         <Drawer>
           <DrawerTrigger asChild>
             <Button
-              className="bg-transparent border border-solid border-[#0c0c0c] dark:border-white !rounded-[0px]"
-              variant="outline"
+              className="border-1 !border-gray-300 text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]"
             >
               {propsItem}
             </Button>
@@ -107,7 +106,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
       ) : (
         <Drawer>
           <DrawerTrigger asChild>
-            <Button className="bg-transparent hover:bg-transparent text-[#205bc9] dark:text-white border border-solid rounded-[50px] border-gray-400">
+            <Button className="border-1 !border-gray-300 text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]">
               {propsItem}
             </Button>
           </DrawerTrigger>

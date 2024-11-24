@@ -4952,6 +4952,7 @@ body {
 		color: var(--text-color);
 		margin: 40px auto;
 		padding: 0 20px 20px 20px;
+		box-shadow: var(--shadow-split);
 
 		table td span {
 			background-color: transparent !important;
@@ -5250,7 +5251,7 @@ body {
 	flex-direction: column;
 	border-radius: 30px;
 	padding: 40px 98px 48px 45px;
-
+	box-shadow: var(--shadow-split) !important;
 	@media (max-width: 1024px) {
 		padding: 40px 48px 48px 45px;
 	}
@@ -5377,6 +5378,7 @@ body {
 	flex-direction: column;
 	border-radius: 30px;
 	padding: 40px 98px 48px 45px;
+	box-shadow: var(--shadow-split) !important;
 
 	@media (max-width: 768px) {
 		padding: 40px 45px 48px 45px;
@@ -5740,13 +5742,13 @@ body {
 		}
 	}
 }
-[role="listbox"] { 
+[role='listbox'] {
 	gap: 20px !important;
 }
 .id-1 {
-	[data-slot="inner-wrapper"] {
+	[data-slot='inner-wrapper'] {
 		border-radius: 12px;
-		padding: 0 .5rem;
+		padding: 0 0.5rem;
 	}
 	.bg-default-100 {
 		background: transparent;
@@ -5779,51 +5781,51 @@ body {
 }
 
 .chat-modal {
-  background: white;
-  border-radius: 10px;
-  width: 400px;
-  height: 500px;
-  margin: auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+	background: white;
+	border-radius: 10px;
+	width: 400px;
+	height: 500px;
+	margin: auto;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .chat-modal-overlay {
-  position: fixed;
-  top: 150px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	top: 150px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.5);
 }
 
 .chat-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
 }
 
 .chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  margin-bottom: 10px;
+	flex: 1;
+	overflow-y: auto;
+	margin-bottom: 10px;
 }
 
 .chat-input {
-  display: flex;
-  gap: 10px;
+	display: flex;
+	gap: 10px;
 }
 
 .chat-open-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #0070f3;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 50%;
-  cursor: pointer;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background-color: #0070f3;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 50%;
+	cursor: pointer;
 }

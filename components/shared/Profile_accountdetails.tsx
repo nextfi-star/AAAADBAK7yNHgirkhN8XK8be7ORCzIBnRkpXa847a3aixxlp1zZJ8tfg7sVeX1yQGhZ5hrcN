@@ -1,12 +1,9 @@
 import { NextPage } from "next";
 import Image from "next/image";
-
-import { Button } from "../ui/button";
-
 import { Alert_email } from "./Alert_email";
 import { Alert_phone } from "./Alert_phone";
-
 import { useThemeStore } from "@/store";
+import { Button } from '@nextui-org/button'
 
 export const Profile_accountdetails: NextPage = () => {
   const { theme } = useThemeStore();
@@ -49,7 +46,7 @@ export const Profile_accountdetails: NextPage = () => {
         <span>Trading fee tier</span>
         <span>Level 1</span>
         <div className="min-w-[181px] flex justify-end">
-          <Button className="bg-transparent" variant={"outline"}>
+          <Button className="border-1 !border-gray-300 text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]">
             View Details
           </Button>
         </div>

@@ -30,22 +30,6 @@ const Home: NextPage = () => {
   }, [initializeTheme]);
 
   useEffect(() => {
-    const detailsElements = document.querySelectorAll("details");
-
-    detailsElements.forEach((details) => {
-      details.addEventListener("toggle", () => {
-        AOS.refresh();
-      });
-    });
-
-    return () => {
-      detailsElements.forEach((details) => {
-        details.removeEventListener("toggle", AOS.refresh);
-      });
-    };
-  }, []);
-
-  useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 3000);
 
     return () => clearTimeout(timer);

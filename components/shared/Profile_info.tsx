@@ -53,7 +53,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 					) : (
 						<Button
 							variant='bordered'
-							className={`profile__info__block___right__verification_block__button passed profile__info__block___right__additional__text border-0`}
+							className={`profile__info__block___right__verification_block__button passed profile__info__block___right__additional__text border-1 border-gray-300 border-solid rounded-[50px] !px-[10px] !bg-transparent`}
 						>
 							Verification passed
 						</Button>

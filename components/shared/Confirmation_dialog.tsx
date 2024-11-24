@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button'
 import {
 	Dialog,
 	DialogClose,
@@ -9,6 +8,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
+import { Button } from '@nextui-org/button'
 import { NextPage } from 'next'
 interface Props {
 	content: string
@@ -40,12 +40,12 @@ export const Confirmation_dialog: NextPage<Props> = ({
 				</DialogHeader>
 				<DialogFooter className='flex flex-row gap-[40px] items-center justify-center '>
 					<DialogClose asChild>
-						<Button type='button' variant='secondary'>
+						<Button type='button'>
 							Close
 						</Button>
 					</DialogClose>
 					<DialogClose asChild>
-						<Button type='button' variant='secondary'>
+						<Button type='button'>
 							Continue
 						</Button>
 					</DialogClose>

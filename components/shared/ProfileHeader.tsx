@@ -163,7 +163,6 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 		const header = document.querySelector('header')
 		const handleScroll = () => {
 			const yPosition = window.scrollY
-
 			if (yPosition > 1) {
 				header?.classList.add('box-shadow')
 			} else {
@@ -217,6 +216,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 										data={dropData2}
 										defaultItem={<User2 strokeWidth={1} className={'user'} />}
 									/>
+
 									<div className='header__icons-item'>
 										<Theme_switch />
 									</div>

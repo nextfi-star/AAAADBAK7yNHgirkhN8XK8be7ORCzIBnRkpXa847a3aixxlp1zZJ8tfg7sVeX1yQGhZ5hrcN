@@ -28,7 +28,7 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='bg-transparent hover:bg-transparent text-[#205bc9] dark:text-white border border-solid rounded-[50px] border-gray-400'>
+				<Button className='border-1 !border-gray-300 text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]'>
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>

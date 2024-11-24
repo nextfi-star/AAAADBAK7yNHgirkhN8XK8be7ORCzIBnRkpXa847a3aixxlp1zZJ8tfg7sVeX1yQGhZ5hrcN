@@ -4,7 +4,6 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
-import { Button } from '../ui/button'
 import Copy from '../ui/Copy'
 import {
 	AlertDialog,
@@ -18,6 +17,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
+import { Button } from '@nextui-org/button'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -33,7 +33,7 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='bg-transparent hover:bg-transparent text-[#205bc9] dark:text-white border border-solid rounded-[50px] border-gray-400'>
+				<Button className='border-1 !border-gray-300 text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]'>
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>
@@ -132,8 +132,7 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 											<span className='underline'>disclamer</span>
 										</span>
 										<Button
-											className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
-											variant={'default'}
+											className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9'
 											onClick={() => setStep(prev => (prev = 2))}
 										>
 											Next
@@ -181,15 +180,13 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 										</span>
 										<div className='flex items-center gap-[10px]'>
 											<Button
-												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
-												variant={'outline'}
+												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9'
 												onClick={() => setStep(prev => (prev = 1))}
 											>
 												Back
 											</Button>
 											<Button
-												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
-												variant={'default'}
+												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9'
 												onClick={() => setStep(prev => (prev = 3))}
 											>
 												Next
@@ -240,16 +237,14 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 
 										<div className='flex items-center gap-[10px] bg-transparent'>
 											<Button
-												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
-												variant={'outline'}
+												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9'
 												onClick={() => setStep(prev => (prev = 2))}
 											>
 												Back
 											</Button>
 											<AlertDialogCancel className='mt-0 !bg-transparent'>
 												<Button
-													className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
-													variant={'default'}
+													className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9'
 													onClick={() => setStep(prev => (prev = 1))}
 												>
 													Confirm

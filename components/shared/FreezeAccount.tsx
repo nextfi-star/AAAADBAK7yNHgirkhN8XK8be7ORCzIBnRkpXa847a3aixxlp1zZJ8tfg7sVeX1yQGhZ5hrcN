@@ -27,7 +27,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
     <Drawer>
       <DrawerTrigger asChild>
         <Button
-          className={`bg-transparent hover:bg-transparent border border-solid rounded-[50px] border-gray-400 text-[#205bc9] dark:text-white`}
+          className={`border-1 !border-gray-300 text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]`}
         >
           {propsItem}
         </Button>
