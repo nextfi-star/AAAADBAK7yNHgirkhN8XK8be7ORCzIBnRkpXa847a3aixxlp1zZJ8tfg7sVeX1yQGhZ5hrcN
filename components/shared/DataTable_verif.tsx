@@ -111,7 +111,7 @@ export default function DataTable_verif() {
           <User
             avatarProps={{ radius: "full", src: user.avatar }}
             classNames={{
-              base: "!bg-transparent min-w-[179px] flex items-center justify-start",
+              base: "!bg-transparent flex items-center justify-start",
               name: "!bg-transparent ",
               description: "!bg-transparent ",
               wrapper: "!bg-transparent ",
@@ -262,9 +262,6 @@ export default function DataTable_verif() {
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">
-            Total {users.length} crypto
-          </span>
           {/* <label className='flex items-center text-default-400 text-small'>
 						Rows per page:
 						<select

@@ -1,7 +1,6 @@
 'use client'
 import { NextPage } from 'next'
 import Image from 'next/image'
-
 import { Alert_auntef } from '@/components/shared/Alert_auntef'
 import { Alert_email } from '@/components/shared/Alert_email'
 import { Alert_logpass } from '@/components/shared/Alert_logpass'
@@ -59,7 +58,7 @@ const Security: NextPage = () => {
 	const { theme } = useThemeStore()
 
 	return (
-		<section className='security'>
+		<section className='security '>
 			<div className='security-container '>
 				<div className='security__content mb-[20px]'>
 					<h1 className='!text-[28px] mb-[15px]'>Authentication methods</h1>

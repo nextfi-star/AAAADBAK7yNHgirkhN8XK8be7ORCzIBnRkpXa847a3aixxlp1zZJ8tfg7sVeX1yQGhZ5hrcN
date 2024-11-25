@@ -97,7 +97,7 @@ const data = [
 export const Footer: NextPage = () => {
 	const { theme } = useThemeStore()
 	return (
-		<footer className='bg-[#F9F9FA] dark:bg-[#131313] mt-[1.5rem] py-[57px] px-[17px] w-full'>
+		<footer className='bg-[#F9F9FA] dark:bg-[#131313] mt-[1.5rem] py-[95px] px-[17px] w-full'>
 			{/* PC */}
 			<div className='site-holder hidden lg:flex flex-col gap-[30px] w-full'>
 				<div className='flex flex-col lg:flex-row items-center gap-[172px]'>

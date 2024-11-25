@@ -63,7 +63,6 @@ export const DropDown_menu: NextPage<Props> = ({
 				className='p-0 w-full -mt-[10px]'
 				side='bottom'
 				align='end'
-				onMouseLeave={() => setOpen(!open)}
 			>
 				<Command>
 					<CommandList className='bg-[#eee] dark:bg-[#1e1e1e66] py-[10px] px-[7px]'>

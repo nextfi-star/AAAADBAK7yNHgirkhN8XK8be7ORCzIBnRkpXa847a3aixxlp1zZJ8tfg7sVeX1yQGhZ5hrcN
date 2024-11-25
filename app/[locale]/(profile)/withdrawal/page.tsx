@@ -2,6 +2,7 @@
 import Withdrawal_faq from '@/components/shared/Withdrawal_faq'
 import Withdrawal_steps from '@/components/shared/Withdrawal_steps'
 import Withdrawal_table from '@/components/shared/Withdrawal_table'
+import Withdrawal_table_mobile from '@/components/shared/Withdrawal_table_mobile'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { ChevronLeft, X } from 'lucide-react'
@@ -37,7 +38,13 @@ const Withdrawal: NextPage = () => {
 				</div>
 				<Withdrawal_faq />
 			</div>
-			<Withdrawal_table />
+			<div className='block lg:hidden'>
+				<Withdrawal_table_mobile />
+			</div>
+
+			<div className='hidden lg:block'>
+				<Withdrawal_table />
+			</div>
 		</section>
 	)
 }

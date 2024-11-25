@@ -29,7 +29,7 @@ export const Checkbox = ({
 						/>
 					</svg>
 				</span>
-				<p className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] text-left text-[#EEEEEE] leading-[1]'>
+				<p className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] text-left #888888 leading-[1]'>
 					{content}
 				</p>
 			</label>

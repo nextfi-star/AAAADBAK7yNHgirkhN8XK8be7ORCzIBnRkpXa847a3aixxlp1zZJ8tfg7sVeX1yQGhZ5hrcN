@@ -1,7 +1,6 @@
 "use client";
 import { NextPage } from "next";
 import { useState } from "react";
-import { Button } from "../ui/button";
 import { RussiaMap } from "../ui/RussiaMap";
 import ArrowBracket from "../ui/ArrowBracket";
 import { Choose_region } from "./Choose_region";
@@ -17,6 +16,7 @@ import {
 } from "@/components/ui/drawer";
 import { useThemeStore } from "@/store";
 import { Link } from "@/i18n/routing";
+import { Button } from '@nextui-org/button'
 
 interface Props {
   propsItem: React.ReactNode;
@@ -32,14 +32,13 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
         <Drawer>
           <DrawerTrigger asChild>
             <Button
-              className="bg-transparent border border-solid border-[#0c0c0c] dark:border-white !rounded-[0px]"
-              variant="outline"
+              className="border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]"
             >
               {propsItem}
             </Button>
           </DrawerTrigger>
 
-          <DrawerContent className="!z-[100] pb-[2px] bg-white dark:bg-black min-h-[100dvh] max-h-[70%] modal-holder mobile-holder modal-new">
+          <DrawerContent className="!z-[99] pb-[2px] bg-white dark:bg-black min-h-[100dvh] max-h-[70%] modal-holder mobile-holder modal-new">
             <DrawerHeader className="pt-[.5rem]">
               <DrawerTitle className="w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px]">
                 <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]">
@@ -107,7 +106,7 @@ export const ViewRegion: NextPage<Props> = ({ propsItem }) => {
       ) : (
         <Drawer>
           <DrawerTrigger asChild>
-            <Button className="bg-transparent hover:bg-transparent text-[#205bc9] dark:text-white border border-solid rounded-[50px] border-gray-400">
+            <Button className="border-1 border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]">
               {propsItem}
             </Button>
           </DrawerTrigger>

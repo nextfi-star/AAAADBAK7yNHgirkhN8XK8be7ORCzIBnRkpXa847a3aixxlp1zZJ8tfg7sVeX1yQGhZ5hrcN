@@ -4,7 +4,6 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
-import { Button } from '../ui/button'
 import Copy from '../ui/Copy'
 import {
 	AlertDialog,
@@ -18,6 +17,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
+import { Button } from '@nextui-org/button'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -25,20 +25,18 @@ interface Props {
 
 export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 	const { theme } = useThemeStore()
-	const [show, setShow] = useState(true)
-	const [show2, setShow2] = useState(false)
-	const [show3, setShow3] = useState(false)
+
 	const [step, setStep] = useState<number>(1)
 
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='bg-transparent hover:bg-transparent text-[#205bc9] dark:text-white border border-solid rounded-[50px] border-gray-400'>
+				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]'>
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>
 
-			<AlertDialogContent className='px-[20px] md:px-[40px] xl:px-[80px] gap-[10px] min-h-[100dvh] max-h-[90dvh] overflow-y-auto sm:pb-[7rem] !max-w-[1306px] !mx-auto items-center  bg-white dark:!bg-[#0c0c0c] modal-new pb-[3.5rem] '>
+			<AlertDialogContent className='px-[20px] md:px-[40px] xl:px-[80px] gap-[10px] min-h-[100dvh] max-h-[90dvh] overflow-y-auto sm:pb-[7rem] !max-w-[1306px] !mx-auto items-center  bg-[#f9f9fa] dark:!bg-[#0c0c0c] modal-new pb-[3.5rem] '>
 				<AlertDialogHeader className=''>
 					<AlertDialogTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px] mb-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
@@ -132,8 +130,7 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 											<span className='underline'>disclamer</span>
 										</span>
 										<Button
-											className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
-											variant={'default'}
+											className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9 rounded-[30px]'
 											onClick={() => setStep(prev => (prev = 2))}
 										>
 											Next
@@ -181,15 +178,13 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 										</span>
 										<div className='flex items-center gap-[10px]'>
 											<Button
-												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
-												variant={'outline'}
+												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9 rounded-[30px]'
 												onClick={() => setStep(prev => (prev = 1))}
 											>
 												Back
 											</Button>
 											<Button
-												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
-												variant={'default'}
+												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9 rounded-[30px]'
 												onClick={() => setStep(prev => (prev = 3))}
 											>
 												Next
@@ -218,20 +213,20 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 											Email authentication
 											<div className='relative w-full'>
 												<Input
-													className='border border-solid border-black shadow-none dark:border-white text-[16px] xl:text-[25px] py-[10px] lg:py-[1.5rem] 2xl:py-[1.9rem]'
+													className='border border-solid shadow-none text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px]'
 													placeholder='Enter code'
 													type='text'
 												/>
-												<button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[14px] xl:text-[20px] border border-solid rounded-[50px] dark:border-white border-black py-[2px] px-[7px] cursor-pointer dark:bg-[#0c0c0c] bg-white'>
+												<button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[16px] border border-solid rounded-[50px] dark:border-white border-black py-[2px] px-[7px] cursor-pointer dark:bg-[#0c0c0c] bg-white'>
 													Send Code
 												</button>
 											</div>
 										</label>
-										<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
+										<label className='text-[#181818] dark:text-white text-[16px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
 											Current authenticator app
 											<div className='w-full'>
 												<Input
-													className='border border-solid border-black shadow-none dark:border-white text-[16px] xl:text-[25px] py-[10px] lg:py-[1.5rem] 2xl:py-[1.9rem]'
+													className='border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] shadow-none text-[16px] rounded-[30px] '
 													placeholder='Enter 6-digit generated code from your app'
 													type='text'
 												/>
@@ -240,16 +235,14 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 
 										<div className='flex items-center gap-[10px] bg-transparent'>
 											<Button
-												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
-												variant={'outline'}
+												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9'
 												onClick={() => setStep(prev => (prev = 2))}
 											>
 												Back
 											</Button>
 											<AlertDialogCancel className='mt-0 !bg-transparent'>
 												<Button
-													className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-14'
-													variant={'default'}
+													className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9'
 													onClick={() => setStep(prev => (prev = 1))}
 												>
 													Confirm

@@ -3,7 +3,7 @@
 	"version": "0.0.5",
 	"private": true,
 	"scripts": {
-		"dev": "node server.js --turbo",
+		"dev": "next dev --turbo",
 		"build": "next build",
 		"start": "NODE_ENV=production node server.js",
 		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
@@ -52,9 +52,12 @@
 		"@types/nodemailer": "^6.4.17",
 		"@types/react-modal": "^3.16.3",
 		"aos": "^2.3.4",
+		"body-parser": "^1.20.3",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.1",
 		"cmdk": "^1.0.0",
+		"cors": "^2.8.5",
+		"express": "^4.21.1",
 		"framer-motion": "~11.1.1",
 		"input-otp": "^1.4.1",
 		"intl-messageformat": "^10.5.0",

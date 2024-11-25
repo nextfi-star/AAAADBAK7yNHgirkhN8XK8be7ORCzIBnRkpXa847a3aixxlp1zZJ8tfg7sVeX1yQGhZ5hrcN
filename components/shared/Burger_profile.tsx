@@ -54,7 +54,7 @@ export const Burger_profile: NextPage<Props> = ({
 									width={25}
 								/>
 							</div>
-							<div className='absolute top-[35px] right-[32px]'>
+							<div className='absolute top-[35px] right-[13px]'>
 								<Confirmation_dialog
 									title='Are you absolutelu sure?'
 									content='This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'
@@ -78,7 +78,7 @@ export const Burger_profile: NextPage<Props> = ({
 									width={25}
 								/>
 							</div>
-							<div className='absolute top-[35px] right-[32px]'>
+							<div className='absolute top-[35px] right-[13px]'>
 								<Confirmation_dialog
 									title='Are you absolutelu sure?'
 									content='This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'

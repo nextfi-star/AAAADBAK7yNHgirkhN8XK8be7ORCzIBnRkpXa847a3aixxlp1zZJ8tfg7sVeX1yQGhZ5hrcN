@@ -34,7 +34,7 @@ import { columnsData, statusOptionsData, usersData } from "./data";
 //   "-": "danger",
 // };
 
-const INITIAL_VISIBLE_COLUMNS = ["destination", "amount", "percent", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ["destination", "amount", "percent", "pnl", "actions", "total"];
 
 type User = (typeof usersData)[0];
 
@@ -261,11 +261,6 @@ export default function DataTable_unverif() {
               </DropdownMenu>
             </Dropdown>
           </div>
-        </div>
-        <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">
-            Total {usersData.length} crypto
-          </span>
         </div>
       </div>
     );

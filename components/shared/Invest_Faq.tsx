@@ -16,6 +16,13 @@ const data = [
 		val: '1',
 	},
 	{
+		title: 'How do I convert crypto NextFi Platform?',
+		content:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		id: 22,
+		val: '22',
+	},
+	{
 		title: 'Which crypto can I convert on NextFi Platform?',
 		content:
 			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
@@ -46,7 +53,7 @@ const data = [
 ]
 export const Invest_Faq: NextPage = () => {
 	return (
-		<div className='dark:bg-[#1e1e1e66] md:shadow-lg dark:shadow-none w-full p-[26px_16px] md:p-[26px_36px_6px] rounded-[30px]'>
+		<div className='bg-[#FFFFFF] dark:bg-[#1e1e1e66] md:shadow-medium dark:shadow-none w-full p-[26px_16px] md:p-[26px_36px_6px] rounded-[30px]'>
 			<Accordion
 				collapsible
 				className='w-full flex flex-col items-center justify-between'

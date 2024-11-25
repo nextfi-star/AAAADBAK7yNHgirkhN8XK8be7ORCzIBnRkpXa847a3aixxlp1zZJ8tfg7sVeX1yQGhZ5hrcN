@@ -14,7 +14,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 	const t = useTranslations('profile')
 
 	return (
-		<section className='hidden sm:block profile__info profile_blocks_border'>
+		<section className='hidden sm:block profile__info profile_blocks_border dark:!bg-[#1e1e1e66]'>
 			<div className='profile__info__block__left'>
 				<div className='profile__info__block__left__avatar'>
 					<Image
@@ -46,14 +46,14 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 					</h5>
 					{!verify ? (
 						<Link href='#' onClick={toggleActive}>
-							<Button className='profile__info__block___right__additional__text border-1 border-gray-300 border-solid rounded-[50px] px-[10px] !bg-transparent'>
+							<Button className='profile__info__block___right__additional__text border-1 border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  rounded-[50px] px-[10px] !bg-transparent'>
 								{t('GoThroughVerification')}
 							</Button>
 						</Link>
 					) : (
 						<Button
 							variant='bordered'
-							className={`profile__info__block___right__verification_block__button passed profile__info__block___right__additional__text border-0`}
+							className={`profile__info__block___right__verification_block__button passed profile__info__block___right__additional__text border-1 border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] rounded-[50px] !px-[10px] !bg-transparent`}
 						>
 							Verification passed
 						</Button>
@@ -63,15 +63,15 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 					<h5 className='profile__info__block___right__main__text'>
 						{t('CountryRegion')}
 					</h5>
-					<Button className='profile__info__block___right__additional__text border-1 border-gray-300 border-solid rounded-[50px] px-[10px] !bg-transparent'>
+					<Button className='profile__info__block___right__additional__text border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'>
 						UAE
 					</Button>
 				</div>
 				<div className='profile__info__block___right__block'>
 					<h5 className='profile__info__block___right__main__text'>
-						{t('CommisionLevel')}
+						Levels Activity
 					</h5>
-					<Button className='profile__info__block___right__additional__text border-1 border-gray-300 border-solid rounded-[50px] px-[10px] !bg-transparent'>
+					<Button className='profile__info__block___right__additional__text border-1 border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'>
 						Level 1
 					</Button>
 				</div>
