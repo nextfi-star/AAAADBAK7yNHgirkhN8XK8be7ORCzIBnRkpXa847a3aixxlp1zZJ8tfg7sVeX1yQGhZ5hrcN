@@ -43,7 +43,7 @@ export const Profile_accountdetails: NextPage = () => {
       <span className="devider w-full h-[1px] bg-slate-100 block my-[24px]" />
 
       <article className="flex items-center justify-between gap-[5px]">
-        <span>Trading fee tier</span>
+        <span>Levels Activity</span>
         <span>Level 1</span>
         <div className="min-w-[181px] flex justify-end">
           <Button className="border-1 !border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]">

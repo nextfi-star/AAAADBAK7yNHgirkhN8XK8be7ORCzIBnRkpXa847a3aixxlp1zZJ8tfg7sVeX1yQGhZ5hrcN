@@ -10,10 +10,8 @@ export async function POST(req: Request) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
-
     const data = await res.json();
     console.log('Ответ сервера:', data);
-
     return NextResponse.json(data);
   } catch (error) {
     console.error('Ошибка запроса:', error);
@@ -23,3 +21,4 @@ export async function POST(req: Request) {
     );
   }
 }
+ 

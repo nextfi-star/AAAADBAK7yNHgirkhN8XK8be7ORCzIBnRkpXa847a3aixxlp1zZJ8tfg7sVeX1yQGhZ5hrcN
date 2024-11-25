@@ -45,7 +45,7 @@ const Allocation = () => {
   const { theme } = useThemeStore();
 
   return (
-    <section className="dark:!bg-[#1e1e1e66] bg-white shadow-medium rounded-[30px] p-[33.5px_40px] flex flex-col gap-[20px] mb-[40px]">
+    <section className="dark:!bg-[#1e1e1e66] bg-white shadow-medium rounded-[30px] p-[33.5px_40px] flex flex-col gap-[20px] mb-[1.5rem]">
       <h3 className="text-[14px] md:text-[20px] 2xl:text-[25px] w-full flex items-center justify-between">
         Allocation{" "}
         <ArrowBracket color={theme === "dark" ? "white" : "black"} width={24} />{" "}

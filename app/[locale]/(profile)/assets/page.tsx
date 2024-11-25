@@ -22,7 +22,7 @@ const Assets: NextPage = () => {
 		<>
 			{verifyState && (
 				<section className='profile'>
-					<div className='profile__grid gap-[24px] max-xl:grid max-xl:grid-cols-1'>
+					<div className='profile__grid gap-[14px] max-xl:grid max-xl:grid-cols-1'>
 						<div>
 							<hr />
 							<Profile_balance />

@@ -3773,7 +3773,7 @@ body {
 			box-shadow: var(--shadow-split);
 			border-radius: 30px;
 			padding: 40px;
-			margin-bottom: 40px;
+			margin-bottom: 1.5rem;
 
 			&-title {
 				display: flex;
@@ -3851,7 +3851,7 @@ body {
 				padding: 40px 80px;
 				max-width: 100%;
 				margin: 0 auto;
-				margin-bottom: 40px;
+				margin-bottom: 1.5rem;
 
 				&-title {
 					margin-bottom: 30px;
@@ -3883,7 +3883,6 @@ body {
 				border-bottom: 1px solid var(--gray-color);
 				box-shadow: none;
 				border-radius: 0%;
-				margin-top: 40px;
 
 				&-title {
 					margin-bottom: 30px;
@@ -4446,7 +4445,7 @@ body {
 			justify-content: space-between;
 			flex-direction: column;
 			gap: 10px;
-			margin-bottom: 40px;
+			margin-bottom: 1.5rem;
 			box-shadow: var(--shadow-split);
 
 			.profile__chart__downloadLink {
@@ -4521,7 +4520,7 @@ body {
 			}
 			@media (max-width: 1280px) {
 				margin: 0 auto;
-				margin-bottom: 40px;
+				margin-bottom: 1.5rem;
 			}
 			@media (max-width: 640px) {
 				margin: 0 auto;
@@ -4640,6 +4639,12 @@ body {
 				@media (max-width: 430px) {
 					svg {
 						max-width: 24px;
+					}
+					.chart__mini {
+						svg {
+							width: 100% !important;
+							max-width: 100% !important;
+						}
 					}
 				}
 			}
@@ -4950,9 +4955,13 @@ body {
 		border-radius: 30px;
 		background-color: var(--profile-block);
 		color: var(--text-color);
-		margin: 40px auto;
+		margin: 30px auto;
 		padding: 0 20px 20px 20px;
 		box-shadow: var(--shadow-split);
+
+		@media (max-width: 430px) {
+			margin-top: 0;
+		}
 
 		table td span {
 			background-color: transparent !important;
@@ -4993,10 +5002,10 @@ body {
 
 		@media (max-width: 640px) {
 			background-color: transparent;
-			border-top: 1px solid var(--gray-color);
-			border-radius: 0%;
+			border-radius: 30px;
 			box-shadow: none;
 			padding: 0;
+
 			.mask {
 				display: flex;
 				align-items: center;
@@ -5011,7 +5020,7 @@ body {
 		}
 
 		@media (max-width: 1280px) {
-			margin-bottom: 40px;
+			margin-bottom: 10px;
 		}
 	}
 }

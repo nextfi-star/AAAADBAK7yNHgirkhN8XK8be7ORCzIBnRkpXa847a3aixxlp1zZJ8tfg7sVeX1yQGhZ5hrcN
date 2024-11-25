@@ -17,8 +17,8 @@ export const Profile_payments: NextPage = () => {
 	return (
 		<>
 			{!verifyState && <Profile_industry unicClass={'hidden__when'} />}
-			<div className='payments md:!bg-white dark:!bg-transparent md:dark:!bg-[#1e1e1e66]'>
-				<div className='flex flex-col sm:flex-row justify-between gap-[10px] sm:gap-[32px] w-full items-center py-4 my-[20px]'>
+			<div className='payments shadow-medium !bg-[#FFFFFF66] dark:!bg-[#1e1e1e66] !px-[10px]'>
+				<div className='flex flex-col sm:flex-row justify-between gap-[10px] sm:gap-[32px] w-full items-center py-4 !rounded-[30px]'>
 					<h3 className='text-[20px] md:text-[32px] font-semibold'>
 						{!verifyState ? 'Payments' : 'Assets'}
 					</h3>

@@ -125,43 +125,43 @@ const Verify: NextPage = () => {
 						{!globalVeriState ? (
 							<>
 								<div className='w-fit relative'>
-									{/* <Image
-								priority
-								alt='protection icon'
-								className='h-auto w-auto max-w-[80px] sm:max-w-[100%]'
-								height={181}
-								quality={100}
-								src={'/main/profile_verify/Protection.svg'}
-								width={181}
-							/>
-							<Image
-								priority
-								alt='file icon'
-								className='h-auto w-auto absolute -right-[24px] -top-[40px] sm:-top-[68px] sm:-right-[68px] max-w-[65px] sm:max-w-[100%] z-[1]'
-								height={158}
-								quality={100}
-								src={'/main/profile_verify/File.svg'}
-								width={118}
-							/>
-							<Image
-								priority
-								alt='decor icon'
-								className='h-auto w-auto absolute -left-[48px] -bottom-[23px] sm:-left-[86px] sm:-bottom-[44px]'
-								height={189}
-								quality={100}
-								src={'/main/profile_verify/decor.svg'}
-								width={139}
-							/>
-							<Image
-								priority
-								alt='decor icon'
-								className='h-auto w-auto absolute -right-[74px] -top-[64px] sm:-right-[151px] sm:-top-[114px]'
-								height={200}
-								quality={100}
-								src={'/main/profile_verify/decor2.svg'}
-								width={208}
-							/> */}
 									<Image
+										priority
+										alt='protection icon'
+										className='h-auto w-auto max-w-[80px] sm:max-w-[100%]'
+										height={181}
+										quality={100}
+										src={'/main/profile_verify/Protection.svg'}
+										width={181}
+									/>
+									<Image
+										priority
+										alt='file icon'
+										className='h-auto w-auto absolute -right-[24px] -top-[40px] sm:-top-[68px] sm:-right-[68px] max-w-[65px] sm:max-w-[100%] z-[1]'
+										height={158}
+										quality={100}
+										src={'/main/profile_verify/File.svg'}
+										width={118}
+									/>
+									<Image
+										priority
+										alt='decor icon'
+										className='h-auto w-auto absolute -left-[48px] -bottom-[23px] sm:-left-[86px] sm:-bottom-[44px]'
+										height={189}
+										quality={100}
+										src={'/main/profile_verify/decor.svg'}
+										width={139}
+									/>
+									<Image
+										priority
+										alt='decor icon'
+										className='h-auto w-auto absolute -right-[74px] -top-[64px] sm:-right-[151px] sm:-top-[114px]'
+										height={200}
+										quality={100}
+										src={'/main/profile_verify/decor2.svg'}
+										width={208}
+									/>
+									{/* <Image
 										priority
 										alt='decor icon'
 										className='h-auto md:w-[200px]'
@@ -171,7 +171,7 @@ const Verify: NextPage = () => {
 											'/main/profile_verify/Basic_verification_completed.svg'
 										}
 										width={200}
-									/>
+									/> */}
 								</div>
 
 								<div className='max-w-[641px] w-full flex flex-col gap-[25px] items-center'>
@@ -208,7 +208,7 @@ const Verify: NextPage = () => {
 											Your information is only used for identity verification.
 										</p>
 										<Button
-											className='text-[14px] md:text-[20px] text-white rounded-[50px] bg-[#205BC9] px-[50px] py-[4px] xl:py-[20px] hover:opacity-[.9] hover:bg-[#205BC9] w-full'
+											className='text-[14px] md:text-[20px] text-white rounded-[50px] bg-[#205BC9] px-[50px] py-[4px] xl:py-[20px] hover:opacity-[.9] hover:bg-[#205BC9] w-full h-[3.25rem]'
 											onClick={() => SetChange(!change)}
 										>
 											Verify now

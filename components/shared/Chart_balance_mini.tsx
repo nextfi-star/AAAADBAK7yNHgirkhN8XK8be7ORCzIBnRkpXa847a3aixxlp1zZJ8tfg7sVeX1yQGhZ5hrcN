@@ -250,7 +250,7 @@ const chartConfig = {
 
 type ChartKey = keyof typeof chartConfig
 
-export default function Chart() {
+export default function Chart_balance_mini() {
 	const { verifyState } = useThemeStore()
 	const [activeChart, setActiveChart] = React.useState<ChartKey>('deposit')
 	const getRandomInvestment = () =>
@@ -275,27 +275,7 @@ export default function Chart() {
 
 	return (
 		<Card>
-			<CardHeader className='flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row'>
-				<div className='flex'>
-					{(Object.keys(chartConfig) as ChartKey[])
-						.filter((_, index) => !(!verifyState && index === 3))
-						.map(key => (
-							<button
-								key={key}
-								className='relative z-30 flex flex-1 flex-col justify-center items-center gap-1 border-t py-4 text-left even:border-l data-[active=true]:bg-muted/50 sm:border-l sm:border-t-0 px-[5px] sm:px-8 sm:py-6'
-								data-active={activeChart === key}
-								onClick={() => setActiveChart(key)}
-							>
-								<span className='text-xs text-muted-foreground'>
-									{chartConfig[key].label}
-								</span>
-								<span className='text-[14px] lg:text-lg font-bold leading-none sm:text-3xl'>
-									{total[key].toLocaleString()}
-								</span>
-							</button>
-						))}
-				</div>
-			</CardHeader>
+			<CardHeader className='flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row'></CardHeader>
 			<CardContent className='px-2 sm:p-6'>
 				<ChartContainer
 					className='aspect-auto h-[250px] w-full'
@@ -307,6 +287,7 @@ export default function Chart() {
 							left: 12,
 							right: 12,
 						}}
+						className='chart__mini'
 					>
 						<CartesianGrid vertical={false} />
 						<XAxis
@@ -315,7 +296,6 @@ export default function Chart() {
 							minTickGap={32}
 							tickFormatter={value => {
 								const date = new Date(value)
-
 								return date.toLocaleDateString('en-US', {
 									month: 'short',
 									day: 'numeric',
