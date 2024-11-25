@@ -8,12 +8,10 @@ const PORT = 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Ping endpoint
 app.get('/api/v1/ping', (req, res) => {
   res.json({ response: 'success', message: 'pong' });
 });
 
-// Login endpoint
 app.post('/api/v1/login', (req, res) => {
   const { email, password } = req.body;
   if (email === 'new@example.com' && password === 'newpassword123') {
@@ -30,7 +28,6 @@ app.post('/api/v1/login', (req, res) => {
   }
 });
 
-// Register endpoint
 app.post('/api/v1/register', (req, res) => {
   const { email, password } = req.body;
   if (email && password) {
@@ -47,7 +44,6 @@ app.post('/api/v1/register', (req, res) => {
   }
 });
 
-// Start the server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}/api/v1`);
 });
