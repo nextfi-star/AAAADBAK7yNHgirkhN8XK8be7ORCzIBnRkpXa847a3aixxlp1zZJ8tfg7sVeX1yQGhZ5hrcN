@@ -39,7 +39,7 @@ const Invest: NextPage = () => {
 
 			<div className='grid grid-cols-1 2xl:grid-cols-[2fr_1fr] gap-[31px]'>
 				<Invest_Table />
-				<div className='mt-[10px]'>
+				<div className='mt-[3px]'>
 					<Invest_Faq />
 				</div>
 			</div>

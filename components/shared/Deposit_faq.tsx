@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 
 const Deposit_faq: NextPage = () => {
 	return (
-		<div className='shadow-lg dark:shadow-none dark:bg-[#181818] rounded-[30px] p-[40px_44px] h-fit'>
+		<div className='shadow-medium dark:shadow-none dark:bg-[#181818] rounded-[30px] p-[40px_44px] h-fit'>
 			<h5 className='text-[18px] md:text-[32px] mb-[23px]'>FAQ</h5>
 
 			<div className='flex flex-col '>

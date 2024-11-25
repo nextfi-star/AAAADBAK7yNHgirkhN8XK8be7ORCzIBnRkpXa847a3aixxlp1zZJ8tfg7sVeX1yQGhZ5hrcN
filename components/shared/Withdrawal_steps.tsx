@@ -379,6 +379,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 													setSelectedCrypto={setSelectedCrypto}
 													titleTrigger={'Withdrawal'}
 													selectedCrypto={selectedCrypto}
+													className='dark:shadow-none'
 												/>
 											</div>
 										</div>

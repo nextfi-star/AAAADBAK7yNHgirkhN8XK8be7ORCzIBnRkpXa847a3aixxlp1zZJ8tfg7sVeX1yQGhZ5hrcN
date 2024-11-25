@@ -116,7 +116,7 @@
 	--white: #ffffff;
 	--white-light: #e3e3e3;
 	--era-bottom-info: #ffffff66;
-	--shadow-split: 4px 4px 56px 0 rgba(177, 177, 181, 0.25);
+	--shadow-split: 4px 4px 56px 0 #b1b1b540;
 	--levels-stats: #ffffff66;
 	--header: #000000;
 	--bd: #000000;
@@ -3939,7 +3939,7 @@ body {
 
 		.profile__info {
 			display: flex;
-			background-color: var(--profile-block);
+			background-color: var(--levels-stats);
 			box-shadow: var(--shadow-split);
 			border-radius: 12px;
 			justify-content: space-between;
@@ -4435,7 +4435,6 @@ body {
 
 		// balance
 		.profile__balance {
-			background-color: var(--profile-block);
 			font-family: inherit;
 			min-height: 348px;
 			font-size: 32px;
@@ -4448,6 +4447,7 @@ body {
 			flex-direction: column;
 			gap: 10px;
 			margin-bottom: 40px;
+			box-shadow: var(--shadow-split);
 
 			.profile__chart__downloadLink {
 				p {
@@ -5261,7 +5261,7 @@ body {
 	@media (max-width: 430px) {
 		margin-top: -8.5rem;
 		background: var(--body-color);
-		padding: 40px 20px 48px  20px;
+		padding: 40px 20px 48px 20px;
 		box-shadow: none;
 	}
 	&-container {
@@ -5828,4 +5828,9 @@ body {
 	padding: 10px 20px;
 	border-radius: 50%;
 	cursor: pointer;
+}
+.shadow__dark {
+	@media (min-width: 430px) {
+		box-shadow: 4px 4px 56px 0 #b1b1b540;
+	}
 }

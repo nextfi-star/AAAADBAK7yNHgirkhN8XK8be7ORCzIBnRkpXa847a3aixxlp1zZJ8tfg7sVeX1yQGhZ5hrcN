@@ -14,7 +14,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 	const t = useTranslations('profile')
 
 	return (
-		<section className='hidden sm:block profile__info profile_blocks_border'>
+		<section className='hidden sm:block profile__info profile_blocks_border dark:!bg-[#1e1e1e66]'>
 			<div className='profile__info__block__left'>
 				<div className='profile__info__block__left__avatar'>
 					<Image

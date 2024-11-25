@@ -46,7 +46,7 @@ export const Profile_balance: NextPage = () => {
 				</button>
 			</div>
 
-			<div className='profile__balance'>
+			<div className='profile__balance bg-white dark:bg-[#1e1e1e66]'>
 				<div className='profile__balance_sides'>
 					{/* Mobile */}
 					<Swiper

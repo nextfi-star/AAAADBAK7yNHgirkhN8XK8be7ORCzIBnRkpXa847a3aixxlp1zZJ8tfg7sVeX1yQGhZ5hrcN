@@ -32,7 +32,7 @@ const Swap: NextPage<Props> = () => {
 	}
 	return (
 		<section className='mt-[-7rem] lg:mt-0 flex flex-col gap-[40px] w-full min-h-screen pb-[1.5rem] top-mobile'>
-			<article className='md:dark:bg-[#1e1e1e66] md:shadow-lg dark:shadow-none flex flex-col items-center gap-[19px] md:gap-[35px] w-full md:py-[51px] rounded-[30px]'>
+			<article className='md:dark:bg-[#1e1e1e66] md:shadow-medium dark:shadow-none flex flex-col items-center gap-[19px] md:gap-[35px] w-full md:py-[51px] rounded-[30px]'>
 				<h1 className='hide-mobile text-[30px] xl:text-[68px] font-bold xl:leading-[32px]'>
 					Swap
 				</h1>
@@ -68,7 +68,7 @@ const Swap: NextPage<Props> = () => {
 				</div>
 			</article>
 
-			<div className='md:dark:bg-[#1e1e1e66] md:shadow-lg dark:shadow-none flex flex-col items-center gap-[15px] md:gap-[35px] w-full md:min-h-[871px] md:p-[46px_36px] rounded-[30px]'>
+			<div className='md:dark:bg-[#1e1e1e66] md:shadow-medium dark:shadow-none flex flex-col items-center gap-[15px] md:gap-[35px] w-full md:min-h-[871px] md:p-[46px_36px] rounded-[30px]'>
 				<Swap_from />
 
 				<div className='w-full flex items-center justify-between gap-[5px] md:px-[32px]'>
@@ -159,7 +159,7 @@ const Swap: NextPage<Props> = () => {
 				</div>
 			</div>
 
-			<div className='dark:bg-[#1e1e1e66] md:shadow-lg dark:shadow-none flex flex-col items-center gap-[35px] w-full p-[46px_16px] md:p-[46px_36px] rounded-[30px]'>
+			<div className='dark:bg-[#1e1e1e66] md:shadow-medium dark:shadow-none flex flex-col items-center gap-[35px] w-full p-[46px_16px] md:p-[46px_36px] rounded-[30px]'>
 				<h1 className='block md:text-center w-full text-[24px] md:text-[32px] font-normal md:font-bold leading-[32px]'>
 					FAQ
 				</h1>

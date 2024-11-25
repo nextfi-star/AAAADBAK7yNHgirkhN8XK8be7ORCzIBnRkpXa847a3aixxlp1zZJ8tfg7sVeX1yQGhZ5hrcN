@@ -402,7 +402,7 @@ const Invest_steps: NextPage<Props> = () => {
 											</span>
 										</p>
 										<Invest_confirmation
-											className='!w-full'
+											className='!w-full dark:!shadow-none'
 											input3={input3}
 											setInput3={setInput3}
 											setInputStep2={setInputStep2}
