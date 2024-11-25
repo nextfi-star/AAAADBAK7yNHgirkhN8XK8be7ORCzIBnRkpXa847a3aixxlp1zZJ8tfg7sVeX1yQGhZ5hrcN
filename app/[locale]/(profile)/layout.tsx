@@ -1,7 +1,7 @@
 'use client'
+import Template from "../Template";
+import { TapBar, ProfileHeader, Profile_nav } from "@/components/shared/index";
 import { useResponsiveVisibility } from '@/hooks/useResponsiveVisibility'
-import Template from '../Template'
-import { TapBar, ProfileHeader, Profile_nav } from '@/components/shared/index'
 import { Footer } from '@/components/shared/Footer'
 import { A_Chat } from '@/components/shared/A_Chat'
 

@@ -14,6 +14,7 @@ export const Profile_payments: NextPage = () => {
 	const t = useTranslations('profile')
 	const { verifyState } = useThemeStore()
 
+
 	return (
 		<>
 			{!verifyState && <Profile_industry unicClass={'hidden__when'} />}
