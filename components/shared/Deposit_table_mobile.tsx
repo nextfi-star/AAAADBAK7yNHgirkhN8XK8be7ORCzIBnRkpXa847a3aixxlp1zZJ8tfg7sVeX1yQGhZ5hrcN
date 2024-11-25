@@ -20,28 +20,21 @@ import {
 } from '@nextui-org/react'
 import React from 'react'
 import { ChevronDownIcon } from './ChevronDownIcon'
-import { columnsDataW, statusOptionsDataW, usersDataW } from './data'
+import { columnsDataD, statusOptionsDataD, usersDataD } from './data'
 import { capitalize } from './utils'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
-
 const statusColorMap: Record<string, ChipProps['color']> = {
 	sent: 'success',
 	denied: 'danger',
 	pending: 'warning',
 }
-
 const INITIAL_VISIBLE_COLUMNS = [
 	'time',
 	'amount',
 	'status',
-	'address',
-	'crypto',
-	'fee',
 ]
-
-type User = (typeof usersDataW)[0]
-
-export default function Withdrawal_table() {
+type User = (typeof usersDataD)[0]
+export default function Deposit_table_mobile() {
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
 		new Set(INITIAL_VISIBLE_COLUMNS)
@@ -52,20 +45,17 @@ export default function Withdrawal_table() {
 		column: 'age',
 		direction: 'ascending',
 	})
-
 	const [page, setPage] = React.useState(1)
 	const hasSearchFilter = Boolean(filterValue)
-
 	const headerColumns = React.useMemo(() => {
-		if (visibleColumns === 'all') return columnsDataW
-
-		return columnsDataW.filter(column =>
+		if (visibleColumns === 'all') return columnsDataD
+		return columnsDataD.filter(column =>
 			Array.from(visibleColumns).includes(column.uid)
 		)
 	}, [visibleColumns])
 
 	const filteredItems = React.useMemo(() => {
-		let filteredUsers = [...usersDataW]
+		let filteredUsers = [...usersDataD]
 
 		if (hasSearchFilter) {
 			filteredUsers = filteredUsers.filter(user =>
@@ -74,7 +64,7 @@ export default function Withdrawal_table() {
 		}
 		if (
 			statusFilter !== 'all' &&
-			Array.from(statusFilter).length !== statusOptionsDataW.length
+			Array.from(statusFilter).length !== statusOptionsDataD.length
 		) {
 			filteredUsers = filteredUsers.filter(user =>
 				Array.from(statusFilter).includes(user.status)
@@ -82,7 +72,7 @@ export default function Withdrawal_table() {
 		}
 
 		return filteredUsers
-	}, [usersDataW, filterValue, statusFilter])
+	}, [usersDataD, filterValue, statusFilter])
 
 	const pages = Math.ceil(filteredItems.length / rowsPerPage)
 
@@ -185,9 +175,7 @@ export default function Withdrawal_table() {
 		return (
 			<div className='flex flex-col gap-4'>
 				<div className='flex justify-between gap-3 items-end p-[25px_20px_0px]'>
-					<h1 className='text-[20px] xl:text-[32px]'>
-						All withdrawals
-					</h1>
+					<h1 className='text-[20px] xl:text-[32px]'>All deposits</h1>
 					<div className='flex gap-3'>
 						<Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
@@ -206,7 +194,7 @@ export default function Withdrawal_table() {
 								selectionMode='multiple'
 								onSelectionChange={setStatusFilter}
 							>
-								{statusOptionsDataW.map(status => (
+								{statusOptionsDataD.map(status => (
 									<DropdownItem
 										key={status.uid}
 										className='capitalize md:!text-[20px]'
@@ -233,7 +221,7 @@ export default function Withdrawal_table() {
 								selectionMode='multiple'
 								onSelectionChange={setVisibleColumns}
 							>
-								{columnsDataW.map(column => (
+								{columnsDataD.map(column => (
 									<DropdownItem
 										key={column.uid}
 										className='capitalize md:text-[20px] '
@@ -253,7 +241,7 @@ export default function Withdrawal_table() {
 		visibleColumns,
 		onSearchChange,
 		onRowsPerPageChange,
-		usersDataW.length,
+		columnsDataD.length,
 		hasSearchFilter,
 	])
 
@@ -281,7 +269,7 @@ export default function Withdrawal_table() {
 			bottomContentPlacement='outside'
 			classNames={{
 				table: '!bg-transparent',
-				base: 'dark:!bg-[#1e1e1e66] shadow-medium dark:!shadow-none !bg-[#FFFFFF66] rounded-[30px]',
+				base: 'dark:!bg-[#1e1e1e66] !bg-[#FFFFFF66] shadow-medium dark:!shadow-none rounded-[30px]',
 				tbody: '!shadow-none',
 				wrapper: 'max-h-[503px] !bg-transparent shadow-none',
 				td: 'text-center',

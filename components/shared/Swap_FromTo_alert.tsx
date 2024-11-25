@@ -44,7 +44,7 @@ export const Swap_FromTo_alert: NextPage<Props> = ({ statuses }) => {
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button
-					className={`rounded-[50px] text-[#fff] hover:bg-transparent bg-transparent text-[24px] w-full max-w-[124px] md:max-w-[707px] px-0 !py-[8px] h-fit shadow-none outline-none`}
+					className={`rounded-[50px] text-[#fff] hover:bg-transparent bg-transparent text-[24px] w-full min-w-[161px] md:max-w-[707px] px-0 !py-[8px] h-fit shadow-none outline-none`}
 				>
 					{selectedStatus ? (
 						<div className='flex gap-[8px] items-center'>

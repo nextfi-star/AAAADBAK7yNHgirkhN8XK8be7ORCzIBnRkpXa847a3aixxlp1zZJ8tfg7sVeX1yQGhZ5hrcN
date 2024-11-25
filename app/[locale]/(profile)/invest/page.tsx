@@ -8,6 +8,7 @@ import { SkeletonCard_invest } from '@/components/ui/skeleton/SkeletonCard_inves
 import { useThemeStore } from '@/store'
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
+import Invest_table_mobile from '@/components/shared/Invest_table_mobile'
 
 const Invest: NextPage = () => {
 	const { setConfirmStep, swapCheck, swapCheck2, setStep } = useThemeStore()
@@ -32,13 +33,18 @@ const Invest: NextPage = () => {
 				<div className=''>
 					<Invest_steps />
 				</div>
-				<div className='flex flex-col gap-[16px] w-full items-center lg:items-end'>
+				<div className='flex flex-col gap-[16px] w-full items-center xl:items-end'>
 					{!isLoaded ? <SkeletonCard_invest /> : <Invest_card />}
 				</div>
 			</div>
 
 			<div className='grid grid-cols-1 2xl:grid-cols-[2fr_1fr] gap-[31px]'>
-				<Invest_Table />
+				<div className='block lg:hidden'>
+					<Invest_table_mobile />
+				</div>
+				<div className='hidden lg:block'>
+					<Invest_Table />
+				</div>
 				<div className='mt-[3px]'>
 					<Invest_Faq />
 				</div>

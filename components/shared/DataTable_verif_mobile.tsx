@@ -21,24 +21,22 @@ import {
   SortDescriptor,
 } from "@nextui-org/react";
 
-import ArrowUP from "../ui/ArrowUP";
-
 import { VerticalDotsIcon } from "./VerticalDotsIcon";
 import { ChevronDownIcon } from "./ChevronDownIcon";
 import { SearchIcon } from "./SearchIcon";
 import { capitalize } from "./utils";
-import { columnsData, statusOptionsData, usersData } from "./data";
+import { columns, statusOptions, users } from "./data";
 
 // const statusColorMap: Record<string, ChipProps["color"]> = {
 //   "+": "success",
 //   "-": "danger",
 // };
 
-const INITIAL_VISIBLE_COLUMNS = ["destination", "amount", "percent", "pnl", "actions", "total"];
+const INITIAL_VISIBLE_COLUMNS = ["name", "holdings"];
 
-type User = (typeof usersData)[0];
+type User = (typeof users)[0];
 
-export default function DataTable_unverif() {
+export default function DataTable_verif_mobile() {
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(
     new Set([]),
@@ -58,24 +56,24 @@ export default function DataTable_unverif() {
   const hasSearchFilter = Boolean(filterValue);
 
   const headerColumns = React.useMemo(() => {
-    if (visibleColumns === "all") return columnsData;
+    if (visibleColumns === "all") return columns;
 
-    return columnsData.filter((column) =>
+    return columns.filter((column) =>
       Array.from(visibleColumns).includes(column.uid),
     );
   }, [visibleColumns]);
 
   const filteredItems = React.useMemo(() => {
-    let filteredUsers = [...usersData];
+    let filteredUsers = [...users];
 
     if (hasSearchFilter) {
       filteredUsers = filteredUsers.filter((user) =>
-        user.destination.toLowerCase().includes(filterValue.toLowerCase()),
+        user.name.toLowerCase().includes(filterValue.toLowerCase()),
       );
     }
     if (
       statusFilter !== "all" &&
-      Array.from(statusFilter).length !== statusOptionsData.length
+      Array.from(statusFilter).length !== statusOptions.length
     ) {
       filteredUsers = filteredUsers.filter((user) =>
         Array.from(statusFilter).includes(user.pnl),
@@ -83,7 +81,7 @@ export default function DataTable_unverif() {
     }
 
     return filteredUsers;
-  }, [usersData, filterValue, statusFilter]);
+  }, [users, filterValue, statusFilter]);
 
   const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
@@ -108,39 +106,40 @@ export default function DataTable_unverif() {
     const cellValue = user[columnKey as keyof User];
 
     switch (columnKey) {
-      case "destination":
+      case "name":
         return (
           <User
-            avatarProps={{ src: user.avatar }}
-            className="!bg-transparent"
+            avatarProps={{ radius: "full", src: user.avatar }}
             classNames={{
-              base: "!bg-transparent min-w-[179px] flex items-center justify-start",
+              base: "!bg-transparent flex items-center justify-start",
               name: "!bg-transparent ",
               description: "!bg-transparent ",
               wrapper: "!bg-transparent ",
             }}
+            description={user.crypto}
             name={cellValue}
-          />
+          >
+            {user.crypto}
+          </User>
         );
-      case "amount":
-        return <p className="text-bold capitalize ">{cellValue}</p>;
-      case "total":
-        return <p className="capitalize ">{cellValue}</p>;
-      case "report":
+      case "holdings":
         return (
-          <p className="capitalize flex items-center justify-center gap-[5px] ">
-            {cellValue}{" "}
-            <ArrowUP className="min-w-[10px] min-h-[10px] max-w-[19px] max-h-[19px]" />{" "}
-          </p>
+          <div className="flex flex-col">
+            <p className="text-bold text-small capitalize">{cellValue}</p>
+            <p className="text-bold text-tiny capitalize text-default-400">
+              {user.percent}
+            </p>
+          </div>
         );
-      case "percent":
+      case "pnl":
         return (
           <Chip
-            className="capitalize !bg-transparent"
+            className="capitalize bg-transparent"
+            // color={statusColorMap[user.pnl]}
             size="sm"
             variant="flat"
           >
-            {cellValue}
+            {user.percent}
           </Chip>
         );
       case "actions":
@@ -229,7 +228,7 @@ export default function DataTable_unverif() {
                 selectionMode="multiple"
                 onSelectionChange={setStatusFilter}
               >
-                {statusOptionsData.map((status) => (
+                {statusOptions.map((status) => (
                   <DropdownItem key={status.uid} className="capitalize">
                     {capitalize(status.name)}
                   </DropdownItem>
@@ -253,7 +252,7 @@ export default function DataTable_unverif() {
                 selectionMode="multiple"
                 onSelectionChange={setVisibleColumns}
               >
-                {columnsData.map((column) => (
+                {columns.map((column) => (
                   <DropdownItem key={column.uid} className="capitalize">
                     {capitalize(column.name)}
                   </DropdownItem>
@@ -263,9 +262,17 @@ export default function DataTable_unverif() {
           </div>
         </div>
         <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">
-            Total {usersData.length} crypto
-          </span>
+          {/* <label className='flex items-center text-default-400 text-small'>
+						Rows per page:
+						<select
+							className='bg-transparent outline-none text-default-400 text-small'
+							onChange={onRowsPerPageChange}
+						>
+							<option value='5'>5</option>
+							<option value='10'>10</option>
+							<option value='15'>15</option>
+						</select>
+					</label>*/}
         </div>
       </div>
     );
@@ -275,7 +282,7 @@ export default function DataTable_unverif() {
     visibleColumns,
     onSearchChange,
     onRowsPerPageChange,
-    usersData.length,
+    users.length,
     hasSearchFilter,
   ]);
 
@@ -297,6 +304,7 @@ export default function DataTable_unverif() {
 
   return (
     <Table
+      isHeaderSticky
       aria-label="-Datatable for NextFi-"
       bottomContent={bottomContent}
       bottomContentPlacement="outside"
@@ -307,6 +315,8 @@ export default function DataTable_unverif() {
         td: "text-center",
         th: "text-center",
       }}
+      // selectedKeys={selectedKeys} //! Отвечает за создание checkbox inputs
+      // selectionMode='multiple' //! Отвечает за создание checkbox inputs
       sortDescriptor={sortDescriptor}
       topContent={topContent}
       topContentPlacement="outside"

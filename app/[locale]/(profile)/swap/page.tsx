@@ -48,21 +48,21 @@ const Swap: NextPage<Props> = () => {
 					</Link>
 				</div>
 				<div className='flex items-center justify-center w-full'>
-					<span className='text-[14px] sm:text-[18px] text-[#888888]'>
+					<span className='text-[12px] sm:text-[18px] text-[#888888]'>
 						Zero swap Fee
 					</span>
 					<Divider
 						className='mx-[5px] sm:mx-[16px] h-[21px] md:h-8 dark:bg-[#fff]'
 						orientation='vertical'
 					/>
-					<span className='text-[14px] sm:text-[18px] text-[#888888]'>
+					<span className='text-[12px] sm:text-[18px] text-[#888888]'>
 						Lower limits
 					</span>
 					<Divider
 						className='mx-[5px] sm:mx-[16px] h-[21px] md:h-8 dark:bg-[#fff]'
 						orientation='vertical'
 					/>
-					<span className='text-[14px] sm:text-[18px] text-[#888888]'>
+					<span className='text-[12px] sm:text-[18px] text-[#888888]'>
 						Simple transactions
 					</span>
 				</div>

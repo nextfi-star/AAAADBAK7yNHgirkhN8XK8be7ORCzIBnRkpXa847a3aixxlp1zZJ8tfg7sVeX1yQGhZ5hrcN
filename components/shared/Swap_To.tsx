@@ -52,14 +52,13 @@ const Swap_To: NextPage = () => {
 			<h1 className='block w-full text-[20px] md:text-[32px] font-medium leading-[40px]'>
 				To
 			</h1>
-			<div className='w-full flex items-center gap-[5px] justify-between'>
+			<div className=' flex items-center gap-[5px] justify-between'>
 				<Input
 					type='text'
 					variant='underlined'
 					placeholder='Enter the amount'
 					className='md:text-[20px] text-[#BDBDBD] font-medium'
 					classNames={{
-						base: 'max-w-[80%]'
 					}}
 				/>
 				<div className='flex items-center'>

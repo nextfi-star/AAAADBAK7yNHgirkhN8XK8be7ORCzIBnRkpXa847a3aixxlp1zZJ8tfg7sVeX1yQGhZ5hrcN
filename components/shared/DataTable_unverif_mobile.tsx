@@ -34,11 +34,11 @@ import { columnsData, statusOptionsData, usersData } from "./data";
 //   "-": "danger",
 // };
 
-const INITIAL_VISIBLE_COLUMNS = ["destination", "amount", "percent", "pnl", "actions", "total"];
+const INITIAL_VISIBLE_COLUMNS = ["destination", "amount"];
 
 type User = (typeof usersData)[0];
 
-export default function DataTable_unverif() {
+export default function DataTable_unverif_mobile() {
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(
     new Set([]),

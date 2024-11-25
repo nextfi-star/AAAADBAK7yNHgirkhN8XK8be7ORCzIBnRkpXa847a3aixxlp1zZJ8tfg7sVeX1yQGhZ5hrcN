@@ -34,14 +34,11 @@ const INITIAL_VISIBLE_COLUMNS = [
 	'time',
 	'amount',
 	'status',
-	'address',
-	'crypto',
-	'fee',
 ]
 
 type User = (typeof usersDataW)[0]
 
-export default function Withdrawal_table() {
+export default function Withdrawal_table_mobile() {
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
 		new Set(INITIAL_VISIBLE_COLUMNS)

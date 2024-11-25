@@ -2,6 +2,7 @@
 import Deposit_faq from '@/components/shared/Deposit_faq'
 import Deposit_steps from '@/components/shared/Deposit_steps'
 import Deposit_table from '@/components/shared/Deposit_table'
+import Deposit_table_mobile from '@/components/shared/Deposit_table_mobile'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { ChevronLeft, X } from 'lucide-react'
@@ -37,7 +38,13 @@ const Deposit: NextPage = () => {
 				</div>
 				<Deposit_faq />
 			</div>
-			<Deposit_table />
+
+			<div className='hidden lg:block'>
+				<Deposit_table />
+			</div>
+			<div className='block lg:hidden'>
+				<Deposit_table_mobile />
+			</div>
 		</section>
 	)
 }
