@@ -22,6 +22,7 @@ const LogIn: NextPage = () => {
 		password,
 	} = useThemeStore()
 	const [showPassword, setShowPassword] = useState<boolean>(false)
+	const [login, setLogin] = useState('')
 	const [getAccess] = useState<boolean>(false)
 	const [errorMessage, setErrorMessage] = useState('')
 	const router = useRouter()
@@ -51,25 +52,29 @@ const LogIn: NextPage = () => {
 	const validatePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setPassword(e.target.value)
 	}
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
+	const handleLogin = async () => {
 		try {
-			const res = await fetch('/api/login', {
+			const body = {
+				email: email,
+				password: password,
+			}
+			console.log('Отправка данных:', body)
+			const response = await fetch('/api/v1/login', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ email, password }),
+				body: JSON.stringify(body),
 			})
-			const data = await res.json()
 
-			if (res.ok) {
-				localStorage.setItem('token', data.token)
-				router.push(`/${params.locale}/over`)
+			const data = await response.json()
+			console.log('Ответ от API:', data)
+			if (data.response === 'success') {
+				router.push('/' + params.locale + '/over')
 			} else {
-				setErrorMessage(data.message || 'Login failed')
+				setErrorMessage(data.message)
 			}
 		} catch (error) {
-			console.error('Error logging in:', error)
-			setErrorMessage('Something went wrong. Please try again later.')
+			console.error('Ошибка авторизации:', error)
+			setErrorMessage('Ошибка соединения с сервером.')
 		}
 	}
 
@@ -92,7 +97,13 @@ const LogIn: NextPage = () => {
 					Phone number
 				</Button>
 			</div>
-			<form className='form login__form'>
+			<form
+				className='form login__form'
+				onSubmit={e => {
+					e.preventDefault()
+					handleLogin()
+				}}
+			>
 				<input
 					id='login'
 					placeholder={mode === 'email' ? 'E-mail' : 'Phone number'}
@@ -101,7 +112,6 @@ const LogIn: NextPage = () => {
 						mode === 'email' ? handleInputOneChange : handleInputTwoChange
 					}
 				/>
-
 				<div className='password__wrapper'>
 					<input
 						id='pass'
@@ -123,9 +133,9 @@ const LogIn: NextPage = () => {
 						/>
 					</span>
 				</div>
-				<Link className={`${btnAuth && 'valid'}`} href={'/verifycode'}>
+				<button className={`${btnAuth && 'valid'}`} type='submit'>
 					Log In
-				</Link>
+				</button>
 
 				{errorMessage && <p className='error'>{errorMessage}</p>}
 			</form>
