@@ -269,8 +269,8 @@ export default function Invest_table_mobile() {
 				tbody: '!shadow-none',
 				wrapper: 'max-h-[503px] !bg-transparent shadow-none',
 				tr: 'bg-transparent !outline-0 !border-0 !shadow-none',
-				td: '!pt-[17px] text-center border-0 border-b border-solid border-white',
-				th: 'text-center md:text-[20px] !bg-transparent outline-0 border-0 shadow-none',
+				td: '!pt-[17px] text-left border-0 border-b border-solid border-white',
+				th: 'text-left md:text-[20px] !bg-transparent outline-0 border-0 shadow-none',
 			}}
 			sortDescriptor={sortDescriptor}
 			topContent={topContent}

@@ -58,7 +58,7 @@ const Security: NextPage = () => {
 	const { theme } = useThemeStore()
 
 	return (
-		<section className='security '>
+		<section className='security !shadow-medium dark:!shadow-none'>
 			<div className='security-container '>
 				<div className='security__content mb-[20px]'>
 					<h1 className='!text-[28px] mb-[15px]'>Authentication methods</h1>

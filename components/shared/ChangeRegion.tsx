@@ -25,7 +25,7 @@ export const ChangeRegion: NextPage<Props> = ({ propsItem }) => {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button className="border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]">
+        <Button className="border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] w-full min-h-[28px]">
           {propsItem}
         </Button>
       </DrawerTrigger>

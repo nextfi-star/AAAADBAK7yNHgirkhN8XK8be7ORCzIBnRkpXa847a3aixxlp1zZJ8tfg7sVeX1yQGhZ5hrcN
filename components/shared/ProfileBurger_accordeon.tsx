@@ -93,8 +93,8 @@ const profileData = [
 			},
 			{
 				value: 'item-3',
-				trigger: 'Trading fee tier',
-				content: '1-tier',
+				trigger: 'Levels Activity',
+				content: '1 lvl',
 			},
 		],
 		no_line: '',
@@ -262,7 +262,7 @@ export const ProfileBurger_accordeon: NextPage<Props> = ({
 }) => {
 	return (
 		<div
-			className={`accor__wrapper  overscroll-contain ${!showSection ? 'scrollY' : ''} `}
+			className={`accor__wrapper  overscroll-contain h-max ${!showSection ? 'scrollY' : ''} `}
 		>
 			{activeTab === 'Profile' && (
 				<ProfileBurger_profile_accor data={profileData} />

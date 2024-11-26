@@ -17,6 +17,7 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import ArrowBracket from '../ui/ArrowBracket'
 import { Button } from '@nextui-org/button'
+import { useState } from 'react'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -24,11 +25,21 @@ interface Props {
 
 export const Alert_phone: NextPage<Props> = ({ propsItem }) => {
 	const { theme } = useThemeStore()
-
+	const [inputs, setInputs] = useState({
+		newPhone: '',
+		newPhoneAuth: '',
+		currentPhoneAuth: '',
+		authenticatorApp: '',
+	})
+	const isDisabled = Object.values(inputs).some(value => value.length < 3)
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target
+		setInputs(prev => ({ ...prev, [name]: value }))
+	}
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]'>
+				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[220px] w-full min-h-[28px]'>
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>
@@ -84,6 +95,9 @@ export const Alert_phone: NextPage<Props> = ({ propsItem }) => {
 									className='border border-solid rounded-[30px] shadow-none !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] px-[10px] py-[20px]'
 									placeholder='Enter phone number'
 									type='text'
+									name='newPhone'
+									value={inputs.newPhone}
+									onChange={handleChange}
 								/>
 							</label>
 						</AlertDialogDescription>
@@ -96,6 +110,9 @@ export const Alert_phone: NextPage<Props> = ({ propsItem }) => {
 									className='border border-solid rounded-[30px] shadow-none !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] px-[10px] py-[20px]'
 									placeholder='Enter code'
 									type='text'
+									name='newPhoneAuth'
+									value={inputs.newPhoneAuth}
+									onChange={handleChange}
 								/>
 							</label>
 						</AlertDialogDescription>
@@ -108,6 +125,9 @@ export const Alert_phone: NextPage<Props> = ({ propsItem }) => {
 									className='border border-solid rounded-[30px] shadow-none !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] px-[10px] py-[20px]'
 									placeholder='Enter code'
 									type='text'
+									name='currentPhoneAuth'
+									value={inputs.currentPhoneAuth}
+									onChange={handleChange}
 								/>
 							</label>
 						</AlertDialogDescription>
@@ -120,6 +140,9 @@ export const Alert_phone: NextPage<Props> = ({ propsItem }) => {
 									className='border border-solid rounded-[30px] shadow-none !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] px-[10px] py-[20px]'
 									placeholder='Enter code'
 									type='text'
+									name='authenticatorApp'
+									value={inputs.authenticatorApp}
+									onChange={handleChange}
 								/>
 							</label>
 						</AlertDialogDescription>
@@ -127,7 +150,17 @@ export const Alert_phone: NextPage<Props> = ({ propsItem }) => {
 				</div>
 				<AlertDialogFooter className='px-[30px] pt-[15px] h-fit items-center gap-[30px]'>
 					<AlertDialogAction
-						className={'text-[16px] xl:text-[22px] px-[20px] 2xl:px-[40px] rounded-[30px]'}
+						disabled={isDisabled}
+						className={`text-[16px] xl:text-[22px] px-[40px] rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
+							isDisabled
+								? 'bg-transparent cursor-not-allowed'
+								: 'bg-[#205bc9] hover:bg-[#205bc9] text-white border-none'
+						}`}
+						onClick={() => setInputs({
+							newPhone: '',
+							newPhoneAuth: '',
+							currentPhoneAuth: '',
+							authenticatorApp: '',})}
 					>
 						Confirm
 					</AlertDialogAction>

@@ -7,6 +7,7 @@ import Image from "next/image";
 import { NextPage } from "next";
 import ArrowBracket from "@/components/ui/ArrowBracket";
 import { useThemeStore } from "@/store";
+import { Button } from '@nextui-org/button'
 
 const data = [
   {
@@ -47,7 +48,7 @@ export const Profile_industry: NextPage<Props> = ({ unicClass }) => {
   return (
     <>
       <section
-        className={`profile__industy profile_blocks_border md:dark:!bg-[#1e1e1e66] ${unicClass} xl:!max-w-[650px]`}
+        className={`profile__industy profile_blocks_border md:!bg-[#fff] dark:!bg-transparent md:dark:!bg-[#1e1e1e66] ${unicClass} 2xl:!max-w-[650px] !mb-[28px] !shadow-none md:!shadow-medium dark:!shadow-none`}
       >
         <div className="w-full flex justify-between gap-[5px] md:gap-[15px] pt-[1.5rem] px-[10px] md:pt-0">
           <h3 className="profile__industry__main_text">
@@ -126,7 +127,7 @@ export const Profile_industry: NextPage<Props> = ({ unicClass }) => {
         </Swiper>
 
         <div className="w-full flex justify-center">
-          <button className="profile__industry__button btn-blu">Next</button>
+          <Button className="profile__industry__button btn-blu">Next</Button>
         </div>
       </section>
     </>

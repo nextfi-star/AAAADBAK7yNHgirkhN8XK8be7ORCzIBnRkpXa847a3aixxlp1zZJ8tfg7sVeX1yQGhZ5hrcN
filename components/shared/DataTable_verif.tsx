@@ -200,7 +200,7 @@ export default function DataTable_verif() {
   const topContent = React.useMemo(() => {
     return (
       <div className="flex flex-col gap-4">
-        <div className="flex justify-between gap-3 items-end">
+        <div className="flex justify-between gap-3 items-end px-[20px]">
           <Input
             isClearable
             className="w-full sm:max-w-[44%]"

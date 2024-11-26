@@ -1,13 +1,10 @@
 import Image from 'next/image'
 import { NextPage } from 'next'
-
 import { Device } from '../ui/Device'
-
-import { Alert } from './Alert'
-
 import { Accordion, AccordionItem } from '@/components/ui/AccordionBurger'
 import { useThemeStore } from '@/store'
 import { Confirmation_dialog } from './Confirmation_dialog'
+import { Confirmation_dialog_devices } from './Confirmation_dialog_devices'
 
 export const Profile_devices: NextPage = () => {
 	const { theme } = useThemeStore()
@@ -39,7 +36,7 @@ export const Profile_devices: NextPage = () => {
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
 											MacBook PRO
 										</span>
-										<Confirmation_dialog
+										<Confirmation_dialog_devices
 											content={
 												'This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers'
 											}
@@ -57,7 +54,7 @@ export const Profile_devices: NextPage = () => {
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
 											MacBook PRO
 										</span>
-										<Confirmation_dialog
+										<Confirmation_dialog_devices
 											content={
 												'This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers'
 											}
@@ -75,7 +72,7 @@ export const Profile_devices: NextPage = () => {
 											MacBook PRO
 										</span>
 
-										<Confirmation_dialog
+										<Confirmation_dialog_devices
 											content={
 												'This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers'
 											}

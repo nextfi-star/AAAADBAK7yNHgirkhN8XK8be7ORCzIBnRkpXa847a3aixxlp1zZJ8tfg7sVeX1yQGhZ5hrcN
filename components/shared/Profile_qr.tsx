@@ -5,8 +5,8 @@ import { Qr } from "../ui/Qr";
 
 export const Profile_qr: NextPage = () => {
   return (
-    <div className="profile_qr x">
-      <div className="profile_qr-mobile flex flex-col justify-center m-auto max-w-[296px] gap-[24px] text-center h-[292px]  rounded-[30px]">
+    <div className="profile_qr !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none">
+      <div className="profile_qr-mobile flex flex-col justify-center m-auto max-w-[296px] gap-[24px] text-center h-[292px] rounded-[30px]">
         <h2 className="text-[18px]">
           Download app <br /> and trade on the go
         </h2>

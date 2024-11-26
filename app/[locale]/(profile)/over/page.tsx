@@ -33,9 +33,9 @@ useEffect(() => {
 	}, [pathname])
 	
 	return (
-		<section className='profile'>
+		<section className='profile '>
 			<Profile_info toggleActive={toggleActive} verify={verify} />
-			<div className='profile__grid gap-[24px] max-xl:grid max-xl:grid-cols-1'>
+			<div className='profile__grid gap-[24px] max-xl:grid max-xl:grid-cols-1 mt-[-17px]'>
 				<div>
 					<hr />
 					{verify ? (

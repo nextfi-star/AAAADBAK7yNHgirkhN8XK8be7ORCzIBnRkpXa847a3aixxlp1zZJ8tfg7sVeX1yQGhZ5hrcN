@@ -21,7 +21,7 @@ const Deposit: NextPage = () => {
 			<h1 className='hide-mobile w-full text-center lg:text-left text-[32px] my-[30px] dark:text-[#EFEFEF] text-[#0c0c0c]'>
 				Deposit
 			</h1>
-			<div className='show-mobile w-full flex items-center justify-between fixed top-[0] left-0 right-0 z-[200] px-[28px] py-[15px] bg-[#f9f9fa] dark:bg-[#0c0c0c]'>
+			<div className='show-mobile flex items-center justify-between fixed top-[0] left-0 right-0 z-[200] px-[28px] py-[15px] bg-[#f9f9fa] dark:bg-[#0c0c0c]'>
 				<Link href={'/assets'} onClick={DropSteps}>
 					<ChevronLeft strokeWidth={1} className='w-[30px]' />
 				</Link>

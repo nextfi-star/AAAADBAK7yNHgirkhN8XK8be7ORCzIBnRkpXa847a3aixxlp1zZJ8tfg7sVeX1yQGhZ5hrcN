@@ -1,10 +1,8 @@
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
-
 import ArrowBracket from '../ui/ArrowBracket'
 import { Input } from '../ui/input'
-
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -29,7 +27,6 @@ export const Alert_nickname: NextPage<Props> = ({ propsItem }) => {
 
 	const trackSymbols = (e: any) => {
 		const inputLength = e.target.value.length
-
 		if (inputLength >= 20) {
 			setSymbols(20)
 		} else {
@@ -40,7 +37,7 @@ export const Alert_nickname: NextPage<Props> = ({ propsItem }) => {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]'>
+				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[14px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] w-full min-h-[28px]'>
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>
@@ -108,7 +105,8 @@ export const Alert_nickname: NextPage<Props> = ({ propsItem }) => {
 				</div>
 				<AlertDialogFooter className='px-[30px] pt-[20px] h-fit items-center gap-[30px]'>
 					<AlertDialogAction
-						className={'text-[16px] xl:text-[22px] px-[20px] 2xl:px-[40px] rounded-[50px] '}
+						className={`text-[16px] xl:text-[22px] px-[20px] 2xl:px-[40px] rounded-[50px] bg-[#205BC9] hover:bg-[#205BC9] ${symbols < 4 ? 'bg-[#7676801F] text-white' : 'bg-[#205BC9] text-white'}`}
+						disabled={symbols < 4}
 					>
 						Confirm
 					</AlertDialogAction>

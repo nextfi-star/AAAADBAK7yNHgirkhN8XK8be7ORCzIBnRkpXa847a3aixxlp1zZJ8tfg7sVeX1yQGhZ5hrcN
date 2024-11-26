@@ -1,9 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
-
 import { Button } from "./button";
 import { PlusIcon } from "./PlusIcon";
-
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
   Drawer,
@@ -16,7 +14,6 @@ import {
   DrawerClose,
 } from "@/components/ui/drawer";
 import { useThemeStore } from "@/store";
-
 const data = [
   {
     img: "/main/avatar_noface.png",
@@ -131,7 +128,7 @@ export const ChangeAvatar = () => {
           <DrawerFooter className="flex flex-row justify-center gap-[42px]">
             <DrawerClose asChild>
               <Button
-                className="border border-solid dark:border-gray-300 border-black rounded-[50px] px-[35px] min-w-[117px] hover:bg-transparent hover:text-[#205BC9]"
+                className="border border-solid dark:border-gray-300 border-black rounded-[50px] px-[35px] min-w-[117px] hover:bg-transparent hover:bg-[#205BC9] hover:text-white hover:border-[#205BC9]"
                 variant="outline"
               >
                 Cancel

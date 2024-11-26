@@ -23,7 +23,7 @@ const data = [
     ),
   },
   {
-    dot: "bg-white",
+    dot: "dark:bg-white bg-[#414141]",
     name: "Investment",
     cell: (
       <span className="flex flex-col gap-[5px] text-[14px] dark:text-white text-[#0c0c0c]">
@@ -32,7 +32,7 @@ const data = [
     ),
   },
   {
-    dot: "bg-white",
+    dot: "dark:bg-white bg-[#414141]",
     name: "Percentages",
     cell: (
       <span className="flex flex-col gap-[5px] text-[14px] dark:text-white text-[#0c0c0c]">
@@ -45,7 +45,7 @@ const Allocation = () => {
   const { theme } = useThemeStore();
 
   return (
-    <section className="dark:!bg-[#1e1e1e66] bg-white shadow-medium rounded-[30px] p-[33.5px_40px] flex flex-col gap-[20px] mb-[1.5rem]">
+  <section className="dark:!bg-[#1e1e1e66] !bg-[#fff] !shadow-medium dark:!shadow-none rounded-[30px] p-[33.5px_40px] flex flex-col gap-[20px] mt-[14px] xl:mt-0 mb-[30px]">
       <h3 className="text-[14px] md:text-[20px] 2xl:text-[25px] w-full flex items-center justify-between">
         Allocation{" "}
         <ArrowBracket color={theme === "dark" ? "white" : "black"} width={24} />{" "}

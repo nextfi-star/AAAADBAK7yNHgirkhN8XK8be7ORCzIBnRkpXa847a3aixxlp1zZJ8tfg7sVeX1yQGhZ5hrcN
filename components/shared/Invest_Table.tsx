@@ -267,12 +267,12 @@ export default function Invest_Table() {
 			title='Investment history'
 			classNames={{
 				table: '!bg-transparent',
-				base: 'dark:!bg-[#1e1e1e66] shadow-medium !bg-[#FFFFFF66] rounded-[30px]',
+				base: 'dark:!bg-[#1e1e1e66] shadow-medium !bg-[#FFFFFF66] rounded-[30px] px-[25px]',
 				tbody: '!shadow-none',
 				wrapper: 'max-h-[503px] !bg-transparent shadow-none',
 				tr: 'bg-transparent !outline-0 !border-0 !shadow-none',
-				td: '!pt-[17px] text-center border-0 border-b border-solid border-white',
-				th: 'text-center md:text-[20px] !bg-transparent outline-0 border-0 shadow-none',
+				td: '!pt-[17px] text-left border-0 border-b border-solid border-white',
+				th: 'text-left md:text-[20px] !bg-transparent outline-0 border-0 shadow-none',
 			}}
 			sortDescriptor={sortDescriptor}
 			topContent={topContent}

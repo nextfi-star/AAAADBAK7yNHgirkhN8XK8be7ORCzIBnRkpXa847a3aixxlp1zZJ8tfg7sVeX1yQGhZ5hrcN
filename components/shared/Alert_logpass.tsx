@@ -15,6 +15,7 @@ import { Input } from '@/components/ui/input'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { Button } from '@nextui-org/button'
+import { useState } from 'react'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -22,11 +23,23 @@ interface Props {
 
 export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 	const { theme } = useThemeStore()
-
+	const [inputs, setInputs] = useState({
+		currentPassword: '',
+		newPassword: '',
+		confirmNew: '',
+		emailAuth: '',
+		authApp: '',
+	})
+	const [checked, setChecked] = useState(false)
+	const isDisabled = Object.values(inputs).some(value => value.length < 3)
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target
+		setInputs(prev => ({ ...prev, [name]: value }))
+	}
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]'>
+				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[220px] w-full min-h-[28px]'>
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>
@@ -69,6 +82,9 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
 									placeholder='Enter your current password'
 									type='text'
+									name='currentPassword'
+									value={inputs.currentPassword}
+									onChange={handleChange}
 								/>
 							</label>
 						</AlertDialogDescription>
@@ -81,6 +97,9 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
 									placeholder='Enter your current password'
 									type='text'
+									name='newPassword'
+									value={inputs.newPassword}
+									onChange={handleChange}
 								/>
 							</label>
 						</AlertDialogDescription>
@@ -93,6 +112,9 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
 									placeholder='Enter your current password'
 									type='text'
+									name='confirmNew'
+									value={inputs.confirmNew}
+									onChange={handleChange}
 								/>
 							</label>
 						</AlertDialogDescription>
@@ -105,6 +127,9 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
 									placeholder='Enter your current password'
 									type='text'
+									name='emailAuth'
+									value={inputs.emailAuth}
+									onChange={handleChange}
 								/>
 							</label>
 						</AlertDialogDescription>
@@ -117,10 +142,13 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
 									placeholder='Enter your current password'
 									type='text'
+									name='authApp'
+									value={inputs.authApp}
+									onChange={handleChange}
 								/>
 							</label>
 						</AlertDialogDescription>
-						<div className='privacy max-w-[921px] flex flex-col self-center	 justify-start'>
+						<div className='privacy max-w-[921px] flex flex-col self-center justify-start'>
 							<label
 								className='checkbox-label gap-[5px] md:gap-[18px] !items-start'
 								htmlFor='checkbox-privacy'
@@ -129,6 +157,8 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 									className='checkbox'
 									id='checkbox-privacy'
 									type='checkbox'
+									checked={checked}
+									onChange={() => setChecked(!checked)}
 								/>
 								<span className='checkbox-view'>
 									<svg
@@ -154,8 +184,20 @@ export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
 				</div>
 				<AlertDialogFooter className='px-[30px] pt-[15px] h-fit items-center gap-[30px]'>
 					<AlertDialogAction
-						className={
-							'text-[16px] xl:text-[22px] px-[20px] 2xl:px-[40px] rounded-[30px]'
+						disabled={isDisabled || !checked}
+						className={`text-[16px] xl:text-[22px] px-[40px] rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] ${
+							isDisabled || !checked
+								? 'bg-transparent hover:bg-transparent'
+								: 'bg-[#205bc9] hover:bg-[#205bc9] border-none text-white'
+						}`}
+						onClick={() =>
+							setInputs({
+								currentPassword: '',
+								newPassword: '',
+								confirmNew: '',
+								emailAuth: '',
+								authApp: '',
+							})
 						}
 					>
 						Confirm

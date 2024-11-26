@@ -8,7 +8,7 @@ import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 
 const Page: NextPage = () => {
   return (
-    <section className="personal">
+    <section className="personal !shadow-medium dark:!shadow-none">
       <div className="personal-container">
         <div className="personal-inner flex flex-row justify-between mt-[20px] gap-[40px]">
           <div className="relative h-fit w-fit">

@@ -129,7 +129,7 @@ const Deposit_steps: NextPage<Props> = () => {
 	const [input3, setInput3] = useState('')
 	const [selectedCrypto, setSelectedCrypto] = useState<CryptoData | null>(null)
 	const [inputValue, setInputValue] = useState('')
-
+	const [rotate, setRotate] = useState(false)
 	const inputStep2Handler = (value: string) => {
 		setInputStep2(value)
 		setStep(3)
@@ -186,7 +186,8 @@ const Deposit_steps: NextPage<Props> = () => {
 														<ChevronDown
 															strokeWidth={1}
 															color={theme === 'dark' ? 'white' : 'black'}
-															className='w-8 h-8'
+															className={`w-8 h-8 transition duration-300  
+															${!open ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
 														/>
 													</div>
 												) : (
@@ -197,7 +198,8 @@ const Deposit_steps: NextPage<Props> = () => {
 														<ChevronDown
 															strokeWidth={1}
 															color={theme === 'dark' ? 'white' : 'black'}
-															className='w-8 h-8'
+															className={`w-8 h-8 transition duration-300  
+																${!open ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
 														/>
 													</div>
 												)}
@@ -240,9 +242,6 @@ const Deposit_steps: NextPage<Props> = () => {
 																	</div>
 																	<p className='flex flex-col text-[20px]'>
 																		{status.cryptoNumbers}
-																		<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
-																			{status.moreLess}
-																		</span>
 																	</p>
 																</div>
 															</CommandItem>
@@ -281,7 +280,6 @@ const Deposit_steps: NextPage<Props> = () => {
 											placeholder='Select network'
 											className='!bg-[#7676801F] !p-0 '
 											onInputChange={inputStep2Handler}
-											disableSelectorIconRotation
 											listboxProps={{
 												emptyContent: <NotFoundItem />,
 											}}
@@ -289,34 +287,37 @@ const Deposit_steps: NextPage<Props> = () => {
 												<ChevronDown
 													strokeWidth={1}
 													color={theme === 'dark' ? 'white' : 'black'}
-													className='w-8 h-8'
+													className={`w-8 h-8`}
 												/>
 											}
 											size='lg'
 											classNames={{
 												base: '!bg-[#7676801F], flex items-center rounded-medium h-[48px] !p-0',
 												listboxWrapper:
-													'!p-0 dark:!bg-[#19191A] overscroll-contain ',
-												popoverContent: 'dark:bg-[#19191A] bg-[#EEEEEE]',
-												listbox: 'py-0 gap-[20px]',
+													'!p-0 dark:!bg-[#19191A] overscroll-contain rounded-[30px]',
+												popoverContent: 'dark:bg-[#19191A] bg-[#EEEEEE] shadow-none rounded-[30px]',
+												listbox: 'py-0 !gap-[10px] ',
 											}}
 										>
 											{networkData => (
 												<AutocompleteItem
 													key={networkData.id}
 													textValue={networkData.name}
-													className='p-0 dark:!bg-[#19191A]'
+													hideSelectedIcon
+													className='p-0 px-[20px] py-[15px] rounded-[19px]'
+													classNames={{
+														base: 'data-[hover=true]:!bg-[#0000004D]',
+													}}
 												>
-													<div className='flex gap-2 items-center justify-between rounded-[4px]'>
+													<div className='flex items-center justify-between rounded-[4px]'>
 														<div className='flex flex-col'>
 															<span className='text-[18px] text-[#205BC9]'>
 																{networkData.name}
 															</span>
 														</div>
 														<div className='flex flex-col items-end'>
-															<span className='text-[18px]'>{networkData.cryptoNumbers}</span>
-															<span className='text-[#BDBDBD] text-[18px]'>
-																{networkData.moreLess}
+															<span className='text-[18px]'>
+																{networkData.cryptoNumbers}
 															</span>
 														</div>
 													</div>

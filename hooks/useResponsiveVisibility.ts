@@ -20,6 +20,7 @@ export const useResponsiveVisibility = () => {
 		/^\/[a-z]{2}\/withdrawal$/, 
 		/^\/[a-z]{2}\/invest$/,
 		/^\/[a-z]{2}\/tier$/, 
+		/^\/[a-z]{2}\/deposit$/, 
 	]
 
 	const isHiddenRoute = hiddenRoutes.some(regex => regex.test(pathname))

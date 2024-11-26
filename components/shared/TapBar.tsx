@@ -69,11 +69,9 @@ export const TapBar: NextPage = () => {
 			setActiveIndex(index === activeIndex ? null : index)
 		}
 	}
-
 	const dotLottieRefCallback = (ref: any, index: number) => {
 		dotLottieRefs.current[index] = ref
 	}
-
 	useEffect(() => {
 		const handleResize = () => {
 			if (window.innerWidth <= 430) {

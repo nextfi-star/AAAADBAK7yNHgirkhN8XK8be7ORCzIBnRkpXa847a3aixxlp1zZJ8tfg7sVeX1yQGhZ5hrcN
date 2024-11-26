@@ -26,7 +26,7 @@ export const Profile_balance: NextPage = () => {
 
 	return (
 		<section className=''>
-			<div className='w-[212px] sm:hidden flex m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200 mb-[30px]'>
+			<div className='w-[212px] sm:hidden flex m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200 mb-[26px] !shadow-medium dark:!shadow-none'>
 				<button
 					className={`w-[104px] transition duration-300 ${
 						isActive ? 'bg-[#205BC9] text-white' : 'text-[#205BC9]'
@@ -45,7 +45,7 @@ export const Profile_balance: NextPage = () => {
 				</button>
 			</div>
 
-			<div className='profile__balance bg-white dark:bg-[#1e1e1e66]'>
+			<div className='profile__balance bg-[#fff] dark:bg-[#1e1e1e66] md:!shadow-medium md:dark:!shadow-none !mb-[29px]'>
 				<div className='profile__balance_sides'>
 					{/* Mobile */}
 					<Swiper
@@ -66,25 +66,25 @@ export const Profile_balance: NextPage = () => {
 											<h4 className='text-blue-600 text-[21px] font-medium'>
 												Balance
 											</h4>
-											<Eye />
+											<select className='bg-transparent text-[16px] font-medium'>
+												<option
+													className='text-[12px] max-w-[1px] text-black'
+													value='USDT'
+												>
+													USDT
+												</option>
+												<option
+													className='text-[12px] max-w-[1px] text-black'
+													value='NextFi'
+												>
+													NextFi
+												</option>
+											</select>
 										</div>
 									</div>
 									<div className='flex items-center gap-[8px]'>
 										<p className='text-[23px] font-bold'>$000,000</p>
-										<select className='bg-transparent text-[16px] font-medium'>
-											<option
-												className='text-[12px] max-w-[1px] text-black'
-												value='USDT'
-											>
-												USDT
-											</option>
-											<option
-												className='text-[12px] max-w-[1px] text-black'
-												value='NextFi'
-											>
-												NextFi
-											</option>
-										</select>
+										<Eye />
 									</div>
 									<div className='flex items-center gap-2 text-blue-600 text-[14px]'>
 										<p>Today $0,00 (0,00 %)</p>
@@ -102,25 +102,25 @@ export const Profile_balance: NextPage = () => {
 											<h4 className='text-blue-600 text-[21px] font-medium'>
 												Bonus Balance
 											</h4>
-											<Eye />
+											<select className='bg-transparent text-[16px] font-medium'>
+												<option
+													className='text-[12px] max-w-[1px] text-black'
+													value='USDT'
+												>
+													USDT
+												</option>
+												<option
+													className='text-[12px] max-w-[1px] text-black'
+													value='NextFi'
+												>
+													NextFi
+												</option>
+											</select>
 										</div>
 									</div>
 									<div className='flex items-center gap-[8px]'>
 										<p className='text-[23px] font-bold'>$000,000</p>
-										<select className='bg-transparent text-[16px] font-medium'>
-											<option
-												className='text-[12px] max-w-[1px] text-black'
-												value='USDT'
-											>
-												USDT
-											</option>
-											<option
-												className='text-[12px] max-w-[1px] text-black'
-												value='NextFi'
-											>
-												NextFi
-											</option>
-										</select>
+										<Eye />
 									</div>
 									<div className='flex items-center gap-2 text-blue-600 text-[14px]'>
 										<p>Today $0,00 (0,00 %)</p>
@@ -140,9 +140,10 @@ export const Profile_balance: NextPage = () => {
 								<option value=''>NextFi</option>
 							</select>
 						</div>
-						<p className='text-[32px] font-bold flex items-center gap-[8px]'>
-							$000,000,000 <Image src={'/main/eye_blue.svg'} alt='eye' />
-						</p>
+						<div className='flex items-center gap-[8px]'>
+							<p className='text-[32px] font-bold'>$000,000,000</p>{' '}
+							<Image src={'/main/eye_blue.svg'} alt='eye' />
+						</div>
 						<div className='profile_balance_side_statistic_block'>
 							<p className='profile_balance_side_statistic_block_text !font-normal !text-[#205BC9]'>
 								Today
@@ -162,9 +163,10 @@ export const Profile_balance: NextPage = () => {
 								</select>
 							</h4>
 						</div>
-						<p className='text-[32px] font-bold flex items-center gap-[8px]'>
-							$000,000,000 <Image src={'/main/eye_blue.svg'} alt='eye' />
-						</p>
+						<div className='text-[32px] font-bold flex items-center gap-[8px]'>
+							<p className='text-[32px] font-bold'>$000,000,000</p>{' '}
+							<Image src={'/main/eye_blue.svg'} alt='eye' />
+						</div>
 
 						<div className='profile_balance_side_statistic_block'>
 							<p className='profile_balance_side_statistic_block_text !font-normal !text-[#205BC9]'>
@@ -230,25 +232,25 @@ export const Profile_balance: NextPage = () => {
 							<div className='w-full hidden sm:flex items-center justify-center sm:justify-start gap-[10px]'>
 								<Link
 									href='#'
-									className='flex flex-col items-center text-[14px] border-1 border-solid border-[#205BC9] dark:border-[#fff] text-[#205BC9] dark:text-[#ffffff] w-full max-w-[156px] rounded-[30px]'
+									className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
 								>
 									Deposit
 								</Link>
 								<Link
 									href='/withdrawal'
-									className='flex flex-col items-center text-[14px] border-1 border-solid border-[#205BC9] dark:border-[#ffffff] text-[#205BC9] dark:text-[#ffffff] w-full max-w-[156px] rounded-[30px]'
+								className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
 								>
 									Withdrawal
 								</Link>
 								<Link
 									href='/swap'
-									className='flex flex-col items-center text-[14px] border-1 border-solid border-[#205BC9] dark:border-[#fff] text-[#205BC9] dark:text-[#ffffff] w-full max-w-[156px] rounded-[30px]'
+								className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
 								>
 									Swap
 								</Link>
 								<Link
 									href='/invest'
-									className='flex flex-col items-center text-[14px] border-1 border-solid border-[#205BC9] dark:border-[#fff] text-[#205BC9] dark:text-[#ffffff] w-full max-w-[156px] rounded-[30px]'
+									className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
 								>
 									Investment
 								</Link>

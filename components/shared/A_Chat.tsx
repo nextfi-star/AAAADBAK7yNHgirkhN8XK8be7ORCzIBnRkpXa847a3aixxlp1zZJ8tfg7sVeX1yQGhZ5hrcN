@@ -104,7 +104,8 @@ export const A_Chat: NextPage = () => {
 		<>
 			<Button
 				onPress={onOpen}
-				className={`fixed z-[80] md:bottom-[3.5rem] bottom-[2.5rem] md:right-[3.5rem] right-[2.5rem] p-0 m-0 min-w-[64px] min-h-[64px] rounded-full hidden md:flex items-center justify-center bg-[#19191A] dark:bg-foreground-50`}
+				className={`fixed z-[80] md:bottom-[3.5rem] bottom-[2.5rem] md:right-[3.5rem] right-[2.5rem] p-0 m-0 min-w-[64px] min-h-[64px] rounded-full hidden md:flex items-center justify-center bg-[#19191A] dark:bg-[#19191A] hover:bg-[#19191A] hover:opacity-[1]`}
+				data-hover="true"
 			>
 				<Image
 					src={'/chatIcon.svg'}
@@ -129,9 +130,9 @@ export const A_Chat: NextPage = () => {
 					{onClose => (
 						<>
 							<ModalHeader className='flex items-center justify-between w-full'>
-								<ChevronLeft onClick={onClose} />
+								<ChevronLeft onClick={onClose} className='cursor-pointer' />
 								<h1 className='text-[24px]'>Support Chat</h1>
-								<X onClick={() => setShowCancel(!showCancel)} />
+								<X onClick={() => setShowCancel(!showCancel)} className='cursor-pointer'/>
 							</ModalHeader>
 							<ModalBody className='flex flex-col items-center justify-between min-h-[522px] px-0 !m-0'>
 								<div className='flex flex-col items-center gap-[26px]'>
@@ -261,7 +262,7 @@ export const A_Chat: NextPage = () => {
 														className='relative flex items-center gap-[10px] w-full pb-[.5rem]'
 													>
 														<Images
-															className='bg-transparent absolute top-[11px] left-[17px] max-w-[32px] w-full'
+															className='bg-transparent absolute top-[11px] left-[17px] max-w-[32px] w-full cursor-pointer'
 															strokeWidth={1}
 														/>
 														<input

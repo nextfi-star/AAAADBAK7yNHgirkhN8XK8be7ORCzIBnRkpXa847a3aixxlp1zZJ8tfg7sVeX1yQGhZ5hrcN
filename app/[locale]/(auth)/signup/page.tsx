@@ -54,9 +54,7 @@ const LogIn: NextPage = () => {
 	const handleLogin = async () => {
 		try {
 			const body = { email, password }
-
 			console.log('Отправка данных:', body)
-
 			const response = await fetch('/api/v1/register', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },

@@ -121,7 +121,7 @@ const Verify: NextPage = () => {
 		>
 			<div className='site-holder !px-[0]'>
 				{!change ? (
-					<div className='flex flex-col items-center pt-[86px] gap-[9px] md:gap-[83px]'>
+					<div className='flex flex-col items-center mt-[-128px] gap-[9px] md:gap-[83px]'>
 						{!globalVeriState ? (
 							<>
 								<div className='w-fit relative'>

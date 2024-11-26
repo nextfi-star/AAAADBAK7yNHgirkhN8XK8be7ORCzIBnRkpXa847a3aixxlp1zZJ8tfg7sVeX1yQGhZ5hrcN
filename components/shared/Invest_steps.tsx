@@ -174,7 +174,7 @@ const Invest_steps: NextPage<Props> = () => {
 												</div>
 											) : (
 												<div className='flex w-full justify-between gap-[8px] items-center'>
-													<p className='text-[20px] font-medium text-[#0c0c0c] dark:text-white'>
+													<p className='text-[20px] font-medium text-[#0c0c0c] dark:text-[#BDBDBD]'>
 														Choose an industry
 													</p>
 													<ChevronDown
@@ -234,9 +234,9 @@ const Invest_steps: NextPage<Props> = () => {
 																		{status.name}
 																	</p>
 																</div>
-																<p className='flex items-center gap-[5px] md:text-[20px] flex-shrink-0'>
+																<p className='flex items-center gap-[5px] md:text-[20px] flex-shrink-0 dark:text-[#BDBDBD]'>
 																	{status.periodFrom}
-																	<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
+																	<span className='text-[14px] md:text-[20px] dark:text-[#BDBDBD]'>
 																		-
 																	</span>
 																	{status.periodTo} days
@@ -336,7 +336,7 @@ const Invest_steps: NextPage<Props> = () => {
 																	setStep(3)
 																}}
 															>
-																<div className='flex items-center justify-between w-full'>
+																<div className='flex items-center justify-between w-full px-[15px]'>
 																	<div className='flex items-center gap-[3px]'>
 																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
 																			{period.name}

@@ -2,11 +2,9 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   try {
-    // Парсинг тела запроса
     const body = await req.json();
     console.log('Request Body:', body);
 
-    // Проверка на наличие email и password
     if (!body.email || !body.password) {
       console.warn('Missing email or password');
       return NextResponse.json(
@@ -15,7 +13,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Запрос к внешнему серверу
     const res = await fetch('http://127.0.0.1:5000/api/v1/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

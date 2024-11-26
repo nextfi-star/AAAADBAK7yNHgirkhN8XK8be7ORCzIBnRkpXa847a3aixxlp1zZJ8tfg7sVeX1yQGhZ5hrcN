@@ -48,7 +48,10 @@ export const Swap_FromTo_alert: NextPage<Props> = ({ statuses }) => {
 				>
 					{selectedStatus ? (
 						<div className='flex gap-[8px] items-center'>
-							<Avatar src={selectedStatus.icon} />
+							<Avatar
+								src={selectedStatus.icon}
+								className='max-w-[30px] w-full max-h-[30px] md:max-w-[40px] md:max-h-[40px]'
+							/>
 							<DialogDescription className='text-[16px] text-[#0c0c0c] dark:text-white'>
 								{swapPoppover_1}
 							</DialogDescription>
@@ -59,7 +62,10 @@ export const Swap_FromTo_alert: NextPage<Props> = ({ statuses }) => {
 						</div>
 					) : (
 						<div className='flex gap-[8px] items-center'>
-							<Avatar src={'/payment_table/zro.svg'} />
+							<Avatar
+								src={'/payment_table/zro.svg'}
+								className='max-w-[30px] w-full max-h-[30px] md:max-w-[40px] md:max-h-[40px]'
+							/>
 							<DialogDescription className='text-[16px] text-[#0c0c0c] dark:text-white'>
 								Layer Zero
 							</DialogDescription>
@@ -71,12 +77,12 @@ export const Swap_FromTo_alert: NextPage<Props> = ({ statuses }) => {
 					)}
 				</Button>
 			</DialogTrigger>
-			<DialogContent className='max-w-[90%] md:max-w-[38rem] w-full p-0 rounded-[20px]'>
+			<DialogContent className='max-w-[90%] md:max-w-[38rem] w-full p-0 rounded-[50px]'>
 				<DialogHeader>
 					<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
 						Convert from
 						<DialogClose asChild>
-							<Cross2Icon className='h-[32px] w-[32px]' />
+							<Cross2Icon className='h-[32px] w-[32px] cursor-pointer' />
 						</DialogClose>
 					</DialogTitle>
 					<Divider className='m-0' />
@@ -84,7 +90,7 @@ export const Swap_FromTo_alert: NextPage<Props> = ({ statuses }) => {
 						<Command className='bg-[#eee] dark:bg-[#19191A] min-h-[650px]'>
 							<CommandInput
 								placeholder='Your choice'
-								className='bg-[transparent] md:text-[20px] text-[16px]'
+								className='bg-[transparent] md:text-[20px] text-[16px] py-[30px]'
 							/>
 							<CommandList className='w-full h-full bg-[#eee] dark:bg-[#19191A] px-[10px] max-h-full'>
 								<CommandEmpty>
@@ -111,14 +117,11 @@ export const Swap_FromTo_alert: NextPage<Props> = ({ statuses }) => {
 														<Avatar src={status.icon} />
 														<DialogDescription className='text-[20px] text-[#205BC9] flex flex-col items-start'>
 															{status.label}
-															<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
-																{status.value}
-															</span>
 														</DialogDescription>
 													</div>
-													<DialogDescription className='flex flex-col text-[20px]'>
+													<DialogDescription className='flex flex-col text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 														{status.cryptoNumbers}
-														<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
+														<span className='text-[14px] md:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 															{status.moreLess}
 														</span>
 													</DialogDescription>
