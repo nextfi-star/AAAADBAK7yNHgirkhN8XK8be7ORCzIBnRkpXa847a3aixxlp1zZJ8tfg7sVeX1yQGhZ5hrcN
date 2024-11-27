@@ -47,7 +47,7 @@ const Activity_progressLogo = () => {
 		[]
 	)
 	return (
-		<section className='w-full max-h-[476px] min-h-[476px] xl:shadow-medium bg-none xl:dark:bg-[#3C3C3C66] lg:rounded-[1000px] backdrop-blur-[6px] flex flex-col items-center justify-center gap-[30px] lg:pr-[40px]'>
+		<section className='w-full max-h-[476px] lg:py-[40px] xl:shadow-medium bg-none xl:dark:bg-[#3C3C3C66] lg:rounded-[1000px] backdrop-blur-[6px] flex flex-col items-center justify-center gap-[30px] lg:pr-[40px]'>
 			<div className='w-full lg:max-w-[70%] flex items-end justify-center gap-[10px] lg:gap-[20px] select-none relative'>
 				<div className='flex flex-col gap-[5px] lg:gap-[24px] items-start '>
 					{data &&

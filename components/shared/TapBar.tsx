@@ -33,7 +33,7 @@ export const TapBar: NextPage = () => {
 				class: 'round',
 				class2: 'round2',
 				speed: 1.5,
-				href: '/over',
+				href: '/invest',
 				onclick: () => setVerifyState(false),
 			},
 			{

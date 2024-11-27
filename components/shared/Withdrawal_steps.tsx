@@ -234,14 +234,14 @@ const Withdrawal_steps: NextPage<Props> = () => {
 																		<Avatar src={status.avatar} />
 																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
 																			{status.name}
-																			<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
+																			<span className='text-[20px] text-[#3A3939] dark:text-[#BDBDBD]'>
 																				{status.name}
 																			</span>
 																		</p>
 																	</div>
 																	<p className='flex flex-col text-[20px]'>
 																		{status.cryptoNumbers}
-																		<span className='text-[14px] md:text-[20px] text-[#BDBDBD]'>
+																		<span className='text-[14px] md:text-[20px] text-[#3A3939] dark:text-[#BDBDBD]'>
 																			{status.moreLess}
 																		</span>
 																	</p>

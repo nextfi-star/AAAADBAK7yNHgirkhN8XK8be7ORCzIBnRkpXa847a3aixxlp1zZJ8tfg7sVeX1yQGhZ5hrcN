@@ -7,9 +7,9 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { ProfileBurger_info, ProgileBurger_Tabsinfo } from '.'
 import ArrowBracket from '../ui/ArrowBracket'
-import { Confirmation_dialog } from './Confirmation_dialog'
 import { ProfileBurger_menu_list } from './ProfileBurger_menu_list'
 import { ProfileBurger_settigns } from './ProfileBurger_settigns'
+import { Logout_confirmation } from './Logout_confirmation'
 
 interface Props {
 	handleClick: () => void
@@ -55,13 +55,13 @@ export const Burger_profile: NextPage<Props> = ({
 								/>
 							</div>
 							<div className='absolute top-[35px] right-[13px]'>
-								<Confirmation_dialog
+							<Logout_confirmation
 									title='Are you absolutelu sure?'
 									content='This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'
 									titleTriger={
 										<LogOut className=' min-w-[23px] min-h-[23px]' />
 									}
-									className='!border-0 w-[44px] !p-0 !px-0'
+									className='!border-none !outline-0 w-[44px] !p-0 !px-0'
 								/>
 							</div>
 						</>
@@ -78,8 +78,8 @@ export const Burger_profile: NextPage<Props> = ({
 									width={25}
 								/>
 							</div>
-							<div className='absolute top-[35px] right-[13px]'>
-								<Confirmation_dialog
+							<div className='absolute top-[35px] right-[13px] z-[100]'>
+								<Logout_confirmation
 									title='Are you absolutelu sure?'
 									content='This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'
 									titleTriger={

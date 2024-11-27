@@ -21,7 +21,7 @@ export const ProfileBurger_info: NextPage<Props> = ({
   };
 
   return (
-    <section className={`profile__burger-info`} onClick={handleClick}>
+    <section className={`profile__burger-info !pr-[24px]`} onClick={handleClick}>
       <div
         className={`flex items-center gap-[20px]`}
       >

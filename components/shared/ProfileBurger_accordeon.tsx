@@ -30,7 +30,7 @@ const profileData = [
 				content: (
 					<>
 						<span>zya***@rambler.ru</span>
-						<Alert_nickname propsItem={'Change'} />
+						<Alert_nickname propsItem={'Change'} className='max-w-[100px]'/>
 					</>
 				),
 			},
@@ -51,7 +51,7 @@ const profileData = [
 				content: (
 					<>
 						<span>Identity</span>
-						<ChangeRegion propsItem={'Change'} />
+						<ChangeRegion propsItem={'Change'} className='max-w-[100px]' />
 					</>
 				),
 			},

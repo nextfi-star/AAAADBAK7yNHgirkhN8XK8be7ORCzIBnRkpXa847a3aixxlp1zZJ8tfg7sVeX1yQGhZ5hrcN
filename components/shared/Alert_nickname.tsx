@@ -20,24 +20,26 @@ import { Button } from '@nextui-org/button'
 
 interface Props {
 	propsItem: React.ReactNode
+	className?: string
 }
-export const Alert_nickname: NextPage<Props> = ({ propsItem }) => {
-	const [symbols, setSymbols] = useState<number | string | any>(0)
+export const Alert_nickname: NextPage<Props> = ({ propsItem, className }) => {
 	const { theme } = useThemeStore()
-
-	const trackSymbols = (e: any) => {
-		const inputLength = e.target.value.length
-		if (inputLength >= 20) {
-			setSymbols(20)
-		} else {
-			setSymbols(inputLength)
+	const [symbols, setSymbols] = useState<number | string | any>(0)
+	const [inputValue, setInputValue] = useState<string>('')
+	const trackSymbols = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const value = e.target.value
+		if (value.length <= 20) {
+			setInputValue(value)
+			setSymbols(value.length)
 		}
 	}
 
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[14px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] w-full min-h-[28px]'>
+				<Button
+					className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[14px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] w-full min-h-[28px] ${className}`}
+				>
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>
@@ -90,9 +92,10 @@ export const Alert_nickname: NextPage<Props> = ({ propsItem }) => {
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
 								Your nickname is used for trading and in-app messages
 								<Input
-									className='border border-solid shadow-none text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[12px] py-[20px] rounded-[30px]'
+									className={`border border-solid shadow-none text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[12px] py-[20px] rounded-[30px]  ${symbols >= 20 ? '!border-danger-600' : '!border-[#4d4d4d]'} `}
 									placeholder='Enter nickname'
 									type='text'
+									value={inputValue}
 									onChange={trackSymbols}
 								/>
 							</label>
@@ -105,8 +108,12 @@ export const Alert_nickname: NextPage<Props> = ({ propsItem }) => {
 				</div>
 				<AlertDialogFooter className='px-[30px] pt-[20px] h-fit items-center gap-[30px]'>
 					<AlertDialogAction
-						className={`text-[16px] xl:text-[22px] px-[20px] 2xl:px-[40px] rounded-[50px] bg-[#205BC9] hover:bg-[#205BC9] ${symbols < 4 ? 'bg-[#7676801F] text-white' : 'bg-[#205BC9] text-white'}`}
-						disabled={symbols < 4}
+						className={`text-[16px] px-[40px] rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
+							symbols < 4
+								? '!bg-transparent cursor-not-allowed'
+								: 'bg-[#205bc9] hover:bg-[#205bc9] text-white border-none'
+						}`}
+						disabled={symbols < 4 || symbols >= 20}
 					>
 						Confirm
 					</AlertDialogAction>
