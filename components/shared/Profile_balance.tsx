@@ -76,7 +76,7 @@ export const Profile_balance: NextPage = () => {
 									<div className='flex items-center gap-2'>
 										<Image
 											src={
-												refresh ? '/main/bonusbalance.svg' : '/main/balacne.svg'
+												refresh ? '/main/bonusbalance.svg' : '/main/balance.svg'
 											}
 											width={44}
 											height={44}
