@@ -68,14 +68,16 @@ export const Profile_balance: NextPage = () => {
 						}}
 					>
 						<SwiperSlide> */}
-					{isLoading && <Spinner  className='min-w-[370px] min-h-[158px] '/>}
+					{isLoading && <Spinner className='min-w-[370px] min-h-[158px] ' />}
 					{!isLoading && (
 						<div className='w-full sm:hidden m-auto border border-[#adadad] border-solid gap-[10px] rounded-xl p-4 flex items-start justify-between'>
 							<div className='flex flex-col'>
 								<div className='flex justify-between items-center'>
 									<div className='flex items-center gap-2'>
 										<Image
-											src={'/main/balance.svg'}
+											src={
+												refresh ? '/main/bonusbalance.svg' : '/main/balacne.svg'
+											}
 											width={44}
 											height={44}
 											alt='balance'
@@ -114,7 +116,7 @@ export const Profile_balance: NextPage = () => {
 								</span>
 								<RefreshCw
 									strokeWidth={1}
-									className='!w-full !max-w-[26px] p-[5px]'
+									className='!w-full !max-w-[26px] p-[5px] cursor-pointer'
 									onClick={handleRefreshClick}
 								/>
 							</div>
