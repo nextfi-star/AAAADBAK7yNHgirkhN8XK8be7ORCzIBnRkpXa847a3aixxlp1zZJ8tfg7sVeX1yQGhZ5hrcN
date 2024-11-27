@@ -8,9 +8,7 @@ import { useThemeStore } from '@/store'
 
 const VerifyCode: NextPage = () => {
 	const [otp, setOtp] = useState<string>('')
-	const { mode, email, phone, initializeTheme } =
-		useThemeStore()
-
+	const { mode, email, phone, initializeTheme } = useThemeStore()
 	const handleOtpChange = (newOtp: any) => {
 		setOtp(newOtp)
 		console.log('Entered OTP:', newOtp)

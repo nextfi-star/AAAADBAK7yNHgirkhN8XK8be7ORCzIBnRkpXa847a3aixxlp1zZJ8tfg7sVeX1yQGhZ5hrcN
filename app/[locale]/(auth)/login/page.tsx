@@ -1,143 +1,158 @@
 'use client'
-import { useEffect, useState } from 'react'
-import Image from 'next/image'
-import { NextPage } from 'next'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 import { useParams, useRouter } from 'next/navigation'
+import { loginUser, registerUser } from '@/utils/api'
 import { Button } from '@nextui-org/button'
-import { Link } from '@/i18n/routing'
 import { FormLogo } from '@/components/ui/FormLogo'
 import { useThemeStore } from '@/store'
+import Image from 'next/image'
+import { Link } from '@/i18n/routing'
 
-const LogIn: NextPage = () => {
+const schema = yup.object().shape({
+	emailOrPhone: yup.string().required('Email or phone is required'),
+	password: yup
+		.string()
+		.min(6, 'Password must be at least 6 characters')
+		.required('Password is required'),
+	agreeToTerms: yup.boolean().oneOf([true], 'You must agree to the terms'),
+})
+
+const LogIn = () => {
 	const {
-		initializeTheme,
-		theme,
-		mode,
-		modeToogle,
-		setEmail,
-		email,
-		setPhone,
-		phone,
-		setPassword,
-		password,
-	} = useThemeStore()
-	const [showPassword, setShowPassword] = useState<boolean>(false)
-	const [login, setLogin] = useState('')
-	const [getAccess] = useState<boolean>(false)
-	const [errorMessage, setErrorMessage] = useState('')
+		register,
+		handleSubmit,
+		formState: { errors, isValid },
+	} = useForm({
+		resolver: yupResolver(schema),
+		mode: 'onChange',
+	})
+	const { theme, email, setEmail, phone, setPhone, modeToogle, mode } = useThemeStore()
+	const [showPassword, setShowPassword] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
+	const [success, setSuccess] = useState<string | null>(null)
+	const [error, setError] = useState<string | null>(null)
 	const router = useRouter()
 	const params = useParams()
-	useEffect(() => {
-		initializeTheme()
-	}, [initializeTheme])
-	const btnAuth =
-		mode === 'email'
-			? email.length >= 4 && password.length >= 4
-			: !getAccess
-				? phone.length >= 4 && password.length >= 4
-				: !getAccess
+	const locale = params.locale || 'en'
+	const togglePasswordVisibility = () => setShowPassword(prev => !prev)
+	const onSubmit = async (data: any) => {
+		const payload = {
+			email: mode === 'email' ? data.emailOrPhone : '',
+			phone: mode === 'phone' ? data.emailOrPhone : '',
+			password: data.password,
+			refid: '',
+		}
+		setError(null)
+		setSuccess(null)
+		setIsLoading(true)
 
-	const selectedMode = (selected: string) => {
-		modeToogle(selected)
-	}
-	const togglePasswordVisibility = () => {
-		setShowPassword(prevState => !prevState)
-	}
-	const handleInputOneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setEmail(e.target.value)
-	}
-	const handleInputTwoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setPhone(e.target.value)
-	}
-	const validatePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setPassword(e.target.value)
-	}
-	const handleLogin = async () => {
 		try {
-			const body = {
-				email: email,
-				password: password,
-			}
-			console.log('Отправка данных:', body)
-			const response = await fetch('/api/v1/login', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(body),
-			})
-
-			const data = await response.json()
-			console.log('Ответ от API:', data)
-			if (data.response === 'success') {
-				router.push('/' + params.locale + '/over')
-			} else {
-				setErrorMessage(data.message)
-			}
-		} catch (error) {
-			console.error('Ошибка авторизации:', error)
-			setErrorMessage('Ошибка соединения с сервером.')
+			const response = await registerUser(payload)
+			console.log('Response:', response)
+			console.log('Status:', response?.status || 'No status available')
+			console.log(
+				'\x1b[32m%s\x1b[0m',
+				`login: ${email},\nphone: ${phone || ''},\npassword: ${data.password}`
+			)
+			setSuccess(response.message)
+			setTimeout(() => {
+				router.push(`/${locale}/verifycode`)
+			}, 2000)
+		} catch (err: any) {
+			setError(err.message)
+			console.log('\x1b[31m%s\x1b[0m', 'Error:', err.message)
+			console.log('\x1b[34m%s\x1b[0m', 'Details:', err)
+		} finally {
+			setIsLoading(false)
 		}
 	}
 
 	return (
-		<div className='form__wrapper '>
+		<div className='form__wrapper'>
 			<div className='form__wrapper-title'>
 				<FormLogo color={theme === 'dark' ? 'white' : '#3A3939'} />
 			</div>
+
 			<div className='switch-mode'>
 				<Button
 					className={mode === 'email' ? 'active' : ''}
-					onClick={() => selectedMode('email')}
+					onClick={() => modeToogle('email')}
 				>
 					E-mail
 				</Button>
 				<Button
 					className={mode === 'phone' ? 'active' : ''}
-					onClick={() => selectedMode('phone')}
+					onClick={() => modeToogle('phone')}
 				>
 					Phone number
 				</Button>
 			</div>
-			<form
-				className='form login__form'
-				onSubmit={e => {
-					e.preventDefault()
-					handleLogin()
-				}}
-			>
-				<input
-					id='login'
-					placeholder={mode === 'email' ? 'E-mail' : 'Phone number'}
-					type={mode === 'email' ? 'text' : 'number'}
-					onChange={
-						mode === 'email' ? handleInputOneChange : handleInputTwoChange
-					}
-				/>
+
+			<form onSubmit={handleSubmit(onSubmit)} className='form'>
+				<div className='w-full'>
+					<input
+						type={mode === 'email' ? 'email' : 'tel'}
+						placeholder={mode === 'email' ? 'E-mail' : 'Phone number'}
+						{...register('emailOrPhone')}
+						id='login'
+						onChange={e =>
+							mode === 'email'
+								? setEmail(e.target.value)
+								: setPhone(e.target.value)
+						}
+					/>
+					{errors.emailOrPhone && (
+						<p className='py-[5px]'>{errors.emailOrPhone.message}</p>
+					)}
+				</div>
 				<div className='password__wrapper'>
 					<input
+						type={showPassword ? 'text' : 'password'}
+						placeholder='Create a password'
+						{...register('password')}
 						id='pass'
-						placeholder='Password'
-						type='password'
-						onChange={validatePassword}
 					/>
-
 					<span onClick={togglePasswordVisibility}>
-						<Image
-							alt={'eye'}
-							height={44}
+						<img
 							src={
-								!showPassword
-									? '/form/Mobile_ visibility_off.svg'
-									: '/form/Mobile_ visibility.svg'
+								showPassword
+									? '/form/Mobile_ visibility.svg'
+									: '/form/Mobile_ visibility_off.svg'
 							}
-							width={44}
+							alt='toggle visibility'
 						/>
 					</span>
+					{errors.password && (
+						<p className='absolute text-danger'>{errors.password.message}</p>
+					)}
 				</div>
-				<button className={`${btnAuth && 'valid'}`} type='submit'>
-					Log In
-				</button>
 
-				{errorMessage && <p className='error'>{errorMessage}</p>}
+				<div className='privacy'>
+					<label>
+						<input type='checkbox' {...register('agreeToTerms')} />
+						<span className='pl-[10px]'>
+							I agree to the Terms of Service and Privacy Policy
+						</span>
+					</label>
+					{errors.agreeToTerms && (
+						<p className='error'>{errors.agreeToTerms.message}</p>
+					)}
+				</div>
+
+				{error && (
+					<p className='text-[#fff] p-4 bg-danger-50 rounded-[50px]'>{error}</p>
+				)}
+
+				<button
+					type='submit'
+					disabled={isLoading || !isValid}
+					className={`submit-btn ${isValid ? 'valid' : ''}`}
+				>
+					{isLoading ? 'Log in...' : 'Log in'}
+				</button>
 			</form>
 
 			<span className='forgot'>Forgot your password?</span>

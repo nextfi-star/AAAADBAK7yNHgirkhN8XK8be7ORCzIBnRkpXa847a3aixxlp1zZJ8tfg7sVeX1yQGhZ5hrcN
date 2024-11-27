@@ -1,77 +1,77 @@
 'use client'
-
-import { useEffect, useState } from 'react'
-import Image from 'next/image'
-import { NextPage } from 'next'
-import { useParams, useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
+import { useRouter, useParams } from 'next/navigation'
 import { Button } from '@nextui-org/button'
-import { Link } from '@/i18n/routing'
 import { FormLogo } from '@/components/ui/FormLogo'
 import { useThemeStore } from '@/store'
+import Image from 'next/image'
+import { Link } from '@/i18n/routing'
+import { Spinner } from '@nextui-org/spinner'
+import { registerUser } from '@/utils/api'
 
-const LogIn: NextPage = () => {
+const schema = yup.object().shape({
+	emailOrPhone: yup.string().required('Email or phone is required'),
+	password: yup
+		.string()
+		.min(6, 'Password must be at least 6 characters')
+		.required('Password is required'),
+	agreeToTerms: yup.boolean().oneOf([true], 'You must agree to the terms'),
+})
+
+const SignUp = () => {
 	const {
-		initializeTheme,
-		theme,
-		mode,
-		modeToogle,
-		setEmail,
-		email,
-		setPhone,
-		phone,
-		setPassword,
-		password,
-	} = useThemeStore()
-
-	const [showPassword, setShowPassword] = useState<boolean>(false)
-	const [errorMessage, setErrorMessage] = useState<string>('')
+		register,
+		handleSubmit,
+		formState: { errors, isValid },
+	} = useForm({
+		resolver: yupResolver(schema),
+		mode: 'onChange',
+	})
+	const { theme, email, setEmail, phone, setPhone, mode, modeToogle } = useThemeStore()
+	const [showPassword, setShowPassword] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
+	const [success, setSuccess] = useState<string | null>(null)
+	const [error, setError] = useState<string | null>(null)
 	const router = useRouter()
 	const params = useParams()
-
-	useEffect(() => {
-		initializeTheme()
-	}, [initializeTheme])
-
-	const btnAuth =
-		mode === 'email'
-			? email.length >= 4 && password.length >= 4
-			: phone.length >= 4 && password.length >= 4
-
-	const selectedMode = (selected: string) => {
-		modeToogle(selected)
+	const locale = params.locale || 'en'
+	const [referelOpen, setReferelOpen] = useState<boolean>(true)
+	const toogleReferal = () => {
+		setReferelOpen(prevState => !prevState)
 	}
-
-	const togglePasswordVisibility = () => {
-		setShowPassword(prevState => !prevState)
-	}
-
-	const handleInputChange =
-		(setter: (value: string) => void) =>
-		(e: React.ChangeEvent<HTMLInputElement>) => {
-			setter(e.target.value)
+	const togglePasswordVisibility = () => setShowPassword(prev => !prev)
+	const onSubmit = async (data: any) => {
+		const payload = {
+			email: mode === 'email' ? data.emailOrPhone : '',
+			phone: mode === 'phone' ? data.emailOrPhone : '',
+			password: data.password,
+			refid: '',
 		}
+		setError(null)
+		setSuccess(null)
+		setIsLoading(true)
 
-	const handleLogin = async () => {
 		try {
-			const body = { email, password }
-			console.log('Отправка данных:', body)
-			const response = await fetch('/api/v1/register', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(body),
-			})
-
-			const data = await response.json()
-			console.log('Ответ от API:', data)
-
-			if (data.response === 'success') {
-				router.push(`/${params.locale}/over`)
-			} else {
-				setErrorMessage(data.message)
-			}
-		} catch (error) {
-			console.error('Ошибка авторизации:', error)
-			setErrorMessage('Ошибка соединения с сервером.')
+			const response = await registerUser(payload)
+			console.log('Response:', response)
+			console.log('Status:', response?.status || 'No status available')
+			console.log(
+				'\x1b[32m%s\x1b[0m',
+				`login: ${email},\nphone: ${phone || ''},\npassword: ${data.password}`
+			)
+			setSuccess(response.message)
+			setTimeout(() => {
+				router.push(`/${locale}/verifycode`)
+			}, 2000)
+		} catch (err: any) {
+			setError(err.message)
+			console.log('\x1b[31m%s\x1b[0m', 'Error:', err.message)
+			console.log('\x1b[34m%s\x1b[0m', 'Details:', err)
+		} finally {
+			setIsLoading(false)
 		}
 	}
 
@@ -84,56 +84,103 @@ const LogIn: NextPage = () => {
 			<div className='switch-mode'>
 				<Button
 					className={mode === 'email' ? 'active' : ''}
-					onClick={() => selectedMode('email')}
+					onClick={() => modeToogle('email')}
 				>
 					E-mail
 				</Button>
 				<Button
 					className={mode === 'phone' ? 'active' : ''}
-					onClick={() => selectedMode('phone')}
+					onClick={() => modeToogle('phone')}
 				>
 					Phone number
 				</Button>
 			</div>
 
-			<form
-				className='form login__form'
-				onSubmit={e => {
-					e.preventDefault()
-					handleLogin()
-				}}
-			>
-				<input
-					id='login'
-					placeholder={mode === 'email' ? 'E-mail' : 'Phone number'}
-					type={mode === 'email' ? 'text' : 'number'}
-					onChange={handleInputChange(mode === 'email' ? setEmail : setPhone)}
-				/>
-				<div className='password__wrapper'>
+			<form onSubmit={handleSubmit(onSubmit)} className='form'>
+				<div className='w-full'>
 					<input
-						id='pass'
-						placeholder='Password'
+						type={mode === 'email' ? 'email' : 'tel'}
+						placeholder={mode === 'email' ? 'E-mail' : 'Phone number'}
+						{...register('emailOrPhone')}
+						id='login'
+						onChange={e =>
+							mode === 'email'
+								? setEmail(e.target.value)
+								: setPhone(e.target.value)
+						}
+					/>
+					{errors.emailOrPhone && (
+						<p className='py-[5px]'>{errors.emailOrPhone.message}</p>
+					)}
+				</div>
+				<div className='password__wrapper relative'>
+					<input
 						type={showPassword ? 'text' : 'password'}
-						onChange={handleInputChange(setPassword)}
+						placeholder='Create a password'
+						{...register('password')}
+						id='pass'
+						className={`${errors.password ? '!outline-danger' : ''}`}
 					/>
 					<span onClick={togglePasswordVisibility}>
-						<Image
-							alt='eye'
-							height={44}
+						<img
 							src={
-								!showPassword
-									? '/form/Mobile_ visibility_off.svg'
-									: '/form/Mobile_ visibility.svg'
+								showPassword
+									? '/form/Mobile_ visibility.svg'
+									: '/form/Mobile_ visibility_off.svg'
 							}
-							width={44}
+							alt='toggle visibility'
 						/>
 					</span>
+					{errors.password && (
+						<p className='absolute text-danger'>{errors.password.message}</p>
+					)}
 				</div>
-				<button className={`${btnAuth && 'valid'}`} type='submit'>
-					Log In
-				</button>
 
-				{errorMessage && <p className='error'>{errorMessage}</p>}
+				<div className='referalID__wrapper'>
+					<label className='referalID'>
+						<p>Referral ID (optional)</p>
+						<input
+							className='checkbox'
+							id='checkbox'
+							type='checkbox'
+							onChange={toogleReferal}
+						/>
+						<label className='checkbox-label' htmlFor='checkbox' />
+					</label>
+
+					{!referelOpen && (
+						<input
+							className='referal__input'
+							id='referal'
+							placeholder='UFRYXEEXDG'
+							type='text'
+						/>
+					)}
+				</div>
+
+				<div className='privacy'>
+					<label>
+						<input type='checkbox' {...register('agreeToTerms')} />
+						<span className='pl-[10px]'>
+							I agree to the Terms of Service and Privacy Policy
+						</span>
+					</label>
+					{errors.agreeToTerms && (
+						<p className='text-warning py-[5px]'>{errors.agreeToTerms.message}</p>
+					)}
+				</div>
+
+				{error && (
+					<p className='text-[#fff] p-4 bg-danger-50 rounded-[50px]'>{error}</p>
+				)}
+
+				<button
+					type='submit'
+					disabled={isLoading || !isValid}
+					className={`submit-btn ${isValid ? 'valid' : ''}`}
+				>
+					{isLoading ? <Spinner /> : 'Sign Up'}
+				</button>
 			</form>
 
 			<span className='forgot'>Forgot your password?</span>
@@ -144,6 +191,7 @@ const LogIn: NextPage = () => {
 					<b>Or</b>
 					<span />
 				</p>
+
 				<button className='mobile__google'>
 					<Image
 						alt='Google icon'
@@ -154,26 +202,58 @@ const LogIn: NextPage = () => {
 					Continue with Google
 				</button>
 
-				<Link className='help-signup' href='/signup'>
-					Don't have an account? <span>Sign In</span>
+				<Link className='help-signup' href='/login'>
+					Already have an account? <span>Log in</span>
 				</Link>
 
 				<div className='socials login__social'>
-					<span>Join us on social networks</span>
+					<span>join us on social networks</span>
+
 					<div className='socials__icons'>
-						{['Instagram', 'Telegram', 'Snapchat', 'Twitter'].map(network => (
-							<Image
-								key={network}
-								alt={network}
-								height={48}
-								src={
-									theme === 'dark'
-										? `/form/icons_dark/${network}_dark.svg`
-										: `/form/icons_white/${network}.svg`
-								}
-								width={48}
-							/>
-						))}
+						<Image
+							alt='Logo'
+							height={48}
+							quality={100}
+							src={
+								theme === 'dark'
+									? '/form/icons_dark/Instagram_dark.svg'
+									: '/form/icons_white/Instagram.svg'
+							}
+							width={48}
+						/>
+						<Image
+							alt='Logo'
+							height={48}
+							quality={100}
+							src={
+								theme === 'dark'
+									? '/form/icons_dark/Telegram_dark.svg'
+									: '/form/icons_white/Telegram_white.svg'
+							}
+							width={48}
+						/>
+						<Image
+							alt='Logo'
+							height={48}
+							quality={100}
+							src={
+								theme === 'dark'
+									? '/form/icons_dark/Snapchat_dark.svg'
+									: '/form/icons_white/Snapchat_white.svg'
+							}
+							width={48}
+						/>
+						<Image
+							alt='Logo'
+							height={48}
+							quality={100}
+							src={
+								theme === 'dark'
+									? '/form/icons_dark/Twitter_dark.svg'
+									: '/form/icons_white/Twitter_white.svg'
+							}
+							width={48}
+						/>
 					</div>
 				</div>
 			</div>
@@ -181,4 +261,4 @@ const LogIn: NextPage = () => {
 	)
 }
 
-export default LogIn
+export default SignUp
