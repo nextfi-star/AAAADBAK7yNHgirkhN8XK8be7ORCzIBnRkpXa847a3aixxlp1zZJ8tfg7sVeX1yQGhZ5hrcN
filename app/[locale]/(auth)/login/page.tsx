@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useParams, useRouter } from 'next/navigation'
-import { loginUser, registerUser } from '@/utils/api'
+import { loginUser } from '@/utils/api'
 import { Button } from '@nextui-org/button'
 import { FormLogo } from '@/components/ui/FormLogo'
 import { useThemeStore } from '@/store'
@@ -50,7 +50,7 @@ const LogIn = () => {
 		setIsLoading(true)
 
 		try {
-			const response = await registerUser(payload)
+			const response = await loginUser(payload)
 			console.log('Response:', response)
 			console.log('Status:', response?.status || 'No status available')
 			console.log(
