@@ -70,7 +70,7 @@ export const Profile_balance: NextPage = () => {
 						<SwiperSlide> */}
 					{isLoading && <Spinner className='min-w-[370px] min-h-[158px] ' />}
 					{!isLoading && (
-						<div className='w-full sm:hidden m-auto border border-[#adadad] border-solid gap-[10px] rounded-xl p-4 flex items-start justify-between'>
+						<div className='w-full sm:hidden m-auto gap-[10px] rounded-xl p-4 flex items-start justify-between dark:bg-[#131313] dark:!shadow-none shadow-medium'>
 							<div className='flex flex-col'>
 								<div className='flex justify-between items-center'>
 									<div className='flex items-center gap-2'>
