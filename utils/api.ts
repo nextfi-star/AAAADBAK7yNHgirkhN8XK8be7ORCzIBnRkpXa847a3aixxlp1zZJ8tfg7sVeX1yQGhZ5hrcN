@@ -5,7 +5,7 @@ export const registerUser = async (data: {
   refid?: string;
 }) => {
   try {
-    const response = await fetch('http://nextfi.site:5000/api/v1/register', {
+    const response = await fetch('https://nextfi.site:5000/api/v1/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export const registerUser = async (data: {
   }
 };
 export const loginUser = async (payload: { email?: string; phone?: string; password: string }) => {
-  const response = await fetch('http://nextfi.site:5000/api/v1/login', {
+  const response = await fetch('https://nextfi.site:5000/api/v1/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
