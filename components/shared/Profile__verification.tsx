@@ -16,10 +16,10 @@ export const Profile_verification: NextPage<Props> = ({ toggleActive }) => {
 
 	return (
 		<>
-			<section className='profile__verification profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !mb-[20px] !shadow-medium dark:!shadow-none'>
+			<section className='profile__verification profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none w-full'>
 				<h3>{t('GetFullAccess')}</h3>
 				<div className='profile__verification__blocks__list'>
-					<div className='profile__verification__info__block profile_blocks_border'>
+					<div className='profile__verification__info__block profile_blocks_border !bg-[#F2F7FF] dark:!bg-[#1e1e1e66]'>
 						<h5 className='profile__verification__info__block_step_text'>
 							{t('StepOne')}
 						</h5>
@@ -28,7 +28,7 @@ export const Profile_verification: NextPage<Props> = ({ toggleActive }) => {
 						</h4>
 						<Accept_icon color={theme === 'dark' ? 'white' : 'black'} />
 					</div>
-					<div className='profile__verification__info__block profile_blocks_border !gap-[13px]'>
+					<div className='profile__verification__info__block profile_blocks_border !gap-[13px] !bg-[#F2F7FF] dark:!bg-[#1e1e1e66]'>
 						<h5 className='profile__verification__info__block_step_text'>
 							{t('StepTwo')}
 						</h5>
@@ -49,7 +49,7 @@ export const Profile_verification: NextPage<Props> = ({ toggleActive }) => {
 				</div>
 			</section>
 
-			<section className='w-full container mb-[40px] verify_mobile !bg-transparent md:!bg-[#fff] dark:!bg-transparent md:dark:!bg-[#1e1e1e66] !shadow-none md:!shadow-medium dark:!shadow-none'>
+			<section className='w-full container verify_mobile !bg-transparent md:!bg-[#fff] dark:!bg-transparent md:dark:!bg-[#1e1e1e66] !shadow-none md:!shadow-medium dark:!shadow-none'>
 				<h5 className='w-full text-[20px] mb-[32px] '>
 					Get full access to the platform
 				</h5>

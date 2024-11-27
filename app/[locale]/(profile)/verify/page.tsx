@@ -121,7 +121,7 @@ const Verify: NextPage = () => {
 		>
 			<div className='site-holder !px-[0]'>
 				{!change ? (
-					<div className='flex flex-col items-center mt-[-128px] gap-[9px] md:gap-[83px]'>
+					<div className='flex flex-col items-center mt-[183px] gap-[9px] md:gap-[83px]'>
 						{!globalVeriState ? (
 							<>
 								<div className='w-fit relative'>
@@ -230,7 +230,7 @@ const Verify: NextPage = () => {
 								</div>
 							</>
 						) : (
-							<>
+							<div className='flex flex-col items-center gap-[20px] mt-[-98px] sm:mt-[-116px]'>
 								<Lottie
 									lottieRef={lottieRef}
 									autoPlay={true}
@@ -245,7 +245,7 @@ const Verify: NextPage = () => {
 									You have passed identity verification. Start your journey into
 									the world of cryptocurrencies now!
 								</p>
-							</>
+							</div>
 						)}
 					</div>
 				) : (

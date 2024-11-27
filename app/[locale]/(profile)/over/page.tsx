@@ -35,9 +35,8 @@ useEffect(() => {
 	return (
 		<section className='profile '>
 			<Profile_info toggleActive={toggleActive} verify={verify} />
-			<div className='profile__grid gap-[24px] max-xl:grid max-xl:grid-cols-1 mt-[-17px]'>
-				<div>
-					<hr />
+			<div className='profile__grid gap-[1.5rem] max-xl:grid max-xl:grid-cols-1'>
+				<div className='flex flex-col gap-[1.5rem] h-full items-stretch justify-start'>
 					{verify ? (
 						<Profile_balance />
 					) : (
@@ -46,7 +45,7 @@ useEffect(() => {
 					<Profile_payments />
 				</div>
 
-				<div className='max-w-[1331px]'>
+				<div className='max-w-[1331px] flex flex-col gap-[1.5rem]'>
 					<Profile_industry unicClass='show__when' />
 					<Profile_news />
 					<Profile_qr />

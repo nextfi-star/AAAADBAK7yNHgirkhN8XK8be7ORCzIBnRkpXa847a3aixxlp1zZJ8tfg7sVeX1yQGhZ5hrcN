@@ -201,60 +201,7 @@ const verifData = [
 		],
 	},
 ]
-const authData = [
-	{
-		title: 'Authentication methods',
-		items: [
-			{
-				value: 'item-1',
-				trigger: 'Device',
-				icon: '/header_icons/profile_burger/device_phone.svg',
-				content: (
-					<>
-						<span className='text-[14px] text-[#BDBDBD]'>Iphone 15</span>
-						<span className='h-[17px] w-[1px] bg-[#BDBDBD]' />
-						<span className='text-[14px] text-[#BDBDBD]'>MacBook PRO</span>
-						<span className='h-[17px] w-[1px] bg-[#BDBDBD]' />
-						<span className='text-[14px] text-[#BDBDBD]'>Ipad mini 6</span>
-					</>
-				),
-			},
-			{
-				icon: '/header_icons/profile_burger/device_location.svg',
-				value: 'item-2',
-				trigger: 'Location of autorization',
-				content: 'Location of autorization content',
-			},
-		],
-	},
-	{
-		title: 'Account management',
-		items: [
-			{
-				value: 'item-1',
-				trigger: 'Freeze account',
-				icon: '/main/profile_security/account_freeze.svg',
-				content: (
-					<>
-						<span>Freeze account</span>
-						<FreezeAccount propsItem={'Freeze'} />
-					</>
-				),
-			},
-			{
-				icon: '/main/profile_security/account_close.svg',
-				value: 'item-2',
-				trigger: 'Close account',
-				content: (
-					<>
-						<span>Close account</span>
-						<CloseAccount propsItem={'Close'} />
-					</>
-				),
-			},
-		],
-	},
-]
+
 
 export const ProfileBurger_accordeon: NextPage<Props> = ({
 	showSection,

@@ -18,6 +18,7 @@ import { Input } from '@/components/ui/input'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { Button } from '@nextui-org/button'
+import { Snippet } from '@nextui-org/snippet'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -25,13 +26,17 @@ interface Props {
 
 export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 	const { theme } = useThemeStore()
-
+	const [isValid, setisValid] = useState<boolean>(false)
+	const [inputs, setInputs] = useState({
+		emailAuth: '',
+		currentAuth: '',
+	})
 	const [step, setStep] = useState<number>(1)
 
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[220px] w-full min-h-[28px]'>
+				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] lg:max-w-[220px] w-full min-h-[28px]'>
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>
@@ -130,7 +135,7 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 											<span className='underline'>disclamer</span>
 										</span>
 										<Button
-											className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9 rounded-[30px]'
+											className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[150px] w-full'
 											onClick={() => setStep(prev => (prev = 2))}
 										>
 											Next
@@ -173,18 +178,19 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 											Or manually enter the code below
 										</span>
 										<span className='text-[16px] text-[#888888] flex items-center gap-[10px]'>
-											UJY3HM5ATJBQW2IB
-											<Copy color={theme === 'dark' ? 'white' : '#0c0c0c'} />
+											<Snippet symbol={''} className='bg-transparent'>
+												UJY3HM5ATJBQW2IB
+											</Snippet>
 										</span>
 										<div className='flex items-center gap-[10px]'>
 											<Button
-												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9 rounded-[30px]'
+												className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
 												onClick={() => setStep(prev => (prev = 1))}
 											>
 												Back
 											</Button>
 											<Button
-												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9 rounded-[30px]'
+												className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
 												onClick={() => setStep(prev => (prev = 3))}
 											>
 												Next
@@ -216,6 +222,14 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 													className='border border-solid shadow-none text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px]'
 													placeholder='Enter code'
 													type='text'
+													name='emailAuth'
+													value={inputs.emailAuth}
+													onChange={e =>
+														setInputs(prev => ({
+															...prev,
+															emailAuth: e.target.value,
+														}))
+													}
 												/>
 												<button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[16px] border border-solid rounded-[50px] dark:border-white border-black py-[2px] px-[7px] cursor-pointer dark:bg-[#0c0c0c] bg-white'>
 													Send Code
@@ -229,21 +243,33 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 													className='border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] shadow-none text-[16px] rounded-[30px] '
 													placeholder='Enter 6-digit generated code from your app'
 													type='text'
+													name='currentAuth'
+													value={inputs.currentAuth}
+													onChange={e =>
+														setInputs(prev => ({
+															...prev,
+															currentAuth: e.target.value,
+														}))
+													}
 												/>
 											</div>
 										</label>
 
 										<div className='flex items-center gap-[10px] bg-transparent'>
 											<Button
-												className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9'
+												className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
 												onClick={() => setStep(prev => (prev = 2))}
 											>
 												Back
 											</Button>
-											<AlertDialogCancel className='mt-0 !bg-transparent'>
+											<AlertDialogCancel className='mt-0 !bg-transparent w-fit'>
 												<Button
-													className='text-[16px] xl:text-[20px] flex items-center justify-center max-w-[108px] px-[40px] xl:px-[80px] h-8 xl:h-9'
-													onClick={() => setStep(prev => (prev = 1))}
+													className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] w-full ${inputs.emailAuth.length < 3 || inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
+													onClick={() => {
+														setStep(prev => (prev = 1))
+														setInputs(prev => ({ ...prev, emailAuth: '', currentAuth: '' }))
+													}}
+													disabled={!inputs.emailAuth || !inputs.currentAuth}
 												>
 													Confirm
 												</Button>

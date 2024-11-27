@@ -5,6 +5,7 @@ import { Accordion, AccordionItem } from '@/components/ui/AccordionBurger'
 import { useThemeStore } from '@/store'
 import { Confirmation_dialog } from './Confirmation_dialog'
 import { Confirmation_dialog_devices } from './Confirmation_dialog_devices'
+import { Button } from '@nextui-org/button'
 
 export const Profile_devices: NextPage = () => {
 	const { theme } = useThemeStore()
@@ -93,9 +94,9 @@ export const Profile_devices: NextPage = () => {
 						color={theme === 'dark' ? 'white' : 'black'}
 						width={'835'}
 					/>
-					<button className='text-[20px] bg-[#205BC9] rounded-[50px] px-[25px] py-[5px] text-white'>
+					<Button className='text-[20px] bg-[#205BC9] rounded-[50px] px-[25px] py-[5px] text-white'>
 						Log Out from all devices
-					</button>
+					</Button>
 				</div>
 			</Accordion>
 		</div>

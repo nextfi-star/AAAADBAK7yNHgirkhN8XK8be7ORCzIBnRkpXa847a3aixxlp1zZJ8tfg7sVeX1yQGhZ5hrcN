@@ -283,7 +283,7 @@ const Invest_steps: NextPage<Props> = () => {
 													<div className='flex w-full justify-between gap-[8px] items-center'>
 														<div className='flex items-center gap-[3px]'>
 															<p className='text-[20px] font-medium text-[#0c0c0c] dark:text-white'>
-																{selectedPeriod.name}
+																{selectedPeriod.name} 
 															</p>
 														</div>
 														<ChevronDown
@@ -339,7 +339,8 @@ const Invest_steps: NextPage<Props> = () => {
 																<div className='flex items-center justify-between w-full px-[15px]'>
 																	<div className='flex items-center gap-[3px]'>
 																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
-																			{period.name}
+																			{period.name}{' '}
+																			days
 																		</p>
 																	</div>
 																	<p className='flex items-center gap-[5px] text-[20px]'>

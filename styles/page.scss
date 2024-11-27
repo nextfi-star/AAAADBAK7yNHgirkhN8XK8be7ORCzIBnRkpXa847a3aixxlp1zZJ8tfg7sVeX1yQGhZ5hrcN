@@ -3725,7 +3725,8 @@ body {
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
-		gap: 40px;
+		justify-self: start;
+		gap: 1.5rem;
 
 		.hidden__when {
 			display: none;
@@ -3773,7 +3774,7 @@ body {
 			box-shadow: var(--shadow-split);
 			border-radius: 30px;
 			padding: 40px;
-			margin-bottom: 1.5rem;
+			
 
 			&-title {
 				display: flex;
@@ -3851,7 +3852,7 @@ body {
 				padding: 40px 80px;
 				max-width: 100%;
 				margin: 0 auto;
-				margin-bottom: 1.5rem;
+				
 
 				&-title {
 					margin-bottom: 30px;
@@ -4143,7 +4144,6 @@ body {
 			height: fit-content;
 			line-height: 40px;
 			font-weight: 500;
-			margin-bottom: 40px;
 			margin-left: auto;
 			margin-right: auto;
 
@@ -4230,12 +4230,10 @@ body {
 
 		.profile__industy {
 			background-color: var(--getstarted-item);
-			min-height: 360px;
-			max-height: 348px;
+		
 			box-shadow: var(--shadow-split);
 			max-width: 544px;
 			width: 100%;
-			margin-bottom: 40px;
 
 			@media (max-width: 1399px) {
 				max-width: 1399px;
@@ -4439,13 +4437,13 @@ body {
 			font-size: 32px;
 			line-height: 40px;
 			border-radius: 30px;
-			padding: 40px;
+			padding: 37px;
 			font-weight: 500;
 			display: flex;
 			justify-content: space-between;
 			flex-direction: column;
 			gap: 10px;
-			margin-bottom: 1.5rem;
+		
 			box-shadow: var(--shadow-split);
 
 			.profile__chart__downloadLink {
@@ -4520,7 +4518,6 @@ body {
 			}
 			@media (max-width: 1280px) {
 				margin: 0 auto;
-				margin-bottom: 1.5rem;
 			}
 			@media (max-width: 640px) {
 				margin: 0 auto;
@@ -4955,7 +4952,6 @@ body {
 		border-radius: 30px;
 		background-color: var(--profile-block);
 		color: var(--text-color);
-		margin: 30px auto;
 		padding: 0 20px 20px 20px;
 		box-shadow: var(--shadow-split);
 

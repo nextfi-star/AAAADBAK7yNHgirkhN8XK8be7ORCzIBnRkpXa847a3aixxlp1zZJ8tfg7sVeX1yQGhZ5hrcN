@@ -22,14 +22,14 @@ const Assets: NextPage = () => {
 		<>
 			{verifyState && (
 				<section className='profile'>
-					<div className='profile__grid gap-[14px] max-xl:grid max-xl:grid-cols-1'>
-						<div>
+					<div className='profile__grid gap-[1.5rem] max-xl:grid max-xl:grid-cols-1'>
+						<div className='flex  mt-[-24px] flex-col w-full gap-[1.5rem]'>
 							<hr />
 							<Profile_balance />
 							<Profile_payments />
 						</div>
 
-						<div className='max-w-[1331px]'>
+						<div className='max-w-[1331px] flex flex-col gap-[1.5rem]'>
 							<Allocation />
 							<Transaction />
 						</div>

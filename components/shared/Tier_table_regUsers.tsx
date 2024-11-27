@@ -27,7 +27,7 @@ const Tier_table_regUsers: NextPage<Props> = ({ title, rows, columns }) => {
 			classNames={{
 				table: 'border-1 border-solid dark:border-white',
 				tr: 'bg-transparent !outline-0 !border-0 !shadow-none',
-				wrapper: 'dark:bg-[#1E1E1E66] bg-[#fff] px-[20px] pb-[20px] shadow-medium py-[40px]',
+				wrapper: 'dark:bg-[#1E1E1E66] bg-[#fff] px-[20px] pb-[20px] shadow-medium dark:shadow-none py-[40px]',
 				td: 'text-center border-1 border-solid dark:border-white whitespace-nowrap',
 				th: 'text-center md:text-[20px] outline-0 border-1 border-solid dark:border-white shadow-none bg-transparent',
 				base: '!shadow-none',

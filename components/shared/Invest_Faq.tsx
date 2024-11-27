@@ -50,6 +50,20 @@ const data = [
 		id: 5,
 		val: '5',
 	},
+	{
+		title: 'How can I deposit/withdraw the crypto converted?',
+		content:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		id: 6,
+		val: '6',
+	},
+	{
+		title: 'How can I deposit/withdraw the crypto converted?',
+		content:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+		id: 7,
+		val: '7',
+	},
 ]
 export const Invest_Faq: NextPage = () => {
 	return (
@@ -69,7 +83,7 @@ export const Invest_Faq: NextPage = () => {
 							<AccordionContent className='flex w-full justify-between items-center text-[16px] md:text-[20px]'>
 								{item.content}
 							</AccordionContent>
-							<Divider className={`${item.id === 5 ? 'opacity-0' : ''}`}/>
+							<Divider className={`${item.id === 7 ? 'opacity-0' : ''}`}/>
 						</AccordionItem>
 					))}
 			</Accordion>

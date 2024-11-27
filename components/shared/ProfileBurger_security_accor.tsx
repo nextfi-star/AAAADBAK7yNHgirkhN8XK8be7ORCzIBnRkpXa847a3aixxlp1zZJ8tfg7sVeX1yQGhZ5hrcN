@@ -25,7 +25,7 @@ interface Props {
 
 export const ProfileBurger_security_accor: NextPage<Props> = ({ data }) => {
   return (
-    <div className="flex flex-col gap-[20px] h-full">
+    <div className="flex flex-col gap-[20px] h-[110%]">
       {data.map((section, index) => (
         <div key={index} className='h-full'>
           <Accordion collapsible className="" type="single">

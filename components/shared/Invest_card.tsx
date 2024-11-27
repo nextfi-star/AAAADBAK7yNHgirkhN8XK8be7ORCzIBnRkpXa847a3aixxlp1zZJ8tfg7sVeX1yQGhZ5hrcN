@@ -82,10 +82,10 @@ export const Invest_card: NextPage<Props> = () => {
 								</div>
 
 								<div className='w-full flex items-center justify-between pb-[23px]'>
-									<p className='sm:text-[20px] text-[#BDBDBD] font-medium'>
+									<p className='sm:text-[20px] text-[#888888] font-medium'>
 										Amount at the moment
 									</p>
-									<p className='sm:text-[32px] text-white font-bold'>
+								<p className='sm:text-[32px] text-[#888888] font-bold'>
 										7517 NextFi
 									</p>
 								</div>

@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Swiper as SwiperType } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { NextPage } from 'next'
@@ -9,8 +9,9 @@ import ArrowBracket from '../ui/ArrowBracket'
 import { useThemeStore } from '../../store'
 import { StartupIcon } from './StartupIcon'
 import Chart from './Chart'
-import { Avatar, Image } from '@nextui-org/react'
+import { Avatar, Image, Spinner } from '@nextui-org/react'
 import { Link } from '@/i18n/routing'
+import { RefreshCw } from 'lucide-react'
 
 export const Profile_balance: NextPage = () => {
 	const { theme, verifyState } = useThemeStore()
@@ -23,10 +24,19 @@ export const Profile_balance: NextPage = () => {
 	const handleCLick = () => {
 		setShow(!show)
 	}
+	const [refresh, setRefresh] = useState<boolean>(false)
+	const [isLoading, setIsLoading] = useState(false)
+	const handleRefreshClick = async () => {
+		setIsLoading(true) // Показать Spinner
+		setTimeout(() => {
+			setRefresh(!refresh) // Переключение состояния refresh
+			setIsLoading(false) // Убрать Spinner
+		}, 1000) // Симуляция задержки (например, запрос к API)
+	}
 
 	return (
-		<section className=''>
-			<div className='w-[212px] sm:hidden flex m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200 mb-[26px] !shadow-medium dark:!shadow-none'>
+		<section className='h-fit'>
+			<div className='w-[212px] sm:hidden flex m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200 !shadow-medium dark:!shadow-none'>
 				<button
 					className={`w-[104px] transition duration-300 ${
 						isActive ? 'bg-[#205BC9] text-white' : 'text-[#205BC9]'
@@ -45,10 +55,10 @@ export const Profile_balance: NextPage = () => {
 				</button>
 			</div>
 
-			<div className='profile__balance bg-[#fff] dark:bg-[#1e1e1e66] md:!shadow-medium md:dark:!shadow-none !mb-[29px]'>
+			<div className='profile__balance bg-[#fff] dark:bg-[#1e1e1e66] md:!shadow-medium md:dark:!shadow-none'>
 				<div className='profile__balance_sides'>
 					{/* Mobile */}
-					<Swiper
+					{/* <Swiper
 						className='blanace__swiper'
 						slidesPerView={1}
 						spaceBetween={24}
@@ -57,92 +67,82 @@ export const Profile_balance: NextPage = () => {
 							swiperRef.current = swiper
 						}}
 					>
-						<SwiperSlide>
-							<div className='w-full sm:hidden m-auto border border-[#adadad] border-solid gap-[10px] rounded-xl p-4 flex items-center'>
-								<div className='flex flex-col'>
-									<div className='flex justify-between items-center'>
-										<div className='flex items-center gap-2'>
-											<StartupIcon width={44} />
-											<h4 className='text-blue-600 text-[21px] font-medium'>
-												Balance
-											</h4>
-											<select className='bg-transparent text-[16px] font-medium'>
-												<option
-													className='text-[12px] max-w-[1px] text-black'
-													value='USDT'
-												>
-													USDT
-												</option>
-												<option
-													className='text-[12px] max-w-[1px] text-black'
-													value='NextFi'
-												>
-													NextFi
-												</option>
-											</select>
-										</div>
-									</div>
-									<div className='flex items-center gap-[8px]'>
-										<p className='text-[23px] font-bold'>$000,000</p>
+						<SwiperSlide> */}
+					{isLoading && <Spinner  className='min-w-[370px] min-h-[158px] '/>}
+					{!isLoading && (
+						<div className='w-full sm:hidden m-auto border border-[#adadad] border-solid gap-[10px] rounded-xl p-4 flex items-start justify-between'>
+							<div className='flex flex-col'>
+								<div className='flex justify-between items-center'>
+									<div className='flex items-center gap-2'>
+										<Image
+											src={'/main/balance.svg'}
+											width={44}
+											height={44}
+											alt='balance'
+										/>
+										<h4 className='text-blue-600 text-[21px] font-medium'>
+											{refresh ? 'Bonus' : 'Balance'}
+										</h4>
 										<Eye />
 									</div>
-									<div className='flex items-center gap-2 text-blue-600 text-[14px]'>
-										<p>Today $0,00 (0,00 %)</p>
-									</div>
+								</div>
+								<div className='flex items-center gap-[8px]'>
+									<p className='text-[23px] font-bold'>$000,000</p>
+									<select className='bg-transparent text-[16px] font-medium'>
+										<option
+											className='text-[12px] max-w-[1px] text-black'
+											value='USDT'
+										>
+											USDT
+										</option>
+										<option
+											className='text-[12px] max-w-[1px] text-black'
+											value='NextFi'
+										>
+											NextFi
+										</option>
+									</select>
+								</div>
+								<div className='flex items-center gap-2 text-blue-600 text-[14px]'>
+									<p>Today $0,00 (0,00 %)</p>
 								</div>
 							</div>
-						</SwiperSlide>
 
-						<SwiperSlide>
-							<div className='w-full sm:hidden m-auto border border-[#adadad] border-solid gap-[10px] rounded-xl p-4 flex items-center'>
-								<div className='flex flex-col'>
-									<div className='flex justify-between items-center'>
-										<div className='flex items-center gap-2'>
-											<StartupIcon width={44} />
-											<h4 className='text-blue-600 text-[21px] font-medium'>
-												Bonus Balance
-											</h4>
-											<select className='bg-transparent text-[16px] font-medium'>
-												<option
-													className='text-[12px] max-w-[1px] text-black'
-													value='USDT'
-												>
-													USDT
-												</option>
-												<option
-													className='text-[12px] max-w-[1px] text-black'
-													value='NextFi'
-												>
-													NextFi
-												</option>
-											</select>
-										</div>
-									</div>
-									<div className='flex items-center gap-[8px]'>
-										<p className='text-[23px] font-bold'>$000,000</p>
-										<Eye />
-									</div>
-									<div className='flex items-center gap-2 text-blue-600 text-[14px]'>
-										<p>Today $0,00 (0,00 %)</p>
-									</div>
-								</div>
+							<div className='flex items-center gap-[10px]'>
+								<span className='text-[12px] dark:text-[#EFEFEF] flex-shrink-0'>
+									Flip Over
+								</span>
+								<RefreshCw
+									strokeWidth={1}
+									className='!w-full !max-w-[26px] p-[5px]'
+									onClick={handleRefreshClick}
+								/>
 							</div>
-						</SwiperSlide>
-					</Swiper>
+						</div>
+					)}
+					{/* </SwiperSlide>
+
+					</Swiper> */}
 
 					<div className='profile_balance_side'>
 						<div className='profile_balance_side_title'>
 							<h4 className='profile_balance_side_main_text'>
-								<StarsMobile width='65' /> Balance
+								<Image
+									src={'/main/balance.svg'}
+									width={44}
+									height={44}
+									alt='bonus balance'
+								/>{' '}
+								Balance
 							</h4>
+							<Image src={'/main/eye_blue.svg'} alt='eye' />
+						</div>
+						<div className='flex items-center gap-[8px]'>
+							<p className='text-[32px] font-bold'>$000,000,000</p>{' '}
 							<select className='text-[16px] font-normal dark:text-[#FFFFFF] text-[#000]'>
 								<option value=''>USDT</option>
 								<option value=''>NextFi</option>
 							</select>
-						</div>
-						<div className='flex items-center gap-[8px]'>
-							<p className='text-[32px] font-bold'>$000,000,000</p>{' '}
-							<Image src={'/main/eye_blue.svg'} alt='eye' />
 						</div>
 						<div className='profile_balance_side_statistic_block'>
 							<p className='profile_balance_side_statistic_block_text !font-normal !text-[#205BC9]'>
@@ -156,16 +156,32 @@ export const Profile_balance: NextPage = () => {
 					<div className='profile_balance_side'>
 						<div className='profile_balance_side_title'>
 							<h4 className='profile_balance_side_main_text'>
-								<StarsMobile width='65' /> Bonus Balance
-								<select className='text-[16px] font-normal dark:text-[#FFFFFF] text-[#000]'>
-									<option value=''>USDT</option>
-									<option value=''>NextFi</option>
-								</select>
+								<Image
+									src={'/main/bonusbalance.svg'}
+									width={44}
+									height={44}
+									alt='bonus balance'
+								/>
+								Bonus
+								<Image src={'/main/eye_blue.svg'} alt='eye' />
 							</h4>
 						</div>
 						<div className='text-[32px] font-bold flex items-center gap-[8px]'>
 							<p className='text-[32px] font-bold'>$000,000,000</p>{' '}
-							<Image src={'/main/eye_blue.svg'} alt='eye' />
+							<select className='text-[16px] font-normal bg-transparent dark:!bg-[#EFEFEF] dark:text-[#000000]'>
+								<option
+									value=''
+									className='dark:text-[#000000] bg-[#EFEFEF] dark:!bg-[#EFEFEF]'
+								>
+									USDT
+								</option>
+								<option
+									value=''
+									className='dark:text-[#000000] bg-[#EFEFEF] dark:!bg-[#EFEFEF]'
+								>
+									NextFi
+								</option>
+							</select>
 						</div>
 
 						<div className='profile_balance_side_statistic_block'>
@@ -238,13 +254,13 @@ export const Profile_balance: NextPage = () => {
 								</Link>
 								<Link
 									href='/withdrawal'
-								className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
+									className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
 								>
 									Withdrawal
 								</Link>
 								<Link
 									href='/swap'
-								className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
+									className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
 								>
 									Swap
 								</Link>

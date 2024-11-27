@@ -152,10 +152,10 @@ export const Alert_email: NextPage<Props> = ({ propsItem }) => {
 				<AlertDialogFooter className='px-[30px] pt-[15px] h-fit items-center gap-[30px]'>
 					<AlertDialogAction
 						disabled={isDisabled}
-						className={`text-[16px] xl:text-[22px] px-[40px] rounded-[50px] text-white ${
+						className={`text-[16px] px-[40px] rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
 							isDisabled
-								? 'bg-[#7676801f] cursor-not-allowed'
-								: 'bg-[#205bc9] hover:bg-[#205bc9]'
+								? 'bg-transparent cursor-not-allowed'
+								: 'bg-[#205bc9] hover:bg-[#205bc9] text-white border-none'
 						}`}
 					>
 						Confirm

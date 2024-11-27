@@ -65,7 +65,7 @@ export const Invest_confirmation: NextPage<Props> = ({
 				<DialogContent className='max-w-[90%] md:max-w-[38rem] w-full p-0 rounded-[20px]'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
-							Confirm to Withdraw
+							Confirm to invest
 							<DialogClose asChild>
 								<Cross2Icon className='h-[32px] w-[32px]' />
 							</DialogClose>

@@ -171,7 +171,7 @@ const SignUp = () => {
 				</div>
 
 				{error && (
-					<p className='text-[#fff] p-4 bg-danger-50 rounded-[50px]'>{error}</p>
+					<p className='text-danger p-4 bg-danger-50 rounded-[50px]'>{error}</p>
 				)}
 
 				<button
@@ -192,7 +192,7 @@ const SignUp = () => {
 					<span />
 				</p>
 
-				<button className='mobile__google'>
+				<button className='mobile__google cursor-not-allowed' disabled>
 					<Image
 						alt='Google icon'
 						height={24}

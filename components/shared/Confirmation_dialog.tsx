@@ -26,7 +26,7 @@ export const Confirmation_dialog: NextPage<Props> = ({
 	className,
 	unic,
 	checked,
-	selectedOption
+	selectedOption,
 }) => {
 	return (
 		<Dialog>
@@ -38,19 +38,25 @@ export const Confirmation_dialog: NextPage<Props> = ({
 					{titleTriger}
 				</Button>
 			</DialogTrigger>
-			<DialogContent className='max-w-[23rem] sm:max-w-md'>
+			<DialogContent className='max-w-[23rem] sm:max-w-md rounded-[10px]'>
 				<DialogHeader className='my-[20px]'>
 					<DialogTitle>{title}</DialogTitle>
 					<DialogDescription>{content}</DialogDescription>
 				</DialogHeader>
 				<DialogFooter className='flex flex-row gap-[40px] items-center justify-center sm:justify-center'>
 					<DialogClose asChild>
-						<Button type='button' className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'>
+						<Button
+							type='button'
+							className='min-w-[91.52px] border-1 !border-[#767680] border-solid rounded-[50px] px-[10px] !bg-[#7676801F] !text-[#0c0c0c] dark:!text-[#EFEFEF] !text-[16px] xl:!text-[16px] 2xl:!text-[16px]'
+						>
 							Close
 						</Button>
 					</DialogClose>
 					<DialogClose asChild>
-						<Button type='button' className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'>
+						<Button
+							type='button'
+							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
+						>
 							Continue
 						</Button>
 					</DialogClose>

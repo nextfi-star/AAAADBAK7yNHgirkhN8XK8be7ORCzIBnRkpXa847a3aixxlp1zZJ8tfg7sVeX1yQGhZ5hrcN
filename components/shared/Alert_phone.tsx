@@ -39,7 +39,7 @@ export const Alert_phone: NextPage<Props> = ({ propsItem }) => {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[220px] w-full min-h-[28px]'>
+				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] lg:max-w-[220px] w-full min-h-[28px]'>
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>
@@ -151,7 +151,7 @@ export const Alert_phone: NextPage<Props> = ({ propsItem }) => {
 				<AlertDialogFooter className='px-[30px] pt-[15px] h-fit items-center gap-[30px]'>
 					<AlertDialogAction
 						disabled={isDisabled}
-						className={`text-[16px] xl:text-[22px] px-[40px] rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
+						className={`text-[16px] px-[40px] rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
 							isDisabled
 								? 'bg-transparent cursor-not-allowed'
 								: 'bg-[#205bc9] hover:bg-[#205bc9] text-white border-none'

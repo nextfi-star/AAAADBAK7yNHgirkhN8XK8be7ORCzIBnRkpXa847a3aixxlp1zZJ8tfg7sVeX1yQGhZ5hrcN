@@ -114,7 +114,7 @@ export default function DataTable_unverif_mobile() {
             avatarProps={{ src: user.avatar }}
             className="!bg-transparent"
             classNames={{
-              base: "!bg-transparent min-w-[179px] flex items-center justify-start",
+              base: "!bg-transparent min-w-[179px] flex items-center justify-start ",
               name: "!bg-transparent ",
               description: "!bg-transparent ",
               wrapper: "!bg-transparent ",

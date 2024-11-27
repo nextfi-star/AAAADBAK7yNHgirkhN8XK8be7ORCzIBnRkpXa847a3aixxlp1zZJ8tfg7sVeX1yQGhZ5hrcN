@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Image from "next/image";
-import { Button } from "./button";
 import { PlusIcon } from "./PlusIcon";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
@@ -14,6 +13,7 @@ import {
   DrawerClose,
 } from "@/components/ui/drawer";
 import { useThemeStore } from "@/store";
+import { Button } from '@nextui-org/button'
 const data = [
   {
     img: "/main/avatar_noface.png",
@@ -128,8 +128,7 @@ export const ChangeAvatar = () => {
           <DrawerFooter className="flex flex-row justify-center gap-[42px]">
             <DrawerClose asChild>
               <Button
-                className="border border-solid dark:border-gray-300 border-black rounded-[50px] px-[35px] min-w-[117px] hover:bg-transparent hover:bg-[#205BC9] hover:text-white hover:border-[#205BC9]"
-                variant="outline"
+                className="border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] min-w-[117px]"
               >
                 Cancel
               </Button>

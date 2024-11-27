@@ -34,7 +34,7 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 		<Drawer>
 			<DrawerTrigger asChild>
 				<Button
-					className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[220px] w-full min-h-[28px]`}
+					className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] !min-w-[116px] min-h-[28px]`}
 				>
 					{propsItem}
 				</Button>
@@ -200,13 +200,13 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 							</DrawerClose>
 							<DrawerClose asChild>
 								<Confirmation_dialog
-								className={`!max-w-[220px] !w-full dark:text-white ${
-									checked && selectedOption
-										? 'bg-[#205bc9] hover:bg-[#205bc9] text-white border-none'
-										: 'bg-transparent hover:bg-transparent'
-								}`}
+									className={`text-[14px] xl:!text-[20px]  2xl:!text-[25px]  xl:!px-[40px] 2xl:!px-[70px] rounded-[50px] font-medium h-fit !max-w-[220px] !w-full text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
+										checked && selectedOption
+											? 'bg-[#205bc9] hover:bg-[#205bc9] dark:!border-[#205bc9] !border-[#205bc9] text-white'
+											: 'bg-transparent hover:bg-transparent data-[hover=true]:opacity-[.6] opacity-[.6]'
+									}`}
 									content={
-										'This action cannot be undone. Your account will be freezed.'
+										'This action cannot be undone. Your account will be closed.'
 									}
 									title={'Are you absolutely sure?'}
 									titleTriger={'Confirm'}
