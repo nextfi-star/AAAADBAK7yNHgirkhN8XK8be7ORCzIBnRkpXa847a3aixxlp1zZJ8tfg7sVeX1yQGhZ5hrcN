@@ -233,9 +233,9 @@ const Deposit_steps: NextPage<Props> = () => {
 																<div className='flex items-center justify-between w-full'>
 																	<div className='flex items-center gap-[3px]'>
 																		<Avatar src={status.avatar} />
-																		<p className='text-[18px] text-[#205BC9] flex flex-col items-start'>
+																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
 																			{status.name}
-																			<span className='text-[18px] md:text-[20px] text-[#BDBDBD]'>
+																			<span className='text-[20px] text-[#3A3939] dark:text-[#BDBDBD]'>
 																				{status.name}
 																			</span>
 																		</p>
