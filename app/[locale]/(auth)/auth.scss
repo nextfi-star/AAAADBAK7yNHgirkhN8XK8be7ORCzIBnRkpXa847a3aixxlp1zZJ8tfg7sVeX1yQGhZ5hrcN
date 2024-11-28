@@ -4,6 +4,7 @@
 	--form-bg: #fff;
 	--input-focus: #3a3939;
 	--selection: #efefef;
+	--borderInput: #BDBDBD;
 }
 .dark {
 	--form-wrapper-bg: #3c3c3c66;
@@ -11,6 +12,7 @@
 	--selection: #3a3939;
 	--form-bg: #0c0c0c;
 	--input-focus: #f8f8f8;
+	--borderInput: #888888;
 }
 .next__btn {
 	display: block;
@@ -89,7 +91,6 @@
 	width: fit-content;
 	background: var(--form-wrapper-bg);
 	border-radius: 30px;
-
 	position: relative;
 
 	.back_btn {
@@ -269,7 +270,6 @@
 		}
 
 		.form__wrapper {
-			height: 100%;
 			max-width: 350px;
 			min-width: 350px;
 			width: 100%;
@@ -478,10 +478,10 @@
 					line-height: 28px;
 					width: 100%;
 					padding: 14px 0 14px 12px;
-					outline: 1px solid #515151;
+					border: 1px solid var(--borderInput);
 					border-radius: 10px;
 					background: transparent;
-					color: var(--input-focus);
+					color: #888888;
 
 					@media (max-width: 1366px) {
 						padding: 10px 0 10px 12px;

@@ -1,4 +1,5 @@
 'use client'
+
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -7,18 +8,36 @@ import { useRouter, useParams } from 'next/navigation'
 import { Button } from '@nextui-org/button'
 import { FormLogo } from '@/components/ui/FormLogo'
 import { useThemeStore } from '@/store'
-import Image from 'next/image'
-import { Link } from '@/i18n/routing'
 import { Spinner } from '@nextui-org/spinner'
 import { registerUser } from '@/utils/api'
+import Image from 'next/image'
+import { Link } from '@/i18n/routing'
+import { Checkbox, Switch } from '@nextui-org/react'
+import { Logo_header } from '@/components/ui/Logo_header'
 
 const schema = yup.object().shape({
-	emailOrPhone: yup.string().required('Email or phone is required'),
+	emailOrPhone: yup
+		.string()
+		.required('Email or phone is required')
+		.test('is-valid-email-or-phone', 'Invalid email or phone', value => {
+			const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+			const phoneRegex = /^[0-9]{7,15}$/
+			return emailRegex.test(value) || phoneRegex.test(value)
+		}),
 	password: yup
 		.string()
-		.min(6, 'Password must be at least 6 characters')
+		.min(8, 'Password must be at least 8 characters')
+		.max(64, 'Password must not exceed 64 characters')
 		.required('Password is required'),
 	agreeToTerms: yup.boolean().oneOf([true], 'You must agree to the terms'),
+	refid: yup
+		.string()
+		.notRequired()
+		.test(
+			'is-valid-refid',
+			'Invalid referral ID',
+			value => !value || /^[a-zA-Z0-9-]{6,15}$/.test(value)
+		),
 })
 
 const SignUp = () => {
@@ -30,58 +49,51 @@ const SignUp = () => {
 		resolver: yupResolver(schema),
 		mode: 'onChange',
 	})
-	const { theme, email, setEmail, phone, setPhone, mode, modeToogle } = useThemeStore()
+	const [isSelected, setIsSelected] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
+	const { theme, mode, modeToogle, phone, setPhone, setEmail } = useThemeStore()
 	const [isLoading, setIsLoading] = useState(false)
-	const [success, setSuccess] = useState<string | null>(null)
 	const [error, setError] = useState<string | null>(null)
 	const router = useRouter()
 	const params = useParams()
 	const locale = params.locale || 'en'
-	const [referelOpen, setReferelOpen] = useState<boolean>(true)
-	const toogleReferal = () => {
-		setReferelOpen(prevState => !prevState)
-	}
 	const togglePasswordVisibility = () => setShowPassword(prev => !prev)
 	const onSubmit = async (data: any) => {
 		const payload = {
 			email: mode === 'email' ? data.emailOrPhone : '',
 			phone: mode === 'phone' ? data.emailOrPhone : '',
 			password: data.password,
-			refid: '',
+			refid: data.refid || '',
+			terms: 'yes',
 		}
 		setError(null)
-		setSuccess(null)
 		setIsLoading(true)
-
 		try {
 			const response = await registerUser(payload)
-			console.log('Response:', response)
-			console.log('Status:', response?.status || 'No status available')
-			console.log(
-				'\x1b[32m%s\x1b[0m',
-				`login: ${email},\nphone: ${phone || ''},\npassword: ${data.password}`
-			)
-			setSuccess(response.message)
-			setTimeout(() => {
+			if (response.response === 'success') {
+				console.log(
+					'\x1b[32m%s\x1b[0m',
+					`login: ${data.emailOrPhone},\nphone: ${data.emailOrPhone || ''},\npassword: ${data.password},\nrefid: ${data.refid}`
+				)
+				console.log(data.vcode)
 				router.push(`/${locale}/verifycode`)
-			}, 2000)
+			} else {
+				setError(response.message)
+			}
 		} catch (err: any) {
 			setError(err.message)
-			console.log('\x1b[31m%s\x1b[0m', 'Error:', err.message)
-			console.log('\x1b[34m%s\x1b[0m', 'Details:', err)
 		} finally {
 			setIsLoading(false)
 		}
 	}
 
 	return (
-		<div className='form__wrapper'>
+		<div className='form__wrapper flex flex-col gap-[20px]'>
 			<div className='form__wrapper-title'>
-				<FormLogo color={theme === 'dark' ? 'white' : '#3A3939'} />
+				<Logo_header  />
 			</div>
 
-			<div className='switch-mode'>
+			<div className='switch-mode relative z-[9999]'>
 				<Button
 					className={mode === 'email' ? 'active' : ''}
 					onClick={() => modeToogle('email')}
@@ -102,26 +114,28 @@ const SignUp = () => {
 						type={mode === 'email' ? 'email' : 'tel'}
 						placeholder={mode === 'email' ? 'E-mail' : 'Phone number'}
 						{...register('emailOrPhone')}
-						id='login'
 						onChange={e =>
 							mode === 'email'
 								? setEmail(e.target.value)
 								: setPhone(e.target.value)
 						}
+						id='login'
+						className='!border-[#BDBDBD] dark:!border-[#888888]'
 					/>
-					{errors.emailOrPhone && (
-						<p className='py-[5px]'>{errors.emailOrPhone.message}</p>
-					)}
+					{errors.emailOrPhone && <p>{errors.emailOrPhone.message}</p>}
 				</div>
-				<div className='password__wrapper relative'>
+				<div className='password__wrapper relative w-full'>
 					<input
 						type={showPassword ? 'text' : 'password'}
 						placeholder='Create a password'
 						{...register('password')}
 						id='pass'
-						className={`${errors.password ? '!outline-danger' : ''}`}
+						className={`${errors.password ? '!outline-danger' : '!border-[#BDBDBD] dark:!border-[#888888]'}`}
 					/>
-					<span onClick={togglePasswordVisibility}>
+					<span
+						className='absolute top-0 right-0'
+						onClick={togglePasswordVisibility}
+					>
 						<img
 							src={
 								showPassword
@@ -132,48 +146,42 @@ const SignUp = () => {
 						/>
 					</span>
 					{errors.password && (
-						<p className='absolute text-danger'>{errors.password.message}</p>
+						<p className='absolute text-danger '>{errors.password.message}</p>
 					)}
 				</div>
-
 				<div className='referalID__wrapper'>
-					<label className='referalID'>
-						<p>Referral ID (optional)</p>
-						<input
-							className='checkbox'
-							id='checkbox'
-							type='checkbox'
-							onChange={toogleReferal}
+					<label className='flex items-center justify-between'>
+						<span className='text-[20px] text-[#3A3939] dark:text-[#EFEFEF]'>Referral ID (optional)</span>
+						<Switch
+							isSelected={isSelected}
+							onValueChange={setIsSelected}
+							classNames={{
+								thumb: 'bg-[#205BC9]',
+								base: 'max-w-[52px] w-full',
+								label: 'max-w-[52px] w-full',
+								wrapper: 'max-w-[52px] w-full',
+							}}
 						/>
-						<label className='checkbox-label' htmlFor='checkbox' />
 					</label>
-
-					{!referelOpen && (
+					{isSelected && (
 						<input
-							className='referal__input'
-							id='referal'
-							placeholder='UFRYXEEXDG'
 							type='text'
+							className=''
+							placeholder='UFRYXEEXDG'
+							{...register('refid')}
+							id='referal'
 						/>
 					)}
+					{errors.refid && <p className='text-warning'>{errors.refid.message}</p>}
 				</div>
-
-				<div className='privacy'>
-					<label>
-						<input type='checkbox' {...register('agreeToTerms')} />
-						<span className='pl-[10px]'>
-							I agree to the Terms of Service and Privacy Policy
-						</span>
+				<div className='privacy relative'>
+					<label className='flex items-center gap-[5px] '>
+						<Checkbox {...register('agreeToTerms')} />
+						<p>I have read and agree to <span className='text-[#205BC9]'>Nextfi's Terms of Services</span> and <span className='text-[#205BC9]'>Privacy Policy</span>.</p>
 					</label>
-					{errors.agreeToTerms && (
-						<p className='text-warning py-[5px]'>{errors.agreeToTerms.message}</p>
-					)}
+					{errors.agreeToTerms && <p className='text-warning !absolute bottom-[-17px] left-[30px]'>{errors.agreeToTerms.message}</p>}
 				</div>
-
-				{error && (
-					<p className='text-danger p-4 bg-danger-50 rounded-[50px]'>{error}</p>
-				)}
-
+				{error && <p className='text-danger '>{error}</p>}
 				<button
 					type='submit'
 					disabled={isLoading || !isValid}
@@ -182,8 +190,7 @@ const SignUp = () => {
 					{isLoading ? <Spinner /> : 'Sign Up'}
 				</button>
 			</form>
-
-			<span className='forgot'>Forgot your password?</span>
+		
 
 			<div className='help login__help'>
 				<p>
@@ -192,7 +199,7 @@ const SignUp = () => {
 					<span />
 				</p>
 
-				<button className='mobile__google cursor-not-allowed' disabled>
+				<button className='mobile__google !cursor-not-allowed' disabled>
 					<Image
 						alt='Google icon'
 						height={24}
