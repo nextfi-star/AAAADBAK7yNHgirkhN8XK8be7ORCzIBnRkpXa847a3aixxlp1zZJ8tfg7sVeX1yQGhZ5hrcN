@@ -33,25 +33,6 @@ export const Profile_balance: NextPage = () => {
 
 	return (
 		<section className='h-fit'>
-			<div className='w-[212px] sm:hidden flex m-auto gap-[4px] justify-between rounded-[50px] h-[40px] bg-gray-200 !shadow-medium dark:!shadow-none'>
-				<button
-					className={`w-[104px] transition duration-300 ${
-						isActive ? 'bg-[#205BC9] text-white' : 'text-[#205BC9]'
-					} text-[18px] rounded-[50px] font-medium`}
-					onClick={() => swiperRef.current?.slideTo(0)}
-				>
-					Balance
-				</button>
-				<button
-					className={`w-[104px] transition duration-300 ${
-						!isActive ? 'bg-[#205BC9] text-white' : 'text-[#205BC9]'
-					} text-[18px] rounded-[50px] font-medium`}
-					onClick={() => swiperRef.current?.slideTo(1)}
-				>
-					Bonus
-				</button>
-			</div>
-
 			<div className='profile__balance bg-[#fff] dark:bg-[#1e1e1e66] md:!shadow-medium md:dark:!shadow-none'>
 				<div className='profile__balance_sides'>
 					{/* Mobile */}

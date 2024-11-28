@@ -56,10 +56,10 @@ const Swap_from: NextPage = () => {
 				<Input
 					type='text'
 					variant='underlined'
-					className='md:text-[20px] text-[#BDBDBD] md:font-medium '
 					placeholder='Enter the amount'
+					className='md:text-[20px] text-[#BDBDBD] font-medium'
 					classNames={{
-						inputWrapper: 'shadow-none'
+						inputWrapper: 'shadow-none',
 					}}
 				/>
 
