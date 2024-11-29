@@ -4,10 +4,15 @@ import { Alert_email } from "./Alert_email";
 import { Alert_phone } from "./Alert_phone";
 import { useThemeStore } from "@/store";
 import { Button } from '@nextui-org/button'
+import { Skeleton } from '@nextui-org/skeleton'
 
 export const Profile_accountdetails: NextPage = () => {
-  const { theme } = useThemeStore();
-
+  const { email, user } = useThemeStore();
+	if (!user) {
+		return (
+			<Skeleton  className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px] min-h-[180px]' />
+		)
+	}
   return (
     <section className="personal__content flex flex-col w-full">
       <h1 className="personal__content-title">
@@ -22,7 +27,7 @@ export const Profile_accountdetails: NextPage = () => {
       </h1>
       <article className="flex items-center justify-between gap-[5px]">
         <span>Email</span>
-        <span>user****@main.ru</span>
+        <span>{email || 'user****@main.ru' }</span>
 
         <div className="min-w-[181px] flex justify-end">
           <Alert_email propsItem={"Change"} />
@@ -33,7 +38,7 @@ export const Profile_accountdetails: NextPage = () => {
 
       <article className="flex items-center justify-between gap-[5px]">
         <span>Phone</span>
-        <span>****140</span>
+        <span>{user.phone || '****140'}</span>
 
         <div className="min-w-[181px] flex justify-end">
           <Alert_phone propsItem={"Change"} />

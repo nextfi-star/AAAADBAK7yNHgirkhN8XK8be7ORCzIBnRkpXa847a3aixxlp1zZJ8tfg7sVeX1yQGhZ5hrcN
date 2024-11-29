@@ -29,8 +29,15 @@ export type CryptoData = {
 	cryptoNumbers: string
 	moreLess: string
 }
+export type NetworkData = {
+	id: number
+	name: string
+	cryptoNumbers: string
+	moreLess: string
+}
 interface Props {
 	cryptoData?: CryptoData[]
+	networkData?: NetworkData[]
 }
 const cryptoData = [
 	{
@@ -73,49 +80,49 @@ const networkData = [
 	},
 	{
 		id: 3,
-		name: 'TRC20',
+		name: 'ZRC20',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
 	{
 		id: 4,
-		name: 'TRC20',
+		name: 'XRC20',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
 	{
 		id: 5,
-		name: 'TRC20',
+		name: 'CRC20',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
 	{
 		id: 6,
-		name: 'TRC20',
+		name: 'VRC20',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
 	{
 		id: 7,
-		name: 'TRC20',
+		name: 'ZXRC20',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
 	{
 		id: 8,
-		name: 'TRC20',
+		name: 'ZRO20',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
 	{
 		id: 9,
-		name: 'TRC20',
+		name: 'CXC20',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
 	{
 		id: 10,
-		name: 'TRC20',
+		name: 'ZXX20',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
@@ -123,18 +130,20 @@ const networkData = [
 const Withdrawal_steps: NextPage<Props> = () => {
 	const { step, setStep, theme } = useThemeStore()
 	const [open, setOpen] = useState(false)
+	const [openNetwork, setOpenNetwork] = useState(false)
 	const [inputStep2, setInputStep2] = useState<string>('')
 	const [input2Step2, setInput2Step2] = useState<string>('')
 	const [input3, setInput3] = useState('')
 	const [selectedCrypto, setSelectedCrypto] = useState<CryptoData | null>(null)
-	const [inputValue, setInputValue] = useState('')
+	const [selectedNetwork, setSelectedNetwork] = useState<NetworkData | null>(
+		null
+	)
 
-	const inputStep2Handler = (value: string) => {
-		setInputStep2(value)
-		setStep(3)
-	}
 	const input2Step2Handler = (e: any) => {
 		setInput2Step2(e.target.value)
+		if (input2Step2.length > 5) {
+			setStep(3)
+		}
 	}
 	const DropCache = () => {
 		setStep(1)
@@ -167,7 +176,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 
 							{step >= 1 && (
 								<div className={`id-1 flex flex-col gap-[31px] ml-[47px]`}>
-									<Popover open={open} onOpenChange={setOpen}>
+									<Popover open={open} onOpenChange={setOpen} modal={true}>
 										<PopoverTrigger asChild>
 											<Button
 												variant='outline'
@@ -205,7 +214,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 											</Button>
 										</PopoverTrigger>
 										<PopoverContent
-											className='p-0 w-full'
+											className='p-0 w-full shadow-none'
 											side='bottom'
 											align='start'
 										>
@@ -228,6 +237,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 																	setOpen(false)
 																	setStep(2)
 																}}
+																className='data-[selected=true]:!bg-[#7676801F]'
 															>
 																<div className='flex items-center justify-between w-full'>
 																	<div className='flex items-center gap-[3px]'>
@@ -239,9 +249,9 @@ const Withdrawal_steps: NextPage<Props> = () => {
 																			</span>
 																		</p>
 																	</div>
-																	<p className='flex flex-col text-[20px]'>
+																	<p className='flex flex-col items-end text-[20px] text-[#181818] dark:text-[#EFEFEF]'>
 																		{status.cryptoNumbers}
-																		<span className='text-[14px] md:text-[20px] text-[#3A3939] dark:text-[#BDBDBD]'>
+																		<span className='text-[14px] md:text-[20px] text-[#3C3C3C66] dark:text-[#BDBDBD]'>
 																			{status.moreLess}
 																		</span>
 																	</p>
@@ -264,7 +274,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 										step === 2 ? 'bg-[#205BC9]' : 'bg-[#3A3939]'
 									} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
 								>
-									{inputStep2.length && input2Step2.length ? <CheckCheck /> : 2}
+									{input2Step2.length ? <CheckCheck /> : 2}
 								</span>
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 2 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
@@ -276,54 +286,88 @@ const Withdrawal_steps: NextPage<Props> = () => {
 							{step >= 2 && (
 								<div className='id-1 flex flex-col gap-[31px] ml-[47px]'>
 									<div className='flex flex-col max-w-[294px] sm:max-w-[962px] gap-[15px] md:gap-[45px]'>
-										<Autocomplete
-											defaultItems={networkData}
-											aria-labelledby='Select network'
-											placeholder='Select network'
-											className='!bg-[#7676801F] !p-0 '
-											onInputChange={inputStep2Handler}
-											listboxProps={{
-												emptyContent: <NotFoundItem />,
-											}}
-											selectorIcon={
-												<ChevronDown
-													strokeWidth={1}
-													color={theme === 'dark' ? 'white' : 'black'}
-													className='w-8 h-8'
-												/>
-											}
-											size='lg'
-											classNames={{
-												base: '!bg-[#7676801F], flex items-center rounded-medium h-[48px] !p-0',
-												listboxWrapper:
-													'!p-0 dark:!bg-[#19191A] overscroll-contain rounded-[30px]',
-												popoverContent: 'dark:bg-[#19191A] bg-[#EEEEEE]',
-												listbox: 'py-0 !gap-[10px]',
-											}}
+										<Popover
+											open={openNetwork}
+											onOpenChange={setOpenNetwork}
+											modal={true}
 										>
-											{networkData => (
-												<AutocompleteItem
-													key={networkData.id}
-													textValue={networkData.name}
-													hideSelectedIcon
-													className='p-0 px-[20px] py-[15px] rounded-[19px]'
-													classNames={{
-														base: 'data-[hover=true]:!bg-[#0000004D]',
-													}}
+											<PopoverTrigger asChild>
+												<Button
+													variant='outline'
+													size='sm'
+													className='w-full h-[48px] rounded-medium max-w-[294px] sm:max-w-[962px] justify-start bg-[#7676801F] hover:bg-[#7676801F]'
 												>
-													<div className='flex items-center justify-between rounded-[4px]'>
-														<div className='flex flex-col'>
-															<span className='text-small text-[#205BC9]'>
-																{networkData.name}
-															</span>
+													{selectedNetwork ? (
+														<div className='flex w-full justify-between gap-[8px] items-center'>
+															<div className='flex items-center gap-[3px]'>
+																<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
+																	{selectedNetwork.name}
+																</p>
+															</div>
+															<ChevronDown
+																strokeWidth={1}
+																color={theme === 'dark' ? 'white' : 'black'}
+																className={`w-8 h-8 transition duration-300  
+																${!openNetwork ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
+															/>
 														</div>
-														<div className='flex flex-col items-end'>
-															<span>{networkData.cryptoNumbers}</span>
+													) : (
+														<div className='flex w-full justify-between gap-[8px] items-center'>
+															<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
+																Select Network
+															</p>
+															<ChevronDown
+																strokeWidth={1}
+																color={theme === 'dark' ? 'white' : 'black'}
+																className={`w-8 h-8 transition duration-300  
+																${!openNetwork ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
+															/>
 														</div>
-													</div>
-												</AutocompleteItem>
-											)}
-										</Autocomplete>
+													)}
+												</Button>
+											</PopoverTrigger>
+											<PopoverContent
+												className='p-0 w-full shadow-none'
+												side='bottom'
+												align='start'
+											>
+												<Command className='bg-[#eee] dark:bg-[#19191A] w-[285px] md:w-[603px] lg:w-[799px] xl:w-[794px] 2xl:w-[962px]'>
+													<CommandList className='bg-[#eee] dark:bg-[#19191A] px-[10px]'>
+														<CommandEmpty>
+															<NotFoundItem />
+														</CommandEmpty>
+														<CommandGroup>
+															{networkData.map(status => (
+																<CommandItem
+																	key={status.id}
+																	value={status.name}
+																	className='data-[selected=true]:!bg-[#7676801F]'
+																	onSelect={value => {
+																		setSelectedNetwork(
+																			networkData.find(
+																				priority => priority.name === value
+																			) || null
+																		)
+																		setOpenNetwork(false)
+																	}}
+																>
+																	<div className='flex items-center justify-between rounded-[4px] w-full'>
+																		<div className='flex flex-col'>
+																			<span className='text-small text-[#205BC9]'>
+																				{status.name}
+																			</span>
+																		</div>
+																		<div className='flex flex-col items-end'>
+																			<span>{status.cryptoNumbers}</span>
+																		</div>
+																	</div>
+																</CommandItem>
+															))}
+														</CommandGroup>
+													</CommandList>
+												</Command>
+											</PopoverContent>
+										</Popover>
 
 										<input
 											type='text'
@@ -340,9 +384,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 							<div className='flex items-start gap-[15px] mb-[15px] md:mb-[15px]'>
 								<span
 									className={`text-white text-[18px] ${
-										inputStep2.length > 3 && input2Step2.length > 3
-											? 'bg-[#205BC9]'
-											: 'bg-[#3A3939]'
+										input2Step2.length > 3 ? 'bg-[#205BC9]' : 'bg-[#3A3939]'
 									} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
 								>
 									{input3.length > 3 ? <CheckCheck /> : 3}

@@ -18,6 +18,8 @@ import { useState } from 'react'
 import { DropData } from './ProfileHeader'
 import { Divider } from '@nextui-org/divider'
 import Image from 'next/image'
+import { useThemeStore } from '@/store'
+import { Skeleton } from '@nextui-org/skeleton'
 
 interface Props {
 	dropData?: DropData[]
@@ -35,7 +37,13 @@ export const DropDown_menu: NextPage<Props> = ({
 }) => {
 	const [selectedKeys, setSelectedKeys] = useState<DropData | null>(null)
 	const [open, setOpen] = useState(false)
+	const {email, user} = useThemeStore()
 
+	if (!user) {
+		return (
+			<Skeleton  className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px] min-h-[180px]' />
+		)
+	}
 	return (
 		<div onMouseLeave={() => setOpen(!open)}>
 			<Popover open={open} onOpenChange={setOpen}>
@@ -78,10 +86,10 @@ export const DropDown_menu: NextPage<Props> = ({
 											/>
 											<div className='flex flex-col items-stretch'>
 												<p className='text-[13px] dark:text-[#eeeeee] text-[#0c0c0c]'>
-													user***@gmail.com
+													{email || 'user***@gmail.com'}
 												</p>
 												<p className='text-[13px] text-[#0c0c0c] dark:text-[#eeeeee]'>
-													UID: 987987
+													UID: {user.uid || '664654'}
 												</p>
 											</div>
 										</div>
@@ -103,6 +111,7 @@ export const DropDown_menu: NextPage<Props> = ({
 												)
 												setOpen(false)
 											}}
+											className='data-[selected=true]:!bg-[#7676801F]'
 										>
 											<div className='flex flex-col w-full'>
 												<div className='flex items-center gap-[10px]'>

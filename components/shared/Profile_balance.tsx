@@ -94,7 +94,7 @@ export const Profile_balance: NextPage = () => {
 								</span>
 								<RefreshCw
 									strokeWidth={1}
-									className='!w-full !max-w-[26px] p-[5px] cursor-pointer'
+									className='!w-full !max-w-[26px] min-w-[26px] p-[5px] cursor-pointer'
 									onClick={handleRefreshClick}
 								/>
 							</div>
@@ -154,7 +154,7 @@ export const Profile_balance: NextPage = () => {
 										alt='balance'
 									/>
 									<h4 className='text-blue-600 text-[33px] font-medium'>
-										Bonus Balance
+										Bonus
 									</h4>
 									<Eye />
 								</div>

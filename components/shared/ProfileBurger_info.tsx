@@ -15,7 +15,7 @@ export const ProfileBurger_info: NextPage<Props> = ({
   setShowSection,
   showSection,
 }) => {
-  const { theme } = useThemeStore();
+  const { theme, user } = useThemeStore();
   const handleClick = () => {
     setShowSection(!showSection);
   };
@@ -37,7 +37,7 @@ export const ProfileBurger_info: NextPage<Props> = ({
           />
         </div>
         <div className="flex flex-col">
-          <h5 className="text-[18px]">{username}</h5>
+          <h5 className="text-[18px]">{!user?.email ? username : user.email}</h5>
           {showSection && <span className="text-[14px]">Profile Settings</span>}
         </div>
       </div>

@@ -51,11 +51,11 @@ export const Profile_industry: NextPage<Props> = ({ unicClass }) => {
 				className={`profile__industy profile_blocks_border md:!bg-[#fff] dark:!bg-transparent md:dark:!bg-[#1e1e1e66] ${unicClass} 2xl:!max-w-[650px] !shadow-none md:!shadow-medium dark:!shadow-none !p-[37px]`}
 			>
 				<div className='w-full flex justify-between gap-[5px] md:gap-[15px] pt-[1.5rem] px-[10px] md:pt-0'>
-					<h3 className='profile__industry__main_text'>
+					<h3 className='profile__industry__main_text flex-shrink-0'>
 						{t('ChooseIndustry')}
 					</h3>
 
-					<div className='flex items-center justify-end gap-[24px]'>
+					<div className='flex items-center justify-end gap-[15px] sm:gap-[24px]'>
 						<button onClick={() => swiperRef.current?.slidePrev()}>
 							<ArrowBracket
 								className={'rotate-90'}

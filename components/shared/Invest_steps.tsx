@@ -113,7 +113,8 @@ const Invest_steps: NextPage<Props> = () => {
 	const [input3, setInput3] = useState('')
 	const [selectedInvest, setSelectedInvest] = useState<InvestData | null>(null)
 	const [selectedPeriod, setSelectedPeriod] = useState<PeriodData | null>(null)
-
+	const [open, setOpen] = useState(false)
+	const [openNetwork, setOpenNetwork] = useState(false)
 	const DropCache = () => {
 		setStep(1)
 		setInputStep2('')
@@ -144,7 +145,11 @@ const Invest_steps: NextPage<Props> = () => {
 
 						{step >= 1 && (
 							<div className={`id-1 flex flex-col gap-[31px] ml-[47px]`}>
-								<Popover open={openInvest} onOpenChange={setOpenInvest}>
+								<Popover
+									open={openInvest}
+									onOpenChange={setOpenInvest}
+									modal={true}
+								>
 									<PopoverTrigger asChild>
 										<Button
 											variant='outline'
@@ -169,7 +174,8 @@ const Invest_steps: NextPage<Props> = () => {
 													<ChevronDown
 														strokeWidth={1}
 														color={theme === 'dark' ? 'white' : 'black'}
-														className='w-8 h-8'
+														className={`w-8 h-8 transition duration-300  
+																${!open ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
 													/>
 												</div>
 											) : (
@@ -180,14 +186,15 @@ const Invest_steps: NextPage<Props> = () => {
 													<ChevronDown
 														strokeWidth={1}
 														color={theme === 'dark' ? 'white' : 'black'}
-														className='w-8 h-8'
+														className={`w-8 h-8 transition duration-300  
+																${!open ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
 													/>
 												</div>
 											)}
 										</Button>
 									</PopoverTrigger>
 									<PopoverContent
-										className='p-0 w-full'
+										className='p-0 w-full shadow-none'
 										side='bottom'
 										align='start'
 									>
@@ -220,6 +227,7 @@ const Invest_steps: NextPage<Props> = () => {
 																setOpenInvest(false)
 																setStep(2)
 															}}
+															className='data-[selected=true]:!bg-[#7676801F]'
 														>
 															<div className='flex items-center justify-between w-full'>
 																<div className='flex items-center gap-[3px]'>
@@ -272,7 +280,11 @@ const Invest_steps: NextPage<Props> = () => {
 						{step >= 2 && (
 							<div className='id-1 flex flex-col gap-[31px] ml-[47px]'>
 								<div className='flex flex-col max-w-[294px] sm:max-w-[962px] gap-[15px] md:gap-[45px]'>
-									<Popover open={openPeriod} onOpenChange={setOpenPeriod}>
+									<Popover
+										open={openPeriod}
+										onOpenChange={setOpenPeriod}
+										modal={true}
+									>
 										<PopoverTrigger asChild>
 											<Button
 												variant='outline'
@@ -283,13 +295,14 @@ const Invest_steps: NextPage<Props> = () => {
 													<div className='flex w-full justify-between gap-[8px] items-center'>
 														<div className='flex items-center gap-[3px]'>
 															<p className='text-[20px] font-medium text-[#0c0c0c] dark:text-white'>
-																{selectedPeriod.name} 
+																{selectedPeriod.name}
 															</p>
 														</div>
 														<ChevronDown
 															strokeWidth={1}
 															color={theme === 'dark' ? 'white' : 'black'}
-															className='w-8 h-8'
+															className={`w-8 h-8 transition duration-300  
+																${!openNetwork ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
 														/>
 													</div>
 												) : (
@@ -300,14 +313,15 @@ const Invest_steps: NextPage<Props> = () => {
 														<ChevronDown
 															strokeWidth={1}
 															color={theme === 'dark' ? 'white' : 'black'}
-															className='w-8 h-8'
+															className={`w-8 h-8 transition duration-300  
+																${!openNetwork ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
 														/>
 													</div>
 												)}
 											</Button>
 										</PopoverTrigger>
 										<PopoverContent
-											className='p-0 w-full'
+											className='p-0 w-full shadow-none'
 											side='bottom'
 											align='start'
 										>
@@ -335,12 +349,12 @@ const Invest_steps: NextPage<Props> = () => {
 																	setOpenPeriod(false)
 																	setStep(3)
 																}}
+																className='data-[selected=true]:!bg-[#7676801F]'
 															>
 																<div className='flex items-center justify-between w-full px-[15px]'>
 																	<div className='flex items-center gap-[3px]'>
 																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
-																			{period.name}{' '}
-																			days
+																			{period.name} days
 																		</p>
 																	</div>
 																	<p className='flex items-center gap-[5px] text-[20px]'>

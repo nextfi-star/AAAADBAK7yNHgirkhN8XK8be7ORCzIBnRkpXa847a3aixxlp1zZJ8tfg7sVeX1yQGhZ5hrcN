@@ -43,4 +43,13 @@ export interface IStore {
 	setGlobalPeriod: (val: PeriodData | null) => void
 	open: boolean
 	setOpen: (val: boolean) => void
+	user: {
+    email?: string;
+    phone?: string;
+    username?: string;
+		uid?: string
+		password?: string
+  } | null;
+  setUser: (userData: any) => void;
+  clearUser: () => void;
 }

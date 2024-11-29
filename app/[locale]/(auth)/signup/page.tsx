@@ -90,7 +90,7 @@ const SignUp = () => {
 	return (
 		<div className='form__wrapper flex flex-col gap-[20px]'>
 			<div className='form__wrapper-title'>
-				<Logo_header  />
+				<Logo_header />
 			</div>
 
 			<div className='switch-mode relative z-[9999]'>
@@ -120,9 +120,13 @@ const SignUp = () => {
 								: setPhone(e.target.value)
 						}
 						id='login'
-						className='!border-[#BDBDBD] dark:!border-[#888888]'
+						className={` ${errors.emailOrPhone ? '!border-danger focus:!outline-danger ' : ''}`}
 					/>
-					{errors.emailOrPhone && <p>{errors.emailOrPhone.message}</p>}
+					{errors.emailOrPhone && (
+						<p className='absolute text-danger pointer-events-none'>
+							{errors.emailOrPhone.message}
+						</p>
+					)}
 				</div>
 				<div className='password__wrapper relative w-full'>
 					<input
@@ -130,7 +134,7 @@ const SignUp = () => {
 						placeholder='Create a password'
 						{...register('password')}
 						id='pass'
-						className={`${errors.password ? '!outline-danger' : '!border-[#BDBDBD] dark:!border-[#888888]'}`}
+						className={` ${errors.password ? '!border-danger focus:!outline-danger ' : ''}`}
 					/>
 					<span
 						className='absolute top-0 right-0'
@@ -146,12 +150,16 @@ const SignUp = () => {
 						/>
 					</span>
 					{errors.password && (
-						<p className='absolute text-danger '>{errors.password.message}</p>
+						<p className='absolute text-danger pointer-events-none'>
+							{errors.password.message}
+						</p>
 					)}
 				</div>
 				<div className='referalID__wrapper'>
 					<label className='flex items-center justify-between'>
-						<span className='text-[20px] text-[#3A3939] dark:text-[#EFEFEF]'>Referral ID (optional)</span>
+						<span className='text-[20px] text-[#3A3939] dark:text-[#EFEFEF]'>
+							Referral ID (optional)
+						</span>
 						<Switch
 							isSelected={isSelected}
 							onValueChange={setIsSelected}
@@ -164,22 +172,36 @@ const SignUp = () => {
 						/>
 					</label>
 					{isSelected && (
-						<input
-							type='text'
-							className=''
-							placeholder='UFRYXEEXDG'
-							{...register('refid')}
-							id='referal'
-						/>
+						<div className='relative'>
+							<input
+								type='text'
+								placeholder='UFRYXEEXDG'
+								{...register('refid')}
+								id='referal'
+								className={`!border-[#BDBDBD] dark:!border-[#888888] ${errors.emailOrPhone ? '!border-danger focus:!outline-danger ' : ''}`}
+							/>
+							{errors.refid && (
+								<p className='absolute bottom-[-23px] text-warning pointer-events-none'>
+									{errors.refid.message}
+								</p>
+							)}
+						</div>
 					)}
-					{errors.refid && <p className='text-warning'>{errors.refid.message}</p>}
 				</div>
 				<div className='privacy relative'>
 					<label className='flex items-center gap-[5px] '>
 						<Checkbox {...register('agreeToTerms')} />
-						<p>I have read and agree to <span className='text-[#205BC9]'>Nextfi's Terms of Services</span> and <span className='text-[#205BC9]'>Privacy Policy</span>.</p>
+						<p>
+							I have read and agree to{' '}
+							<span className='text-[#205BC9]'>Nextfi's Terms of Services</span>{' '}
+							and <span className='text-[#205BC9]'>Privacy Policy</span>.
+						</p>
 					</label>
-					{errors.agreeToTerms && <p className='text-warning !absolute bottom-[-17px] left-[30px]'>{errors.agreeToTerms.message}</p>}
+					{errors.agreeToTerms && (
+						<p className='text-warning !absolute bottom-[-17px] left-[30px] pointer-events-none'>
+							{errors.agreeToTerms.message}
+						</p>
+					)}
 				</div>
 				{error && <p className='text-danger '>{error}</p>}
 				<button
@@ -187,10 +209,9 @@ const SignUp = () => {
 					disabled={isLoading || !isValid}
 					className={`submit-btn ${isValid ? 'valid' : ''}`}
 				>
-					{isLoading ? <Spinner /> : 'Sign Up'}
+					{isLoading ? <Spinner color='current' /> : 'Sign Up'}
 				</button>
 			</form>
-		
 
 			<div className='help login__help'>
 				<p>

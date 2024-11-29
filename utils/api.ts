@@ -22,7 +22,7 @@ export const registerUser = async (data: {
     throw new Error(error.message || 'An error occurred during registration');
   }
 };
-export const loginUser = async (payload: { email?: string; phone?: string; password?: string; }) => {
+export const loginUser = async (payload: { email?: string; phone?: string; password?: string; uid: string}) => {
   try {
     const response = await fetch('https://nextfi.site:5000/api/v1/login', {
       method: 'POST',

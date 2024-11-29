@@ -6,6 +6,7 @@ import { Link } from '@/i18n/routing'
 import { Snippet } from '@nextui-org/snippet'
 import { Button } from '@nextui-org/button'
 import { useThemeStore } from '@/store'
+import { Skeleton } from '@nextui-org/skeleton'
 
 interface Props {
 	verify: boolean
@@ -13,7 +14,13 @@ interface Props {
 }
 export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 	const t = useTranslations('profile')
-	const { email } = useThemeStore()
+	const { email, user } = useThemeStore()
+
+	if (!user) {
+		return (
+			<Skeleton  className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px] min-h-[180px]' />
+		)
+	}
 	return (
 		<section className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px]'>
 			<div className='profile__info__block__left'>
@@ -30,7 +37,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 				<div className='profile__info__block__left__text'>
 					<h3 className='profile__info__block__left__text_name '>User user</h3>
 					<p className='profile__info__block__left__text_email'>
-						{(email && email) || 'user@gmail.com'}
+						{user.email || user.phone || 'user***mail.com'}
 					</p>
 					<div className='profile__info__block__left__text__id'>
 						<Snippet className='bg-transparent py-[5px] px-0' symbol=''>
