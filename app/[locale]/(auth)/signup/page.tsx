@@ -6,7 +6,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useRouter, useParams } from 'next/navigation'
 import { Button } from '@nextui-org/button'
-import { FormLogo } from '@/components/ui/FormLogo'
 import { useThemeStore } from '@/store'
 import { Spinner } from '@nextui-org/spinner'
 import { registerUser } from '@/utils/api'
@@ -51,7 +50,7 @@ const SignUp = () => {
 	})
 	const [isSelected, setIsSelected] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
-	const { theme, mode, modeToogle, phone, setPhone, setEmail } = useThemeStore()
+	const { theme, mode, modeToogle, setPhone, setEmail } = useThemeStore()
 	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const router = useRouter()
@@ -75,8 +74,7 @@ const SignUp = () => {
 					'\x1b[32m%s\x1b[0m',
 					`login: ${data.emailOrPhone},\nphone: ${data.emailOrPhone || ''},\npassword: ${data.password},\nrefid: ${data.refid}`
 				)
-				console.log(data.vcode)
-				router.push(`/${locale}/verifycode`)
+				router.push(`/${locale}/login`)
 			} else {
 				setError(response.message)
 			}

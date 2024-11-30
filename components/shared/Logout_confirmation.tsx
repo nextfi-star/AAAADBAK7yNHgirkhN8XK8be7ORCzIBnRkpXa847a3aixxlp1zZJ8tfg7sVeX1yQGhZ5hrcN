@@ -1,3 +1,4 @@
+'use client'
 import {
 	Dialog,
 	DialogClose,
@@ -8,6 +9,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
+import { useParams, useRouter } from 'next/navigation'
 import { Button } from '@nextui-org/button'
 import { NextPage } from 'next'
 interface Props {
@@ -22,6 +24,12 @@ export const Logout_confirmation: NextPage<Props> = ({
 	titleTriger,
 	className,
 }) => {
+	const router = useRouter()
+	const locale = useParams().locale
+	const logout = () => {
+		localStorage.removeItem('userData')
+		router.push(`/${locale}/login`)
+	}
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -49,6 +57,7 @@ export const Logout_confirmation: NextPage<Props> = ({
 						<Button
 							type='button'
 							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
+							onClick={logout}
 						>
 							Continue
 						</Button>

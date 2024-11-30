@@ -20,6 +20,7 @@ import { Divider } from '@nextui-org/divider'
 import Image from 'next/image'
 import { useThemeStore } from '@/store'
 import { Skeleton } from '@nextui-org/skeleton'
+import { Spinner } from '@nextui-org/spinner'
 
 interface Props {
 	dropData?: DropData[]
@@ -37,12 +38,10 @@ export const DropDown_menu: NextPage<Props> = ({
 }) => {
 	const [selectedKeys, setSelectedKeys] = useState<DropData | null>(null)
 	const [open, setOpen] = useState(false)
-	const {email, user} = useThemeStore()
+	const { email, user } = useThemeStore()
 
 	if (!user) {
-		return (
-			<Skeleton  className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px] min-h-[180px]' />
-		)
+		return <Spinner />
 	}
 	return (
 		<div onMouseLeave={() => setOpen(!open)}>

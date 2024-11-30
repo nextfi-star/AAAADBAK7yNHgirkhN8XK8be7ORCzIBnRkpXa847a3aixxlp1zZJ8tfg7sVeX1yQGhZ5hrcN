@@ -10,7 +10,6 @@ export const useThemeStore = create<IStore>()(
 				set(() => {
 					localStorage.setItem('theme', newTheme)
 					document.documentElement.classList.toggle('dark', newTheme === 'dark')
-
 					return { theme: newTheme }
 				})
 			},
@@ -66,8 +65,15 @@ export const useThemeStore = create<IStore>()(
 			open: false,
 			setOpen: val => set({ open: val }),
 			user: null,
-			setUser: userData => set({ user: userData }),
-			clearUser: () => set({ user: null }),
+			setUser: (userData) => {
+				set({ user: userData });
+				localStorage.setItem('userData', JSON.stringify(userData));
+			},
+			clearUser: () => {
+				set({ user: null });
+				localStorage.removeItem('userData');
+				localStorage.removeItem('zustand-store');
+			},
 		}),
 		{
 			name: 'zustand-store',

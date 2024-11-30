@@ -5,8 +5,10 @@ import { Profile_accountdetails } from "@/components/shared/Profile_accountdetai
 import { Profile_perosnalinfo } from "@/components/shared/Profile_perosnalinfo";
 import { Profile_personalverif } from "@/components/shared/Profile_personalverif";
 import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
+import useAuthProtection from '@/hooks/useAuthProtection'
 
 const Page: NextPage = () => {
+  useAuthProtection()
   return (
     <section className="personal !shadow-medium dark:!shadow-none">
       <div className="personal-container">

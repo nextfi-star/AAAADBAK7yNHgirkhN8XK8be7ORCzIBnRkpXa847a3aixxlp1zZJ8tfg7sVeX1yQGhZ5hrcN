@@ -12,26 +12,24 @@ import {
 	Profile_verification,
 } from '@/components/shared'
 import { usePathname } from 'next/navigation'
+import useAuthProtection from '@/hooks/useAuthProtection'
 
 const Overview: NextPage = () => {
-	const pathname = usePathname();
+	useAuthProtection()
+	const pathname = usePathname()
 	const [verify, setVerify] = useState<boolean>(false)
 	const { initializeTheme, setVerifyState } = useThemeStore()
 	const toggleActive = () => {
 		setVerify(prev => !prev)
 	}
 	useEffect(() => {
-		initializeTheme()
-	}, [initializeTheme])
-
-useEffect(() => {
-	if(pathname !== '/assets') {
-		setVerifyState(false)
-	} else {
-		setVerifyState(true)
-	}
+		if (pathname !== '/assets') {
+			setVerifyState(false)
+		} else {
+			setVerifyState(true)
+		}
 	}, [pathname])
-	
+
 	return (
 		<section className='profile '>
 			<Profile_info toggleActive={toggleActive} verify={verify} />
