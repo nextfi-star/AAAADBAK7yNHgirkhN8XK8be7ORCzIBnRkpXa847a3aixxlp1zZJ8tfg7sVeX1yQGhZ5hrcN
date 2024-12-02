@@ -9,9 +9,10 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import { useParams, useRouter } from 'next/navigation'
 import { Button } from '@nextui-org/button'
 import { NextPage } from 'next'
+import { useThemeStore } from '@/store'
+import { useParams, useRouter } from 'next/navigation'
 interface Props {
 	content: string
 	titleTriger: string | any
@@ -24,11 +25,16 @@ export const Logout_confirmation: NextPage<Props> = ({
 	titleTriger,
 	className,
 }) => {
-	const router = useRouter()
-	const locale = useParams().locale
-	const logout = () => {
-		localStorage.removeItem('userData')
-		router.push(`/${locale}/login`)
+	const { setEmail, setPassword, clearUser } = useThemeStore();
+  const router = useRouter();
+  const locale = useParams().locale;
+
+	const handleLogout = () => {
+		clearUser()
+		localStorage.removeItem('zustand-store')
+		setEmail('')
+		setPassword('')
+		router.push(`/${locale}/login?error=sessionExpired`)
 	}
 	return (
 		<Dialog>
@@ -57,7 +63,7 @@ export const Logout_confirmation: NextPage<Props> = ({
 						<Button
 							type='button'
 							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
-							onClick={logout}
+							onClick={handleLogout}
 						>
 							Continue
 						</Button>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { NextPage } from 'next'
 import { Button } from '@nextui-org/button'
@@ -12,8 +12,8 @@ import {
 } from '@/components/ui/input-otp'
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
 import { useThemeStore } from '@/store'
-import { verifyCode } from '@/utils/api'
 import { Spinner } from '@nextui-org/spinner'
+import { verifyCode } from '@/utils/api'
 
 const VerifyCode: NextPage = () => {
 	const [otp, setOtp] = useState<string>('')
@@ -86,7 +86,6 @@ const VerifyCode: NextPage = () => {
 						))}
 					</InputOTPGroup>
 				</InputOTP>
-				
 				{error && <p className='text-danger'>{error}</p>}
 				<Button
 					type='submit'

@@ -70,9 +70,9 @@ export const useThemeStore = create<IStore>()(
 				localStorage.setItem('userData', JSON.stringify(userData));
 			},
 			clearUser: () => {
-				set({ user: null });
 				localStorage.removeItem('userData');
 				localStorage.removeItem('zustand-store');
+				set({ user: null });
 			},
 		}),
 		{

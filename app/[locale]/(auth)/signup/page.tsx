@@ -50,7 +50,8 @@ const SignUp = () => {
 	})
 	const [isSelected, setIsSelected] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
-	const { theme, mode, modeToogle, setPhone, setEmail } = useThemeStore()
+	const { theme, mode, modeToogle, setPhone, setEmail, setPassword } =
+		useThemeStore()
 	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const router = useRouter()
@@ -138,7 +139,9 @@ const SignUp = () => {
 						className='absolute top-0 right-0'
 						onClick={togglePasswordVisibility}
 					>
-						<img
+						<Image
+							width={30}
+							height={30}
 							src={
 								showPassword
 									? '/form/Mobile_ visibility.svg'
