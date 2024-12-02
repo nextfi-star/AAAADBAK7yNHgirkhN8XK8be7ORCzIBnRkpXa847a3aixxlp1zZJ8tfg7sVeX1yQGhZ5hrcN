@@ -50,7 +50,7 @@ const SignUp = () => {
 	})
 	const [isSelected, setIsSelected] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
-	const { theme, mode, modeToogle, setPhone, setEmail, setPassword } =
+	const { theme, mode, modeToogle} =
 		useThemeStore()
 	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
@@ -79,6 +79,7 @@ const SignUp = () => {
 				router.push(`/${locale}/login`)
 			} else {
 				setError(response.message)
+				console.log(response.message)
 			}
 		} catch (err: any) {
 			setError(err.message)
