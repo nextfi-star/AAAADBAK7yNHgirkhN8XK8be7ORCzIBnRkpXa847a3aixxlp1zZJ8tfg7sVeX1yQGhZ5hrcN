@@ -38,8 +38,9 @@ export const DropDown_menu: NextPage<Props> = ({
 }) => {
 	const [selectedKeys, setSelectedKeys] = useState<DropData | null>(null)
 	const [open, setOpen] = useState(false)
-	const { email, user } = useThemeStore()
-
+	const { email } = useThemeStore()
+	const userData = localStorage.getItem('userData')
+	const user = userData ? JSON.parse(userData) : null
 	if (!user) {
 		return <Spinner />
 	}

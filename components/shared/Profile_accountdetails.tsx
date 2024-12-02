@@ -7,7 +7,8 @@ import { Button } from '@nextui-org/button'
 import { Skeleton } from '@nextui-org/skeleton'
 
 export const Profile_accountdetails: NextPage = () => {
-  const { email, user } = useThemeStore();
+  const userData = localStorage.getItem('userData')
+	const user = userData ? JSON.parse(userData) : null
 	if (!user) {
 		return (
 			<Skeleton  className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px] min-h-[180px]' />
@@ -27,7 +28,7 @@ export const Profile_accountdetails: NextPage = () => {
       </h1>
       <article className="flex items-center justify-between gap-[5px]">
         <span>Email</span>
-        <span>{email || 'user****@main.ru' }</span>
+        <span>{user.email || 'user****@main.ru' }</span>
 
         <div className="min-w-[181px] flex justify-end">
           <Alert_email propsItem={"Change"} />

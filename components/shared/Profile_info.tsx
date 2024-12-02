@@ -5,8 +5,8 @@ import { NextPage } from 'next'
 import { Link } from '@/i18n/routing'
 import { Snippet } from '@nextui-org/snippet'
 import { Button } from '@nextui-org/button'
-import { useThemeStore } from '@/store'
 import { Skeleton } from '@nextui-org/skeleton'
+
 
 interface Props {
 	verify: boolean
@@ -14,11 +14,12 @@ interface Props {
 }
 export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 	const t = useTranslations('profile')
-	const { email, user } = useThemeStore()
+	const userData = localStorage.getItem('userData')
+	const user = userData ? JSON.parse(userData) : null
 
 	if (!user) {
 		return (
-			<Skeleton  className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px] min-h-[180px]' />
+			<Skeleton className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px] min-h-[180px]' />
 		)
 	}
 	return (
@@ -30,7 +31,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 						alt={'avatar'}
 						className='object-contain rounded-full min-w-[78px]'
 						height={63}
-						src={'/main/avatar_noface.png'}
+						src={`/${user.logo}` || '/main/avatar_noface.png'}
 						width={63}
 					/>
 				</div>
@@ -41,7 +42,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 					</p>
 					<div className='profile__info__block__left__text__id'>
 						<Snippet className='bg-transparent py-[5px] px-0' symbol=''>
-							888888888в8888888{' '}
+							{user.uid}
 						</Snippet>
 					</div>
 				</div>

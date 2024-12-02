@@ -14,7 +14,7 @@ export const registerUser = async (data: {
     });
     const result = await response.json();
     if (response.ok) {
-      
+      console.log(result)
       return result;
     } else {
       throw new Error(result.message);
@@ -37,7 +37,7 @@ export const loginUser = async (payload: { email?: string; phone?: string; passw
     if (!response.ok) {
       throw new Error(result.message || 'Login failed');
     }
-
+    console.log(result)
     return result;
   } catch (error: any) {
     throw new Error(error.message || 'An error occurred during login');

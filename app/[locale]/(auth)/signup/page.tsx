@@ -75,12 +75,14 @@ const SignUp = () => {
 					'\x1b[32m%s\x1b[0m',
 					`login: ${data.emailOrPhone},\nphone: ${data.emailOrPhone || ''},\npassword: ${data.password},\nrefid: ${data.refid}`
 				)
+			
 				router.push(`/${locale}/login`)
 			} else {
 				setError(response.message)
 			}
 		} catch (err: any) {
 			setError(err.message)
+			console.log(err.message)
 		} finally {
 			setIsLoading(false)
 		}
@@ -91,7 +93,6 @@ const SignUp = () => {
 			<div className='form__wrapper-title'>
 				<Logo_header />
 			</div>
-
 			<div className='switch-mode relative z-[9999]'>
 				<Button
 					className={mode === 'email' ? 'active' : ''}
@@ -106,18 +107,12 @@ const SignUp = () => {
 					Phone number
 				</Button>
 			</div>
-
 			<form onSubmit={handleSubmit(onSubmit)} className='form'>
 				<div className='w-full'>
 					<input
 						type={mode === 'email' ? 'email' : 'tel'}
 						placeholder={mode === 'email' ? 'E-mail' : 'Phone number'}
 						{...register('emailOrPhone')}
-						onChange={e =>
-							mode === 'email'
-								? setEmail(e.target.value)
-								: setPhone(e.target.value)
-						}
 						id='login'
 						className={` ${errors.emailOrPhone ? '!border-danger focus:!outline-danger ' : ''}`}
 					/>

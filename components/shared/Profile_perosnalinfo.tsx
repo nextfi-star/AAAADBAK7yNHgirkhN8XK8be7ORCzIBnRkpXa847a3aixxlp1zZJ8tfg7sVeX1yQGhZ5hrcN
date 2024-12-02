@@ -1,13 +1,12 @@
 import Image from 'next/image'
 import { NextPage } from 'next'
 import { Alert_nickname } from './Alert_nickname'
-import { Button } from '@nextui-org/button'
-import { useThemeStore } from '@/store'
 import { Skeleton } from '@nextui-org/skeleton'
 import { Snippet } from '@nextui-org/snippet'
 
 export const Profile_perosnalinfo: NextPage = () => {
-	const { user } = useThemeStore()
+	const userData = localStorage.getItem('userData')
+	const user = userData ? JSON.parse(userData) : null
 	if (!user) {
 		return (
 			<Skeleton className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px] min-h-[180px]' />

@@ -12,7 +12,8 @@ import { Skeleton } from '@nextui-org/skeleton'
 import { useMemo } from 'react'
 
 const Security: NextPage = () => {
-	const { user } = useThemeStore()
+	const userData = localStorage.getItem('userData')
+	const user = userData ? JSON.parse(userData) : null
 	if (!user) {
 		return (
 			<Skeleton  className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px] min-h-[180px]' />

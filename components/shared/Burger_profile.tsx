@@ -48,7 +48,7 @@ export const Burger_profile: NextPage<Props> = ({
 								onClick={handleClick}
 							>
 								<ArrowBracket
-									className={'rotate-90 min-w-[25px] min-h-[25px]'}
+									className={'rotate-90 min-w-[25px] min-h-[25px] cursor-pointer'}
 									color={theme === 'dark' ? 'white' : 'black'}
 									height={25}
 									width={25}
@@ -61,7 +61,7 @@ export const Burger_profile: NextPage<Props> = ({
 									titleTriger={
 										<LogOut className=' min-w-[23px] min-h-[23px]' />
 									}
-									className='!border-none !outline-0 w-[44px] !p-0 !px-0'
+									className='!border-none !outline-0 w-[44px] !p-0 !px-0 cursor-pointer'
 								/>
 							</div>
 						</>
@@ -72,7 +72,7 @@ export const Burger_profile: NextPage<Props> = ({
 								onClick={stepback}
 							>
 								<ArrowBracket
-									className={'rotate-90 min-w-[25px] min-h-[25px]'}
+									className={'rotate-90 min-w-[25px] min-h-[25px] cursor-pointer'}
 									color={theme === 'dark' ? 'white' : 'black'}
 									height={25}
 									width={25}
@@ -85,7 +85,7 @@ export const Burger_profile: NextPage<Props> = ({
 									titleTriger={
 										<LogOut className=' min-w-[23px] min-h-[23px]' />
 									}
-									className='!border-none !outline-0 w-[44px] !p-0 !px-0'
+									className='!border-none !outline-0 w-[44px] !p-0 !px-0 cursor-pointer'
 								/>
 							</div>
 						</>

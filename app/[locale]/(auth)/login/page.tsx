@@ -1,3 +1,110 @@
+// 'use client'
+// import { loginUser } from '@/utils/api'
+// import { useParams, useRouter } from 'next/navigation'
+// import { useState } from 'react'
+
+// export default function login() {
+// 	const [step, setStep] = useState<'verify' | 'login'>('verify')
+// 	const [vcode, setVcode] = useState('')
+// 	const [isLoading, setIsLoading] = useState(false)
+// 	const [error, setError] = useState<string | null>(null)
+// 	const router = useRouter()
+// 	const locale = useParams().locale || 'en'
+// 	const userData = JSON.parse(localStorage.getItem('userData') || '{}')
+
+// 	const handleVerification = async () => {
+// 		setIsLoading(true)
+// 		try {
+// 			const response = await loginUser({
+// 				vcode,
+// 				email: userData.email,
+// 				phone: userData.phone,
+// 			})
+// 			if (response.response === 'success') {
+// 				setStep('login')
+// 			} else {
+// 				setError('Invalid verification code')
+// 			}
+// 		} catch (err: any) {
+// 			setError(err.message)
+// 		} finally {
+// 			setIsLoading(false)
+// 		}
+// 	}
+
+// 	const handleLogin = async (data: any) => {
+// 		setIsLoading(true)
+// 		try {
+// 			const response = await loginUser({
+// 				email: userData.email,
+// 				phone: userData.phone,
+// 				password: data.password,
+// 			})
+// 			if (response.response === 'success') {
+// 				router.push(`/${locale}/over`)
+// 			} else {
+// 				setError('Invalid credentials')
+// 			}
+// 		} catch (err: any) {
+// 			setError(err.message)
+// 		} finally {
+// 			setIsLoading(false)
+// 		}
+// 	}
+
+// 	return (
+// 		<div className='form-wrapper'>
+// 			{step === 'verify' ? (
+// 				<div>
+// 					<h2>Confirm your {userData.email ? 'email' : 'phone'}</h2>
+// 					<p>
+// 						A verification code has been sent to your{' '}
+// 						{userData.email || userData.phone}.
+// 					</p>
+// 					<input
+// 						type='text'
+// 						placeholder='Enter verification code'
+// 						value={vcode}
+// 						onChange={e => setVcode(e.target.value)}
+// 					/>
+// 					<button
+// 						disabled={vcode.length < 6 || isLoading}
+// 						onClick={handleVerification}
+// 					>
+// 						{isLoading ? 'Verifying...' : 'Verify'}
+// 					</button>
+// 					{error && <p className='error'>{error}</p>}
+// 				</div>
+// 			) : (
+// 				<div>
+// 					<h2>Log in</h2>
+// 					<form
+// 						onSubmit={e => {
+// 							e.preventDefault()
+// 							const form = e.target as HTMLFormElement
+// 							const password = (
+// 								form.elements.namedItem('password') as HTMLInputElement
+// 							).value
+// 							handleLogin({ password })
+// 						}}
+// 					>
+// 						<input
+// 							type='password'
+// 							name='password'
+// 							placeholder='Enter your password'
+// 						/>
+// 						<button type='submit' disabled={isLoading}>
+// 							{isLoading ? 'Logging in...' : 'Log in'}
+// 						</button>
+// 					</form>
+// 					{error && <p className='error'>{error}</p>}
+// 				</div>
+// 			)}
+// 		</div>
+// 	)
+// }
+
+// ! CURRENT VERSION
 'use client'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -51,28 +158,20 @@ const Login = () => {
 	const locale = params.locale || 'en'
 	const togglePasswordVisibility = () => setShowPassword(prev => !prev)
 	const [vcode, setVcode] = useState<string>('')
-	const [state, setState] = useState(false)
+	const [state, setState] = useState<1 | 0>(0)
 	const [isSubmit, setIsSubmit] = useState(false)
 
-	useEffect(() => {
-		const params = new URLSearchParams(window.location.search)
-		const sessionError = params.get('error')
-		if (sessionError === 'sessionExpired') {
-			setError('User session expired. Please log in again.')
-			setState(true)
-		}
-	}, [])
-
+	const userData = JSON.parse(localStorage.getItem('userData') || '{}')
 	const handleChange = () => {
-		if (vcode.length === 0) setState(!state)
+		if (vcode.length === 0) setState(0)
 		setIsSubmit(true)
+		console.log(userData)
 		const timer = setTimeout(() => {
 			setIsSubmit(true)
-			setState(true)
+			setState(1)
 		}, 3000)
 		return () => clearTimeout(timer)
 	}
-
 	const onSubmit = async (data: any) => {
 		const payload = {
 			email: mode === 'email' ? data.emailOrPhone : '',
@@ -86,18 +185,12 @@ const Login = () => {
 		setError(null)
 		setIsLoading(true)
 		try {
-			const response = await loginUser(payload)
-			if (response.response === 'success') {
-				console.log(
-					'\x1b[32m%s\x1b[0m',
-					`login: ${data.emailOrPhone},\nphone: ${data.emailOrPhone || ''},\npassword: ${data.password}, \nuid: ${data.uid}`
-				)
-				console.log(data)
-				const { email, phone, username, uid, password } = response.data
-				useThemeStore
-					.getState()
-					.setUser({ email, phone, username, uid, password })
-				localStorage.setItem('userData', JSON.stringify(response.data))
+			const result = await loginUser(payload)
+			if (result.requires_verif === true) {
+				setState(0)
+			}
+			if (result.response === 'success') {
+				localStorage.setItem('userData', JSON.stringify(result.data))
 				router.push(`/${locale}/over`)
 			}
 		} catch (err: any) {
@@ -106,14 +199,23 @@ const Login = () => {
 			setIsLoading(false)
 		}
 	}
-
+	const update = () => {
+		if (userData.requires_verif === true) {
+			setState(0)
+		} else {
+			setState(1)
+		}
+	}
+	useEffect(() => {
+		update()
+	}, [])
 	return (
 		<div className='form__wrapper flex flex-col justify-between gap-[20px]'>
 			<div className='form__wrapper-title'>
 				<Logo_header />
 			</div>
 
-			{!state ? (
+			{state === 0 ? (
 				<div className='form__verify w-full '>
 					<h2>
 						Confirm your {mode === 'email' ? 'email address' : 'phone number'}
@@ -145,6 +247,18 @@ const Login = () => {
 								))}
 							</InputOTPGroup>
 						</InputOTP>
+						<input
+							type={mode === 'email' ? 'email' : 'tel'}
+							placeholder={mode === 'email' ? 'E-mail' : 'Phone number'}
+							className='hidden w-0 h-0'
+							defaultValue={mode === 'email' ? userData.email : userData.phone}
+						/>
+						<input
+							type={showPassword ? 'text' : 'password'}
+							placeholder='Enter a password'
+							className='hidden w-0 h-0'
+							defaultValue={userData.password}
+						/>
 						{error && <p className='text-danger'>{error}</p>}
 						<Button
 							onClick={handleChange}
@@ -239,9 +353,7 @@ const Login = () => {
 							{isLoading ? <Spinner /> : 'Log in'}
 						</button>
 					</form>
-
 					<span className='forgot'>Forgot your password?</span>
-
 					<div className='help login__help'>
 						<p>
 							<span />
@@ -322,6 +434,7 @@ const Login = () => {
 
 export default Login
 
+// ! OLDE VERSION
 // 'use client'
 // import { useEffect, useState } from 'react'
 // import { useForm } from 'react-hook-form'

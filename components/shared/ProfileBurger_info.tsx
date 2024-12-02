@@ -1,9 +1,8 @@
 "use client";
 import Image from "next/image";
 import { NextPage } from "next";
-
 import ArrowBracket from "../ui/ArrowBracket";
-import { useThemeStore } from "../../store";
+import { useThemeStore } from "@/store";
 
 interface Props {
   username: string;
@@ -15,7 +14,9 @@ export const ProfileBurger_info: NextPage<Props> = ({
   setShowSection,
   showSection,
 }) => {
-  const { theme, user } = useThemeStore();
+  const { theme} = useThemeStore();
+  const userData = localStorage.getItem('userData')
+	const user = userData ? JSON.parse(userData) : null
   const handleClick = () => {
     setShowSection(!showSection);
   };
@@ -37,7 +38,7 @@ export const ProfileBurger_info: NextPage<Props> = ({
           />
         </div>
         <div className="flex flex-col">
-          <h5 className="text-[18px]">{!user?.email ? username : user.email}</h5>
+          <h5 className="text-[18px] max-w-[250px] overflow-x-hidden">{!user?.email ? username : user.email}</h5>
           {showSection && <span className="text-[14px]">Profile Settings</span>}
         </div>
       </div>

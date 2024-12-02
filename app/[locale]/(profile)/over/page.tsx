@@ -18,7 +18,7 @@ const Overview: NextPage = () => {
 	useAuthProtection()
 	const pathname = usePathname()
 	const [verify, setVerify] = useState<boolean>(false)
-	const { initializeTheme, setVerifyState } = useThemeStore()
+	const { setVerifyState } = useThemeStore()
 	const toggleActive = () => {
 		setVerify(prev => !prev)
 	}
