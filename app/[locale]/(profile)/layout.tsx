@@ -11,7 +11,6 @@ export default function ProfileRoot({
 	children: React.ReactNode
 }) {
 	const { showHeader, showTapbar } = useResponsiveVisibility()
-
 	return (
 		<div className='profile__body !pb-0 flex flex-col justify-between'>
 			{showHeader && <ProfileHeader auth />}

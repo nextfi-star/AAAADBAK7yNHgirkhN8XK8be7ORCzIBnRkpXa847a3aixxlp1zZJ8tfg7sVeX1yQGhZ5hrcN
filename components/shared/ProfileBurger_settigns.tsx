@@ -17,8 +17,6 @@ export const ProfileBurger_settigns: NextPage<Props> = ({
 	showSection,
 }) => {
 	const { theme } = useThemeStore()
-	const userData = localStorage.getItem('userData')
-	const user = userData ? JSON.parse(userData) : null
 
 	return (
 		<section
@@ -51,7 +49,7 @@ export const ProfileBurger_settigns: NextPage<Props> = ({
 
 				<div className='flex flex-col'>
 					<h5 className='text-[18px]'>
-						{!user?.email ? username : user.email}
+					{username}
 					</h5>
 					{showSection && <span className='text-[14px]'>Profile Settings</span>}
 				</div>

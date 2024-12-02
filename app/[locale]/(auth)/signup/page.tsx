@@ -39,7 +39,7 @@ const schema = yup.object().shape({
 		),
 })
 
-const SignUp = () => {
+export default function SignUp() {
 	const {
 		register,
 		handleSubmit,
@@ -285,5 +285,3 @@ const SignUp = () => {
 		</div>
 	)
 }
-
-export default SignUp

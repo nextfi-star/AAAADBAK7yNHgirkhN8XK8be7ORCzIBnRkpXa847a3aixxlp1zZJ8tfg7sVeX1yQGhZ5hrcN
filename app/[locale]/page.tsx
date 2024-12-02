@@ -1,60 +1,59 @@
-"use client";
-import type { NextPage } from "next";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { useEffect, useState } from "react";
-import Preloader from "@/components/shared/Preloader";
-import { useThemeStore } from "@/store";
+'use client'
+import type { NextPage } from 'next'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+import { useEffect, useState } from 'react'
+import Preloader from '@/components/shared/Preloader'
+import { useThemeStore } from '@/store'
 import {
-  Era,
-  Faq,
-  Get_started,
-  Header,
-  How,
-  Intro,
-  Invest,
-  Levels,
-} from "@/components/shared";
+	Era,
+	Faq,
+	Get_started,
+	Header,
+	How,
+	Intro,
+	Invest,
+	Levels,
+} from '@/components/shared'
 
 const Home: NextPage = () => {
-  const { initializeTheme } = useThemeStore();
-  const [loading, setLoading] = useState<boolean>(true);
+	const { initializeTheme } = useThemeStore()
+	const [loading, setLoading] = useState<boolean>(true)
+	useEffect(() => {
+		AOS.init({ duration: 1000, once: true })
+	}, [])
+	useEffect(() => {
+		initializeTheme()
+	}, [initializeTheme])
 
-  useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
-  }, []);
-  useEffect(() => {
-    initializeTheme();
-  }, [initializeTheme]);
+	useEffect(() => {
+		const timer = setTimeout(() => setLoading(false), 3000)
+		return () => clearTimeout(timer)
+	}, [])
 
-  useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
+	if (loading) {
+		return <Preloader />
+	}
 
-  if (loading) {
-    return <Preloader />;
-  }
+	return (
+		<>
+			<Header auth={false} />
 
-  return (
-    <>
-      <Header auth={false} />
+			<Intro />
 
-      <Intro />
+			<Era />
 
-      <Era />
+			<How />
 
-      <How />
+			<Levels />
 
-      <Levels />
+			<Get_started />
 
-      <Get_started />
+			<Invest />
 
-      <Invest />
+			<Faq />
+		</>
+	)
+}
 
-      <Faq />
-    </>
-  );
-};
-
-export default Home;
+export default Home

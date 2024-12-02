@@ -8,7 +8,6 @@ import Activity_personal from '@/components/shared/Activity_personal'
 
 const Activity: NextPage = () => {
 	const { initializeTheme } = useThemeStore()
-
 	useEffect(() => {
 		initializeTheme()
 	}, [initializeTheme])

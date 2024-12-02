@@ -10,7 +10,6 @@ import { Check, ChevronsUpDown, X } from 'lucide-react'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
-
 import {
 	Command,
 	CommandEmpty,
@@ -65,7 +64,7 @@ const typeID = [
 ]
 
 const Verify: NextPage = () => {
-	const { theme, setGlobalVerifState, globalVeriState } = useThemeStore()
+	const { theme, globalVeriState } = useThemeStore()
 	const [change, SetChange] = useState<boolean>(false)
 	const [open, setOpen] = useState(false)
 	const [openID, setOpenID] = useState(false)
@@ -91,10 +90,6 @@ const Verify: NextPage = () => {
 		console.log(`img ${index} - `, photoData)
 	}
 	const lottieRef = useRef<LottieRefCurrentProps>(null)
-	const handleComplete = () => {
-		const duration = lottieRef.current?.getDuration(true) || 0
-		lottieRef.current?.goToAndStop(duration * 0.2, true)
-	}
 	const ClearState = () => {
 		setStep(1)
 		SetChange(false)
@@ -104,15 +99,6 @@ const Verify: NextPage = () => {
 			setStep(step + 1)
 		}
 	}
-
-	// const resetData = () => {
-	// 	setValue('')
-	// 	setValueID('')
-	// 	setPhoto('')
-	// 	SetChange(!change)
-	// 	setStep((prev) => prev - step + 1)
-	// }
-
 	return (
 		<section
 			className={`verify -mt-[8rem] sm:-mt-0 pb-[2rem] sm:pb-[0] ${

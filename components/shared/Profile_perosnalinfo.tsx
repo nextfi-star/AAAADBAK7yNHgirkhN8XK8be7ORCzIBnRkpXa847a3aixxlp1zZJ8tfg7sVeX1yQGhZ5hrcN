@@ -5,13 +5,7 @@ import { Skeleton } from '@nextui-org/skeleton'
 import { Snippet } from '@nextui-org/snippet'
 
 export const Profile_perosnalinfo: NextPage = () => {
-	const userData = localStorage.getItem('userData')
-	const user = userData ? JSON.parse(userData) : null
-	if (!user) {
-		return (
-			<Skeleton className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px] min-h-[180px]' />
-		)
-	}
+	
 	return (
 		<section className='personal__content flex flex-col w-full'>
 			<h1 className='personal__content-title'>
@@ -36,7 +30,7 @@ export const Profile_perosnalinfo: NextPage = () => {
 
 			<article className='flex items-center justify-between gap-[5px]'>
 				<span>User ID</span>
-				<span>{user.uid || '589511219100'}</span>
+				<span>589511219100</span>
 
 				<Snippet
 					symbol='Copy'
@@ -46,7 +40,7 @@ export const Profile_perosnalinfo: NextPage = () => {
 						copyButton: 'p-0 border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] h-[39.98px]'
 					}}
 				>
-					<span className='hidden'>{user.uid || '589511219100'}</span>
+					<span className='hidden'>589511219100</span>
 				</Snippet>
 			</article>
 		</section>

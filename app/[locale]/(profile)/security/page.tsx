@@ -7,7 +7,6 @@ import { Alert_logpass } from '@/components/shared/Alert_logpass'
 import { Alert_phone } from '@/components/shared/Alert_phone'
 import { CloseAccount } from '@/components/shared/CloseAccount'
 import { FreezeAccount } from '@/components/shared/FreezeAccount'
-import { useThemeStore } from '@/store'
 import { Skeleton } from '@nextui-org/skeleton'
 import { useMemo } from 'react'
 

@@ -7,21 +7,13 @@ import { Snippet } from '@nextui-org/snippet'
 import { Button } from '@nextui-org/button'
 import { Skeleton } from '@nextui-org/skeleton'
 
-
 interface Props {
 	verify: boolean
 	toggleActive: () => void
 }
 export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 	const t = useTranslations('profile')
-	const userData = localStorage.getItem('userData')
-	const user = userData ? JSON.parse(userData) : null
 
-	if (!user) {
-		return (
-			<Skeleton className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px] min-h-[180px]' />
-		)
-	}
 	return (
 		<section className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px]'>
 			<div className='profile__info__block__left'>
@@ -31,18 +23,18 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 						alt={'avatar'}
 						className='object-contain rounded-full min-w-[78px]'
 						height={63}
-						src={`/${user.logo}` || '/main/avatar_noface.png'}
+						src={'/main/avatar_noface.png'}
 						width={63}
 					/>
 				</div>
 				<div className='profile__info__block__left__text'>
-					<h3 className='profile__info__block__left__text_name '>User user</h3>
+					<h3 className='profile__info__block__left__text_name '>Username</h3>
 					<p className='profile__info__block__left__text_email'>
-						{user.email || user.phone || 'user***mail.com'}
+					user***mail.com
 					</p>
 					<div className='profile__info__block__left__text__id'>
 						<Snippet className='bg-transparent py-[5px] px-0' symbol=''>
-							{user.uid}
+							123123123
 						</Snippet>
 					</div>
 				</div>

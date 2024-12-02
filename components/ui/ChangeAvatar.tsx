@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import Image from 'next/image'
 import { PlusIcon } from './PlusIcon'
@@ -14,7 +15,7 @@ import {
 } from '@/components/ui/drawer'
 import { useThemeStore } from '@/store'
 import { Button } from '@nextui-org/button'
-import { sendPicture } from '@/utils/api'
+// import { sendPicture } from '@/utils/api'
 const data = [
 	{
 		img: '/main/avatar_noface.png',
@@ -38,36 +39,35 @@ const data = [
 
 export const ChangeAvatar = () => {
 	const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null)
-	const user = JSON.parse(localStorage.getItem('userData') || '{}')
 	const [activeTab, setActiveTab] = useState('select-avatar')
 	const { theme } = useThemeStore()
 
 	const handleAvatarSelect = (avatarUrl: string) => {
 		setSelectedAvatar(avatarUrl)
 	}
-	const [file, setFile] = useState<File | null>(null)
-	const [uploadStatus, setUploadStatus] = useState<string | null>(null)
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
-      console.log(e.target.files[0]);
-    }
-  };
+	// const [file, setFile] = useState<File | null>(null)
+	// const [uploadStatus, setUploadStatus] = useState<string | null>(null)
+  // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files[0]) {
+  //     setFile(e.target.files[0]);
+  //     console.log(e.target.files[0]);
+  //   }
+  // };
 
-  const handleUpload = async () => {
-    if (!file) {
-      alert('Please select a file first.');
-      return;
-    }
+  // const handleUpload = async () => {
+  //   if (!file) {
+  //     alert('Please select a file first.');
+  //     return;
+  //   }
 
-    setUploadStatus('Uploading...');
-    try {
-      const response = await sendPicture(file);
-      setUploadStatus(`Upload successful: ${response.message}`);
-    } catch (error: any) {
-      setUploadStatus(`Error: ${error.message}`);
-    }
-  };
+  //   setUploadStatus('Uploading...');
+  //   try {
+  //     const response = await sendPicture(file);
+  //     setUploadStatus(`Upload successful: ${response.message}`);
+  //   } catch (error: any) {
+  //     setUploadStatus(`Error: ${error.message}`);
+  //   }
+  // };
 
 
 	return (
@@ -133,7 +133,7 @@ export const ChangeAvatar = () => {
 									className='hidden'
 									id='file-upload'
 									type='file'
-									onChange={handleFileChange}
+									// onChange={handleFileChange}
 								/>
 								<label
 									className='flex flex-col items-center justify-center cursor-pointer rounded-[50%] border-1 border-solid dark:border-white border-black p-[13px] mb-[10px]'
@@ -159,8 +159,8 @@ export const ChangeAvatar = () => {
 						</DrawerClose>
 						<Button
 							className='bg-[#205BC9] text-white rounded-[50px] px-[35px] border border-solid border-[#205BC9] min-w-[117px] hover:bg-[#205BC9] hover:text-white hover:opacity-[.8] transition duration-300'
-							onClick={handleUpload}
-							disabled={!file}
+							// onClick={handleUpload}
+							// disabled={!file}
 						>
 							Save
 						</Button>

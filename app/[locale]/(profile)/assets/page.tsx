@@ -9,15 +9,15 @@ import { useEffect } from 'react'
 
 const Assets: NextPage = () => {
 	const { verifyState, setVerifyState } = useThemeStore()
-	const pathname = usePathname();
+	const pathname = usePathname()
 
 	useEffect(() => {
-		if(pathname === '/assets') {
+		if (pathname === '/assets') {
 			setVerifyState(false)
 		} else {
 			setVerifyState(true)
 		}
-		}, [pathname])
+	}, [pathname])
 	return (
 		<>
 			{verifyState && (
