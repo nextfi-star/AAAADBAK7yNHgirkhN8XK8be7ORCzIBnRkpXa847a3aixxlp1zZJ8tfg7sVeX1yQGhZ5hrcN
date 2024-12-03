@@ -17,7 +17,7 @@ const Deposit: NextPage = () => {
 		swapCheck2('')
 	}
 	return (
-		<section className='spec -mt-[5rem] md:-mt-[4rem] lg:mt-[4.5rem] pb-[1.5rem] top-mobile'>
+		<section className='spec -mt-[5rem] md:-mt-[4rem] lg:mt-[4.5rem] pb-[1.5rem] top-mobile'  data-aos="fade-up">
 			<h1 className='hide-mobile w-full text-center lg:text-left text-[32px] my-[30px] dark:text-[#EFEFEF] text-[#0c0c0c]'>
 				Deposit
 			</h1>

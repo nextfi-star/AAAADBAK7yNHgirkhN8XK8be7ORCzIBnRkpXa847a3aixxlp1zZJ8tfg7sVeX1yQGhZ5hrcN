@@ -1,9 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import { NextPage } from "next";
-
 import { Link } from "../../i18n/routing";
-
 import { useThemeStore } from "@/store";
 
 export const Profile_nav: NextPage = () => {

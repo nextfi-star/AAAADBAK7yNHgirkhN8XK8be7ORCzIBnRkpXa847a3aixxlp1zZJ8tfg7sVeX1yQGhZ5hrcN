@@ -1,3 +1,4 @@
+'use client'
 import { useThemeStore } from '@/store'
 import { useParams, useRouter } from 'next/navigation'
 const {  setEmail, setPassword,  } = useThemeStore()

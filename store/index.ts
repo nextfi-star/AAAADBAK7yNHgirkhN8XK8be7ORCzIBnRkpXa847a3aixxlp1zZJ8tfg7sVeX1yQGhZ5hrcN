@@ -1,3 +1,4 @@
+'use client'
 import { create } from 'zustand'
 import { IStore } from '@/types'
 import { persist } from 'zustand/middleware'
@@ -8,19 +9,25 @@ export const useThemeStore = create<IStore>()(
 			theme: 'dark',
 			setTheme: newTheme => {
 				set(() => {
-					localStorage.setItem('theme', newTheme)
-					document.documentElement.classList.toggle('dark', newTheme === 'dark')
+					if (typeof document !== 'undefined') {
+						localStorage.setItem('theme', newTheme)
+						document.documentElement.classList.toggle(
+							'dark',
+							newTheme === 'dark'
+						)
+					}
 					return { theme: newTheme }
 				})
 			},
 			initializeTheme: () => {
 				const savedTheme = localStorage.getItem('theme') || 'dark'
 				set(() => {
-					document.documentElement.classList.toggle(
-						'dark',
-						savedTheme === 'dark'
-					)
-
+					if (typeof document !== 'undefined') {
+						document.documentElement.classList.toggle(
+							'dark',
+							savedTheme === 'dark'
+						)
+					}
 					return { theme: savedTheme }
 				})
 			},
@@ -55,7 +62,6 @@ export const useThemeStore = create<IStore>()(
 			setGlobalVerifState: state => set({ globalVeriState: state }),
 			replaceCurrency: false,
 			setReplaceCurrency: val => set({ replaceCurrency: val }),
-			// cards Investing
 			globalCompany: null,
 			setGlboalCompany: val => set({ globalCompany: val }),
 			globalCompanyIcon: null,
@@ -65,14 +71,16 @@ export const useThemeStore = create<IStore>()(
 			open: false,
 			setOpen: val => set({ open: val }),
 			user: null,
-			setUser: (userData) => {
-				set({ user: userData });
-				localStorage.setItem('userData', JSON.stringify(userData));
+			setUser: userData => {
+				if (typeof document !== 'undefined') {
+					set({ user: userData })
+					localStorage.setItem('userData', JSON.stringify(userData))
+				}
 			},
 			clearUser: () => {
-				localStorage.removeItem('userData');
-				localStorage.removeItem('zustand-store');
-				set({ user: null });
+				localStorage.removeItem('userData')
+				localStorage.removeItem('zustand-store')
+				set({ user: null })
 			},
 		}),
 		{

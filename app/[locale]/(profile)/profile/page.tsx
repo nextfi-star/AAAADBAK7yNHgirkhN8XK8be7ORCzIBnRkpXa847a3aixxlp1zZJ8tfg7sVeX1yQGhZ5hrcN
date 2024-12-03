@@ -10,7 +10,8 @@ import useAuthProtection from '@/hooks/useAuthProtection'
 const Page: NextPage = () => {
   useAuthProtection()
   return (
-    <section className="personal !shadow-medium dark:!shadow-none">
+    <section className="personal !shadow-medium dark:!shadow-none"
+    data-aos="fade-up">
       <div className="personal-container">
         <div className="personal-inner flex flex-row justify-between mt-[20px] gap-[40px]">
           <div className="relative h-fit w-fit">

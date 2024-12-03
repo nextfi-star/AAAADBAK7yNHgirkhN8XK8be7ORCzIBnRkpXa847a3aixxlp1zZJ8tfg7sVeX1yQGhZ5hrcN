@@ -16,11 +16,7 @@ import { Button } from '@nextui-org/button'
 import { NextPage } from 'next'
 import { useState } from 'react'
 import { DropData } from './ProfileHeader'
-import { Divider } from '@nextui-org/divider'
 import Image from 'next/image'
-import { useThemeStore } from '@/store'
-import { Skeleton } from '@nextui-org/skeleton'
-import { Spinner } from '@nextui-org/spinner'
 
 interface Props {
 	dropData?: DropData[]
@@ -38,12 +34,7 @@ export const DropDown_menu: NextPage<Props> = ({
 }) => {
 	const [selectedKeys, setSelectedKeys] = useState<DropData | null>(null)
 	const [open, setOpen] = useState(false)
-	const { email } = useThemeStore()
-	const userData = localStorage.getItem('userData')
-	const user = userData ? JSON.parse(userData) : null
-	if (!user) {
-		return <Spinner />
-	}
+
 	return (
 		<div onMouseLeave={() => setOpen(!open)}>
 			<Popover open={open} onOpenChange={setOpen}>
@@ -86,10 +77,10 @@ export const DropDown_menu: NextPage<Props> = ({
 											/>
 											<div className='flex flex-col items-stretch'>
 												<p className='text-[13px] dark:text-[#eeeeee] text-[#0c0c0c]'>
-													{email || 'user***@gmail.com'}
+													user***@gmail.com
 												</p>
 												<p className='text-[13px] text-[#0c0c0c] dark:text-[#eeeeee]'>
-													UID: {user.uid || '664654'}
+													UID: 664654
 												</p>
 											</div>
 										</div>

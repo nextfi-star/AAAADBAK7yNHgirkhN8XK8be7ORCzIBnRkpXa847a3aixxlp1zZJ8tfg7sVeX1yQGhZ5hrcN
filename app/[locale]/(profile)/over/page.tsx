@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NextPage } from 'next'
 import { useThemeStore } from '@/store'
 import {
@@ -13,6 +13,7 @@ import {
 } from '@/components/shared'
 import { usePathname } from 'next/navigation'
 import useAuthProtection from '@/hooks/useAuthProtection'
+import AOS from 'aos'
 
 const Overview: NextPage = () => {
 	useAuthProtection()
@@ -23,6 +24,9 @@ const Overview: NextPage = () => {
 		setVerify(prev => !prev)
 	}
 	useEffect(() => {
+		AOS.init({ duration: 1000, once: true })
+	}, [])
+	useEffect(() => {
 		if (pathname !== '/assets') {
 			setVerifyState(false)
 		} else {
@@ -31,7 +35,7 @@ const Overview: NextPage = () => {
 	}, [pathname])
 
 	return (
-		<section className='profile '>
+		<section className='profile' data-aos='fade-up'>
 			<Profile_info toggleActive={toggleActive} verify={verify} />
 			<div className='profile__grid gap-[1.5rem] max-xl:grid max-xl:grid-cols-1'>
 				<div className='flex flex-col gap-[1.5rem] h-full items-stretch justify-start'>

@@ -32,7 +32,7 @@ export const Profile_balance: NextPage = () => {
 	}
 
 	return (
-		<section className='h-fit'>
+		<section className='h-fit' >
 			<div className='profile__balance bg-[#fff] dark:bg-[#1e1e1e66] md:!shadow-medium md:dark:!shadow-none'>
 				<div className='profile__balance_sides !pt-[40px]'>
 					{/* Mobile */}

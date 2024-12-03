@@ -20,9 +20,7 @@ export const Verify_documents: NextPage<Props> = ({
 	items,
 	step,
 	setStep,
-	onPhotoChange,
 	handlePhotoChange,
-	handlePhotoChange2,
 }) => {
 	const { theme } = useThemeStore()
 	const [change, setChange] = useState<boolean>(false)

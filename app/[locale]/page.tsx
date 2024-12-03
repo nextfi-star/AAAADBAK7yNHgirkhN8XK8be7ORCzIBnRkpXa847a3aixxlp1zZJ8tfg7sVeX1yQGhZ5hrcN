@@ -19,6 +19,7 @@ import {
 const Home: NextPage = () => {
 	const { initializeTheme } = useThemeStore()
 	const [loading, setLoading] = useState<boolean>(true)
+
 	useEffect(() => {
 		AOS.init({ duration: 1000, once: true })
 	}, [])

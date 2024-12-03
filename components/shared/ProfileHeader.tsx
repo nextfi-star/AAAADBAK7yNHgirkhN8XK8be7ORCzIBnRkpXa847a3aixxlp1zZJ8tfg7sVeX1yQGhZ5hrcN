@@ -223,12 +223,6 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 									<button className='header__icons-item'>
 										<Locale_Switcher />
 									</button>
-									{/* <Confirmation_dialog
-										title='Are you absolutelu sure?'
-										content='This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'
-										titleTriger={<LogOut className=' min-w-[23px]' />}
-										className='!border-0 w-[44px] !p-0 !px-0 hidden xl:block'
-									/> */}
 								</div>
 
 								<div className='flex items-center sm:hidden gap-[5px] sm:gap-[18px]'>

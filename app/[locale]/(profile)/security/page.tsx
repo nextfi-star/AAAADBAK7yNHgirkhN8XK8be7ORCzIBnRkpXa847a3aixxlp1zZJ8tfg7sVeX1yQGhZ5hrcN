@@ -11,61 +11,63 @@ import { Skeleton } from '@nextui-org/skeleton'
 import { useMemo } from 'react'
 
 const Security: NextPage = () => {
-	const userData = localStorage.getItem('userData')
-	const user = userData ? JSON.parse(userData) : null
-	if (!user) {
-		return (
-			<Skeleton  className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px] min-h-[180px]' />
-		)
-	}
-	const data = useMemo(() => [
-		{
-			src: '/main/profile_security/auth_app.svg',
-			title: 'Authenticator app',
-			desc: 'Use authentication codes when managing assets and other functions',
-			btn: <Alert_auntef propsItem={'Change authenticator app'} />,
-		},
-		{
-			src: '/main/profile_security/phone.svg',
-			title: 'Phone authentication',
-			desc: 'Get authentication codes via SMS, WhatsApp, or calls when managing assets and other functions',
-			btn: <Alert_phone propsItem={'Change phone number'} />,
-			contain: user.phone || '****140',
-		},
-		{
-			src: '/main/profile_security/email.svg',
-			title: 'Email authentication',
-			desc: 'Get authentication codes via email for login and other functions',
-			btn: <Alert_email propsItem={'Change email'} />,
-			contain: user.email || 'user***@rambler.ru',
-		},
-		{
-			src: '/main/profile_security/login_pass.svg',
-			title: 'Login password',
-			desc: 'Use this password for account login',
-			btn: <Alert_logpass propsItem={'Change password'} />,
-			contain: user.password || '********'
-		},
-	], [user])
+	const data = useMemo(
+		() => [
+			{
+				src: '/main/profile_security/auth_app.svg',
+				title: 'Authenticator app',
+				desc: 'Use authentication codes when managing assets and other functions',
+				btn: <Alert_auntef propsItem={'Change authenticator app'} />,
+			},
+			{
+				src: '/main/profile_security/phone.svg',
+				title: 'Phone authentication',
+				desc: 'Get authentication codes via SMS, WhatsApp, or calls when managing assets and other functions',
+				btn: <Alert_phone propsItem={'Change phone number'} />,
+				contain: '****140',
+			},
+			{
+				src: '/main/profile_security/email.svg',
+				title: 'Email authentication',
+				desc: 'Get authentication codes via email for login and other functions',
+				btn: <Alert_email propsItem={'Change email'} />,
+				contain: 'user***@rambler.ru',
+			},
+			{
+				src: '/main/profile_security/login_pass.svg',
+				title: 'Login password',
+				desc: 'Use this password for account login',
+				btn: <Alert_logpass propsItem={'Change password'} />,
+				contain: '********',
+			},
+		],
+		[]
+	)
 
-	const data2 = useMemo(() => [
-		{
-			src: '/main/profile_security/account_freeze.svg',
-			title: 'Freeze account',
-			desc: 'Your account will be frozen temporarily. To unfreeze it, start by logging in again.',
-			unic: '2',
-			btn: <FreezeAccount propsItem={'Freeze account'} />,
-		},
-		{
-			src: '/main/profile_security/account_close.svg',
-			title: 'Close account',
-			desc: "Once you close your account, it is permanent and can't be restored",
-			btn: <CloseAccount propsItem={'Close account'} />,
-			unic: '3',
-		},
-	], [user])
+	const data2 = useMemo(
+		() => [
+			{
+				src: '/main/profile_security/account_freeze.svg',
+				title: 'Freeze account',
+				desc: 'Your account will be frozen temporarily. To unfreeze it, start by logging in again.',
+				unic: '2',
+				btn: <FreezeAccount propsItem={'Freeze account'} />,
+			},
+			{
+				src: '/main/profile_security/account_close.svg',
+				title: 'Close account',
+				desc: "Once you close your account, it is permanent and can't be restored",
+				btn: <CloseAccount propsItem={'Close account'} />,
+				unic: '3',
+			},
+		],
+		[]
+	)
 	return (
-		<section className='security !shadow-medium dark:!shadow-none'>
+		<section
+			className='security !shadow-medium dark:!shadow-none'
+			data-aos='fade-up'
+		>
 			<div className='security-container '>
 				<div className='security__content mb-[20px]'>
 					<h1 className='!text-[28px] mb-[15px]'>Authentication methods</h1>

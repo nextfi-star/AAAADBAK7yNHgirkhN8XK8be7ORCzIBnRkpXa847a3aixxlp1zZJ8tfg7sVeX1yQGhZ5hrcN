@@ -68,24 +68,23 @@ export const A_Chat_mobile: NextPage = () => {
 			setTransport('N/A')
 		}
 
-		// Получаем историю сообщений
+	
 		socket.on('allMessages', messages => {
-			setMessages(messages) // Устанавливаем историю сообщений
+			setMessages(messages) 
 		})
 
-		// Обработка нового сообщения
+	
 		socket.on('message', message => {
 			setMessages(prev => {
-				// Проверяем, если такое сообщение уже есть
 				if (
 					!prev.some(
 						msg =>
 							msg.content === message.content && msg.sender === message.sender
 					)
 				) {
-					return [...prev, message] // Добавляем новое сообщение
+					return [...prev, message] 
 				}
-				return prev // Если сообщение уже есть, не добавляем
+				return prev 
 			})
 		})
 

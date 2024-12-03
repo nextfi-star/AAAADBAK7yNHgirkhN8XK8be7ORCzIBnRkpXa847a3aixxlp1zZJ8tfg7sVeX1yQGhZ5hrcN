@@ -13,7 +13,10 @@ const Activity: NextPage = () => {
 	}, [initializeTheme])
 
 	return (
-		<section className='activity mt-[8rem] flex flex-col min-h-screen pb-[2.5rem] overflow-x-hidden relative'>
+		<section
+			className='activity mt-[8rem] flex flex-col min-h-screen pb-[2.5rem] overflow-x-hidden relative'
+			data-aos='fade-up'
+		>
 			<div className='site-holder flex flex-col items-center gap-[46px] relative'>
 				<article className='flex flex-col items-center w-full'>
 					<h1 className='text-[24px] text-center xl:text-[42px] font-bold mb-[60px] uppercase'>

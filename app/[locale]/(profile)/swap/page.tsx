@@ -31,7 +31,10 @@ const Swap: NextPage<Props> = () => {
 		swapCheck2('')
 	}
 	return (
-		<section className='mt-[-7rem] lg:mt-0 flex flex-col gap-[40px] w-full min-h-screen pb-[1.5rem] top-mobile'>
+		<section
+			className='mt-[-7rem] lg:mt-0 flex flex-col gap-[40px] w-full min-h-screen pb-[1.5rem] top-mobile'
+			data-aos='fade-up'
+		>
 			<article className='md:dark:bg-[#1e1e1e66] md:shadow-medium dark:shadow-none flex flex-col items-center gap-[19px] md:gap-[35px] w-full md:py-[51px] rounded-[30px]'>
 				<h1 className='hide-mobile text-[30px] xl:text-[68px] font-bold xl:leading-[32px]'>
 					Swap

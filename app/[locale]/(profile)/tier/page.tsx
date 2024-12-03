@@ -6,94 +6,9 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import React from 'react'
 
-export type Rows = typeof rows
-export type Columns = typeof columns
-const rows = [
-  {
-    key: '1',
-    tier: 'Beginner',
-    total: '0 experience',
-    assets: '10 points',
-    maker: 'No bonuses',
-    taker: '10% of referral experience',
-    withdrawal: 'None',
-  },
-  {
-    key: '2',
-    tier: 'Investor',
-    total: '10 experience',
-    assets: '10 points',
-    maker: '+1% to profitability',
-    taker: '10% of referral experience',
-    withdrawal: 'None',
-  },
-  {
-    key: '3',
-    tier: 'Advanced Investor',
-    total: '30 experience',
-    assets: '10 points',
-    maker: '+1% to profitability',
-    taker: '10% of referral experience',
-    withdrawal: '-1% fee for early withdrawal',
-  },
-  {
-    key: '4',
-    tier: 'Experienced Investor',
-    total: '60 experience',
-    assets: '10 points',
-    maker: '+1.5% to profitability',
-    taker: '10% of referral experience',
-    withdrawal: 'Partial withdrawal (up to 20%)',
-  },
-  {
-    key: '5',
-    tier: 'Expert',
-    total: '100 experience',
-    assets: '10 points',
-    maker: '+2% to profitability',
-    taker: '10% of referral experience',
-    withdrawal: '-2% fee for early withdrawal, -20% investment term for specific asset types',
-  },
-  {
-    key: '6',
-    tier: 'VIP',
-    total: '150 experience',
-    assets: '10 points',
-    maker: '+2% to profitability',
-    taker: '10% of referral experience',
-    withdrawal: 'No fee for early withdrawal, -30% investment term for any assets',
-  },
-];
-const columns = [
-  {
-    key: 'tier',
-    label: 'Tier',
-  },
-  {
-    key: 'total',
-    label: 'Required experience',
-  },
-  {
-    key: 'assets',
-    label: 'Points for successful investment',
-  },
-  {
-    key: 'maker',
-    label: 'Bonuses',
-  },
-  {
-    key: 'taker',
-    label: 'Referral bonuses',
-  },
-  {
-    key: 'withdrawal',
-    label: 'Withdrawal features',
-  },
-];
-
 const Tier: NextPage = () => {
 	return (
-		<div className='flex flex-col gap-[40px] w-full -mt-[7.5rem] md:-mt-[0]'>
+		<div className='flex flex-col gap-[40px] w-full -mt-[7.5rem] md:-mt-[0]' data-aos="fade-up">
 			<Page_title title='Levels Activity' className='!my-0'/>
 
 			<article className='rounded-[30px] sm:shadow-medium dark:!shadow-none sm:dark:bg-[#181818] p-[44px_0px] md:p-[44px_26px] xl:p-[44px] w-full flex flex-col xl:flex-row items-center justify-between gap-[40px] xl:gap-[146px]'>
@@ -117,8 +32,6 @@ const Tier: NextPage = () => {
 			</article>
 
 			<Tier_table_regUsers
-				columns={columns}
-				rows={rows}
 				title='Levels and their description'
 			/>
 			<div className='flex flex-col w-full'>
