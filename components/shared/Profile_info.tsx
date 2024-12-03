@@ -5,6 +5,7 @@ import { NextPage } from 'next'
 import { Link } from '@/i18n/routing'
 import { Snippet } from '@nextui-org/snippet'
 import { Button } from '@nextui-org/button'
+import { Spinner } from '@nextui-org/spinner'
 
 interface Props {
 	verify: boolean
@@ -12,11 +13,13 @@ interface Props {
 }
 export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 	const t = useTranslations('profile')
+	let user
+	if (typeof window !== 'undefined') {
+		user = JSON.parse(localStorage.getItem('userData') || '')
+	}
 
 	return (
-		<section
-			className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px]'
-		>
+		<section className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px]'>
 			<div className='profile__info__block__left'>
 				<div className='profile__info__block__left__avatar'>
 					<Image
@@ -29,13 +32,16 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 					/>
 				</div>
 				<div className='profile__info__block__left__text'>
-					<h3 className='profile__info__block__left__text_name '>Username</h3>
+					<h3 className='profile__info__block__left__text_name '>
+						{' '}
+						{user?.username || <Spinner />}
+					</h3>
 					<p className='profile__info__block__left__text_email'>
-						user***mail.com
+						{user?.email || <Spinner />}
 					</p>
 					<div className='profile__info__block__left__text__id'>
 						<Snippet className='bg-transparent py-[5px] px-0' symbol=''>
-							123123123
+							{user?.uid || <Spinner />}
 						</Snippet>
 					</div>
 				</div>

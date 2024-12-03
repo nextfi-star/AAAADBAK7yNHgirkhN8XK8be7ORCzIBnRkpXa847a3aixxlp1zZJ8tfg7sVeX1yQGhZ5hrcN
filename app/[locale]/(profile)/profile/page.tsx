@@ -9,6 +9,7 @@ import useAuthProtection from '@/hooks/useAuthProtection'
 
 const Page: NextPage = () => {
   useAuthProtection()
+  
   return (
     <section className="personal !shadow-medium dark:!shadow-none"
     data-aos="fade-up">

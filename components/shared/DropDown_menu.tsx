@@ -17,6 +17,7 @@ import { NextPage } from 'next'
 import { useState } from 'react'
 import { DropData } from './ProfileHeader'
 import Image from 'next/image'
+import { Spinner } from '@nextui-org/spinner'
 
 interface Props {
 	dropData?: DropData[]
@@ -34,7 +35,10 @@ export const DropDown_menu: NextPage<Props> = ({
 }) => {
 	const [selectedKeys, setSelectedKeys] = useState<DropData | null>(null)
 	const [open, setOpen] = useState(false)
-
+	let user
+	if (typeof window !== 'undefined') {
+		user = JSON.parse(localStorage.getItem('userData') || '')
+	}
 	return (
 		<div onMouseLeave={() => setOpen(!open)}>
 			<Popover open={open} onOpenChange={setOpen}>
@@ -77,10 +81,25 @@ export const DropDown_menu: NextPage<Props> = ({
 											/>
 											<div className='flex flex-col items-stretch'>
 												<p className='text-[13px] dark:text-[#eeeeee] text-[#0c0c0c]'>
-													user***@gmail.com
+													{user?.email || (
+														<Spinner
+															size='sm'
+															classNames={{
+																base: 'max-w-[5px]',
+															}}
+														/>
+													)}
 												</p>
 												<p className='text-[13px] text-[#0c0c0c] dark:text-[#eeeeee]'>
-													UID: 664654
+													UID:{' '}
+													{user?.uid || (
+														<Spinner
+															size='sm'
+															classNames={{
+																base: 'max-w-[5px]',
+															}}
+														/>
+													)}
 												</p>
 											</div>
 										</div>

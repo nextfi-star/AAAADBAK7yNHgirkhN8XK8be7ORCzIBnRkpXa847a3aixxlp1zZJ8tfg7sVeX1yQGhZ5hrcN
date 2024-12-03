@@ -48,14 +48,16 @@ export const Burger_profile: NextPage<Props> = ({
 								onClick={handleClick}
 							>
 								<ArrowBracket
-									className={'rotate-90 min-w-[25px] min-h-[25px] cursor-pointer'}
+									className={
+										'rotate-90 min-w-[25px] min-h-[25px] cursor-pointer'
+									}
 									color={theme === 'dark' ? 'white' : 'black'}
 									height={25}
 									width={25}
 								/>
 							</div>
 							<div className='absolute top-[35px] right-[13px]'>
-							<Logout_confirmation
+								<Logout_confirmation
 									title='Are you absolutelu sure?'
 									content='This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'
 									titleTriger={
@@ -72,7 +74,9 @@ export const Burger_profile: NextPage<Props> = ({
 								onClick={stepback}
 							>
 								<ArrowBracket
-									className={'rotate-90 min-w-[25px] min-h-[25px] cursor-pointer'}
+									className={
+										'rotate-90 min-w-[25px] min-h-[25px] cursor-pointer'
+									}
 									color={theme === 'dark' ? 'white' : 'black'}
 									height={25}
 									width={25}

@@ -7,10 +7,14 @@ import { ChangeRegion } from './ChangeRegion'
 import { useThemeStore } from '@/store'
 import { Button } from '@nextui-org/button'
 import { Link } from '@/i18n/routing'
+import { Spinner } from '@nextui-org/spinner'
 
 export const Profile_personalverif: NextPage = () => {
 	const { theme } = useThemeStore()
-
+	let user
+	if (typeof window !== 'undefined') {
+		user = JSON.parse(localStorage.getItem('userData') || '')
+	}
 	return (
 		<section className='personal__content flex flex-col w-full'>
 			<h1 className='personal__content-title'>
@@ -44,7 +48,7 @@ export const Profile_personalverif: NextPage = () => {
 
 			<article className='flex items-center justify-between gap-[5px]'>
 				<span>Country/Region</span>
-				<span>Russia</span>
+				<span>{user?.country || <Spinner />}</span>
 
 				<div className='min-w-[181px] flex justify-end'>
 					<ViewRegion propsItem={'Change'} />

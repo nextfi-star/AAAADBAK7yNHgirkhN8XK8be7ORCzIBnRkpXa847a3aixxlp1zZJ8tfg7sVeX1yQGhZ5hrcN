@@ -63,36 +63,44 @@ export const verifyCode = async (payload: { email?: string; phone?: string; pass
     throw new Error(error.message || 'An error occurred during login');
   }
 };
-// export const sendPicture = async (file: File) => {
-//   try {
-//     const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+export const sendPicture = async (file: File) => {
+  try {
+    if (!file) {
+      throw new Error('File is required for upload');
+    }
+    // Проверка доступности localStorage
+    if (typeof window === 'undefined') {
+      throw new Error('localStorage is not available');
+    }
 
-//     if (!userData.uid || (!userData.email && !userData.phone)) {
-//       throw new Error('Missing required user data in localStorage');
-//     }
+    // Извлечение данных пользователя
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+    const { email, phone, csrf } = userData;
+    console.log(userData)
+    if (!userData.uid || (!email && !phone)) {
+      throw new Error('Missing required user data in localStorage');
+    }
+    // Формирование данных для отправки
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('csrf', csrf || '');
 
-//     // Создаем FormData
-//     const formData = new FormData();
-//     formData.append('file', file); // Добавляем файл
-//     formData.append('email', userData.email || ''); // Добавляем email
-//     formData.append('phone', userData.phone || ''); // Добавляем phone
+    const response = await fetch('https://nextfi.site:5000/api/v1/logo', {
+      method: 'POST',
+      body: formData,
+    });
 
-//     const response = await fetch('https://nextfi.site:5000/api/v1/logo', {
-//       method: 'POST',
-//       body: formData,
-//     });
+    const result = await response.json();
 
-//     const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.message || 'Upload failed');
+    }
 
-//     if (!response.ok) {
-//       throw new Error(result.message || 'Upload failed');
-//     }
-
-//     console.log('Upload result:', result);
-//     return result;
-//   } catch (error: any) {
-//     console.error('Upload error:', error.message);
-//     throw new Error(error.message || 'An error occurred during upload');
-//   }
-// };
+    console.log('Upload result:', result);
+    return result;
+  } catch (error: any) {
+    console.error('Upload error:', error.message);
+    throw new Error(error.message || 'An error occurred during upload');
+  }
+};
 

@@ -5,6 +5,7 @@ import { NextPage } from 'next'
 import ArrowBracket from '@/components/ui/ArrowBracket'
 import { useThemeStore } from '@/store'
 import { ChangeAvatar } from '@/components/ui/ChangeAvatar'
+import { Spinner } from '@nextui-org/spinner'
 
 interface Props {
 	username: string
@@ -17,7 +18,10 @@ export const ProfileBurger_settigns: NextPage<Props> = ({
 	showSection,
 }) => {
 	const { theme } = useThemeStore()
-
+	let user;
+	if(typeof window !== 'undefined') {
+		user = JSON.parse(localStorage.getItem('userData') || '')
+	}
 	return (
 		<section
 			className={showSection ? `profile__burger-info` : 'flex justify-center'}
@@ -49,7 +53,7 @@ export const ProfileBurger_settigns: NextPage<Props> = ({
 
 				<div className='flex flex-col'>
 					<h5 className='text-[18px]'>
-					{username}
+					{user?.email || username || <Spinner />}
 					</h5>
 					{showSection && <span className='text-[14px]'>Profile Settings</span>}
 				</div>
