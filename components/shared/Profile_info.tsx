@@ -15,7 +15,8 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 	const t = useTranslations('profile')
 	let user
 	if (typeof window !== 'undefined') {
-		user = JSON.parse(localStorage.getItem('userData') || '')
+		const storedData = localStorage.getItem('userData') || '{}'
+		user = JSON.parse(storedData)
 	}
 
 	return (

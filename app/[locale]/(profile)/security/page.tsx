@@ -11,6 +11,7 @@ import { Skeleton } from '@nextui-org/skeleton'
 import { useMemo } from 'react'
 
 const Security: NextPage = () => {
+	
 	const data = useMemo(
 		() => [
 			{
@@ -31,7 +32,7 @@ const Security: NextPage = () => {
 				title: 'Email authentication',
 				desc: 'Get authentication codes via email for login and other functions',
 				btn: <Alert_email propsItem={'Change email'} />,
-				contain: 'user***@rambler.ru',
+				contain: '****@gmail.com',
 			},
 			{
 				src: '/main/profile_security/login_pass.svg',
@@ -43,7 +44,6 @@ const Security: NextPage = () => {
 		],
 		[]
 	)
-
 	const data2 = useMemo(
 		() => [
 			{

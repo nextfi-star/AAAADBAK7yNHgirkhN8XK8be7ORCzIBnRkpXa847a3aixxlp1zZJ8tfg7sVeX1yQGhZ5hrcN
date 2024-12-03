@@ -37,7 +37,8 @@ export const DropDown_menu: NextPage<Props> = ({
 	const [open, setOpen] = useState(false)
 	let user
 	if (typeof window !== 'undefined') {
-		user = JSON.parse(localStorage.getItem('userData') || '')
+		const storedData = localStorage.getItem('userData') || '{}'
+		user = JSON.parse(storedData)
 	}
 	return (
 		<div onMouseLeave={() => setOpen(!open)}>
