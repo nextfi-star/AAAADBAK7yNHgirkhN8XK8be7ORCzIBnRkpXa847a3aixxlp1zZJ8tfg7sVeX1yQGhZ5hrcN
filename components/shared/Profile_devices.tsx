@@ -6,10 +6,93 @@ import { useThemeStore } from '@/store'
 import { Confirmation_dialog } from './Confirmation_dialog'
 import { Confirmation_dialog_devices } from './Confirmation_dialog_devices'
 import { Button } from '@nextui-org/button'
+import { useEffect, useState } from 'react'
+import { useParams, useRouter } from 'next/navigation'
+import { getActiveDevices } from '@/utils/api'
+import useAuthProtection from '@/hooks/useAuthProtection'
+import { Spinner } from '@nextui-org/spinner'
+import { Skeleton } from '@nextui-org/skeleton'
 
 export const Profile_devices: NextPage = () => {
 	const { theme } = useThemeStore()
+	const [sessions, setSessions] = useState<any[]>([])
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState(null)
+	const [user, setUser] = useState<Record<string, any> | null>(null)
+	const [csrfToken, setCsrfToken] = useState<string | null>(null)
+	useAuthProtection()
+	useEffect(() => {
+		const storedData = localStorage.getItem('userData') || '{}'
+		setUser(JSON.parse(storedData))
+	}, [])
+	const router = useRouter()
+	const locale = useParams()?.locale || 'en'
+	const csrf = user?.csrf || ''
+	useEffect(() => {
+		const storedData = localStorage.getItem('userData')
+		if (storedData) {
+			const user = JSON.parse(storedData)
+			setCsrfToken(user?.csrf || null)
+		}
+	}, [])
 
+	useEffect(() => {
+		if (csrfToken) {
+			const fetchSessions = async () => {
+				try {
+					const response = await fetch(
+						'https://nextfi.site:5000/api/v1/devices',
+						{
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify({ csrf: csrfToken }),
+						}
+					)
+					const result = await response.json()
+
+					if (response.ok) {
+						setSessions(result.sessions || [])
+					} else {
+						setError(result.message || 'Failed to fetch sessions')
+					}
+				} catch (err: any) {
+					setError(err.message || 'An error occurred while fetching sessions')
+				} finally {
+					setLoading(false)
+				}
+			}
+
+			fetchSessions()
+		}
+	}, [csrfToken])
+	if (loading) return <Skeleton className='min-h-[214px] dark:bg-[#1e1e1e66] bg-transparent dark:shadow-none shadow-medium rounded-[30px]' />
+	if (error) return <div>Error: {error}</div>
+	const handleLogout = async (fullLogout = false) => {
+		try {
+			const payload = {
+				csrf: csrf,
+				full: fullLogout ? 'true' : '',
+			}
+			const response = await fetch('https://nextfi.site:5000/api/v1/logout', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(payload),
+			})
+			const result = await response.json()
+			if (!response.ok) {
+				throw new Error(result.message || 'Logout failed')
+			}
+			console.log('Logout successful:', result)
+			localStorage.removeItem('userData')
+			router.push(`/${locale}/over`)
+		} catch (error) {
+			console.error('Logout error:', error)
+		}
+	}
 	return (
 		<div className='flex flex-col gap-[20px] h-full'>
 			<Accordion collapsible className='' type='single'>
@@ -37,7 +120,7 @@ export const Profile_devices: NextPage = () => {
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
 											MacBook PRO
 										</span>
-										<Confirmation_dialog_devices
+										{/* <Confirmation_dialog_devices
 											content={
 												'This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers'
 											}
@@ -45,7 +128,7 @@ export const Profile_devices: NextPage = () => {
 											titleTriger={'Log out'}
 											unic='half'
 											className='border-1 !border-gray-300 border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] !text-[16px] xl:!text-[16px] 2xl:!text-[16px]'
-										/>
+										/> */}
 									</div>
 
 									<div
@@ -55,14 +138,14 @@ export const Profile_devices: NextPage = () => {
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
 											MacBook PRO
 										</span>
-										<Confirmation_dialog_devices
+										{/* <Confirmation_dialog_devices
 											content={
 												'This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers'
 											}
 											title={'Are you absolutely sure?'}
 											titleTriger={'Log out'}
 											className='border-1 !border-gray-300 border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] !text-[16px] xl:!text-[16px] 2xl:!text-[16px]'
-										/>
+										/> */}
 									</div>
 
 									<div
@@ -73,14 +156,14 @@ export const Profile_devices: NextPage = () => {
 											MacBook PRO
 										</span>
 
-										<Confirmation_dialog_devices
+										{/* <Confirmation_dialog_devices
 											content={
 												'This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers'
 											}
 											title={'Are you absolutely sure?'}
 											titleTriger={'Log out'}
 											className='border-1 !border-gray-300 border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] !text-[16px] xl:!text-[16px] 2xl:!text-[16px]'
-										/>
+										/> */}
 									</div>
 								</div>
 							</div>
@@ -94,7 +177,10 @@ export const Profile_devices: NextPage = () => {
 						color={theme === 'dark' ? 'white' : 'black'}
 						width={'835'}
 					/>
-					<Button className='text-[20px] bg-[#205BC9] rounded-[50px] px-[25px] py-[5px] text-white'>
+					<Button
+						className='text-[20px] bg-[#205BC9] rounded-[50px] px-[25px] py-[5px] text-white'
+						onClick={() => handleLogout(true)}
+					>
 						Log Out from all devices
 					</Button>
 				</div>

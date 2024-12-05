@@ -340,7 +340,7 @@ import { useRouter, useParams } from 'next/navigation'
 import { Button } from '@nextui-org/button'
 import { useThemeStore } from '@/store'
 import { Spinner } from '@nextui-org/spinner'
-import { loginUser } from '@/utils/api'
+import { loginUser, registerUser } from '@/utils/api'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { Logo_header } from '@/components/ui/Logo_header'
@@ -376,7 +376,15 @@ const Login = () => {
 		mode: 'onChange',
 	})
 	const [showPassword, setShowPassword] = useState(false)
-	const { theme, mode, modeToogle, email, phone } = useThemeStore()
+	const {
+		theme,
+		mode,
+		modeToogle,
+		email,
+		phone,
+		showVerifWindow,
+		setshowVerifWindow,
+	} = useThemeStore()
 	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const router = useRouter()
@@ -392,20 +400,24 @@ const Login = () => {
 		const sessionError = params.get('error')
 		if (sessionError === 'sessionExpired') {
 			setError('User session expired. Please log in again.')
-			setState(true)
+			setState(false)
 		}
+	}, [])
+	const [user, setUser] = useState<Record<string, any> | null>(null)
+	useEffect(() => {
+		const storedData = localStorage.getItem('userData') || '{}'
+		setUser(JSON.parse(storedData))
 	}, [])
 
 	const handleChange = () => {
-		if (vcode.length === 0) setState(!state)
+		setshowVerifWindow(true)
 		setIsSubmit(true)
 		const timer = setTimeout(() => {
 			setIsSubmit(true)
-			setState(true)
+			setshowVerifWindow(false)
 		}, 3000)
 		return () => clearTimeout(timer)
 	}
-
 	const onSubmit = async (data: any) => {
 		const payload = {
 			email: mode === 'email' ? data.emailOrPhone : '',
@@ -446,7 +458,7 @@ const Login = () => {
 				<Logo_header />
 			</div>
 
-			{!state ? (
+			{showVerifWindow ? (
 				<div className='form__verify w-full '>
 					<h2>
 						Confirm your {mode === 'email' ? 'email address' : 'phone number'}

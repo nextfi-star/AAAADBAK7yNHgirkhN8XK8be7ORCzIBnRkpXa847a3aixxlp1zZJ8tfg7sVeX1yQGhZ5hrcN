@@ -1,3 +1,4 @@
+
 // ! Datatable for verified
 const columns = [
 	{ name: 'NAME', uid: 'name', sortable: true },
@@ -118,6 +119,7 @@ export { columns, users, statusOptions }
 
 // ! Datatable for not-verified
 
+// ? CURRENT DATA TABLE
 const columnsData = [
 	{ name: 'DESTINATION', uid: 'destination', sortable: true },
 	{ name: 'THE AMOUNT', uid: 'amount', sortable: true },

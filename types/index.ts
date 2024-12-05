@@ -52,4 +52,9 @@ export interface IStore {
   } | null;
   setUser: (userData: any) => void;
   clearUser: () => void;
+	showVerifWindow: boolean
+	setshowVerifWindow: (val: boolean) => void
+}
+export interface User {
+  [key: string]: any;
 }

@@ -340,7 +340,7 @@ const SignUp = () => {
 	})
 	const [isSelected, setIsSelected] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
-	const { theme, mode, modeToogle, setPhone, setEmail, setPassword } =
+	const { theme, mode, modeToogle, setPhone, setEmail, setshowVerifWindow } =
 		useThemeStore()
 	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
@@ -365,6 +365,7 @@ const SignUp = () => {
 					'\x1b[32m%s\x1b[0m',
 					`login: ${data.emailOrPhone},\nphone: ${data.emailOrPhone || ''},\npassword: ${data.password},\nrefid: ${data.refid}`
 				)
+				setshowVerifWindow(true)
 				router.push(`/${locale}/login`)
 			} else {
 				setError(response.message)

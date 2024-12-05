@@ -82,6 +82,8 @@ export const useThemeStore = create<IStore>()(
 				localStorage.removeItem('zustand-store')
 				set({ user: null })
 			},
+			showVerifWindow: false,
+			setshowVerifWindow: (val) => set({ showVerifWindow: val }),
 		}),
 		{
 			name: 'zustand-store',

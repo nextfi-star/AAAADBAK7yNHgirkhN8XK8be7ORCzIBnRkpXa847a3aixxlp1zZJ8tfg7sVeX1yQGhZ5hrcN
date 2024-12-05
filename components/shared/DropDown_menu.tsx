@@ -14,7 +14,7 @@ import {
 import { Link } from '@/i18n/routing'
 import { Button } from '@nextui-org/button'
 import { NextPage } from 'next'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DropData } from './ProfileHeader'
 import Image from 'next/image'
 import { Spinner } from '@nextui-org/spinner'
@@ -35,11 +35,11 @@ export const DropDown_menu: NextPage<Props> = ({
 }) => {
 	const [selectedKeys, setSelectedKeys] = useState<DropData | null>(null)
 	const [open, setOpen] = useState(false)
-	let user
-	if (typeof window !== 'undefined') {
+	const [user, setUser] = useState<Record<string, any> | null>(null)
+	useEffect(() => {
 		const storedData = localStorage.getItem('userData') || '{}'
-		user = JSON.parse(storedData)
-	}
+		setUser(JSON.parse(storedData))
+	}, [])
 	return (
 		<div onMouseLeave={() => setOpen(!open)}>
 			<Popover open={open} onOpenChange={setOpen}>
@@ -81,27 +81,31 @@ export const DropDown_menu: NextPage<Props> = ({
 												width={42}
 											/>
 											<div className='flex flex-col items-stretch'>
-												<p className='text-[13px] dark:text-[#eeeeee] text-[#0c0c0c]'>
-													{user?.email || (
+												<div className='text-[13px] dark:text-[#eeeeee] text-[#0c0c0c]'>
+													{!user?.email ? (
 														<Spinner
 															size='sm'
 															classNames={{
 																base: 'max-w-[5px]',
 															}}
 														/>
+													) : (
+														<p>{user?.email}</p>
 													)}
-												</p>
-												<p className='text-[13px] text-[#0c0c0c] dark:text-[#eeeeee]'>
-													UID:{' '}
-													{user?.uid || (
+												</div>
+												<div className='text-[13px] text-[#0c0c0c] dark:text-[#eeeeee] flex items-center gap-[5px]'>
+													UID:
+													{!user?.uid ? (
 														<Spinner
 															size='sm'
 															classNames={{
 																base: 'max-w-[5px]',
 															}}
 														/>
+													) : (
+														<p>{user?.uid}</p>
 													)}
-												</p>
+												</div>
 											</div>
 										</div>
 										<CommandSeparator className='mb-[10px] h-[1px] w-full ml-0 my-[10px]' />

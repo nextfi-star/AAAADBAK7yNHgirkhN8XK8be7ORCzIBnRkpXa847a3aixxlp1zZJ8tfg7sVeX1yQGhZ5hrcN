@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { NextPage } from 'next'
 import { ProfilePage_guard } from '../ui/ProfilePage_guard'
@@ -11,10 +12,11 @@ import { Spinner } from '@nextui-org/spinner'
 
 export const Profile_personalverif: NextPage = () => {
 	const { theme } = useThemeStore()
-	let user
-	if (typeof window !== 'undefined') {
-		user = JSON.parse(localStorage.getItem('userData') || '')
-	}
+	const [user, setUser] = useState<Record<string, any> | null>(null)
+	useEffect(() => {
+		const storedData = localStorage.getItem('userData') || '{}'
+		setUser(JSON.parse(storedData))
+	}, [])
 	return (
 		<section className='personal__content flex flex-col w-full'>
 			<h1 className='personal__content-title'>

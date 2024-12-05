@@ -8,10 +8,14 @@ import { Alert_phone } from '@/components/shared/Alert_phone'
 import { CloseAccount } from '@/components/shared/CloseAccount'
 import { FreezeAccount } from '@/components/shared/FreezeAccount'
 import { Skeleton } from '@nextui-org/skeleton'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 const Security: NextPage = () => {
-	
+	const [user, setUser] = useState<Record<string, any> | null>(null)
+	useEffect(() => {
+		const storedData = localStorage.getItem('userData') || '{}'
+		setUser(JSON.parse(storedData))
+	}, [])
 	const data = useMemo(
 		() => [
 			{
@@ -32,7 +36,7 @@ const Security: NextPage = () => {
 				title: 'Email authentication',
 				desc: 'Get authentication codes via email for login and other functions',
 				btn: <Alert_email propsItem={'Change email'} />,
-				contain: '****@gmail.com',
+				contain: user?.email || '****@gmail.com',
 			},
 			{
 				src: '/main/profile_security/login_pass.svg',

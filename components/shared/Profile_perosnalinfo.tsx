@@ -1,14 +1,17 @@
+'use client'
 import Image from 'next/image'
 import { NextPage } from 'next'
 import { Alert_nickname } from './Alert_nickname'
 import { Snippet } from '@nextui-org/snippet'
 import { Spinner } from '@nextui-org/spinner'
+import { useEffect, useState } from 'react'
 
 export const Profile_perosnalinfo: NextPage = () => {
-	let user
-	if (typeof window !== 'undefined') {
-		user = JSON.parse(localStorage.getItem('userData') || '')
-	}
+	const [user, setUser] = useState<Record<string, any> | null>(null)
+	useEffect(() => {
+		const storedData = localStorage.getItem('userData') || '{}'
+		setUser(JSON.parse(storedData))
+	}, [])
 	return (
 		<section className='personal__content flex flex-col w-full'>
 			<h1 className='personal__content-title'>

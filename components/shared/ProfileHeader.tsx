@@ -151,7 +151,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 				key: 'out',
 				href: '#',
 				icon: <Power strokeWidth={1} />,
-				verify: () => setVerifyState(true),
+				verify: () => setVerifyState(false),
 			},
 		],
 		[setVerifyState]

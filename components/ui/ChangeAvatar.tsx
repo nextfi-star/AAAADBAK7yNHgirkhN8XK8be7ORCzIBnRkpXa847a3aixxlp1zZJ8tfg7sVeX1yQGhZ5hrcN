@@ -48,27 +48,26 @@ export const ChangeAvatar = () => {
 	}
 	const [file, setFile] = useState<File | null>(null)
 	const [uploadStatus, setUploadStatus] = useState<string | null>(null)
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
-      console.log(e.target.files[0]);
-    }
-  };
+	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files && e.target.files[0]) {
+			setFile(e.target.files[0])
+			console.log(e.target.files[0])
+		}
+	}
 
-  const handleUpload = async () => {
-    if (!file) {
-      alert('Please select a file first.');
-      return;
-    }
-    setUploadStatus('Uploading...');
-    try {
-      const response = await sendPicture(file);
-      setUploadStatus(`Upload successful: ${response.message}`);
-    } catch (error: any) {
-      setUploadStatus(`Error: ${error.message}`);
-    }
-  };
-
+	const handleUpload = async () => {
+		if (!file) {
+			alert('Please select a file first.')
+			return
+		}
+		setUploadStatus('Uploading...')
+		try {
+			const response = await sendPicture(file)
+			setUploadStatus(`Upload successful: ${response.message}`)
+		} catch (error: any) {
+			setUploadStatus(`Error: ${error.message}`)
+		}
+	}
 
 	return (
 		<Drawer>

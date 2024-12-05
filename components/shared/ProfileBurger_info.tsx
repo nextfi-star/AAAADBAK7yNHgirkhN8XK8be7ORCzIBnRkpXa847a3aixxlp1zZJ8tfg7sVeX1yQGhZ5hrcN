@@ -4,6 +4,7 @@ import { NextPage } from 'next'
 import ArrowBracket from '../ui/ArrowBracket'
 import { useThemeStore } from '@/store'
 import { Spinner } from '@nextui-org/spinner'
+import { useEffect, useState } from 'react'
 
 interface Props {
 	username: string
@@ -19,11 +20,11 @@ export const ProfileBurger_info: NextPage<Props> = ({
 	const handleClick = () => {
 		setShowSection(!showSection)
 	}
-	let user
-	if (typeof window !== 'undefined') {
+	const [user, setUser] = useState<Record<string, any> | null>(null)
+	useEffect(() => {
 		const storedData = localStorage.getItem('userData') || '{}'
-		user = JSON.parse(storedData)
-	}
+		setUser(JSON.parse(storedData))
+	}, [])
 	return (
 		<section
 			className={`profile__burger-info !pr-[24px]`}

@@ -6,6 +6,8 @@ import { Link } from '@/i18n/routing'
 import { Snippet } from '@nextui-org/snippet'
 import { Button } from '@nextui-org/button'
 import { Spinner } from '@nextui-org/spinner'
+import { useEffect, useState } from 'react'
+import { User } from '@/types'
 
 interface Props {
 	verify: boolean
@@ -13,11 +15,11 @@ interface Props {
 }
 export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 	const t = useTranslations('profile')
-	let user
-	if (typeof window !== 'undefined') {
+	const [user, setUser] = useState<Record<string, any> | null>(null)
+	useEffect(() => {
 		const storedData = localStorage.getItem('userData') || '{}'
-		user = JSON.parse(storedData)
-	}
+		setUser(JSON.parse(storedData))
+	}, [])
 
 	return (
 		<section className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px]'>
@@ -37,9 +39,9 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 						{' '}
 						{user?.username || <Spinner />}
 					</h3>
-					<p className='profile__info__block__left__text_email'>
-						{user?.email || <Spinner />}
-					</p>
+					<div className='profile__info__block__left__text_email'>
+						{!user?.email ? <Spinner /> : <p>{user?.email}</p>}
+					</div>
 					<div className='profile__info__block__left__text__id'>
 						<Snippet className='bg-transparent py-[5px] px-0' symbol=''>
 							{user?.uid || <Spinner />}
