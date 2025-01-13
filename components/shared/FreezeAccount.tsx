@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 import { NextPage } from 'next'
 import Image from 'next/image'
 import ArrowBracket from '../ui/ArrowBracket'
+=======
+import { NextPage } from "next";
+import Image from "next/image";
+import { Button } from "../ui/button";
+import ArrowBracket from "../ui/ArrowBracket";
+import { Alert } from "./Alert";
+>>>>>>> 1685d430c8f4dc1d32d89b0c1d64ff425bbada88
 import {
 	Drawer,
 	DrawerContent,

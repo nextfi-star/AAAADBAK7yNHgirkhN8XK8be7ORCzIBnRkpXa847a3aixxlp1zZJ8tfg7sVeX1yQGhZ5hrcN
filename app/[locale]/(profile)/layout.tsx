@@ -1,6 +1,11 @@
 'use client'
+import Template from "../Template";
+import { TapBar, ProfileHeader, Profile_nav } from "@/components/shared/index";
 import { useResponsiveVisibility } from '@/hooks/useResponsiveVisibility'
+<<<<<<< HEAD
 import { TapBar, ProfileHeader, Profile_nav } from '@/components/shared/index'
+=======
+>>>>>>> 1685d430c8f4dc1d32d89b0c1d64ff425bbada88
 import { Footer } from '@/components/shared/Footer'
 import { A_Chat } from '@/components/shared/A_Chat'
 import 'aos/dist/aos.css'
