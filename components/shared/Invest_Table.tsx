@@ -140,8 +140,8 @@ export default function Invest_Table() {
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu>
-								<DropdownItem>View</DropdownItem>
-								<DropdownItem>Edit</DropdownItem>
+								<DropdownItem key='view'>View</DropdownItem>
+								<DropdownItem key='edit'>Edit</DropdownItem>
 							</DropdownMenu>
 						</Dropdown>
 					</div>
