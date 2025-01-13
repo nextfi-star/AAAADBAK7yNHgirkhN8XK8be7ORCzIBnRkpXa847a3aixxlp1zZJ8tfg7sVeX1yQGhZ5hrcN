@@ -147,8 +147,8 @@ export default function DataTable_unverif_mobile() {
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu>
-								<DropdownItem>View</DropdownItem>
-								<DropdownItem>Edit</DropdownItem>
+								<DropdownItem key='view'>View</DropdownItem>
+								<DropdownItem key='edit'>Edit</DropdownItem>
 							</DropdownMenu>
 						</Dropdown>
 					</div>
@@ -247,7 +247,7 @@ export default function DataTable_unverif_mobile() {
 								selectionMode='multiple'
 								onSelectionChange={setVisibleColumns}
 							>
-								<DropdownItem key='destination'>Вestination</DropdownItem>
+								<DropdownItem key='destination'>Destination</DropdownItem>
 								<DropdownItem key='amount'>The amount</DropdownItem>
 								<DropdownItem key='percent'>Percent</DropdownItem>
 								<DropdownItem key='total'>Total</DropdownItem>
