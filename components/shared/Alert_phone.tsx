@@ -106,14 +106,19 @@ export const Alert_phone: NextPage<Props> = ({ propsItem }) => {
 						>
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
 								New phone SMS authentication
-								<Input
-									className='border border-solid rounded-[30px] shadow-none !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] px-[10px] py-[20px]'
-									placeholder='Enter code'
-									type='text'
-									name='newPhoneAuth'
-									value={inputs.newPhoneAuth}
-									onChange={handleChange}
-								/>
+								<div className='relative w-full'>
+									<Input
+										className='border border-solid rounded-[30px] shadow-none !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] px-[10px] py-[20px]'
+										placeholder='Enter code'
+										type='text'
+										name='newPhoneAuth'
+										value={inputs.newPhoneAuth}
+										onChange={handleChange}
+									/>
+									<Button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[16px] rounded-[50px] cursor-pointer dark:bg-[#0c0c0c] bg-white h-fit border-1 border-solid outline-[#4d4d4d] dark:outline-[#4d4d4d] !outline-none'>
+										Send Code
+									</Button>
+								</div>
 							</label>
 						</AlertDialogDescription>
 						<AlertDialogDescription
@@ -121,14 +126,19 @@ export const Alert_phone: NextPage<Props> = ({ propsItem }) => {
 						>
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
 								Current phone SMS authentication
-								<Input
-									className='border border-solid rounded-[30px] shadow-none !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] px-[10px] py-[20px]'
-									placeholder='Enter code'
-									type='text'
-									name='currentPhoneAuth'
-									value={inputs.currentPhoneAuth}
-									onChange={handleChange}
-								/>
+								<div className='relative w-full'>
+									<Input
+										className='border border-solid rounded-[30px] shadow-none !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] px-[10px] py-[20px]'
+										placeholder='Enter code'
+										type='text'
+										name='currentPhoneAuth'
+										value={inputs.currentPhoneAuth}
+										onChange={handleChange}
+									/>
+									<Button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[16px] rounded-[50px] cursor-pointer dark:bg-[#0c0c0c] bg-white h-fit border-1 border-solid outline-[#4d4d4d] dark:outline-[#4d4d4d] !outline-none'>
+										Send Code
+									</Button>
+								</div>
 							</label>
 						</AlertDialogDescription>
 						<AlertDialogDescription
@@ -156,11 +166,14 @@ export const Alert_phone: NextPage<Props> = ({ propsItem }) => {
 								? 'bg-transparent cursor-not-allowed'
 								: 'bg-[#205bc9] hover:bg-[#205bc9] text-white border-none'
 						}`}
-						onClick={() => setInputs({
-							newPhone: '',
-							newPhoneAuth: '',
-							currentPhoneAuth: '',
-							authenticatorApp: '',})}
+						onClick={() =>
+							setInputs({
+								newPhone: '',
+								newPhoneAuth: '',
+								currentPhoneAuth: '',
+								authenticatorApp: '',
+							})
+						}
 					>
 						Confirm
 					</AlertDialogAction>

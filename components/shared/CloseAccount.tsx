@@ -1,34 +1,66 @@
-import { NextPage } from 'next'
-import Image from 'next/image'
-import ArrowBracket from '../ui/ArrowBracket'
+'use client'
 import {
 	Drawer,
+	DrawerClose,
 	DrawerContent,
-	DrawerTrigger,
-	DrawerTitle,
 	DrawerDescription,
 	DrawerFooter,
-	DrawerClose,
+	DrawerTitle,
+	DrawerTrigger,
 } from '@/components/ui/drawer'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
-import { Confirmation_dialog } from './Confirmation_dialog'
+import { handleAccountAction } from '@/utils/api'
 import { Button } from '@nextui-org/button'
+import { NextPage } from 'next'
+import Image from 'next/image'
 import { useState } from 'react'
-
+import ArrowBracket from '../ui/ArrowBracket'
 interface Props {
 	propsItem: React.ReactNode
+	user?: any
 }
-
-export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from '@/components/ui/dialog'
+export const CloseAccount: NextPage<Props> = ({ propsItem, user }) => {
 	const { theme } = useThemeStore()
 	const [checked, setChecked] = useState(false)
 	const [selectedOption, setSelectedOption] = useState<string | undefined>(
 		undefined
 	)
+	const [isCloseModalOpen, setCloseModalOpen] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
+	const [error, setError] = useState<string | null>(null)
+	const { csrf } = user
+	console.log(csrf)
 	const handleRadioChange = (value: string) => {
 		setSelectedOption(value)
+	}
+	const handleAction = async (action: 'freeze' | 'close') => {
+		setError(null)
+		setIsLoading(true)
+	
+		try {
+			const result = await handleAccountAction(csrf, action)
+			console.log(`${action} result:`, result)
+			alert(
+				`${action === 'freeze' ? 'Account frozen' : 'Account closed'} successfully.`
+			)
+			if (action === 'close') setCloseModalOpen(false)
+		} catch (err: any) {
+			setError(err.message)
+		} finally {
+			setIsLoading(false)
+		}
 	}
 	return (
 		<Drawer>
@@ -199,20 +231,46 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 								</Button>
 							</DrawerClose>
 							<DrawerClose asChild>
-								<Confirmation_dialog
-									className={`text-[14px] xl:!text-[20px]  2xl:!text-[25px]  xl:!px-[40px] 2xl:!px-[70px] rounded-[50px] font-medium h-fit !max-w-[220px] !w-full text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
-										checked && selectedOption
-											? 'bg-[#205bc9] hover:bg-[#205bc9] dark:!border-[#205bc9] !border-[#205bc9] text-white'
-											: 'bg-transparent hover:bg-transparent data-[hover=true]:opacity-[.6] opacity-[.6]'
-									}`}
-									content={
-										'This action cannot be undone. Your account will be closed.'
-									}
-									title={'Are you absolutely sure?'}
-									titleTriger={'Confirm'}
-									checked={checked}
-									selectedOption={selectedOption}
-								/>
+								<Dialog>
+									<DialogTrigger asChild>
+										<Button
+											className={`text-[14px] xl:!text-[20px]  2xl:!text-[25px]  xl:!px-[40px] 2xl:!px-[70px] rounded-[50px] font-medium h-fit !max-w-[220px] !w-full text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[15px] py-[5px] bg-transparent  hover:bg-transparent	${
+												checked && selectedOption
+													? 'bg-[#205bc9] hover:bg-[#205bc9] dark:!border-[#205bc9] !border-[#205bc9] text-white'
+													: 'bg-transparent hover:bg-transparent data-[hover=true]:opacity-[.6] opacity-[.6]'
+											}`}
+											disabled={!checked || !selectedOption}
+										>
+											Confirm
+										</Button>
+									</DialogTrigger>
+									<DialogContent className='max-w-[23rem] sm:max-w-md rounded-[10px]'>
+										<DialogHeader className='my-[20px]'>
+											<DialogTitle>Are you absolutely sure?</DialogTitle>
+											<DialogDescription>
+												This action cannot be undone. Your account will be
+												closed.
+											</DialogDescription>
+										</DialogHeader>
+										<DialogFooter className='flex flex-row gap-[40px] items-center justify-center sm:justify-center'>
+											<DialogClose asChild>
+												<Button
+													type='button'
+													className='min-w-[91.52px] border-1 !border-[#767680] border-solid rounded-[50px] px-[10px] !bg-[#7676801F] !text-[#0c0c0c] dark:!text-[#EFEFEF] !text-[16px] xl:!text-[16px] 2xl:!text-[16px]'
+												>
+													Close
+												</Button>
+											</DialogClose>
+											<Button
+												type='button'
+												className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
+												onPress={() => handleAction('close')}
+											>
+												Continue
+											</Button>
+										</DialogFooter>
+									</DialogContent>
+								</Dialog>
 							</DrawerClose>
 						</DrawerFooter>
 					</div>

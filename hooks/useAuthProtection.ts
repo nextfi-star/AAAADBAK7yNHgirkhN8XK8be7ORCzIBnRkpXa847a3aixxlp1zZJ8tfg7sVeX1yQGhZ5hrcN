@@ -13,10 +13,10 @@ const useAuthProtection = () => {
 			setUser(JSON.parse(storedData))
 		}
 
-		if (!storedData || !JSON.parse(storedData)?.csrf) {
-			localStorage.removeItem('userData')
-			router.push(`/${locale}/login?error=sessionExpired`)
-		}
+		// if (!storedData || !JSON.parse(storedData)?.csrf) {
+		// 	localStorage.removeItem('userData')
+		// 	router.push(`/${locale}/login?error=sessionExpired`)
+		// }
 	}, [locale, router])
 
 	return user

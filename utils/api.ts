@@ -7,7 +7,7 @@ export const registerUser = async (data: {
 	refid?: string
 }) => {
 	try {
-		const response = await fetch('https://nextfi.site:5000/api/v1/register', {
+		const response = await fetch('https://nextfit.site:5000/api/v1/register', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export const loginUser = async (payload: {
 	vcode?: string
 }) => {
 	try {
-		const response = await fetch('https://nextfi.site:5000/api/v1/login', {
+		const response = await fetch('https://nextfit.site:5000/api/v1/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export const verifyCode = async (payload: {
 	vcode?: string
 }) => {
 	try {
-		const response = await fetch('https://nextfi.site:5000/api/v1/login', {
+		const response = await fetch('https://nextfit.site:5000/api/v1/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ export const sendPicture = async (file: File) => {
 		const formData = new FormData()
 		formData.append('file', file)
 		formData.append('csrf', csrf || '')
-		const response = await fetch('https://nextfi.site:5000/api/v1/logo', {
+		const response = await fetch('https://nextfit.site:5000/api/v1/logo', {
 			method: 'POST',
 			body: formData,
 		})
@@ -118,7 +118,7 @@ export const getActiveDevices = async (csrf: string) => {
 		const payload = {
 			csrf: csrf,
 		}
-		const response = await fetch('https://nextfi.site:5000/api/v1/login', {
+		const response = await fetch('https://nextfit.site:5000/api/v1/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -136,3 +136,30 @@ export const getActiveDevices = async (csrf: string) => {
 		console.error('Error fetching devices:', error)
 	}
 }
+export const handleAccountAction = async (csrf: string, action: 'freeze' | 'close') => {
+  try {
+    const payload = {
+      csrf,
+      type: action,
+    };
+
+    const response = await fetch('https://nextfit.site:5000/api/v1/goodbye', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || 'Failed to process the request');
+    }
+
+    return result; // Возвращаем результат для обработки
+  } catch (error: any) {
+    console.error('Error:', error.message);
+    throw error; // Позволяет обработать ошибку на уровне вызова функции
+  }
+};

@@ -19,9 +19,10 @@ import { useState } from 'react'
 
 interface Props {
 	propsItem: React.ReactNode
+	user?: any
 }
 
-export const FreezeAccount: NextPage<Props> = ({ propsItem }) => {
+export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 	const { theme } = useThemeStore()
 	const [checked, setChecked] = useState(false)
 	const [selectedOption, setSelectedOption] = useState<string | undefined>(

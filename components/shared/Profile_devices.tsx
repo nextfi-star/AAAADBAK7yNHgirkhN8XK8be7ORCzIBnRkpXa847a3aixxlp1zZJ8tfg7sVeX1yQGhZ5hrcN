@@ -67,7 +67,10 @@ export const Profile_devices: NextPage = () => {
 			fetchSessions()
 		}
 	}, [csrfToken])
-	if (loading) return <Skeleton className='min-h-[214px] dark:bg-[#1e1e1e66] bg-transparent dark:shadow-none shadow-medium rounded-[30px]' />
+	if (loading)
+		return (
+			<Skeleton className='min-h-[214px] bg-transparent dark:shadow-none shadow-medium rounded-[30px]' />
+		)
 	if (error) return <div>Error: {error}</div>
 	const handleLogout = async (fullLogout = false) => {
 		try {

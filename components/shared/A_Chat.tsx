@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import {
 	Modal,
 	ModalContent,
@@ -19,7 +19,6 @@ type Message = {
 	time: string
 	sender: 'me' | 'other'
 }
-
 export const A_Chat: NextPage = () => {
 	const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
 	const messagesEndRef = useRef<HTMLDivElement>(null)
