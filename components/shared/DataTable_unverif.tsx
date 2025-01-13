@@ -140,8 +140,8 @@ export default function DataTable_unverif() {
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu>
-								<DropdownItem>View</DropdownItem>
-								<DropdownItem>Edit</DropdownItem>
+								<DropdownItem key="view">View</DropdownItem>
+								<DropdownItem key="Edit">Edit</DropdownItem>
 							</DropdownMenu>
 						</Dropdown>
 					</div>
