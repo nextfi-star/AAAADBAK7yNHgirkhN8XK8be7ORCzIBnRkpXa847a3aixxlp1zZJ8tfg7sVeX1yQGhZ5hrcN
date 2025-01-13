@@ -10,7 +10,7 @@ import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import Invest_table_mobile from '@/components/shared/Invest_table_mobile'
 
-const Invest: NextPage = () => {
+const Invest = () => {
 	const { setConfirmStep, swapCheck, swapCheck2, setStep } = useThemeStore()
 	const DropSteps = () => {
 		setStep(1)

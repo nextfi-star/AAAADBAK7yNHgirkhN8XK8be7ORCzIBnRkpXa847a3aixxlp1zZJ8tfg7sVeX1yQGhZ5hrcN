@@ -8,11 +8,8 @@ import { useThemeStore } from '@/store'
 import { Divider } from '@nextui-org/divider'
 import { Image } from '@nextui-org/react'
 import { ArrowDownUp, ChevronLeft, X } from 'lucide-react'
-import { NextPage } from 'next'
 
-interface Props {}
-
-const Swap: NextPage<Props> = () => {
+const Swap = () => {
 	const {
 		theme,
 		swapPoppover_1,

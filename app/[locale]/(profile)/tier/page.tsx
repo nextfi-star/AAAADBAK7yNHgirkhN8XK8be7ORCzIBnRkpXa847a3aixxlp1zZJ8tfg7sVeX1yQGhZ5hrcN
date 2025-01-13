@@ -2,11 +2,10 @@
 import { Page_title } from '@/components/shared/Page_title'
 import Tier_initData from '@/components/shared/Tier_initData'
 import Tier_table_regUsers from '@/components/shared/Tier_table_regUsers'
-import { NextPage } from 'next'
 import Image from 'next/image'
 import React from 'react'
 
-const Tier: NextPage = () => {
+const Tier = () => {
 	return (
 		<div className='flex flex-col gap-[40px] w-full -mt-[7.5rem] md:-mt-[0]' data-aos="fade-up">
 			<Page_title title='Levels Activity' className='!my-0'/>

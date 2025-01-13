@@ -26,7 +26,6 @@ const Home: NextPage = () => {
 	useEffect(() => {
 		initializeTheme()
 	}, [initializeTheme])
-
 	useEffect(() => {
 		const timer = setTimeout(() => setLoading(false), 3000)
 		return () => clearTimeout(timer)

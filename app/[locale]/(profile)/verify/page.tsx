@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button'
 import animationData2 from '@/public/animation/verify_anim_mini.json'
 import Lottie, { LottieRefCurrentProps } from 'lottie-react'
 import { Check, ChevronsUpDown, X } from 'lucide-react'
-import { NextPage } from 'next'
 import Image from 'next/image'
 import { useRef, useState } from 'react'
 import {
@@ -63,7 +62,7 @@ const typeID = [
 	},
 ]
 
-const Verify: NextPage = () => {
+const Verify = () => {
 	const { theme, globalVeriState } = useThemeStore()
 	const [change, SetChange] = useState<boolean>(false)
 	const [open, setOpen] = useState(false)

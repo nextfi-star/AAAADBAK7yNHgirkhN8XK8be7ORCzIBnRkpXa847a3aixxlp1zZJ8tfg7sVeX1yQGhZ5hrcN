@@ -7,7 +7,7 @@ import Transaction from '@/components/shared/Transactions'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 
-const Assets: NextPage = () => {
+const Assets = () => {
 	const { verifyState, setVerifyState } = useThemeStore()
 	const pathname = usePathname()
 

@@ -1,5 +1,4 @@
 'use client'
-import { NextPage } from 'next'
 import Image from 'next/image'
 import { Alert_auntef } from '@/components/shared/Alert_auntef'
 import { Alert_email } from '@/components/shared/Alert_email'
@@ -7,10 +6,9 @@ import { Alert_logpass } from '@/components/shared/Alert_logpass'
 import { Alert_phone } from '@/components/shared/Alert_phone'
 import { CloseAccount } from '@/components/shared/CloseAccount'
 import { FreezeAccount } from '@/components/shared/FreezeAccount'
-import { Skeleton } from '@nextui-org/skeleton'
 import { useEffect, useMemo, useState } from 'react'
 
-const Security: NextPage = () => {
+const Security = () => {
 	const [user, setUser] = useState<Record<string, any> | null>(null)
 	useEffect(() => {
 		const storedData = localStorage.getItem('userData') || '{}'

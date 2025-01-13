@@ -6,9 +6,8 @@ import Withdrawal_table_mobile from '@/components/shared/Withdrawal_table_mobile
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { ChevronLeft, X } from 'lucide-react'
-import { NextPage } from 'next'
 
-const Withdrawal: NextPage = () => {
+const Withdrawal = () => {
 	const { setConfirmStep, swapCheck, swapCheck2, setStep } = useThemeStore()
 	const DropSteps = () => {
 		setStep(1)

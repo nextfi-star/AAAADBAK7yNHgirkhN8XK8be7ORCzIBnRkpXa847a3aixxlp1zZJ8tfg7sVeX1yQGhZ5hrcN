@@ -1,10 +1,9 @@
 "use client";
 import Image from "next/image";
-import { NextPage } from "next";
 import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 import { Profile_devices } from "@/components/shared/Profile_devices";
 
-const Devices: NextPage = () => {
+const Devices = () => {
   return (
     <section className="personal !shadow-medium dark:!shadow-none"  data-aos="fade-up"> 
       <div className="personal-container">

@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { NextPage } from 'next'
 import { useThemeStore } from '@/store'
 import {
 	Profile_balance,
@@ -15,7 +14,7 @@ import { usePathname } from 'next/navigation'
 import useAuthProtection from '@/hooks/useAuthProtection'
 import AOS from 'aos'
 
-const Overview: NextPage = () => {
+const Overview = () => {
 	useAuthProtection()
 	const pathname = usePathname()
 	const [verify, setVerify] = useState<boolean>(false)
