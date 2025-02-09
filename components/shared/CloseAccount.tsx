@@ -15,7 +15,7 @@ import { handleAccountAction } from '@/utils/api'
 import { Button } from '@nextui-org/button'
 import { NextPage } from 'next'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
 interface Props {
 	propsItem: React.ReactNode
@@ -31,7 +31,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-export const CloseAccount: NextPage<Props> = ({ propsItem, user }) => {
+export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 	const { theme } = useThemeStore()
 	const [checked, setChecked] = useState(false)
 	const [selectedOption, setSelectedOption] = useState<string | undefined>(
@@ -40,17 +40,20 @@ export const CloseAccount: NextPage<Props> = ({ propsItem, user }) => {
 	const [isCloseModalOpen, setCloseModalOpen] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
-	const { csrf } = user
-	console.log(csrf)
+	const [user, setUser] = useState<Record<string, any> | null>(null)
+	useEffect(() => {
+		const storedData = localStorage.getItem('userData') || '{}'
+		setUser(JSON.parse(storedData))
+	}, [])
+	
 	const handleRadioChange = (value: string) => {
 		setSelectedOption(value)
 	}
 	const handleAction = async (action: 'freeze' | 'close') => {
 		setError(null)
 		setIsLoading(true)
-	
 		try {
-			const result = await handleAccountAction(csrf, action)
+			const result = await handleAccountAction(user?.csrf, action)
 			console.log(`${action} result:`, result)
 			alert(
 				`${action === 'freeze' ? 'Account frozen' : 'Account closed'} successfully.`

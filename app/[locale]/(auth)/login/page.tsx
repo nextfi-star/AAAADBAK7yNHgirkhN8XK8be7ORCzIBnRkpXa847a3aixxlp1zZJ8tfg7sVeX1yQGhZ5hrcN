@@ -100,11 +100,6 @@ const Login = () => {
 		try {
 			const response = await loginUser(payload)
 			if (response.response === 'success') {
-				console.log(
-					'\x1b[32m%s\x1b[0m',
-					`login: ${data.emailOrPhone},\nphone: ${data.emailOrPhone || ''},\npassword: ${data.password}, \nuid: ${data.uid}`
-				)
-				console.log(data)
 				const { email, phone, username, uid, password } = response.data
 				useThemeStore
 					.getState()

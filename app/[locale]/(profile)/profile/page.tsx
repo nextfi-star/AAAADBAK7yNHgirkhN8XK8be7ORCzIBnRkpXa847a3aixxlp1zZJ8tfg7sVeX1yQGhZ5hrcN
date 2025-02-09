@@ -1,5 +1,4 @@
 "use client";
-import { NextPage } from "next";
 import Image from "next/image";
 import { Profile_accountdetails } from "@/components/shared/Profile_accountdetails";
 import { Profile_perosnalinfo } from "@/components/shared/Profile_perosnalinfo";
@@ -7,7 +6,7 @@ import { Profile_personalverif } from "@/components/shared/Profile_personalverif
 import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 import useAuthProtection from '@/hooks/useAuthProtection'
 
-const Page: NextPage = () => {
+const Page= () => {
   useAuthProtection()
   
   return (

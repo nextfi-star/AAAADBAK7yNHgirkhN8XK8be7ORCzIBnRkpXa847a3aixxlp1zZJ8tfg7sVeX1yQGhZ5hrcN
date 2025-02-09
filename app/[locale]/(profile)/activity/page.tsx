@@ -1,12 +1,11 @@
 'use client'
 import React, { useEffect } from 'react'
-import { NextPage } from 'next'
 import { useThemeStore } from '@/store'
 import { Button } from '@nextui-org/button'
 import Activity_progressLogo from '@/components/shared/Activity_progressLogo'
 import Activity_personal from '@/components/shared/Activity_personal'
 
-const Activity: NextPage = () => {
+const Activity = () => {
 	const { initializeTheme } = useThemeStore()
 	useEffect(() => {
 		initializeTheme()

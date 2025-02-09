@@ -1,10 +1,8 @@
 'use client'
 import { CheckCheck } from 'lucide-react'
-import { NextPage } from 'next'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
-import Copy from '../ui/Copy'
 import {
 	AlertDialog,
 	AlertDialogCancel,
@@ -19,24 +17,43 @@ import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { Button } from '@nextui-org/button'
 import { Snippet } from '@nextui-org/snippet'
+import { enable2FA } from '@/utils/api'
 
 interface Props {
 	propsItem: React.ReactNode
 }
 
-export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
+export const Alert_auntef = ({ propsItem }: Props) => {
 	const { theme } = useThemeStore()
 	const [isValid, setisValid] = useState<boolean>(false)
 	const [inputs, setInputs] = useState({
 		emailAuth: '',
 		currentAuth: '',
 	})
+	const [twoFA, setTwoFA] = useState<Record<string, any> | null>(null);	
 	const [step, setStep] = useState<number>(1)
-
+	const [user, setUser] = useState<Record<string, any> | null>(null)
+	useEffect(() => {
+		const storedData = localStorage.getItem('userData') || '{}'
+		setUser(JSON.parse(storedData))
+	}, [])
+	const handleEnable2FA = async () => {
+		const csrf = user?.csrf || ''
+    if (!csrf) {
+      console.log('CSRF token is missing. Please log in first.');
+      return;
+    }
+    try {
+      const response = await enable2FA(csrf); 
+			setTwoFA(response.data)
+    } catch (error) {
+			console.log(error);
+		}
+  }	
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] lg:max-w-[220px] w-full min-h-[28px]'>
+				<Button onClick={handleEnable2FA} className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] lg:max-w-[220px] w-full min-h-[28px]'>
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>
@@ -113,7 +130,7 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 												<Image
 													alt='iphone qr'
 													height={110}
-													src={'/main/profile_security/qr_iphone.png'}
+													src={twoFA?.qr || '/main/profile_security/qr_iphone.png'}
 													width={110}
 												/>
 												<span className='text-[16px] xl:text-[19px]'>IOS</span>
@@ -122,7 +139,7 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 												<Image
 													alt='iphone qr'
 													height={110}
-													src={'/main/profile_security/qr_iphone.png'}
+													src={twoFA?.qr || '/main/profile_security/qr_android.png'}
 													width={110}
 												/>
 												<span className='text-[16px] xl:text-[19px]'>
@@ -179,7 +196,7 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 										</span>
 										<span className='text-[16px] text-[#888888] flex items-center gap-[10px]'>
 											<Snippet symbol={''} className='bg-transparent'>
-												UJY3HM5ATJBQW2IB
+												{twoFA?.secret || 'UJY3HM5ATJBQW2IB'}
 											</Snippet>
 										</span>
 										<div className='flex items-center gap-[10px]'>
@@ -267,7 +284,11 @@ export const Alert_auntef: NextPage<Props> = ({ propsItem }) => {
 													className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] w-full ${inputs.emailAuth.length < 3 || inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
 													onClick={() => {
 														setStep(prev => (prev = 1))
-														setInputs(prev => ({ ...prev, emailAuth: '', currentAuth: '' }))
+														setInputs(prev => ({
+															...prev,
+															emailAuth: '',
+															currentAuth: '',
+														}))
 													}}
 													disabled={!inputs.emailAuth || !inputs.currentAuth}
 												>

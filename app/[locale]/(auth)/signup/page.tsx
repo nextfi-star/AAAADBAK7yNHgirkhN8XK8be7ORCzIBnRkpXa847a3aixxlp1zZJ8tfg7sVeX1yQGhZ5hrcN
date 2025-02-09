@@ -60,8 +60,8 @@ const schema = yup.object().shape({
 	const togglePasswordVisibility = () => setShowPassword(prev => !prev)
 	const onSubmit = async (data: any) => {
 		const payload = {
-			email: mode === 'email' ? data.emailOrPhone : '',
-			phone: mode === 'phone' ? data.emailOrPhone : '',
+			email: mode === 'email' ? data.emailOrPhone : '_',
+			phone: mode === 'phone' ? data.emailOrPhone : '_',
 			password: data.password,
 			refid: data.refid || '',
 			terms: 'yes',
@@ -71,15 +71,9 @@ const schema = yup.object().shape({
 		try {
 			const response = await registerUser(payload)
 			if (response.response === 'success') {
-				console.log(
-					'\x1b[32m%s\x1b[0m',
-					`login: ${data.emailOrPhone},\nphone: ${data.emailOrPhone || ''},\npassword: ${data.password},\nrefid: ${data.refid}`
-				)
-			
 				router.push(`/${locale}/login`)
 			} else {
 				setError(response.message)
-				console.log(response.message)
 			}
 		} catch (err: any) {
 			setError(err.message)

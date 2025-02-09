@@ -1,5 +1,4 @@
 'use client'
-import { NextPage } from 'next'
 import { useThemeStore } from '@/store'
 import { Profile_balance, Profile_payments } from '@/components/shared'
 import Allocation from '@/components/shared/Allocation'
