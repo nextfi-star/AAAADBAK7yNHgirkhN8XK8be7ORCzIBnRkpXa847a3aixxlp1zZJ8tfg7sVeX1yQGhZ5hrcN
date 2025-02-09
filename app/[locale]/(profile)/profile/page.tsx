@@ -5,7 +5,6 @@ import { Profile_perosnalinfo } from "@/components/shared/Profile_perosnalinfo";
 import { Profile_personalverif } from "@/components/shared/Profile_personalverif";
 import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 import useAuthProtection from '@/hooks/useAuthProtection'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useEffect, useState } from 'react'
 
 const Page= () => {
