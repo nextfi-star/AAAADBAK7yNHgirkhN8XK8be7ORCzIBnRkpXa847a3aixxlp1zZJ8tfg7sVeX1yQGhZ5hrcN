@@ -7,7 +7,7 @@ import { Snippet } from '@nextui-org/snippet'
 import { Button } from '@nextui-org/button'
 import { Spinner } from '@nextui-org/spinner'
 import { useEffect, useState } from 'react'
-import { User } from '@/types'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 interface Props {
 	verify: boolean
@@ -25,23 +25,36 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 		<section className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px]'>
 			<div className='profile__info__block__left'>
 				<div className='profile__info__block__left__avatar'>
-					<Image
+					{/* <Image
 						priority
 						alt={'avatar'}
 						className='object-contain rounded-full min-w-[78px]'
 						height={63}
 						src={'/main/avatar_noface.png'}
 						width={63}
-					/>
+					/> */}
+					<Avatar className='min-w-[78px] min-h-[78px]'>
+						<AvatarImage
+							src={user?.avatar || 'https://github.com/shadcn.png'}
+							alt='@nextfi_user'
+						/>
+						<AvatarFallback>CR</AvatarFallback>
+					</Avatar>
 				</div>
 				<div className='profile__info__block__left__text'>
 					<h3 className='profile__info__block__left__text_name '>
 						{' '}
 						{user?.username || <Spinner />}
 					</h3>
-					<div className='profile__info__block__left__text_email'>
-						{!user?.email ? <Spinner /> : <p>{user?.email}</p>}
-					</div>
+					{user?.email ? (
+						<div className='profile__info__block__left__text_email'>
+							{!user?.email ? <Spinner /> : <p>{user?.email}</p>}
+						</div>
+					) : (
+						<div className='profile__info__block__left__text_email'>
+							{!user?.phone ? <Spinner /> : <p>+{user?.phone}</p>}
+						</div>
+					)}
 					<div className='profile__info__block__left__text__id'>
 						<Snippet className='bg-transparent py-[5px] px-0' symbol=''>
 							{user?.uid || <Spinner />}

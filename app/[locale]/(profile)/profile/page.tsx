@@ -5,24 +5,37 @@ import { Profile_perosnalinfo } from "@/components/shared/Profile_perosnalinfo";
 import { Profile_personalverif } from "@/components/shared/Profile_personalverif";
 import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 import useAuthProtection from '@/hooks/useAuthProtection'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { useEffect, useState } from 'react'
 
 const Page= () => {
   useAuthProtection()
-  
+  const [user, setUser] = useState<Record<string, any> | null>(null)
+	useEffect(() => {
+		const storedData = localStorage.getItem('userData') || '{}'
+		setUser(JSON.parse(storedData))
+	}, [])
   return (
     <section className="personal !shadow-medium dark:!shadow-none"
     data-aos="fade-up">
       <div className="personal-container">
         <div className="personal-inner flex flex-row justify-between mt-[20px] gap-[40px]">
           <div className="relative h-fit w-fit">
-            <Image
+            {/* <Image
               priority
               alt={"avatar"}
               className="rounded-[50%] object-contain max-w-[152px] max-h-[152px]"
               height={152}
               src={"/main/avatar_noface.png"}
               width={152}
-            />
+            /> */}
+            <Avatar className='w-full h-full max-w-[152px] max-h-[152px]'>
+						<AvatarImage
+							src={user?.avatar || 'https://github.com/shadcn.png'}
+							alt='@nextfi_user'
+						/>
+						<AvatarFallback>CRyP</AvatarFallback>
+					</Avatar>
             <ChangeAvatar />
           </div>
 

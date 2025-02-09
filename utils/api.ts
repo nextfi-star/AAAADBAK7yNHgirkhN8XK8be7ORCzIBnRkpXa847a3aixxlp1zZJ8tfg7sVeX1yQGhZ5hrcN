@@ -72,6 +72,30 @@ export const enable2FA = async (csrf: string) => {
     throw new Error(error.message || 'An error occurred while enabling 2FA');
   }
 };
+export const verify2FA = async (csrf: string, code: string) => {
+  try {
+    const response = await fetch("https://nextfi.io:5000/api/v1/verify_2fa", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ csrf, "2fa_code": code }),
+    });
+
+    const data = await response.json();
+
+    if (data.response === "success") {
+      console.log("2FA verification successful");
+    } else {
+      console.error("Error verifying 2FA:", data.message);
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Network error:", error);
+    return { response: "error", message: "Network error" };
+  }
+}
 export const verifyCode = async (payload: {
 	email?: string
 	phone?: string
@@ -135,7 +159,7 @@ export const getActiveDevices = async (csrf: string) => {
 		const payload = {
 			csrf: csrf,
 		}
-		const response = await fetch('https://nextfi.io:5000/api/v1/login', {
+		const response = await fetch('https://nextfi.io:5000/api/v1/devices', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

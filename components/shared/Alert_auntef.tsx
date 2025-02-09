@@ -17,7 +17,7 @@ import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { Button } from '@nextui-org/button'
 import { Snippet } from '@nextui-org/snippet'
-import { enable2FA } from '@/utils/api'
+import { enable2FA, verify2FA } from '@/utils/api'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -25,7 +25,6 @@ interface Props {
 
 export const Alert_auntef = ({ propsItem }: Props) => {
 	const { theme } = useThemeStore()
-	const [isValid, setisValid] = useState<boolean>(false)
 	const [inputs, setInputs] = useState({
 		emailAuth: '',
 		currentAuth: '',
@@ -33,6 +32,8 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 	const [twoFA, setTwoFA] = useState<Record<string, any> | null>(null);	
 	const [step, setStep] = useState<number>(1)
 	const [user, setUser] = useState<Record<string, any> | null>(null)
+	const [message, setMessage] = useState("");
+	const [code, setCode] = useState("");
 	useEffect(() => {
 		const storedData = localStorage.getItem('userData') || '{}'
 		setUser(JSON.parse(storedData))
@@ -50,6 +51,11 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 			console.log(error);
 		}
   }	
+  const handleVerify = async (e: React.FormEvent) => {
+		e.preventDefault();
+    const result = await verify2FA(user?.csrf, code);
+    setMessage(result.message);
+  };
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
@@ -130,7 +136,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 												<Image
 													alt='iphone qr'
 													height={110}
-													src={twoFA?.qr || '/main/profile_security/qr_iphone.png'}
+													src={'/main/profile_security/qr_iphone.png'}
 													width={110}
 												/>
 												<span className='text-[16px] xl:text-[19px]'>IOS</span>
@@ -139,7 +145,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 												<Image
 													alt='iphone qr'
 													height={110}
-													src={twoFA?.qr || '/main/profile_security/qr_android.png'}
+													src={'/main/profile_security/qr_iphone.png'}
 													width={110}
 												/>
 												<span className='text-[16px] xl:text-[19px]'>
@@ -186,7 +192,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 												<Image
 													alt='iphone qr'
 													height={110}
-													src={'/main/profile_security/qr_iphone.png'}
+													src={twoFA?.qr}
 													width={110}
 												/>
 											</div>
@@ -231,7 +237,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 									</span>
 								</div>
 								{step === 3 && (
-									<div className='flex flex-col gap-[15px] w-full ml-[47px]'>
+									<form onSubmit={handleVerify} className='flex flex-col gap-[15px] w-full ml-[47px]'>
 										<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
 											Email authentication
 											<div className='relative w-full'>
@@ -261,13 +267,8 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 													placeholder='Enter 6-digit generated code from your app'
 													type='text'
 													name='currentAuth'
-													value={inputs.currentAuth}
-													onChange={e =>
-														setInputs(prev => ({
-															...prev,
-															currentAuth: e.target.value,
-														}))
-													}
+													value={code}
+													onChange={(e) => setCode(e.target.value)}
 												/>
 											</div>
 										</label>
@@ -281,7 +282,8 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 											</Button>
 											<AlertDialogCancel className='mt-0 !bg-transparent w-fit'>
 												<Button
-													className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] w-full ${inputs.emailAuth.length < 3 || inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
+													type='submit'
+													className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] w-full ${inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
 													onClick={() => {
 														setStep(prev => (prev = 1))
 														setInputs(prev => ({
@@ -290,13 +292,13 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 															currentAuth: '',
 														}))
 													}}
-													disabled={!inputs.emailAuth || !inputs.currentAuth}
+													disabled={inputs.currentAuth.length >= 6}
 												>
 													Confirm
 												</Button>
 											</AlertDialogCancel>
 										</div>
-									</div>
+									</form>
 								)}
 							</div>
 						</div>

@@ -27,7 +27,7 @@ export const Profile_accountdetails: NextPage = () => {
 			</h1>
 			<article className='flex items-center justify-between gap-[5px]'>
 				<span>Email</span>
-				<span>{user?.email || <Spinner />}</span>
+				<span>{user?.email || <Spinner /> ? !user?.email : 'none'}</span>
 
 				<div className='min-w-[181px] flex justify-end'>
 					<Alert_email propsItem={'Change'} />
@@ -38,7 +38,7 @@ export const Profile_accountdetails: NextPage = () => {
 
 			<article className='flex items-center justify-between gap-[5px]'>
 				<span>Phone</span>
-				<span>{user?.phone || '****140'}</span>
+				<span>+{user?.phone || '****140'}</span>
 
 				<div className='min-w-[181px] flex justify-end'>
 					<Alert_phone propsItem={'Change'} />

@@ -94,7 +94,7 @@ export const ChangeAvatar = () => {
 
 					{/* Tabs */}
 					<Tabs
-						className='flex flex-col items-center md:items-start overflow-y-auto'
+						className='flex flex-col items-center md:items-start overflow-y-visible overflow-x-visible'
 						value={activeTab}
 						onValueChange={setActiveTab}
 					>
@@ -115,7 +115,7 @@ export const ChangeAvatar = () => {
 										>
 											<Image
 												alt={'avatar'}
-												className={`object-cover max-w-[116px] max-h-[116px] w-full rounded-[50%] hover:cursor-pointer border border-solid hover:border-[#205BC9] idnex-${index}`}
+												className={`object-cover max-w-[116px] max-h-[116px] w-full rounded-[50%] hover:cursor-pointer border border-solid hover:border-[#205BC9] hover:shadow-2xl hover:shadow-[#205BC9] index-${index}`}
 												height={116}
 												src={avatar.img}
 												width={116}

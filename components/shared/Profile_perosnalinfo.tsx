@@ -26,7 +26,7 @@ export const Profile_perosnalinfo: NextPage = () => {
 			</h1>
 			<article className='flex items-center justify-between gap-[5px]'>
 				<span>Nickname</span>
-				<span>{user?.email || <Spinner />}</span>
+				<span className='flex !justify-center w-full '>{user?.username || <Spinner />}</span>
 				<div className='min-w-[181px] flex justify-end'>
 					<Alert_nickname propsItem={'Change'} />
 				</div>

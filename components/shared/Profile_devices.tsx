@@ -41,7 +41,7 @@ export const Profile_devices: NextPage = () => {
 			const fetchSessions = async () => {
 				try {
 					const response = await fetch(
-						'https://nextfi.site:5000/api/v1/devices',
+						'https://nextfi.io:5000/api/v1/devices',
 						{
 							method: 'POST',
 							headers: {
@@ -78,7 +78,7 @@ export const Profile_devices: NextPage = () => {
 				csrf: csrf,
 				full: fullLogout ? 'true' : '',
 			}
-			const response = await fetch('https://nextfi.site:5000/api/v1/logout', {
+			const response = await fetch('https://nextfi.io:5000/api/v1/logout', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -123,15 +123,7 @@ export const Profile_devices: NextPage = () => {
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
 											MacBook PRO
 										</span>
-										{/* <Confirmation_dialog_devices
-											content={
-												'This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers'
-											}
-											title={'Are you absolutely sure?'}
-											titleTriger={'Log out'}
-											unic='half'
-											className='border-1 !border-gray-300 border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] !text-[16px] xl:!text-[16px] 2xl:!text-[16px]'
-										/> */}
+										
 									</div>
 
 									<div
@@ -141,14 +133,7 @@ export const Profile_devices: NextPage = () => {
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
 											MacBook PRO
 										</span>
-										{/* <Confirmation_dialog_devices
-											content={
-												'This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers'
-											}
-											title={'Are you absolutely sure?'}
-											titleTriger={'Log out'}
-											className='border-1 !border-gray-300 border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] !text-[16px] xl:!text-[16px] 2xl:!text-[16px]'
-										/> */}
+										
 									</div>
 
 									<div
@@ -159,14 +144,7 @@ export const Profile_devices: NextPage = () => {
 											MacBook PRO
 										</span>
 
-										{/* <Confirmation_dialog_devices
-											content={
-												'This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers'
-											}
-											title={'Are you absolutely sure?'}
-											titleTriger={'Log out'}
-											className='border-1 !border-gray-300 border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] !text-[16px] xl:!text-[16px] 2xl:!text-[16px]'
-										/> */}
+										
 									</div>
 								</div>
 							</div>

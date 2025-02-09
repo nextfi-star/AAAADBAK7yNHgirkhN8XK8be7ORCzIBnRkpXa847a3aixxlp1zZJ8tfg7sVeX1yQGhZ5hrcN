@@ -43,11 +43,11 @@ export const siteConfig = {
 		title: 'NextFi - Crypto Trading Platform',
 		description:
 			'NextFi is a secure, user-friendly crypto trading platform. Join us to start investing with confidence in a wide range of digital assets. Realize your financial potential with NextFi.',
-		url: 'https://www.nextfi.com',
+		url: 'https://nextfi.io',
 		siteName: 'NextFi',
 		images: [
 			{
-				url: 'https://www.nextfi.com/og-image.jpg',
+				url: 'https://nextfi.io/og-image.jpg',
 				width: 1200,
 				height: 630,
 				alt: 'NextFi - Crypto Trading Platform',
