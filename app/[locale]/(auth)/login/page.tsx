@@ -23,7 +23,7 @@ const schema = yup.object().shape({
 		.required('Email or phone is required')
 		.test('is-valid-email-or-phone', 'Invalid email or phone', value => {
 			const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-			const phoneRegex = /^[0-9]{7,15}$/
+			const phoneRegex = /^\+?[0-9]{7,15}$/
 			return emailRegex.test(value) || phoneRegex.test(value)
 		}),
 	password: yup
