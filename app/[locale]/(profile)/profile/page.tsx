@@ -21,21 +21,15 @@ const Page= () => {
       <div className="personal-container">
         <div className="personal-inner flex flex-row justify-between mt-[20px] gap-[40px]">
           <div className="relative h-fit w-fit">
-            {/* <Image
+            <Image
               priority
               alt={"avatar"}
               className="rounded-[50%] object-contain max-w-[152px] max-h-[152px]"
               height={152}
               src={"/main/avatar_noface.png"}
               width={152}
-            /> */}
-            <Avatar className='w-full h-full max-w-[152px] max-h-[152px]'>
-						<AvatarImage
-							src={user?.avatar || 'https://github.com/shadcn.png'}
-							alt='@nextfi_user'
-						/>
-						<AvatarFallback>CRyP</AvatarFallback>
-					</Avatar>
+            />
+          
             <ChangeAvatar />
           </div>
 
