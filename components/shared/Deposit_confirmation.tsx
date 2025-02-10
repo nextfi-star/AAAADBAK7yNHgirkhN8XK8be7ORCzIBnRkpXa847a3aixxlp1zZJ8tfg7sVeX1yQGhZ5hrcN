@@ -95,7 +95,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 											symbol=''
 											className='text-bold md:text-[20px] text-small capitalize overflow-ellipsis whitespace-nowrap overflow-hidden bg-transparent px-0'
 										>
-											QnC4Nssok2bb3l0Iue1Own
+											none
 										</Snippet>
 									</DialogDescription>
 								</div>

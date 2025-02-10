@@ -6,7 +6,7 @@ import { Link } from '@/i18n/routing'
 import { Snippet } from '@nextui-org/snippet'
 import { Button } from '@nextui-org/button'
 import { Spinner } from '@nextui-org/spinner'
-import { useEffect, useState } from 'react'
+import { useUserStore } from '@/hooks/useUserData'
 
 interface Props {
 	verify: boolean
@@ -14,11 +14,7 @@ interface Props {
 }
 export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 	const t = useTranslations('profile')
-	const [user, setUser] = useState<Record<string, any> | null>(null)
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData') || '{}'
-		setUser(JSON.parse(storedData))
-	}, [])
+	const user = useUserStore((state) => state.user)
 
 	return (
 		<section className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px]'>

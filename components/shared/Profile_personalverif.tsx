@@ -4,19 +4,16 @@ import Image from 'next/image'
 import { NextPage } from 'next'
 import { ProfilePage_guard } from '../ui/ProfilePage_guard'
 import { ViewRegion } from './ViewRegion'
-import { ChangeRegion } from './ChangeRegion'
 import { useThemeStore } from '@/store'
 import { Button } from '@nextui-org/button'
 import { Link } from '@/i18n/routing'
 import { Spinner } from '@nextui-org/spinner'
+import { useUserStore } from '@/hooks/useUserData'
 
 export const Profile_personalverif: NextPage = () => {
 	const { theme } = useThemeStore()
-	const [user, setUser] = useState<Record<string, any> | null>(null)
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData') || '{}'
-		setUser(JSON.parse(storedData))
-	}, [])
+	const user = useUserStore((state) => state.user)
+
 	return (
 		<section className='personal__content flex flex-col w-full'>
 			<h1 className='personal__content-title'>

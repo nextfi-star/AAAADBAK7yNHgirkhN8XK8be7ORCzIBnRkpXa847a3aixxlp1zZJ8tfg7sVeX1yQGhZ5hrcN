@@ -103,7 +103,7 @@ const Verify = () => {
 			className={`verify -mt-[8rem] sm:-mt-0 pb-[2rem] sm:pb-[0] ${
 				showFaq ? 'fixed' : ''
 			}`}
-			data-aos="fade-up"
+			
 		>
 			<div className='site-holder !px-[0]'>
 				{!change ? (

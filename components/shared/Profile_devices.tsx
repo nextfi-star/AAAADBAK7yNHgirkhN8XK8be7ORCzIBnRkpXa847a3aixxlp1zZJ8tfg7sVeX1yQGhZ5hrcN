@@ -1,43 +1,29 @@
+'use client'
 import Image from 'next/image'
 import { NextPage } from 'next'
 import { Device } from '../ui/Device'
 import { Accordion, AccordionItem } from '@/components/ui/AccordionBurger'
 import { useThemeStore } from '@/store'
-import { Confirmation_dialog } from './Confirmation_dialog'
-import { Confirmation_dialog_devices } from './Confirmation_dialog_devices'
 import { Button } from '@nextui-org/button'
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import { getActiveDevices } from '@/utils/api'
 import useAuthProtection from '@/hooks/useAuthProtection'
-import { Spinner } from '@nextui-org/spinner'
 import { Skeleton } from '@nextui-org/skeleton'
+import { useUserStore } from '@/hooks/useUserData'
 
 export const Profile_devices: NextPage = () => {
 	const { theme } = useThemeStore()
 	const [sessions, setSessions] = useState<any[]>([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(null)
-	const [user, setUser] = useState<Record<string, any> | null>(null)
-	const [csrfToken, setCsrfToken] = useState<string | null>(null)
+	const user = useUserStore((state) => state.user)
 	useAuthProtection()
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData') || '{}'
-		setUser(JSON.parse(storedData))
-	}, [])
 	const router = useRouter()
 	const locale = useParams()?.locale || 'en'
 	const csrf = user?.csrf || ''
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData')
-		if (storedData) {
-			const user = JSON.parse(storedData)
-			setCsrfToken(user?.csrf || null)
-		}
-	}, [])
 
 	useEffect(() => {
-		if (csrfToken) {
+		if (csrf) {
 			const fetchSessions = async () => {
 				try {
 					const response = await fetch(
@@ -47,7 +33,7 @@ export const Profile_devices: NextPage = () => {
 							headers: {
 								'Content-Type': 'application/json',
 							},
-							body: JSON.stringify({ csrf: csrfToken }),
+							body: JSON.stringify({ csrf: csrf }),
 						}
 					)
 					const result = await response.json()
@@ -66,7 +52,7 @@ export const Profile_devices: NextPage = () => {
 
 			fetchSessions()
 		}
-	}, [csrfToken])
+	}, [csrf])
 	if (loading)
 		return (
 			<Skeleton className='min-h-[214px] bg-transparent dark:shadow-none shadow-medium rounded-[30px]' />
@@ -89,9 +75,8 @@ export const Profile_devices: NextPage = () => {
 			if (!response.ok) {
 				throw new Error(result.message || 'Logout failed')
 			}
-			console.log('Logout successful:', result)
 			localStorage.removeItem('userData')
-			router.push(`/${locale}/over`)
+			router.push(`/${locale}/login`)
 		} catch (error) {
 			console.error('Logout error:', error)
 		}

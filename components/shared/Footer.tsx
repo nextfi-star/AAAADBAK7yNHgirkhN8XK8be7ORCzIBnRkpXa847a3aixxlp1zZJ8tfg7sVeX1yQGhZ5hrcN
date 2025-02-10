@@ -216,11 +216,36 @@ export const Footer: NextPage = () => {
 							Community
 						</h5>
 						<div className='flex items-center gap-[8px]'>
-							<Avatar showFallback name='Tg' />
-							<Avatar showFallback name='Ins' />
-							<Avatar showFallback name='Snp' />
-							<Avatar showFallback name='Twt' />
-							<Avatar showFallback name='Fcb' />
+							<Image
+								width={27}
+								height={27}
+								alt='social icon'
+								src='/footer/telegram.svg'
+							/>
+							<Image
+								width={27}
+								height={27}
+								alt='social icon'
+								src='/footer/instagram.svg'
+							/>
+							<Image
+								width={27}
+								height={27}
+								alt='social icon'
+								src='/footer/snapchat.svg'
+							/>
+							<Image
+								width={27}
+								height={27}
+								alt='social icon'
+								src='/footer/twitter.svg'
+							/>
+							<Image
+								width={27}
+								height={27}
+								alt='social icon'
+								src='/footer/fasebook.svg'
+							/>
 						</div>
 					</div>
 
@@ -307,11 +332,36 @@ export const Footer: NextPage = () => {
 							Community
 						</h5>
 						<div className='flex items-center gap-[8px]'>
-							<Avatar showFallback name='Tg' className='w-[27px] h-[27px]' />
-							<Avatar showFallback name='Ins' className='w-[27px] h-[27px]' />
-							<Avatar showFallback name='Snp' className='w-[27px] h-[27px]' />
-							<Avatar showFallback name='Twt' className='w-[27px] h-[27px]' />
-							<Avatar showFallback name='Fcb' className='w-[27px] h-[27px]' />
+							<Image
+								width={27}
+								height={27}
+								alt='social icon'
+								src='/footer/telegram.svg'
+							/>
+							<Image
+								width={27}
+								height={27}
+								alt='social icon'
+								src='/footer/instagram.svg'
+							/>
+							<Image
+								width={27}
+								height={27}
+								alt='social icon'
+								src='/footer/snapchat.svg'
+							/>
+							<Image
+								width={27}
+								height={27}
+								alt='social icon'
+								src='/footer/twitter.svg'
+							/>
+							<Image
+								width={27}
+								height={27}
+								alt='social icon'
+								src='/footer/facebook.svg'
+							/>
 						</div>
 					</div>
 

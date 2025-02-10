@@ -10,10 +10,6 @@ interface Props {
 export default function Theme_switch({ width }: Props) {
   const { theme, setTheme, initializeTheme } = useThemeStore();
 
-  useEffect(() => {
-    initializeTheme();
-  }, [initializeTheme]);
-
   const toggleTheme = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
 

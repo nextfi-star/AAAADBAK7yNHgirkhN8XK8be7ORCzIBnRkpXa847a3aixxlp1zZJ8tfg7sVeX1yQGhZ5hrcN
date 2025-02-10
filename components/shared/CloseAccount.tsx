@@ -31,6 +31,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
+import { useUserStore } from '@/hooks/useUserData'
 export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 	const { theme } = useThemeStore()
 	const [checked, setChecked] = useState(false)
@@ -40,11 +41,7 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 	const [isCloseModalOpen, setCloseModalOpen] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
-	const [user, setUser] = useState<Record<string, any> | null>(null)
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData') || '{}'
-		setUser(JSON.parse(storedData))
-	}, [])
+	const user = useUserStore((state) => state.user)
 	
 	const handleRadioChange = (value: string) => {
 		setSelectedOption(value)

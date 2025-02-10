@@ -4,14 +4,11 @@ import { NextPage } from 'next'
 import { Alert_nickname } from './Alert_nickname'
 import { Snippet } from '@nextui-org/snippet'
 import { Spinner } from '@nextui-org/spinner'
-import { useEffect, useState } from 'react'
+import { useUserStore } from '@/hooks/useUserData'
 
 export const Profile_perosnalinfo: NextPage = () => {
-	const [user, setUser] = useState<Record<string, any> | null>(null)
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData') || '{}'
-		setUser(JSON.parse(storedData))
-	}, [])
+	const user = useUserStore((state) => state.user)
+
 	return (
 		<section className='personal__content flex flex-col w-full'>
 			<h1 className='personal__content-title'>

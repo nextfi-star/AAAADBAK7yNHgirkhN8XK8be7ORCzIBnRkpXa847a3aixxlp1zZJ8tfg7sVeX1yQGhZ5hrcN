@@ -51,13 +51,13 @@ export const Balance_img = () => {
           alt="stats"
           className="stats__image w-auto"
           height={396}
+          width={396}
           quality={100}
           src={
             theme === "dark"
               ? "/main/investment_dark.png"
               : "/main/getstarted-stats.png"
           }
-          width={396}
         />
       </div>
     </>

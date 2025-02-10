@@ -6,14 +6,12 @@ import { Alert_logpass } from '@/components/shared/Alert_logpass'
 import { Alert_phone } from '@/components/shared/Alert_phone'
 import { CloseAccount } from '@/components/shared/CloseAccount'
 import { FreezeAccount } from '@/components/shared/FreezeAccount'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo} from 'react'
+import { useUserStore } from '@/hooks/useUserData'
 
 const Security = () => {
-	const [user, setUser] = useState<Record<string, any> | null>(null)
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData') || '{}'
-		setUser(JSON.parse(storedData))
-	}, [])
+	const user = useUserStore((state) => state.user)
+
 	const data = useMemo(
 		() => [
 			{
@@ -68,7 +66,7 @@ const Security = () => {
 	return (
 		<section
 			className='security !shadow-medium dark:!shadow-none'
-			data-aos='fade-up'
+			
 		>
 			<div className='security-container '>
 				<div className='security__content mb-[20px]'>

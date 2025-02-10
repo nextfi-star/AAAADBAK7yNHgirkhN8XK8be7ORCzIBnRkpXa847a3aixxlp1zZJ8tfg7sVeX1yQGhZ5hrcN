@@ -5,18 +5,15 @@ import { Profile_perosnalinfo } from "@/components/shared/Profile_perosnalinfo";
 import { Profile_personalverif } from "@/components/shared/Profile_personalverif";
 import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 import useAuthProtection from '@/hooks/useAuthProtection'
-import { useEffect, useState } from 'react'
+import { useUserStore } from '@/hooks/useUserData'
 
 const Page= () => {
   useAuthProtection()
-  const [user, setUser] = useState<Record<string, any> | null>(null)
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData') || '{}'
-		setUser(JSON.parse(storedData))
-	}, [])
+  const user = useUserStore((state) => state.user)
+
   return (
     <section className="personal !shadow-medium dark:!shadow-none"
-    data-aos="fade-up">
+    >
       <div className="personal-container">
         <div className="personal-inner flex flex-row justify-between mt-[20px] gap-[40px]">
           <div className="relative h-fit w-fit">

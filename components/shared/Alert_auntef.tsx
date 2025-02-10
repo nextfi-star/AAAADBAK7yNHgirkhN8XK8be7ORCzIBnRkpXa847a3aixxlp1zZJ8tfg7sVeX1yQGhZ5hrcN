@@ -1,7 +1,7 @@
 'use client'
 import { CheckCheck } from 'lucide-react'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
 import {
 	AlertDialog,
@@ -18,12 +18,14 @@ import { useThemeStore } from '@/store'
 import { Button } from '@nextui-org/button'
 import { Snippet } from '@nextui-org/snippet'
 import { enable2FA, verify2FA } from '@/utils/api'
+import { useUserStore } from '@/hooks/useUserData'
 
 interface Props {
 	propsItem: React.ReactNode
 }
 
 export const Alert_auntef = ({ propsItem }: Props) => {
+	const user = useUserStore((state) => state.user)
 	const { theme } = useThemeStore()
 	const [inputs, setInputs] = useState({
 		emailAuth: '',
@@ -31,13 +33,8 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 	})
 	const [twoFA, setTwoFA] = useState<Record<string, any> | null>(null);	
 	const [step, setStep] = useState<number>(1)
-	const [user, setUser] = useState<Record<string, any> | null>(null)
 	const [message, setMessage] = useState("");
 	const [code, setCode] = useState("");
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData') || '{}'
-		setUser(JSON.parse(storedData))
-	}, [])
 	const handleEnable2FA = async () => {
 		const csrf = user?.csrf || ''
     if (!csrf) {

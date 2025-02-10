@@ -7,7 +7,7 @@ import { useRouter, useParams } from 'next/navigation'
 import { Button } from '@nextui-org/button'
 import { useThemeStore } from '@/store'
 import { Spinner } from '@nextui-org/spinner'
-import { loginUser, registerUser } from '@/utils/api'
+import { loginUser } from '@/utils/api'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { Logo_header } from '@/components/ui/Logo_header'
@@ -17,6 +17,7 @@ import {
 	InputOTPSlot,
 } from '@/components/ui/input-otp'
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
+import { useUserStore } from '@/hooks/useUserData'
 const schema = yup.object().shape({
 	emailOrPhone: yup
 		.string()
@@ -70,11 +71,7 @@ const Login = () => {
 			setState(false)
 		}
 	}, [])
-	const [user, setUser] = useState<Record<string, any> | null>(null)
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData') || '{}'
-		setUser(JSON.parse(storedData))
-	}, [])
+	const user = useUserStore((state) => state.user)
 
 	const handleChange = () => {
 		setshowVerifWindow(true)
@@ -146,7 +143,7 @@ const Login = () => {
 								{Array.from({ length: 6 }).map((_, index) => (
 									<InputOTPSlot
 										key={index}
-										className='border-1 border-solid border-gray-500 text-[16px] p-[25px]'
+										className='border-1 border-solid border-gray-500 text-[16px] p-[25px] text-[#0c0c0c] dark:text-[#ffffff]'
 										index={index}
 									/>
 								))}
@@ -267,7 +264,7 @@ const Login = () => {
 						</button>
 
 						<Link className='help-signup' href='/signup'>
-							Don't have an account? <span>Sign in</span>
+							Don't have an account? <span>Sign up</span>
 						</Link>
 
 						<div className='socials login__social'>

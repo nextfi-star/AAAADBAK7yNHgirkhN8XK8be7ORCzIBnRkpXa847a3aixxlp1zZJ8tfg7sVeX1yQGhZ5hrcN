@@ -19,8 +19,6 @@ import {
 	ChartBarDecreasing,
 	ChartPie,
 	CircleArrowDown,
-	CircleDollarSign,
-	CircleFadingArrowUp,
 	IdCard,
 	Power,
 	Repeat,

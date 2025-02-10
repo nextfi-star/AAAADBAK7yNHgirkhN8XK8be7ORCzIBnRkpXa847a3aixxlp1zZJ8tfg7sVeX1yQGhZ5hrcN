@@ -12,7 +12,6 @@ import {
 } from '@/components/shared'
 import { usePathname } from 'next/navigation'
 import useAuthProtection from '@/hooks/useAuthProtection'
-import AOS from 'aos'
 
 const Overview = () => {
 	useAuthProtection()
@@ -23,9 +22,6 @@ const Overview = () => {
 		setVerify(prev => !prev)
 	}
 	useEffect(() => {
-		AOS.init({ duration: 1000, once: true })
-	}, [])
-	useEffect(() => {
 		if (pathname !== '/assets') {
 			setVerifyState(false)
 		} else {
@@ -34,7 +30,7 @@ const Overview = () => {
 	}, [pathname])
 
 	return (
-		<section className='profile' data-aos='fade-up'>
+		<section className='profile'>
 			<Profile_info toggleActive={toggleActive} verify={verify} />
 			<div className='profile__grid gap-[1.5rem] max-xl:grid max-xl:grid-cols-1'>
 				<div className='flex flex-col gap-[1.5rem] h-full items-stretch justify-start'>

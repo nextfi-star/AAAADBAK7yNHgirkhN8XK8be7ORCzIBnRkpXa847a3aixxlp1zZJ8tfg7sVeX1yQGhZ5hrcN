@@ -6,7 +6,7 @@ import ArrowBracket from '@/components/ui/ArrowBracket'
 import { useThemeStore } from '@/store'
 import { ChangeAvatar } from '@/components/ui/ChangeAvatar'
 import { Spinner } from '@nextui-org/spinner'
-import { useEffect, useState } from 'react'
+import { useUserStore } from '@/hooks/useUserData'
 
 interface Props {
 	username: string
@@ -15,15 +15,11 @@ interface Props {
 }
 export const ProfileBurger_settigns: NextPage<Props> = ({
 	username,
-	setShowSection,
 	showSection,
 }) => {
 	const { theme } = useThemeStore()
-	const [user, setUser] = useState<Record<string, any> | null>(null)
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData') || '{}'
-		setUser(JSON.parse(storedData))
-	}, [])
+	const user = useUserStore((state) => state.user)
+
 	return (
 		<section
 			className={showSection ? `profile__burger-info` : 'flex justify-center'}

@@ -20,7 +20,7 @@ const Assets = () => {
 	return (
 		<>
 			{verifyState && (
-				<section className='profile' data-aos='fade-up'>
+				<section className='profile' >
 					<div className='profile__grid gap-[1.5rem] max-xl:grid max-xl:grid-cols-1'>
 						<div className='flex  mt-[-24px] flex-col w-full gap-[1.5rem]'>
 							<hr />

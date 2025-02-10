@@ -139,10 +139,6 @@ const Deposit_steps: NextPage<Props> = () => {
 	const [input3, setInput3] = useState('')
 	const [selectedCrypto, setSelectedCrypto] = useState<CryptoData | null>(null)
 	const [openNetwork, setOpenNetwork] = useState(false)
-	const inputStep2Handler = (value: string) => {
-		setInputStep2(value)
-		setStep(3)
-	}
 	const input2Step2Handler = (e: any) => {
 		setInput2Step2(e.target.value)
 	}

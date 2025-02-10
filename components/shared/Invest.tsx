@@ -9,7 +9,7 @@ export const Invest: NextPage = () => {
     <section className="main__mobile">
       <div className="site-holder">
         <div
-          className="mobile__content"
+          className="mobile__content !justify-center"
           data-aos="fade-up"
           data-aos-duration="1000"
           data-aos-once="true"
@@ -63,7 +63,6 @@ export const Invest: NextPage = () => {
                 </div>
               </div>
               <div className="mobile__info">
-                <span className="mobile__info-title">+1000 users</span>
                 <p className="mobile__info-text">
                   You always have access to investments at your fingertips
                 </p>

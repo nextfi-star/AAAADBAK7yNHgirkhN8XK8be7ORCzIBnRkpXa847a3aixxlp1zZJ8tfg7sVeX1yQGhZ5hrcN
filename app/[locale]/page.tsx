@@ -1,5 +1,4 @@
 'use client'
-import type { NextPage } from 'next'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { useEffect, useState } from 'react'
@@ -16,10 +15,9 @@ import {
 	Levels,
 } from '@/components/shared'
 
-const Home: NextPage = () => {
+const Home = () => {
 	const { initializeTheme } = useThemeStore()
 	const [loading, setLoading] = useState<boolean>(true)
-
 	useEffect(() => {
 		AOS.init({ duration: 1000, once: true })
 	}, [])

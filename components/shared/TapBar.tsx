@@ -55,9 +55,6 @@ export const TapBar: NextPage = () => {
 		],
 		[setVerifyState]
 	)
-	useEffect(() => {
-		initializeTheme()
-	}, [initializeTheme])
 
 	const dotLottieRefs = useRef<(DotLottie | null)[]>([])
 	const [activeIndex, setActiveIndex] = useState<null | number>(null)

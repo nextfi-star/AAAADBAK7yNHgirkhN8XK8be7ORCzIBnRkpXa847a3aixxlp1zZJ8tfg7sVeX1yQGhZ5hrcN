@@ -77,7 +77,7 @@ export const Era: NextPage = () => {
             <div className="main__era-stats-text">
               <div className="main__era-stats-item">
                 <span className="main__era-stats-item__title">
-                  Up to X% growth per year
+                  Up to 120% growth per year
                 </span>
                 <p className="main__era-stats-item__text">
                   Daily growth of your capital with the ability to track in real
@@ -86,7 +86,7 @@ export const Era: NextPage = () => {
               </div>
               <div className="main__era-stats-item">
                 <span className="main__era-stats-item__title">
-                  Up to X% bonuses on savings balance
+                  Up to 12% bonuses on savings balance
                 </span>
                 <p className="main__era-stats-item__text">
                   Earning smart interest on the amount of your investments in
@@ -101,17 +101,6 @@ export const Era: NextPage = () => {
                 src="/main/era-stats.png"
                 width={504}
               />
-            </div>
-            <div className="main__era-stats-values">
-              <span className="main__era-stats-values__item">
-                X% + SMART% bonuses for 1 month
-              </span>
-              <span className="main__era-stats-values__item">
-                X% + SMART% bonuses for 3 months
-              </span>
-              <span className="main__era-stats-values__item">
-                X% + SMART% bonuses for 6 months
-              </span>
             </div>
           </div>
           <div

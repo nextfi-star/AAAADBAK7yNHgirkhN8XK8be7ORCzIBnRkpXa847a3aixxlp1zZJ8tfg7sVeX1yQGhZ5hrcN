@@ -5,7 +5,7 @@ import { Profile_devices } from "@/components/shared/Profile_devices";
 
 const Devices = () => {
   return (
-    <section className="personal !shadow-medium dark:!shadow-none"  data-aos="fade-up"> 
+    <section className="personal !shadow-medium dark:!shadow-none"  > 
       <div className="personal-container">
         <h1 className="text-[32px] font-bold w-full text-center lg:text-left">
           Authorized Devices

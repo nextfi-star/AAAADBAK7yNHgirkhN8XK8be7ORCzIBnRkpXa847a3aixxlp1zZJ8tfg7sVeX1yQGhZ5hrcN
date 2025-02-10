@@ -77,24 +77,24 @@ export const Intro: NextPage = () => {
           data-aos-once="true"
         >
           <div className="main__intro-values-item">
-            <span className="main__intro-values-item__count">{t("$65B")}</span>
+            <span className="main__intro-values-item__count">+ 10 M</span>
             <span className="main__intro-values-item__name">
               {t("Investment")}
             </span>
           </div>
           <div className="main__intro-values-item">
-            <span className="main__intro-values-item__count">{t("$350M")}</span>
-            <span className="main__intro-values-item__name">{t("Payout")}</span>
+            <span className="main__intro-values-item__count">+ $8.5 M</span>
+            <span className="main__intro-values-item__name"> Active Deposits</span>
           </div>
           <div className="main__intro-values-item">
-            <span className="main__intro-values-item__count">+750</span>
+            <span className="main__intro-values-item__count">+100</span>
             <span className="main__intro-values-item__name">
-              {t("AllUsers")}
+              Users
             </span>
           </div>
           <div className="main__intro-values-item">
-            <span className="main__intro-values-item__count">{t("+230")}</span>
-            <span className="main__intro-values-item__name">{t("Bonus")}</span>
+            <span className="main__intro-values-item__count">+100K</span>
+            <span className="main__intro-values-item__name">Bonus</span>
           </div>
         </div>
       </div>

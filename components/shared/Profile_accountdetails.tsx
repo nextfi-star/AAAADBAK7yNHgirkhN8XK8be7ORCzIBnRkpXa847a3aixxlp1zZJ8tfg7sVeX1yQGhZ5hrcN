@@ -5,14 +5,10 @@ import { Alert_email } from './Alert_email'
 import { Alert_phone } from './Alert_phone'
 import { Button } from '@nextui-org/button'
 import { Spinner } from '@nextui-org/spinner'
-import { useEffect, useState } from 'react'
+import { useUserStore } from '@/hooks/useUserData'
 
 export const Profile_accountdetails: NextPage = () => {
-	const [user, setUser] = useState<Record<string, any> | null>(null)
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData') || '{}'
-		setUser(JSON.parse(storedData))
-	}, [])
+	const user = useUserStore((state) => state.user)
 	return (
 		<section className='personal__content flex flex-col w-full'>
 			<h1 className='personal__content-title'>

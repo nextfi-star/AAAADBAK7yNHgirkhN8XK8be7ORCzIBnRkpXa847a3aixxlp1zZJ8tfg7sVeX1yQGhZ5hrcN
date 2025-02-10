@@ -1,20 +1,13 @@
 'use client'
-import React, { useEffect } from 'react'
-import { useThemeStore } from '@/store'
 import { Button } from '@nextui-org/button'
 import Activity_progressLogo from '@/components/shared/Activity_progressLogo'
 import Activity_personal from '@/components/shared/Activity_personal'
 
 const Activity = () => {
-	const { initializeTheme } = useThemeStore()
-	useEffect(() => {
-		initializeTheme()
-	}, [initializeTheme])
-
 	return (
 		<section
 			className='activity mt-[8rem] flex flex-col min-h-screen pb-[2.5rem] overflow-x-hidden relative'
-			data-aos='fade-up'
+			
 		>
 			<div className='site-holder flex flex-col items-center gap-[46px] relative'>
 				<article className='flex flex-col items-center w-full'>

@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react'
 import { DropData } from './ProfileHeader'
 import Image from 'next/image'
 import { Spinner } from '@nextui-org/spinner'
+import { useUserStore } from '@/hooks/useUserData'
 
 interface Props {
 	dropData?: DropData[]
@@ -35,11 +36,7 @@ export const DropDown_menu: NextPage<Props> = ({
 }) => {
 	const [selectedKeys, setSelectedKeys] = useState<DropData | null>(null)
 	const [open, setOpen] = useState(false)
-	const [user, setUser] = useState<Record<string, any> | null>(null)
-	useEffect(() => {
-		const storedData = localStorage.getItem('userData') || '{}'
-		setUser(JSON.parse(storedData))
-	}, [])
+	const user = useUserStore((state) => state.user)
 	return (
 		<div onMouseLeave={() => setOpen(!open)}>
 			<Popover open={open} onOpenChange={setOpen}>
@@ -82,15 +79,22 @@ export const DropDown_menu: NextPage<Props> = ({
 											/>
 											<div className='flex flex-col items-stretch'>
 												<div className='text-[13px] dark:text-[#eeeeee] text-[#0c0c0c]'>
-													{!user?.email ? (
-														<Spinner
-															size='sm'
-															classNames={{
-																base: 'max-w-[5px]',
-															}}
-														/>
+													{user?.email ? (
+														<div className='profile__info__block__left__text_email'>
+															{!user?.email ? (
+																<Spinner />
+															) : (
+																<p>{user?.email}</p>
+															)}
+														</div>
 													) : (
-														<p>{user?.email}</p>
+														<div className='profile__info__block__left__text_email'>
+															{!user?.phone ? (
+																<Spinner />
+															) : (
+																<p>+{user?.phone}</p>
+															)}
+														</div>
 													)}
 												</div>
 												<div className='text-[13px] text-[#0c0c0c] dark:text-[#eeeeee] flex items-center gap-[5px]'>

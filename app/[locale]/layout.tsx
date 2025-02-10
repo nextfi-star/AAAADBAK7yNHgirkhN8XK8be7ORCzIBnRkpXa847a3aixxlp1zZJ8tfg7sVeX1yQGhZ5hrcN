@@ -13,6 +13,7 @@ import { routing } from '@/i18n/routing'
 import { siteConfig } from '@/config/site'
 import { fontSans } from '@/config/fonts'
 import { redirect } from 'next/navigation'
+import { UserInitializer } from './UserInitializer'
 
 export const metadata: Metadata = {
 	title: siteConfig.name,
@@ -39,7 +40,7 @@ export default async function RootLayout({
 	params: { locale: string }
 }) {
 	if (!routing.locales.includes(locale as any)) {
-		redirect(`/${routing.defaultLocale}`)
+		redirect(`/${routing.locales[0]}`)
 	}
 	const messages = await getMessages()
 	setRequestLocale(locale)
@@ -53,9 +54,10 @@ export default async function RootLayout({
 			>
 				<NextIntlClientProvider messages={messages}>
 					<Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
+						<UserInitializer />
 						<main className='main'>{children}</main>
 					</Providers>
-				</NextIntlClientProvider>
+				</NextIntlClientProvider>	
 			</body>
 		</html>
 	)
