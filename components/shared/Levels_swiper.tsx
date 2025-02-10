@@ -7,33 +7,30 @@ import { NextPage } from "next";
 
 const sliderData = [
   {
-    percent: "5%",
+    percent: "4%",
     time: "in 30 days",
     text: "Minimum amount X NextFi",
     subtext: "Maximum amount X NextFi",
     investment: "Investment term",
     investmentTime: "30 days",
-
     buttonLink: "#",
     img: "/main/arrow_right.svg",
   },
   {
-    percent: "10%",
+    percent: "7%",
     time: "in 30 days",
     text: "Minimum amount X NextFi",
     subtext: "Maximum amount X NextFi",
     investment: "Investment term",
     investmentTime: "30 days",
-
     buttonLink: "#",
     img: "/main/arrow_right.svg",
   },
   {
-    percent: "15%",
+    percent: "14%",
     time: "in 30 days",
     investment: "Investment term",
     investmentTime: "30 days",
-
     buttonLink: "#",
     img: "/main/arrow_right.svg",
   },
