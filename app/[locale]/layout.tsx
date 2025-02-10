@@ -14,6 +14,7 @@ import { siteConfig } from '@/config/site'
 import { fontSans } from '@/config/fonts'
 import { redirect } from 'next/navigation'
 import { UserInitializer } from './UserInitializer'
+import { AosInitializer } from '@/components/shared/AosInitializer'
 
 export const metadata: Metadata = {
 	title: siteConfig.name,
@@ -55,9 +56,10 @@ export default async function RootLayout({
 				<NextIntlClientProvider messages={messages}>
 					<Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
 						<UserInitializer />
+						<AosInitializer />
 						<main className='main'>{children}</main>
 					</Providers>
-				</NextIntlClientProvider>	
+				</NextIntlClientProvider>
 			</body>
 		</html>
 	)

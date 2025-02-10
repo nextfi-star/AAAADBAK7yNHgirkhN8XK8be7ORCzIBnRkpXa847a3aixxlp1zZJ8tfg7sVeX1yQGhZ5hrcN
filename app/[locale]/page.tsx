@@ -1,6 +1,5 @@
 'use client'
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+
 import { useEffect, useState } from 'react'
 import Preloader from '@/components/shared/Preloader'
 import { useThemeStore } from '@/store'
@@ -18,9 +17,7 @@ import {
 const Home = () => {
 	const { initializeTheme } = useThemeStore()
 	const [loading, setLoading] = useState<boolean>(true)
-	useEffect(() => {
-		AOS.init({ duration: 1000, once: true })
-	}, [])
+	
 	useEffect(() => {
 		initializeTheme()
 	}, [initializeTheme])
