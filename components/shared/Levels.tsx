@@ -24,7 +24,7 @@ export const Levels: NextPage = () => {
           data-aos-duration="1000"
           data-aos-once="true"
         >
-          <b>System of</b> Personalized Investment<b> Levels.</b>
+          <b>Personalised</b> Investment Portfolio<b> System.</b>
         </h2>
         <p
           className="section-description"
@@ -32,9 +32,7 @@ export const Levels: NextPage = () => {
           data-aos-duration="1000"
           data-aos-once="true"
         >
-          Each level offers different opportunities for capital growth depending
-          on your goals and is based on your individual investment experience
-          and preferences.
+          Our Personalised Investment Portfolio System allows you to invest in stocks, bonds, startups, and commodities, providing tailored opportunities for capital growth based on your experience, goals, and preferences.
         </p>
         {/* Swiper */}
 

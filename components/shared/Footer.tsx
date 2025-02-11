@@ -244,7 +244,7 @@ export const Footer: NextPage = () => {
 								width={27}
 								height={27}
 								alt='social icon'
-								src='/footer/fasebook.svg'
+								src='/footer/facebook.svg'
 							/>
 						</div>
 					</div>

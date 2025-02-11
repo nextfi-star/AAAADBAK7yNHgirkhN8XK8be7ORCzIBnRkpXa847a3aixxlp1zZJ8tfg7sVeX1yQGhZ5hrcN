@@ -45,7 +45,7 @@ export const Era: NextPage = () => {
               partners and create liquidity for the NextFi token.
             </p>
             <div
-              className="main__era-column-bottom"
+              className="main__era-column-bottom mb-[8rem]"
               data-aos="fade-up"
               data-aos-duration="1200"
               data-aos-once="true"
