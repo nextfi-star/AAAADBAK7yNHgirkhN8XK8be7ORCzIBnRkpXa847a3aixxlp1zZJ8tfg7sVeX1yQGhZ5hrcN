@@ -14,7 +14,7 @@ import { usePathname } from 'next/navigation'
 import useAuthProtection from '@/hooks/useAuthProtection'
 
 const Overview = () => {
-	useAuthProtection()
+	// useAuthProtection()
 	const pathname = usePathname()
 	const [verify, setVerify] = useState<boolean>(false)
 	const { setVerifyState } = useThemeStore()

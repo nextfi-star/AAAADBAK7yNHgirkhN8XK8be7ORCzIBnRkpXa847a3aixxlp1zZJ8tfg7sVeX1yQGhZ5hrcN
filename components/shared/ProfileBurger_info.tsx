@@ -21,7 +21,7 @@ export const ProfileBurger_info: NextPage<Props> = ({
 	const handleClick = () => {
 		setShowSection(!showSection)
 	}
-	const user = useUserStore((state) => state.user)
+	const user = useUserStore(state => state.user)
 
 	return (
 		<section
@@ -41,9 +41,15 @@ export const ProfileBurger_info: NextPage<Props> = ({
 					/>
 				</div>
 				<div className='flex flex-col'>
-					<h5 className='text-[18px] max-w-[250px] overflow-x-hidden'>
-					{user && user?.email || username || <Spinner />}
-					</h5>
+					{user?.email ? (
+						<h5 className='text-[18px] max-w-[250px] overflow-x-hidden'>
+							{user?.email}
+						</h5>
+					) : (
+						<h5 className='text-[18px] max-w-[250px] overflow-x-hidden'>
+							{user?.phone}
+						</h5>
+					)}
 					{showSection && <span className='text-[14px]'>Profile Settings</span>}
 				</div>
 			</div>

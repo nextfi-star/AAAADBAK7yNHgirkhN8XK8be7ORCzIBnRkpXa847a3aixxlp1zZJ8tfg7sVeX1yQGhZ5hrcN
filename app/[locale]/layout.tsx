@@ -1,9 +1,5 @@
 import '@/styles/globals.scss'
 import '@/styles/page.scss'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import 'swiper/css/scrollbar'
 import { Metadata, Viewport } from 'next'
 import clsx from 'clsx'
 import { NextIntlClientProvider } from 'next-intl'
@@ -15,6 +11,7 @@ import { fontSans } from '@/config/fonts'
 import { redirect } from 'next/navigation'
 import { UserInitializer } from './UserInitializer'
 import { AosInitializer } from '@/components/shared/AosInitializer'
+import { Header } from '@/components/shared'
 
 export const metadata: Metadata = {
 	title: siteConfig.name,

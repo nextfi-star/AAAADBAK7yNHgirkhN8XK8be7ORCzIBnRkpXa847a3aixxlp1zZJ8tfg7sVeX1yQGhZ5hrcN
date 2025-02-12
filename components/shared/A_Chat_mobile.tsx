@@ -9,7 +9,6 @@ import {
 } from '@nextui-org/react'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import { socket } from '@/app/socket'
 import { ChevronLeft, Images, SendHorizontal, X } from 'lucide-react'
 import { NextPage } from 'next'
 import { Chat } from '../ui/Chat'
@@ -17,15 +16,13 @@ import { useThemeStore } from '@/store'
 type Message = {
 	content: string
 	time: string
-	sender: 'me' | 'other'
+	sender: 'me' | 'bot'
 }
 
 export const A_Chat_mobile: NextPage = () => {
 	const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
 	const messagesEndRef = useRef<HTMLDivElement>(null)
 	const [show, setShow] = useState(false)
-	const [isConnected, setIsConnected] = useState(false)
-	const [transport, setTransport] = useState('N/A')
 	const [messages, setMessages] = useState<Message[]>([])
 	const [newMessage, setNewMessage] = useState('')
 	const [showCancel, setShowCancel] = useState(false)
@@ -35,69 +32,35 @@ export const A_Chat_mobile: NextPage = () => {
 		}
 	}
 	const sendMessage = () => {
-		if (newMessage.trim()) {
-			const message: Message = {
-				content: newMessage,
-				sender: 'me',
+		if (!newMessage.trim()) return
+
+		const message: Message = {
+			content: newMessage,
+			sender: 'me',
+			time: new Date().toLocaleTimeString('en-US', {
+				hour: '2-digit',
+				minute: '2-digit',
+				hour12: true,
+			}),
+		}
+
+		setMessages(prev => [...prev, message])
+		setNewMessage('')
+
+		// Фейковый ответ от бота
+		setTimeout(() => {
+			const botMessage: Message = {
+				content: 'Hello! This is a mock response.',
+				sender: 'bot',
 				time: new Date().toLocaleTimeString('en-US', {
 					hour: '2-digit',
 					minute: '2-digit',
 					hour12: true,
 				}),
 			}
-			socket.emit('message', message)
-			setMessages(prev => [...prev, message])
-			setNewMessage('')
-		}
+			setMessages(prev => [...prev, botMessage])
+		}, 1000)
 	}
-	useEffect(() => {
-		if (socket.connected) {
-			onConnect()
-		}
-
-		function onConnect() {
-			setIsConnected(true)
-			setTransport(socket.io.engine.transport.name)
-			socket.io.engine.on('upgrade', transport => {
-				setTransport(transport.name)
-			})
-		}
-
-		function onDisconnect() {
-			setIsConnected(false)
-			setTransport('N/A')
-		}
-
-	
-		socket.on('allMessages', messages => {
-			setMessages(messages) 
-		})
-
-	
-		socket.on('message', message => {
-			setMessages(prev => {
-				if (
-					!prev.some(
-						msg =>
-							msg.content === message.content && msg.sender === message.sender
-					)
-				) {
-					return [...prev, message] 
-				}
-				return prev 
-			})
-		})
-
-		socket.on('connect', onConnect)
-		socket.on('disconnect', onDisconnect)
-
-		return () => {
-			socket.off('connect', onConnect)
-			socket.off('disconnect', onDisconnect)
-			socket.off('message')
-			socket.off('allMessages')
-		}
-	}, [])
 	useEffect(() => {
 		scrollToBottom()
 	}, [messages])
@@ -207,7 +170,7 @@ export const A_Chat_mobile: NextPage = () => {
 																}`}
 															>
 																<div className='flex items-center gap-[10px] mb-4 '>
-																	{message.sender === 'other' && (
+																	{message.sender === 'bot' && (
 																		<Image
 																			src={
 																				theme === 'dark'
@@ -230,7 +193,7 @@ export const A_Chat_mobile: NextPage = () => {
 																			? 'Please select the language you prefer to continue'
 																			: message.content}
 																	</span>
-																	{message.sender === 'other' && (
+																	{message.sender === 'bot' && (
 																		<span className='text-[13px] font-medium dark:text-[#fff] text-[#515151]'>
 																			{message.time}
 																		</span>

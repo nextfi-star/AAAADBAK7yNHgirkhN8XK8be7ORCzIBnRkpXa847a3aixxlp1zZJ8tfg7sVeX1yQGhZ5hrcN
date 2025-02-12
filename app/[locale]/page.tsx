@@ -1,5 +1,8 @@
 'use client'
-
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
 import { useEffect, useState } from 'react'
 import Preloader from '@/components/shared/Preloader'
 import { useThemeStore } from '@/store'

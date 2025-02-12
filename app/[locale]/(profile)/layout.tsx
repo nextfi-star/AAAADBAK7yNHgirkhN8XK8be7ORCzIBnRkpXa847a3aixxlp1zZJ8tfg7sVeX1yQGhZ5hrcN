@@ -3,8 +3,10 @@ import { TapBar, ProfileHeader, Profile_nav } from '@/components/shared/index'
 import { useResponsiveVisibility } from '@/hooks/useResponsiveVisibility'
 import { Footer } from '@/components/shared/Footer'
 import { A_Chat } from '@/components/shared/A_Chat'
-import 'aos/dist/aos.css'
-
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
 export default function ProfileRoot({
 	children,
 }: {

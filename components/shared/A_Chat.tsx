@@ -31,40 +31,37 @@ export const A_Chat: NextPage = () => {
 	}
 	const messagesEndRef = useRef<HTMLDivElement>(null)
 
-  const sendMessage = () => {
-    if (!newMessage.trim()) return
+	const sendMessage = () => {
+		if (!newMessage.trim()) return
 
-    const message: Message = {
-      content: newMessage,
-      sender: 'me',
-      time: new Date().toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-      }),
-    }
+		const message: Message = {
+			content: newMessage,
+			sender: 'me',
+			time: new Date().toLocaleTimeString('en-US', {
+				hour: '2-digit',
+				minute: '2-digit',
+				hour12: true,
+			}),
+		}
 
-    setMessages(prev => [...prev, message])
-    setNewMessage('')
+		setMessages(prev => [...prev, message])
+		setNewMessage('')
 
-    // Фейковый ответ от бота
-    setTimeout(() => {
-      const botMessage: Message = {
-        content: 'Hello! This is a mock response.',
-        sender: 'bot',
-        time: new Date().toLocaleTimeString('en-US', {
-          hour: '2-digit',
-          minute: '2-digit',
-          hour12: true,
-        }),
-      }
-      setMessages(prev => [...prev, botMessage])
-    }, 1000)
-  }
+		// Фейковый ответ от бота
+		setTimeout(() => {
+			const botMessage: Message = {
+				content: 'Hello! This is a mock response.',
+				sender: 'bot',
+				time: new Date().toLocaleTimeString('en-US', {
+					hour: '2-digit',
+					minute: '2-digit',
+					hour12: true,
+				}),
+			}
+			setMessages(prev => [...prev, botMessage])
+		}, 1000)
+	}
 
-  useEffect(() => {
-    scrollToBottom()
-  }, [messages])
 	useEffect(() => {
 		scrollToBottom()
 	}, [messages])

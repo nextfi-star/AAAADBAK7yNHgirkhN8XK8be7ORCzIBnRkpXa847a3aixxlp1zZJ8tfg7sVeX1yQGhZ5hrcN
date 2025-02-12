@@ -69,7 +69,7 @@ export const Get_started: NextPage = () => {
                 early user of our platform to gain maximum advantages.
               </p>
               <a className="btn btn-blue" href="">
-                Buy a token
+                Make a deposit
               </a>
             </div>
           </div>

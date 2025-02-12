@@ -50,7 +50,7 @@ export const Era: NextPage = () => {
               data-aos-duration="1200"
               data-aos-once="true"
             >
-              <Button className="btn btn-blue">Buy coin</Button>
+              <Button className="btn btn-blue">Get started</Button>
               <div className="main__era-column-bottom-info">
                 <div className="main__era-column-bottom-info__item">
                   <span>50&nbsp;000+</span>

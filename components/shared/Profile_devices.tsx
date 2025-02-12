@@ -17,7 +17,7 @@ export const Profile_devices: NextPage = () => {
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(null)
 	const user = useUserStore((state) => state.user)
-	useAuthProtection()
+	// useAuthProtection()
 	const router = useRouter()
 	const locale = useParams()?.locale || 'en'
 	const csrf = user?.csrf || ''
@@ -61,7 +61,7 @@ export const Profile_devices: NextPage = () => {
 	const handleLogout = async (fullLogout = false) => {
 		try {
 			const payload = {
-				csrf: csrf,
+				csrf: user?.csrf,
 				full: fullLogout ? 'true' : '',
 			}
 			const response = await fetch('https://nextfi.io:5000/api/v1/logout', {

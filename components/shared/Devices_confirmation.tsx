@@ -8,8 +8,11 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
+import { useUserStore } from '@/hooks/useUserData'
 import { Button } from '@nextui-org/button'
 import { NextPage } from 'next'
+import { useLocale } from 'next-intl'
+import { useRouter } from 'next/navigation'
 interface Props {
 	content: string
 	titleTriger: string | any
@@ -24,6 +27,32 @@ export const Devices_confirmation: NextPage<Props> = ({
 	className,
 
 }) => {
+	const user = useUserStore((state) => state.user)
+	const router = useRouter()
+	const locale = useLocale()
+	const handleLogout = async (fullLogout = false) => {
+		try {
+			const payload = {
+				csrf: user?.csrf,
+				full: fullLogout ? 'true' : '',
+			}
+			const response = await fetch('https://nextfi.io:5000/api/v1/logout', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(payload),
+			})
+			const result = await response.json()
+			if (!response.ok) {
+				throw new Error(result.message || 'Logout failed')
+			}
+			localStorage.removeItem('userData')
+			router.push(`/${locale}/login`)
+		} catch (error) {
+			console.error('Logout error:', error)
+		}
+	}
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -51,6 +80,7 @@ export const Devices_confirmation: NextPage<Props> = ({
 						<Button
 							type='button'
 							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
+							onClick={() => handleLogout()}
 						>
 							Continue
 						</Button>

@@ -18,7 +18,7 @@ export const ProfileBurger_settigns: NextPage<Props> = ({
 	showSection,
 }) => {
 	const { theme } = useThemeStore()
-	const user = useUserStore((state) => state.user)
+	const user = useUserStore(state => state.user)
 
 	return (
 		<section
@@ -53,6 +53,11 @@ export const ProfileBurger_settigns: NextPage<Props> = ({
 					<h5 className='text-[18px]'>
 						{(user && user?.email) || username || <Spinner />}
 					</h5>
+					{user?.email ? (
+						<h5 className='text-[18px]'>{user?.email}</h5>
+					) : (
+						<h5 className='text-[18px]'>{user?.phone}</h5>
+					)}
 					{showSection && <span className='text-[14px]'>Profile Settings</span>}
 				</div>
 			</div>

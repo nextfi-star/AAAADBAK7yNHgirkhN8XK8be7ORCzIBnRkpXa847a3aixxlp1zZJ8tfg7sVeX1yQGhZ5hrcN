@@ -14,14 +14,9 @@ import { Logout_confirmation } from './Logout_confirmation'
 interface Props {
 	handleClick: () => void
 	show: boolean
-	menuRef?: any
 }
 
-export const Burger_profile: NextPage<Props> = ({
-	handleClick,
-	show,
-	menuRef,
-}) => {
+export const Burger_profile: NextPage<Props> = ({ handleClick, show }) => {
 	const listClass = clsx('m_header__profile', { active: !show })
 	const [showSection, setShowSection] = useState<boolean>(true)
 	const { theme } = useThemeStore()
