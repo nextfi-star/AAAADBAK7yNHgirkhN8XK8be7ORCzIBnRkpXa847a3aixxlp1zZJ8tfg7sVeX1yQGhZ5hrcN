@@ -18,14 +18,14 @@ export const useUserStore = create<UserState>(set => ({
   loadUser: () => {
     try {
       const storedData = localStorage.getItem('userData')
-      console.log('loadUser вызван. Данные в localStorage:', storedData)
+      // console.log('loadUser вызван. Данные в localStorage:', storedData)
   
       if (storedData) {
         const parsedData = JSON.parse(storedData)
-        console.log('Парсим данные:', parsedData)
+        // console.log('Парсим данные:', parsedData)
   
         if (parsedData && parsedData.uid && parsedData.csrf) {
-          console.log('✅ Данные корректны, обновляем user')
+          // console.log('✅ Данные корректны, обновляем user')
           set({ user: { ...parsedData } }) // 🔥 Обновляем состояние через новый объект
         } else {
           console.warn('⚠️ Данные некорректны, очищаем userData')
@@ -35,7 +35,7 @@ export const useUserStore = create<UserState>(set => ({
         }
       } else {
         console.log('🔴 Нет данных в localStorage, user = null')
-        set({ user: { uid: null, csrf: null } }) // 🔥 Заменяем объект, а не null
+        set({ user: { uid: null, csrf: null } }) 
       }
     } catch (error) {
       console.error('❌ Ошибка при загрузке userData:', error)

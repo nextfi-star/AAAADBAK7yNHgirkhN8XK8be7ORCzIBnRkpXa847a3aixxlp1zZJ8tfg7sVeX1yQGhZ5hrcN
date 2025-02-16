@@ -28,35 +28,25 @@ export const Profile_balance: NextPage = () => {
 			setIsLoading(false)
 		}, 2000)
 	}
-
-	const [coin, setCoin] = useState('all')
-	const [balance, setBalance] = useState<string>('0')
-	const [error, setError] = useState<string | null>(null)
-	const csrfToken = useUserStore(state => state.user?.csrf)
+	const [balance, setBalance] = useState<number | null>(null)
+	const [loading, setLoading] = useState(true)
+	const [coin, setCoin] = useState<string | ''>('TEST')
+	const user = useUserStore(state => state.user)
 	useEffect(() => {
-		if (!csrfToken) return
+		if (!user?.csrf) return
 
 		const fetchBalance = async () => {
-			setIsLoading(true)
-			setError(null)
-			try {
-				const result = await getUserBalance({ coin, csrf: csrfToken })
-				console.log(result)
-				if (result.response === 'success') {
-					setBalance(result.balance)
-				} else {
-					setError(result.message)
-				}
-			} catch (err: any) {
-				console.log(err)
-				setError(err.message)
-			} finally {
-				setIsLoading(false)
-			}
+			setLoading(true)
+			const balanceData = await getUserBalance(user.csrf, coin)
+			setBalance(balanceData)
+			setLoading(false)
 		}
 
 		fetchBalance()
-	}, [coin, csrfToken])
+	}, [user])
+
+	if (loading) return <Spinner />
+
 	return (
 		<section className='h-fit'>
 			<div className='profile__balance bg-[#fff] dark:bg-[#1e1e1e66] md:!shadow-medium md:dark:!shadow-none'>
@@ -117,6 +107,7 @@ export const Profile_balance: NextPage = () => {
 							</div>
 						</div>
 					)}
+					{/* PC */}
 					<div className='profile_balance_side'>
 						<div className='flex flex-col gap-[10px]'>
 							<div className='flex justify-between items-center'>
@@ -134,7 +125,10 @@ export const Profile_balance: NextPage = () => {
 								</div>
 							</div>
 							<div className='flex items-center gap-[8px]'>
-								<p className='text-[36px] font-bold'> {`${balance || '0'} $`} </p>
+								<p className='text-[36px] font-bold'>
+									{' '}
+									{`${balance || '0'} $`}{' '}
+								</p>
 								<select
 									className='bg-transparent text-[16px] font-medium'
 									onChange={e => setCoin(e.target.value)}
@@ -143,13 +137,13 @@ export const Profile_balance: NextPage = () => {
 										className='text-[12px] max-w-[1px] text-black'
 										value='all'
 									>
-										USDT
+										All
 									</option>
 									<option
 										className='text-[12px] max-w-[1px] text-black'
 										value='TEST'
 									>
-										NextFi
+										TEST
 									</option>
 								</select>
 							</div>
@@ -158,7 +152,7 @@ export const Profile_balance: NextPage = () => {
 							</div>
 						</div>
 					</div>
-
+					{/* PC */}
 					<div className='profile_balance_side'>
 						<div className='flex flex-col gap-[10px]'>
 							<div className='flex justify-between items-center'>
@@ -176,7 +170,10 @@ export const Profile_balance: NextPage = () => {
 								</div>
 							</div>
 							<div className='flex items-center gap-[8px]'>
-								<p className='text-[36px] font-bold'> {`${balance || '0'} $`} </p>
+								<p className='text-[36px] font-bold'>
+									{' '}
+									{`${balance || '0'} $`}{' '}
+								</p>
 								<select
 									className='bg-transparent text-[16px] font-medium'
 									onChange={e => setCoin(e.target.value)}
@@ -185,13 +182,13 @@ export const Profile_balance: NextPage = () => {
 										className='text-[12px] max-w-[1px] text-black'
 										value='all'
 									>
-										USDT
+										All
 									</option>
 									<option
 										className='text-[12px] max-w-[1px] text-black'
 										value='TEST'
 									>
-										NextFi
+										TEST
 									</option>
 								</select>
 							</div>

@@ -203,34 +203,61 @@ export const handleAccountAction = async (
 		throw error // Позволяет обработать ошибку на уровне вызова функции
 	}
 }
-export const getUserBalance = async ({
-	coin,
-	csrf,
-}: {
-	coin: string
-	csrf: string
-}) => {
+export const getUserHistory = async (csrf: string, type: string = 'all', coin?: string) => {
 	try {
+		const payload: Record<string, string> = {
+			csrf,
+			type,
+		};
+		if (coin) {
+			payload.coin = coin;
+		}
+
+		const response = await fetch('https://nextfi.io:5000/api/v1/history', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(payload),
+		});
+
+		const result = await response.json();
+		console.log(result)
+		if (!response.ok || result.response === 'error') {
+			console.error('Error:', result.message || 'Unknown error');
+			return null;
+		}
+
+		return result.data;
+	} catch (error) {
+		console.error('Error fetching user history:', error);
+		return null;
+	}
+};
+export const getUserBalance = async (csrf: string, coin: string) => {
+	try {
+		const payload = { csrf, coin };
 		const response = await fetch('https://nextfi.io:5000/api/v1/user_balance', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ csrf, coin }),
-		})
+			body: JSON.stringify(payload),
+		});
 
-		const result = await response.json()
-
-		if (response.ok) {
-			localStorage.setItem('userBalance', JSON.stringify(result))
-			return result.balance
-		} else {
-			throw new Error(result.message || 'Ошибка получения баланса')
+		const result = await response.json();
+		// console.log(result, 'УДАЛИТЬ на проде')
+		if (result.response === 'error') {
+			console.error('Ошибка получения баланса:', result.message);
+			return null; 
 		}
-	} catch (error: any) {
-		throw new Error(error.message || 'Ошибка соединения с сервером')
+
+		return result.balance ?? 1; 
+	} catch (error) {
+		console.error('Ошибка запроса:', error);
+		return null;
 	}
-}
+};
 export const getInvestHistory = async ({
 	coin,
 	csrf,

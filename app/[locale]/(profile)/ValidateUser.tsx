@@ -28,9 +28,7 @@ export default function ValidateUser({ children }: AppInitializerProps) {
       localStorage.removeItem('profile-store');
       router.push(`/${locale}/login?error=sessionExpired`);
     } else {
-      // Если данные корректны – синхронизируем с другим store (если нужно)
-      // Например:
-      console.log('Пользователь авторизован:', user);
+      // console.log('Пользователь авторизован:', user);
     }
   }, [user, loadUser, pathname, locale, router]);
 
