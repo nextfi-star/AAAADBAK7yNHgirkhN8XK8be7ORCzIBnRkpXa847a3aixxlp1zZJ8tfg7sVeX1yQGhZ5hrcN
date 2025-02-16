@@ -1,23 +1,20 @@
-import { useEffect, useState } from 'react'
+'use client'
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useUserStore } from '@/hooks/useUserData'
 import { useParams } from 'next/navigation'
 
 const useAuthProtection = () => {
-	const [user, setUser] = useState<Record<string, any> | null>(null)
 	const router = useRouter()
 	const locale = useParams().locale
-
+	const user = useUserStore(state => state.user)
 	useEffect(() => {
-		const storedData = localStorage.getItem('userData')
-		if (storedData) {
-			setUser(JSON.parse(storedData))
-		}
-
-		if (!storedData || !JSON.parse(storedData)?.csrf) {
+		if (!user?.uid || !user?.csrf) {
 			localStorage.removeItem('userData')
+			localStorage.removeItem('profile-store')
 			router.push(`/${locale}/login?error=sessionExpired`)
 		}
-	}, [locale, router])
+	}, [locale, user, router])
 
 	return user
 }

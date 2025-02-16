@@ -58,3 +58,8 @@ export interface IStore {
 export interface User {
   [key: string]: any;
 }
+
+export interface InvestHistoryPayload {
+  coin: string;
+  csrf: string;
+}

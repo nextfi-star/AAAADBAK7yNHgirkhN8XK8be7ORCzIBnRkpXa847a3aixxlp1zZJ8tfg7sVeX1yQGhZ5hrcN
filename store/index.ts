@@ -79,14 +79,14 @@ export const useThemeStore = create<IStore>()(
 			},
 			clearUser: () => {
 				localStorage.removeItem('userData')
-				localStorage.removeItem('zustand-store')
+				localStorage.removeItem('profile-store')
 				set({ user: null })
 			},
 			showVerifWindow: false,
-			setshowVerifWindow: (val) => set({ showVerifWindow: val }),
+			setshowVerifWindow: val => set({ showVerifWindow: val }),
 		}),
 		{
-			name: 'zustand-store',
+			name: 'profile-store',
 		}
 	)
 )

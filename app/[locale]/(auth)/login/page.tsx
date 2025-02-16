@@ -71,7 +71,6 @@ const Login = () => {
 			setState(false)
 		}
 	}, [])
-	const user = useUserStore((state) => state.user)
 
 	const handleChange = () => {
 		setshowVerifWindow(true)
@@ -91,25 +90,37 @@ const Login = () => {
 			refid: data.refid || '',
 			terms: 'yes',
 			uid: data.uid || '',
-		}
-		setError(null)
-		setIsLoading(true)
+		};
+	
+		setError(null);
+		setIsLoading(true);
+	
 		try {
-			const response = await loginUser(payload)
+			const response = await loginUser(payload);
 			if (response.response === 'success') {
-				const { email, phone, username, uid, password } = response.data
-				useThemeStore
-					.getState()
-					.setUser({ email, phone, username, uid, password })
-				localStorage.setItem('userData', JSON.stringify(response.data))
-				router.push(`/${locale}/over`)
+				const userData = response.data;
+	
+				if (!userData.uid || !userData.csrf) {
+					throw new Error('Получены некорректные данные пользователя');
+				}
+				useUserStore.getState().setUser(userData);
+				if (userData.csrf) {
+					useUserStore.getState().setCsrf(userData.csrf);
+				}
+				localStorage.setItem('userData', JSON.stringify(userData));
+				if (userData.csrf) {
+					router.push(`/${locale}/over`);
+				}
+			} else {
+				throw new Error(response.message || 'Ошибка авторизации');
 			}
 		} catch (err: any) {
-			setError(err.message)
+			setError(err.message);
 		} finally {
-			setIsLoading(false)
+			setIsLoading(false);
 		}
-	}
+	};
+	
 
 	return (
 		<div className='form__wrapper flex flex-col justify-between gap-[20px]'>

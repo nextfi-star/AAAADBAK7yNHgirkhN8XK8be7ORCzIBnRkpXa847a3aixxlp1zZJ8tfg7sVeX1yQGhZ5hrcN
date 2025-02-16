@@ -6,7 +6,6 @@ import Invest_Table from '@/components/shared/Invest_Table'
 import { Page_title } from '@/components/shared/Page_title'
 import { SkeletonCard_invest } from '@/components/ui/skeleton/SkeletonCard_invest'
 import { useThemeStore } from '@/store'
-import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import Invest_table_mobile from '@/components/shared/Invest_table_mobile'
 

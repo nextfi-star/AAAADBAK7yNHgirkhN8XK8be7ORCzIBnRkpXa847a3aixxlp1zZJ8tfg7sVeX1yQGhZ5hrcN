@@ -15,7 +15,7 @@ interface Props {
 export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 	const t = useTranslations('profile')
 	const user = useUserStore((state) => state.user)
-
+	
 	return (
 		<section className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px]'>
 			<div className='profile__info__block__left'>
@@ -32,7 +32,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 				<div className='profile__info__block__left__text'>
 					<h3 className='profile__info__block__left__text_name '>
 						{' '}
-						{user?.username || <Spinner />}
+						{user?.username ? user?.username : <Spinner />}
 					</h3>
 					{user?.email ? (
 						<div className='profile__info__block__left__text_email'>
@@ -76,7 +76,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 						{t('CountryRegion')}
 					</h5>
 					<Button className='profile__info__block___right__additional__text border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'>
-						UAE
+						{user ? user?.country : <Spinner />}
 					</Button>
 				</div>
 				<div className='profile__info__block___right__block'>

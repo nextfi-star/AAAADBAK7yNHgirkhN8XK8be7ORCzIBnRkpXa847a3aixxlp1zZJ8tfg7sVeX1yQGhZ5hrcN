@@ -7,15 +7,17 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
+import ValidateUser from './ValidateUser'
+
 export default function ProfileRoot({
 	children,
 }: {
 	children: React.ReactNode
 }) {
 	const { showHeader, showTapbar } = useResponsiveVisibility()
-	
 	return (
-		<div className='profile__body !pb-0 flex flex-col justify-between'>
+		<ValidateUser>
+			<div className='profile__body !pb-0 flex flex-col justify-between'>
 			{showHeader && <ProfileHeader auth />}
 			<main className='profile__main site-holder flex-grow'>
 				<Profile_nav />
@@ -25,5 +27,6 @@ export default function ProfileRoot({
 			<Footer />
 			{showTapbar && <TapBar />}
 		</div>
+		</ValidateUser>
 	)
 }
