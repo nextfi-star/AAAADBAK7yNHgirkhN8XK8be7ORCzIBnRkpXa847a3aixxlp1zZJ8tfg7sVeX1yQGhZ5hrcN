@@ -246,7 +246,6 @@ export const getUserBalance = async (csrf: string, coin: string) => {
 		});
 
 		const result = await response.json();
-		// console.log(result, 'УДАЛИТЬ на проде')
 		if (result.response === 'error') {
 			console.error('Ошибка получения баланса:', result.message);
 			return null; 

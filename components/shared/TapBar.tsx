@@ -55,10 +55,8 @@ export const TapBar: NextPage = () => {
 		],
 		[setVerifyState]
 	)
-
 	const dotLottieRefs = useRef<(DotLottie | null)[]>([])
 	const [activeIndex, setActiveIndex] = useState<null | number>(null)
-
 	const play = (index: number) => {
 		const currentLottie = dotLottieRefs.current[index]
 		if (currentLottie) {
@@ -71,7 +69,7 @@ export const TapBar: NextPage = () => {
 	}
 	useEffect(() => {
 		const handleResize = () => {
-			if (window.innerWidth <= 430) {
+			if (window.innerWidth <= 450) {
 				setIsMobile(true)
 			} else {
 				setIsMobile(false)

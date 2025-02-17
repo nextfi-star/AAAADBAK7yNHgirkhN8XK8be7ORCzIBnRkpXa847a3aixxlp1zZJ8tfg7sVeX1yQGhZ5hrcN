@@ -1,4 +1,3 @@
-'use client'
 import {
 	Command,
 	CommandGroup,
@@ -14,7 +13,7 @@ import {
 import { Link } from '@/i18n/routing'
 import { Button } from '@nextui-org/button'
 import { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { DropData } from './ProfileHeader'
 import Image from 'next/image'
 import { Spinner } from '@nextui-org/spinner'
@@ -29,14 +28,13 @@ interface Props {
 }
 
 export const DropDown_menu: NextPage<Props> = ({
-	triggerTitle,
 	data,
 	defaultItem,
 	hasProfile,
 }) => {
 	const [selectedKeys, setSelectedKeys] = useState<DropData | null>(null)
 	const [open, setOpen] = useState(false)
-	const user = useUserStore((state) => state.user)
+	const user = useUserStore(state => state.user)
 	return (
 		<div onMouseLeave={() => setOpen(!open)}>
 			<Popover open={open} onOpenChange={setOpen}>
@@ -135,13 +133,22 @@ export const DropDown_menu: NextPage<Props> = ({
 											<div className='flex flex-col w-full'>
 												<div className='flex items-center gap-[10px]'>
 													{item.icon}
-													<Link
-														href={item.href}
-														onClick={item.verify}
-														className='text-[14px] w-full'
-													>
-														{item.title}
-													</Link>
+													{item.key === 'out' ? (
+														<button
+															onClick={item.logout}
+															className='text-[14px] w-full flex justify-start'
+														>
+															{item.title}
+														</button>
+													) : (
+														<Link
+															href={item.href}
+															onClick={item.verify}
+															className='text-[14px] w-full'
+														>
+															{item.title}
+														</Link>
+													)}
 												</div>
 											</div>
 										</CommandItem>

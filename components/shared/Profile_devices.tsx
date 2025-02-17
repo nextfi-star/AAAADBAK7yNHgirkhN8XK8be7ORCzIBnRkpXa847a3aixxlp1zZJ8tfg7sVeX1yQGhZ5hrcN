@@ -7,7 +7,6 @@ import { useThemeStore } from '@/store'
 import { Button } from '@nextui-org/button'
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import useAuthProtection from '@/hooks/useAuthProtection'
 import { Skeleton } from '@nextui-org/skeleton'
 import { useUserStore } from '@/hooks/useUserData'
 
@@ -17,7 +16,6 @@ export const Profile_devices: NextPage = () => {
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(null)
 	const user = useUserStore((state) => state.user)
-	// useAuthProtection()
 	const router = useRouter()
 	const locale = useParams()?.locale || 'en'
 	const csrf = user?.csrf || ''
@@ -76,7 +74,7 @@ export const Profile_devices: NextPage = () => {
 				throw new Error(result.message || 'Logout failed')
 			}
 			localStorage.removeItem('userData')
-			router.push(`/${locale}/login`)
+			router.push(`/${locale}/login?error=sessionExpired`)
 		} catch (error) {
 			console.error('Logout error:', error)
 		}

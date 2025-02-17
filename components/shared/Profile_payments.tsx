@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import { useTranslations } from 'next-intl'
 import { NextPage } from 'next'
 import { DateRangePicker } from '@nextui-org/date-picker'
 import { useThemeStore } from '@/store/index'
@@ -12,7 +11,6 @@ import DataTable_verif_mobile from './DataTable_verif_mobile'
 import { useParams, usePathname } from 'next/navigation'
 
 export const Profile_payments: NextPage = () => {
-	const t = useTranslations('profile')
 	const { verifyState } = useThemeStore()
 	const { locale } = useParams()
 	const pathname = usePathname()

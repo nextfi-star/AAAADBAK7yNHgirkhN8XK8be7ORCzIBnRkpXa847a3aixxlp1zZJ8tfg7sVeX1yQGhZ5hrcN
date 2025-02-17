@@ -50,9 +50,6 @@ export const ProfileBurger_settigns: NextPage<Props> = ({
 				</div>
 
 				<div className='flex flex-col'>
-					<h5 className='text-[18px]'>
-						{(user && user?.email) || username || <Spinner />}
-					</h5>
 					{user?.email ? (
 						<h5 className='text-[18px]'>{user?.email}</h5>
 					) : (

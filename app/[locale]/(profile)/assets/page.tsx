@@ -3,24 +3,15 @@ import { useThemeStore } from '@/store'
 import { Profile_balance, Profile_payments } from '@/components/shared'
 import Allocation from '@/components/shared/Allocation'
 import Transaction from '@/components/shared/Transactions'
-import { usePathname } from 'next/navigation'
-import { useEffect } from 'react'
+import { useCheckPathAssets } from '@/hooks/useCheckPathAssets'
 
 const Assets = () => {
-	const { verifyState, setVerifyState } = useThemeStore()
-	const pathname = usePathname()
-
-	useEffect(() => {
-		if (pathname === '/assets') {
-			setVerifyState(false)
-		} else {
-			setVerifyState(true)
-		}
-	}, [pathname])
+	const { verifyState } = useThemeStore()
+	useCheckPathAssets()
 	return (
 		<>
 			{verifyState && (
-				<section className='profile' >
+				<section className='profile'>
 					<div className='profile__grid gap-[1.5rem] max-xl:grid max-xl:grid-cols-1'>
 						<div className='flex  mt-[-24px] flex-col w-full gap-[1.5rem]'>
 							<hr />

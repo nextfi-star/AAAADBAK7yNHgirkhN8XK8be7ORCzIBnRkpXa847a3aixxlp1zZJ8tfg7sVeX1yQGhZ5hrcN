@@ -7,7 +7,7 @@ export const useResponsiveVisibility = () => {
 	const pathname = usePathname()
 
 	const handleResize = () => {
-		setIsMobile(window.innerWidth <= 431)
+		setIsMobile(window.innerWidth <= 450)
 	}
 
 	useEffect(() => {

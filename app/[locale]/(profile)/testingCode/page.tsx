@@ -65,22 +65,26 @@ const TestingCode = () => {
 						История транзакций
 					</h2>
 					<ul>
-						<li>
-							<strong>Тип:</strong> {history.type}
-						</li>
-						<li>
-							<strong>Сумма:</strong> {history.amount} {history.coin}
-						</li>
-						<li>
-							<strong>ID:</strong> {history.id}
-						</li>
-						<li>
-							<strong>UID:</strong> {history.uid}
-						</li>
-						<li>
-							<strong>Время:</strong>{' '}
-							{new Date(history.time * 1000).toLocaleString()}
-						</li>
+						{history.map((tx: any, index: any) => (
+							<li key={tx.id || index} className='border-b py-2'>
+								<p>
+									<strong>Тип:</strong> {tx.type || '—'}
+								</p>
+								<p>
+									<strong>Сумма:</strong> {tx.amount || '—'} Монета - {tx.coin || ''}
+								</p>
+								<p>
+									<strong>ID:</strong> {tx.id || '—'}
+								</p>
+								<p>
+									<strong>UID:</strong> {tx.uid || '—'}
+								</p>
+								<p>
+									<strong>Время:</strong>{' '}
+									{tx.time ? new Date(tx.time * 1000).toLocaleString() : '—'}
+								</p>
+							</li>
+						))}
 					</ul>
 				</div>
 				<div className='flex flex-col gap-4'>

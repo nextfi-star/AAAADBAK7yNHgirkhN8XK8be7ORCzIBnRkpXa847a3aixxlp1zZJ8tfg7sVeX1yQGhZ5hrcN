@@ -28,6 +28,9 @@ import {
 	User2,
 } from 'lucide-react'
 import { Logo_header } from '../ui/Logo_header'
+import { Logout } from '@/hooks/Logout'
+import { useUserStore } from '@/hooks/useUserData'
+import { useParams, useRouter } from 'next/navigation'
 
 interface Props {
 	auth: boolean
@@ -37,6 +40,7 @@ export interface DropData {
 	key: string
 	href: string
 	verify?: () => void
+	logout?: () => void
 	icon?: string | JSX.Element
 }
 
@@ -45,6 +49,9 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 	const [show, setShow] = useState(true)
 	const { theme, setVerifyState } = useThemeStore()
 	const classChange = clsx('m_header__profile_menu', { active: !show })
+	const csrf = useUserStore(state => state.user?.csrf)
+	const router = useRouter()
+	const locale = useParams()?.locale || 'en'
 
 	const dropData: DropData[] = useMemo(
 		() => [
@@ -150,6 +157,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 				href: '#',
 				icon: <Power strokeWidth={1} />,
 				verify: () => setVerifyState(false),
+				logout: () => Logout(csrf, router, locale),
 			},
 		],
 		[setVerifyState]

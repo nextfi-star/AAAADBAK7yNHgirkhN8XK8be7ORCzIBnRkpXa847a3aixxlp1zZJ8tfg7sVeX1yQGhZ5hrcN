@@ -1,7 +1,6 @@
+'use client'
 import React from 'react'
-
 import ArrowBracket from '../ui/ArrowBracket'
-
 import { useThemeStore } from '@/store'
 const data = [
 	{

@@ -95,7 +95,6 @@ export const Burger_profile: NextPage<Props> = ({ handleClick, show }) => {
 							<ProfileBurger_info
 								setShowSection={setShowSection}
 								showSection={showSection}
-								username='username****gmail.com'
 							/>
 						) : (
 							<ProfileBurger_settigns

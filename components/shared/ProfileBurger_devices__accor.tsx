@@ -1,13 +1,40 @@
+'use client'
 import { Accordion, AccordionItem } from '@/components/ui/AccordionBurger'
 import { Device } from '@/components/ui/Device'
 import { useThemeStore } from '@/store'
 import { NextPage } from 'next'
 import Image from 'next/image'
-import { Devices_confirmation } from './Devices_confirmation'
+import { useUserStore } from '@/hooks/useUserData'
+import { useParams, useRouter } from 'next/navigation'
 
 export const ProfileBurger_devices__accor: NextPage = () => {
 	const { theme } = useThemeStore()
-
+	const csrf = useUserStore(state => state.user?.csrf)
+	const router = useRouter()
+	const locale = useParams()?.locale || 'en'
+	const handleLogout = async (fullLogout = false) => {
+		try {
+			const payload = {
+				csrf: csrf,
+				full: fullLogout ? 'true' : '',
+			}
+			const response = await fetch('https://nextfi.io:5000/api/v1/logout', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(payload),
+			})
+			const result = await response.json()
+			if (!response.ok) {
+				throw new Error(result.message || 'Logout failed')
+			}
+			localStorage.removeItem('userData')
+			router.push(`/${locale}/login?error=sessionExpired`)
+		} catch (error) {
+			console.error('Logout error:', error)
+		}
+	}
 	return (
 		<div className='flex flex-col gap-[20px] h-full'>
 			<Accordion collapsible className='' type='single'>
@@ -35,13 +62,13 @@ export const ProfileBurger_devices__accor: NextPage = () => {
 										<span className='text-[14px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[10px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-10px] after:left-[50%] after:translate-x-[-50%] '>
 											MacBook PRO
 										</span>
-										<Devices_confirmation
+										{/* <Devices_confirmation
 											content={
 												'This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers'
 											}
 											title={'Are you absolutely sure?'}
 											titleTriger={'Log out'}
-										/>
+										/> */}
 									</div>
 
 									<div
@@ -51,13 +78,13 @@ export const ProfileBurger_devices__accor: NextPage = () => {
 										<span className='text-[14px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[10px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-10px] after:left-[50%] after:translate-x-[-50%] '>
 											MacBook PRO
 										</span>
-										<Devices_confirmation
+										{/* <Devices_confirmation
 											content={
 												'This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers'
 											}
 											title={'Are you absolutely sure?'}
 											titleTriger={'Log out'}
-										/>
+										/> */}
 									</div>
 
 									<div
@@ -67,23 +94,25 @@ export const ProfileBurger_devices__accor: NextPage = () => {
 										<span className='text-[14px] flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[10px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-10px] after:left-[50%] after:translate-x-[-50%] '>
 											MacBook PRO
 										</span>
-										<Devices_confirmation
+										{/* <Devices_confirmation
 											content={
 												'This action cannot be undone. You will be logged out from this device, but your account and data will remain intact on servers'
 											}
 											title={'Are you absolutely sure?'}
 											titleTriger={'Log out'}
-										/>
+										/> */}
 									</div>
 								</div>
 							</div>
 						</div>
 					</AccordionItem>
-					{/* <span className='block w-full min-h-[1px] bg-gray-500 dark:bg-white my-[10px]'></span> */}
 				</div>
 				<div className='w-full flex flex-col items-center mt-[4rem] pb-[1.5rem]'>
 					<Device color={theme === 'dark' ? 'white' : 'black'} width={'235'} />
-					<button className='text-[16px] bg-[#205BC9] rounded-[50px] px-[15px] py-[5px] text-white'>
+					<button
+						className='text-[16px] bg-[#205BC9] rounded-[50px] px-[15px] py-[5px] text-white'
+						onClick={() => handleLogout(true)}
+					>
 						Log Out from all devices
 					</button>
 				</div>

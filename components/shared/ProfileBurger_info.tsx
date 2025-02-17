@@ -1,19 +1,14 @@
-'use client'
 import Image from 'next/image'
 import { NextPage } from 'next'
 import ArrowBracket from '../ui/ArrowBracket'
 import { useThemeStore } from '@/store'
-import { Spinner } from '@nextui-org/spinner'
-import { useEffect, useState } from 'react'
 import { useUserStore } from '@/hooks/useUserData'
 
 interface Props {
-	username: string
 	setShowSection: (val: boolean) => void
 	showSection: boolean
 }
 export const ProfileBurger_info: NextPage<Props> = ({
-	username,
 	setShowSection,
 	showSection,
 }) => {
