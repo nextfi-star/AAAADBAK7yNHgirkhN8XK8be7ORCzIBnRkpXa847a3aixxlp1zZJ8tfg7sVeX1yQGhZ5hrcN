@@ -1,5 +1,6 @@
+import { useUserStore } from '@/hooks/useUserData'
 import { useThemeStore } from '@/store'
-import { InvestHistoryPayload } from '@/types'
+import { Coin, InvestHistoryPayload } from '@/types'
 
 export const registerUser = async (data: {
 	email: string
@@ -121,38 +122,6 @@ export const verifyCode = async (payload: {
 		throw new Error(error.message || 'An error occurred during login')
 	}
 }
-export const sendPicture = async (file: File) => {
-	try {
-		if (!file) {
-			throw new Error('File is required for upload')
-		}
-		if (typeof window === 'undefined') {
-			throw new Error('localStorage is not available')
-		}
-		const userData = JSON.parse(localStorage.getItem('userData') || '{}')
-		const csrf = userData.csrf
-		if (!userData.uid) {
-			throw new Error('Missing required user data in localStorage')
-		}
-		const formData = new FormData()
-		formData.append('file', file)
-		formData.append('csrf', csrf || '')
-		const response = await fetch('https://nextfi.io:5000/api/v1/logo', {
-			method: 'POST',
-			body: formData,
-		})
-
-		const result = await response.json()
-
-		if (!response.ok) {
-			throw new Error(result.message || 'Upload failed')
-		}
-		return result
-	} catch (error: any) {
-		console.error('Upload error:', error.message)
-		throw new Error(error.message || 'An error occurred during upload')
-	}
-}
 export const getActiveDevices = async (csrf: string) => {
 	try {
 		const payload = {
@@ -193,6 +162,12 @@ export const handleAccountAction = async (
 
 		const result = await response.json()
 
+		if (response.ok) {
+			localStorage.removeItem('userData')
+			localStorage.removeItem('profile-store')
+			window.location.reload()
+		}
+
 		if (!response.ok) {
 			throw new Error(result.message || 'Failed to process the request')
 		}
@@ -203,14 +178,18 @@ export const handleAccountAction = async (
 		throw error // Позволяет обработать ошибку на уровне вызова функции
 	}
 }
-export const getUserHistory = async (csrf: string, type: string = 'all', coin?: string) => {
+export const getUserHistory = async (
+	csrf: string,
+	type: string = 'all',
+	coin?: string
+) => {
 	try {
 		const payload: Record<string, string> = {
 			csrf,
 			type,
-		};
+		}
 		if (coin) {
-			payload.coin = coin;
+			payload.coin = coin
 		}
 
 		const response = await fetch('https://nextfi.io:5000/api/v1/history', {
@@ -219,44 +198,44 @@ export const getUserHistory = async (csrf: string, type: string = 'all', coin?: 
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(payload),
-		});
+		})
 
-		const result = await response.json();
+		const result = await response.json()
 		console.log(result)
 		if (!response.ok || result.response === 'error') {
-			console.error('Error:', result.message || 'Unknown error');
-			return null;
+			console.error('Error:', result.message || 'Unknown error')
+			return null
 		}
 
-		return result.data;
+		return result.data
 	} catch (error) {
-		console.error('Error fetching user history:', error);
-		return null;
+		console.error('Error fetching user history:', error)
+		return null
 	}
-};
+}
 export const getUserBalance = async (csrf: string, coin: string) => {
 	try {
-		const payload = { csrf, coin };
+		const payload = { csrf, coin }
 		const response = await fetch('https://nextfi.io:5000/api/v1/user_balance', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(payload),
-		});
+		})
 
-		const result = await response.json();
+		const result = await response.json()
 		if (result.response === 'error') {
-			console.error('Ошибка получения баланса:', result.message);
-			return null; 
+			console.error('Ошибка получения баланса:', result.message)
+			return null
 		}
 
-		return result.balance ?? 1; 
+		return result.balance ?? 1
 	} catch (error) {
-		console.error('Ошибка запроса:', error);
-		return null;
+		console.error('Ошибка запроса:', error)
+		return null
 	}
-};
+}
 export const getInvestHistory = async ({
 	coin,
 	csrf,
@@ -283,5 +262,72 @@ export const getInvestHistory = async ({
 		}
 	} catch (error: any) {
 		throw new Error(error.message || 'Ошибка соединения с сервером')
+	}
+}
+export const changeUserData = async (
+	csrf: string,
+	type: string,
+	value: string,
+	vcode: string,
+	tfa_code = ''
+) => {
+	try {
+		type ChangeUserDataPayload = {
+			csrf: string
+			type: string
+			vcode: string
+			'2fa_code'?: string
+			phone?: string
+			email?: string
+			password?: string
+		}
+
+		const payload: ChangeUserDataPayload = {
+			csrf,
+			type,
+			vcode,
+			'2fa_code': tfa_code,
+			phone: type === 'change_phone' ? value : undefined,
+			email: type === 'change_email' ? value : undefined,
+			password: type === 'change_password' ? value : undefined,
+		}
+
+		const response = await fetch('https://nextfi.io:5000/api/v1/change', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(payload),
+		})
+
+		const result = await response.json()
+		if (response.ok && result.response === 'success') {
+			console.log(result)
+			return result
+		} else {
+			throw new Error(result.message || 'Failed to change user data')
+		}
+	} catch (error) {
+		console.error('Change user data error:', error)
+		throw error
+	}
+}
+export const fetchCoinList = async (): Promise<Coin[]> => {
+	try {
+		const response = await fetch('https://nextfi.io:5000/api/v1/coin_list', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({}),
+		})
+
+		const result = await response.json()
+
+		if (result.response === 'success') {
+			return result.data || []
+		} else {
+			console.error('Error fetching coin list:', result.message)
+			return []
+		}
+	} catch (error) {
+		console.error('Server error fetching coin list:', error)
+		return []
 	}
 }

@@ -16,6 +16,7 @@ import { useThemeStore } from '@/store'
 import { Confirmation_dialog } from './Confirmation_dialog'
 import { Button } from '@nextui-org/button'
 import { useState } from 'react'
+import { handleAccountAction } from '@/utils/api'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -84,25 +85,25 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 								/>
 								After freezing your account:
 							</span>
-							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
-								<li>
+							<span className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
+								<span>
 									• Your account Username@gmail.com will be frozen temporarily.
 									To unfreeze it, start by logging in again.{' '}
-								</li>
-								<li>
+								</span>
+								<span>
 									• Your account Username@gmail.com will be frozen temporarily.
 									To unfreeze it, start by logging in again.{' '}
-								</li>
-								<li>
+								</span>
+								<span>
 									• All trading capabilities of this account will be disabled
-								</li>
-								<li>• All API keys for this account will be deleted </li>
+								</span>
+								<span>• All API keys for this account will be deleted </span>
 								<li>• All approved devices for this account will be removed</li>
-								<li>
+								<span>
 									• Ongoing transactions such as perpetuals will not be canceled
 									automatically
-								</li>
-							</ul>
+								</span>
+							</span>
 						</DrawerDescription>
 						<div className='flex w-full max-w-[921px] flex-col items-start gap-[10px] md:gap-[20px] border border-solid border-gray-400 py-[10px] rounded-[4px]'>
 							<h5 className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] border-0 border-b border-solid border-b-gray-400 w-full text-center py-[10px] px-[5px]'>
@@ -196,10 +197,10 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 								</Button>
 							</DrawerClose>
 							<Confirmation_dialog
-									className={`text-[14px] xl:!text-[20px]  2xl:!text-[25px]  xl:!px-[40px] 2xl:!px-[70px] rounded-[50px] font-medium h-fit !max-w-[220px] !w-full text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
+								className={`text-[14px] xl:!text-[20px]  2xl:!text-[25px]  xl:!px-[40px] 2xl:!px-[70px] rounded-[50px] font-medium h-fit !max-w-[220px] !w-full text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
 									checked && selectedOption
 										? 'bg-[#205bc9] hover:bg-[#205bc9] dark:!border-[#205bc9] !border-[#205bc9] text-white'
-									: 'bg-transparent hover:bg-transparent data-[hover=true]:opacity-[.6] opacity-[.6]'
+										: 'bg-transparent hover:bg-transparent data-[hover=true]:opacity-[.6] opacity-[.6]'
 								}`}
 								content={
 									'This action cannot be undone. Your account will be freezed.'
@@ -207,7 +208,9 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 								title={'Are you absolutely sure?'}
 								titleTriger={'Confirm'}
 								checked={checked}
+								unic={'freeze'}
 								selectedOption={selectedOption}
+					
 							/>
 						</DrawerFooter>
 					</div>

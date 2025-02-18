@@ -2,12 +2,14 @@
 
 import { useInvestStore } from '@/hooks/useInvest'
 import { useUserStore } from '@/hooks/useUserData'
-import { getUserBalance, getUserHistory } from '@/utils/api'
+import { fetchCoinList, getUserBalance, getUserHistory } from '@/utils/api'
 import { Spinner } from '@nextui-org/spinner'
 import { useEffect, useState } from 'react'
+import { Coin } from '@/types'
 
 const TestingCode = () => {
 	const [coin, setCoin] = useState('TEST')
+	const [coins, setCoins] = useState<Coin[]>([])
 	const { user } = useUserStore()
 	const [history, setHistory] = useState<any>(null)
 	const [loading, setLoading] = useState(true)
@@ -23,18 +25,39 @@ const TestingCode = () => {
 				setHistory(data)
 				setLoading(false)
 			}
+			const fetchBalance = async () => {
+				try {
+					const result = await getUserBalance(csrf, coin)
+					if (result.response === 'success') {
+						console.log(result)
+					} else {
+						setBalance(result)
+					}
+				} catch (err: any) {
+					console.log(err.message)
+				}
+			}
+			fetchBalance()
 			fetchData()
 		}
 	}, [csrf, coin])
+	useEffect(() => {
+		const loadCoins = async () => {
+			const coinList = await fetchCoinList()
+			setCoins(coinList)
+		}
+
+		loadCoins()
+	}, [])
 
 	if (loading) {
-		return <Spinner />
+		return <div className='w-full min-h-screen'><Spinner /></div>
 	}
 
 	return (
 		<div className='w-full min-h-screen'>
 			<div className='container mx-auto px-2 flex flex-col gap-4'>
-				{/* <div className='flex flex-col gap-4'>
+				<div className='flex flex-col gap-4'>
 					<h1 className='text-[32px] font-bold w-full text-center lg:text-left'>
 						INVEST COIN/ALL
 					</h1>
@@ -59,7 +82,7 @@ const TestingCode = () => {
 					) : (
 						!isLoading && <p>Нет инвестиций</p>
 					)}
-				</div> */}
+				</div>
 				<div className='flex flex-col gap-4'>
 					<h2 className='text-[32px] font-bold w-full text-center lg:text-left'>
 						История транзакций
@@ -71,7 +94,8 @@ const TestingCode = () => {
 									<strong>Тип:</strong> {tx.type || '—'}
 								</p>
 								<p>
-									<strong>Сумма:</strong> {tx.amount || '—'} Монета - {tx.coin || ''}
+									<strong>Сумма:</strong> {tx.amount || '—'} Монета -{' '}
+									{tx.coin || ''}
 								</p>
 								<p>
 									<strong>ID:</strong> {tx.id || '—'}
@@ -105,7 +129,7 @@ const TestingCode = () => {
 							</option>
 						</select>
 					</div>
-					<p>Balance: {balance || 0}</p>
+					<p>Balance: {balance} $</p>
 				</div>
 			</div>
 		</div>

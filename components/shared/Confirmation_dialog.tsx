@@ -8,6 +8,8 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
+import { useUserStore } from '@/hooks/useUserData'
+import { handleAccountAction } from '@/utils/api'
 import { Button } from '@nextui-org/button'
 import { NextPage } from 'next'
 interface Props {
@@ -18,6 +20,7 @@ interface Props {
 	unic?: string
 	selectedOption?: string | undefined
 	checked?: boolean
+	handleAction?: (action: 'freeze' | 'close') => void
 }
 export const Confirmation_dialog: NextPage<Props> = ({
 	title,
@@ -28,6 +31,25 @@ export const Confirmation_dialog: NextPage<Props> = ({
 	checked,
 	selectedOption,
 }) => {
+	const user = useUserStore(state => state.user)
+	const handleActionClose = async (action: 'close') => {
+		try {
+			const result = await handleAccountAction(user?.csrf, action)
+			
+			console.log(`${action} result:`, result)
+		} catch (err: any) {
+			console.log(err.message)
+		}
+	}
+	const handleActionFreeze = async (action: 'freeze') => {
+		try {
+			const result = await handleAccountAction(user?.csrf, action)
+			console.log(`${action} result:`, result)
+		} catch (err: any) {
+			console.log(err.message)
+		}
+	}
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -52,14 +74,32 @@ export const Confirmation_dialog: NextPage<Props> = ({
 							Close
 						</Button>
 					</DialogClose>
-					<DialogClose asChild>
+					<DialogClose asChild></DialogClose>
+					{unic === 'freeze' ? (
+						<Button
+							type='button'
+							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
+							onClick={() => handleActionFreeze('freeze')}
+						>
+							Continue
+						</Button>
+					) : (
+						<Button
+							type='button'
+							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
+							onClick={() => handleActionClose('close')}
+						>
+							Continue
+						</Button>
+					)}
+					{!unic && (
 						<Button
 							type='button'
 							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
 						>
 							Continue
 						</Button>
-					</DialogClose>
+					)}
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

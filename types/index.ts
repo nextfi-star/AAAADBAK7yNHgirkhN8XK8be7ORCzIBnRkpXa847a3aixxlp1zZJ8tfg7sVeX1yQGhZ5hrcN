@@ -63,3 +63,11 @@ export interface InvestHistoryPayload {
   coin: string;
   csrf: string;
 }
+
+export type Coin = {
+	name: string
+	type: string
+	enable: number
+	deposit: number
+	withdraw: number
+}

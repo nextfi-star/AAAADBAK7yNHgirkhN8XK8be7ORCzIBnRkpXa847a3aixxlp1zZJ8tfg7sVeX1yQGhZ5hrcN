@@ -15,8 +15,6 @@ import {
 } from '@/components/ui/drawer'
 import { useThemeStore } from '@/store'
 import { Button } from '@nextui-org/button'
-import { sendPicture } from '@/utils/api'
-// import { sendPicture } from '@/utils/api'
 const data = [
 	{
 		img: '/main/avatar_noface.png',
@@ -47,25 +45,9 @@ export const ChangeAvatar = () => {
 		setSelectedAvatar(avatarUrl)
 	}
 	const [file, setFile] = useState<File | null>(null)
-	const [uploadStatus, setUploadStatus] = useState<string | null>(null)
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files && e.target.files[0]) {
 			setFile(e.target.files[0])
-			console.log(e.target.files[0])
-		}
-	}
-
-	const handleUpload = async () => {
-		if (!file) {
-			alert('Please select a file first.')
-			return
-		}
-		setUploadStatus('Uploading...')
-		try {
-			const response = await sendPicture(file)
-			setUploadStatus(`Upload successful: ${response.message}`)
-		} catch (error: any) {
-			setUploadStatus(`Error: ${error.message}`)
 		}
 	}
 
@@ -127,7 +109,7 @@ export const ChangeAvatar = () => {
 
 						{/* Табка для загрузки картинки */}
 						<TabsContent value='upload-avatar'>
-							<div className='min-h-[321px] border-1 border-dashed border-gray-500 rounded-[10px] flex flex-col gap-[10px] items-center justify-center p-[10px] max-w-[390px]'>
+							<form className='min-h-[321px] border-1 border-dashed border-gray-500 rounded-[10px] flex flex-col gap-[10px] items-center justify-center p-[10px] max-w-[390px]'>
 								<input
 									className='hidden'
 									id='file-upload'
@@ -146,7 +128,7 @@ export const ChangeAvatar = () => {
 								<span className='text-center text-[14px] md:text-[20px]'>
 									Supports JPG,PNG and GIF. Maximum upload file size 10 MB
 								</span>
-							</div>
+							</form>
 						</TabsContent>
 					</Tabs>
 
@@ -158,7 +140,7 @@ export const ChangeAvatar = () => {
 						</DrawerClose>
 						<Button
 							className='bg-[#205BC9] text-white rounded-[50px] px-[35px] border border-solid border-[#205BC9] min-w-[117px] hover:bg-[#205BC9] hover:text-white hover:opacity-[.8] transition duration-300'
-							onClick={handleUpload}
+							type='submit'
 							disabled={!file}
 						>
 							Save

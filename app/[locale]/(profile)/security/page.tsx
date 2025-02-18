@@ -66,7 +66,6 @@ const Security = () => {
 	return (
 		<section
 			className='security !shadow-medium dark:!shadow-none'
-			
 		>
 			<div className='security-container '>
 				<div className='security__content mb-[20px]'>

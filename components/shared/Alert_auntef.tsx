@@ -25,38 +25,41 @@ interface Props {
 }
 
 export const Alert_auntef = ({ propsItem }: Props) => {
-	const user = useUserStore((state) => state.user)
+	const user = useUserStore(state => state.user)
 	const { theme } = useThemeStore()
 	const [inputs, setInputs] = useState({
 		emailAuth: '',
 		currentAuth: '',
 	})
-	const [twoFA, setTwoFA] = useState<Record<string, any> | null>(null);	
+	const [twoFA, setTwoFA] = useState<Record<string, any> | null>(null)
 	const [step, setStep] = useState<number>(1)
-	const [message, setMessage] = useState("");
-	const [code, setCode] = useState("");
+	const [message, setMessage] = useState('')
+	const [code, setCode] = useState('')
 	const handleEnable2FA = async () => {
 		const csrf = user?.csrf || ''
-    if (!csrf) {
-      console.log('CSRF token is missing. Please log in first.');
-      return;
-    }
-    try {
-      const response = await enable2FA(csrf); 
-			setTwoFA(response.data)
-    } catch (error) {
-			console.log(error);
+		if (!csrf) {
+			console.log('CSRF token is missing. Please log in first.')
+			return
 		}
-  }	
-  const handleVerify = async (e: React.FormEvent) => {
-		e.preventDefault();
-    const result = await verify2FA(user?.csrf, code);
-    setMessage(result.message);
-  };
+		try {
+			const response = await enable2FA(csrf)
+			setTwoFA(response.data)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+	const handleVerify = async (e: React.FormEvent) => {
+		e.preventDefault()
+		const result = await verify2FA(user?.csrf, code)
+		setMessage(result.message)
+	}
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button onClick={handleEnable2FA} className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] lg:max-w-[220px] w-full min-h-[28px]'>
+				<Button
+					onClick={handleEnable2FA}
+					className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] lg:max-w-[220px] w-full min-h-[28px]'
+				>
 					{propsItem}
 				</Button>
 			</AlertDialogTrigger>
@@ -90,216 +93,232 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 					</AlertDialogTitle>
 				</AlertDialogHeader>
 				<div className='flex justify-center gap-[10px] w-full overflow-x-hidden pb-[4.5rem]'>
-					<div className={'flex flex-col gap-[20px]'}>
-						<AlertDialogDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] text-[14px] sm:text-[16px] lg:text-[18px] 2xl:text-[20px] flex items-start gap-[5px] md:gap-[10px] sm:max-w-[50%]'>
-							<Image
-								alt='info'
-								className='max-w-[19px] md:max-w-[23px] lg:max-w-[25px] w-full'
-								height={20}
-								quality={100}
-								src={'/header_icons/profile_burger/info_icon.svg'}
-								width={20}
-							/>
-							To protect your account, you won't be able to withdraw fundsor use
-							P2P trading to sell crypto for 24 hours after you reset or change
-							your account phone.
-						</AlertDialogDescription>
+					{!user?.email ? (
+						<div className='bg-black/10 backdrop-blur-sm w-full min-h-screen fixed z-[9999] flex items-center justify-center'>
+							<h1 className='font-bold text-[25px]'>Нет почты</h1>
+						</div>
+					) : (
+						<div className={'flex flex-col gap-[20px]'}>
+							<AlertDialogDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] text-[14px] sm:text-[16px] lg:text-[18px] 2xl:text-[20px] flex items-start gap-[5px] md:gap-[10px] sm:max-w-[50%]'>
+								<Image
+									alt='info'
+									className='max-w-[19px] md:max-w-[23px] lg:max-w-[25px] w-full'
+									height={20}
+									quality={100}
+									src={'/header_icons/profile_burger/info_icon.svg'}
+									width={20}
+								/>
+								To protect your account, you won't be able to withdraw fundsor
+								use P2P trading to sell crypto for 24 hours after you reset or
+								change your account phone.
+							</AlertDialogDescription>
 
-						<div
-							className={`flex flex-col gap-[89px] max-w-[553px] relative after:absolute after:left-[14px] after:border-l after:border-dotted after:border-gray-400 after:w-[1px] after:bottom-[15px] after:top-[6px] after:-z-[99]`}
-						>
-							<div className='flex flex-col gap-[14px]'>
-								<div className='flex items-center gap-[15px]'>
-									<span
-										className={`text-white text-[18px] ${
-											step === 1 ? 'bg-[#205BC9]' : 'bg-[#64718a]'
-										} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
-									>
-										{step > 1 ? <CheckCheck /> : 1}
-									</span>
-									<span className='text-[18px] xl:text-[24px]'>
-										Download authenticator
-									</span>
-								</div>
-
-								{step === 1 && (
-									<div className={`flex flex-col gap-[15px] w-full ml-[47px]`}>
-										<span className='text-[16px] xl:text-[20px] text-[#888888]'>
-											Download an authenticator app such as Google
-											Authenticator.
-										</span>
-										<div className={'flex items-center gap-[40px]'}>
-											<div className='flex flex-col items-center gap-[5px]'>
-												<Image
-													alt='iphone qr'
-													height={110}
-													src={'/main/profile_security/qr_iphone.png'}
-													width={110}
-												/>
-												<span className='text-[16px] xl:text-[19px]'>IOS</span>
-											</div>
-											<div className='flex flex-col items-center gap-[5px]'>
-												<Image
-													alt='iphone qr'
-													height={110}
-													src={'/main/profile_security/qr_iphone.png'}
-													width={110}
-												/>
-												<span className='text-[16px] xl:text-[19px]'>
-													Android
-												</span>
-											</div>
-										</div>
-										<span className='text-[16px] text-[#888888]'>
-											By continuing, you agree to our{' '}
-											<span className='underline'>disclamer</span>
-										</span>
-										<Button
-											className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[150px] w-full'
-											onClick={() => setStep(prev => (prev = 2))}
+							<div
+								className={`flex flex-col gap-[89px] max-w-[553px] relative after:absolute after:left-[14px] after:border-l after:border-dotted after:border-gray-400 after:w-[1px] after:bottom-[15px] after:top-[6px] after:-z-[99]`}
+							>
+								<div className='flex flex-col gap-[14px]'>
+									<div className='flex items-center gap-[15px]'>
+										<span
+											className={`text-white text-[18px] ${
+												step === 1 ? 'bg-[#205BC9]' : 'bg-[#64718a]'
+											} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
 										>
-											Next
-										</Button>
+											{step > 1 ? <CheckCheck /> : 1}
+										</span>
+										<span className='text-[18px] xl:text-[24px]'>
+											Download authenticator
+										</span>
 									</div>
-								)}
-							</div>
 
-							<div className='flex flex-col gap-[14px]'>
-								<div className='flex items-center gap-[15px]'>
-									<span
-										className={`text-white text-[18px] ${
-											step === 2 ? 'bg-[#205BC9]' : 'bg-[#64718a]'
-										} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
-									>
-										{step > 2 ? <CheckCheck /> : 2}
-									</span>
-									<span className='text-[18px] xl:text-[24px]'>
-										Scan QR code
-									</span>
-								</div>
-
-								{step === 2 && (
-									<div className='flex flex-col gap-[15px] w-full ml-[47px]'>
-										<span className='text-[16px] xl:text-[20px] text-[#888888]'>
-											Launch the authenticator app and scan
-											<br /> the QR code or enter the key.
-										</span>
-										<div className={'flex items-center gap-[20px]'}>
-											<div className='flex flex-col items-center gap-[5px]'>
-												<Image
-													alt='iphone qr'
-													height={110}
-													src={twoFA?.qr}
-													width={110}
-												/>
+									{step === 1 && (
+										<div
+											className={`flex flex-col gap-[15px] w-full ml-[47px]`}
+										>
+											<span className='text-[16px] xl:text-[20px] text-[#888888]'>
+												Download an authenticator app such as Google
+												Authenticator.
+											</span>
+											<div className={'flex items-center gap-[40px]'}>
+												<div className='flex flex-col items-center gap-[5px]'>
+													<Image
+														alt='iphone qr'
+														height={110}
+														src={'/main/profile_security/qr_iphone.png'}
+														width={110}
+													/>
+													<span className='text-[16px] xl:text-[19px]'>
+														IOS
+													</span>
+												</div>
+												<div className='flex flex-col items-center gap-[5px]'>
+													<Image
+														alt='iphone qr'
+														height={110}
+														src={'/main/profile_security/qr_iphone.png'}
+														width={110}
+													/>
+													<span className='text-[16px] xl:text-[19px]'>
+														Android
+													</span>
+												</div>
 											</div>
-										</div>
-										<span className='text-[16px] text-[#888888]'>
-											Or manually enter the code below
-										</span>
-										<span className='text-[16px] text-[#888888] flex items-center gap-[10px]'>
-											<Snippet symbol={''} className='bg-transparent'>
-												{twoFA?.secret || 'UJY3HM5ATJBQW2IB'}
-											</Snippet>
-										</span>
-										<div className='flex items-center gap-[10px]'>
+											<span className='text-[16px] text-[#888888]'>
+												By continuing, you agree to our{' '}
+												<span className='underline'>disclamer</span>
+											</span>
 											<Button
-												className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
-												onClick={() => setStep(prev => (prev = 1))}
-											>
-												Back
-											</Button>
-											<Button
-												className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
-												onClick={() => setStep(prev => (prev = 3))}
+												className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[150px] w-full'
+												onClick={() => setStep(prev => (prev = 2))}
 											>
 												Next
 											</Button>
 										</div>
-									</div>
-								)}
-							</div>
-
-							<div className='flex flex-col gap-[14px] max-w-[553px]'>
-								<div className='flex items-start gap-[15px]'>
-									<span
-										className={`text-white text-[18px] ${
-											step === 3 ? 'bg-[#205BC9]' : 'bg-[#64718a]'
-										} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
-									>
-										{step > 3 ? <CheckCheck /> : 3}
-									</span>
-									<span className='text-[18px] xl:text-[28px]'>
-										Security authentication
-									</span>
+									)}
 								</div>
-								{step === 3 && (
-									<form onSubmit={handleVerify} className='flex flex-col gap-[15px] w-full ml-[47px]'>
-										<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
-											Email authentication
-											<div className='relative w-full'>
-												<Input
-													className='border border-solid shadow-none text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px]'
-													placeholder='Enter code'
-													type='text'
-													name='emailAuth'
-													value={inputs.emailAuth}
-													onChange={e =>
-														setInputs(prev => ({
-															...prev,
-															emailAuth: e.target.value,
-														}))
-													}
-												/>
-												<button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[16px] border border-solid rounded-[50px] dark:border-white border-black py-[2px] px-[7px] cursor-pointer dark:bg-[#0c0c0c] bg-white'>
-													Send Code
-												</button>
-											</div>
-										</label>
-										<label className='text-[#181818] dark:text-white text-[16px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
-											Current authenticator app
-											<div className='w-full'>
-												<Input
-													className='border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] shadow-none text-[16px] rounded-[30px] '
-													placeholder='Enter 6-digit generated code from your app'
-													type='text'
-													name='currentAuth'
-													value={code}
-													onChange={(e) => setCode(e.target.value)}
-												/>
-											</div>
-										</label>
 
-										<div className='flex items-center gap-[10px] bg-transparent'>
-											<Button
-												className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
-												onClick={() => setStep(prev => (prev = 2))}
-											>
-												Back
-											</Button>
-											<AlertDialogCancel className='mt-0 !bg-transparent w-fit'>
+								<div className='flex flex-col gap-[14px]'>
+									<div className='flex items-center gap-[15px]'>
+										<span
+											className={`text-white text-[18px] ${
+												step === 2 ? 'bg-[#205BC9]' : 'bg-[#64718a]'
+											} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
+										>
+											{step > 2 ? <CheckCheck /> : 2}
+										</span>
+										<span className='text-[18px] xl:text-[24px]'>
+											Scan QR code
+										</span>
+									</div>
+
+									{step === 2 && (
+										<div className='flex flex-col gap-[15px] w-full ml-[47px]'>
+											<span className='text-[16px] xl:text-[20px] text-[#888888]'>
+												Launch the authenticator app and scan
+												<br /> the QR code or enter the key.
+											</span>
+											<div className={'flex items-center gap-[20px]'}>
+												<div className='flex flex-col items-center gap-[5px]'>
+													<Image
+														alt='iphone qr'
+														height={110}
+														src={
+															twoFA?.qr ||
+															'/main/profile_security/qr_iphone.png'
+														}
+														width={110}
+													/>
+												</div>
+											</div>
+											<span className='text-[16px] text-[#888888]'>
+												Or manually enter the code below
+											</span>
+											<span className='text-[16px] text-[#888888] flex items-center gap-[10px]'>
+												<Snippet symbol={''} className='bg-transparent'>
+													{twoFA?.secret || '******'}
+												</Snippet>
+											</span>
+											<div className='flex items-center gap-[10px]'>
 												<Button
-													type='submit'
-													className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] w-full ${inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
-													onClick={() => {
-														setStep(prev => (prev = 1))
-														setInputs(prev => ({
-															...prev,
-															emailAuth: '',
-															currentAuth: '',
-														}))
-													}}
-													disabled={inputs.currentAuth.length >= 6}
+													className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
+													onClick={() => setStep(prev => (prev = 1))}
 												>
-													Confirm
+													Back
 												</Button>
-											</AlertDialogCancel>
+												<Button
+													className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
+													onClick={() => setStep(prev => (prev = 3))}
+												>
+													Next
+												</Button>
+											</div>
 										</div>
-									</form>
-								)}
+									)}
+								</div>
+
+								<div className='flex flex-col gap-[14px] max-w-[553px]'>
+									<div className='flex items-start gap-[15px]'>
+										<span
+											className={`text-white text-[18px] ${
+												step === 3 ? 'bg-[#205BC9]' : 'bg-[#64718a]'
+											} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
+										>
+											{step > 3 ? <CheckCheck /> : 3}
+										</span>
+										<span className='text-[18px] xl:text-[28px]'>
+											Security authentication
+										</span>
+									</div>
+									{step === 3 && (
+										<form
+											onSubmit={handleVerify}
+											className='flex flex-col gap-[15px] w-full ml-[47px]'
+										>
+											<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
+												Email authentication
+												<div className='relative w-full'>
+													<Input
+														className='border border-solid shadow-none text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px]'
+														placeholder='Enter code'
+														type='text'
+														name='emailAuth'
+														value={inputs.emailAuth}
+														onChange={e =>
+															setInputs(prev => ({
+																...prev,
+																emailAuth: e.target.value,
+															}))
+														}
+													/>
+													<button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[16px] border border-solid rounded-[50px] dark:border-white border-black py-[2px] px-[7px] cursor-pointer dark:bg-[#0c0c0c] bg-white'>
+														Send Code
+													</button>
+												</div>
+											</label>
+											<label className='text-[#181818] dark:text-white text-[16px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
+												Current authenticator app
+												<div className='w-full'>
+													<Input
+														className='border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] shadow-none text-[16px] rounded-[30px] '
+														placeholder='Enter 6-digit generated code from your app'
+														type='text'
+														name='currentAuth'
+														value={code}
+														onChange={e => setCode(e.target.value)}
+													/>
+												</div>
+											</label>
+
+											<div className='flex items-center gap-[10px] bg-transparent'>
+												<Button
+													className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
+													onClick={() => setStep(prev => (prev = 2))}
+												>
+													Back
+												</Button>
+												<AlertDialogCancel className='mt-0 !bg-transparent w-fit'>
+													<Button
+														type='submit'
+														className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] w-full ${inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
+														onClick={() => {
+															setStep(prev => (prev = 1))
+															setInputs(prev => ({
+																...prev,
+																emailAuth: '',
+																currentAuth: '',
+															}))
+														}}
+														disabled={inputs.currentAuth.length >= 6}
+													>
+														Confirm
+													</Button>
+												</AlertDialogCancel>
+											</div>
+										</form>
+									)}
+								</div>
 							</div>
 						</div>
-					</div>
+					)}
 				</div>
 			</AlertDialogContent>
 		</AlertDialog>
