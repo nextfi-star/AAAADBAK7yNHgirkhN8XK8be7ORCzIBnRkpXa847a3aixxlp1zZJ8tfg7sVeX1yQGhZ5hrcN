@@ -11,7 +11,7 @@ import { fontSans } from '@/config/fonts'
 import { redirect } from 'next/navigation'
 import { UserInitializer } from './UserInitializer'
 import { AosInitializer } from '@/components/shared/AosInitializer'
-import { Header } from '@/components/shared'
+import Redirect from './Redirect'
 
 export const metadata: Metadata = {
 	title: siteConfig.name,
@@ -38,7 +38,7 @@ export default async function RootLayout({
 	params: { locale: string }
 }) {
 	if (!routing.locales.includes(locale as any)) {
-		redirect(`/${routing.locales[0]}`)
+		return <Redirect />
 	}
 	const messages = await getMessages()
 	setRequestLocale(locale)

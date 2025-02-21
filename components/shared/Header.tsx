@@ -1,5 +1,4 @@
 'use client'
-import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
 import { Download2 } from '../ui/download2'
 import { User } from '../ui/User'
@@ -10,14 +9,14 @@ import { Burger } from './Burger'
 import { useThemeStore } from '@/store'
 import { Link } from '@/i18n/routing'
 import { Logo_header } from '@/components/ui/Logo_header'
+import { useUserStore } from '@/hooks/useUserData'
 
 interface Props {
 	auth?: boolean
 }
 export const Header = ({ auth = true }: Props) => {
-	const t = useTranslations('nav')
 	const { theme } = useThemeStore()
-
+	const csrf = useUserStore(state => state.user?.csrf)
 	useEffect(() => {
 		const header = document.getElementById('header')
 		const handleScroll = () => {
@@ -51,7 +50,7 @@ export const Header = ({ auth = true }: Props) => {
 						</a>
 					)}
 
-					<Navigation />
+					{csrf && <Navigation />}
 
 					<div className='header__actions'>
 						<div className='header__buttons'>
@@ -86,7 +85,7 @@ export const Header = ({ auth = true }: Props) => {
 								</>
 							)}
 
-							<Burger />
+							<Burger csrf={csrf} />
 						</div>
 
 						<div className='header__icons'>

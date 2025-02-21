@@ -46,7 +46,7 @@ export const Balance_img = () => {
         </a>
       </div>
 
-      <div className="getstarted__big-content__image">
+      {/* <div className="getstarted__big-content__image">
         <Image
           alt="stats"
           className="stats__image w-auto"
@@ -59,7 +59,7 @@ export const Balance_img = () => {
               : "/main/getstarted-stats.png"
           }
         />
-      </div>
+      </div> */}
     </>
   );
 };

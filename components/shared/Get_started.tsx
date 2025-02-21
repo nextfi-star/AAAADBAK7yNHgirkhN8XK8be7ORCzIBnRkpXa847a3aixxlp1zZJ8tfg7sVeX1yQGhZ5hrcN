@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import { NextPage } from "next";
 
 import { Balance_img } from "../ui/Balance_img";
 
 import { Getstarted_swiper } from "./Getstarted_swiper";
+import { Link } from '@/i18n/routing'
 
-export const Get_started: NextPage = () => {
+export const Get_started = () => {
   return (
     <section className="main__getstarted">
       <div className="site-holder">
@@ -41,9 +41,9 @@ export const Get_started: NextPage = () => {
                 Simple and quick registration on our platform. In just a few
                 minutes, you"ll gain access to all the features of NextFi.
               </p>
-              <a className="btn btn-blue" href="#">
+              <Link className="btn btn-blue" href="/signup">
                 Sign Up
-              </a>
+              </Link>
               <Image
                 alt="bubble"
                 className="bubble big"

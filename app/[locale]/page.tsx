@@ -5,7 +5,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
 import { useEffect, useState } from 'react'
 import Preloader from '@/components/shared/Preloader'
-import { useThemeStore } from '@/store'
+
 import {
 	Era,
 	Faq,
@@ -18,12 +18,7 @@ import {
 } from '@/components/shared'
 
 const Home = () => {
-	const { initializeTheme } = useThemeStore()
 	const [loading, setLoading] = useState<boolean>(true)
-	
-	useEffect(() => {
-		initializeTheme()
-	}, [initializeTheme])
 	
 	useEffect(() => {
 		const timer = setTimeout(() => setLoading(false), 3000)

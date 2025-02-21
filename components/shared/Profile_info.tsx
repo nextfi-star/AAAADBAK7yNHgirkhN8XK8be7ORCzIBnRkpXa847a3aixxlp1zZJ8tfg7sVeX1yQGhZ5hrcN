@@ -81,7 +81,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 				</div>
 				<div className='profile__info__block___right__block'>
 					<h5 className='profile__info__block___right__main__text'>
-						Levels Activity
+						Status
 					</h5>
 					<Button className='profile__info__block___right__additional__text border-1 border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'>
 						Level 1

@@ -62,7 +62,7 @@ export const Profile_nav: NextPage = () => {
               }`}
               href={`/tier`}
             >
-              Levels activity
+              Status
             </Link>
           </li>
         </ul>

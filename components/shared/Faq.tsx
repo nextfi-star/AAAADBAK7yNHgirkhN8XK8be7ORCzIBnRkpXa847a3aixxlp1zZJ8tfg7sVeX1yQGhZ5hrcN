@@ -1,6 +1,5 @@
-import { NextPage } from 'next'
 
-export const Faq: NextPage = () => {
+export const Faq = () => {
 	return (
 		<section className='main__faq'>
 			<div className='site-holder'>
