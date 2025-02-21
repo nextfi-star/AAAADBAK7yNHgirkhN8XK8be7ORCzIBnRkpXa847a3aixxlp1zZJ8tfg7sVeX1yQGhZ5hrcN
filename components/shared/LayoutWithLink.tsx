@@ -1,14 +1,13 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { NextPage } from "next";
 
 import { CloseBtn } from "../ui/CloseBtn";
 
 import { Link } from "@/i18n/routing";
 import { useThemeStore } from "@/store";
 
-const LayoutWithLink: NextPage = () => {
+const LayoutWithLink = () => {
   const pathname = usePathname();
   const parts = pathname.split("/");
   const locale = parts[1];

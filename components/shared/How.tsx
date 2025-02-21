@@ -1,8 +1,6 @@
-import { NextPage } from "next";
-
 import { How_options, Mobile_swiper } from "./index";
 
-export const How: NextPage = () => {
+export const How = () => {
   return (
     <section className="how">
       <div className="site-holder">

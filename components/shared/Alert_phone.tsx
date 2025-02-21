@@ -23,7 +23,7 @@ interface Props {
 	propsItem: React.ReactNode
 }
 
-export const Alert_phone: NextPage<Props> = ({ propsItem }) => {
+export const Alert_phone = ({ propsItem }: Props) => {
 	const { theme } = useThemeStore()
 	const [inputs, setInputs] = useState({
 		newPhone: '',

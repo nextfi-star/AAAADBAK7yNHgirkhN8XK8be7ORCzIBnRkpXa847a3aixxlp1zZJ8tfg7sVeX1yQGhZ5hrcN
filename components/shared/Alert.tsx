@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,13 +18,13 @@ interface Props {
   className?: string;
   unic?: string
 }
-export const Alert: NextPage<Props> = ({
+export const Alert = ({
   title,
   content,
   titleTriger,
   className,
   unic
-}) => {
+}: Props) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>

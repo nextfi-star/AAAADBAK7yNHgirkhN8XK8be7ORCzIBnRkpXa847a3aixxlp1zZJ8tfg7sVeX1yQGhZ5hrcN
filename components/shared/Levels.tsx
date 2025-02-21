@@ -1,9 +1,7 @@
 import Image from "next/image";
-import { NextPage } from "next";
-
 import { Levels_swiper } from "./Levels_swiper";
 
-export const Levels: NextPage = () => {
+export const Levels = () => {
   return (
     <section className="levels">
       <Image

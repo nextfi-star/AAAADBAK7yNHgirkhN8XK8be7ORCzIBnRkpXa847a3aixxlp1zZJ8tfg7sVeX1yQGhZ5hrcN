@@ -9,10 +9,10 @@ interface Props {
 	progress: number
 	handleIncreaseProgress: () => void
 }
-const Activity_awards: NextPage<Props> = ({
+const Activity_awards = ({
 	progress,
 	handleIncreaseProgress,
-}) => {
+}: Props) => {
 	const data = useMemo(
 		() => [
 			{

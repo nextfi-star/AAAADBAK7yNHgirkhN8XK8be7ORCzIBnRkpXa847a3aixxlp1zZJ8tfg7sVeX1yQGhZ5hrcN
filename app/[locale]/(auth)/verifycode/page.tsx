@@ -22,7 +22,7 @@ const VerifyCode: NextPage = () => {
 	const router = useRouter()
 	const params = useParams()
 	const locale = params.locale || 'en'
-	const { mode, email, phone, user, password } = useThemeStore()
+	const { mode, email, phone, user } = useThemeStore()
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault()
 		console.log(user?.email)
@@ -61,7 +61,7 @@ const VerifyCode: NextPage = () => {
 				{mode === 'email' ? (
 					<span className='!text-[#205bc9]'>{email}</span>
 				) : (
-					<span className='!text-[#205bc9]'>+{phone}</span>
+					<span className='!text-[#205bc9]'>{`+${phone}`}</span>
 				)}
 				. The verification code must be entered within 30 minutes.
 			</p>

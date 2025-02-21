@@ -22,7 +22,7 @@ interface Props {
 	propsItem: React.ReactNode
 	className?: string
 }
-export const Alert_nickname: NextPage<Props> = ({ propsItem, className }) => {
+export const Alert_nickname = ({ propsItem, className }: Props) => {
 	const { theme } = useThemeStore()
 	const [symbols, setSymbols] = useState<number | string | any>(0)
 	const [inputValue, setInputValue] = useState<string>('')

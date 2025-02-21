@@ -11,14 +11,13 @@ import {
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { ChevronLeft, Images, SendHorizontal, X } from 'lucide-react'
-import { NextPage } from 'next'
 import { useThemeStore } from '@/store'
 type Message = {
 	content: string
 	time: string
 	sender: 'me' | 'bot'
 }
-export const A_Chat: NextPage = () => {
+export const A_Chat = () => {
 	const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
 	const [show, setShow] = useState(false)
 	const [messages, setMessages] = useState<Message[]>([])

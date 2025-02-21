@@ -1,10 +1,9 @@
 import Image from "next/image";
-import { NextPage } from "next";
 
 import { Download } from "../ui/Download";
 import { Phones_img } from "../ui/Phones_img";
 
-export const Invest: NextPage = () => {
+export const Invest = () => {
   return (
     <section className="main__mobile">
       <div className="site-holder">

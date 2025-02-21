@@ -1,12 +1,11 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { NextPage } from "next";
 import { Button } from "@nextui-org/react";
 import { Intro__wave } from "../ui/Intro__wave";
 import { Glow } from "../ui/Glow";
 import { Link } from "../../i18n/routing";
 
-export const Intro: NextPage = () => {
+export const Intro = () => {
   const t = useTranslations("intro");
 
   return (
@@ -21,7 +20,7 @@ export const Intro: NextPage = () => {
               data-aos-once="true"
             >
               Explore new opportunities in financial&nbsp;investing{" "}
-              <b>with NextFi token</b>
+              <b>with NextFi AI</b>
             </h1>
             {/* mobile v. */}
             <div className="m-main__img-wrapper z-[9]">
@@ -48,10 +47,10 @@ export const Intro: NextPage = () => {
               data-aos-duration="1200"
               data-aos-once="true"
             >
-              <Button className="btn btn-blue">
+              <Button className="btn btn-blue ">
                 <Link href="/signup">Sign Up</Link>
               </Button>
-              <Button className="btn btn-transparent">
+              <Button className="btn btn-transparent ">
                 <Link href="/login">Log In</Link>
               </Button>
             </div>

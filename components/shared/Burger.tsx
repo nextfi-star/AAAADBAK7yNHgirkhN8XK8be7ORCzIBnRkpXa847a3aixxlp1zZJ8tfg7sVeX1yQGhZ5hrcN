@@ -37,35 +37,35 @@ export const Burger = () => {
             {!auth && (
               <div className="m__buttons">
                 <Link className="m__buttons-signup" href="/signup">
-                  {t("SignUp")}
+                 Sign up
                 </Link>
                 <Link className="m__buttons-login m__outline" href="/login">
-                  {t("LogIn")}
+                  Login
                 </Link>
               </div>
             )}
 
             <ul className="m__nav-list">
               <a className="m__nav-item" href="">
-                {t("home")}
+               Home
+              </a>
+              <a className= "m__nav-item" href="">
+                Token
               </a>
               <a className="m__nav-item" href="">
-                {t("token")}
+                Activity
               </a>
               <a className="m__nav-item" href="">
-                {t("activity")}
+                How
               </a>
               <a className="m__nav-item" href="">
-                {t("how")}
+                Listing
               </a>
               <a className="m__nav-item" href="">
-                {t("listing")}
+                App
               </a>
               <a className="m__nav-item" href="">
-                {t("app")}
-              </a>
-              <a className="m__nav-item" href="">
-                {t("faq")}
+                FAQ
               </a>
             </ul>
           </div>

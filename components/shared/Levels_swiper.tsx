@@ -3,7 +3,6 @@ import { Scrollbar, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css/pagination'
 import Image from 'next/image'
-import { NextPage } from 'next'
 
 const sliderData = [
 	{
@@ -22,7 +21,7 @@ const sliderData = [
 		text: 'Minimum amount X NextFi',
 		subtext: 'Maximum amount X NextFi',
 		investment: 'Investment term',
-		investmentTime: '30 days',
+		investmentTime: '50 days',
 		buttonLink: '#',
 		img: '/main/arrow_right.svg',
 	},
@@ -30,13 +29,13 @@ const sliderData = [
 		percent: '14%',
 		time: 'in 30 days',
 		investment: 'Investment term',
-		investmentTime: '30 days',
+		investmentTime: '60 days',
 		buttonLink: '#',
 		img: '/main/arrow_right.svg',
 	},
 ]
 
-export const Levels_swiper: NextPage = () => {
+export const Levels_swiper = () => {
 	return (
 		<>
 			<Swiper
@@ -66,7 +65,7 @@ export const Levels_swiper: NextPage = () => {
 						<SwiperSlide key={slide.percent} className='levels-slide'>
 							<div className='levels-slide__content'>
 								<div className='levels-slide__content-main'>
-								
+								<span className='levels-percent'>Up to</span>
 								</div>
 								<div className='levels-slide__content-main'>
 									<span className='levels-percent'>{slide.percent}</span>

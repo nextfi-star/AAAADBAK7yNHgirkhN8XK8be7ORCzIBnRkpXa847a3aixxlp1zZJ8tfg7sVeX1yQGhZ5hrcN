@@ -1,10 +1,9 @@
-import React from 'react'
 
 interface ProgressBarProps {
 	progress: number
 }
 
-const Activity_progress: React.FC<ProgressBarProps> = ({ progress }) => {
+const Activity_progress = ({ progress }: ProgressBarProps) => {
 	const filledCells = Math.round(progress / 4)
 	const totalCells = 25
 

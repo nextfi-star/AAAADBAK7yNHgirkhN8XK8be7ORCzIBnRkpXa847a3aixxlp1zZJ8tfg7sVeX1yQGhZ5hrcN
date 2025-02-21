@@ -28,7 +28,7 @@ export default function FormLayout({ children }: FormLayout) {
           </div>
 
           <div className="socials">
-            <span>Join our community</span>
+            <span>Join our community!</span>
 
             <div className="socials__icons">
               <Image

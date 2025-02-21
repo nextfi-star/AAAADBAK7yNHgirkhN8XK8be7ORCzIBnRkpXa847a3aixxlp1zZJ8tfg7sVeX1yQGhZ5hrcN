@@ -1,11 +1,9 @@
-import { NextPage } from 'next'
-import React from 'react'
 
 interface ProgressBarProps {
 	progress: number
 }
 
-export const Invest_progressBar: NextPage<ProgressBarProps> = ({ progress }) => {
+export const Invest_progressBar = ({ progress }: ProgressBarProps) => {
 	const totalCells = 19
 	const filledCells = Math.round((progress / 100) * totalCells)
 

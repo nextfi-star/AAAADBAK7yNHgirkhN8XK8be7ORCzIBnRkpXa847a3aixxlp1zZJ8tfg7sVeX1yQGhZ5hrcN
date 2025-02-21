@@ -1,4 +1,3 @@
-import { NextPage } from 'next'
 import ArrowBracket from '../ui/ArrowBracket'
 import {
 	AlertDialog,
@@ -21,7 +20,7 @@ interface Props {
 	propsItem: React.ReactNode
 }
 
-export const Alert_logpass: NextPage<Props> = ({ propsItem }) => {
+export const Alert_logpass = ({ propsItem }: Props) => {
 	const { theme } = useThemeStore()
 	const [inputs, setInputs] = useState({
 		currentPassword: '',

@@ -24,7 +24,7 @@ interface Props {
 	propsItem: React.ReactNode
 }
 
-export const Alert_email: NextPage<Props> = ({ propsItem }) => {
+export const Alert_email = ({ propsItem }: Props) => {
 	const { theme } = useThemeStore()
 	const [inputs, setInputs] = useState({
 		newEmail: '',

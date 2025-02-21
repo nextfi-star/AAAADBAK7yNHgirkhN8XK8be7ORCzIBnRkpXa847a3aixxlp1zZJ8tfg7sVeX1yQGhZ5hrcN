@@ -1,7 +1,6 @@
 'use client'
 import { useTranslations } from 'next-intl'
 import { useEffect } from 'react'
-import { NextPage } from 'next'
 import { Download2 } from '../ui/download2'
 import { User } from '../ui/User'
 import { Navigation } from './Navigation'
@@ -15,7 +14,7 @@ import { Logo_header } from '@/components/ui/Logo_header'
 interface Props {
 	auth?: boolean
 }
-export const Header: NextPage<Props> = ({ auth = true }) => {
+export const Header = ({ auth = true }: Props) => {
 	const t = useTranslations('nav')
 	const { theme } = useThemeStore()
 
@@ -59,10 +58,10 @@ export const Header: NextPage<Props> = ({ auth = true }) => {
 							{!auth ? (
 								<>
 									<Link className='header__buttons-login' href='/login'>
-										{t('LogIn')}
+										Login
 									</Link>
 									<Link className='header__buttons-signup' href='/signup'>
-										{t('SignUp')}
+										Sign up
 									</Link>{' '}
 								</>
 							) : (

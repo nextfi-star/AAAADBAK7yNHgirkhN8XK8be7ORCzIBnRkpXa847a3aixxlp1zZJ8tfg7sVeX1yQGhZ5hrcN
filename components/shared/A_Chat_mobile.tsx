@@ -10,7 +10,6 @@ import {
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { ChevronLeft, Images, SendHorizontal, X } from 'lucide-react'
-import { NextPage } from 'next'
 import { Chat } from '../ui/Chat'
 import { useThemeStore } from '@/store'
 type Message = {
@@ -19,7 +18,7 @@ type Message = {
 	sender: 'me' | 'bot'
 }
 
-export const A_Chat_mobile: NextPage = () => {
+export const A_Chat_mobile = () => {
 	const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
 	const messagesEndRef = useRef<HTMLDivElement>(null)
 	const [show, setShow] = useState(false)
