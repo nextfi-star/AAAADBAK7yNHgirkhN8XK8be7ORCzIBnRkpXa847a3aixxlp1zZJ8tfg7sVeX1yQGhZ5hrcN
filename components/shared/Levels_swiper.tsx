@@ -29,7 +29,7 @@ const sliderData = [
 		percent: '14%',
 		time: 'in 30 days',
 		investment: 'Investment term',
-		investmentTime: '60 days',
+		investmentTime: '80 days',
 		buttonLink: '#',
 		img: '/main/arrow_right.svg',
 	},
