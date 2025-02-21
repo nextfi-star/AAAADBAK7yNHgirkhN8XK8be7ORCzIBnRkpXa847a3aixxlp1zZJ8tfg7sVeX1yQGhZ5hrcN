@@ -2064,6 +2064,10 @@ body {
 	}
 
 	&__era {
+
+		.btn {
+			padding: 0;
+		}
 		position: relative;
 		padding: 60px 0 312px;
 
