@@ -65,13 +65,15 @@ export const Levels_swiper = () => {
 						<SwiperSlide key={slide.percent} className='levels-slide'>
 							<div className='levels-slide__content'>
 								<div className='levels-slide__content-main'>
-								<span className='levels-percent'>Up to</span>
+									<span className='levels-percent'>Up to</span>
 								</div>
 								<div className='levels-slide__content-main'>
 									<span className='levels-percent'>{slide.percent}</span>
 								</div>
 								<div className='levels-slide__content-sub'>
-									<span className='levels-time text-center'>{slide.time}</span>
+									<span className='levels-time text-center'>
+										{slide.investmentTime}
+									</span>
 								</div>
 							</div>
 							<a className='levels-slide__button' href={slide.buttonLink}>
