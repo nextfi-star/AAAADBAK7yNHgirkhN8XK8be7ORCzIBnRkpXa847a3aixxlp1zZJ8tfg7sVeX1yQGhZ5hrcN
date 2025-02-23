@@ -12,8 +12,8 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { useThemeStore } from '@/store'
-import { Autocomplete, AutocompleteItem } from '@nextui-org/autocomplete'
-import { Avatar } from '@nextui-org/react'
+import { Autocomplete, AutocompleteItem } from "@heroui/autocomplete"
+import { Avatar } from "@heroui/react"
 import { CheckCheck, ChevronDown } from 'lucide-react'
 import { NextPage } from 'next'
 import { useState } from 'react'

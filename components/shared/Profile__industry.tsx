@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { NextPage } from 'next'
 import ArrowBracket from '@/components/ui/ArrowBracket'
 import { useThemeStore } from '@/store'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 
 const data = [
 	{

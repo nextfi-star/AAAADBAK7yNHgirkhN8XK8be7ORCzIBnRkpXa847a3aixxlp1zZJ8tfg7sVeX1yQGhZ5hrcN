@@ -14,7 +14,7 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { useThemeStore } from '@/store'
-import { Avatar } from '@nextui-org/react'
+import { Avatar } from "@heroui/react"
 import { ChevronDown } from 'lucide-react'
 import { NextPage } from 'next'
 import { useState } from 'react'

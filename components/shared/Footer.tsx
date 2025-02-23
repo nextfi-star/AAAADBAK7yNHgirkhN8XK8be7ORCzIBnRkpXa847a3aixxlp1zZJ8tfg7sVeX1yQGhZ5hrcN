@@ -1,6 +1,6 @@
 import { useThemeStore } from '@/store'
-import { Button } from '@nextui-org/button'
-import { Avatar, Divider } from '@nextui-org/react'
+import { Button } from "@heroui/button"
+import { Avatar, Divider } from "@heroui/react"
 import { Globe, Info } from 'lucide-react'
 import Image from 'next/image'
 import {

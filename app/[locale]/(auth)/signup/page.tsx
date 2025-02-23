@@ -4,13 +4,13 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useRouter, useParams } from 'next/navigation'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { useThemeStore } from '@/store'
-import { Spinner } from '@nextui-org/spinner'
+import { Spinner } from "@heroui/spinner"
 import { registerUser } from '@/utils/api'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
-import { Checkbox, Switch } from '@nextui-org/react'
+import { Checkbox, Switch } from "@heroui/react"
 import { Logo_header } from '@/components/ui/Logo_header'
 import { NextPage } from 'next'
 
@@ -289,13 +289,13 @@ export default SignUp
 // import { yupResolver } from '@hookform/resolvers/yup'
 // import * as yup from 'yup'
 // import { useRouter, useParams } from 'next/navigation'
-// import { Button } from '@nextui-org/button'
+// import { Button } from '@heroui/button'
 // import { useThemeStore } from '@/store'
-// import { Spinner } from '@nextui-org/spinner'
+// import { Spinner } from '@heroui/spinner'
 // import { registerUser } from '@/utils/api'
 // import Image from 'next/image'
 // import { Link } from '@/i18n/routing'
-// import { Checkbox, Switch } from '@nextui-org/react'
+// import { Checkbox, Switch } from '@heroui/react'
 // import { Logo_header } from '@/components/ui/Logo_header'
 
 // const schema = yup.object().shape({

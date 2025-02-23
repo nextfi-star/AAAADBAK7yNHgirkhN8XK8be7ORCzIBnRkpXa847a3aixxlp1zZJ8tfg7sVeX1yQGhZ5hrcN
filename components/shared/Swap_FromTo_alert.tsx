@@ -18,8 +18,8 @@ import {
 	DialogTrigger,
 } from '@/components/ui/dialog'
 import { useThemeStore } from '@/store'
-import { Divider } from '@nextui-org/divider'
-import { Avatar } from '@nextui-org/react'
+import { Divider } from "@heroui/divider"
+import { Avatar } from "@heroui/react"
 import { Cross2Icon } from '@radix-ui/react-icons'
 import { ChevronDown } from 'lucide-react'
 import { NextPage } from 'next'

@@ -4,10 +4,10 @@ import { NextPage } from 'next'
 import { Device } from '../ui/Device'
 import { Accordion, AccordionItem } from '@/components/ui/AccordionBurger'
 import { useThemeStore } from '@/store'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import { Skeleton } from '@nextui-org/skeleton'
+import { Skeleton } from "@heroui/skeleton"
 import { useUserStore } from '@/hooks/useUserData'
 
 export const Profile_devices: NextPage = () => {

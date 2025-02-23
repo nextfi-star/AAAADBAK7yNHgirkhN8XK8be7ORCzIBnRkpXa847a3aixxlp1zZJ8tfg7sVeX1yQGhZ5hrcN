@@ -3,8 +3,8 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/scrollbar'
+import dynamic from "next/dynamic";
 import { useEffect, useState } from 'react'
-import Preloader from '@/components/shared/Preloader'
 
 import {
 	Era,
@@ -19,7 +19,9 @@ import {
 
 const Home = () => {
 	const [loading, setLoading] = useState<boolean>(true)
-	
+	const Preloader = dynamic(() => import("@/components/shared/Preloader"), {
+		ssr: false,
+	});
 	useEffect(() => {
 		const timer = setTimeout(() => setLoading(false), 3000)
 		return () => clearTimeout(timer)

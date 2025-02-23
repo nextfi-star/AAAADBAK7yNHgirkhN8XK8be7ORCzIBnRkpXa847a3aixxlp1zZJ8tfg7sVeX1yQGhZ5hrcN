@@ -14,7 +14,7 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover'
-import { Avatar } from '@nextui-org/react'
+import { Avatar } from "@heroui/react"
 import { NextPage } from 'next'
 import { useState } from 'react'
 import { useThemeStore } from '@/store'

@@ -12,7 +12,7 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { useThemeStore } from '@/store'
-import { Avatar, Input } from '@nextui-org/react'
+import { Avatar, Input } from "@heroui/react"
 import { CheckCheck, ChevronDown } from 'lucide-react'
 import { NextPage } from 'next'
 import { useState } from 'react'

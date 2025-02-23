@@ -1,5 +1,5 @@
 'use client'
-import { DateRangePicker } from '@nextui-org/date-picker'
+import { DateRangePicker } from "@heroui/date-picker"
 import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
 import React from 'react'

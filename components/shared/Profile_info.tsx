@@ -3,9 +3,9 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { NextPage } from 'next'
 import { Link } from '@/i18n/routing'
-import { Snippet } from '@nextui-org/snippet'
-import { Button } from '@nextui-org/button'
-import { Spinner } from '@nextui-org/spinner'
+import { Snippet } from "@heroui/snippet"
+import { Button } from "@heroui/button"
+import { Spinner } from "@heroui/spinner"
 import { useUserStore } from '@/hooks/useUserData'
 
 interface Props {

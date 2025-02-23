@@ -12,7 +12,7 @@ import {
 	DrawerTitle,
 	DrawerClose,
 } from '@/components/ui/drawer'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 
 interface Props {
 	propsItem: React.ReactNode

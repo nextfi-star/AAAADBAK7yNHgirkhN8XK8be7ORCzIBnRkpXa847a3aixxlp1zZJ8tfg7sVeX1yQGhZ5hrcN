@@ -1,5 +1,5 @@
 import { Link } from '@/i18n/routing'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { NextPage } from 'next'
 import { Alert_auntef } from './Alert_auntef'
 import { Alert_email } from './Alert_email'

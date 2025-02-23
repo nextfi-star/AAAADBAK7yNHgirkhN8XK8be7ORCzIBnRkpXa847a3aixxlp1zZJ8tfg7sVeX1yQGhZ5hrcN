@@ -11,12 +11,12 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { Link } from '@/i18n/routing'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { NextPage } from 'next'
 import { useState } from 'react'
 import { DropData } from './ProfileHeader'
 import Image from 'next/image'
-import { Spinner } from '@nextui-org/spinner'
+import { Spinner } from "@heroui/spinner"
 import { useUserStore } from '@/hooks/useUserData'
 
 interface Props {

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import Activity_progress from './Activity_progress'
 import Activity_awards from './Activity_awards'
 import Confetti from 'react-confetti'

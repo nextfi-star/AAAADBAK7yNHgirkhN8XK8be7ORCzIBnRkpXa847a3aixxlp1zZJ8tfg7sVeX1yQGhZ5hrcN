@@ -2,8 +2,8 @@
 import Image from 'next/image'
 import { NextPage } from 'next'
 import { Alert_nickname } from './Alert_nickname'
-import { Snippet } from '@nextui-org/snippet'
-import { Spinner } from '@nextui-org/spinner'
+import { Snippet } from "@heroui/snippet"
+import { Spinner } from "@heroui/spinner"
 import { useUserStore } from '@/hooks/useUserData'
 
 export const Profile_perosnalinfo: NextPage = () => {

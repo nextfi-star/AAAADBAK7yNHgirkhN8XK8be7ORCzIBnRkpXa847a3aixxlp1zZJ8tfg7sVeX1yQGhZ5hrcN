@@ -1,4 +1,4 @@
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import Activity_progressLogo from '@/components/shared/Activity_progressLogo'
 import Activity_personal from '@/components/shared/Activity_personal'
 

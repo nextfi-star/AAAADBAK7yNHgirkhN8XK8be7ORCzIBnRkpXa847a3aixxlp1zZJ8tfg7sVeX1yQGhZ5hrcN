@@ -1,5 +1,5 @@
 'use client'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { NextPage } from 'next'
 import React, { useMemo, useState } from 'react'
 import { Pagination } from 'swiper/modules'

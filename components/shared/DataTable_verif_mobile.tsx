@@ -19,7 +19,7 @@ import {
   Selection,
   ChipProps,
   SortDescriptor,
-} from "@nextui-org/react";
+} from "@heroui/react";
 
 import { VerticalDotsIcon } from "./VerticalDotsIcon";
 import { ChevronDownIcon } from "./ChevronDownIcon";

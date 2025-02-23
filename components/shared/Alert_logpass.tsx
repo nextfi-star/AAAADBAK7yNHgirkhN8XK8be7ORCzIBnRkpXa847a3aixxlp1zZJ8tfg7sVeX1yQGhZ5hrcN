@@ -13,7 +13,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { useState } from 'react'
 
 interface Props {

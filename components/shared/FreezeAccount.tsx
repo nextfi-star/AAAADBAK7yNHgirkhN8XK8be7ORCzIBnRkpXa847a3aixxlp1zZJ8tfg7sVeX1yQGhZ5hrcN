@@ -14,7 +14,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { Confirmation_dialog } from './Confirmation_dialog'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { useState } from 'react'
 import { handleAccountAction } from '@/utils/api'
 

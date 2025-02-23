@@ -5,8 +5,8 @@ import Swap_from from '@/components/shared/Swap_from'
 import Swap_To from '@/components/shared/Swap_To'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
-import { Divider } from '@nextui-org/divider'
-import { Image } from '@nextui-org/react'
+import { Divider } from "@heroui/divider"
+import { Image } from "@heroui/react"
 import { ArrowDownUp, ChevronLeft, X } from 'lucide-react'
 
 const Swap = () => {

@@ -12,7 +12,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { handleAccountAction } from '@/utils/api'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'

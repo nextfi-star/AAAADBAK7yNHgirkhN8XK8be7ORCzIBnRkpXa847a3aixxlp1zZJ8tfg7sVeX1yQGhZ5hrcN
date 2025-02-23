@@ -14,7 +14,7 @@ import {
 	DrawerClose,
 } from '@/components/ui/drawer'
 import { useThemeStore } from '@/store'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 const data = [
 	{
 		img: '/main/avatar_noface.png',

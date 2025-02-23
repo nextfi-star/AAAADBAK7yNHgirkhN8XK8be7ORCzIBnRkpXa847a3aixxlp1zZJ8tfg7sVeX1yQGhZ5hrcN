@@ -1,13 +1,13 @@
-import React, { useEffect, useRef } from 'react'
+'use client'
+import { useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { NextPage } from 'next'
-import Lottie, { LottieRefCurrentProps } from 'lottie-react'
+import { LottieRefCurrentProps } from 'lottie-react'
 import animationData2 from '@/public/animation/verify_anim_mini.json'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { useThemeStore } from '@/store'
 import { Link } from '@/i18n/routing'
 import { ProfilePage_guard } from '@/components/ui/ProfilePage_guard'
-
+import dynamic from 'next/dynamic';
 interface AccordionItemType {
 	value: string
 	trigger: string
@@ -20,7 +20,8 @@ interface Props {
 	data: AccordionSectionType[]
 }
 
-export const ProfileBurger_verification_accor: NextPage<Props> = ({ data }) => {
+export const ProfileBurger_verification_accor = ({ data }: Props) => {
+	const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 	const { theme, globalVeriState } = useThemeStore()
 	const lottieRef = useRef<LottieRefCurrentProps>(null)
 	const stopAtFrame = () => {

@@ -5,7 +5,7 @@ import { NextPage } from 'next'
 import ArrowBracket from '@/components/ui/ArrowBracket'
 import { useThemeStore } from '@/store'
 import { ChangeAvatar } from '@/components/ui/ChangeAvatar'
-import { Spinner } from '@nextui-org/spinner'
+import { Spinner } from "@heroui/spinner"
 import { useUserStore } from '@/hooks/useUserData'
 
 interface Props {

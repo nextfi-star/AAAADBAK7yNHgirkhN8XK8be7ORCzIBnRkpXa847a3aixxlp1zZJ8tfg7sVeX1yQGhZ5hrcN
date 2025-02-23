@@ -6,7 +6,7 @@ import {
 	TableRow,
 	TableCell,
 	getKeyValue,
-} from '@nextui-org/react'
+} from "@heroui/react"
 import { NextPage } from 'next'
 
 interface Props {

@@ -9,7 +9,7 @@ import {
 	DialogTrigger,
 } from '@/components/ui/dialog'
 import { useUserStore } from '@/hooks/useUserData'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { NextPage } from 'next'
 import { useLocale } from 'next-intl'
 import { useRouter } from 'next/navigation'

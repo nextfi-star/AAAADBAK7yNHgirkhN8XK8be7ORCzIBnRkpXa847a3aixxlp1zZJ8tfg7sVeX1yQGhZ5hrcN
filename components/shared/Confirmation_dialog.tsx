@@ -10,7 +10,7 @@ import {
 } from '@/components/ui/dialog'
 import { useUserStore } from '@/hooks/useUserData'
 import { handleAccountAction } from '@/utils/api'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { NextPage } from 'next'
 interface Props {
 	content: string

@@ -17,7 +17,7 @@ import {
 	TableHeader,
 	TableRow,
 	User,
-} from '@nextui-org/react'
+} from "@heroui/react"
 import React from 'react'
 import { ChevronDownIcon } from './ChevronDownIcon'
 import { columnsDataW, statusOptionsDataW, usersDataW } from './data'
@@ -130,16 +130,16 @@ export default function Withdrawal_table_mobile() {
 				return <span className='md:text-[20px]'> {user.fee}</span>
 			case 'status':
 				return (
-					// <Chip
-					// 	className='capitalize'
-					// 	color={statusColorMap[user.status]}
-					// 	size='sm'
-					// 	variant='flat'
-					// >
-					// 	{user.status}
-					// </Chip>
-					<span className='capitalize md:text-[20px]'>{user.status}</span>
-				)
+                    // <Chip
+                    // 	className='capitalize'
+                    // 	color={statusColorMap[user.status]}
+                    // 	size='sm'
+                    // 	variant='flat'
+                    // >
+                    // 	{user.status}
+                    // </Chip>
+                    (<span className='capitalize md:text-[20px]'>{user.status}</span>)
+                );
 			case 'actions':
 				return (
 					<div className='relative flex justify-center items-center gap-2'>

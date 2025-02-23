@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/drawer";
 import { useThemeStore } from "@/store";
 import { Link } from "@/i18n/routing";
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 
 interface Props {
   propsItem: React.ReactNode;

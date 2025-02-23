@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NextPage } from "next";
-import { Button } from "@nextui-org/react";
+import { Button } from "@heroui/react";
 
 import { Era_phone } from "../ui/Era_phone";
 

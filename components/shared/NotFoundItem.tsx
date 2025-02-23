@@ -1,4 +1,4 @@
-import { Avatar } from '@nextui-org/react'
+import { Avatar } from "@heroui/react"
 import { NextPage } from 'next'
 import React from 'react'
 

@@ -3,7 +3,7 @@
 import { useInvestStore } from '@/hooks/useInvest'
 import { useUserStore } from '@/hooks/useUserData'
 import { fetchCoinList, getUserBalance, getUserHistory } from '@/utils/api'
-import { Spinner } from '@nextui-org/spinner'
+import { Spinner } from "@heroui/spinner"
 import { useEffect, useState } from 'react'
 import { Coin } from '@/types'
 

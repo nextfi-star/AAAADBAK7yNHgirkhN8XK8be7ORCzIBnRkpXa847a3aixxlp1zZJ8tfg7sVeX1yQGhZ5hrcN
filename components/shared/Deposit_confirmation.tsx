@@ -10,10 +10,10 @@ import {
 	DialogTrigger,
 } from '@/components/ui/dialog'
 import { useThemeStore } from '@/store'
-import { Divider } from '@nextui-org/divider'
+import { Divider } from "@heroui/divider"
 import { NextPage } from 'next'
 import { Cross2Icon } from '@radix-ui/react-icons'
-import { Image, Snippet, Spinner } from '@nextui-org/react'
+import { Image, Snippet, Spinner } from "@heroui/react"
 import { useEffect, useState } from 'react'
 import Withdrawal_animation from './Withdrawal_animation'
 import { CryptoData } from './Withdrawal_steps'

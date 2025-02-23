@@ -18,7 +18,7 @@ import {
 	Pagination,
 	Selection,
 	SortDescriptor,
-} from '@nextui-org/react'
+} from "@heroui/react"
 
 import ArrowUP from '../ui/ArrowUP'
 

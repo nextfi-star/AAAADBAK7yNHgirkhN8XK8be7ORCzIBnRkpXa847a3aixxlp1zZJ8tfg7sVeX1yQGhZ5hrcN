@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 
 interface Props {
 	propsItem: React.ReactNode

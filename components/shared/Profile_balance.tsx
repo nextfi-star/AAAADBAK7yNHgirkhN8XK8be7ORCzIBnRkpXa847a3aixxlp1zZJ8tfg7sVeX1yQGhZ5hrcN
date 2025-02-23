@@ -5,7 +5,7 @@ import Eye from '../ui/Eye'
 import ArrowBracket from '../ui/ArrowBracket'
 import { useThemeStore } from '../../store'
 import Chart from './Chart'
-import { Avatar, Image, Spinner } from '@nextui-org/react'
+import { Avatar, Image, Spinner } from "@heroui/react"
 import { Link } from '@/i18n/routing'
 import { RefreshCw } from 'lucide-react'
 import { useUserStore } from '@/hooks/useUserData'

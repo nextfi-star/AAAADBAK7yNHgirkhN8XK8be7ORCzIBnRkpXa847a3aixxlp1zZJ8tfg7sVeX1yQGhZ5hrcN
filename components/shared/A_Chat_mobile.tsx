@@ -6,7 +6,7 @@ import {
 	Button,
 	useDisclosure,
 	Divider,
-} from '@nextui-org/react'
+} from "@heroui/react"
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { ChevronLeft, Images, SendHorizontal, X } from 'lucide-react'

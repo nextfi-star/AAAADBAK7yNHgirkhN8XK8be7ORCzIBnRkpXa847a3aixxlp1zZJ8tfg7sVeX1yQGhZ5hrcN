@@ -16,7 +16,7 @@ import { useThemeStore } from '@/store'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import ArrowBracket from '../ui/ArrowBracket'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { useState } from 'react'
 
 interface Props {

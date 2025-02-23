@@ -5,9 +5,9 @@ import { NextPage } from 'next'
 import { ProfilePage_guard } from '../ui/ProfilePage_guard'
 import { ViewRegion } from './ViewRegion'
 import { useThemeStore } from '@/store'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { Link } from '@/i18n/routing'
-import { Spinner } from '@nextui-org/spinner'
+import { Spinner } from "@heroui/spinner"
 import { useUserStore } from '@/hooks/useUserData'
 
 export const Profile_personalverif: NextPage = () => {

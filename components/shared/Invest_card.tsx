@@ -1,11 +1,11 @@
 'use client'
 import { useThemeStore } from '@/store'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import Image from 'next/image'
 import { useState } from 'react'
 import { Invest_progressBar } from './Invest_progressBar'
 import { NextPage } from 'next'
-import { Divider } from '@nextui-org/divider'
+import { Divider } from "@heroui/divider"
 import { X } from 'lucide-react'
 import { Checkbox } from './Checkbox'
 import NotFoundItem from './NotFoundItem'

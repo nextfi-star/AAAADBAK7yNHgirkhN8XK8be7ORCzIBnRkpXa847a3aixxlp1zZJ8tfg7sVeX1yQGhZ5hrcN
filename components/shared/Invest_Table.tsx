@@ -17,7 +17,7 @@ import {
 	TableHeader,
 	TableRow,
 	User,
-} from '@nextui-org/react'
+} from "@heroui/react"
 import React from 'react'
 import { ChevronDownIcon } from './ChevronDownIcon'
 import { columnsDataI, statusOptionsDataI, usersDataI } from './data'

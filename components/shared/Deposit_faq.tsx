@@ -1,4 +1,4 @@
-import { Divider } from '@nextui-org/divider'
+import { Divider } from "@heroui/divider"
 import { NextPage } from 'next'
 
 const Deposit_faq: NextPage = () => {

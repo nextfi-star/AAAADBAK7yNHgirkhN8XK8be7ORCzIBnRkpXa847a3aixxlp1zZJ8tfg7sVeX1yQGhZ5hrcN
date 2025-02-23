@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import React from 'react'
 import { Swap_ToFrom_alert } from './Swap_ToFrom_alert'
-import { Input } from '@nextui-org/input'
+import { Input } from "@heroui/input"
 type Status = {
 	value: string
 	label: string

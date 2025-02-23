@@ -9,7 +9,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import { Avatar } from '@nextui-org/react'
+import { Avatar } from "@heroui/react"
 import { NextPage } from 'next'
 import Withdrawal_steps from './Withdrawal_steps'
 import Withdrawal_faq from './Withdrawal_faq'

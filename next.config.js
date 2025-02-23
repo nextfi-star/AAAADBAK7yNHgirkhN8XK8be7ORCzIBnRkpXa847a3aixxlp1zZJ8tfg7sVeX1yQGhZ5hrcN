@@ -7,6 +7,7 @@ const nextConfig = {
 	eslint: {
 		ignoreDuringBuilds: true,
 	},
+	cacheMaxMemorySize: 0,
 }
 
 module.exports = withNextIntl(nextConfig)

@@ -3,8 +3,8 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import { Alert_email } from './Alert_email'
 import { Alert_phone } from './Alert_phone'
-import { Button } from '@nextui-org/button'
-import { Spinner } from '@nextui-org/spinner'
+import { Button } from "@heroui/button"
+import { Spinner } from "@heroui/spinner"
 import { useUserStore } from '@/hooks/useUserData'
 
 export const Profile_accountdetails: NextPage = () => {

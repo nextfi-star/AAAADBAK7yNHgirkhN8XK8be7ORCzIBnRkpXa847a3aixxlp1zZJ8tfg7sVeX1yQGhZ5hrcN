@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { NextPage } from 'next'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import {
 	InputOTP,
 	InputOTPGroup,
@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/input-otp'
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
 import { useThemeStore } from '@/store'
-import { Spinner } from '@nextui-org/spinner'
+import { Spinner } from "@heroui/spinner"
 import { verifyCode } from '@/utils/api'
 
 const VerifyCode: NextPage = () => {

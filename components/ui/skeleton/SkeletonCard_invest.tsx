@@ -1,4 +1,4 @@
-import { Card, Skeleton, Spinner } from '@nextui-org/react'
+import { Card, Skeleton, Spinner } from "@heroui/react"
 import { NextPage } from 'next'
 
 interface Props {
