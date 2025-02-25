@@ -35,7 +35,7 @@ const Overview = () => {
 					{verify ? (
 						<Profile_balance />
 					) : (
-						<Profile_verification toggleActive={toggleActive} />
+						<Profile_verification toggleActive={toggleActive} verify={verify} />
 					)}
 					<Profile_payments />
 				</div>

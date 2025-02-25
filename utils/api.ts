@@ -33,6 +33,7 @@ export const loginUser = async (payload: {
 	password?: string
 	uid?: string
 	vcode?: string
+	tfa?: string
 }) => {
 	try {
 		const response = await fetch('https://nextfi.io:5000/api/v1/login', {
@@ -62,6 +63,7 @@ export const enable2FA = async (csrf: string) => {
 		})
 
 		const result = await response.json()
+
 		if (!response.ok) {
 			throw new Error(result.message || 'Failed to enable 2FA')
 		}
@@ -85,9 +87,12 @@ export const verify2FA = async (csrf: string, code: string) => {
 		const data = await response.json()
 
 		if (data.response === 'success') {
-			console.log('2FA verification successful')
+			console.log('2FA verification successful', data)
+			useUserStore.getState().loadUser();
+			
 		} else {
-			console.error('Error verifying 2FA:', data.message)
+			console.log(data)
+			console.error('Error verifying 2FA:', data)
 		}
 
 		return data

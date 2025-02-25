@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { NextPage } from 'next'
 import Eye from '../ui/Eye'
 import ArrowBracket from '../ui/ArrowBracket'
 import { useThemeStore } from '../../store'
@@ -11,7 +10,7 @@ import { RefreshCw } from 'lucide-react'
 import { useUserStore } from '@/hooks/useUserData'
 import { getUserBalance } from '@/utils/api'
 
-export const Profile_balance: NextPage = () => {
+export const Profile_balance = () => {
 	const { theme, verifyState } = useThemeStore()
 	const [show, setShow] = useState<boolean>(false)
 

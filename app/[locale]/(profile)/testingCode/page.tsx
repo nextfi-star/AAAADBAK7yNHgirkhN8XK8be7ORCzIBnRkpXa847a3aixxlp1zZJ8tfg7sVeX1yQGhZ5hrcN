@@ -3,14 +3,15 @@
 import { useInvestStore } from '@/hooks/useInvest'
 import { useUserStore } from '@/hooks/useUserData'
 import { fetchCoinList, getUserBalance, getUserHistory } from '@/utils/api'
-import { Spinner } from "@heroui/spinner"
-import { useEffect, useState } from 'react'
+import { Spinner } from '@heroui/spinner'
+import { useEffect, useMemo, useState } from 'react'
 import { Coin } from '@/types'
 
 const TestingCode = () => {
 	const [coin, setCoin] = useState('TEST')
 	const [coins, setCoins] = useState<Coin[]>([])
 	const { user } = useUserStore()
+	const [profileData, setProfileData] = useState(user)
 	const [history, setHistory] = useState<any>(null)
 	const [loading, setLoading] = useState(true)
 	const [balance, setBalance] = useState<number | null>(null)
@@ -49,9 +50,51 @@ const TestingCode = () => {
 
 		loadCoins()
 	}, [])
+	useEffect(() => {
+		setProfileData(user) // Автообновление данных при изменениях
+	}, [user])
+	const renderedData = useMemo(() => {
+		if (!profileData) return <p>Loading...</p>
 
+		return (
+			<div className='p-4 max-w-md mx-auto bg-white shadow-lg rounded-lg text-black'>
+				<h2 className='text-xl font-semibold mb-4'>Profile Information</h2>
+				<div className='space-y-2'>
+					<p>
+						<strong>Username:</strong> {profileData.username || 'N/A'}
+					</p>
+					<p>
+						<strong>Email:</strong> {profileData.email || 'N/A'}
+					</p>
+					<p>
+						<strong>Country:</strong> {profileData.country || 'N/A'}
+					</p>
+					<p>
+						<strong>XP:</strong> {profileData.xp}
+					</p>
+					<p>
+						<strong>2FA:</strong> {profileData['2fa'] ? 'Enabled' : 'Disabled'}
+					</p>
+					<p>
+						<strong>Ref Code:</strong> {profileData.refcode || 'N/A'}
+					</p>
+					<p>
+						<strong>Status:</strong>{' '}
+						{profileData.status === 1 ? 'Active' : 'Inactive'}
+					</p>
+					<p>
+						<strong>Verified:</strong> {profileData.verified ? 'Yes' : 'No'}
+					</p>
+				</div>
+			</div>
+		)
+	}, [profileData])
 	if (loading) {
-		return <div className='w-full min-h-screen'><Spinner /></div>
+		return (
+			<div className='w-full min-h-screen'>
+				<Spinner />
+			</div>
+		)
 	}
 
 	return (
@@ -130,6 +173,10 @@ const TestingCode = () => {
 						</select>
 					</div>
 					<p>Balance: {balance} $</p>
+				</div>
+				<div className='flex flex-col gap-4'>
+					<h1>USER</h1>
+					{renderedData}
 				</div>
 			</div>
 		</div>

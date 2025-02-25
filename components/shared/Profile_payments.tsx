@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import { NextPage } from 'next'
 import { DateRangePicker } from "@heroui/date-picker"
 import { useThemeStore } from '@/store/index'
 import { Profile_industry } from './Profile__industry'
@@ -10,7 +9,7 @@ import DataTable_unverif_mobile from './DataTable_unverif_mobile'
 import DataTable_verif_mobile from './DataTable_verif_mobile'
 import { useParams, usePathname } from 'next/navigation'
 
-export const Profile_payments: NextPage = () => {
+export const Profile_payments = () => {
 	const { verifyState } = useThemeStore()
 	const { locale } = useParams()
 	const pathname = usePathname()

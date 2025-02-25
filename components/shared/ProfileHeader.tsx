@@ -1,5 +1,4 @@
 'use client'
-import { useTranslations } from 'next-intl'
 import { useEffect, useMemo, useState } from 'react'
 import clsx from 'clsx'
 import { NextPage } from 'next'
@@ -45,7 +44,6 @@ export interface DropData {
 }
 
 export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
-	const t = useTranslations('nav')
 	const [show, setShow] = useState(true)
 	const { theme, setVerifyState } = useThemeStore()
 	const classChange = clsx('m_header__profile_menu', { active: !show })
@@ -202,10 +200,10 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 						{!auth ? (
 							<>
 								<Link className='header__buttons-login' href='/login'>
-									{t('LogIn')}
+									Log in
 								</Link>
 								<Link className='header__buttons-signup' href='/signup'>
-									{t('SignUp')}
+									Sign up
 								</Link>{' '}
 							</>
 						) : (

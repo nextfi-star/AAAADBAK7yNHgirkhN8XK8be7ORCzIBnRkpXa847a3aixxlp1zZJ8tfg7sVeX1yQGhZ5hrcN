@@ -1,13 +1,11 @@
 'use client'
 import { useRef } from 'react'
-import { useTranslations } from 'next-intl'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Swiper as SwiperType } from 'swiper'
 import Image from 'next/image'
-import { NextPage } from 'next'
 import ArrowBracket from '@/components/ui/ArrowBracket'
 import { useThemeStore } from '@/store'
-import { Button } from "@heroui/button"
+import { Button } from '@heroui/button'
 
 const data = [
 	{
@@ -40,8 +38,7 @@ const data = [
 interface Props {
 	unicClass: string
 }
-export const Profile_industry: NextPage<Props> = ({ unicClass }) => {
-	const t = useTranslations('profile')
+export const Profile_industry = ({ unicClass }: Props) => {
 	const { theme } = useThemeStore()
 	const swiperRef = useRef<SwiperType | null>(null)
 
@@ -52,7 +49,7 @@ export const Profile_industry: NextPage<Props> = ({ unicClass }) => {
 			>
 				<div className='w-full flex justify-between gap-[5px] md:gap-[15px] pt-[1.5rem] px-[10px] md:pt-0'>
 					<h3 className='profile__industry__main_text flex-shrink-0'>
-						{t('ChooseIndustry')}
+						Choose Industry
 					</h3>
 
 					<div className='flex items-center justify-end gap-[15px] sm:gap-[24px]'>

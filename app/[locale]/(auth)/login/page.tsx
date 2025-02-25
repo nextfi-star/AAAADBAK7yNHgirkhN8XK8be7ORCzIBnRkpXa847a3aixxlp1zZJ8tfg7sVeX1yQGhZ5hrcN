@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useRouter, useParams } from 'next/navigation'
-import { Button } from "@heroui/button"
+import { Button } from '@heroui/button'
 import { useThemeStore } from '@/store'
-import { Spinner } from "@heroui/spinner"
+import { Spinner } from '@heroui/spinner'
 import { loginUser } from '@/utils/api'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
@@ -62,6 +62,7 @@ const Login = () => {
 	const [vcode, setVcode] = useState<string>('')
 	const [state, setState] = useState(false)
 	const [isSubmit, setIsSubmit] = useState(false)
+	const [tfaCode, setTfaCode] = useState('')
 
 	useEffect(() => {
 		const params = new URLSearchParams(window.location.search)
@@ -73,7 +74,6 @@ const Login = () => {
 	}, [])
 
 	const handleChange = () => {
-		setshowVerifWindow(true)
 		setIsSubmit(true)
 		const timer = setTimeout(() => {
 			setIsSubmit(true)
@@ -90,37 +90,46 @@ const Login = () => {
 			refid: data.refid || '',
 			terms: 'yes',
 			uid: data.uid || '',
-		};
-	
-		setError(null);
-		setIsLoading(true);
-	
+			'2fa_code': vcode,
+		}
+
+		setError(null)
+		setIsLoading(true)
+
 		try {
-			const response = await loginUser(payload);
+			const response = await loginUser(payload)
 			if (response.response === 'success') {
-				const userData = response.data;
-	
+				const userData = response.data
+
 				if (!userData.uid || !userData.csrf) {
-					throw new Error('Получены некорректные данные пользователя');
+					throw new Error('Получены некорректные данные пользователя')
 				}
-				useUserStore.getState().setUser(userData);
+				useUserStore.getState().setUser(userData)
 				if (userData.csrf) {
-					useUserStore.getState().setCsrf(userData.csrf);
+					useUserStore.getState().setCsrf(userData.csrf)
 				}
-				localStorage.setItem('userData', JSON.stringify(userData));
+				localStorage.setItem('userData', JSON.stringify(userData))
 				if (userData.csrf) {
-					router.push(`/${locale}/over`);
+					setshowVerifWindow(false)
+					setIsSubmit(false)
+					router.push(`/${locale}/over`)
 				}
+			} else if (response.requires_verif) {
+				setshowVerifWindow(true)
+				setIsSubmit(false)
+			} else if (vcode.length === 0 && vcode.length < 6) {
+				setshowVerifWindow(true)
+				setIsSubmit(false)
 			} else {
-				throw new Error(response.message || 'Ошибка авторизации');
+				throw new Error(response.message || 'Ошибка авторизации')
 			}
 		} catch (err: any) {
-			setError(err.message);
+			console.log(err.message)
+			setError(err.message)
 		} finally {
-			setIsLoading(false);
+			setIsLoading(false)
 		}
-	};
-	
+	}
 
 	return (
 		<div className='form__wrapper flex flex-col justify-between gap-[20px]'>
@@ -136,9 +145,9 @@ const Login = () => {
 					<p>
 						A 6-digit code has been sent to your{' '}
 						{mode === 'email' ? (
-							<span className='!text-[#205bc9]'>{email}</span>
+							<span className='!text-[#205bc9]'>{email || 'email'}</span>
 						) : (
-							<span className='!text-[#205bc9]'>+{phone}</span>
+							<span className='!text-[#205bc9]'>+{phone || 'phone'}</span>
 						)}
 						. The verification code must be entered within 30 minutes.
 					</p>
@@ -162,7 +171,7 @@ const Login = () => {
 						</InputOTP>
 						{error && <p className='text-danger'>{error}</p>}
 						<Button
-							onClick={handleChange}
+							onPress={handleChange}
 							disabled={vcode.length < 6 || isSubmit}
 							className={`next__btn ${
 								vcode.length >= 6
@@ -180,13 +189,13 @@ const Login = () => {
 					<div className='switch-mode relative z-[9999]'>
 						<Button
 							className={mode === 'email' ? 'active' : ''}
-							onClick={() => modeToogle('email')}
+							onPress={() => modeToogle('email')}
 						>
 							E-mail
 						</Button>
 						<Button
 							className={mode === 'phone' ? 'active' : ''}
-							onClick={() => modeToogle('phone')}
+							onPress={() => modeToogle('phone')}
 						>
 							Phone number
 						</Button>
@@ -233,15 +242,6 @@ const Login = () => {
 								</p>
 							)}
 						</div>
-
-						<input
-							type={showPassword ? 'text' : 'password'}
-							placeholder='Code'
-							id='vcode1'
-							value={vcode}
-							onChange={e => setVcode(e.target.value)}
-							className={`hidden`}
-						/>
 
 						{error && (
 							<p className='text-danger pointer-events-none'>{error}</p>

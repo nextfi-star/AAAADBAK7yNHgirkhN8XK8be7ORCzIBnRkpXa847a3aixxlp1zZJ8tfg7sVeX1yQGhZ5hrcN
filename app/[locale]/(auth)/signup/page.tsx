@@ -91,13 +91,13 @@ const schema = yup.object().shape({
 			<div className='switch-mode relative z-[9999]'>
 				<Button
 					className={mode === 'email' ? 'active' : ''}
-					onClick={() => modeToogle('email')}
+					onPress={() => modeToogle('email')}
 				>
 					E-mail
 				</Button>
 				<Button
 					className={mode === 'phone' ? 'active' : ''}
-					onClick={() => modeToogle('phone')}
+					onPress={() => modeToogle('phone')}
 				>
 					Phone number
 				</Button>
@@ -380,13 +380,13 @@ export default SignUp
 // 			<div className='switch-mode relative z-[9999]'>
 // 				<Button
 // 					className={mode === 'email' ? 'active' : ''}
-// 					onClick={() => modeToogle('email')}
+// 					onPress={() => modeToogle('email')}
 // 				>
 // 					E-mail
 // 				</Button>
 // 				<Button
 // 					className={mode === 'phone' ? 'active' : ''}
-// 					onClick={() => modeToogle('phone')}
+// 					onPress={() => modeToogle('phone')}
 // 				>
 // 					Phone number
 // 				</Button>
@@ -422,7 +422,7 @@ export default SignUp
 // 					/>
 // 					<span
 // 						className='absolute top-0 right-0'
-// 						onClick={togglePasswordVisibility}
+// 						onPress={togglePasswordVisibility}
 // 					>
 // 						<Image
 // 							width={30}

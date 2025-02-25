@@ -57,7 +57,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
 				<Button
-					onClick={handleEnable2FA}
+					onPress={handleEnable2FA}
 					className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] lg:max-w-[220px] w-full min-h-[28px]'
 				>
 					{propsItem}
@@ -168,7 +168,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 											</span>
 											<Button
 												className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[150px] w-full'
-												onClick={() => setStep(prev => (prev = 2))}
+												onPress={() => setStep(prev => (prev = 2))}
 											>
 												Next
 											</Button>
@@ -220,13 +220,13 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 											<div className='flex items-center gap-[10px]'>
 												<Button
 													className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
-													onClick={() => setStep(prev => (prev = 1))}
+													onPress={() => setStep(prev => (prev = 1))}
 												>
 													Back
 												</Button>
 												<Button
 													className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
-													onClick={() => setStep(prev => (prev = 3))}
+													onPress={() => setStep(prev => (prev = 3))}
 												>
 													Next
 												</Button>
@@ -253,7 +253,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 											onSubmit={handleVerify}
 											className='flex flex-col gap-[15px] w-full ml-[47px]'
 										>
-											<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
+											{/* <label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
 												Email authentication
 												<div className='relative w-full'>
 													<Input
@@ -273,7 +273,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 														Send Code
 													</button>
 												</div>
-											</label>
+											</label> */}
 											<label className='text-[#181818] dark:text-white text-[16px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
 												Current authenticator app
 												<div className='w-full'>
@@ -291,16 +291,16 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 											<div className='flex items-center gap-[10px] bg-transparent'>
 												<Button
 													className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
-													onClick={() => setStep(prev => (prev = 2))}
+													onPress={() => setStep(prev => (prev = 2))}
 												>
 													Back
 												</Button>
-												<AlertDialogCancel className='mt-0 !bg-transparent w-fit'>
+												{/* <AlertDialogCancel asChild className='mt-0 !bg-transparent !w-fit'> */}
 													<Button
 														type='submit'
-														className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] w-full ${inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
-														onClick={() => {
-															setStep(prev => (prev = 1))
+														className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] !w-fit ${inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
+														onPress={() => {
+															// setStep(prev => (prev = 1))
 															setInputs(prev => ({
 																...prev,
 																emailAuth: '',
@@ -311,7 +311,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 													>
 														Confirm
 													</Button>
-												</AlertDialogCancel>
+												{/* </AlertDialogCancel> */}
 											</div>
 										</form>
 									)}

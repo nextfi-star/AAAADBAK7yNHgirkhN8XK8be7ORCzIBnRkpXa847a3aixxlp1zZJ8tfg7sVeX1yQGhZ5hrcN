@@ -1,5 +1,4 @@
 'use client'
-import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { NextPage } from 'next'
 import { Link } from '@/i18n/routing'
@@ -12,8 +11,7 @@ interface Props {
 	verify: boolean
 	toggleActive: () => void
 }
-export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
-	const t = useTranslations('profile')
+export const Profile_info = ({ verify, toggleActive }: Props) => {
 	const user = useUserStore((state) => state.user)
 	
 	return (
@@ -54,12 +52,12 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 			<div className='profile__info__block__right'>
 				<div className='profile__info__block___right__block'>
 					<h5 className='profile__info__block___right__main__text'>
-						{t('Verification')}
+						Verification
 					</h5>
 					{!verify ? (
 						<Link href='#' onClick={toggleActive}>
 							<Button className='profile__info__block___right__additional__text border-1 border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  rounded-[50px] px-[10px] !bg-transparent'>
-								{t('GoThroughVerification')}
+								Go through verification
 							</Button>
 						</Link>
 					) : (
@@ -73,7 +71,7 @@ export const Profile_info: NextPage<Props> = ({ verify, toggleActive }) => {
 				</div>
 				<div className='profile__info__block___right__block'>
 					<h5 className='profile__info__block___right__main__text'>
-						{t('CountryRegion')}
+						Country/Region
 					</h5>
 					<Button className='profile__info__block___right__additional__text border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'>
 						{user ? user?.country : <Spinner />}

@@ -1,7 +1,4 @@
 'use client'
-import { useTranslations } from 'next-intl'
-import { NextPage } from 'next'
-
 import { Accept_icon } from '../ui/Accept_icon'
 import { useThemeStore } from '../../store'
 
@@ -9,41 +6,41 @@ import { Link } from '@/i18n/routing'
 
 interface Props {
 	toggleActive: () => void
+	verify: boolean
 }
-export const Profile_verification: NextPage<Props> = ({ toggleActive }) => {
-	const t = useTranslations('profile')
-	const { theme } = useThemeStore()
+export const Profile_verification = ({ toggleActive, verify }: Props) => {
 
+	const { theme } = useThemeStore()			
 	return (
 		<>
 			<section className='profile__verification profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none w-full'>
-				<h3>{t('GetFullAccess')}</h3>
+				<h3>Get full access</h3>
 				<div className='profile__verification__blocks__list'>
 					<div className='profile__verification__info__block profile_blocks_border !bg-[#F2F7FF] dark:!bg-[#1e1e1e66]'>
 						<h5 className='profile__verification__info__block_step_text'>
-							{t('StepOne')}
+							Step One
 						</h5>
 						<h4 className='profile__verification__info__block_main_text !text-[22px] whitespace-nowrap'>
-							{t('CreateAccount')}
+							Create account
 						</h4>
 						<Accept_icon color={theme === 'dark' ? 'white' : 'black'} />
 					</div>
 					<div className='profile__verification__info__block profile_blocks_border !gap-[13px] !bg-[#F2F7FF] dark:!bg-[#1e1e1e66]'>
 						<h5 className='profile__verification__info__block_step_text'>
-							{t('StepTwo')}
+							Step Two
 						</h5>
 						<h4 className='profile__verification__info__block_main_text'>
-							{t('VerificationPersonality')}
+							Verification Personality
 						</h4>
 						<p className='profile__verification__info__block_additional_text !text-[14px]'>
-							{t('AdditionalTextInVerification')}
+							Additional text in verification
 						</p>
 						<Link
 							className='profile__verification__info__block_button flex justify-center !py-[13px]'
 							href={'#'}
 							onClick={toggleActive}
 						>
-							{t('VerificationButton')}
+							Verify
 						</Link>
 					</div>
 				</div>
