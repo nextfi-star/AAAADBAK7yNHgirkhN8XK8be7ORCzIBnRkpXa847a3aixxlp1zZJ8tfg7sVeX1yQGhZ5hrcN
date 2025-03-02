@@ -6,7 +6,7 @@ import { Glow } from "../ui/Glow";
 import { Link } from "../../i18n/routing";
 
 export const Intro = () => {
-  const t = useTranslations("intro");
+  const t = useTranslations("landing");
 
   return (
     <section className="main__intro">
@@ -78,7 +78,7 @@ export const Intro = () => {
           <div className="main__intro-values-item">
             <span className="main__intro-values-item__count">+ 10 M</span>
             <span className="main__intro-values-item__name">
-              {t("Investment")}
+              {t("heroInvestmentVol")}
             </span>
           </div>
           <div className="main__intro-values-item">

@@ -12,15 +12,14 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { useThemeStore } from '@/store'
-import { Autocomplete, AutocompleteItem } from "@heroui/autocomplete"
-import { Avatar } from "@heroui/react"
+import { Avatar } from '@heroui/react'
 import { CheckCheck, ChevronDown } from 'lucide-react'
-import { NextPage } from 'next'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '../ui/button'
 import NotFoundItem from './NotFoundItem'
-import { Withdrawal_confirmation } from './Withdrawal_confirmation'
 import { Deposit_confirmation } from './Deposit_confirmation'
+import { useUserStore } from '@/hooks/useUserData'
+import { getDepositAddress } from '@/utils/api'
 
 export type CryptoData = {
 	id: number
@@ -36,32 +35,36 @@ export type NetworkData = {
 	cryptoNumbers: string
 	moreLess: string
 }
-interface Props {
-	cryptoData?: CryptoData[]
-	networkData?: NetworkData[]
-}
 const cryptoData = [
 	{
 		id: 1,
-		name: 'TRX',
+		name: 'TRC20',
 		avatar: '/payment_table/trx.svg',
-		crypto: 'TRON',
+		crypto: 'TRC20',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
 	{
 		id: 2,
-		name: 'ZRO',
+		name: 'ERC20',
 		avatar: '/payment_table/zro.svg',
-		crypto: 'Zero layer',
+		crypto: 'ERC20',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
 	{
 		id: 3,
-		name: 'USDT',
+		name: 'BTC',
 		avatar: '/payment_table/teater.svg',
-		crypto: 'Tether',
+		crypto: 'Bitcoin',
+		cryptoNumbers: '0.00000079',
+		moreLess: '<$0.01',
+	},
+	{
+		id: 4,
+		name: 'BEP20',
+		avatar: '/payment_table/teater.svg',
+		crypto: 'BEP20',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
@@ -81,54 +84,18 @@ const networkData = [
 	},
 	{
 		id: 3,
-		name: 'ZRC20',
+		name: 'BTC',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
 	{
 		id: 4,
-		name: 'XRC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 5,
-		name: 'CRC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 6,
-		name: 'VRC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 7,
-		name: 'ZXRC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 8,
-		name: 'ZRO20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 9,
-		name: 'CXC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 10,
-		name: 'ZXX20',
+		name: 'BEP20',
 		cryptoNumbers: '0.00000079',
 		moreLess: '<$0.01',
 	},
 ]
-const Deposit_steps: NextPage<Props> = () => {
+const Deposit_steps = () => {
 	const [selectedNetwork, setSelectedNetwork] = useState<NetworkData | null>(
 		null
 	)
@@ -139,15 +106,33 @@ const Deposit_steps: NextPage<Props> = () => {
 	const [input3, setInput3] = useState('')
 	const [selectedCrypto, setSelectedCrypto] = useState<CryptoData | null>(null)
 	const [openNetwork, setOpenNetwork] = useState(false)
-	const input2Step2Handler = (e: any) => {
-		setInput2Step2(e.target.value)
+	const [error, setError] = useState('')
+	const [depositAddress, setDepositAddress] = useState('')
+	const user = useUserStore(state => state.user)
+	const handleGetDepositAddress = async () => {
+		if (!user?.csrf || !selectedCrypto || !selectedNetwork) {
+			setError('Выберите криптовалюту и сеть!')
+			return
+		}
+
+		setError('')
+		const result = await getDepositAddress(
+			user.csrf,
+			selectedCrypto.name,
+			selectedNetwork.name
+		)
+		if (result.success) {
+			setDepositAddress(result.address)
+			console.log(result)
+		} else {
+			setError(result.message)
+		}
 	}
-	const DropCache = () => {
-		setStep(1)
-		setInputStep2('')
-		setInput2Step2('')
-		setSelectedCrypto(null)
-	}
+	useEffect(() => {
+		if (selectedCrypto && selectedNetwork) {
+			handleGetDepositAddress()
+		}
+	}, [selectedCrypto, selectedNetwork])
 	return (
 		<div className=' dark:shadow-none rounded-[30px] p-[29px_16px] md:p-[29px]'>
 			<div className='flex justify-start gap-[10px] w-full  pb-[1.5rem]'>
@@ -268,7 +253,7 @@ const Deposit_steps: NextPage<Props> = () => {
 										step === 2 ? 'bg-[#205BC9]' : 'bg-[#3A3939]'
 									} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
 								>
-									{inputStep2.length && input2Step2.length ? <CheckCheck /> : 2}
+									{inputStep2.length ? <CheckCheck /> : 2}
 								</span>
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 2 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
@@ -293,7 +278,7 @@ const Deposit_steps: NextPage<Props> = () => {
 												>
 													{selectedNetwork ? (
 														<div className='flex w-full justify-between gap-[8px] items-center'>
-															<div className='flex items-center gap-[3px]'>
+															<div className='flex items-center gap-[3px] mb-[-5px]'>
 																<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
 																	{selectedNetwork.name}
 																</p>
@@ -306,7 +291,7 @@ const Deposit_steps: NextPage<Props> = () => {
 															/>
 														</div>
 													) : (
-														<div className='flex w-full justify-between gap-[8px] items-center'>
+														<div className='flex w-full justify-between gap-[8px] items-center mb-[-5px]'>
 															<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
 																Select Network
 															</p>
@@ -343,6 +328,8 @@ const Deposit_steps: NextPage<Props> = () => {
 																			) || null
 																		)
 																		setOpenNetwork(false)
+																		setInputStep2(value)
+																		setStep(3)
 																	}}
 																>
 																	<div className='flex items-center justify-between rounded-[4px] w-full'>
@@ -362,13 +349,6 @@ const Deposit_steps: NextPage<Props> = () => {
 												</Command>
 											</PopoverContent>
 										</Popover>
-
-										<input
-											type='text'
-											placeholder='Select address'
-											className='px-[20px] text-[18px] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
-											onChange={input2Step2Handler}
-										/>
 									</div>
 								</div>
 							)}
@@ -378,9 +358,7 @@ const Deposit_steps: NextPage<Props> = () => {
 							<div className='flex items-start gap-[15px] mb-[15px] md:mb-[15px]'>
 								<span
 									className={`text-white text-[18px] ${
-										inputStep2.length > 3 && input2Step2.length > 3
-											? 'bg-[#205BC9]'
-											: 'bg-[#3A3939]'
+										inputStep2.length > 3 ? 'bg-[#205BC9]' : 'bg-[#3A3939]'
 									} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
 								>
 									{input3.length > 3 ? <CheckCheck /> : 3}
@@ -391,15 +369,29 @@ const Deposit_steps: NextPage<Props> = () => {
 									Set deposit amount
 								</span>
 							</div>
-							{step >= 2 && (
+							{step === 3 && (
 								<div className='flex flex-col gap-[15px] w-full ml-[47px] pr-[35px]'>
 									<div className='flex flex-col gap-[10px] max-w-[294px] sm:max-w-[962px]'>
 										<input
 											type='text'
 											placeholder='Enter the amount'
 											className='px-[20px] text-[18px] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center max-w-[962px]'
-											onChange={e => setInput3(e.target.value)}
+											value={input3}
+											disabled={step !== 3}
+											onChange={e => {
+												const value = e.target.value.replace(/[^0-9.]/g, '') 
+												setInput3(value)
+											}}
+											onKeyDown={e => {
+												if (
+													e.key === ' ' ||
+													(e.key === '.' && input3.includes('.'))
+												) {
+													e.preventDefault()
+												}
+											}}
 										/>
+
 										<span className='text-[18px] font-bold text-[#888888]'>
 											Transaction Fee <span>3.25 {selectedCrypto?.name}</span>
 										</span>
@@ -408,18 +400,33 @@ const Deposit_steps: NextPage<Props> = () => {
 												Amount deposit:
 											</p>
 											<div className='flex items-center gap-[34px]'>
-												<span className='text-[18px] xl:text-[25px] text-[#3A3939] dark:text-[#EFEFEF]'>
-													111.25 {selectedCrypto?.name}
+												<span className='text-[18px] xl:text-[25px] text-[#3A3939] dark:text-[#EFEFEF] max-w-[450px] overflow-x-auto'>
+													{input3} {' '}
+													{!depositAddress
+														? selectedCrypto?.name
+														: depositAddress}
 												</span>
-												<Deposit_confirmation
-													input3={input3}
-													setInput3={setInput3}
-													setInputStep2={setInputStep2}
-													setInput2Step2={setInput2Step2}
-													setSelectedCrypto={setSelectedCrypto}
-													titleTrigger={'Deposit'}
-													selectedCrypto={selectedCrypto}
-												/>
+												{error ? (
+													<Button
+														className={`text-[16px] xl:text-[20px] flex items-center bg-transparent outline hover:bg-[#0c0c0c] justify-center w-fit !py-[8px]  rounded-[50px] text-red-500`}
+													>
+														{error}
+													</Button>
+												) : (
+													<Deposit_confirmation
+														input3={input3}
+														setInput3={setInput3}
+														setInputStep2={setInputStep2}
+														inputStep2={inputStep2}
+														setInput2Step2={setInput2Step2}
+														handleGetDepositAddress={handleGetDepositAddress}
+														setSelectedCrypto={setSelectedCrypto}
+														titleTrigger={'Deposit'}
+														selectedCrypto={selectedCrypto}
+														depositAddress={depositAddress}
+														error={error}
+													/>
+												)}
 											</div>
 										</div>
 									</div>

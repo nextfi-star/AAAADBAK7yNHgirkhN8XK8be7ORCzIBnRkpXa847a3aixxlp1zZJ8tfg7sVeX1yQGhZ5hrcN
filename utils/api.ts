@@ -336,3 +336,26 @@ export const fetchCoinList = async (): Promise<Coin[]> => {
 		return []
 	}
 }
+export const getDepositAddress = async (csrf: string, coin: string, network: string) => {
+	try {
+		const response = await fetch("https://nextfi.io:5000/api/v1/deposit", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ csrf, coin, net: network }),
+		});
+
+		const result = await response.json();
+
+		if (result.response === "success") {
+			return { success: true, address: result.address };
+		} else {
+			console.error("❌ Ошибка получения адреса депозита:", result.message);
+			return { success: false, message: result.message };
+		}
+	} catch (error) {
+		console.error("❌ Сетевая ошибка:", error);
+		return { success: false, message: "Ошибка сети" };
+	}
+};
