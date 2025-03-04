@@ -3,14 +3,16 @@ import animationData from '@/public/animation/file.json'
 import animationData2 from '@/public/animation/sphera.json'
 import animationData3 from '@/public/animation/sphera_dark.json'
 import Lottie from 'lottie-react'
-import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
-import { useThemeStore } from '../../store'
+import { useTranslations } from 'next-intl'
+import { useThemeStore } from '@/store'
 
-const VerifyAnimation: NextPage = () => {
+const VerifyAnimation = () => {
 	const { theme, setGlobalVerifState } = useThemeStore()
 	const [progress, setProgress] = useState(0)
 	const [showStatus, setShowStatus] = useState(false)
+
+	const t = useTranslations('verify')
 
 	const Handler = () => {
 		setShowStatus(prev => !prev)
@@ -28,7 +30,7 @@ const VerifyAnimation: NextPage = () => {
 		<>
 			{progress !== 100 ? (
 				<div className='flex flex-col items-center gap-[20px]'>
-					<h1 className='text-[24px] font-medium'>Identities verification</h1>
+					<h1 className='text-[24px] font-medium'>{t("identVerif")}</h1>
 					<Lottie
 						autoPlay
 						animationData={theme === 'dark' ? animationData3 : animationData2}
@@ -42,7 +44,7 @@ const VerifyAnimation: NextPage = () => {
 					<>
 						{!showStatus ? (
 							<>
-								<h1 className='text-[24px] font-medium'>Document sent</h1>
+								<h1 className='text-[24px] font-medium'>{t('sentDoc')}</h1>
 								<Lottie
 									autoPlay
 									animationData={animationData}
@@ -50,19 +52,19 @@ const VerifyAnimation: NextPage = () => {
 									loop={true}
 								/>
 								<p className='text-[24px] font-medium text-center'>
-									Wait for confirmation of identity verification
+									{t('waitCmf')}
 								</p>
 								<span
 									className='text-[20px] font-medium max-w-[256px] w-full py-[10px] sm:py-[16px] bg-[#205BC9] rounded-[50px] text-white text-center'
 									onClick={Handler}
 								>
-									Check Status
+									{t('checkStatus')}
 								</span>
 							</>
 						) : (
 							<div className='flex flex-col items-center'>
 								<h1 className='text-[24px] font-medium'>
-									Identities verification
+									{t('identVerif')}
 								</h1>
 								<Lottie
 									autoPlay
@@ -73,13 +75,13 @@ const VerifyAnimation: NextPage = () => {
 									loop={true}
 								/>
 								<p className='text-[24px] font-medium text-center'>
-									Verification in progress
+									{t("verifProg")}
 								</p>
 								<span className='text-[20px] font-medium w-full py-[16px] rounded-[50px] text-white text-center'>
-									Please allow 24 hours for a response
+									{t('24hours')}
 								</span>
 								<span className='text-[16px] text-[#888888] text-center cursor-pointer'>
-									Are you waiting more than 24 hours for a response?
+									{t('more24')}
 								</span>
 							</div>
 						)}

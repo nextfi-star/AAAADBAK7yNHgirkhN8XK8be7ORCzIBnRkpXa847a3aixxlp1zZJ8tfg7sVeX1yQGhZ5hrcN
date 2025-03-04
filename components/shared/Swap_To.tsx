@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import React from 'react'
 import { Swap_ToFrom_alert } from './Swap_ToFrom_alert'
 import { Input } from "@heroui/input"
+import { useTranslations } from 'next-intl'
 type Status = {
 	value: string
 	label: string
@@ -46,11 +47,12 @@ const statusesTo: Status[] = [
 		icon: '/payment_table/trx.svg',
 	},
 ]
-const Swap_To: NextPage = () => {
+const Swap_To = () => {
+	const t = useTranslations('swap')
 	return (
 		<article className='bg-[#7676801F] flex flex-col md:gap-[23px] w-full p-[24px_23px_24px_23px] md:p-[24px_31px_24px_31px] rounded-[20px]'>
 			<h1 className='block w-full text-[20px] md:text-[32px] font-medium leading-[40px]'>
-				To
+				{t('to')}
 			</h1>
 			<div className=' flex items-center gap-[10px] justify-between'>
 				<Input

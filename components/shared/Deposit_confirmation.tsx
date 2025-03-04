@@ -11,12 +11,12 @@ import {
 } from '@/components/ui/dialog'
 import { useThemeStore } from '@/store'
 import { Divider } from '@heroui/divider'
-import { NextPage } from 'next'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import { Snippet, Spinner } from '@heroui/react'
 import { useEffect, useState } from 'react'
 import Withdrawal_animation from './Withdrawal_animation'
 import { CryptoData } from './Withdrawal_steps'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	titleTrigger: string
@@ -32,7 +32,7 @@ interface Props {
 	depositAddress: string
 	error: string
 }
-export const Deposit_confirmation: NextPage<Props> = ({
+export const Deposit_confirmation = ({
 	className,
 	titleTrigger,
 	input3,
@@ -45,9 +45,10 @@ export const Deposit_confirmation: NextPage<Props> = ({
 	depositAddress,
 	error,
 	handleGetDepositAddress,
-}) => {
+}: Props) => {
 	const { theme, confirmationStep, setConfirmStep, setStep, step } =
 		useThemeStore()
+	const t = useTranslations('deposit')
 	const [checked, setChecked] = useState(false)
 	const DropSteps = () => {
 		setStep(1)
@@ -84,7 +85,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 				<DialogContent className='max-w-[90%] md:max-w-[38rem] w-full p-0 rounded-[20px] !dark:bg-[#000] focus:outline-none'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
-							Make a deposit
+							{t("makeDepos")}
 							<DialogClose asChild>
 								<Cross2Icon className='h-[32px] w-[32px]' />
 							</DialogClose>
@@ -96,7 +97,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 							<article className='dark:bg-[#7676801F] bg-[#7676801F] rounded-[6px] flex flex-col gap-[28px] py-[21px] px-[18px] md:px-[21px]'>
 								<div className='flex flex-col items-center w-full justify-between overflow-hidden'>
 									<DialogDescription className='flex flex-col gap-[1px] text-[14px] md:text-[20px]'>
-										On-chain Deposit address
+										{t('onChain')}
 									</DialogDescription>
 
 									<div className='flex items-center justify-center gap-[15px] w-full'>
@@ -119,11 +120,11 @@ export const Deposit_confirmation: NextPage<Props> = ({
 								</div>
 								<div className='flex flex-col items-center w-full justify-between'>
 									<DialogDescription className='flex flex-col gap-[1px] text-[14px] md:text-[20px]'>
-										The amount of the deposit
+										{t('theAmountDepos')}
 									</DialogDescription>
 
 									<DialogDescription className='flex items-center gap-[4px] dark:text-white text-[14px] md:text-[20px]'>
-									{input3}{' '}{selectedCrypto?.name}
+										{input3} {selectedCrypto?.name}
 									</DialogDescription>
 								</div>
 							</article>
@@ -152,7 +153,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 										</svg>
 									</span>
 									<DialogDescription className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] text-left text-[#888888] leading-[1]'>
-										I confirm that the transfer of funds has been completed
+										{t('iConfirm')}
 									</DialogDescription>
 								</label>
 							</div>
@@ -166,7 +167,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 								variant='secondary'
 								className={`border-1 w-fit border-solid dark:border-[#fff] rounded-[50px] bg-transparent hover:bg-transparent min-w-[124px]`}
 							>
-								Back
+								{t('back')}
 							</Button>
 						</DialogClose>
 						<Button
@@ -176,7 +177,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 							className='bg-[#205BC9] text-white w-fit rounded-[50px] hover:bg-[#205BC9] min-w-[124px]'
 							disabled={!checked}
 						>
-							Confirm
+							{t('confrm')}
 						</Button>
 					</DialogFooter>
 				</DialogContent>
@@ -186,7 +187,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full p-0 rounded-[20px] dark:!bg-[#000]'>
 					<DialogHeader>
 						<DialogTitle className='text-[22px] lg:text-[27px] p-[20px_41px_19px] flex items-center justify-between w-full'>
-							Waiting for confirmation from the network
+							{t('waitConf')}
 						</DialogTitle>
 						<Divider className='m-0' />
 					</DialogHeader>
@@ -196,8 +197,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 								<div className='flex flex-col gap-[36px]'>
 									<Spinner className='' />
 									<p className='text-[20px] dark:text-[#888] text-[#0c0c0c]'>
-										You can interrupt the waiting and go to the overview, the
-										funds will be credited to the balance automatically
+										{t('interpt')}
 									</p>
 								</div>
 							</article>
@@ -211,7 +211,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 							variant='default'
 							className='bg-transparent w-full dark:text-white text-[#0c0c0c] rounded-[50px] hover:bg-transparent min-w-[124px] h-[48px] flex items-center justify-center shadow-none text-[20px]'
 						>
-							Back to overview
+							{t('backOver')}
 						</Button>
 					</DialogFooter>
 				</DialogContent>
@@ -221,7 +221,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 				<DialogContent className='max-w-[90%] md:max-w-[576px] w-full p-0 rounded-[20px] dark:!bg-[#000]'>
 					<DialogHeader>
 						<DialogTitle className='text-[22px] md:text-[27px] p-[20px_41px_19px] flex items-center justify-center w-full'>
-							Success
+							{t('success')}
 						</DialogTitle>
 						<Divider className='m-0' />
 					</DialogHeader>
@@ -232,7 +232,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 									<Withdrawal_animation />
 								</div>
 								<DialogDescription className='text-[20px] font-bold dark:text-white text-[#888] min-h-[150px] w-full flex flex-col justify-end items-center'>
-									The funds will be credited to your balance soon
+									{t('fundsBalance')}
 								</DialogDescription>
 							</article>
 						</div>
@@ -246,7 +246,7 @@ export const Deposit_confirmation: NextPage<Props> = ({
 								variant='secondary'
 								className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] max-w-[124px] h-[48px] relative'
 							>
-								Confrim
+								{t('confrm')}
 							</Button>
 						</DialogClose>
 					</DialogFooter>

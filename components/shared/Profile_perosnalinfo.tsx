@@ -1,14 +1,14 @@
 'use client'
 import Image from 'next/image'
-import { NextPage } from 'next'
 import { Alert_nickname } from './Alert_nickname'
 import { Snippet } from "@heroui/snippet"
 import { Spinner } from "@heroui/spinner"
 import { useUserStore } from '@/hooks/useUserData'
+import { useTranslations } from 'next-intl'
 
-export const Profile_perosnalinfo: NextPage = () => {
+export const Profile_perosnalinfo = () => {
 	const user = useUserStore((state) => state.user)
-
+	const t = useTranslations('profile')
 	return (
 		<section className='personal__content flex flex-col w-full'>
 			<h1 className='personal__content-title'>
@@ -19,10 +19,10 @@ export const Profile_perosnalinfo: NextPage = () => {
 					src={'/main/profile_page/info_icon.svg'}
 					width={30}
 				/>
-				Personal Info
+				{t('personInfo')}
 			</h1>
 			<article className='flex items-center justify-between gap-[5px]'>
-				<span>Nickname</span>
+				<span>{t('nickname')}</span>
 				<span className='flex !justify-center w-full '>{user?.username || <Spinner />}</span>
 				<div className='min-w-[181px] flex justify-end'>
 					<Alert_nickname propsItem={'Change'} />
@@ -32,7 +32,7 @@ export const Profile_perosnalinfo: NextPage = () => {
 			<span className='devider w-full h-[1px] bg-slate-100 block my-[24px]' />
 
 			<article className='flex items-center justify-between gap-[5px]'>
-				<span>User ID</span>
+				<span>{t('userID')}</span>
 				<span>{user?.uid || <Spinner />}</span>
 
 				<Snippet

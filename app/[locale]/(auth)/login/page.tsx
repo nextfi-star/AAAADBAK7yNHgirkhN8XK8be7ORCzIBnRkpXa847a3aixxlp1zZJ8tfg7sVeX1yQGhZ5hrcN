@@ -18,23 +18,25 @@ import {
 } from '@/components/ui/input-otp'
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
 import { useUserStore } from '@/hooks/useUserData'
-const schema = yup.object().shape({
-	emailOrPhone: yup
-		.string()
-		.required('Email or phone is required')
-		.test('is-valid-email-or-phone', 'Invalid email or phone', value => {
-			const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-			const phoneRegex = /^\+?[0-9]{7,15}$/
-			return emailRegex.test(value) || phoneRegex.test(value)
-		}),
-	password: yup
-		.string()
-		.min(8, 'Password must be at least 8 characters')
-		.max(64, 'Password must not exceed 64 characters')
-		.required('Password is required'),
-})
+import { useTranslations } from 'next-intl'
 
 const Login = () => {
+	const t = useTranslations('auth')
+	const schema = yup.object().shape({
+		emailOrPhone: yup
+			.string()
+			.required(t('emailOrPhone'))
+			.test('is-valid-email-or-phone', t('invalidEmorPhone'), value => {
+				const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+				const phoneRegex = /^\+?[0-9]{7,15}$/
+				return emailRegex.test(value) || phoneRegex.test(value)
+			}),
+		password: yup
+			.string()
+			.min(8, t('passwordMin'))
+			.max(64, t('passwordMax'))
+			.required(t('passwordReq')),
+	})
 	const {
 		register,
 		handleSubmit,
@@ -65,11 +67,13 @@ const Login = () => {
 	const [tfaCode, setTfaCode] = useState('')
 
 	useEffect(() => {
-		const params = new URLSearchParams(window.location.search)
-		const sessionError = params.get('error')
-		if (sessionError === 'sessionExpired') {
-			setError('User session expired. Please log in again.')
-			setState(false)
+		if (typeof window !== undefined) {
+			const params = new URLSearchParams(window.location.search)
+			const sessionError = params.get('error')
+			if (sessionError === 'sessionExpired') {
+				setError(t('userExpired'))
+				setState(false)
+			}
 		}
 	}, [])
 
@@ -140,18 +144,19 @@ const Login = () => {
 			{showVerifWindow ? (
 				<div className='form__verify w-full '>
 					<h2>
-						Confirm your {mode === 'email' ? 'email address' : 'phone number'}
+						{t('confirmYour')}{' '}
+						{mode === 'email' ? t('emailAds') : t('phoneAds')}
 					</h2>
 					<p>
-						A 6-digit code has been sent to your{' '}
+						{t('sixDigit')}{' '}
 						{mode === 'email' ? (
 							<span className='!text-[#205bc9]'>{email || 'email'}</span>
 						) : (
 							<span className='!text-[#205bc9]'>+{phone || 'phone'}</span>
 						)}
-						. The verification code must be entered within 30 minutes.
+						. {t('verifMust')}
 					</p>
-					<span>Enter code: </span>
+					<span>{t('enterCd')}:</span>
 					<div className='flex flex-col w-full justify-center items-center gap-[20px]'>
 						<InputOTP
 							maxLength={6}
@@ -179,10 +184,12 @@ const Login = () => {
 									: '!bg-gray-600 !border-gray-600'
 							}`}
 						>
-							{isSubmit ? <Spinner /> : 'Next'}
+							{isSubmit ? <Spinner /> : t('next')}
 						</Button>
 					</div>
-					<span className='form__verify-resend'>Didn't receive the code?</span>
+					<span className='form__verify-resend'>
+						{t('notRecieved')} <a href=''>{t('email')}</a>
+					</span>
 				</div>
 			) : (
 				<>
@@ -191,53 +198,55 @@ const Login = () => {
 							className={mode === 'email' ? 'active' : ''}
 							onPress={() => modeToogle('email')}
 						>
-							E-mail
+							{t('email')}
 						</Button>
 						<Button
 							className={mode === 'phone' ? 'active' : ''}
 							onPress={() => modeToogle('phone')}
 						>
-							Phone number
+							{t('phone')}
 						</Button>
 					</div>
 					<form onSubmit={handleSubmit(onSubmit)} className='form'>
 						<div className='w-full'>
 							<input
 								type={mode === 'email' ? 'email' : 'tel'}
-								placeholder={mode === 'email' ? 'E-mail' : 'Phone number'}
+								placeholder={mode === 'email' ? t('email') : t('phone')}
 								{...register('emailOrPhone')}
 								id='login'
 								className={`${errors.emailOrPhone ? '!border-danger focus:!outline-danger ' : ''}`}
 							/>
 							{errors.emailOrPhone && (
-								<p className='absolute text-danger pointer-events-none'>
+								<p className='text-danger pointer-events-none'>
 									{errors.emailOrPhone.message}
 								</p>
 							)}
 						</div>
-						<div className='password__wrapper relative w-full'>
-							<input
-								type={showPassword ? 'text' : 'password'}
-								placeholder='Enter a password'
-								{...register('password')}
-								id='pass'
-								className={`${errors.password ? '!border-danger focus:!outline-danger ' : ''}`}
-							/>
-							<span
-								className='absolute top-0 right-0'
-								onClick={togglePasswordVisibility}
-							>
-								<img
-									src={
-										showPassword
-											? '/form/Mobile_ visibility.svg'
-											: '/form/Mobile_ visibility_off.svg'
-									}
-									alt='toggle visibility'
+						<div className='password__wrapper w-full'>
+							<div className='relative w-full'>
+								<input
+									type={showPassword ? 'text' : 'password'}
+									placeholder={t('enterPass')}
+									{...register('password')}
+									id='pass'
+									className={`${errors.password ? '!border-danger focus:!outline-danger ' : ''}`}
 								/>
-							</span>
+								<span
+									className='absolute top-0 right-0'
+									onClick={togglePasswordVisibility}
+								>
+									<img
+										src={
+											showPassword
+												? '/form/Mobile_ visibility.svg'
+												: '/form/Mobile_ visibility_off.svg'
+										}
+										alt='toggle visibility'
+									/>
+								</span>
+							</div>
 							{errors.password && (
-								<p className='absolute text-danger pointer-events-none'>
+								<p className=' text-danger pointer-events-none'>
 									{errors.password.message}
 								</p>
 							)}
@@ -251,16 +260,16 @@ const Login = () => {
 							disabled={isLoading || !isValid}
 							className={`submit-btn ${isValid ? 'valid' : ''}`}
 						>
-							{isLoading ? <Spinner /> : 'Log in'}
+							{isLoading ? <Spinner /> : t('login')}
 						</button>
 					</form>
 
-					<span className='forgot'>Forgot your password?</span>
+					<span className='forgot'>{t('forgot')}</span>
 
 					<div className='help login__help'>
 						<p>
 							<span />
-							<b>Or</b>
+							<b>{t('or')}</b>
 							<span />
 						</p>
 
@@ -271,15 +280,15 @@ const Login = () => {
 								src='/form/Mobile_ Google.svg'
 								width={24}
 							/>
-							Continue with Google
+							{t('googleAuth')}
 						</button>
 
 						<Link className='help-signup' href='/signup'>
-							Don't have an account? <span>Sign up</span>
+							{t('dontHave')} <span>{t('signup')}</span>
 						</Link>
 
 						<div className='socials login__social'>
-							<span>join us on social networks</span>
+							<span>{t('ourSocial')}</span>
 
 							<div className='socials__icons'>
 								<Image

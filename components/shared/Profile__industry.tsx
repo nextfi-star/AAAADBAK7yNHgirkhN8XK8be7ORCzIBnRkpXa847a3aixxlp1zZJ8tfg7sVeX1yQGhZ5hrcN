@@ -1,39 +1,12 @@
 'use client'
-import { useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Swiper as SwiperType } from 'swiper'
 import Image from 'next/image'
 import ArrowBracket from '@/components/ui/ArrowBracket'
 import { useThemeStore } from '@/store'
 import { Button } from '@heroui/button'
-
-const data = [
-	{
-		title: 'Company Stocks',
-		desc: 'Tracking successful promotions and ensuring financial security in trading on the market.',
-		icon: '/main/profile_swiper/equalizer.svg',
-	},
-	{
-		title: 'Corporate Bonds',
-		desc: 'Ownership of more than X bonds with regular updates and profitable financial transactions related to them..',
-		icon: '/main/profile_swiper/bank.svg',
-	},
-	{
-		title: 'Oil Sector',
-		desc: 'Smart and efficient trading of oil products in the eastern market.',
-		icon: '/main/profile_swiper/oil.svg',
-	},
-	{
-		title: 'Precious Metals',
-		desc: 'Constantly increasing assets and executing profitable transactions with them.',
-		icon: '/main/profile_swiper/metals.svg',
-	},
-	{
-		title: 'Innovative Startups',
-		desc: 'Analysis and search for the most promising projects aimed at acquiring a stake and subsequent growth of dividends..',
-		icon: '/main/profile_swiper/startup.svg',
-	},
-]
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	unicClass: string
@@ -41,7 +14,37 @@ interface Props {
 export const Profile_industry = ({ unicClass }: Props) => {
 	const { theme } = useThemeStore()
 	const swiperRef = useRef<SwiperType | null>(null)
-
+	const t = useTranslations('overview')
+	const data = useMemo(
+		() => [
+			{
+				title: 'Company Stocks',
+				desc: t('cmpStocks'),
+				icon: '/main/profile_swiper/equalizer.svg',
+			},
+			{
+				title: 'Corporate Bonds',
+				desc: t('crpBonds'),
+				icon: '/main/profile_swiper/bank.svg',
+			},
+			{
+				title: 'Oil Sector',
+				desc: t('oilSctr'),
+				icon: '/main/profile_swiper/oil.svg',
+			},
+			{
+				title: 'Precious Metals',
+				desc: t('prescMetal'),
+				icon: '/main/profile_swiper/metals.svg',
+			},
+			{
+				title: 'Innovative Startups',
+				desc: t('innvtStart'),
+				icon: '/main/profile_swiper/startup.svg',
+			},
+		],
+		[]
+	)
 	return (
 		<>
 			<section
@@ -49,7 +52,7 @@ export const Profile_industry = ({ unicClass }: Props) => {
 			>
 				<div className='w-full flex justify-between gap-[5px] md:gap-[15px] pt-[1.5rem] px-[10px] md:pt-0'>
 					<h3 className='profile__industry__main_text flex-shrink-0'>
-						Choose Industry
+						{t('chooseIndstr')}
 					</h3>
 
 					<div className='flex items-center justify-end gap-[15px] sm:gap-[24px]'>
@@ -124,7 +127,9 @@ export const Profile_industry = ({ unicClass }: Props) => {
 				</Swiper>
 
 				<div className='w-full flex justify-center'>
-					<Button className='profile__industry__button btn-blu'>Next</Button>
+					<Button className='profile__industry__button btn-blu'>
+						{t('next')}
+					</Button>
 				</div>
 			</section>
 		</>

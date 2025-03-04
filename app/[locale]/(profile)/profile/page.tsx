@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import { Profile_accountdetails } from "@/components/shared/Profile_accountdetails";
 import { Profile_perosnalinfo } from "@/components/shared/Profile_perosnalinfo";

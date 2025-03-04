@@ -10,6 +10,7 @@ import { useThemeStore } from '@/store'
 import { Link } from '@/i18n/routing'
 import { Logo_header } from '@/components/ui/Logo_header'
 import { useUserStore } from '@/hooks/useUserData'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	auth?: boolean
@@ -28,14 +29,13 @@ export const Header = ({ auth = true }: Props) => {
 				header?.classList.remove('box-shadow')
 			}
 		}
-
 		window.addEventListener('scroll', handleScroll)
-
 		return () => {
 			window.removeEventListener('scroll', handleScroll)
 		}
 	}, [])
 
+	const t = useTranslations('shared')
 	return (
 		<header className='initial_header' id='header'>
 			<div className='site-holder'>
@@ -57,22 +57,14 @@ export const Header = ({ auth = true }: Props) => {
 							{!auth ? (
 								<>
 									<Link className='header__buttons-login' href='/login'>
-										Login
+										{t('login')}
 									</Link>
 									<Link className='header__buttons-signup' href='/signup'>
-										Sign up
+										{t('signup')}
 									</Link>{' '}
 								</>
 							) : (
 								<>
-									<select className='Header__buttons-assets .header__content'>
-										<option className='text-black' value=''>
-											Assets
-										</option>
-										<option className='text-black' value=''>
-											NextFi
-										</option>
-									</select>
 									<Link className='user' href='/'>
 										<User
 											className={'user'}

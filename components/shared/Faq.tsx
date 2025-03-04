@@ -1,5 +1,7 @@
+import { useTranslations } from 'next-intl'
 
 export const Faq = () => {
+	const t = useTranslations('landing')
 	return (
 		<section className='main__faq'>
 			<div className='site-holder'>
@@ -9,7 +11,7 @@ export const Faq = () => {
 					data-aos-duration='1000'
 					data-aos-once='true'
 				>
-					Frequently Asked <b>Questions</b>
+					{t('freqAsked')} <b>{t('freqQuest')}</b>
 				</h2>
 				<div className='faq__content'>
 					<div className='faq__questions'>
@@ -18,73 +20,40 @@ export const Faq = () => {
 							data-aos-duration='1500'
 							data-aos-once='true'
 						>
-							<summary>What is NextFi?</summary>
-							<p>
-								NextFi is an innovative financial investment platform powered by
-								cutting-edge artificial intelligence. Trained on vast datasets
-								from the world’s leading investment funds and asset managers,
-								our AIdriven technology dynamically analyzes market trends,
-								optimizes investment strategies, and generates sustainable
-								liquidity for the NextFi token. With NextFi, investors gain
-								access to a smarter, data-driven approach to wealth growth,
-								ensuring maximum efficiency and risk management in an
-								ever-evolving financial landscape
-							</p>
+							<summary>{t('whatis')} NextFi?</summary>
+							<p>{t('whatisDesc')}</p>
 						</details>
 						<details
 							data-aos='fade-up'
 							data-aos-duration='1500'
 							data-aos-once='true'
 						>
-							<summary>
-								What is the minimum investment required to start with NextFi?
-							</summary>
-							<p>
-								The minimum investment required to start with NextFi is $20.
-								This amount ensures optimal allocation of AI-driven investment
-								strategies, providing users with the best possible returns while
-								maintaining system efficiency.
-							</p>
+							<summary>{t('minimum')}</summary>
+							<p>{t('minDesc')}</p>
 						</details>
 						<details
 							data-aos='fade-up'
 							data-aos-duration='1500'
 							data-aos-once='true'
 						>
-							<summary>How does NextFi generate profits?</summary>
-							<p>
-								Our AI-powered algorithms analyze market trends, manage risks,
-								and execute strategic investments across DeFi, liquidity mining,
-								algorithmic trading, and other financial instruments to maximize
-								returns.
-							</p>
+							<summary>{t('howDoes')}</summary>
+							<p>{t('howDoesDesc')}</p>
 						</details>
 						<details
 							data-aos='fade-up'
 							data-aos-duration='1500'
 							data-aos-once='true'
 						>
-							<summary>How does NextFi ensure the safety of my funds?</summary>
-							<p>
-								NextFi employs advanced AI-driven risk management, a dedicated
-								liquidity reserve, and diversified asset allocation to safeguard
-								investments from volatility and market fluctuations.
-							</p>
+							<summary>{t('safAi')}</summary>
+							<p>{t('aiDesc')}</p>
 						</details>
 						<details
 							data-aos='fade-up'
 							data-aos-duration='1500'
 							data-aos-once='true'
 						>
-							<summary>
-								What makes NextFi different from other investment platforms?
-							</summary>
-							<p>
-								Unlike traditional investment platforms, NextFi integrates AI
-								and automation to continuously optimize portfolio performance,
-								adapt to market changes in real time, and provide users with a
-								highly efficient, transparent, and secure investment experience.
-							</p>
+							<summary>{t('diff')}</summary>
+							<p>{t('diffDesc')}</p>
 						</details>
 					</div>
 
@@ -95,7 +64,7 @@ export const Faq = () => {
 							data-aos-duration='1500'
 							data-aos-once='true'
 						>
-							Didn't find the question you're <br /> interested in?
+							{t('didntFind')} <br /> {t('interested')}?
 						</h3>
 						<p
 							className='faq__description'
@@ -103,7 +72,7 @@ export const Faq = () => {
 							data-aos-duration='1500'
 							data-aos-once='true'
 						>
-							Send your details and we will contact you shortly
+							{t('findDesc')}
 						</p>
 						<form className='faq__form'>
 							<input
@@ -119,10 +88,9 @@ export const Faq = () => {
 								type='email'
 							/>
 							<div className='faq__form-field'>
-								<button className='faq__form-button'>Send</button>
+								<button className='faq__form-button'>{t('send')}</button>
 								<p className='faq__form-button__description'>
-									By clicking the button, you agree to the terms of{' '}
-									<a href=''>the Privacy Policy.</a>
+									{t('byClick')} <a href='#'>{t('the Privacy Policy')}.</a>
 								</p>
 							</div>
 						</form>

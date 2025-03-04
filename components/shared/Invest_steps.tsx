@@ -14,11 +14,11 @@ import {
 import { useThemeStore } from '@/store'
 import { Avatar, Input } from "@heroui/react"
 import { CheckCheck, ChevronDown } from 'lucide-react'
-import { NextPage } from 'next'
 import { useState } from 'react'
 import { Button } from '../ui/button'
 import NotFoundItem from './NotFoundItem'
 import { Invest_confirmation } from './Invest_confirmation'
+import { useTranslations } from 'next-intl'
 
 export type InvestData = {
 	id: number
@@ -98,7 +98,8 @@ const periodData = [
 		percent: '6.2',
 	},
 ]
-const Invest_steps: NextPage<Props> = () => {
+const Invest_steps = () => {
+	const t = useTranslations('invest')
 	const {
 		step,
 		setStep,
@@ -139,7 +140,7 @@ const Invest_steps: NextPage<Props> = () => {
 							<span
 								className={`text-[18px] font-bold xl:text-[24px] ${step === 1 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
 							>
-								Select industry
+								{t('sclInd')}
 							</span>
 						</div>
 
@@ -181,7 +182,7 @@ const Invest_steps: NextPage<Props> = () => {
 											) : (
 												<div className='flex w-full justify-between gap-[8px] items-center'>
 													<p className='text-[20px] font-medium text-[#0c0c0c] dark:text-[#BDBDBD]'>
-														Choose an industry
+														{t("chooseInd")}
 													</p>
 													<ChevronDown
 														strokeWidth={1}
@@ -247,7 +248,7 @@ const Invest_steps: NextPage<Props> = () => {
 																	<span className='text-[14px] md:text-[20px] dark:text-[#BDBDBD]'>
 																		-
 																	</span>
-																	{status.periodTo} days
+																	{status.periodTo} {t('days')}
 																</p>
 															</div>
 														</CommandItem>
@@ -273,7 +274,7 @@ const Invest_steps: NextPage<Props> = () => {
 							<span
 								className={`text-[18px] font-bold xl:text-[24px] ${step === 2 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
 							>
-								Investment period
+								{t('invstPer')}
 							</span>
 						</div>
 
@@ -308,7 +309,7 @@ const Invest_steps: NextPage<Props> = () => {
 												) : (
 													<div className='flex w-full justify-between gap-[8px] items-center'>
 														<p className='text-[20px] font-medium text-[#0c0c0c] dark:text-white'>
-															Select Period
+															{t('sclPer')}
 														</p>
 														<ChevronDown
 															strokeWidth={1}
@@ -354,7 +355,7 @@ const Invest_steps: NextPage<Props> = () => {
 																<div className='flex items-center justify-between w-full px-[15px]'>
 																	<div className='flex items-center gap-[3px]'>
 																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
-																			{period.name} days
+																			{period.name} {t('days')}
 																		</p>
 																	</div>
 																	<p className='flex items-center gap-[5px] text-[20px]'>
@@ -385,7 +386,7 @@ const Invest_steps: NextPage<Props> = () => {
 							<span
 								className={`text-[18px] font-bold xl:text-[24px] ${step === 3 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
 							>
-								Set amount
+								{t('setAmount')}
 							</span>
 						</div>
 						{step >= 2 && (
@@ -404,14 +405,14 @@ const Invest_steps: NextPage<Props> = () => {
 										onChange={e => setInput3(e.target.value)}
 									/>
 									<span className='text-[18px]  font-bold text-[#888888]'>
-										Percentage for the entire period: {selectedPeriod?.percent}%
+										{t('persFor')}: {selectedPeriod?.percent}%
 									</span>
 									<div className='flex flex-col gap-[10px] md:gap-0 items-start w-full '>
 										<p className='text-[18px] font-bold flex items-center justify-between gap-[5px] text-[#3A3939] dark:text-[#888888] pb-[18px]'>
-											Amount limits: 250 - 7000 NextFi
+											{t('amountLimit')}: 250 - 7000 NextFi
 										</p>
 										<p className='flex items-center justify-between text-[20px] font-medium text-[#3A3939] dark:text-[#BDBDBD] w-full pr-[45px] pb-[44px]'>
-											Amount of investment
+											{t('amountInvst')}
 											<span className='text-[20px] font-bold md:text-[32px]'>
 												7050 NextFi
 											</span>

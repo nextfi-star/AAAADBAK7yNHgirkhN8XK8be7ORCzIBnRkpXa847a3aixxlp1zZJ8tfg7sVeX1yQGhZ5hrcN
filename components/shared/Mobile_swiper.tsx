@@ -3,9 +3,10 @@ import Image from "next/image";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
-import { NextPage } from "next";
+import { useTranslations } from 'next-intl'
 
-export const Mobile_swiper: NextPage = () => {
+export const Mobile_swiper = () => {
+  const t = useTranslations('landing')
   return (
     <div className="m-how__content">
       <Swiper
@@ -27,11 +28,9 @@ export const Mobile_swiper: NextPage = () => {
                 width={200}
               />
               <div className="how__item-content">
-                <span className="how__item-title">Artificial Intelligence</span>
+                <span className="how__item-title">{t('artIntli')}</span>
                 <span className="how__item-text">
-                  They are the primary tool for conducting transactions in
-                  thefinancial market and the key to earning income from
-                  investments in the NextFi token.
+                  {t('artDesc')}
                 </span>
               </div>
             </div>
@@ -47,10 +46,9 @@ export const Mobile_swiper: NextPage = () => {
                 width={136}
               />
               <div className="how__item-content">
-                <span className="how__item-title">Company Stocks</span>
+                <span className="how__item-title">{t('compStck')}</span>
                 <span className="how__item-text">
-                  Tracking successful promotions and ensuring financial security
-                  in trading on the market
+                  {t('stckDesc')}
                 </span>
               </div>
             </div>
@@ -66,10 +64,9 @@ export const Mobile_swiper: NextPage = () => {
                 width={136}
               />
               <div className="how__item-content">
-                <span className="how__item-title">Precious Metals</span>
+                <span className="how__item-title">{t('presciMetal')}</span>
                 <span className="how__item-text">
-                  Constantly increasing assets and executing profitable
-                  transactions with them.
+                  {t('metalDesc')}
                 </span>
               </div>
             </div>
@@ -85,10 +82,9 @@ export const Mobile_swiper: NextPage = () => {
                 width={136}
               />
               <div className="how__item-content">
-                <span className="how__item-title">Corporate Bonds</span>
+                <span className="how__item-title">{t('corptBonds')}</span>
                 <span className="how__item-text">
-                  Ownership of more than X bonds with regular updates and
-                  profitable financial transactions related to them.
+                  {t('bondsDesc')}
                 </span>
               </div>
             </div>
@@ -104,10 +100,9 @@ export const Mobile_swiper: NextPage = () => {
                 width={136}
               />
               <div className="how__item-content">
-                <span className="how__item-title">Oil Sector</span>
+                <span className="how__item-title">{t('oilSctr')}</span>
                 <span className="how__item-text">
-                  Smart and efficient trading of oil products in the eastern
-                  market.
+                  {t('oilDesc')}
                 </span>
               </div>
             </div>
@@ -123,10 +118,9 @@ export const Mobile_swiper: NextPage = () => {
                 width={136}
               />
               <div className="how__item-content">
-                <span className="how__item-title">Innovative Startups</span>
+                <span className="how__item-title">{t('InnvtStart')}</span>
                 <span className="how__item-text">
-                  Analysis and search for the most promising projects aimed at
-                  acquiring a stake and subsequent growth of dividends.
+                  {t('innvtDesc')}
                 </span>
               </div>
             </div>

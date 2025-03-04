@@ -1,14 +1,15 @@
 'use client'
-import { NextPage } from 'next'
 import Image from 'next/image'
 import { Alert_email } from './Alert_email'
 import { Alert_phone } from './Alert_phone'
-import { Button } from "@heroui/button"
-import { Spinner } from "@heroui/spinner"
+import { Button } from '@heroui/button'
+import { Spinner } from '@heroui/spinner'
 import { useUserStore } from '@/hooks/useUserData'
+import { useTranslations } from 'next-intl'
 
-export const Profile_accountdetails: NextPage = () => {
-	const user = useUserStore((state) => state.user)
+export const Profile_accountdetails = () => {
+	const user = useUserStore(state => state.user)
+	const t = useTranslations('profile')
 	return (
 		<section className='personal__content flex flex-col w-full'>
 			<h1 className='personal__content-title'>
@@ -19,10 +20,10 @@ export const Profile_accountdetails: NextPage = () => {
 					src={'/main/profile_page/accept_icon.svg'}
 					width={30}
 				/>
-				Account details
+				{t('accDet')}
 			</h1>
 			<article className='flex items-center justify-between gap-[5px]'>
-				<span>Email</span>
+				<span>{t('email')}</span>
 				<span>{user?.email || <Spinner /> ? !user?.email : 'none'}</span>
 
 				<div className='min-w-[181px] flex justify-end'>
@@ -33,8 +34,8 @@ export const Profile_accountdetails: NextPage = () => {
 			<span className='devider w-full h-[1px] bg-slate-100 block my-[24px]' />
 
 			<article className='flex items-center justify-between gap-[5px]'>
-				<span>Phone</span>
-				<span>+{user?.phone || '****140'}</span>
+				<span>{t('phone')}</span>
+				<span>+{user?.phone || '*********140'}</span>
 
 				<div className='min-w-[181px] flex justify-end'>
 					<Alert_phone propsItem={'Change'} />
@@ -44,11 +45,13 @@ export const Profile_accountdetails: NextPage = () => {
 			<span className='devider w-full h-[1px] bg-slate-100 block my-[24px]' />
 
 			<article className='flex items-center justify-between gap-[5px]'>
-				<span>Levels Activity</span>
-				<span>Level 1</span>
+				<span>{t('lvl')}</span>
+				<span>
+					{t('level1')} {user?.lvl || 1}
+				</span>
 				<div className='min-w-[181px] flex justify-end'>
 					<Button className='border-1 !border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee]'>
-						View Details
+						{t('viewDet')}
 					</Button>
 				</div>
 			</article>

@@ -19,8 +19,8 @@ export const Intro = () => {
               data-aos-duration="800"
               data-aos-once="true"
             >
-              Explore new opportunities in financial&nbsp;investing{" "}
-              <b>with NextFi AI</b>
+              {t("heroTitle")}{" "}
+              <b>{t('withAI')}</b>
             </h1>
             {/* mobile v. */}
             <div className="m-main__img-wrapper z-[9]">
@@ -38,8 +38,7 @@ export const Intro = () => {
               data-aos-duration="800"
               data-aos-once="true"
             >
-              Modern AI solutions provide reliable tokenomics, sustained growth
-              in investments, and ensure the safety of your funds.
+              {t("heroTitleUnder")}
             </span>
             <div
               className="main__buttons"
@@ -48,10 +47,10 @@ export const Intro = () => {
               data-aos-once="true"
             >
               <Button className="btn btn-blue ">
-                <Link href="/signup">Sign Up</Link>
+                <Link href="/signup">{t('signup')}</Link>
               </Button>
               <Button className="btn btn-transparent ">
-                <Link href="/login">Log In</Link>
+                <Link href="/login">{t('login')}</Link>
               </Button>
             </div>
           </div>
@@ -83,17 +82,17 @@ export const Intro = () => {
           </div>
           <div className="main__intro-values-item">
             <span className="main__intro-values-item__count">+ $8.5 M</span>
-            <span className="main__intro-values-item__name"> Active Deposits</span>
+            <span className="main__intro-values-item__name"> {t('activeDepos')}</span>
           </div>
           <div className="main__intro-values-item">
             <span className="main__intro-values-item__count">+100</span>
             <span className="main__intro-values-item__name">
-              Users
+              {t("users")}
             </span>
           </div>
           <div className="main__intro-values-item">
             <span className="main__intro-values-item__count">+100K</span>
-            <span className="main__intro-values-item__name">Bonus</span>
+            <span className="main__intro-values-item__name">{t('bonus')}</span>
           </div>
         </div>
       </div>

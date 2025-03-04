@@ -1,6 +1,8 @@
 import Image from "next/image";
 import "./auth.scss";
 import LayoutWithLink from "@/components/shared/LayoutWithLink";
+import { useTranslations } from 'next-intl'
+
 
 export const metadata = {
   title: "Auth",
@@ -10,6 +12,7 @@ export interface FormLayout {
   children: React.ReactNode;
 }
 export default function FormLayout({ children }: FormLayout) {
+  const t = useTranslations('auth')
   return (
     <div className="form__body">
       <div className="form__main">
@@ -28,7 +31,7 @@ export default function FormLayout({ children }: FormLayout) {
           </div>
 
           <div className="socials">
-            <span>Join our community!</span>
+            <span>{t('joinComm')}!</span>
 
             <div className="socials__icons">
               <Image

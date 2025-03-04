@@ -8,37 +8,38 @@ import { CloseAccount } from '@/components/shared/CloseAccount'
 import { FreezeAccount } from '@/components/shared/FreezeAccount'
 import { useMemo} from 'react'
 import { useUserStore } from '@/hooks/useUserData'
+import { useTranslations } from 'next-intl'
 
 const Security = () => {
 	const user = useUserStore((state) => state.user)
-
+	const t = useTranslations('security')
 	const data = useMemo(
 		() => [
 			{
 				src: '/main/profile_security/auth_app.svg',
-				title: 'Authenticator app',
-				desc: 'Use authentication codes when managing assets and other functions',
-				btn: <Alert_auntef propsItem={'Change authenticator app'} />,
+				title: t('authApp'),
+				desc: t('authDesc'),
+				btn: <Alert_auntef propsItem={t('changeAuthApp')} />,
 			},
 			{
 				src: '/main/profile_security/phone.svg',
-				title: 'Phone authentication',
-				desc: 'Get authentication codes via SMS, WhatsApp, or calls when managing assets and other functions',
-				btn: <Alert_phone propsItem={'Change phone number'} />,
+				title: t('phoneAuth'),
+				desc: t('phoneDesc'),
+				btn: <Alert_phone propsItem={t('changephone')} />,
 				contain: '****140',
 			},
 			{
 				src: '/main/profile_security/email.svg',
-				title: 'Email authentication',
-				desc: 'Get authentication codes via email for login and other functions',
-				btn: <Alert_email propsItem={'Change email'} />,
-				contain: user?.email || '****@gmail.com',
+				title: t('emailAuth'),
+				desc: t('emailDesc'),
+				btn: <Alert_email propsItem={t('changeemail')} />,
+				contain: user?.email || '******@gmail.com',
 			},
 			{
 				src: '/main/profile_security/login_pass.svg',
-				title: 'Login password',
-				desc: 'Use this password for account login',
-				btn: <Alert_logpass propsItem={'Change password'} />,
+				title: t('logPass'),
+				desc: t('logPassDesc'),
+				btn: <Alert_logpass propsItem={t('changeLogPass')} />,
 				contain: '********',
 			},
 		],
@@ -48,16 +49,16 @@ const Security = () => {
 		() => [
 			{
 				src: '/main/profile_security/account_freeze.svg',
-				title: 'Freeze account',
-				desc: 'Your account will be frozen temporarily. To unfreeze it, start by logging in again.',
+				title: t('freezeAcc'),
+				desc: t('freezeDesc'),
 				unic: '2',
-				btn: <FreezeAccount propsItem={'Freeze account'} />,
+				btn: <FreezeAccount propsItem={t('freezeAcc')} />,
 			},
 			{
 				src: '/main/profile_security/account_close.svg',
-				title: 'Close account',
-				desc: "Once you close your account, it is permanent and can't be restored",
-				btn: <CloseAccount propsItem={'Close account'} />,
+				title: t('closeAcc'),
+				desc: t('closeDesc'),
+				btn: <CloseAccount propsItem={t('closeAcc')} />,
 				unic: '3',
 			},
 		],
@@ -69,7 +70,7 @@ const Security = () => {
 		>
 			<div className='security-container '>
 				<div className='security__content mb-[20px]'>
-					<h1 className='!text-[28px] mb-[15px]'>Authentication methods</h1>
+					<h1 className='!text-[28px] mb-[15px]'>{t('authMethods')}</h1>
 					{data &&
 						data.map(item => (
 							<div key={item.title}>
@@ -104,7 +105,7 @@ const Security = () => {
 						))}
 				</div>
 				<div className='security__content'>
-					<h1 className='!text-[28px]'>Authentication methods</h1>
+					<h1 className='!text-[28px]'>{t('authMethods')}</h1>
 					{data2 &&
 						data2.map(item => (
 							<div key={item.title}>

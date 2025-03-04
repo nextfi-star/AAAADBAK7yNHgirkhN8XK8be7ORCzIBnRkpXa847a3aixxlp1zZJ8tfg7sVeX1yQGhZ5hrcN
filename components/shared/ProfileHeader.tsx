@@ -30,6 +30,7 @@ import { Logo_header } from '../ui/Logo_header'
 import { Logout } from '@/hooks/Logout'
 import { useUserStore } from '@/hooks/useUserData'
 import { useParams, useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	auth: boolean
@@ -50,46 +51,46 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 	const csrf = useUserStore(state => state.user?.csrf)
 	const router = useRouter()
 	const locale = useParams()?.locale || 'en'
-
+	const t = useTranslations('shared')
 	const dropData: DropData[] = useMemo(
 		() => [
 			{
-				title: 'Assets',
+				title: t('assets'),
 				key: 'assets',
 				href: '/assets',
 				icon: <BriefcaseBusiness strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
-				title: 'Swap',
+				title: t('swap'),
 				key: 'swap',
 				href: '/swap',
 				icon: <Repeat strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
-				title: 'Withdrawal',
+				title: t('withdrawal'),
 				key: 'withdrawal',
 				href: '/withdrawal',
 				icon: <CircleArrowDown strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
-				title: 'Invest',
+				title: t('investment'),
 				key: 'invest',
 				href: '/invest',
 				icon: <TrendingUp strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
-				title: 'Levels',
+				title: t('levels'),
 				key: 'levels',
 				href: '/tier',
 				icon: <ChartBarDecreasing strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
-				title: 'Deposit',
+				title: t('deposit'),
 				key: 'deposit',
 				href: '/deposit',
 				icon: <ArrowDown strokeWidth={1} />,
@@ -101,56 +102,56 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 	const dropData2: DropData[] = useMemo(
 		() => [
 			{
-				title: 'Overview',
+				title: t('overview'),
 				key: 'over',
 				href: '/over',
 				icon: <ChartPie strokeWidth={1} />,
 				verify: () => setVerifyState(false),
 			},
 			{
-				title: 'Profile',
+				title: t('profile'),
 				key: 'profile',
 				href: '/profile',
 				icon: <User2 strokeWidth={1} />,
 				verify: () => setVerifyState(false),
 			},
 			{
-				title: 'Security',
+				title: t('security'),
 				key: 'security',
 				href: '/security',
 				icon: <ShieldCheck strokeWidth={1} />,
 				verify: () => setVerifyState(false),
 			},
 			{
-				title: 'Verification',
+				title: t('verification'),
 				key: 'verification',
 				href: '/verify',
 				icon: <IdCard strokeWidth={1} />,
 				verify: () => setVerifyState(false),
 			},
 			{
-				title: 'Authorized Devices',
+				title: t('authorized'),
 				key: 'devices',
 				href: '/devices',
 				icon: <TabletSmartphone strokeWidth={1} />,
 				verify: () => setVerifyState(false),
 			},
 			{
-				title: 'Deposit',
+				title: t('deposit'),
 				key: 'deposit',
 				href: '/deposit',
 				icon: <ArrowDown strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
-				title: 'Invest',
+				title: t('investment'),
 				key: 'invest',
 				href: '/invest',
 				icon: <TrendingUp strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
 			{
-				title: 'Log out',
+				title: t('logout'),
 				key: 'out',
 				href: '#',
 				icon: <Power strokeWidth={1} />,
@@ -200,10 +201,10 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 						{!auth ? (
 							<>
 								<Link className='header__buttons-login' href='/login'>
-									Log in
+									{t('login')}
 								</Link>
 								<Link className='header__buttons-signup' href='/signup'>
-									Sign up
+									{t('signup')}
 								</Link>{' '}
 							</>
 						) : (

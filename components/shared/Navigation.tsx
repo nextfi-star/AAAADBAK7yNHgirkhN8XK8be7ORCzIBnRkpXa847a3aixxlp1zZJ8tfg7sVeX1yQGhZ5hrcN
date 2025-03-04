@@ -1,19 +1,21 @@
 import { Link } from '@/i18n/routing'
+import { useTranslations } from 'next-intl'
 
 export const Navigation = () => {
+	const t = useTranslations('shared')
 	return (
 		<nav className='header__navigation header-nav flex justify-center items-center gap-[24px] w-full'>
 			<Link className='header__navigation-item' href='/invest'>
-				Investment
+				{t('investment')}
 			</Link>
 			<Link className='header__navigation-item' href='/activity'>
-				Status
+				{t('status')}
 			</Link>
 			<Link className='header__navigation-item' href='/token'>
-				Token
+				{t('token')}
 			</Link>
 			<a className='header__navigation-item' href='#'>
-				App
+				{t('app')}
 			</a>
 		</nav>
 	)

@@ -10,6 +10,7 @@ import ArrowBracket from '../ui/ArrowBracket'
 import { ProfileBurger_menu_list } from './ProfileBurger_menu_list'
 import { ProfileBurger_settigns } from './ProfileBurger_settigns'
 import { Logout_confirmation } from './Logout_confirmation'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	handleClick: () => void
@@ -17,6 +18,7 @@ interface Props {
 }
 
 export const Burger_profile: NextPage<Props> = ({ handleClick, show }) => {
+	const t = useTranslations('burger')	
 	const listClass = clsx('m_header__profile', { active: !show })
 	const [showSection, setShowSection] = useState<boolean>(true)
 	const { theme } = useThemeStore()
@@ -53,8 +55,8 @@ export const Burger_profile: NextPage<Props> = ({ handleClick, show }) => {
 							</div>
 							<div className='absolute top-[35px] right-[13px]'>
 								<Logout_confirmation
-									title='Are you absolutelu sure?'
-									content='This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'
+									title={t('sure')}
+									content={t('unDone')}
 									titleTriger={
 										<LogOut className=' min-w-[23px] min-h-[23px]' />
 									}
@@ -79,8 +81,8 @@ export const Burger_profile: NextPage<Props> = ({ handleClick, show }) => {
 							</div>
 							<div className='absolute top-[35px] right-[13px] z-[100]'>
 								<Logout_confirmation
-									title='Are you absolutelu sure?'
-									content='This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'
+									title={t('sure')}
+									content={t('unDone')}
 									titleTriger={
 										<LogOut className=' min-w-[23px] min-h-[23px]' />
 									}
@@ -126,7 +128,7 @@ export const Burger_profile: NextPage<Props> = ({ handleClick, show }) => {
 									src={'/header_icons/profile_burger/info_icon.svg'}
 									width={20}
 								/>
-								About NextFi
+								{t('aboutNextfi')}
 							</a>
 							<a href=''>v6.88.0 {'>'}</a>
 						</footer>

@@ -1,9 +1,7 @@
 'use client'
 
 import Lottie from 'lottie-react'
-
 import { useThemeStore } from '../../store'
-
 import animationData from '@/public/preloader/White_logo2.json'
 import animationData2 from '@/public/preloader/Black_logo2.json'
 

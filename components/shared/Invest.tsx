@@ -1,9 +1,10 @@
 import Image from "next/image";
-
 import { Download } from "../ui/Download";
 import { Phones_img } from "../ui/Phones_img";
+import { useTranslations } from 'next-intl'
 
 export const Invest = () => {
+  const t = useTranslations('landing')
   return (
     <section className="main__mobile">
       <div className="site-holder">
@@ -15,16 +16,16 @@ export const Invest = () => {
         >
           <div className="mobile__column">
             <h2 className="mobile__title">
-              Invest anywhere,
+              {t('invstWhere')},
               <br />
-              <b>anytime</b>
+              <b>{t('invstTime')}</b>
             </h2>
             <span className="mobile__description">
-              Instantly open new positions on the NextFi website and app
+              {t('openSite')}
             </span>
             <div className="mobile__qr">
               <span className="mobile__qr-text">
-                Point your phone to download the App
+                {t('qr')}
               </span>
               <div className="mobile__qr-img">
                 <Image
@@ -39,7 +40,7 @@ export const Invest = () => {
             <div className="mobile__more">
               <div className="mobile__download">
                 <span className="mobile__download-title">
-                  Download
+                  {t('downloadApp')}
                   <Download />
                 </span>
                 <div className="mobile__download-links">
@@ -63,7 +64,7 @@ export const Invest = () => {
               </div>
               <div className="mobile__info">
                 <p className="mobile__info-text">
-                  You always have access to investments at your fingertips
+                  {t('youAlways')}
                 </p>
               </div>
             </div>

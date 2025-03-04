@@ -14,7 +14,9 @@ import {
 	DrawerClose,
 } from '@/components/ui/drawer'
 import { useThemeStore } from '@/store'
-import { Button } from "@heroui/button"
+import { Button } from '@heroui/button'
+import { useTranslations } from 'next-intl'
+import { useUserStore } from '@/hooks/useUserData'
 const data = [
 	{
 		img: '/main/avatar_noface.png',
@@ -40,7 +42,8 @@ export const ChangeAvatar = () => {
 	const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null)
 	const [activeTab, setActiveTab] = useState('select-avatar')
 	const { theme } = useThemeStore()
-
+	const userAvatar = useUserStore(state => state.user?.logo)
+	const t = useTranslations('profile')
 	const handleAvatarSelect = (avatarUrl: string) => {
 		setSelectedAvatar(avatarUrl)
 	}
@@ -48,6 +51,7 @@ export const ChangeAvatar = () => {
 	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files && e.target.files[0]) {
 			setFile(e.target.files[0])
+			console.log(file)
 		}
 	}
 
@@ -59,7 +63,7 @@ export const ChangeAvatar = () => {
 						alt={'avatar'}
 						className={`absolute bottom-0 -right-[10px] object-contain min-h-[20px] min-w-[20px] cursor-pointer`}
 						height={53}
-						src={'/main/profile_page/edit_icon.svg'}
+						src={userAvatar || '/main/profile_page/edit_icon.svg'}
 						width={53}
 					/>
 				</div>
@@ -68,9 +72,9 @@ export const ChangeAvatar = () => {
 			<DrawerContent className='z-[99] px-[30px] drawer__without_after modal-holder mobile-holder flex flex-col items-center'>
 				<div>
 					<DrawerHeader className='flex flex-col items-start'>
-						<DrawerTitle>Change profile picture</DrawerTitle>
+						<DrawerTitle>{t('changePic')}</DrawerTitle>
 						<DrawerDescription className='text-black dark:text-white'>
-							You can choose from available avatars or upload a new one.
+							{t('uCan')}
 						</DrawerDescription>
 					</DrawerHeader>
 
@@ -81,8 +85,8 @@ export const ChangeAvatar = () => {
 						onValueChange={setActiveTab}
 					>
 						<TabsList className='mb-[0px]'>
-							<TabsTrigger value='select-avatar'>Select Avatar</TabsTrigger>
-							<TabsTrigger value='upload-avatar'>Upload Avatar</TabsTrigger>
+							<TabsTrigger value='select-avatar'>{t('selectAva')}</TabsTrigger>
+							<TabsTrigger value='upload-avatar'>{t('uploadAva')}</TabsTrigger>
 						</TabsList>
 
 						{/* Табка для выбора из существующих */}
@@ -123,10 +127,10 @@ export const ChangeAvatar = () => {
 									<PlusIcon color={theme === 'dark' ? 'white' : 'black'} />
 								</label>
 								<span className='text-[14px] md:text-[20px]'>
-									Upload a photo or drag and drop
+									{t('uploadPhoto')}
 								</span>
 								<span className='text-center text-[14px] md:text-[20px]'>
-									Supports JPG,PNG and GIF. Maximum upload file size 10 MB
+									{t('suppFormat')}
 								</span>
 							</form>
 						</TabsContent>
@@ -135,7 +139,7 @@ export const ChangeAvatar = () => {
 					<DrawerFooter className='flex flex-row justify-center gap-[42px]'>
 						<DrawerClose asChild>
 							<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] min-w-[117px]'>
-								Cancel
+								{t('close')}
 							</Button>
 						</DrawerClose>
 						<Button
@@ -143,7 +147,7 @@ export const ChangeAvatar = () => {
 							type='submit'
 							disabled={!file}
 						>
-							Save
+							{t('save')}
 						</Button>
 					</DrawerFooter>
 				</div>

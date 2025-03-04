@@ -1,19 +1,19 @@
 'use client'
 import Image from 'next/image'
-import { NextPage } from 'next'
 import { Link } from '@/i18n/routing'
-import { Snippet } from "@heroui/snippet"
-import { Button } from "@heroui/button"
-import { Spinner } from "@heroui/spinner"
+import { Snippet } from '@heroui/snippet'
+import { Button } from '@heroui/button'
+import { Spinner } from '@heroui/spinner'
 import { useUserStore } from '@/hooks/useUserData'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	verify: boolean
 	toggleActive: () => void
 }
 export const Profile_info = ({ verify, toggleActive }: Props) => {
-	const user = useUserStore((state) => state.user)
-	
+	const user = useUserStore(state => state.user)
+	const t = useTranslations('overview')
 	return (
 		<section className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px]'>
 			<div className='profile__info__block__left'>
@@ -52,12 +52,12 @@ export const Profile_info = ({ verify, toggleActive }: Props) => {
 			<div className='profile__info__block__right'>
 				<div className='profile__info__block___right__block'>
 					<h5 className='profile__info__block___right__main__text'>
-						Verification
+						{t('verification')}
 					</h5>
 					{!verify ? (
 						<Link href='#' onClick={toggleActive}>
 							<Button className='profile__info__block___right__additional__text border-1 border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  rounded-[50px] px-[10px] !bg-transparent'>
-								Go through verification
+								{t('goVerif')}
 							</Button>
 						</Link>
 					) : (
@@ -65,13 +65,13 @@ export const Profile_info = ({ verify, toggleActive }: Props) => {
 							variant='bordered'
 							className={`profile__info__block___right__verification_block__button passed profile__info__block___right__additional__text border-1 border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] rounded-[50px] !px-[10px] !bg-transparent`}
 						>
-							Verification passed
+							{t('verifDone')}
 						</Button>
 					)}
 				</div>
 				<div className='profile__info__block___right__block'>
 					<h5 className='profile__info__block___right__main__text'>
-						Country/Region
+						{t('country/region')}
 					</h5>
 					<Button className='profile__info__block___right__additional__text border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'>
 						{user ? user?.country : <Spinner />}
@@ -79,10 +79,10 @@ export const Profile_info = ({ verify, toggleActive }: Props) => {
 				</div>
 				<div className='profile__info__block___right__block'>
 					<h5 className='profile__info__block___right__main__text'>
-						Status
+						{t('status')}
 					</h5>
 					<Button className='profile__info__block___right__additional__text border-1 border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'>
-						Level 1
+						{t('lvl')} {user?.level || 1}
 					</Button>
 				</div>
 			</div>

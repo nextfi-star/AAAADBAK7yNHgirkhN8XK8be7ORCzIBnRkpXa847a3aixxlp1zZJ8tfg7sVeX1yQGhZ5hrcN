@@ -17,14 +17,15 @@ import { Confirmation_dialog } from './Confirmation_dialog'
 import { Button } from "@heroui/button"
 import { useState } from 'react'
 import { handleAccountAction } from '@/utils/api'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	propsItem: React.ReactNode
-	user?: any
 }
 
-export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
+export const FreezeAccount= ({ propsItem }: Props) => {
 	const { theme } = useThemeStore()
+	const t = useTranslations('security')
 	const [checked, setChecked] = useState(false)
 	const [selectedOption, setSelectedOption] = useState<string | undefined>(
 		undefined
@@ -61,7 +62,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
 								href='/security'
 							>
-								Security
+								{t('security')}
 							</Link>
 							<ArrowBracket
 								className={'-rotate-90'}
@@ -70,7 +71,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 								width={25}
 							/>
 						</div>{' '}
-						Freeze account
+						{t('freezeAcc')}
 					</DrawerTitle>
 					<div className='flex flex-col items-center gap-[20px] pb-[5rem]'>
 						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center gap-[10px] justify-center w-full max-w-[921px]'>
@@ -83,31 +84,28 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 									src={'/header_icons/profile_burger/info_icon.svg'}
 									width={20}
 								/>
-								After freezing your account:
+								{t('afterFreeze')}
 							</span>
 							<span className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
 								<span>
-									• Your account Username@gmail.com will be frozen temporarily.
-									To unfreeze it, start by logging in again.{' '}
+									• {t('after1')}{' '}
 								</span>
 								<span>
-									• Your account Username@gmail.com will be frozen temporarily.
-									To unfreeze it, start by logging in again.{' '}
+									• {t('after2')}{' '}
 								</span>
 								<span>
-									• All trading capabilities of this account will be disabled
+									• {t('after3')}
 								</span>
-								<span>• All API keys for this account will be deleted </span>
-								<li>• All approved devices for this account will be removed</li>
+								<span>• {t('after4')}</span>
+								<span>• {t('after5')}</span>
 								<span>
-									• Ongoing transactions such as perpetuals will not be canceled
-									automatically
+									• {t('after6')}
 								</span>
 							</span>
 						</DrawerDescription>
 						<div className='flex w-full max-w-[921px] flex-col items-start gap-[10px] md:gap-[20px] border border-solid border-gray-400 py-[10px] rounded-[4px]'>
 							<h5 className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] border-0 border-b border-solid border-b-gray-400 w-full text-center py-[10px] px-[5px]'>
-								Why do you want to freeze your account?
+								{t('whyFrz')}
 							</h5>
 							<div className='px-[16px]'>
 								<RadioGroup
@@ -121,8 +119,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 												id='option-one'
 												value='option-one'
 											/>
-											This account is not safe, so I want to freeze it
-											temporarily.
+											{t('why1')}
 										</label>
 									</div>
 									<div className='flex items-center space-x-2'>
@@ -132,7 +129,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 												id='option-two'
 												value='option-two'
 											/>
-											I don't want to use this account anymore.
+											{t('why2')}
 										</label>
 									</div>
 									<div className='flex items-center space-x-2'>
@@ -142,7 +139,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 												id='option-three'
 												value='option-three'
 											/>
-											I want to use another cryptocurrency platform.
+											{t('why3')}
 										</label>
 									</div>
 									<div className='flex items-center space-x-2'>
@@ -152,7 +149,7 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 												id='option-four'
 												value='option-four'
 											/>
-											Other reasons
+											{t('why4')}
 										</label>
 									</div>
 								</RadioGroup>
@@ -184,16 +181,14 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 									</svg>
 								</span>
 								<p className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] text-left'>
-									To protect your account, you will not be able to withdraw
-									funds within 24 hours after resetting your settings or
-									changing your account password.
+									{t('protectFrz')}
 								</p>
 							</label>
 						</div>
 						<DrawerFooter className='flex flex-row justify-center gap-[40px] pb-[3rem] w-full'>
 							<DrawerClose asChild>
 								<Button className='dark:text-white text-black px-[15px] py-[5px] bg-transparent border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] rounded-[50px] text-[14px] xl:!text-[20px] 2xl:!text-[25px] xl:!px-[40px] 2xl:!px-[70px] font-medium h-fit !max-w-[220px] !w-full hover:bg-transparent'>
-									Close
+									{t('close')}
 								</Button>
 							</DrawerClose>
 							<Confirmation_dialog
@@ -203,14 +198,13 @@ export const FreezeAccount: NextPage<Props> = ({ propsItem, user }) => {
 										: 'bg-transparent hover:bg-transparent data-[hover=true]:opacity-[.6] opacity-[.6]'
 								}`}
 								content={
-									'This action cannot be undone. Your account will be freezed.'
+									t('undone')
 								}
-								title={'Are you absolutely sure?'}
-								titleTriger={'Confirm'}
+								title={t('sure')}
+								titleTriger={t('confirm')}
 								checked={checked}
 								unic={'freeze'}
 								selectedOption={selectedOption}
-					
 							/>
 						</DrawerFooter>
 					</div>

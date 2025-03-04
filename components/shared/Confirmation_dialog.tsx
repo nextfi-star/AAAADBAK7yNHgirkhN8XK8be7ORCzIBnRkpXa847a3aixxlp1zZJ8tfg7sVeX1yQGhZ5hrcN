@@ -12,6 +12,7 @@ import { useUserStore } from '@/hooks/useUserData'
 import { handleAccountAction } from '@/utils/api'
 import { Button } from "@heroui/button"
 import { NextPage } from 'next'
+import { useTranslations } from 'next-intl'
 interface Props {
 	content: string
 	titleTriger: string | any
@@ -32,10 +33,10 @@ export const Confirmation_dialog: NextPage<Props> = ({
 	selectedOption,
 }) => {
 	const user = useUserStore(state => state.user)
+	const t = useTranslations('security')
 	const handleActionClose = async (action: 'close') => {
 		try {
 			const result = await handleAccountAction(user?.csrf, action)
-			
 			console.log(`${action} result:`, result)
 		} catch (err: any) {
 			console.log(err.message)
@@ -71,7 +72,7 @@ export const Confirmation_dialog: NextPage<Props> = ({
 							type='button'
 							className='min-w-[91.52px] border-1 !border-[#767680] border-solid rounded-[50px] px-[10px] !bg-[#7676801F] !text-[#0c0c0c] dark:!text-[#EFEFEF] !text-[16px] xl:!text-[16px] 2xl:!text-[16px]'
 						>
-							Close
+							{t('close')}
 						</Button>
 					</DialogClose>
 					<DialogClose asChild></DialogClose>
@@ -79,17 +80,17 @@ export const Confirmation_dialog: NextPage<Props> = ({
 						<Button
 							type='button'
 							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
-							onClick={() => handleActionFreeze('freeze')}
+							onPress={() => handleActionFreeze('freeze')}
 						>
-							Continue
+							{t('cont')}
 						</Button>
 					) : (
 						<Button
 							type='button'
 							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
-							onClick={() => handleActionClose('close')}
+							onPress={() => handleActionClose('close')}
 						>
-							Continue
+							{t('cont')}
 						</Button>
 					)}
 					{!unic && (
@@ -97,7 +98,7 @@ export const Confirmation_dialog: NextPage<Props> = ({
 							type='button'
 							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
 						>
-							Continue
+							{t('cont')}
 						</Button>
 					)}
 				</DialogFooter>

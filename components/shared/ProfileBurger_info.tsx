@@ -1,23 +1,23 @@
 import Image from 'next/image'
-import { NextPage } from 'next'
 import ArrowBracket from '../ui/ArrowBracket'
 import { useThemeStore } from '@/store'
 import { useUserStore } from '@/hooks/useUserData'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	setShowSection: (val: boolean) => void
 	showSection: boolean
 }
-export const ProfileBurger_info: NextPage<Props> = ({
+export const ProfileBurger_info = ({
 	setShowSection,
 	showSection,
-}) => {
+}: Props) => {
 	const { theme } = useThemeStore()
 	const handleClick = () => {
 		setShowSection(!showSection)
 	}
 	const user = useUserStore(state => state.user)
-
+	const t = useTranslations('burger')
 	return (
 		<section
 			className={`profile__burger-info !pr-[24px]`}
@@ -45,7 +45,7 @@ export const ProfileBurger_info: NextPage<Props> = ({
 							{user?.phone}
 						</h5>
 					)}
-					{showSection && <span className='text-[14px]'>Profile Settings</span>}
+					{showSection && <span className='text-[14px]'>{t('profileSettings')}</span>}
 				</div>
 			</div>
 			{showSection && (

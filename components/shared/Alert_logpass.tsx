@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { Button } from "@heroui/button"
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 
 interface Props {
@@ -21,6 +22,7 @@ interface Props {
 }
 
 export const Alert_logpass = ({ propsItem }: Props) => {
+	const t = useTranslations('security')
 	const { theme } = useThemeStore()
 	const [inputs, setInputs] = useState({
 		currentPassword: '',
@@ -58,7 +60,7 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
 								href='/security'
 							>
-								Security
+								{t('security')}
 							</Link>
 							<ArrowBracket
 								className={'-rotate-90'}
@@ -67,7 +69,7 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 								width={25}
 							/>
 						</span>{' '}
-						Change login password
+						{t('changeLoginPass')}
 					</AlertDialogTitle>
 				</AlertDialogHeader>
 				<div className='flex justify-center gap-[10px] w-full '>
@@ -76,10 +78,10 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 							className={'w-full flex flex-col gap-[10px]'}
 						>
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
-								Current password
+								{t('currPass')}
 								<Input
 									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
-									placeholder='Enter your current password'
+									placeholder={t('enterCurrPass')}
 									type='text'
 									name='currentPassword'
 									value={inputs.currentPassword}
@@ -91,10 +93,10 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 							className={'w-full flex flex-col gap-[10px]'}
 						>
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
-								New password
+								{t('newPass')}
 								<Input
 									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
-									placeholder='Enter your current password'
+									placeholder={t('confirmNewPass')}
 									type='text'
 									name='newPassword'
 									value={inputs.newPassword}
@@ -106,10 +108,10 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 							className={'w-full flex flex-col gap-[10px]'}
 						>
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
-								Confirm new password
+								{t('confirmNewPass')}
 								<Input
 									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
-									placeholder='Enter your current password'
+									placeholder={t('confirmEnterNewPass')}
 									type='text'
 									name='confirmNew'
 									value={inputs.confirmNew}
@@ -121,10 +123,10 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 							className={'w-full flex flex-col gap-[10px]'}
 						>
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
-								Email authentication
+								{t('emailAuth')}
 								<Input
 									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
-									placeholder='Enter your current password'
+									placeholder={t('enterEmailAuth')}
 									type='text'
 									name='emailAuth'
 									value={inputs.emailAuth}
@@ -136,10 +138,10 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 							className={'w-full flex flex-col gap-[10px]'}
 						>
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
-								Authenticator app
+								{t('authApp')}
 								<Input
 									className='border border-solid text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px] shadow-none'
-									placeholder='Enter your current password'
+									placeholder={t('enterAuthApp')}
 									type='text'
 									name='authApp'
 									value={inputs.authApp}

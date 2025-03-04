@@ -2,13 +2,15 @@
 import Image from "next/image";
 import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 import { Profile_devices } from "@/components/shared/Profile_devices";
+import { useTranslations } from 'next-intl'
 
 const Devices = () => {
+  const t = useTranslations('device')
   return (
     <section className="personal !shadow-medium dark:!shadow-none"  > 
       <div className="personal-container">
         <h1 className="text-[32px] font-bold w-full text-center lg:text-left">
-          Authorized Devices
+          {t('authDev')}
         </h1>
         <div className="personal-inner flex flex-row justify-between mt-[20px] gap-[40px]">
           <div className="relative h-fit w-fit">

@@ -13,6 +13,7 @@ import { Button } from "@heroui/button"
 import { NextPage } from 'next'
 import { useThemeStore } from '@/store'
 import { useParams, useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 interface Props {
 	content: string
 	titleTriger: string | any
@@ -28,7 +29,7 @@ export const Logout_confirmation: NextPage<Props> = ({
 	const { setEmail, setPassword, clearUser } = useThemeStore();
   const router = useRouter();
   const locale = useParams().locale;
-
+	const t = useTranslations('burger')
 	const handleLogout = () => {
 		clearUser()
 		localStorage.removeItem('zustand-store')
@@ -56,16 +57,16 @@ export const Logout_confirmation: NextPage<Props> = ({
 							type='button'
 							className='min-w-[91.52px] border-1 !border-[#767680] border-solid rounded-[50px] px-[10px] !bg-[#7676801F] !text-[#0c0c0c] dark:!text-[#EFEFEF] !text-[16px] xl:!text-[16px] 2xl:!text-[16px]'
 						>
-							Close
+							{t('close')}
 						</Button>
 					</DialogClose>
 					<DialogClose asChild>
 						<Button
 							type='button'
 							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
-							onClick={handleLogout}
+							onPress={handleLogout}
 						>
-							Continue
+							{t('continue')}
 						</Button>
 					</DialogClose>
 				</DialogFooter>

@@ -1,4 +1,3 @@
-import { NextPage } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
@@ -16,7 +15,8 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
-import { Button } from "@heroui/button"
+import { Button } from '@heroui/button'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -24,6 +24,7 @@ interface Props {
 }
 export const Alert_nickname = ({ propsItem, className }: Props) => {
 	const { theme } = useThemeStore()
+	const t = useTranslations('profile')
 	const [symbols, setSymbols] = useState<number | string | any>(0)
 	const [inputValue, setInputValue] = useState<string>('')
 	const trackSymbols = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +60,7 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
 								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
 								href='/profile'
 							>
-								Profile
+								{t('profileW')}
 							</Link>
 							<ArrowBracket
 								className={'-rotate-90'}
@@ -68,7 +69,7 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
 								width={25}
 							/>
 						</span>{' '}
-						Change Nickname
+						{t('changeNick')}
 					</AlertDialogTitle>
 				</AlertDialogHeader>
 				<div className='flex justify-center w-full '>
@@ -82,15 +83,13 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
 								src={'/header_icons/profile_burger/info_icon.svg'}
 								width={20}
 							/>
-							Make sure your nickname does not contain disrespectful language,
-							official names(i.e. product names), or names of other trading
-							platforms
+							{t('makeSure')}
 						</span>
 						<AlertDialogDescription
 							className={'w-full flex flex-col gap-[10px]'}
 						>
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
-								Your nickname is used for trading and in-app messages
+								{t('urNick')}
 								<Input
 									className={`border border-solid shadow-none text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[12px] py-[20px] rounded-[30px]  ${symbols >= 20 ? '!border-danger-600' : '!border-[#4d4d4d]'} `}
 									placeholder='Enter nickname'
@@ -100,7 +99,7 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
 								/>
 							</label>
 							<span className='text-[12px] sm:text-[18px] flex items-center justify-between w-full text-[#181818] dark:text-white'>
-								Your nickname can be edited 3 more time(s) this year
+								{t('canBe')}
 								<span>{symbols}/20</span>
 							</span>
 						</AlertDialogDescription>
@@ -115,7 +114,7 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
 						}`}
 						disabled={symbols < 4 || symbols >= 20}
 					>
-						Confirm
+						{t('confirm')}
 					</AlertDialogAction>
 				</AlertDialogFooter>
 			</AlertDialogContent>

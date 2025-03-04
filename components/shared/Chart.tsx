@@ -1,13 +1,10 @@
 'use client'
 import * as React from 'react'
 import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
-
 import {
 	Card,
 	CardContent,
-	CardDescription,
 	CardHeader,
-	CardTitle,
 } from '@/components/ui/card'
 import {
 	ChartContainer,
@@ -228,7 +225,6 @@ const chartData = [
 		investment: 564654,
 	},
 ]
-
 const chartConfig = {
 	deposit: {
 		label: 'Deposit',

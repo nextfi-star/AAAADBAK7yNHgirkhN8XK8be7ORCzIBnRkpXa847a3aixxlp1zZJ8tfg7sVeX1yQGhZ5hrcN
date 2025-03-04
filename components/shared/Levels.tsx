@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { Levels_swiper } from "./Levels_swiper";
+import { useTranslations } from 'next-intl'
 
 export const Levels = () => {
+  const t = useTranslations('landing')
   return (
     <section className="levels">
       <Image
@@ -22,7 +24,7 @@ export const Levels = () => {
           data-aos-duration="1000"
           data-aos-once="true"
         >
-          <b>Personalised</b> Investment Portfolio<b> System.</b>
+          <b>{t('personalized')}</b> {t('portfolio')}<b> {t('system')}</b>
         </h2>
         <p
           className="section-description"
@@ -30,7 +32,7 @@ export const Levels = () => {
           data-aos-duration="1000"
           data-aos-once="true"
         >
-          Our Personalised Investment Portfolio System allows you to invest in stocks, bonds, startups, and commodities, providing tailored opportunities for capital growth based on your experience, goals, and preferences.
+          {t('prtfDesc')}
         </p>
         {/* Swiper */}
 

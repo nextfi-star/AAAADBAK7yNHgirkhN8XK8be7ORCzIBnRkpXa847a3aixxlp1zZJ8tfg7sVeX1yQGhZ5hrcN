@@ -1,40 +1,42 @@
-import React from 'react'
+import { useTranslations } from 'next-intl'
+import { useMemo } from 'react'
 
-const data = [
-	{
-		title: 'Deposit',
-		subTitle: 'Daily assets',
-		numbers: '0.0000',
-		subNumbers: '0.0000',
-		currency: 'USD',
-	},
-	{
-		title: 'All investments',
-		subTitle: '30-day average assets',
-		numbers: '0.0000',
-		subNumbers: '0.0000',
-		currency: 'USD',
-	},
-	{
-		title: 'In investment',
-		subTitle: 'Experience Points',
-		numbers: '0.0000',
-		subNumbers: '0.0000',
-		currency: 'USD',
-	},
-	{
-		title: 'Withdrawal',
-		subTitle: 'Referrals invited',
-		numbers: '0.0000',
-		subNumbers: '2',
-		currency: 'users',
-	},
-]
 const Tier_initData = () => {
+	const t = useTranslations('tier')
+	const data = useMemo(() => [
+		{
+			title: t('deposit'),
+			subTitle: t('dailyAss'),
+			numbers: '0.0000',
+			subNumbers: '0.0000',
+			currency: 'USD',
+		},
+		{
+			title: t('allInvst'),
+			subTitle: t('30days'),
+			numbers: '0.0000',
+			subNumbers: '0.0000',
+			currency: 'USD',
+		},
+		{
+			title: t('inInvest'),
+			subTitle: t('exptPoint'),
+			numbers: '0.0000',
+			subNumbers: '0.0000',
+			currency: 'USD',
+		},
+		{
+			title: t('withdrawal'),
+			subTitle: t('refInvited'),
+			numbers: '0.0000',
+			subNumbers: '2',
+			currency: 'users',
+		},
+	], [])
 	return (
 		<div className='w-full flex flex-1 flex-col items-center xl:items-start gap-[23px]'>
 			<h3 className='hidden sm:block text-[20px] dark:text-[#eee] text-[#0c0c0c]'>
-				30-day trading volume (as of yesterday)
+				{t('30trading')}
 			</h3>
 
 			<div className='w-full hidden sm:flex items-start justify-between gap-[5%] px-[10px]'>
@@ -70,13 +72,13 @@ const Tier_initData = () => {
 
 			<div className='w-full flex sm:hidden flex-col gap-[20px] bg-[#EEEEEE] dark:bg-[#181818] px-[20px] py-[14px] rounded-[30px]'>
 				<h3 className='block sm:hidden text-[20px] dark:text-[#eee] text-[#0c0c0c]'>
-					30-day trading volume (as of yesterday)
+					{t('30trading')}
 				</h3>
 				<div className='w-full flex flex-wrap sm:hidden items-center justify-between gap-[15px] '>
 					<div className='w-full flex items-center justify-between gap-[23px]'>
 						<div className='flex flex-col'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								Deposit
+								{t('deposit')}
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								0.0000 USD
@@ -84,7 +86,7 @@ const Tier_initData = () => {
 						</div>
 						<div className='flex flex-col'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								Daily assets
+								{t('dailyAss')}
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								0.0000 USD
@@ -95,7 +97,7 @@ const Tier_initData = () => {
 					<div className='w-full flex items-center justify-between gap-[23px]'>
 						<div className='flex flex-col'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								All investments
+								{t('allInvst')}
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								0.0000 USD
@@ -103,7 +105,7 @@ const Tier_initData = () => {
 						</div>
 						<div className='flex flex-col'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px] text-right'>
-								30-day average assets
+								{t('30days')}
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD] text-right'>
 								0.0000 USD
@@ -114,7 +116,7 @@ const Tier_initData = () => {
 					<div className='w-full flex items-center justify-between gap-[23px]'>
 						<div className='flex flex-col'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								In investment
+								{t('inInvest')}
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								0.0000 USD
@@ -122,7 +124,7 @@ const Tier_initData = () => {
 						</div>
 						<div className='flex flex-col text-right'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								Experience Points
+								{t('exptPoint')}
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								25 EXP
@@ -133,7 +135,7 @@ const Tier_initData = () => {
 					<div className='w-full flex items-center justify-between gap-[23px]'>
 						<div className='flex flex-col'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								Withdrawal
+								{t('withdrawal')}
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								0.0000 USD
@@ -141,7 +143,7 @@ const Tier_initData = () => {
 						</div>
 						<div className='flex flex-col text-right'>
 							<p className='dark:text-[#eee] text-[#0c0c0c] xl:text-[20px]'>
-								Referrals invited
+								{t('refInvited')}
 							</p>
 							<p className='xl:text-[20px] text-[#0c0c0c] dark:text-[#BDBDBD]'>
 								2 users

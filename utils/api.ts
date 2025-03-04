@@ -88,8 +88,7 @@ export const verify2FA = async (csrf: string, code: string) => {
 
 		if (data.response === 'success') {
 			console.log('2FA verification successful', data)
-			useUserStore.getState().loadUser();
-			
+			useUserStore.getState().loadUser()
 		} else {
 			console.log(data)
 			console.error('Error verifying 2FA:', data)
@@ -168,19 +167,22 @@ export const handleAccountAction = async (
 		const result = await response.json()
 
 		if (response.ok) {
-			localStorage.removeItem('userData')
-			localStorage.removeItem('profile-store')
-			window.location.reload()
+			if (typeof window !== 'undefined') {
+				console.log(action === 'freeze' ? 'Freeze' : 'Close')
+				localStorage.removeItem('userData')
+				localStorage.removeItem('profile-store')
+				window.location.reload()
+			}
 		}
 
 		if (!response.ok) {
 			throw new Error(result.message || 'Failed to process the request')
 		}
 
-		return result // Возвращаем результат для обработки
+		return result 
 	} catch (error: any) {
 		console.error('Error:', error.message)
-		throw error // Позволяет обработать ошибку на уровне вызова функции
+		throw error 
 	}
 }
 export const getUserHistory = async (
@@ -336,26 +338,30 @@ export const fetchCoinList = async (): Promise<Coin[]> => {
 		return []
 	}
 }
-export const getDepositAddress = async (csrf: string, coin: string, network: string) => {
+export const getDepositAddress = async (
+	csrf: string,
+	coin: string,
+	network: string
+) => {
 	try {
-		const response = await fetch("https://nextfi.io:5000/api/v1/deposit", {
-			method: "POST",
+		const response = await fetch('https://nextfi.io:5000/api/v1/deposit', {
+			method: 'POST',
 			headers: {
-				"Content-Type": "application/json",
+				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({ csrf, coin, net: network }),
-		});
+		})
 
-		const result = await response.json();
+		const result = await response.json()
 
-		if (result.response === "success") {
-			return { success: true, address: result.address };
+		if (result.response === 'success') {
+			return { success: true, address: result.address }
 		} else {
-			console.error("❌ Ошибка получения адреса депозита:", result.message);
-			return { success: false, message: result.message };
+			console.error('❌ Ошибка получения адреса депозита:', result.message)
+			return { success: false, message: result.message }
 		}
 	} catch (error) {
-		console.error("❌ Сетевая ошибка:", error);
-		return { success: false, message: "Ошибка сети" };
+		console.error('❌ Сетевая ошибка:', error)
+		return { success: false, message: 'Ошибка сети' }
 	}
-};
+}

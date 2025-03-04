@@ -1,10 +1,12 @@
 "use client";
 import Image from "next/image";
-
 import { useThemeStore } from "@/store";
+import { useTranslations } from 'next-intl'
+import { Link } from '@/i18n/routing'
 
 export const Balance_img = () => {
   const { theme } = useThemeStore();
+  const t = useTranslations('landing')
 
   return (
     <>
@@ -22,9 +24,9 @@ export const Balance_img = () => {
             width={280}
           />
         </div>
-        <a className="btn btn-blue btn-none" href="#">
-          Top up your balance
-        </a>
+        <Link className="btn btn-blue btn-none" href="/signup">
+          {t('topBalan')}
+        </Link>
       </div>
 
       <div className="getstarted__big-content__item">
@@ -41,25 +43,10 @@ export const Balance_img = () => {
             width={280}
           />
         </div>
-        <a className="btn btn-blue btn-none" href="#">
-          Withdraw money
-        </a>
+        <Link className="btn btn-blue btn-none" href="/signup">
+          {t('withdMoney')}
+        </Link>
       </div>
-
-      {/* <div className="getstarted__big-content__image">
-        <Image
-          alt="stats"
-          className="stats__image w-auto"
-          height={396}
-          width={396}
-          quality={100}
-          src={
-            theme === "dark"
-              ? "/main/investment_dark.png"
-              : "/main/getstarted-stats.png"
-          }
-        />
-      </div> */}
     </>
   );
 };

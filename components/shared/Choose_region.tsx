@@ -1,6 +1,4 @@
 "use client";
-
-import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -17,34 +15,36 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { useMemo, useState } from 'react'
+import { useTranslations } from 'next-intl'
 
-const frameworks = [
-  {
-    value: "russia",
-    label: "Russia",
-  },
-  {
-    value: "uzbekistan",
-    label: "Uzbekistan",
-  },
-  {
-    value: "usa",
-    label: "USA",
-  },
-  {
-    value: "china",
-    label: "China",
-  },
-  {
-    value: "japan",
-    label: "Japan",
-  },
-];
 
 export function Choose_region() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
-
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
+  const t = useTranslations("profile");
+  const frameworks = useMemo(() => [
+    {
+      value: "russia",
+      label: "Russia",
+    },
+    {
+      value: "uzbekistan",
+      label: "Uzbekistan",
+    },
+    {
+      value: "usa",
+      label: "USA",
+    },
+    {
+      value: "china",
+      label: "China",
+    },
+    {
+      value: "japan",
+      label: "Japan",
+    },
+  ], [])
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -64,11 +64,11 @@ export function Choose_region() {
         <Command>
           <CommandInput
             className="text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] w-full min-h-[58px]"
-            placeholder="Search region/country..."
+            placeholder={t('placeholder')}
           />
           <CommandList>
             <CommandEmpty className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[19px] xl:text-[20px] 2xl:text-[25px] p-[.5rem]">
-              No one was found.
+              {t('notFound')}
             </CommandEmpty>
             <CommandGroup>
               {frameworks.map((framework) => (

@@ -10,7 +10,7 @@ import { Coin } from '@/types'
 const TestingCode = () => {
 	const [coin, setCoin] = useState('TEST')
 	const [coins, setCoins] = useState<Coin[]>([])
-	const { user } = useUserStore()
+	const user = useUserStore(state => state.user)
 	const [profileData, setProfileData] = useState(user)
 	const [history, setHistory] = useState<any>(null)
 	const [loading, setLoading] = useState(true)
@@ -177,6 +177,35 @@ const TestingCode = () => {
 				<div className='flex flex-col gap-4'>
 					<h1>USER</h1>
 					{renderedData}
+				</div>
+				<div className='flex flex-col gap-4'>
+					<h1 className='text-[32px] font-bold w-full text-center lg:text-left'>
+						OVERVIEW DATA
+					</h1>
+					{user?.overview &&
+						user.overview.lvl.map((data: any) => (
+							<div key={data.id}>
+								<p>Enable - {data.enable}</p>
+								<p>ID - {data.id}</p>
+								<p>Name - {data.name}</p>
+								<p>XP - {data.xp}xp</p>
+							</div>
+						))}
+				</div>
+				<div className='flex flex-col gap-4'>
+					<h1 className='text-[32px] font-bold w-full text-center lg:text-left'>
+						OVERVIEW PAYMENTS
+					</h1>
+					{user?.overview &&
+						user.overview.payments.map((data: any) => (
+							<div key={data.id}>
+								<p>Amount - {data.amount}</p>
+								<p>Coin - {data.coin}</p>
+								<p>Type - {data.type}</p>
+								<p>UID - {data.uid}</p>
+								<p>Time - {data.time}</p>
+							</div>
+						))}
 				</div>
 			</div>
 		</div>

@@ -9,11 +9,12 @@ import { Link } from '@/i18n/routing'
 import { RefreshCw } from 'lucide-react'
 import { useUserStore } from '@/hooks/useUserData'
 import { getUserBalance } from '@/utils/api'
+import { useTranslations } from 'next-intl'
 
 export const Profile_balance = () => {
 	const { theme, verifyState } = useThemeStore()
 	const [show, setShow] = useState<boolean>(false)
-
+	const t = useTranslations('overview')
 	const handleCLick = () => {
 		setShow(!show)
 	}
@@ -64,7 +65,7 @@ export const Profile_balance = () => {
 												alt='balance'
 											/>
 											<h4 className='text-blue-600 text-[21px] font-medium'>
-												{refresh ? 'Bonus' : 'Balance'}
+												{refresh ? t('bonus') : t('balance')}
 											</h4>
 
 											<Eye />
@@ -94,12 +95,12 @@ export const Profile_balance = () => {
 										</select>
 									</div>
 									<div className='flex items-center gap-2 text-blue-600 text-[14px]'>
-										<p>Today $0,00 (0,00 %)</p>
+										<p>{t('today')} $0,00 (0,00 %)</p>
 									</div>
 								</div>
 								<div className='flex items-center gap-[10px]'>
 									<span className='text-[12px] dark:text-[#EFEFEF] flex-shrink-0'>
-										Flip Over
+										{t('flipOver')}
 									</span>
 									<RefreshCw
 										strokeWidth={1}
@@ -122,7 +123,7 @@ export const Profile_balance = () => {
 										alt='balance'
 									/>
 									<h4 className='text-blue-600 text-[33px] font-medium'>
-										Balance
+										{t('balance')}
 									</h4>
 									<Eye />
 								</div>
@@ -151,7 +152,7 @@ export const Profile_balance = () => {
 								</select>
 							</div>
 							<div className='flex items-center gap-2 text-blue-600 text-[14px]'>
-								<p className='text-[19px]'>Today $0,00 (0,00 %)</p>
+								<p className='text-[19px]'>{t('today')} $0,00 (0,00 %)</p>
 							</div>
 						</div>
 					</div>
@@ -167,7 +168,7 @@ export const Profile_balance = () => {
 										alt='balance'
 									/>
 									<h4 className='text-blue-600 text-[33px] font-medium'>
-										Bonus
+										{t('bonus')}
 									</h4>
 									<Eye />
 								</div>
@@ -196,7 +197,7 @@ export const Profile_balance = () => {
 								</select>
 							</div>
 							<div className='flex items-center gap-2 text-blue-600 text-[14px]'>
-								<p className='text-[19px]'>Today $0,00 (0,00 %)</p>
+								<p className='text-[19px]'>{t('today')} $0,00 (0,00 %)</p>
 							</div>
 						</div>
 					</div>
@@ -215,7 +216,7 @@ export const Profile_balance = () => {
 										className='flex-shrink-0 bg-transparent'
 										size='lg'
 									/>
-									Deposit
+									{t('deposit')}
 								</Link>
 								<Link
 									href='/withdrawal'
@@ -226,7 +227,7 @@ export const Profile_balance = () => {
 										className='flex-shrink-0 bg-transparent'
 										size='lg'
 									/>
-									Withdrawal
+									{t('withdrawal')}
 								</Link>
 								<Link
 									href='/swap'
@@ -237,7 +238,7 @@ export const Profile_balance = () => {
 										className='flex-shrink-0 bg-transparent'
 										size='lg'
 									/>
-									Swap
+									{t('swap')}
 								</Link>
 								<Link
 									href='/invest'
@@ -248,7 +249,7 @@ export const Profile_balance = () => {
 										className='flex-shrink-0 bg-transparent'
 										size='lg'
 									/>
-									Investment
+									{t('invest')}
 								</Link>
 							</div>
 							<div className='w-full hidden sm:flex items-center justify-center sm:justify-start gap-[10px]'>
@@ -256,25 +257,25 @@ export const Profile_balance = () => {
 									href='/deposit'
 									className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
 								>
-									Deposit
+									{t('deposit')}
 								</Link>
 								<Link
 									href='/withdrawal'
 									className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
 								>
-									Withdrawal
+									{t('withdrawal')}
 								</Link>
 								<Link
 									href='/swap'
 									className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
 								>
-									Swap
+									{t('swap')}
 								</Link>
 								<Link
 									href='/invest'
 									className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
 								>
-									Investment
+									{t('invest')}
 								</Link>
 							</div>
 						</>

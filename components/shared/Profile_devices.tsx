@@ -1,6 +1,5 @@
 'use client'
 import Image from 'next/image'
-import { NextPage } from 'next'
 import { Device } from '../ui/Device'
 import { Accordion, AccordionItem } from '@/components/ui/AccordionBurger'
 import { useThemeStore } from '@/store'
@@ -9,8 +8,10 @@ import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Skeleton } from "@heroui/skeleton"
 import { useUserStore } from '@/hooks/useUserData'
+import { useTranslations } from 'next-intl'
 
-export const Profile_devices: NextPage = () => {
+export const Profile_devices= () => {
+	const t = useTranslations('device')
 	const { theme } = useThemeStore()
 	const [sessions, setSessions] = useState<any[]>([])
 	const [loading, setLoading] = useState(true)
@@ -94,7 +95,7 @@ export const Profile_devices: NextPage = () => {
 											src={'/header_icons/profile_burger/device_phone.svg'}
 											width={50}
 										/>
-										<h5 className='text-[32px] font-medium'>Devices</h5>
+										<h5 className='text-[32px] font-medium'>{t('devices')}</h5>
 									</div>
 								</div>
 
@@ -104,7 +105,7 @@ export const Profile_devices: NextPage = () => {
 										onClick={e => e.stopPropagation()}
 									>
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
-											MacBook PRO
+											{t('macBook')}
 										</span>
 										
 									</div>
@@ -114,7 +115,7 @@ export const Profile_devices: NextPage = () => {
 										onClick={e => e.stopPropagation()}
 									>
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
-											MacBook PRO
+										{t('macBook')}
 										</span>
 										
 									</div>
@@ -124,7 +125,7 @@ export const Profile_devices: NextPage = () => {
 										onClick={e => e.stopPropagation()}
 									>
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
-											MacBook PRO
+										{t('macBook')}
 										</span>
 
 										
@@ -143,9 +144,9 @@ export const Profile_devices: NextPage = () => {
 					/>
 					<Button
 						className='text-[20px] bg-[#205BC9] rounded-[50px] px-[25px] py-[5px] text-white'
-						onClick={() => handleLogout(true)}
+						onPress={() => handleLogout(true)}
 					>
-						Log Out from all devices
+						{t('logOutAll')}
 					</Button>
 				</div>
 			</Accordion>

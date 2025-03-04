@@ -1,10 +1,9 @@
 'use client'
 import Lottie, { LottieRefCurrentProps } from 'lottie-react'
-import { NextPage } from 'next'
 import animationData2 from '@/public/animation/verify_anim_mini.json'
 import { useEffect, useRef } from 'react'
 
-const Withdrawal_animation: NextPage = () => {
+const Withdrawal_animation = () => {
 	const lottieRef = useRef<LottieRefCurrentProps>(null);
 	const stopAtFrame = () => {
 		const duration = lottieRef.current?.getDuration(true) || 0;

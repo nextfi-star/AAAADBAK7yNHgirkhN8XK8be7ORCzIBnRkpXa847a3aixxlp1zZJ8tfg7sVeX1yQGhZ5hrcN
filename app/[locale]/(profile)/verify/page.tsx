@@ -24,6 +24,7 @@ import {
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
 import { useThemeStore } from '@/store'
+import { useTranslations } from 'next-intl'
 
 const countries = [
 	{
@@ -63,6 +64,7 @@ const typeID = [
 ]
 
 const Verify = () => {
+	const t = useTranslations('verify')
 	const { theme, globalVeriState } = useThemeStore()
 	const [change, SetChange] = useState<boolean>(false)
 	const [open, setOpen] = useState(false)
@@ -147,42 +149,28 @@ const Verify = () => {
 										src={'/main/profile_verify/decor2.svg'}
 										width={208}
 									/>
-									{/* <Image
-										priority
-										alt='decor icon'
-										className='h-auto md:w-[200px]'
-										height={200}
-										quality={100}
-										src={
-											'/main/profile_verify/Basic_verification_completed.svg'
-										}
-										width={200}
-									/> */}
 								</div>
 
 								<div className='max-w-[641px] w-full flex flex-col gap-[25px] items-center'>
 									<h1 className='text-[25px] sm:text-[32px] font-medium leading-[35px]'>
-										Confirm your identity
+										{t('cmfrnIdent')}
 									</h1>
 									<article className='flex flex-col items-start md:items-center gap-[20px] md:gap-[50px]'>
 										<p className='text-[14px] sm:text-[18px] md:text-[20px] leading-[24px] pb-[7px] max-w-[60%%] text-left'>
-											According to the law, you need to verify your identity,
-											which will enhance the security of your account and grant
-											access to services.
+											{t('accLaw')}
 										</p>
 										<p className='text-[14px] sm:text-[18px] md:text-[20px] leading-[24px] pb-[7px] max-w-[60%%] text-left'>
-											Upon completion of the verification, you will receive
-											rewards.
+										{t('uponCompl')}
 										</p>
 										<div className='flex flex-col items-start gap-[4px]'>
 											<p className='text-[18px] md:text-[20px]'>
-												You’ll need to provide:{' '}
+												{t('provide')}:{' '}
 											</p>
 											<ul className='pl-[24px] text-[14px] sm:text-[18px] md:text-[20px]'>
 												<li className='!list-disc'>
-													Password, Id or Driver license
+													{t('provideDoc')}
 												</li>
-												<li className='!list-disc'>Personal information</li>
+												<li className='!list-disc'>{t('persInfo')}</li>
 											</ul>
 										</div>
 									</article>
@@ -191,27 +179,14 @@ const Verify = () => {
 											<ProfilePage_guard
 												color={theme === 'dark' ? '#fff' : '#000'}
 											/>
-											Your information is only used for identity verification.
+											{t('onlyfor')}
 										</p>
 										<Button
 											className='text-[14px] md:text-[20px] text-white rounded-[50px] bg-[#205BC9] px-[50px] py-[4px] xl:py-[20px] hover:opacity-[.9] hover:bg-[#205BC9] w-full h-[3.25rem]'
 											onClick={() => SetChange(!change)}
 										>
-											Verify now
+											{t('verfNow')}
 										</Button>
-
-										{/* {showFaq ? (
-                  <>
-                    <FAQ_howVerify setShowFaq={setShowFaq} showFaq={showFaq} />
-                  </>
-                ) : (
-                  <span
-                    className="text-[16px] text-[#205BC9] leading-[24px] cursor-pointer"
-                    onClick={() => setShowFaq((prev) => !prev)}
-                  >
-                    How do I verify an individual account?
-                  </span>
-                )} */}
 									</article>
 								</div>
 							</>
@@ -225,11 +200,10 @@ const Verify = () => {
 									loop={true}
 								/>
 								<h3 className='text-[20px] md:text-[32px] font-bold'>
-									Basic verification completed
+									{t('basicVerif')}
 								</h3>
 								<p className='text-[20px] text-center'>
-									You have passed identity verification. Start your journey into
-									the world of cryptocurrencies now!
+									{t('passedVerif')}
 								</p>
 							</div>
 						)}
@@ -252,17 +226,16 @@ const Verify = () => {
 											/>
 										</Button>
 									</span>
-									Identity verification
+									{t('identVerif')}
 								</h1>
 
 								<div className='flex flex-col items-center w-full max-w-[724px] gap-[25px]'>
 									<h1 className='text-[24px] font-medium text-center'>
-										Select your ID type
+										{t('selectYouID')}
 									</h1>
 
 									<label className='text-[18px] w-full flex flex-col gap-[5px]'>
-										Country/Region of residence
-										{/* <Verify_country /> */}
+										{t('countryRegion')}
 										<Popover open={open} onOpenChange={setOpen}>
 											<PopoverTrigger asChild>
 												<Button
@@ -275,7 +248,7 @@ const Verify = () => {
 														? countries.find(
 																framework => framework.value === value
 															)?.label
-														: 'Select region...'}
+														: t('selectReg')}
 													<ChevronsUpDown className='ml-2 h-4 w-4 lg:h-6 lg:w-6 shrink-0 opacity-50' />
 												</Button>
 											</PopoverTrigger>
@@ -283,11 +256,11 @@ const Verify = () => {
 												<Command>
 													<CommandInput
 														className='text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] w-full min-h-[58px]'
-														placeholder='Search region/country...'
+														placeholder={t('searchReg')}
 													/>
 													<CommandList>
 														<CommandEmpty className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] p-[.5rem]'>
-															No one was found.
+															{t('noOne')}
 														</CommandEmpty>
 														<CommandGroup>
 															{countries.map(framework => (
@@ -323,7 +296,7 @@ const Verify = () => {
 									</label>
 
 									<label className='text-[18px] w-full flex flex-col gap-[5px]'>
-										ID type
+										{t('IDtype')}
 										<Popover open={openID} onOpenChange={setOpenID}>
 											<PopoverTrigger asChild>
 												<Button
@@ -336,7 +309,7 @@ const Verify = () => {
 														? typeID.find(
 																framework => framework.value === valueID
 															)?.label
-														: 'Select ID type'}
+														: t('selectID')}
 													<ChevronsUpDown className='ml-2 h-4 w-4 lg:h-6 lg:w-6 shrink-0 opacity-50' />
 												</Button>
 											</PopoverTrigger>
@@ -344,7 +317,7 @@ const Verify = () => {
 												<Command>
 													<CommandList>
 														<CommandEmpty className='text-[14px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[20px] 2xl:text-[25px] p-[.5rem]'>
-															No one was found.
+															{t('noOne')}
 														</CommandEmpty>
 														<CommandGroup>
 															{typeID.map(framework => (
@@ -388,7 +361,7 @@ const Verify = () => {
 										disabled={!value && !valueID}
 										onClick={handleNextStep}
 									>
-										Next
+										{t('next')}
 									</button>
 								</div>
 							</div>
@@ -402,7 +375,6 @@ const Verify = () => {
 								setStep={setStep}
 								onPhotoChange={handlePhotoChange}
 								step={step}
-								// resetData={resetData}
 							/>
 						)}
 
@@ -424,7 +396,7 @@ const Verify = () => {
 											</Button>
 										</span>
 										<h1 className='text-[20px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px]'>
-											Identity verification
+											{t('identVerif')}
 										</h1>
 									</div>
 									<div onClick={ClearState}>

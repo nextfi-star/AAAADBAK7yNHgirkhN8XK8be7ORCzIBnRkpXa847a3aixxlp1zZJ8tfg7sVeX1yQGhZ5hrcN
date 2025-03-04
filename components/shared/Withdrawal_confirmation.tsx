@@ -17,6 +17,7 @@ import { Image } from "@heroui/react"
 import { useState } from 'react'
 import Withdrawal_animation from './Withdrawal_animation'
 import { CryptoData } from './Withdrawal_steps'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	titleTrigger: string
@@ -28,7 +29,7 @@ interface Props {
 	setInput2Step2: (val: string) => void
 	className?: string
 }
-export const Withdrawal_confirmation: NextPage<Props> = ({
+export const Withdrawal_confirmation = ({
 	className,
 	titleTrigger,
 	input3,
@@ -37,7 +38,8 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 	setInput2Step2,
 	selectedCrypto,
 	setSelectedCrypto,
-}) => {
+}: Props) => {
+	const t = useTranslations('withdrawal')
 	const { theme, confirmationStep, setConfirmStep, setStep } = useThemeStore()
 	const [checked, setChecked] = useState(false)
 	const DropSteps = () => {
@@ -64,7 +66,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 				<DialogContent className='max-w-[90%] md:max-w-[38rem] w-full p-0 rounded-[20px]'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
-							Confirm to Withdraw
+							{t('ConfirmToWithdraw')}
 							<DialogClose asChild>
 								<Cross2Icon className='h-[32px] w-[32px]' />
 							</DialogClose>
@@ -74,7 +76,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 							<article className='dark:bg-[#7676801F] rounded-[6px] flex flex-col gap-[28px] py-[21px] px-[18px] md:px-[21px]'>
 								<div className='flex items-center w-full justify-between overflow-hidden'>
 									<DialogDescription className='flex flex-col gap-[1px] text-[14px] md:text-[20px]'>
-										On-Chain <span>Withdrawal</span>
+										{t('onChain')} <span>{t('onChainWith')}</span>
 									</DialogDescription>
 
 									<DialogDescription className='flex items-center justify-end gap-[1px] md:gap-[16px] dark:text-white text-[12px] md:text-[20px] w-full '>
@@ -86,11 +88,11 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 								</div>
 								<div className='flex items-center w-full justify-between'>
 									<DialogDescription className='flex flex-col gap-[1px] text-[14px] md:text-[20px]'>
-										Actual Amount <span>Received</span>
+										{t('actualAmount')} <span>{t('received')}</span>
 									</DialogDescription>
 
 									<DialogDescription className='flex items-center gap-[4px] dark:text-white text-[14px] md:text-[20px]'>
-										112.720 {selectedCrypto?.name} (Fee: 10
+										112.720 {selectedCrypto?.name} ({t('fee')}: 10
 										{selectedCrypto?.name})
 									</DialogDescription>
 								</div>
@@ -120,7 +122,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 										</svg>
 									</span>
 									<DialogDescription className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] text-left text-[#888888] leading-[1]'>
-										I confirm the withdrawal of funds to the address
+										{t('confirmWith')}
 									</DialogDescription>
 								</label>
 							</div>
@@ -134,7 +136,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 								variant='secondary'
 								className={`border-1 w-fit border-solid dark:border-[#fff] rounded-[50px] bg-transparent hover:bg-transparent min-w-[124px]`}
 							>
-								Close
+								{t('close')}
 							</Button>
 						</DialogClose>
 						<Button
@@ -144,7 +146,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 							className='bg-[#205BC9] text-white w-fit rounded-[50px] hover:bg-[#205BC9] min-w-[124px]'
 							disabled={!checked}
 						>
-							Continue
+							{t('contin')}
 						</Button>
 					</DialogFooter>
 				</DialogContent>
@@ -154,7 +156,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full p-0 rounded-[20px]'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
-							Security Verification
+							{t('secverif')}
 							<DialogClose asChild>
 								<Cross2Icon className='h-[32px] w-[32px]' />
 							</DialogClose>
@@ -170,7 +172,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 												className='min-w-[28px] rounded-none'
 											/>
 											<DialogDescription className='text-[20px] text-[#888888]'>
-												A verification code will be sent to asdadasd@mail.ru
+												{t('verifCode')} asdadasd@mail.ru
 											</DialogDescription>
 										</div>
 										<div className='relative w-full'>
@@ -180,7 +182,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 												className='text-[16px] bg-[#7676801F] rounded-[20px] h-[50px] px-[15px] w-full'
 											/>
 											<p className='text-[#205BC9] font-bold text-[16px] absolute top-[13px] right-[17px]'>
-												Send verification code
+												{t('sendCode')}
 											</p>
 										</div>
 									</label>
@@ -191,7 +193,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 												className='min-w-[28px] rounded-none'
 											/>
 											<DialogDescription className='text-[20px] text-[#888888]'>
-												Google 2FA Code
+												{t('2fa')}
 											</DialogDescription>
 										</div>
 										<input
@@ -212,7 +214,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 							variant='secondary'
 							className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] min-w-[124px] h-[48px] flex items-center justify-center'
 						>
-							Confrim
+							{t('comfirm')}
 						</Button>
 					</DialogFooter>
 				</DialogContent>
@@ -233,7 +235,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 									<Withdrawal_animation />
 								</div>
 								<DialogDescription className='text-[25px] font-bold dark:text-white text-[#0c0c0c] min-h-[150px] w-full flex flex-col justify-end items-center'>
-									Withdrawal Application Submitetted
+									{t('withApp')}
 								</DialogDescription>
 							</article>
 						</div>
@@ -247,7 +249,7 @@ export const Withdrawal_confirmation: NextPage<Props> = ({
 								variant='secondary'
 								className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] max-w-[124px] h-[48px] relative'
 							>
-								Confrim
+								{t('comfirm')}
 							</Button>
 						</DialogClose>
 					</DialogFooter>

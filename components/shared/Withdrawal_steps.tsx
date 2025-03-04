@@ -20,6 +20,7 @@ import { useState } from 'react'
 import { Button } from '../ui/button'
 import NotFoundItem from './NotFoundItem'
 import { Withdrawal_confirmation } from './Withdrawal_confirmation'
+import { useTranslations } from 'next-intl'
 
 export type CryptoData = {
 	id: number
@@ -128,6 +129,7 @@ const networkData = [
 	},
 ]
 const Withdrawal_steps: NextPage<Props> = () => {
+	const t = useTranslations('withdrawal')
 	const { step, setStep, theme } = useThemeStore()
 	const [open, setOpen] = useState(false)
 	const [openNetwork, setOpenNetwork] = useState(false)
@@ -170,7 +172,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 1 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
 								>
-									Select crypto
+									{t('selectCrp')}
 								</span>
 							</div>
 
@@ -201,7 +203,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 												) : (
 													<div className='flex w-full justify-between gap-[8px] items-center'>
 														<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
-															Select crypto
+															{t('selectCrypto')}
 														</p>
 														<ChevronDown
 															strokeWidth={1}
@@ -279,7 +281,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 2 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
 								>
-									Set distination
+									{t('setDestn')}
 								</span>
 							</div>
 
@@ -314,7 +316,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 													) : (
 														<div className='flex w-full justify-between gap-[8px] items-center'>
 															<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
-																Select Network
+																{t('selectNetwork')}
 															</p>
 															<ChevronDown
 																strokeWidth={1}
@@ -392,7 +394,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 3 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
 								>
-									Set withdrawal amount
+									{t('setAmount')}
 								</span>
 							</div>
 							{step >= 2 && (
@@ -405,11 +407,11 @@ const Withdrawal_steps: NextPage<Props> = () => {
 											onChange={e => setInput3(e.target.value)}
 										/>
 										<span className='text-[18px] font-bold text-[#888888]'>
-											Transaction Fee <span>3.25 {selectedCrypto?.name}</span>
+											{t('transFee')} <span>3.25 {selectedCrypto?.name}</span>
 										</span>
 										<div className='flex flex-col gap-[10px] md:gap-0 items-start md:flex-row md:items-center md:justify-between w-full '>
 											<p className='text-[16px] font-medium md:text-[20px] flex items-center justify-between gap-[5px] text-[#3A3939] dark:text-[#BDBDBD]'>
-												Amount Received:
+												{t('AmountReceived')}:
 											</p>
 											<div className='flex items-center gap-[34px]'>
 												<span className='text-[18px] xl:text-[25px] text-[#3A3939] dark:text-[#EFEFEF]'>

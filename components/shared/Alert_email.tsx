@@ -17,8 +17,9 @@ import {
 import { Input } from '@/components/ui/input'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
-import { Button } from "@heroui/button"
+import { Button } from '@heroui/button'
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -36,7 +37,7 @@ export const Alert_email = ({ propsItem }: Props) => {
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setInputs(prev => ({ ...prev, [e.target.name]: e.target.value }))
 	}
-	
+	const t = useTranslations('security')
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
@@ -60,7 +61,7 @@ export const Alert_email = ({ propsItem }: Props) => {
 								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
 								href='/security'
 							>
-								Security
+								{t('security')}
 							</Link>
 							<ArrowBracket
 								className={'-rotate-90'}
@@ -69,7 +70,7 @@ export const Alert_email = ({ propsItem }: Props) => {
 								width={25}
 							/>
 						</span>{' '}
-						Change Email
+						{t('changeemail')}
 					</AlertDialogTitle>
 				</AlertDialogHeader>
 				<div className='flex justify-center gap-[10px] w-full '>
@@ -83,9 +84,7 @@ export const Alert_email = ({ propsItem }: Props) => {
 								src={'/header_icons/profile_burger/info_icon.svg'}
 								width={20}
 							/>
-							To protect your account, you won't be able to withdraw fundsor use
-							P2P trading to sell crypto for 24 hours after you reset or change
-							your account phone.
+							{t('protectAcc')}
 						</span>
 						<AlertDialogDescription
 							className={'w-full flex flex-col gap-[10px]'}
@@ -94,7 +93,7 @@ export const Alert_email = ({ propsItem }: Props) => {
 								New email address
 								<Input
 									className='border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] shadow-none text-[16px] px-[10px] py-[20px] rounded-[30px]'
-									placeholder='Enter new email address'
+									placeholder={t('enterEmail')}
 									type='text'
 									name='newEmail'
 									value={inputs.newEmail}
@@ -106,18 +105,18 @@ export const Alert_email = ({ propsItem }: Props) => {
 							className={'w-full flex flex-col gap-[10px]'}
 						>
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
-								New email authentication
+								{t('newEmailAuth')}
 								<span className='relative w-full'>
 									<Input
 										className='border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] shadow-none text-[16px] px-[10px] py-[20px] rounded-[30px]'
-										placeholder='Enter code'
+										placeholder={t('enterCode')}
 										type='text'
 										name='newEmailAuth'
 										value={inputs.newEmailAuth}
 										onChange={handleChange}
 									/>
 									<Button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[16px] rounded-[50px] cursor-pointer dark:bg-[#0c0c0c] bg-white h-fit border-1 border-solid outline-[#4d4d4d] dark:outline-[#4d4d4d] !outline-none'>
-										Send Code
+										{t('sendCode')}
 									</Button>
 								</span>
 							</label>
@@ -126,18 +125,18 @@ export const Alert_email = ({ propsItem }: Props) => {
 							className={'w-full flex flex-col gap-[10px]'}
 						>
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
-								Current email authentication
+								{t('currEmailAuth')}
 								<span className='relative w-full'>
 									<Input
 										className='border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] shadow-none text-[16px] px-[10px] py-[20px] rounded-[30px]'
-										placeholder='Enter code'
+										placeholder={t('enterCode')}
 										type='text'
 										name='currentEmailAuth'
 										value={inputs.currentEmailAuth}
 										onChange={handleChange}
 									/>
 									<Button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[16px] rounded-[50px] cursor-pointer dark:bg-[#0c0c0c] bg-white h-fit border-1 border-solid outline-[#4d4d4d] dark:outline-[#4d4d4d] !outline-none'>
-										Send Code
+										{t('sendCode')}
 									</Button>
 								</span>
 							</label>
@@ -146,10 +145,10 @@ export const Alert_email = ({ propsItem }: Props) => {
 							className={'w-full flex flex-col gap-[10px]'}
 						>
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
-								Authenticator app
+								{t('authApp')}
 								<Input
 									className='border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] shadow-none text-[16px] px-[10px] py-[20px] rounded-[30px]'
-									placeholder='Enter code'
+									placeholder={t('enterCode')}
 									type='text'
 									name='authenticatorApp'
 									value={inputs.authenticatorApp}
@@ -168,7 +167,7 @@ export const Alert_email = ({ propsItem }: Props) => {
 								: 'bg-[#205bc9] hover:bg-[#205bc9] text-white border-none'
 						}`}
 					>
-						Confirm
+						{t('confirm')}
 					</AlertDialogAction>
 				</AlertDialogFooter>
 			</AlertDialogContent>

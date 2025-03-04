@@ -1,25 +1,23 @@
 'use client'
 import Image from 'next/image'
-import { NextPage } from 'next'
-
 import ArrowBracket from '@/components/ui/ArrowBracket'
 import { useThemeStore } from '@/store'
 import { ChangeAvatar } from '@/components/ui/ChangeAvatar'
-import { Spinner } from "@heroui/spinner"
 import { useUserStore } from '@/hooks/useUserData'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	username: string
 	setShowSection: (value: boolean) => void
 	showSection: boolean
 }
-export const ProfileBurger_settigns: NextPage<Props> = ({
+export const ProfileBurger_settigns = ({
 	username,
 	showSection,
-}) => {
+}: Props) => {
 	const { theme } = useThemeStore()
 	const user = useUserStore(state => state.user)
-
+	const t = useTranslations('burger')
 	return (
 		<section
 			className={showSection ? `profile__burger-info` : 'flex justify-center'}
@@ -55,7 +53,7 @@ export const ProfileBurger_settigns: NextPage<Props> = ({
 					) : (
 						<h5 className='text-[18px]'>{user?.phone}</h5>
 					)}
-					{showSection && <span className='text-[14px]'>Profile Settings</span>}
+					{showSection && <span className='text-[14px]'>{t('profileSettings')}</span>}
 				</div>
 			</div>
 			{showSection && (

@@ -1,5 +1,3 @@
-import React from 'react'
-import { NextPage } from 'next'
 import { ProfileBurger_accordeon } from './ProfileBurger_accordeon'
 
 interface Props {
@@ -8,11 +6,11 @@ interface Props {
 	handleTabClick: (value: string) => void
 }
 
-export const ProfileBurger_menu_list: NextPage<Props> = ({
+export const ProfileBurger_menu_list = ({
 	showSection,
 	activeTab,
 	handleTabClick,
-}) => {
+}: Props) => {
 	return (
 		<>
 			<div className='flex justify-between items-center pb-[9px] border-0 border-b border-solid border-[#fff] w-full'>

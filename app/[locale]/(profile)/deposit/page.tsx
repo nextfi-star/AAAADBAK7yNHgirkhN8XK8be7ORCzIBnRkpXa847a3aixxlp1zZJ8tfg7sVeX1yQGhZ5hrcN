@@ -6,8 +6,10 @@ import Deposit_table_mobile from '@/components/shared/Deposit_table_mobile'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { ChevronLeft, X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 const Deposit = () => {
+	const t = useTranslations('deposit')
 	const { setConfirmStep, swapCheck, swapCheck2, setStep } = useThemeStore()
 	const DropSteps = () => {
 		setStep(1)
@@ -18,7 +20,7 @@ const Deposit = () => {
 	return (
 		<section className='spec -mt-[5rem] md:-mt-[4rem] lg:mt-[4.5rem] pb-[1.5rem] top-mobile'>
 			<h1 className='hide-mobile w-full text-center lg:text-left text-[32px] my-[30px] dark:text-[#EFEFEF] text-[#0c0c0c]'>
-				Deposit
+				{t('deposit')}
 			</h1>
 			<div className='show-mobile flex items-center justify-between fixed top-[0] left-0 right-0 z-[200] px-[28px] py-[15px] bg-[#f9f9fa] dark:bg-[#0c0c0c]'>
 				<Link href={'/assets'} onClick={DropSteps}>

@@ -1,41 +1,42 @@
 import { Link } from '@/i18n/routing'
-import { NextPage } from 'next'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import React from 'react'
-
-const data = [
-	{
-		src: '/header_icons/profile_burger/deposit.svg',
-		title: 'Deposit',
-		tabName: 'Profile',
-		href: '/profile',
-	},
-	{
-		src: '/header_icons/profile_burger/withdraw.svg',
-		title: 'Withdrawal',
-		tabName: 'Security',
-		href: '/withdrawal',
-	},
-	{
-		src: '/header_icons/profile_burger/swap.svg',
-		title: 'Swap',
-		tabName: 'Verification',
-		href: '/swap',
-	},
-	{
-		src: '/header_icons/profile_burger/commission.svg',
-		title: 'Levels activity',
-		tabName: 'Profile',
-		href: '/tier',
-	},
-]
+import { useMemo } from 'react'
 
 interface Props {
 	handleShortcutClick: (val: any) => void
 }
-export const ProfileBurger_assets: NextPage<Props> = ({
-	handleShortcutClick,
-}) => {
+export const ProfileBurger_assets = ({ handleShortcutClick }: Props) => {
+	const t = useTranslations('shared')
+	const data = useMemo(
+		() => [
+			{
+				src: '/header_icons/profile_burger/deposit.svg',
+				title: t('deposit'),
+				tabName: 'Profile',
+				href: '/profile',
+			},
+			{
+				src: '/header_icons/profile_burger/withdraw.svg',
+				title: t('withdrawal'),
+				tabName: 'Security',
+				href: '/withdrawal',
+			},
+			{
+				src: '/header_icons/profile_burger/swap.svg',
+				title: t('swap'),
+				tabName: 'Verification',
+				href: '/swap',
+			},
+			{
+				src: '/header_icons/profile_burger/commission.svg',
+				title: t('levels'),
+				tabName: 'Profile',
+				href: '/tier',
+			},
+		],
+		[]
+	)
 	return (
 		<section className='profile__burger-assets'>
 			<h5 className='sec__title'>Manage Assets</h5>

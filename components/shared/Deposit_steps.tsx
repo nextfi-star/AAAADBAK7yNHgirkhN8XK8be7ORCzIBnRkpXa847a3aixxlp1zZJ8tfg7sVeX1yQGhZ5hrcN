@@ -14,12 +14,13 @@ import {
 import { useThemeStore } from '@/store'
 import { Avatar } from '@heroui/react'
 import { CheckCheck, ChevronDown } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Button } from '../ui/button'
 import NotFoundItem from './NotFoundItem'
 import { Deposit_confirmation } from './Deposit_confirmation'
 import { useUserStore } from '@/hooks/useUserData'
 import { getDepositAddress } from '@/utils/api'
+import { useTranslations } from 'next-intl'
 
 export type CryptoData = {
 	id: number
@@ -35,67 +36,84 @@ export type NetworkData = {
 	cryptoNumbers: string
 	moreLess: string
 }
-const cryptoData = [
-	{
-		id: 1,
-		name: 'TRC20',
-		avatar: '/payment_table/trx.svg',
-		crypto: 'TRC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 2,
-		name: 'ERC20',
-		avatar: '/payment_table/zro.svg',
-		crypto: 'ERC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 3,
-		name: 'BTC',
-		avatar: '/payment_table/teater.svg',
-		crypto: 'Bitcoin',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 4,
-		name: 'BEP20',
-		avatar: '/payment_table/teater.svg',
-		crypto: 'BEP20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-]
-const networkData = [
-	{
-		id: 1,
-		name: 'TRC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 2,
-		name: 'ERC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 3,
-		name: 'BTC',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 4,
-		name: 'BEP20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-]
+
+
 const Deposit_steps = () => {
+	const t = useTranslations('deposit')
+	const cryptoData = useMemo(() => [
+		{
+			id: 1,
+			name: 'TRC20',
+			avatar: '/payment_table/trx.svg',
+			crypto: 'TRC20',
+			cryptoNumbers: '0.00000079',
+			moreLess: '<$0.01',
+		},
+		{
+			id: 2,
+			name: 'ERC20',
+			avatar: '/payment_table/zro.svg',
+			crypto: 'ERC20',
+			cryptoNumbers: '0.00000079',
+			moreLess: '<$0.01',
+		},
+		{
+			id: 3,
+			name: 'BTC',
+			avatar: '/payment_table/teater.svg',
+			crypto: 'Bitcoin',
+			cryptoNumbers: '0.00000079',
+			moreLess: '<$0.01',
+		},
+		{
+			id: 4,
+			name: 'BEP20',
+			avatar: '/payment_table/teater.svg',
+			crypto: 'BEP20',
+			cryptoNumbers: '0.00000079',
+			moreLess: '<$0.01',
+		},
+		{
+			id: 5,
+			name: 'LTC',
+			avatar: '/payment_table/teater.svg',
+			crypto: 'LTC',
+			cryptoNumbers: '0.00000079',
+			moreLess: '<$0.01',
+		},
+	], [])
+	const networkData = useMemo(() => [
+		{
+			id: 1,
+			name: 'TRC20',
+			cryptoNumbers: '0.00000079',
+			moreLess: '<$0.01',
+		},
+		{
+			id: 2,
+			name: 'ERC20',
+			cryptoNumbers: '0.00000079',
+			moreLess: '<$0.01',
+		},
+		{
+			id: 3,
+			name: 'BTC',
+			cryptoNumbers: '0.00000079',
+			moreLess: '<$0.01',
+		},
+		{
+			id: 4,
+			name: 'BEP20',
+			cryptoNumbers: '0.00000079',
+			moreLess: '<$0.01',
+		},
+		{
+			id: 5,
+			name: 'LTC',
+			cryptoNumbers: '0.00000079',
+			moreLess: '<$0.01',
+		},
+	], [])
 	const [selectedNetwork, setSelectedNetwork] = useState<NetworkData | null>(
 		null
 	)
@@ -111,10 +129,9 @@ const Deposit_steps = () => {
 	const user = useUserStore(state => state.user)
 	const handleGetDepositAddress = async () => {
 		if (!user?.csrf || !selectedCrypto || !selectedNetwork) {
-			setError('Выберите криптовалюту и сеть!')
+			setError(t('errChoose'))
 			return
 		}
-
 		setError('')
 		const result = await getDepositAddress(
 			user.csrf,
@@ -152,7 +169,7 @@ const Deposit_steps = () => {
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 1 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
 								>
-									Select crypto
+									{t('selectCrpt')}
 								</span>
 							</div>
 
@@ -183,7 +200,7 @@ const Deposit_steps = () => {
 												) : (
 													<div className='flex w-full justify-between gap-[8px] items-center'>
 														<p className='text-[18px] text-[#0c0c0c] dark:text-white'>
-															Select crypto
+															{t('selectCrpt')}
 														</p>
 														<ChevronDown
 															strokeWidth={1}
@@ -258,7 +275,7 @@ const Deposit_steps = () => {
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 2 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
 								>
-									Set distination
+									{t('setDestn')}
 								</span>
 							</div>
 
@@ -293,7 +310,7 @@ const Deposit_steps = () => {
 													) : (
 														<div className='flex w-full justify-between gap-[8px] items-center mb-[-5px]'>
 															<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
-																Select Network
+																{t('selectCrpt')}
 															</p>
 															<ChevronDown
 																strokeWidth={1}
@@ -366,7 +383,7 @@ const Deposit_steps = () => {
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 3 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
 								>
-									Set deposit amount
+									{t('setAmount')}
 								</span>
 							</div>
 							{step === 3 && (
@@ -393,11 +410,11 @@ const Deposit_steps = () => {
 										/>
 
 										<span className='text-[18px] font-bold text-[#888888]'>
-											Transaction Fee <span>3.25 {selectedCrypto?.name}</span>
+											{t('transacFee')} <span>3.25 {selectedCrypto?.name}</span>
 										</span>
 										<div className='flex flex-col gap-[10px] md:gap-0 items-start md:flex-row md:items-center md:justify-between w-full '>
 											<p className='text-[16px] font-medium md:text-[20px] flex items-center justify-between gap-[5px] text-[#3A3939] dark:text-[#BDBDBD]'>
-												Amount deposit:
+												{t('amountDepos')}:
 											</p>
 											<div className='flex items-center gap-[34px]'>
 												<span className='text-[18px] xl:text-[25px] text-[#3A3939] dark:text-[#EFEFEF] max-w-[450px] overflow-x-auto'>

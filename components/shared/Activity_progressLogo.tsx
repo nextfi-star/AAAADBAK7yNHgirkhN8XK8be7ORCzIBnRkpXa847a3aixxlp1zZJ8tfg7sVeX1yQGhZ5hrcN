@@ -1,8 +1,10 @@
 import { Button } from "@heroui/button"
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
 const Activity_progressLogo = () => {
+	const t = useTranslations('activity')
 	const data = useMemo(
 		() => [
 			{
@@ -83,33 +85,33 @@ const Activity_progressLogo = () => {
 
 				<ul className='absolute -right-[94px] hidden xl:flex flex-col text-[#888888] text-[18px] gap-[10px]'>
 					<li className="before:content-['•'] before:mr-2 list-none">
-						Participate in project activities
+						{t('particPrj')}
 					</li>
 					<li className="before:content-['•'] before:mr-2 list-none">
-						Make trading operations
+						{t('mksTrad')}
 					</li>
 					<li className="before:content-['•'] before:mr-2 list-none">
-						Upgrade reward cards
+						{t('upgrade')}
 					</li>
 				</ul>
 			</div>
 
 			<ul className='flex xl:hidden flex-col text-[#888888] text-[18px]'>
 				<li className="before:content-['•'] before:mr-2 list-none">
-					Participate in project activities
+				{t('particPrj')}
 				</li>
 				<li className="before:content-['•'] before:mr-2 list-none">
-					Make trading operations
+				{t('mksTrad')}
 				</li>
 				<li className="before:content-['•'] before:mr-2 list-none">
-					Upgrade reward cards
+				{t('upgrade')}
 				</li>
 			</ul>
 			<Button
 				className='flex xl:hidden items-center rounded-[50px] text-[14px]  font-medium border border-solid dark:border-white border-black'
 				variant='bordered'
 			>
-				Description and criteria for upgrading
+				{t('descCrit')}
 			</Button>
 		</section>
 	)

@@ -1,5 +1,4 @@
-import { NextPage } from 'next'
-import React from 'react'
+import { useTranslations } from 'next-intl'
 import { Swap_FromTo_alert } from './Swap_FromTo_alert'
 import { Input } from "@heroui/input"
 type Status = {
@@ -46,11 +45,12 @@ const statusesFrom: Status[] = [
 		icon: '/payment_table/trx.svg',
 	},
 ]
-const Swap_from: NextPage = () => {
+const Swap_from = () => {
+	const t = useTranslations('swap')
 	return (
 		<article className='bg-[#7676801F] flex flex-col md:gap-[23px] w-full p-[24px_23px_24px_23px] md:p-[24px_31px_24px_31px] rounded-[20px]'>
 			<h1 className='block w-full text-[20px] md:text-[32px] font-medium leading-[40px]'>
-				From
+				{t('from')}
 			</h1>
 			<div className=' flex items-center gap-[10px] justify-between'>
 				<Input

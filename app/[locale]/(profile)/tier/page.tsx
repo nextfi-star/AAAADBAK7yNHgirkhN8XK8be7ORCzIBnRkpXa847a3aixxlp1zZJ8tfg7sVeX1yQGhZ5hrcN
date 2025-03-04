@@ -2,10 +2,13 @@
 import { Page_title } from '@/components/shared/Page_title'
 import Tier_initData from '@/components/shared/Tier_initData'
 import Tier_table_regUsers from '@/components/shared/Tier_table_regUsers'
+import { useUserStore } from '@/hooks/useUserData'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import React from 'react'
 
 const Tier = () => {
+	const user = useUserStore(state => state.user)
+	const t = useTranslations('tier')
 	return (
 		<div className='flex flex-col gap-[40px] w-full -mt-[7.5rem] md:-mt-[0]' >
 			<Page_title title='Levels Activity' className='!my-0'/>
@@ -20,9 +23,9 @@ const Tier = () => {
 						priority
 					/>
 					<div className='flex flex-col items-center sm:items-start gap-[5px]'>
-						<h1 className='text-[32px] font-medium'>LVL 1</h1>
+						<h1 className='text-[32px] font-medium'>LVL {user?.lvl || 1}</h1>
 						<span className='text-[20px] dark:text-[#BDBDBD] text-[#0c0c0c]'>
-							use***@gmail.com
+							{user?.email || 'use***@gmail.com'}
 						</span>
 					</div>
 				</div>
@@ -31,12 +34,12 @@ const Tier = () => {
 			</article>
 
 			<Tier_table_regUsers
-				title='Levels and their description'
+				title={t('lvlDesc')}
 			/>
 			<div className='flex flex-col w-full'>
-				<h5 className='text-[20px] font-bold'>Getting partial experience</h5>
+				<h5 className='text-[20px] font-bold'>{t('getpart')}</h5>
 				<p className='text-[20px] dark:text-[#EFEFEF]'>
-        Users who withdraw investments ahead of time receive a partial experience proportional to the percentage they have already earned. For example, if a user has earned 50% of the possible income, then they will receive 50% of the total experience (5 points instead of 10).
+					{t('usersWith')}
 				</p>
 			</div>
 		</div>

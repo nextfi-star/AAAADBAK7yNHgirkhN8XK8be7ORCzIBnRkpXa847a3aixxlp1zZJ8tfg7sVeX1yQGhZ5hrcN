@@ -4,7 +4,7 @@
 	--form-bg: #fff;
 	--input-focus: #3a3939;
 	--selection: #efefef;
-	--borderInput: #BDBDBD;
+	--borderInput: #bdbdbd;
 }
 .dark {
 	--form-wrapper-bg: #3c3c3c66;
@@ -402,14 +402,12 @@
 					border-radius: 10px;
 					transition: background-color 0.3s ease-in-out;
 
-					&:nth-last-of-type(2) {
-						min-width: 156.89px;
-						@media (max-width: 430px) {
-							min-width: 122.67px;
-						}
-						@media (max-width: 320px) {
-							min-width: 115.83px;
-						}
+					min-width: 156.89px;
+					@media (max-width: 430px) {
+						min-width: 122.67px;
+					}
+					@media (max-width: 320px) {
+						min-width: 115.83px;
 					}
 
 					@media (max-width: 1280px) {
@@ -471,7 +469,9 @@
 
 				#login,
 				#pass,
-				#referal, #vcode1, #vcode2 {
+				#referal,
+				#vcode1,
+				#vcode2 {
 					font-family: inherit;
 					font-size: 20px;
 					font-weight: 400;
@@ -531,7 +531,8 @@
 					}
 				}
 
-				 a, button {
+				a,
+				button {
 					width: 100%;
 					padding: 12px 0;
 					border-radius: 50px;
@@ -930,11 +931,10 @@
 				cursor: pointer;
 			}
 			input[type='number']::-webkit-inner-spin-button,
-				input[type='number']::-webkit-outer-spin-button {
-					-webkit-appearance: none;
-					margin: 0;
-				}
-
+			input[type='number']::-webkit-outer-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
 		}
 	}
 }

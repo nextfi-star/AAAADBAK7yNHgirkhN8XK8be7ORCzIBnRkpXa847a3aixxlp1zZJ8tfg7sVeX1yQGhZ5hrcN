@@ -15,10 +15,12 @@ import {
 import { Input } from '@/components/ui/input'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
-import { Button } from "@heroui/button"
-import { Snippet } from "@heroui/snippet"
+import { Button } from '@heroui/button'
+import { Snippet } from '@heroui/snippet'
 import { enable2FA, verify2FA } from '@/utils/api'
 import { useUserStore } from '@/hooks/useUserData'
+import { Spinner } from '@heroui/spinner'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -27,6 +29,7 @@ interface Props {
 export const Alert_auntef = ({ propsItem }: Props) => {
 	const user = useUserStore(state => state.user)
 	const { theme } = useThemeStore()
+	const t = useTranslations('security')
 	const [inputs, setInputs] = useState({
 		emailAuth: '',
 		currentAuth: '',
@@ -80,7 +83,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
 								href='/security'
 							>
-								Security
+								{t('security')}
 							</Link>
 							<ArrowBracket
 								className={'-rotate-90'}
@@ -89,13 +92,13 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 								width={25}
 							/>
 						</span>{' '}
-						Change authenticator app
+						{t('changeAuthApp')}
 					</AlertDialogTitle>
 				</AlertDialogHeader>
 				<div className='flex justify-center gap-[10px] w-full overflow-x-hidden pb-[4.5rem]'>
 					{!user?.email ? (
 						<div className='bg-black/10 backdrop-blur-sm w-full min-h-screen fixed z-[9999] flex items-center justify-center'>
-							<h1 className='font-bold text-[25px]'>Нет почты</h1>
+							<h1 className='font-bold text-[25px]'>{t('notFoundEmail')}</h1>
 						</div>
 					) : (
 						<div className={'flex flex-col gap-[20px]'}>
@@ -108,9 +111,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 									src={'/header_icons/profile_burger/info_icon.svg'}
 									width={20}
 								/>
-								To protect your account, you won't be able to withdraw fundsor
-								use P2P trading to sell crypto for 24 hours after you reset or
-								change your account phone.
+								{t('protectAcc')}.
 							</AlertDialogDescription>
 
 							<div
@@ -126,7 +127,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 											{step > 1 ? <CheckCheck /> : 1}
 										</span>
 										<span className='text-[18px] xl:text-[24px]'>
-											Download authenticator
+											{t('downloadAuth')}
 										</span>
 									</div>
 
@@ -135,8 +136,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 											className={`flex flex-col gap-[15px] w-full ml-[47px]`}
 										>
 											<span className='text-[16px] xl:text-[20px] text-[#888888]'>
-												Download an authenticator app such as Google
-												Authenticator.
+												{t('googleAuth')}
 											</span>
 											<div className={'flex items-center gap-[40px]'}>
 												<div className='flex flex-col items-center gap-[5px]'>
@@ -163,14 +163,14 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 												</div>
 											</div>
 											<span className='text-[16px] text-[#888888]'>
-												By continuing, you agree to our{' '}
-												<span className='underline'>disclamer</span>
+												{t('agreePol')}{' '}
+												<span className='underline'>{t('disclamer')}</span>
 											</span>
 											<Button
 												className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[150px] w-full'
 												onPress={() => setStep(prev => (prev = 2))}
 											>
-												Next
+												{t('next')}
 											</Button>
 										</div>
 									)}
@@ -186,35 +186,36 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 											{step > 2 ? <CheckCheck /> : 2}
 										</span>
 										<span className='text-[18px] xl:text-[24px]'>
-											Scan QR code
+											{t('scanQR')}
 										</span>
 									</div>
 
 									{step === 2 && (
 										<div className='flex flex-col gap-[15px] w-full ml-[47px]'>
 											<span className='text-[16px] xl:text-[20px] text-[#888888]'>
-												Launch the authenticator app and scan
-												<br /> the QR code or enter the key.
+												{t('launchApp')}
+												<br /> {t('launchApp2')}
 											</span>
 											<div className={'flex items-center gap-[20px]'}>
 												<div className='flex flex-col items-center gap-[5px]'>
-													<Image
-														alt='iphone qr'
-														height={110}
-														src={
-															twoFA?.qr ||
-															'/main/profile_security/qr_iphone.png'
-														}
-														width={110}
-													/>
+													{!twoFA?.qr ? (
+														<Spinner />
+													) : (
+														<Image
+															alt='iphone qr'
+															height={110}
+															src={twoFA?.qr}
+															width={110}
+														/>
+													)}
 												</div>
 											</div>
 											<span className='text-[16px] text-[#888888]'>
-												Or manually enter the code below
+												{t('orCopy')}
 											</span>
 											<span className='text-[16px] text-[#888888] flex items-center gap-[10px]'>
 												<Snippet symbol={''} className='bg-transparent'>
-													{twoFA?.secret || '******'}
+													{twoFA?.secret || '***************'}
 												</Snippet>
 											</span>
 											<div className='flex items-center gap-[10px]'>
@@ -222,13 +223,13 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 													className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
 													onPress={() => setStep(prev => (prev = 1))}
 												>
-													Back
+													{t('back')}
 												</Button>
 												<Button
 													className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
 													onPress={() => setStep(prev => (prev = 3))}
 												>
-													Next
+													{t('next')}
 												</Button>
 											</div>
 										</div>
@@ -245,7 +246,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 											{step > 3 ? <CheckCheck /> : 3}
 										</span>
 										<span className='text-[18px] xl:text-[28px]'>
-											Security authentication
+											{t('secAuth')}
 										</span>
 									</div>
 									{step === 3 && (
@@ -253,33 +254,12 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 											onSubmit={handleVerify}
 											className='flex flex-col gap-[15px] w-full ml-[47px]'
 										>
-											{/* <label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
-												Email authentication
-												<div className='relative w-full'>
-													<Input
-														className='border border-solid shadow-none text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] rounded-[30px]'
-														placeholder='Enter code'
-														type='text'
-														name='emailAuth'
-														value={inputs.emailAuth}
-														onChange={e =>
-															setInputs(prev => ({
-																...prev,
-																emailAuth: e.target.value,
-															}))
-														}
-													/>
-													<button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[16px] border border-solid rounded-[50px] dark:border-white border-black py-[2px] px-[7px] cursor-pointer dark:bg-[#0c0c0c] bg-white'>
-														Send Code
-													</button>
-												</div>
-											</label> */}
 											<label className='text-[#181818] dark:text-white text-[16px] flex flex-col items-start gap-[10px] w-full max-w-[271px] md:max-w-[100%]'>
-												Current authenticator app
+												{t('currAuthApp')}
 												<div className='w-full'>
 													<Input
 														className='border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[10px] py-[20px] shadow-none text-[16px] rounded-[30px] '
-														placeholder='Enter 6-digit generated code from your app'
+														placeholder={t('enterSixCode')}
 														type='text'
 														name='currentAuth'
 														value={code}
@@ -293,25 +273,23 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 													className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[115px] xl:max-w-[150px] w-full'
 													onPress={() => setStep(prev => (prev = 2))}
 												>
-													Back
+													{t('back')}
 												</Button>
-												{/* <AlertDialogCancel asChild className='mt-0 !bg-transparent !w-fit'> */}
-													<Button
-														type='submit'
-														className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] !w-fit ${inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
-														onPress={() => {
-															// setStep(prev => (prev = 1))
-															setInputs(prev => ({
-																...prev,
-																emailAuth: '',
-																currentAuth: '',
-															}))
-														}}
-														disabled={inputs.currentAuth.length >= 6}
-													>
-														Confirm
-													</Button>
-												{/* </AlertDialogCancel> */}
+
+												<Button
+													type='submit'
+													className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] !w-fit ${inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
+													onPress={() => {
+														setInputs(prev => ({
+															...prev,
+															emailAuth: '',
+															currentAuth: '',
+														}))
+													}}
+													disabled={inputs.currentAuth.length >= 6}
+												>
+													{t('confirm')}
+												</Button>
 											</div>
 										</form>
 									)}

@@ -11,11 +11,9 @@ import {
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
-import { handleAccountAction } from '@/utils/api'
-import { Button } from "@heroui/button"
-import { NextPage } from 'next'
+import { Button } from '@heroui/button'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
 interface Props {
 	propsItem: React.ReactNode
@@ -32,36 +30,20 @@ import {
 	DialogTrigger,
 } from '@/components/ui/dialog'
 import { useUserStore } from '@/hooks/useUserData'
-export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
+import { useTranslations } from 'next-intl'
+import { Confirmation_dialog } from './Confirmation_dialog'
+
+export const CloseAccount = ({ propsItem }: Props) => {
 	const { theme } = useThemeStore()
+	const t = useTranslations('security')
 	const [checked, setChecked] = useState(false)
 	const [selectedOption, setSelectedOption] = useState<string | undefined>(
 		undefined
 	)
-	const [isCloseModalOpen, setCloseModalOpen] = useState(false)
-	const [isLoading, setIsLoading] = useState(false)
-	const [error, setError] = useState<string | null>(null)
-	const user = useUserStore((state) => state.user)
-	
 	const handleRadioChange = (value: string) => {
 		setSelectedOption(value)
 	}
-	const handleAction = async (action: 'freeze' | 'close') => {
-		setError(null)
-		setIsLoading(true)
-		try {
-			const result = await handleAccountAction(user?.csrf, action)
-			console.log(`${action} result:`, result)
-			alert(
-				`${action === 'freeze' ? 'Account frozen' : 'Account closed'} successfully.`
-			)
-			if (action === 'close') setCloseModalOpen(false)
-		} catch (err: any) {
-			setError(err.message)
-		} finally {
-			setIsLoading(false)
-		}
-	}
+
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
@@ -90,7 +72,7 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 								className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888]'
 								href='/security'
 							>
-								Security
+								{t('security')}
 							</Link>
 							<ArrowBracket
 								className={'-rotate-90'}
@@ -99,7 +81,7 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 								width={25}
 							/>
 						</span>{' '}
-						Close account
+						{t('closeAcc')}
 					</DrawerTitle>
 					<div className='flex flex-col items-center gap-[20px] pb-[5rem]'>
 						<DrawerDescription className='text-black dark:text-white bg-[#F5F5F5] dark:bg-[#181818] py-[24px] px-[22px] rounded-[6px] flex flex-col items-center gap-[10px] justify-center w-full max-w-[921px]'>
@@ -112,36 +94,23 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 									src={'/header_icons/profile_burger/info_icon.svg'}
 									width={20}
 								/>
-								After clousing your account:
+								{t('afterClose')}:
 							</span>
 							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
-								<li>
-									• Your account Username@gmail.com will be frozen temporarily.
-									To unfreeze it, start by logging in again.{' '}
-								</li>
+								<li>• {t('afterCl1')}</li>
 
-								<li>
-									• Your account Username@gmail.com will be frozen temporarily.
-									To unfreeze it, start by logging in again.{' '}
-								</li>
+								<li>• {t('afterCl2')}</li>
 
-								<li>
-									• All trading capabilities of this account will be disabled
-								</li>
+								<li>• {t('afterCl3')}</li>
 
-								<li>• All API keys for this account will be deleted </li>
+								<li>• {t('afterCl4')}</li>
 
-								<li>• All approved devices for this account will be removed</li>
-
-								<li>
-									• Ongoing transactions such as perpetuals will not be canceled
-									automatically
-								</li>
+								<li>• {t('afterCl5')}</li>
 							</ul>
 						</DrawerDescription>
 						<div className='flex w-full max-w-[921px] flex-col items-start gap-[10px] md:gap-[20px] border border-solid border-gray-400 py-[10px] rounded-[4px]'>
 							<h5 className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] border-0 border-b border-solid border-b-gray-400 w-full text-center py-[10px] px-[5px]'>
-								Why do you want to freeze your account?
+								{t('whyClose')}
 							</h5>
 							<div className='px-[16px]'>
 								<RadioGroup
@@ -155,8 +124,7 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 												id='option-one'
 												value='option-one'
 											/>
-											This account is not safe, so I want to freeze it
-											temporarily.
+											{t('whyCl1')}
 										</label>
 									</div>
 									<div className='flex items-center space-x-2'>
@@ -166,7 +134,7 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 												id='option-two'
 												value='option-two'
 											/>
-											I don't want to use this account anymore.
+											{t('whyCl2')}
 										</label>
 									</div>
 									<div className='flex items-center space-x-2'>
@@ -176,7 +144,7 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 												id='option-three'
 												value='option-three'
 											/>
-											I want to use another cryptocurrency platform.
+											{t('whyCl3')}
 										</label>
 									</div>
 									<div className='flex items-center space-x-2'>
@@ -186,7 +154,7 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 												id='option-four'
 												value='option-four'
 											/>
-											Other reasons
+											{t('whyCl4')}
 										</label>
 									</div>
 								</RadioGroup>
@@ -261,13 +229,19 @@ export const CloseAccount: NextPage<Props> = ({ propsItem }) => {
 													Close
 												</Button>
 											</DialogClose>
-											<Button
-												type='button'
-												className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
-												onPress={() => handleAction('close')}
-											>
-												Continue
-											</Button>
+											<Confirmation_dialog
+												className={`text-[14px] xl:!text-[20px]  2xl:!text-[25px]  xl:!px-[40px] 2xl:!px-[70px] rounded-[50px] font-medium h-fit !max-w-[220px] !w-full text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
+													checked && selectedOption
+														? 'bg-[#205bc9] hover:bg-[#205bc9] dark:!border-[#205bc9] !border-[#205bc9] text-white'
+														: 'bg-transparent hover:bg-transparent data-[hover=true]:opacity-[.6] opacity-[.6]'
+												}`}
+												content={t('undone')}
+												title={t('sure')}
+												titleTriger={t('confirm')}
+												checked={checked}
+												unic={'close'}
+												selectedOption={selectedOption}
+											/>
 										</DialogFooter>
 									</DialogContent>
 								</Dialog>

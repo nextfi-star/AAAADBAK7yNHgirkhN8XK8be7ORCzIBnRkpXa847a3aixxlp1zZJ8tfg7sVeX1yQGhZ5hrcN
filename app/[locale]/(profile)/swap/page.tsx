@@ -5,11 +5,13 @@ import Swap_from from '@/components/shared/Swap_from'
 import Swap_To from '@/components/shared/Swap_To'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
-import { Divider } from "@heroui/divider"
-import { Image } from "@heroui/react"
+import { Divider } from '@heroui/divider'
+import { Image } from '@heroui/react'
 import { ArrowDownUp, ChevronLeft, X } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 const Swap = () => {
+	const t = useTranslations('swap')
 	const {
 		theme,
 		swapPoppover_1,
@@ -28,20 +30,17 @@ const Swap = () => {
 		swapCheck2('')
 	}
 	return (
-		<section
-			className='mt-[-7rem] lg:mt-0 flex flex-col gap-[40px] w-full min-h-screen pb-[1.5rem] top-mobile'
-			
-		>
+		<section className='mt-[-7rem] lg:mt-0 flex flex-col gap-[40px] w-full min-h-screen pb-[1.5rem] top-mobile'>
 			<article className='md:dark:bg-[#1e1e1e66] md:shadow-medium dark:shadow-none flex flex-col items-center gap-[19px] md:gap-[35px] w-full md:py-[51px] rounded-[30px]'>
 				<h1 className='hide-mobile text-[30px] xl:text-[68px] font-bold xl:leading-[32px]'>
-					Swap
+					{t('swap')}
 				</h1>
 				<div className='show-mobile w-full flex items-center justify-between fixed top-[0] left-0 right-0 z-[200] px-[28px] py-[15px] bg-[#f9f9fa] dark:bg-[#0c0c0c]'>
 					<Link href={'/assets'} onClick={DropSteps}>
 						<ChevronLeft strokeWidth={1} className='w-[30px]' />
 					</Link>
 					<h1 className='w-full text-center lg:text-left text-[32px] dark:text-[#EFEFEF] text-[#0c0c0c]'>
-						Swap
+						{t('swap')}
 					</h1>
 					<Link href={'/assets'} onClick={DropSteps}>
 						<X className='w-[30px]' />
@@ -49,21 +48,21 @@ const Swap = () => {
 				</div>
 				<div className='flex items-center justify-center w-full'>
 					<span className='text-[12px] sm:text-[18px] text-[#888888]'>
-						Zero swap Fee
+						{t('zroSwap')}
 					</span>
 					<Divider
 						className='mx-[5px] sm:mx-[16px] h-[21px] md:h-8 dark:bg-[#fff]'
 						orientation='vertical'
 					/>
 					<span className='text-[12px] sm:text-[18px] text-[#888888]'>
-						Lower limits
+						{t('lwrLimits')}
 					</span>
 					<Divider
 						className='mx-[5px] sm:mx-[16px] h-[21px] md:h-8 dark:bg-[#fff]'
 						orientation='vertical'
 					/>
 					<span className='text-[12px] sm:text-[18px] text-[#888888]'>
-						Simple transactions
+						{t('simpleTrans')}
 					</span>
 				</div>
 			</article>
@@ -74,8 +73,8 @@ const Swap = () => {
 				<div className='w-full flex items-center justify-between gap-[5px] md:px-[32px]'>
 					<article className='flex flex-col items-start gap-[5px]'>
 						<p className='flex items-start md:items-center gap-[13px] md:text-[20px]'>
-							Available: 0.00000079 TRX
-							<span className='text-[#205BC9]'>Deposit</span>
+							{t('available')}: 0.00000079 TRX
+							<span className='text-[#205BC9]'>{t('deposit')}</span>
 						</p>
 						<div className='privacy max-w-[921px] flex flex-col 	 justify-center'>
 							<label
@@ -101,7 +100,7 @@ const Swap = () => {
 									</svg>
 								</span>
 								<p className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] text-left text-[#888888] leading-[1]'>
-									Show zero balances
+									{t('showZroBal')}
 								</p>
 							</label>
 						</div>
@@ -120,7 +119,9 @@ const Swap = () => {
 				<Swap_To />
 
 				<div className='flex items-center gap-[5px]'>
-					<span className='md:text-[20px] text-[#888888]'>Exchange rate:</span>
+					<span className='md:text-[20px] text-[#888888]'>
+						{t('exchange')}:
+					</span>
 					<span className='md:text-[20px] text-[#888888]'>
 						1 {swapPoppover_1} ={' '}
 					</span>
@@ -129,7 +130,7 @@ const Swap = () => {
 					</span>
 				</div>
 
-				<Swap_confirmation titleTrigger='Confirm' />
+				<Swap_confirmation titleTrigger={t('confirm')} />
 
 				<div className='flex items-center gap-[30px] md:gap-[100px]'>
 					<div className='flex flex-col items-center justify-between gap-[11px]'>
@@ -138,7 +139,7 @@ const Swap = () => {
 							src='/main/swap/zero_tier.svg'
 							alt='Zero Tier'
 						/>
-						<span className='text-[16px] md:text-[20px]'>Zero Tier</span>
+						<span className='text-[16px] md:text-[20px]'>{t('zroTier')}</span>
 					</div>
 					<div className='flex flex-col items-center justify-between gap-[11px]'>
 						<Image
@@ -146,7 +147,7 @@ const Swap = () => {
 							src='/main/swap/no_slippage.svg'
 							alt='no_slippage'
 						/>
-						<span className='text-[16px] md:text-[20px]'>No slippage</span>
+						<span className='text-[16px] md:text-[20px]'>{t('noSlip')}</span>
 					</div>
 					<div className='flex flex-col items-center justify-between gap-[11px]'>
 						<Image
@@ -154,14 +155,14 @@ const Swap = () => {
 							src='/main/swap/more_pairs.svg'
 							alt='more_pairs'
 						/>
-						<span className='text-[16px] md:text-[20px]'>More pairs</span>
+						<span className='text-[16px] md:text-[20px]'>{t('morePairs')}</span>
 					</div>
 				</div>
 			</div>
 
 			<div className='dark:bg-[#1e1e1e66] md:shadow-medium dark:shadow-none flex flex-col items-center gap-[35px] w-full p-[46px_16px] md:p-[46px_36px] rounded-[30px]'>
 				<h1 className='block md:text-center w-full text-[24px] md:text-[32px] font-normal md:font-bold leading-[32px]'>
-					FAQ
+					"{t('faq')}"
 				</h1>
 
 				<Swap_faq />

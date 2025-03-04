@@ -4,42 +4,42 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useRouter, useParams } from 'next/navigation'
-import { Button } from "@heroui/button"
+import { Button } from '@heroui/button'
 import { useThemeStore } from '@/store'
-import { Spinner } from "@heroui/spinner"
+import { Spinner } from '@heroui/spinner'
 import { registerUser } from '@/utils/api'
 import Image from 'next/image'
 import { Link } from '@/i18n/routing'
-import { Checkbox, Switch } from "@heroui/react"
+import { Checkbox, Switch } from '@heroui/react'
 import { Logo_header } from '@/components/ui/Logo_header'
-import { NextPage } from 'next'
+import { useTranslations } from 'next-intl'
 
-const schema = yup.object().shape({
-	emailOrPhone: yup
-		.string()
-		.required('Email or phone is required')
-		.test('is-valid-email-or-phone', 'Invalid email or phone', value => {
-			const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-			const phoneRegex = /^\+?[0-9]{7,15}$/
-			return emailRegex.test(value) || phoneRegex.test(value)
-		}),
-	password: yup
-		.string()
-		.min(8, 'Password must be at least 8 characters')
-		.max(64, 'Password must not exceed 64 characters')
-		.required('Password is required'),
-	agreeToTerms: yup.boolean().oneOf([true], 'You must agree to the terms'),
-	refid: yup
-		.string()
-		.notRequired()
-		.test(
-			'is-valid-refid',
-			'Invalid referral ID',
-			value => !value || /^[a-zA-Z0-9-]{6,15}$/.test(value)
-		),
-})
-
- const SignUp: NextPage = () => {
+const SignUp = () => {
+	const t = useTranslations('auth')
+	const schema = yup.object().shape({
+		emailOrPhone: yup
+			.string()
+			.required(t('emailOrPhone'))
+			.test('is-valid-email-or-phone', t('invalidEmorPhone'), value => {
+				const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+				const phoneRegex = /^\+?[0-9]{7,15}$/
+				return emailRegex.test(value) || phoneRegex.test(value)
+			}),
+		password: yup
+			.string()
+			.min(8, t('passwordMin'))
+			.max(64, t('passwordMax'))
+			.required(t('passwordReq')),
+		agreeToTerms: yup.boolean().oneOf([true], t('errAgree')),
+		refid: yup
+			.string()
+			.notRequired()
+			.test(
+				'is-valid-refid',
+				t('invalidRef'),
+				value => !value || /^[a-zA-Z0-9-]{6,15}$/.test(value)
+			),
+	})
 	const {
 		register,
 		handleSubmit,
@@ -50,8 +50,7 @@ const schema = yup.object().shape({
 	})
 	const [isSelected, setIsSelected] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
-	const { theme, mode, modeToogle} =
-		useThemeStore()
+	const { theme, mode, modeToogle } = useThemeStore()
 	const [isLoading, setIsLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const router = useRouter()
@@ -90,16 +89,16 @@ const schema = yup.object().shape({
 			</div>
 			<div className='switch-mode relative z-[9999]'>
 				<Button
-					className={mode === 'email' ? 'active' : ''}
+					className={mode === 'email ' ? 'active' : ''}
 					onPress={() => modeToogle('email')}
 				>
-					E-mail
+					{t('email')}
 				</Button>
 				<Button
-					className={mode === 'phone' ? 'active' : ''}
+					className={mode === 'phone ' ? 'active' : ''}
 					onPress={() => modeToogle('phone')}
 				>
-					Phone number
+					{t('phone')}
 				</Button>
 			</div>
 			<form onSubmit={handleSubmit(onSubmit)} className='form'>
@@ -112,36 +111,38 @@ const schema = yup.object().shape({
 						className={` ${errors.emailOrPhone ? '!border-danger focus:!outline-danger ' : ''}`}
 					/>
 					{errors.emailOrPhone && (
-						<p className='absolute text-danger pointer-events-none'>
+						<p className=' text-danger pointer-events-none'>
 							{errors.emailOrPhone.message}
 						</p>
 					)}
 				</div>
-				<div className='password__wrapper relative w-full'>
-					<input
-						type={showPassword ? 'text' : 'password'}
-						placeholder='Create a password'
-						{...register('password')}
-						id='pass'
-						className={` ${errors.password ? '!border-danger focus:!outline-danger ' : ''}`}
-					/>
-					<span
-						className='absolute top-0 right-0'
-						onClick={togglePasswordVisibility}
-					>
-						<Image
-							width={30}
-							height={30}
-							src={
-								showPassword
-									? '/form/Mobile_ visibility.svg'
-									: '/form/Mobile_ visibility_off.svg'
-							}
-							alt='toggle visibility'
+				<div className='password__wrapper w-full'>
+					<div className='w-full relative'>
+						<input
+							type={showPassword ? 'text' : 'password'}
+							placeholder={t('enterPass')}
+							{...register('password')}
+							id='pass'
+							className={` ${errors.password ? '!border-danger focus:!outline-danger ' : ''}`}
 						/>
-					</span>
+						<span
+							className='absolute top-0 right-0'
+							onClick={togglePasswordVisibility}
+						>
+							<Image
+								width={30}
+								height={30}
+								src={
+									showPassword
+										? '/form/Mobile_ visibility.svg'
+										: '/form/Mobile_ visibility_off.svg'
+								}
+								alt='toggle visibility'
+							/>
+						</span>
+					</div>
 					{errors.password && (
-						<p className='absolute text-danger pointer-events-none'>
+						<p className=' text-danger pointer-events-none'>
 							{errors.password.message}
 						</p>
 					)}
@@ -149,7 +150,7 @@ const schema = yup.object().shape({
 				<div className='referalID__wrapper'>
 					<label className='flex items-center justify-between'>
 						<span className='text-[20px] text-[#3A3939] dark:text-[#EFEFEF]'>
-							Referral ID (optional)
+							{t('refID')}
 						</span>
 						<Switch
 							isSelected={isSelected}
@@ -172,7 +173,7 @@ const schema = yup.object().shape({
 								className={`!border-[#BDBDBD] dark:!border-[#888888] ${errors.emailOrPhone ? '!border-danger focus:!outline-danger ' : ''}`}
 							/>
 							{errors.refid && (
-								<p className='absolute bottom-[-23px] text-warning pointer-events-none'>
+								<p className=' bottom-[-23px] text-warning pointer-events-none'>
 									{errors.refid.message}
 								</p>
 							)}
@@ -183,9 +184,10 @@ const schema = yup.object().shape({
 					<label className='flex items-center gap-[5px] '>
 						<Checkbox {...register('agreeToTerms')} />
 						<p>
-							I have read and agree to{' '}
-							<span className='text-[#205BC9]'>Nextfi's Terms of Services</span>{' '}
-							and <span className='text-[#205BC9]'>Privacy Policy</span>.
+							{t('iRead1')}{' '}
+							<span className='text-[#205BC9]'>{t('iRead2')}</span>{' '}
+							{t('iRead3')}{' '}
+							<span className='text-[#205BC9]'>{t('iRead4')}</span>.
 						</p>
 					</label>
 					{errors.agreeToTerms && (
@@ -200,14 +202,14 @@ const schema = yup.object().shape({
 					disabled={isLoading || !isValid}
 					className={`submit-btn ${isValid ? 'valid' : ''}`}
 				>
-					{isLoading ? <Spinner color='current' /> : 'Sign Up'}
+					{isLoading ? <Spinner color='current' /> : t('signup')}
 				</button>
 			</form>
 
 			<div className='help login__help'>
 				<p>
 					<span />
-					<b>Or</b>
+					<b>{t('or')}</b>
 					<span />
 				</p>
 
@@ -218,15 +220,15 @@ const schema = yup.object().shape({
 						src='/form/Mobile_ Google.svg'
 						width={24}
 					/>
-					Continue with Google
+					{t('googleAuth')}
 				</button>
 
 				<Link className='help-signup' href='/login'>
-					Already have an account? <span>Log in</span>
+					{t('haveAcc')} <span>{t('login')}</span>
 				</Link>
 
 				<div className='socials login__social'>
-					<span>join us on social networks</span>
+					<span>{t('ourSocial')}</span>
 
 					<div className='socials__icons'>
 						<Image
