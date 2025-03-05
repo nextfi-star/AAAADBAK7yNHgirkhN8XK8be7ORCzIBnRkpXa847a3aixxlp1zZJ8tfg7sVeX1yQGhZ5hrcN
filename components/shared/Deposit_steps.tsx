@@ -43,7 +43,7 @@ const Deposit_steps = () => {
 	const cryptoData = useMemo(() => [
 		{
 			id: 1,
-			name: 'TRC20',
+			name: 'TRX',
 			avatar: '/payment_table/trx.svg',
 			crypto: 'TRC20',
 			cryptoNumbers: '0.00000079',
@@ -51,7 +51,7 @@ const Deposit_steps = () => {
 		},
 		{
 			id: 2,
-			name: 'ERC20',
+			name: 'BTC',
 			avatar: '/payment_table/zro.svg',
 			crypto: 'ERC20',
 			cryptoNumbers: '0.00000079',
@@ -59,7 +59,7 @@ const Deposit_steps = () => {
 		},
 		{
 			id: 3,
-			name: 'BTC',
+			name: 'ETH',
 			avatar: '/payment_table/teater.svg',
 			crypto: 'Bitcoin',
 			cryptoNumbers: '0.00000079',
@@ -67,7 +67,7 @@ const Deposit_steps = () => {
 		},
 		{
 			id: 4,
-			name: 'BEP20',
+			name: 'LTC',
 			avatar: '/payment_table/teater.svg',
 			crypto: 'BEP20',
 			cryptoNumbers: '0.00000079',
@@ -75,7 +75,7 @@ const Deposit_steps = () => {
 		},
 		{
 			id: 5,
-			name: 'LTC',
+			name: 'TEST',
 			avatar: '/payment_table/teater.svg',
 			crypto: 'LTC',
 			cryptoNumbers: '0.00000079',
@@ -248,9 +248,7 @@ const Deposit_steps = () => {
 																			</span>
 																		</p>
 																	</div>
-																	<p className='flex flex-col text-[20px]'>
-																		{status.cryptoNumbers}
-																	</p>
+																
 																</div>
 															</CommandItem>
 														))}

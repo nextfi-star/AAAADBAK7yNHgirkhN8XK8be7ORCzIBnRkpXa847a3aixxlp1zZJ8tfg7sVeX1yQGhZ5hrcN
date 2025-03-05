@@ -3,10 +3,12 @@ import { useMemo } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
 import { useThemeStore } from '@/store'
 import { useTranslations } from 'next-intl'
+import { useUserStore } from '@/hooks/useUserData'
 
 const Allocation = () => {
 	const { theme } = useThemeStore()
 	const t = useTranslations('allocation')
+	const user = useUserStore(state => state.user)
 	const data = useMemo(() => [
 		{
 			dot: 'bg-blue-500',
@@ -57,6 +59,7 @@ const Allocation = () => {
 			),
 		},
 	], [])
+	
 	return (
 		<section className='dark:!bg-[#1e1e1e66] !bg-[#fff] !shadow-medium dark:!shadow-none rounded-[30px] p-[33.5px_40px] flex flex-col gap-[20px]'>
 			<h3 className='text-[14px] md:text-[20px] 2xl:text-[25px] w-full flex items-center justify-between'>

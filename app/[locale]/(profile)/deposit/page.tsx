@@ -27,7 +27,7 @@ const Deposit = () => {
 					<ChevronLeft strokeWidth={1} className='w-[30px]' />
 				</Link>
 				<h1 className='w-full text-center lg:text-left text-[32px] dark:text-[#EFEFEF] text-[#0c0c0c]'>
-					Deposit
+					{t('deposit')}
 				</h1>
 				<Link href={'/assets'} onClick={DropSteps}>
 					<X className='w-[30px]' />

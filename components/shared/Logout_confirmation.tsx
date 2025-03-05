@@ -10,22 +10,25 @@ import {
 	DialogTrigger,
 } from '@/components/ui/dialog'
 import { Button } from "@heroui/button"
-import { NextPage } from 'next'
 import { useThemeStore } from '@/store'
 import { useParams, useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 interface Props {
-	content: string
-	titleTriger: string | any
-	title: string
+	content?: string
+	titleTriger?: string | any
+	title?: string
 	className?: string
+	sure?:string
+	unDone?: string
 }
-export const Logout_confirmation: NextPage<Props> = ({
+export const Logout_confirmation = ({
 	title,
 	content,
 	titleTriger,
 	className,
-}) => {
+	sure,
+	unDone
+}: Props) => {
 	const { setEmail, setPassword, clearUser } = useThemeStore();
   const router = useRouter();
   const locale = useParams().locale;
@@ -48,8 +51,8 @@ export const Logout_confirmation: NextPage<Props> = ({
 			</DialogTrigger>
 			<DialogContent className='max-w-[23rem] sm:max-w-md rounded-[10px]'>
 				<DialogHeader className='my-[20px]'>
-					<DialogTitle>{title}</DialogTitle>
-					<DialogDescription>{content}</DialogDescription>
+					<DialogTitle>{sure ? t('sure') : title}</DialogTitle>
+					<DialogDescription>{unDone ? t('unDone') : content}</DialogDescription>
 				</DialogHeader>
 				<DialogFooter className='flex flex-row gap-[40px] items-center justify-center sm:justify-center'>
 					<DialogClose asChild>

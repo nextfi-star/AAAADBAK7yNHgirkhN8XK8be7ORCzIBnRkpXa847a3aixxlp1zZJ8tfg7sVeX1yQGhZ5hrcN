@@ -1,11 +1,9 @@
 'use client'
 import { useEffect, useMemo, useState } from 'react'
 import clsx from 'clsx'
-import { NextPage } from 'next'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store'
 import { Burger_profile } from './Burger_profile'
-import Locale_Switcher from './Locale_Switcher'
 import Theme_switch from './Theme_switch'
 import { Navigation } from './Navigation'
 import { BurgerIcon } from './BurgerIcon'
@@ -31,10 +29,12 @@ import { Logout } from '@/hooks/Logout'
 import { useUserStore } from '@/hooks/useUserData'
 import { useParams, useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { LangSwitch } from '../ui/LangSwitch'
 
 interface Props {
 	auth: boolean
 }
+
 export interface DropData {
 	title: string
 	key: string
@@ -44,7 +44,7 @@ export interface DropData {
 	icon?: string | JSX.Element
 }
 
-export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
+export const ProfileHeader = ({ auth = true }: Props) => {
 	const [show, setShow] = useState(true)
 	const { theme, setVerifyState } = useThemeStore()
 	const classChange = clsx('m_header__profile_menu', { active: !show })
@@ -213,7 +213,7 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 									<DropDown_menu
 										hasProfile={false}
 										data={dropData}
-										defaultItem={'Assets'}
+										defaultItem={t('assets')}
 										triggerTitle='Assets'
 									/>
 									<DropDown_menu
@@ -225,18 +225,18 @@ export const ProfileHeader: NextPage<Props> = ({ auth = true }) => {
 									<div className='header__icons-item'>
 										<Theme_switch />
 									</div>
-									<button className='header__icons-item'>
-										<Locale_Switcher />
-									</button>
+									<div className='header__icons-item'>
+										<LangSwitch />
+									</div>
 								</div>
 
 								<div className='flex items-center sm:hidden gap-[5px] sm:gap-[18px]'>
 									<a className='header__icons-item flex items-center' href='#'>
 										<Theme_switch width={'35'} />
 									</a>
-									<button className='header__icons-item flex items-center'>
-										<Locale_Switcher />
-									</button>
+									<div className='header__icons-item flex items-center'>
+									<LangSwitch />
+									</div>
 									<div className='header__icons-item'>
 										<A_Chat_mobile />
 									</div>

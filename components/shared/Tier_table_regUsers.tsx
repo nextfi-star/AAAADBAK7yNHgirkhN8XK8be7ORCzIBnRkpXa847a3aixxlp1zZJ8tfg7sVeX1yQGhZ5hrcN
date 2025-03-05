@@ -6,98 +6,103 @@ import {
 	TableRow,
 	TableCell,
 	getKeyValue,
-} from "@heroui/react"
-import { NextPage } from 'next'
+} from '@heroui/react'
+import { useTranslations } from 'next-intl'
+import { useMemo } from 'react'
 
 interface Props {
 	title?: string
 }
-const Tier_table_regUsers: NextPage<Props> = ({ title }) => {
-
-	const rows = [
-		{
-			key: '1',
-			tier: 'Beginner',
-			total: '0 experience',
-			assets: '10 points',
-			maker: 'No bonuses',
-			taker: '10% of referral experience',
-			withdrawal: 'None',
-		},
-		{
-			key: '2',
-			tier: 'Investor',
-			total: '10 experience',
-			assets: '10 points',
-			maker: '+1% to profitability',
-			taker: '10% of referral experience',
-			withdrawal: 'None',
-		},
-		{
-			key: '3',
-			tier: 'Advanced Investor',
-			total: '30 experience',
-			assets: '10 points',
-			maker: '+1% to profitability',
-			taker: '10% of referral experience',
-			withdrawal: '-1% fee for early withdrawal',
-		},
-		{
-			key: '4',
-			tier: 'Experienced Investor',
-			total: '60 experience',
-			assets: '10 points',
-			maker: '+1.5% to profitability',
-			taker: '10% of referral experience',
-			withdrawal: 'Partial withdrawal (up to 20%)',
-		},
-		{
-			key: '5',
-			tier: 'Expert',
-			total: '100 experience',
-			assets: '10 points',
-			maker: '+2% to profitability',
-			taker: '10% of referral experience',
-			withdrawal:
-				'-2% fee for early withdrawal, -20% investment term for specific asset types',
-		},
-		{
-			key: '6',
-			tier: 'VIP',
-			total: '150 experience',
-			assets: '10 points',
-			maker: '+2% to profitability',
-			taker: '10% of referral experience',
-			withdrawal:
-				'No fee for early withdrawal, -30% investment term for any assets',
-		},
-	]
-	const columns = [
-		{
-			key: 'tier',
-			label: 'Tier',
-		},
-		{
-			key: 'total',
-			label: 'Required experience',
-		},
-		{
-			key: 'assets',
-			label: 'Points for successful investment',
-		},
-		{
-			key: 'maker',
-			label: 'Bonuses',
-		},
-		{
-			key: 'taker',
-			label: 'Referral bonuses',
-		},
-		{
-			key: 'withdrawal',
-			label: 'Withdrawal features',
-		},
-	]
+const Tier_table_regUsers = ({ title }: Props) => {
+	const t = useTranslations('tier')
+	const rows = useMemo(
+		() => [
+			{
+				key: '1',
+				tier: t('userTier'),
+				total: '0 ' + t('exp'),
+				assets: '10 ' + t('points'),
+				maker: t('noBonus'),
+				taker: t('refExp'),
+				withdrawal: t('none'),
+			},
+			{
+				key: '2',
+				tier: t('investor'),
+				total: '10 ' + t('exp'),
+				assets: '10 ' + t('points'),
+				maker: t('profitAb'),
+				taker: t('refExp'),
+				withdrawal: t('none'),
+			},
+			{
+				key: '3',
+				tier: t('advancedInv'),
+				total: '30 ' + t('exp'),
+				assets: '10 ' + t('points'),
+				maker: t('profitAb'),
+				taker: t('refExp'),
+				withdrawal: t('minusPers'),
+			},
+			{
+				key: '4',
+				tier: t('experInv'),
+				total: '60 ' + t('exp'),
+				assets: '10 ' + t('points'),
+				maker: t('profitAb'),
+				taker: t('refExp'),
+				withdrawal: t('partWith'),
+			},
+			{
+				key: '5',
+				tier: t('expert'),
+				total: '100 ' + t('exp'),
+				assets: '10 ' + t('points'),
+				maker: t('profitAb2'),
+				taker: t('refExp'),
+				withdrawal: t('expertWith'),
+			},
+			{
+				key: '6',
+				tier: 'VIP',
+				total: '150 ' + t('exp'),
+				assets: '10 ' + t('points'),
+				maker: t('profitAb2'),
+				taker: t('refExp'),
+				withdrawal: t('noFee'),
+			},
+		],
+		[]
+	)
+	const columns = useMemo(
+		() => [
+			{
+				key: 'tier',
+				label: t('tier'),
+			},
+			{
+				key: 'total',
+				label: t('reqExp'),
+			},
+			{
+				key: 'assets',
+				label: t('pointsSucc'),
+			},
+			{
+				key: 'maker',
+				label: t('bonus'),
+			},
+			{
+				key: 'taker',
+				label: t('refBonus'),
+			},
+			{
+				key: 'withdrawal',
+				label: t('withFeat'),
+			},
+		],
+		[]
+	)
 	return (
 		<Table
 			aria-label='Data tabel for reg Users'

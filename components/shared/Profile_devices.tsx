@@ -3,20 +3,22 @@ import Image from 'next/image'
 import { Device } from '../ui/Device'
 import { Accordion, AccordionItem } from '@/components/ui/AccordionBurger'
 import { useThemeStore } from '@/store'
-import { Button } from "@heroui/button"
+import { Button } from '@heroui/button'
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import { Skeleton } from "@heroui/skeleton"
+import { Skeleton } from '@heroui/skeleton'
 import { useUserStore } from '@/hooks/useUserData'
 import { useTranslations } from 'next-intl'
+import { Logout_confirmation } from './Logout_confirmation'
+import { LogOut } from 'lucide-react'
 
-export const Profile_devices= () => {
+export const Profile_devices = () => {
 	const t = useTranslations('device')
 	const { theme } = useThemeStore()
 	const [sessions, setSessions] = useState<any[]>([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(null)
-	const user = useUserStore((state) => state.user)
+	const user = useUserStore(state => state.user)
 	const router = useRouter()
 	const locale = useParams()?.locale || 'en'
 	const csrf = user?.csrf || ''
@@ -52,10 +54,10 @@ export const Profile_devices= () => {
 			fetchSessions()
 		}
 	}, [csrf])
-	if (loading)
-		return (
-			<Skeleton className='min-h-[214px] bg-transparent dark:shadow-none shadow-medium rounded-[30px]' />
-		)
+	// if (loading)
+	// 	return (
+	// 		<Skeleton className='min-h-[214px] bg-transparent dark:shadow-none shadow-medium rounded-[30px]' />
+	// 	)
 	if (error) return <div>Error: {error}</div>
 	const handleLogout = async (fullLogout = false) => {
 		try {
@@ -74,8 +76,10 @@ export const Profile_devices= () => {
 			if (!response.ok) {
 				throw new Error(result.message || 'Logout failed')
 			}
+		if(response.ok){
 			localStorage.removeItem('userData')
 			router.push(`/${locale}/login?error=sessionExpired`)
+		}
 		} catch (error) {
 			console.error('Logout error:', error)
 		}
@@ -107,7 +111,6 @@ export const Profile_devices= () => {
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
 											{t('macBook')}
 										</span>
-										
 									</div>
 
 									<div
@@ -115,9 +118,8 @@ export const Profile_devices= () => {
 										onClick={e => e.stopPropagation()}
 									>
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
-										{t('macBook')}
+											{t('macBook')}
 										</span>
-										
 									</div>
 
 									<div
@@ -125,10 +127,8 @@ export const Profile_devices= () => {
 										onClick={e => e.stopPropagation()}
 									>
 										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
-										{t('macBook')}
+											{t('macBook')}
 										</span>
-
-										
 									</div>
 								</div>
 							</div>
@@ -142,12 +142,18 @@ export const Profile_devices= () => {
 						color={theme === 'dark' ? 'white' : 'black'}
 						width={'835'}
 					/>
-					<Button
+					<Logout_confirmation
+						unDone={'This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'}
+						className={'text-[20px] bg-[#205BC9] rounded-[50px] px-[25px] py-[5px] text-white !w-fit hover:bg-[#205BC9]'}
+						titleTriger={t('logOutAll')}
+						sure={'Are you absolutelu sure'}
+					/>
+					{/* <Button
 						className='text-[20px] bg-[#205BC9] rounded-[50px] px-[25px] py-[5px] text-white'
 						onPress={() => handleLogout(true)}
 					>
 						{t('logOutAll')}
-					</Button>
+					</Button> */}
 				</div>
 			</Accordion>
 		</div>

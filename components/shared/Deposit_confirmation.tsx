@@ -73,8 +73,8 @@ export const Deposit_confirmation = ({
 		<Dialog>
 			<DialogTrigger asChild className='!hover:bg-[#205BC9]'>
 				<Button
-					className={`text-[16px] xl:text-[20px] flex items-center justify-center w-[156px] h-[44px] !py-[8px] hover:!bg-[#205BC9] rounded-[50px] ${input3.length > 3 && inputStep2.length > 3 && selectedCrypto ? '!bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#888888]'} ${className}`}
-					disabled={input3.length <= 3 || inputStep2.length <= 3}
+					className={`text-[16px] xl:text-[20px] flex items-center justify-center w-[156px] h-[44px] !py-[8px] hover:!bg-[#205BC9] rounded-[50px] ${input3.length > 2 && inputStep2.length > 2 && selectedCrypto ? '!bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#888888]'} ${className}`}
+					disabled={input3.length < 2 || inputStep2.length < 2}
 					onClick={handleGetDepositAddress}
 				>
 					{titleTrigger}

@@ -3,7 +3,7 @@ import '@/styles/page.scss'
 import { Metadata, Viewport } from 'next'
 import clsx from 'clsx'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages, setRequestLocale } from 'next-intl/server'
+import { getMessages } from 'next-intl/server'
 import { Providers } from './providers'
 import { routing } from '@/i18n/routing'
 import { siteConfig } from '@/config/site'
@@ -34,14 +34,13 @@ export default async function RootLayout({
 	params,
 }: {
 	children: React.ReactNode
-	params: { locale: string }
+	params: Promise<{locale: string}>;
 }) {
-	const { locale } = await params
-	if (!routing.locales.includes(locale as any)) {
-		return <Redirect />
-	}
+	const {locale} = await params;
+  if (!routing.locales.includes(locale as any)) {
+    <Redirect />
+  }
 	const messages = await getMessages()
-	setRequestLocale(locale)
 	return (
 		<html suppressHydrationWarning lang={locale} className='!bg-[#0c0c0c]'>
 			<body

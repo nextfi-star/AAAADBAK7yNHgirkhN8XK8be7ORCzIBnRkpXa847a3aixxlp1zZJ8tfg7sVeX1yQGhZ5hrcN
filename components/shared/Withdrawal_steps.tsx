@@ -203,7 +203,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 												) : (
 													<div className='flex w-full justify-between gap-[8px] items-center'>
 														<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
-															{t('selectCrypto')}
+															{t('selectCrp')}
 														</p>
 														<ChevronDown
 															strokeWidth={1}

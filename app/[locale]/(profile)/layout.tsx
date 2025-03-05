@@ -16,7 +16,7 @@ export default function ProfileRoot({
 }) {
 	const { showHeader, showTapbar } = useResponsiveVisibility()
 	return (
-		<ValidateUser>
+		// <ValidateUser>
 			<div className='profile__body !pb-0 flex flex-col justify-between'>
 			{showHeader && <ProfileHeader auth />}
 			<main className='profile__main site-holder flex-grow'>
@@ -27,6 +27,6 @@ export default function ProfileRoot({
 			<Footer />
 			{showTapbar && <TapBar />}
 		</div>
-		</ValidateUser>
+		// </ValidateUser>
 	)
 }

@@ -17,7 +17,7 @@ interface Props {
 	show: boolean
 }
 
-export const Burger_profile: NextPage<Props> = ({ handleClick, show }) => {
+export const Burger_profile = ({ handleClick, show }: Props) => {
 	const t = useTranslations('burger')	
 	const listClass = clsx('m_header__profile', { active: !show })
 	const [showSection, setShowSection] = useState<boolean>(true)

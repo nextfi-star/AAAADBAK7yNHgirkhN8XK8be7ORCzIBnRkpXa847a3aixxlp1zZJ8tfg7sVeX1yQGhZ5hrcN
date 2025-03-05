@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import { NextPage } from "next";
 import { Link } from "../../i18n/routing";
 import { useThemeStore } from "@/store";
+import { useTranslations } from 'next-intl'
 
 export const Profile_nav: NextPage = () => {
   const currentPath = usePathname();
@@ -10,7 +11,7 @@ export const Profile_nav: NextPage = () => {
   const localeMatch = currentPath.match(localeRegex);
   const locale = localeMatch ? localeMatch[1] : "en";
   const { verifyState } = useThemeStore();
-
+  const t = useTranslations('shared')
   return (
     <nav className="flex items-end min-h-[11rem] mb-[4rem]">
       {verifyState ? (
@@ -22,7 +23,7 @@ export const Profile_nav: NextPage = () => {
               }`}
               href={`/assets`}
             >
-              Assets
+              {t('assets')}
             </Link>
           </li>
           <li>
@@ -32,7 +33,7 @@ export const Profile_nav: NextPage = () => {
               }`}
               href={`/deposit`}
             >
-              Deposit
+              {t('deposit')}
             </Link>
           </li>
           <li>
@@ -42,7 +43,7 @@ export const Profile_nav: NextPage = () => {
               }`}
               href={`/swap`}
             >
-              Swap
+              {t('swap')}
             </Link>
           </li>
           <li>
@@ -52,7 +53,7 @@ export const Profile_nav: NextPage = () => {
               }`}
               href={`/withdrawal`}
             >
-              Withdrawal
+              {t('withdrawal')}
             </Link>
           </li>
           <li>
@@ -62,7 +63,7 @@ export const Profile_nav: NextPage = () => {
               }`}
               href={`/tier`}
             >
-              Status
+              {t('status')}
             </Link>
           </li>
         </ul>
@@ -75,7 +76,7 @@ export const Profile_nav: NextPage = () => {
               }`}
               href={`/over`}
             >
-              Overview
+              {t('overview')}
             </Link>
           </li>
           <li>
@@ -85,7 +86,7 @@ export const Profile_nav: NextPage = () => {
               }`}
               href={`/profile`}
             >
-              Profile
+              {t('profile')}
             </Link>
           </li>
           <li>
@@ -95,7 +96,7 @@ export const Profile_nav: NextPage = () => {
               }`}
               href={`/security`}
             >
-              Security
+              {t('security')}
             </Link>
           </li>
           <li>
@@ -105,7 +106,7 @@ export const Profile_nav: NextPage = () => {
               }`}
               href={`/verify`}
             >
-              Verification
+              {t('verification')}
             </Link>
           </li>
           <li>
@@ -115,7 +116,7 @@ export const Profile_nav: NextPage = () => {
               }`}
               href={`/devices`}
             >
-              Authorized Devices
+              {t('authorized')}
             </Link>
           </li>
         </ul>
