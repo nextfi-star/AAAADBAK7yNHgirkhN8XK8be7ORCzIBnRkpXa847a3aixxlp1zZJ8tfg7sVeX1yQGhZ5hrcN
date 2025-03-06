@@ -4,13 +4,13 @@ import { Download2 } from '../ui/download2'
 import { User } from '../ui/User'
 import { Navigation } from './Navigation'
 import Theme_switch from './Theme_switch'
-import Locale_Switcher from './Locale_Switcher'
 import { Burger } from './Burger'
 import { useThemeStore } from '@/store'
 import { Link } from '@/i18n/routing'
 import { Logo_header } from '@/components/ui/Logo_header'
 import { useUserStore } from '@/hooks/useUserData'
 import { useTranslations } from 'next-intl'
+import { LangSwitch } from '../ui/LangSwitch'
 
 interface Props {
 	auth?: boolean
@@ -56,10 +56,10 @@ export const Header = ({ auth = true }: Props) => {
 						<div className='header__buttons'>
 							{!auth ? (
 								<>
-									<Link className='header__buttons-login' href='/login'>
+									<Link className='header__buttons-login !w-fit' href='/login'>
 										{t('login')}
 									</Link>
-									<Link className='header__buttons-signup' href='/signup'>
+									<Link className='header__buttons-signup !w-fit' href='/signup'>
 										{t('signup')}
 									</Link>{' '}
 								</>
@@ -84,9 +84,9 @@ export const Header = ({ auth = true }: Props) => {
 							<a className='header__icons-item' href='#'>
 								<Theme_switch />
 							</a>
-							<button className='header__icons-item'>
-								<Locale_Switcher />
-							</button>
+							<div className='header__icons-item'>
+								<LangSwitch />
+							</div>
 						</div>
 					</div>
 				</div>

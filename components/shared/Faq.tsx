@@ -37,7 +37,7 @@ export const Faq = () => {
 							data-aos-once='true'
 						>
 							<summary>{t('howDoes')}</summary>
-							<p>{t('howDoesDesc')}</p>
+							<p>{t('doesDesc')}</p>
 						</details>
 						<details
 							data-aos='fade-up'
@@ -90,7 +90,7 @@ export const Faq = () => {
 							<div className='faq__form-field'>
 								<button className='faq__form-button'>{t('send')}</button>
 								<p className='faq__form-button__description'>
-									{t('byClick')} <a href='#'>{t('the Privacy Policy')}.</a>
+									{t('byClick')} <a href='#'>{t('thePriv')}.</a>
 								</p>
 							</div>
 						</form>

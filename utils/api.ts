@@ -271,52 +271,6 @@ export const getInvestHistory = async ({
 		throw new Error(error.message || 'Ошибка соединения с сервером')
 	}
 }
-export const changeUserData = async (
-	csrf: string,
-	type: string,
-	value: string,
-	vcode: string,
-	tfa_code = ''
-) => {
-	try {
-		type ChangeUserDataPayload = {
-			csrf: string
-			type: string
-			vcode: string
-			'2fa_code'?: string
-			phone?: string
-			email?: string
-			password?: string
-		}
-
-		const payload: ChangeUserDataPayload = {
-			csrf,
-			type,
-			vcode,
-			'2fa_code': tfa_code,
-			phone: type === 'change_phone' ? value : undefined,
-			email: type === 'change_email' ? value : undefined,
-			password: type === 'change_password' ? value : undefined,
-		}
-
-		const response = await fetch('https://nextfi.io:5000/api/v1/change', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(payload),
-		})
-
-		const result = await response.json()
-		if (response.ok && result.response === 'success') {
-			console.log(result)
-			return result
-		} else {
-			throw new Error(result.message || 'Failed to change user data')
-		}
-	} catch (error) {
-		console.error('Change user data error:', error)
-		throw error
-	}
-}
 export const fetchCoinList = async (): Promise<Coin[]> => {
 	try {
 		const response = await fetch('https://nextfi.io:5000/api/v1/coin_list', {
@@ -365,3 +319,36 @@ export const getDepositAddress = async (
 		return { success: false, message: 'Ошибка сети' }
 	}
 }
+export const changeUserData = async (
+	csrf: string,
+	type: "change_email" | "change_phone" | "change_passw",
+	value: string,
+	vcode: string,
+	tfaCode?: string
+) => {
+	try {
+		const payload: Record<string, any> = { csrf, type, vcode };
+		if (type === "change_email") payload["email"] = value;
+		if (type === "change_phone") payload["phone"] = value;
+		if (type === "change_passw") payload["password"] = value;
+		if (tfaCode) payload["2fa_code"] = tfaCode;
+
+		const response = await fetch("https://nextfi.io:5000/api/v1/change", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(payload),
+		});
+
+		const result = await response.json();
+
+		if (result.response === "success") {
+			console.log(result)
+			return { success: true, message: result.message };
+		} else {
+			return { success: false, message: result.message };
+		}
+	} catch (error) {
+		console.error("Change user data error:", error);
+		return { success: false, message: "Network error" };
+	}
+};

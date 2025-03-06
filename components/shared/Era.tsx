@@ -29,7 +29,7 @@ export const Era = () => {
 							data-aos-duration='1200'
 							data-aos-once='true'
 						>
-							<b>NextFi</b> {t('nextfiNewEra')} <b>t{'onArtifi'}</b>
+							<b>NextFi</b> {t('nextfiNewEra')} <b>{t('onArtifi')}</b>
 						</h2>
 						<p
 							className='era__description'
@@ -37,7 +37,7 @@ export const Era = () => {
 							data-aos-duration='1200'
 							data-aos-once='true'
 						>
-							t{('modernArtifi')}
+							{t('modernArtifi')}
 						</p>
 						<div
 							className='main__era-column-bottom mb-[8rem]'

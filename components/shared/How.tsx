@@ -1,6 +1,8 @@
+import { useTranslations } from 'next-intl'
 import { How_options, Mobile_swiper } from "./index";
 
 export const How = () => {
+  const t = useTranslations('landing')
   return (
     <section className="how">
       <div className="site-holder">
@@ -10,7 +12,7 @@ export const How = () => {
           data-aos-duration="1000"
           data-aos-once="true"
         >
-          How is income <b>from investments formed?</b>
+          {t('howIncome')} <b>{t('howIncome2')}</b>
         </h2>
 
         <How_options />

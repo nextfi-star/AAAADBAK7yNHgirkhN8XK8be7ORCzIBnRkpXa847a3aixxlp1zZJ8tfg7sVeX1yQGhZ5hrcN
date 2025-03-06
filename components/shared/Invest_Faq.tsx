@@ -14,59 +14,35 @@ export const Invest_Faq = () => {
 		() => [
 			{
 				title: t('howConvert'),
-				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+				content: t('howConvert2'),
 				id: 1,
 				val: '1',
 			},
 			{
 				title: t('whichCrypto'),
 				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+					t('whichCrypto2'),
 				id: 22,
 				val: '22',
 			},
 			{
-				title: t('whichCrypto'),
-				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+				title: t('howCrypto'),
+				content: t('howCrypto2'),
 				id: 2,
 				val: '2',
 			},
 			{
-				title: t('howCrypto'),
-				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+				title: t('whereCrypto'),
+				content: t('whereCrypto2'),
 				id: 3,
 				val: '3',
 			},
 			{
-				title: t('whereCrypto'),
+				title: t('depositCrypto'),
 				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+					t('depositCrypto2'),
 				id: 4,
 				val: '4',
-			},
-			{
-				title: t('depositCrypto'),
-				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-				id: 5,
-				val: '5',
-			},
-			{
-				title: t('depositCrypto'),
-				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-				id: 6,
-				val: '6',
-			},
-			{
-				title: t('depositCrypto'),
-				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-				id: 7,
-				val: '7',
 			},
 		],
 		[]

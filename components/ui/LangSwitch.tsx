@@ -21,7 +21,7 @@ export function LangSwitch({ cls }: { cls?: string }) {
 					<span className='sr-only'>Toggle lang</span>
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent align='end' className='z-[999] dark:bg-[#0c0c0c]'>
+			<DropdownMenuContent align='end' className='!z-[99999] relative dark:bg-[#0c0c0c]'>
 				<DropdownMenuItem onClick={() => locale('en')}>
 					En
 				</DropdownMenuItem>

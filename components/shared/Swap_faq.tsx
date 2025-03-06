@@ -15,35 +15,35 @@ const Swap_faq = () => {
 			{
 				title: t('howConvert'),
 				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+					t('howConvert2'),
 				id: 1,
 				val: '1',
 			},
 			{
 				title: t('whichCrypto'),
 				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+					t('whichCrypto2'),
 				id: 2,
 				val: '2',
 			},
 			{
 				title: t('howCrypto'),
 				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+					t('howCrypto2'),
 				id: 3,
 				val: '3',
 			},
 			{
 				title: t('whereCrypto'),
 				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+					t('whereCrypto2'),
 				id: 4,
 				val: '4',
 			},
 			{
 				title: t('depositCrypto'),
 				content:
-					'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+					t('depositCrypto2'),
 				id: 5,
 				val: '5',
 			},
