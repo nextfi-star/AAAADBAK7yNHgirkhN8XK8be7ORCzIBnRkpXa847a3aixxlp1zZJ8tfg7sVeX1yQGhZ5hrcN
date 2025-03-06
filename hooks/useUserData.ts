@@ -8,6 +8,7 @@ type UserState = {
 	setUser: (user: any | null) => void
 	setCsrf: (csrf: string | null) => void
 	loadUser: () => void
+  updateUser: (updates: Partial<any>) => void;
 }
 
 export const useUserStore = create<UserState>(set => ({
@@ -15,6 +16,8 @@ export const useUserStore = create<UserState>(set => ({
 	csrf: null,
 	setUser: user => set({ user }),
 	setCsrf: csrf => set({ csrf }),
+  updateUser: updates =>
+		set(state => ({ user: { ...state.user, ...updates } })),
   loadUser: () => {
     try {
       const storedData = localStorage.getItem('userData')

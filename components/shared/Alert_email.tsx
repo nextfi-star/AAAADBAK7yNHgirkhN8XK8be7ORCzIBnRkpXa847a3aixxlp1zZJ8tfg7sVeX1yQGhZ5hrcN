@@ -65,7 +65,8 @@ export const Alert_email = ({ propsItem }: Props) => {
 
 		if (result.success) {
 			setMessage('Email успешно изменён!')
-			useUserStore.getState().loadUser() // Обновляем данные пользователя
+			useUserStore.getState().updateUser({ email: inputs.newEmail });
+			useUserStore.getState().loadUser() 
 		} else {
 			setMessage(result.message)
 		}

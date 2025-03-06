@@ -1,5 +1,6 @@
 {
 	"shared": {
+		"lang": "Language",
 		"login": "Log in",
 		"signup": "Sign up",
 		"logout": "Log out",
@@ -19,6 +20,7 @@
 		"authorized": "Authorized Devices"
 	},
 	"footer": {
+		"lang": "Language",
 		"policy": "NextFi is the trade name of Next Financial Investments, a company registered with United Arab Emirates. All services are provided outside other countries and are licensed and/or registered with OAE.",
 		"overview": "Overview",
 		"verification": "Verification",
@@ -560,7 +562,7 @@
 		"whereCrypto2": "The converted currency will be displayed in the assets and overview personal account on the NextFi platform.`",
 		"depositCrypto": "What percentage can I get when investing on the platform?",
 		"depositCrypto2": "The maximum return on invested funds that you can receive is 14 percent."
-		
+
 	},
 	"withdrawal": {
 		"withdrawal": "Withdrawal",

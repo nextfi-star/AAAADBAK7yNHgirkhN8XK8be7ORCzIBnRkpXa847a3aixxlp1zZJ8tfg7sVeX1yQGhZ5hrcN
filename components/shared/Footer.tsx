@@ -9,15 +9,13 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from '@/components/ui/AccordionBurger'
-import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { LangSwitch } from '../ui/LangSwitch'
 
-export const Footer: NextPage = () => {
+export const Footer = () => {
 	const { theme } = useThemeStore()
 	const t = useTranslations('footer')
-
 	const data = useMemo(
 		() => [
 			{
@@ -140,8 +138,9 @@ export const Footer: NextPage = () => {
 						<span className='dark:text-[#FFFFFF66] text-[18px] whitespace-nowrap'>
 							©2024 NextFi.io
 						</span>
-						<div className='bg-transparent text-[18px] w-full max-w-[140px] border-1 border-solid dark:border-[#FFFFFF] border-[#0c0c0c] rounded-[25px]'>
+						<div className='bg-transparent text-[18px] w-full  '>
 							<LangSwitch />
+							<span>{t('lang')}</span>
 						</div>
 					</div>
 
@@ -184,7 +183,7 @@ export const Footer: NextPage = () => {
 
 					<div className='flex flex-col items-start gap-[15px]'>
 						<h5 className='text-[25px] font-semibold dark:text-[#EFEFEF] mb-[5px]'>
-							[t('investment')]
+							{t('investment')}
 						</h5>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
 							Company Stocks
@@ -208,7 +207,7 @@ export const Footer: NextPage = () => {
 							{t('more')}
 						</h5>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							[t('supCenter')]
+							{t('supCenter')}
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
 							{t('token')}
@@ -237,7 +236,7 @@ export const Footer: NextPage = () => {
 				<div className='flex flex-col gap-[10px] lg:flex-row xl:items-center lg:items-start justify-between w-full'>
 					<div className='flex items-start gap-[18px] lg:flex-col xl:flex-row'>
 						<h5 className='text-[25px] dark:text-[#EFEFEF] font-semibold'>
-							[t('comm')]
+							{t('comm')}
 						</h5>
 						<div className='flex items-center gap-[8px]'>
 							<Image
@@ -310,11 +309,10 @@ export const Footer: NextPage = () => {
 								©2024 NextFi.io
 							</span>
 						</div>
-						<LangSwitch
-							cls={
-								'bg-transparent text-[18px] w-full max-w-[140px] border-1 border-solid dark:border-[#FFFFFF] border-[#0c0c0c] rounded-[25px]'
-							}
-						/>
+						<div>
+							<LangSwitch cls={'bg-transparent text-[18px] w-full '} />
+							<span>{t('lang')}</span>
+						</div>
 					</div>
 
 					<div className='flex items-start gap-[25px] px-[36px] py-[20px] rounded-[50px] bg-[#7676801F]'>
