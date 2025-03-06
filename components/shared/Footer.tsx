@@ -18,98 +18,109 @@ export const Footer: NextPage = () => {
 	const { theme } = useThemeStore()
 	const t = useTranslations('footer')
 
-	const data = useMemo(() => [
-		{
-			val: 'overview',
-			title: t('overview'),
-			content: (
-				<div className='flex flex-col items-start gap-[15px]'>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>{t('profile')}</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						{t('security')}
-					</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						{t('verification')}
-					</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						{t('authDev')}
-					</span>
-				</div>
-			),
-		},
-		{
-			val: 'assets',
-			title: t('assets'),
-			content: (
-				<div className='flex flex-col items-start gap-[15px]'>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						{t('deposit')}
-					</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>{t('swap')}</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						{t('withdrawal')}
-					</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						{t('levels')}
-					</span>
-				</div>
-			),
-		},
-		{
-			val: 'investment',
-			title: t('investment'),
-			content: (
-				<div className='flex flex-col items-start gap-[15px]'>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						Company Stocks
-					</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						Corporate Bonds
-					</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>Oil Sector</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						Precious Metals Level
-					</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						Innovative Startups
-					</span>
-				</div>
-			),
-		},
-		{
-			val: 'more',
-			title: t('more'),
-			content: (
-				<div className='flex flex-col items-start gap-[15px]'>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						{t('supCenter')}
-					</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						{t('token')}
-					</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>
-						{t('history')}
-					</span>
-					<span className='text-[18px] dark:text-[#FFFFFF66]'>{t('faq')}</span>
-				</div>
-			),
-		},
-		{
-			val: 'footer',
-			title: t('scan'),
-			content: (
-				<div className='flex flex-col items-start gap-[15px]'>
-					<Image
-						src={'/footer/qr.svg'}
-						width={137}
-						height={137}
-						alt='icon qr footer'
-					/>
-					<span className='text-[18px] dark:text-[#EFEFEF]'>{t('scan')}</span>
-				</div>
-			),
-		},
-	], [])
+	const data = useMemo(
+		() => [
+			{
+				val: 'overview',
+				title: t('overview'),
+				content: (
+					<div className='flex flex-col items-start gap-[15px]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('profile')}
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('security')}
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('verification')}
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('authDev')}
+						</span>
+					</div>
+				),
+			},
+			{
+				val: 'assets',
+				title: t('assets'),
+				content: (
+					<div className='flex flex-col items-start gap-[15px]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('deposit')}
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('swap')}
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('withdrawal')}
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('levels')}
+						</span>
+					</div>
+				),
+			},
+			{
+				val: 'investment',
+				title: t('investment'),
+				content: (
+					<div className='flex flex-col items-start gap-[15px]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							Company Stocks
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							Corporate Bonds
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							Oil Sector
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							Precious Metals Level
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							Innovative Startups
+						</span>
+					</div>
+				),
+			},
+			{
+				val: 'more',
+				title: t('more'),
+				content: (
+					<div className='flex flex-col items-start gap-[15px]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('supCenter')}
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('token')}
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('history')}
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('faq')}
+						</span>
+					</div>
+				),
+			},
+			{
+				val: 'footer',
+				title: t('scan'),
+				content: (
+					<div className='flex flex-col items-start gap-[15px]'>
+						<Image
+							src={'/footer/qr.svg'}
+							width={137}
+							height={137}
+							alt='icon qr footer'
+						/>
+						<span className='text-[18px] dark:text-[#EFEFEF]'>{t('scan')}</span>
+					</div>
+				),
+			},
+		],
+		[]
+	)
 	return (
 		<footer className='bg-[#F9F9FA] dark:bg-[#131313] mt-[9.5rem] py-[95px] px-[17px] w-full'>
 			{/* PC */}
@@ -129,13 +140,9 @@ export const Footer: NextPage = () => {
 						<span className='dark:text-[#FFFFFF66] text-[18px] whitespace-nowrap'>
 							©2024 NextFi.io
 						</span>
-						<Button
-							className='bg-transparent text-[18px] w-full max-w-[140px] border-1 border-solid dark:border-[#FFFFFF] border-[#0c0c0c] rounded-[25px]'
-							variant='bordered'
-						>
-							<Globe />
-							English
-						</Button>
+						<div className='bg-transparent text-[18px] w-full max-w-[140px] border-1 border-solid dark:border-[#FFFFFF] border-[#0c0c0c] rounded-[25px]'>
+							<LangSwitch />
+						</div>
 					</div>
 
 					<div className='flex items-center gap-[25px] px-[36px] py-[20px] rounded-[50px] bg-[#7676801F]'>
@@ -303,7 +310,10 @@ export const Footer: NextPage = () => {
 								©2024 NextFi.io
 							</span>
 						</div>
-						<LangSwitch cls={'bg-transparent text-[18px] w-full max-w-[140px] border-1 border-solid dark:border-[#FFFFFF] border-[#0c0c0c] rounded-[25px]'} 
+						<LangSwitch
+							cls={
+								'bg-transparent text-[18px] w-full max-w-[140px] border-1 border-solid dark:border-[#FFFFFF] border-[#0c0c0c] rounded-[25px]'
+							}
 						/>
 					</div>
 
