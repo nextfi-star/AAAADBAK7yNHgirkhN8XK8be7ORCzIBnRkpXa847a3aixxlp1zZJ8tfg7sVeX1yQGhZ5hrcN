@@ -33,6 +33,10 @@ export type PeriodData = {
 	name: string
 	percent: string
 }
+export type CoinsData = {
+	name: string
+	val: string
+}
 interface Props {
 	investData?: InvestData[]
 	periodData?: PeriodData[]
@@ -98,6 +102,32 @@ const periodData = [
 		percent: '6.2',
 	},
 ]
+const coins =[
+	{
+		name: "BTC",
+		val: 'btc',
+	},
+	{
+		name: "ETH",
+		val: 'eth',
+	},
+	{
+		name: "TRX",
+		val: 'trx',
+	},
+	{
+		name: "LTC",
+		val: 'ltc',
+	},
+	{
+		name: "USDT",
+		val: 'usdt',
+	},
+	{
+		name: "TEST",
+		val: 'test',
+	},
+]
 const Invest_steps = () => {
 	const t = useTranslations('invest')
 	const {
@@ -110,10 +140,12 @@ const Invest_steps = () => {
 	} = useThemeStore()
 	const [openInvest, setOpenInvest] = useState(false)
 	const [openPeriod, setOpenPeriod] = useState(false)
+	const [openCoin, setOpenCoin] = useState(false)
 	const [inputStep2, setInputStep2] = useState<string>('')
 	const [input3, setInput3] = useState('')
 	const [selectedInvest, setSelectedInvest] = useState<InvestData | null>(null)
 	const [selectedPeriod, setSelectedPeriod] = useState<PeriodData | null>(null)
+	const [selectedCoin, setSelectedCoin] = useState<CoinsData | null>(null)
 	const [open, setOpen] = useState(false)
 	const [openNetwork, setOpenNetwork] = useState(false)
 	const DropCache = () => {
@@ -361,6 +393,86 @@ const Invest_steps = () => {
 																	<p className='flex items-center gap-[5px] text-[20px]'>
 																		{period.percent}%
 																	</p>
+																</div>
+															</CommandItem>
+														))}
+													</CommandGroup>
+												</CommandList>
+											</Command>
+										</PopoverContent>
+									</Popover>
+									<Popover
+										open={openCoin}
+										onOpenChange={setOpenCoin}
+										modal={true}
+									>
+										<PopoverTrigger asChild>
+											<Button
+												variant='outline'
+												size='lg'
+												className='w-full h-[58px] rounded-[20px] justify-start bg-[#7676801F] hover:bg-[#7676801F]'
+											>
+												{selectedCoin ? (
+													<div className='flex w-full justify-between gap-[8px] items-center'>
+														<div className='flex items-center gap-[3px]'>
+															<p className='text-[20px] font-medium text-[#0c0c0c] dark:text-white'>
+																{selectedCoin.name}
+															</p>
+														</div>
+														<ChevronDown
+															strokeWidth={1}
+															color={theme === 'dark' ? 'white' : 'black'}
+															className={`w-8 h-8 transition duration-300  
+																${!openNetwork ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
+														/>
+													</div>
+												) : (
+													<div className='flex w-full justify-between gap-[8px] items-center'>
+														<p className='text-[20px] font-medium text-[#0c0c0c] dark:text-white'>
+															{t('sclPer')}
+														</p>
+														<ChevronDown
+															strokeWidth={1}
+															color={theme === 'dark' ? 'white' : 'black'}
+															className={`w-8 h-8 transition duration-300  
+																${!openNetwork ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
+														/>
+													</div>
+												)}
+											</Button>
+										</PopoverTrigger>
+										<PopoverContent
+											className='p-0 w-full shadow-none'
+											side='bottom'
+											align='start'
+										>
+											<Command className='bg-[#eee] dark:bg-[#19191A] w-[285px] md:w-[603px] lg:w-[799px] xl:w-[794px] 2xl:w-[962px]'>
+												<CommandList className='bg-[#eee] dark:bg-[#19191A] px-[10px]'>
+													<CommandEmpty>
+														<NotFoundItem />
+													</CommandEmpty>
+													<CommandGroup>
+														{coins.map(coin => (
+															<CommandItem
+																key={coin.val}
+																value={coin.name}
+																onSelect={value => {
+																	setSelectedCoin(
+																		coins.find(
+																			priority => priority.name === value
+																		) || null
+																	)
+																	setOpenPeriod(false)
+																	setStep(3)
+																}}
+																className='data-[selected=true]:!bg-[#7676801F]'
+															>
+																<div className='flex items-center justify-between w-full px-[15px]'>
+																	<div className='flex items-center gap-[3px]'>
+																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
+																			{coin.name}
+																		</p>
+																	</div>
 																</div>
 															</CommandItem>
 														))}

@@ -6,7 +6,7 @@ export type Coin = {
 	name: string;
 	avatar?: string;
 	type: string;
-	network: string;
+	network: string[];
 	fee: number;
 	deposit: number;
 	withdraw: number;
@@ -18,12 +18,15 @@ type CoinStore = {
 	selectedCoin: Coin | null;
 	loadCoins: (csrf: string) => Promise<void>;
 	setSelectedCoin: (coin: Coin) => void;
+	setSelectedNetwork: (network: string) => void;
+	selectedNetwork: string | null;
 };
 
 export const useCoinStore = create<CoinStore>((set) => ({
 	coins: [],
+	setSelectedNetwork: (network) => set({ selectedNetwork: network }),
 	selectedCoin: null,
-
+	selectedNetwork: null,
 	loadCoins: async (csrf) => {
 		const result = await getCoins(csrf);
 		set({ coins: result });

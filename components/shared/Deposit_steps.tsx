@@ -40,95 +40,10 @@ export type NetworkData = {
 const Deposit_steps = () => {
 	const t = useTranslations('deposit')
 	const user = useUserStore(state => state.user)
-	const { coins, selectedCoin, loadCoins, setSelectedCoin } = useCoinStore()
-
-	const cryptoData = useMemo(
-		() => [
-			{
-				id: 1,
-				name: 'TRX',
-				avatar: '/payment_table/trx.svg',
-				crypto: 'TRC20',
-				cryptoNumbers: '0.00000079',
-				moreLess: '<$0.01',
-			},
-			{
-				id: 2,
-				name: 'BTC',
-				avatar: '/payment_table/zro.svg',
-				crypto: 'ERC20',
-				cryptoNumbers: '0.00000079',
-				moreLess: '<$0.01',
-			},
-			{
-				id: 3,
-				name: 'ETH',
-				avatar: '/payment_table/teater.svg',
-				crypto: 'Bitcoin',
-				cryptoNumbers: '0.00000079',
-				moreLess: '<$0.01',
-			},
-			{
-				id: 4,
-				name: 'LTC',
-				avatar: '/payment_table/teater.svg',
-				crypto: 'BEP20',
-				cryptoNumbers: '0.00000079',
-				moreLess: '<$0.01',
-			},
-			{
-				id: 5,
-				name: 'TEST',
-				avatar: '/payment_table/teater.svg',
-				crypto: 'LTC',
-				cryptoNumbers: '0.00000079',
-				moreLess: '<$0.01',
-			},
-		],
-		[]
-	)
-	const networkData = useMemo(
-		() => [
-			{
-				id: 1,
-				name: 'TRC20',
-				cryptoNumbers: '0.00000079',
-				moreLess: '<$0.01',
-			},
-			{
-				id: 2,
-				name: 'ERC20',
-				cryptoNumbers: '0.00000079',
-				moreLess: '<$0.01',
-			},
-			{
-				id: 3,
-				name: 'BTC',
-				cryptoNumbers: '0.00000079',
-				moreLess: '<$0.01',
-			},
-			{
-				id: 4,
-				name: 'BEP20',
-				cryptoNumbers: '0.00000079',
-				moreLess: '<$0.01',
-			},
-			{
-				id: 5,
-				name: 'LTC',
-				cryptoNumbers: '0.00000079',
-				moreLess: '<$0.01',
-			},
-		],
-		[]
-	)
-	const [selectedNetwork, setSelectedNetwork] = useState<NetworkData | null>(
-		null
-	)
+	const { coins, selectedCoin, loadCoins, setSelectedCoin, setSelectedNetwork, selectedNetwork } = useCoinStore()
 	const { step, setStep, theme } = useThemeStore()
 	const [open, setOpen] = useState(false)
 	const [inputStep2, setInputStep2] = useState<string>('')
-	const [selectedCrypto, setSelectedCrypto] = useState<CryptoData | null>(null)
 	const [openNetwork, setOpenNetwork] = useState(false)
 	const [error, setError] = useState('')
 	const [depositAddress, setDepositAddress] = useState('')
@@ -142,7 +57,7 @@ const Deposit_steps = () => {
 		const result = await getDepositAddress(
 			user.csrf,
 			selectedCoin.name,
-			selectedNetwork.name
+			selectedNetwork
 		)
 		if (result.success) {
 			setDepositAddress(result.address)
@@ -197,12 +112,14 @@ const Deposit_steps = () => {
 												className='w-full h-[48px] rounded-medium max-w-[294px] sm:max-w-[962px] justify-start bg-[#7676801F] hover:bg-[#7676801F] pl-[20px]'
 											>
 												<div className='flex w-full justify-between gap-[8px] items-center'>
-													<div className='flex items-center gap-[3px]'>
+													<div className='flex items-center gap-[10px]'>
 														<Avatar
 															src={`/crypto/${selectedCoin?.name?.toLowerCase()}.svg`}
 														/>
 														<p className='text-[18px] text-[#0c0c0c] dark:text-white'>
-															{selectedCoin ? selectedCoin.name : t('setDestn')}
+															{selectedCoin
+																? selectedCoin.name
+																: t('selectCrpt')}
 														</p>
 													</div>
 													<ChevronDown
@@ -238,7 +155,9 @@ const Deposit_steps = () => {
 															>
 																<div className='flex items-center justify-between w-full'>
 																	<div className='flex items-center gap-[10px]'>
-																		<Avatar src={`/crypto/${coin.name?.toLowerCase()}.svg`} />
+																		<Avatar
+																			src={`/crypto/${coin.name?.toLowerCase()}.svg`}
+																		/>
 																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
 																			{coin.name}
 																		</p>
@@ -289,7 +208,7 @@ const Deposit_steps = () => {
 														<div className='flex w-full justify-between gap-[8px] items-center'>
 															<div className='flex items-center gap-[3px] mb-[-5px]'>
 																<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
-																	{selectedNetwork.name}
+																	{selectedNetwork}
 																</p>
 															</div>
 															<ChevronDown
@@ -325,17 +244,13 @@ const Deposit_steps = () => {
 															<NotFoundItem />
 														</CommandEmpty>
 														<CommandGroup>
-															{networkData.map(status => (
+															{selectedCoin?.network.map(status => (
 																<CommandItem
-																	key={status.id}
-																	value={status.name}
+																	key={status}
+																	value={status}
 																	className='data-[selected=true]:!bg-[#7676801F]'
 																	onSelect={value => {
-																		setSelectedNetwork(
-																			networkData.find(
-																				priority => priority.name === value
-																			) || null
-																		)
+																		setSelectedNetwork(value)
 																		setOpenNetwork(false)
 																		setInputStep2(value)
 																		setStep(3)
@@ -344,7 +259,7 @@ const Deposit_steps = () => {
 																	<div className='flex items-center justify-between rounded-[4px] w-full'>
 																		<div className='flex flex-col'>
 																			<span className='text-small text-[#205BC9]'>
-																				{status.name}
+																				{status}
 																			</span>
 																		</div>
 																	</div>

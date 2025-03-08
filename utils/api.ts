@@ -317,7 +317,6 @@ export const getInvestHistory = async ({
 		)
 
 		const result = await response.json()
-
 		if (response.ok) {
 			console.log(result)
 			return result
@@ -337,14 +336,19 @@ export const getCoins = async (csrf: string) => {
 		});
 
 		const result = await response.json();
-		if (result?.response === "success" && Array.isArray(result.data)) {
-			return result.data;
+		if (result.response === "success") {
+			console.log(result.data)
+			return result.data.map((coin: any) => ({
+				id: coin.id,
+				name: coin.name,
+				network: coin.network.split(":"),
+			}));
 		} else {
-			console.error("Ошибка получения списка монет:", result);
+			console.error("Ошибка загрузки списка монет:", result);
 			return [];
 		}
 	} catch (error) {
-		console.error("Ошибка загрузки монет:", error);
+		console.error("Ошибка сети при получении списка монет:", error);
 		return [];
 	}
 };
@@ -460,61 +464,3 @@ export const sendMessage = async (csrf: string, tid: string, text: string) => {
 		return null
 	}
 }
-
-
-// const Deposit_steps = () => {
-// 	const user = useUserStore((state) => state.user);
-// 	const { coins, selectedCoin, loadCoins, setSelectedCoin } = useCoinStore();
-// 	const [open, setOpen] = useState<boolean>(false);
-
-// 	// Загружаем список монет при загрузке страницы
-// 	useEffect(() => {
-// 		if (user?.csrf) {
-// 			loadCoins(user.csrf);
-// 		}
-// 	}, [user?.csrf, loadCoins]);
-
-// 	return (
-// 		<Popover open={open} onOpenChange={setOpen} modal={true}>
-// 			<PopoverTrigger asChild>
-// 				<button className="flex w-full justify-between gap-[8px] items-center p-2 border rounded-md">
-// 					<div className="flex items-center gap-[3px]">
-// 						<span className="text-[18px]">
-// 							{selectedCoin ? selectedCoin.name : "Выберите криптовалюту"}
-// 						</span>
-// 					</div>
-// 					<ChevronDown strokeWidth={1} className={`w-8 h-8 transition duration-300 ${!open ? "rotate-[0deg]" : "rotate-[180deg]"}`} />
-// 				</button>
-// 			</PopoverTrigger>
-// 			<PopoverContent className="p-0 w-full shadow-none">
-// 				<Command className="bg-[#eee] dark:bg-[#19191A]">
-// 					<CommandList className="bg-[#eee] dark:bg-[#19191A] px-[10px]">
-// 						<CommandEmpty>Нет доступных монет</CommandEmpty>
-// 						<CommandGroup>
-// 							{coins.map((coin) => (
-// 								<CommandItem
-// 									key={coin.id}
-// 									className="data-[selected=true]:!bg-[#7676801F]"
-// 									onSelect={() => {
-// 										setSelectedCoin(coin);
-// 										setOpen(false);
-// 									}}
-// 								>
-// 									<div className="flex items-center justify-between w-full">
-// 										<div className="flex items-center gap-[10px]">
-// 											<Avatar src={coin.avatar || ""} />
-// 											<p className="text-[20px] text-[#205BC9] flex flex-col items-start">
-// 												{coin.name}
-// 											</p>
-// 										</div>
-// 									</div>
-// 								</CommandItem>
-// 							))}
-// 						</CommandGroup>
-// 					</CommandList>
-// 				</Command>
-// 			</PopoverContent>
-// 		</Popover>
-// 	);
-// }
-// export default Deposit_steps
