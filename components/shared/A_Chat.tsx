@@ -180,14 +180,14 @@ export const A_Chat = () => {
 																		alt='Operator icon'
 																	/>
 																)}
-																<span className='text-[15px] font-medium p-[7px_27px] bg-[#7676801F] rounded-[20px] break-words max-w-[256px]'>
-																	{msg.text}
-																</span>
-																{msg.sender !== 'me' && (
-																	<span className='text-[13px] font-medium text-[#888888]'>
+																<div className='flex items-end gap-[15px]'>
+																	<span className='text-[10px] font-medium text-[#888888]'>
 																		{new Date(msg.time).toLocaleTimeString()}
 																	</span>
-																)}
+																	<span className='text-[15px] font-medium p-[7px_27px] bg-[#7676801F] rounded-[20px] break-words max-w-[256px]'>
+																		{msg.text}
+																	</span>
+																</div>
 															</div>
 														))}
 														<div className='BOT flex flex-wrap gap-[7px] items-center mb-[20px]'>
@@ -230,7 +230,7 @@ export const A_Chat = () => {
 																value={newMessage}
 																autoFocus
 																onChange={e => setNewMessage(e.target.value)}
-																className='flex-1 border px-[25px] py-4 rounded-[30px] bg-[#7676801F] w-full overflow-hidden'
+																className='flex-1 border px-[25px] pr-[59px] py-4 rounded-[30px] bg-[#7676801F] w-full overflow-hidden'
 															/>
 															<button
 																type='submit'
