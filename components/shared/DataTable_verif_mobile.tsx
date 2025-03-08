@@ -26,6 +26,7 @@ import { ChevronDownIcon } from "./ChevronDownIcon";
 import { SearchIcon } from "./SearchIcon";
 import { capitalize } from "./utils";
 import { columns, statusOptions, users } from "./data";
+import { useTranslations } from 'next-intl'
 
 // const statusColorMap: Record<string, ChipProps["color"]> = {
 //   "+": "success",
@@ -37,6 +38,7 @@ const INITIAL_VISIBLE_COLUMNS = ["name", "holdings"];
 type User = (typeof users)[0];
 
 export default function DataTable_verif_mobile() {
+  const t = useTranslations('tablesAssets')
   const [filterValue, setFilterValue] = React.useState("");
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(
     new Set([]),
@@ -152,8 +154,8 @@ export default function DataTable_verif_mobile() {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem key="view">View</DropdownItem>
-                <DropdownItem key="edit">Edit</DropdownItem>
+                <DropdownItem key="view">{t('view')}</DropdownItem>
+                <DropdownItem key="edit">{t('edit')}</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -204,7 +206,7 @@ export default function DataTable_verif_mobile() {
           <Input
             isClearable
             className="w-full sm:max-w-[44%]"
-            placeholder="Search by name..."
+            placeholder={t('searchName')}
             startContent={<SearchIcon />}
             value={filterValue}
             onClear={() => onClear()}
@@ -217,7 +219,7 @@ export default function DataTable_verif_mobile() {
                   endContent={<ChevronDownIcon className="text-small" />}
                   variant="flat"
                 >
-                  Status
+                  {t('status')}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
@@ -241,7 +243,7 @@ export default function DataTable_verif_mobile() {
                   endContent={<ChevronDownIcon className="text-small" />}
                   variant="flat"
                 >
-                  Columns
+                  {t('columns')}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
@@ -254,26 +256,14 @@ export default function DataTable_verif_mobile() {
               >
                 {columns.map((column) => (
                   <DropdownItem key={column.uid} className="capitalize">
-                    {capitalize(column.name)}
+                    {capitalize(t(column.uid))}
                   </DropdownItem>
                 ))}
               </DropdownMenu>
             </Dropdown>
           </div>
         </div>
-        <div className="flex justify-between items-center">
-          {/* <label className='flex items-center text-default-400 text-small'>
-						Rows per page:
-						<select
-							className='bg-transparent outline-none text-default-400 text-small'
-							onChange={onRowsPerPageChange}
-						>
-							<option value='5'>5</option>
-							<option value='10'>10</option>
-							<option value='15'>15</option>
-						</select>
-					</label>*/}
-        </div>
+       
       </div>
     );
   }, [
@@ -330,7 +320,7 @@ export default function DataTable_verif_mobile() {
             align={column.uid === "actions" ? "center" : "start"}
             allowsSorting={column.sortable}
           >
-            {column.name}
+           {t(column.uid)}
           </TableColumn>
         )}
       </TableHeader>

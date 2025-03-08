@@ -18,16 +18,16 @@ import {
 	Pagination,
 	Selection,
 	SortDescriptor,
-} from "@heroui/react"
-
+} from '@heroui/react'
 import ArrowUP from '../ui/ArrowUP'
-
 import { VerticalDotsIcon } from './VerticalDotsIcon'
 import { ChevronDownIcon } from './ChevronDownIcon'
 import { SearchIcon } from './SearchIcon'
 import { capitalize } from './utils'
 import { columnsData, statusOptionsData, usersData } from './data'
+import { useTranslations } from 'next-intl'
 
+type User = (typeof usersData)[0]
 const INITIAL_VISIBLE_COLUMNS = [
 	'destination',
 	'amount',
@@ -36,10 +36,9 @@ const INITIAL_VISIBLE_COLUMNS = [
 	'actions',
 	'total',
 ]
-
-type User = (typeof usersData)[0]
-
 export default function DataTable_unverif() {
+	const t = useTranslations('tablesOverview')
+
 	const [filterValue, setFilterValue] = React.useState('')
 	const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]))
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
@@ -140,8 +139,8 @@ export default function DataTable_unverif() {
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu>
-								<DropdownItem key="view">View</DropdownItem>
-								<DropdownItem key="Edit">Edit</DropdownItem>
+								<DropdownItem key='view'>View</DropdownItem>
+								<DropdownItem key='Edit'>Edit</DropdownItem>
 							</DropdownMenu>
 						</Dropdown>
 					</div>
@@ -192,7 +191,7 @@ export default function DataTable_unverif() {
 					<Input
 						isClearable
 						className='w-full sm:max-w-[44%]'
-						placeholder='Search by name...'
+						placeholder={t('searchName')}
 						startContent={<SearchIcon />}
 						value={filterValue}
 						onClear={() => onClear()}
@@ -205,7 +204,7 @@ export default function DataTable_unverif() {
 									endContent={<ChevronDownIcon className='text-small' />}
 									variant='flat'
 								>
-									Status
+									{t('status')}
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu
@@ -229,7 +228,7 @@ export default function DataTable_unverif() {
 									endContent={<ChevronDownIcon className='text-small' />}
 									variant='flat'
 								>
-									Columns
+									{t('columns')}
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu
@@ -242,7 +241,7 @@ export default function DataTable_unverif() {
 							>
 								{columnsData.map(column => (
 									<DropdownItem key={column.uid} className='capitalize'>
-										{capitalize(column.name)}
+										{capitalize(t(column.uid))}
 									</DropdownItem>
 								))}
 							</DropdownMenu>
@@ -302,7 +301,7 @@ export default function DataTable_unverif() {
 						align={column.uid === 'actions' ? 'center' : 'start'}
 						allowsSorting={column.sortable}
 					>
-						{column.name}
+						{t(column.uid)}
 					</TableColumn>
 				)}
 			</TableHeader>

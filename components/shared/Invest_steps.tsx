@@ -418,7 +418,7 @@ const Invest_steps = () => {
 											</span>
 										</p>
 										<Invest_confirmation
-											className='!w-full dark:!shadow-none'
+											className='!w-fit min-w-[200px] dark:!shadow-none'
 											input3={input3}
 											setInput3={setInput3}
 											setInputStep2={setInputStep2}

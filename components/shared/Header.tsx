@@ -56,10 +56,10 @@ export const Header = ({ auth = true }: Props) => {
 						<div className='header__buttons'>
 							{!auth ? (
 								<>
-									<Link className='header__buttons-login !w-fit' href='/login'>
+									<Link className='header__buttons-login' href='/login'>
 										{t('login')}
 									</Link>
-									<Link className='header__buttons-signup !w-fit' href='/signup'>
+									<Link className='header__buttons-signup' href='/signup'>
 										{t('signup')}
 									</Link>{' '}
 								</>

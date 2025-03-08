@@ -28,6 +28,7 @@ import { ChevronDownIcon } from './ChevronDownIcon'
 import { SearchIcon } from './SearchIcon'
 import { capitalize } from './utils'
 import { columnsData, statusOptionsData, usersData } from './data'
+import { useTranslations } from 'next-intl'
 
 // const statusColorMap: Record<string, ChipProps["color"]> = {
 //   "+": "success",
@@ -39,6 +40,7 @@ const INITIAL_VISIBLE_COLUMNS = ['destination', 'amount']
 type User = (typeof usersData)[0]
 
 export default function DataTable_unverif_mobile() {
+	const t = useTranslations('tablesOverview')
 	const [filterValue, setFilterValue] = React.useState('')
 	const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]))
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
@@ -199,7 +201,7 @@ export default function DataTable_unverif_mobile() {
 					<Input
 						isClearable
 						className='w-full sm:max-w-[44%]'
-						placeholder='Search by name...'
+						placeholder={t('searchName')}
 						startContent={<SearchIcon />}
 						value={filterValue}
 						onClear={() => onClear()}
@@ -212,7 +214,7 @@ export default function DataTable_unverif_mobile() {
 									endContent={<ChevronDownIcon className='text-small' />}
 									variant='flat'
 								>
-									Status
+									{t('status')}
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu
@@ -236,7 +238,7 @@ export default function DataTable_unverif_mobile() {
 									endContent={<ChevronDownIcon className='text-small' />}
 									variant='flat'
 								>
-									Columns
+									{t('columns')}
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu
@@ -247,12 +249,12 @@ export default function DataTable_unverif_mobile() {
 								selectionMode='multiple'
 								onSelectionChange={setVisibleColumns}
 							>
-								<DropdownItem key='destination'>Destination</DropdownItem>
-								<DropdownItem key='amount'>The amount</DropdownItem>
-								<DropdownItem key='percent'>Percent</DropdownItem>
-								<DropdownItem key='total'>Total</DropdownItem>
-								<DropdownItem key='report'>Report</DropdownItem>
-								<DropdownItem key='actions'>Actions</DropdownItem>
+								<DropdownItem key='destination'>{t('destination')}</DropdownItem>
+								<DropdownItem key='amount'>{t('amount')}</DropdownItem>
+								<DropdownItem key='percent'>{t('percent')}</DropdownItem>
+								<DropdownItem key='total'>{t('total')}</DropdownItem>
+								<DropdownItem key='report'>{t('report')}</DropdownItem>
+								<DropdownItem key='actions'>{t('actions')}</DropdownItem>
 							</DropdownMenu>
 						</Dropdown>
 					</div>
@@ -310,7 +312,7 @@ export default function DataTable_unverif_mobile() {
 						align={column.uid === 'actions' ? 'center' : 'start'}
 						allowsSorting={column.sortable}
 					>
-						{column.name}
+						{t(column.uid)}
 					</TableColumn>
 				)}
 			</TableHeader>

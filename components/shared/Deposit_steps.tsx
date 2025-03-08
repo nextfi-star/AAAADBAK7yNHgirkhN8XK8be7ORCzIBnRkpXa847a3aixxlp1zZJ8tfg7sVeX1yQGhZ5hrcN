@@ -12,7 +12,7 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { useThemeStore } from '@/store'
-import { Avatar } from '@heroui/react'
+import { Avatar, Snippet, Spinner } from '@heroui/react'
 import { CheckCheck, ChevronDown } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { Button } from '../ui/button'
@@ -21,7 +21,7 @@ import { Deposit_confirmation } from './Deposit_confirmation'
 import { useUserStore } from '@/hooks/useUserData'
 import { getDepositAddress } from '@/utils/api'
 import { useTranslations } from 'next-intl'
-
+import QRCode from 'react-qr-code'
 export type CryptoData = {
 	id: number
 	name: string
@@ -37,83 +37,88 @@ export type NetworkData = {
 	moreLess: string
 }
 
-
 const Deposit_steps = () => {
 	const t = useTranslations('deposit')
-	const cryptoData = useMemo(() => [
-		{
-			id: 1,
-			name: 'TRX',
-			avatar: '/payment_table/trx.svg',
-			crypto: 'TRC20',
-			cryptoNumbers: '0.00000079',
-			moreLess: '<$0.01',
-		},
-		{
-			id: 2,
-			name: 'BTC',
-			avatar: '/payment_table/zro.svg',
-			crypto: 'ERC20',
-			cryptoNumbers: '0.00000079',
-			moreLess: '<$0.01',
-		},
-		{
-			id: 3,
-			name: 'ETH',
-			avatar: '/payment_table/teater.svg',
-			crypto: 'Bitcoin',
-			cryptoNumbers: '0.00000079',
-			moreLess: '<$0.01',
-		},
-		{
-			id: 4,
-			name: 'LTC',
-			avatar: '/payment_table/teater.svg',
-			crypto: 'BEP20',
-			cryptoNumbers: '0.00000079',
-			moreLess: '<$0.01',
-		},
-		{
-			id: 5,
-			name: 'TEST',
-			avatar: '/payment_table/teater.svg',
-			crypto: 'LTC',
-			cryptoNumbers: '0.00000079',
-			moreLess: '<$0.01',
-		},
-	], [])
-	const networkData = useMemo(() => [
-		{
-			id: 1,
-			name: 'TRC20',
-			cryptoNumbers: '0.00000079',
-			moreLess: '<$0.01',
-		},
-		{
-			id: 2,
-			name: 'ERC20',
-			cryptoNumbers: '0.00000079',
-			moreLess: '<$0.01',
-		},
-		{
-			id: 3,
-			name: 'BTC',
-			cryptoNumbers: '0.00000079',
-			moreLess: '<$0.01',
-		},
-		{
-			id: 4,
-			name: 'BEP20',
-			cryptoNumbers: '0.00000079',
-			moreLess: '<$0.01',
-		},
-		{
-			id: 5,
-			name: 'LTC',
-			cryptoNumbers: '0.00000079',
-			moreLess: '<$0.01',
-		},
-	], [])
+	const cryptoData = useMemo(
+		() => [
+			{
+				id: 1,
+				name: 'TRX',
+				avatar: '/payment_table/trx.svg',
+				crypto: 'TRC20',
+				cryptoNumbers: '0.00000079',
+				moreLess: '<$0.01',
+			},
+			{
+				id: 2,
+				name: 'BTC',
+				avatar: '/payment_table/zro.svg',
+				crypto: 'ERC20',
+				cryptoNumbers: '0.00000079',
+				moreLess: '<$0.01',
+			},
+			{
+				id: 3,
+				name: 'ETH',
+				avatar: '/payment_table/teater.svg',
+				crypto: 'Bitcoin',
+				cryptoNumbers: '0.00000079',
+				moreLess: '<$0.01',
+			},
+			{
+				id: 4,
+				name: 'LTC',
+				avatar: '/payment_table/teater.svg',
+				crypto: 'BEP20',
+				cryptoNumbers: '0.00000079',
+				moreLess: '<$0.01',
+			},
+			{
+				id: 5,
+				name: 'TEST',
+				avatar: '/payment_table/teater.svg',
+				crypto: 'LTC',
+				cryptoNumbers: '0.00000079',
+				moreLess: '<$0.01',
+			},
+		],
+		[]
+	)
+	const networkData = useMemo(
+		() => [
+			{
+				id: 1,
+				name: 'TRC20',
+				cryptoNumbers: '0.00000079',
+				moreLess: '<$0.01',
+			},
+			{
+				id: 2,
+				name: 'ERC20',
+				cryptoNumbers: '0.00000079',
+				moreLess: '<$0.01',
+			},
+			{
+				id: 3,
+				name: 'BTC',
+				cryptoNumbers: '0.00000079',
+				moreLess: '<$0.01',
+			},
+			{
+				id: 4,
+				name: 'BEP20',
+				cryptoNumbers: '0.00000079',
+				moreLess: '<$0.01',
+			},
+			{
+				id: 5,
+				name: 'LTC',
+				cryptoNumbers: '0.00000079',
+				moreLess: '<$0.01',
+			},
+		],
+		[]
+	)
 	const [selectedNetwork, setSelectedNetwork] = useState<NetworkData | null>(
 		null
 	)
@@ -121,7 +126,6 @@ const Deposit_steps = () => {
 	const [open, setOpen] = useState(false)
 	const [inputStep2, setInputStep2] = useState<string>('')
 	const [input2Step2, setInput2Step2] = useState<string>('')
-	const [input3, setInput3] = useState('')
 	const [selectedCrypto, setSelectedCrypto] = useState<CryptoData | null>(null)
 	const [openNetwork, setOpenNetwork] = useState(false)
 	const [error, setError] = useState('')
@@ -239,16 +243,12 @@ const Deposit_steps = () => {
 																className='data-[selected=true]:!bg-[#7676801F]'
 															>
 																<div className='flex items-center justify-between w-full'>
-																	<div className='flex items-center gap-[3px]'>
+																	<div className='flex items-center gap-[10px]'>
 																		<Avatar src={status.avatar} />
 																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
 																			{status.name}
-																			<span className='text-[20px] text-[#3A3939] dark:text-[#BDBDBD]'>
-																				{status.name}
-																			</span>
 																		</p>
 																	</div>
-																
 																</div>
 															</CommandItem>
 														))}
@@ -353,9 +353,6 @@ const Deposit_steps = () => {
 																				{status.name}
 																			</span>
 																		</div>
-																		<div className='flex flex-col items-end'>
-																			<span>{status.cryptoNumbers}</span>
-																		</div>
 																	</div>
 																</CommandItem>
 															))}
@@ -376,7 +373,7 @@ const Deposit_steps = () => {
 										inputStep2.length > 3 ? 'bg-[#205BC9]' : 'bg-[#3A3939]'
 									} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
 								>
-									{input3.length > 3 ? <CheckCheck /> : 3}
+									{inputStep2.length > 3 ? <CheckCheck /> : 3}
 								</span>
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 3 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
@@ -387,40 +384,41 @@ const Deposit_steps = () => {
 							{step === 3 && (
 								<div className='flex flex-col gap-[15px] w-full ml-[47px] pr-[35px]'>
 									<div className='flex flex-col gap-[10px] max-w-[294px] sm:max-w-[962px]'>
-										<input
-											type='text'
-											placeholder='Enter the amount'
-											className='px-[20px] text-[18px] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center max-w-[962px]'
-											value={input3}
-											disabled={step !== 3}
-											onChange={e => {
-												const value = e.target.value.replace(/[^0-9.]/g, '') 
-												setInput3(value)
-											}}
-											onKeyDown={e => {
-												if (
-													e.key === ' ' ||
-													(e.key === '.' && input3.includes('.'))
-												) {
-													e.preventDefault()
-												}
-											}}
-										/>
-
-										<span className='text-[18px] font-bold text-[#888888]'>
-											{t('transacFee')} <span>3.25 {selectedCrypto?.name}</span>
-										</span>
 										<div className='flex flex-col gap-[10px] md:gap-0 items-start md:flex-row md:items-center md:justify-between w-full '>
-											<p className='text-[16px] font-medium md:text-[20px] flex items-center justify-between gap-[5px] text-[#3A3939] dark:text-[#BDBDBD]'>
-												{t('amountDepos')}:
-											</p>
-											<div className='flex items-center gap-[34px]'>
-												<span className='text-[18px] xl:text-[25px] text-[#3A3939] dark:text-[#EFEFEF] max-w-[450px] overflow-x-auto'>
-													{input3} {' '}
-													{!depositAddress
-														? selectedCrypto?.name
-														: depositAddress}
-												</span>
+											<div className='flex flex-col gap-[34px]'>
+												<div className='flex flex-col gap-[.5rem]'>
+													<span>{t('depositWarr')}</span>
+													{!inputStep2 ? (
+														<Spinner />
+													) : (
+														<div className='max-w-[119px]'>
+															{!depositAddress ? (
+																<Spinner />
+															) : (
+																<QRCode
+																	size={150}
+																	style={{
+																		height: 'auto',
+																		maxWidth: '100%',
+																		width: '100%',
+																	}}
+																	value={depositAddress}
+																	viewBox={`0 0 256 256`}
+																/>
+															)}
+														</div>
+													)}
+													<Snippet
+														symbol=''
+														className='text-bold md:text-[20px] text-small capitalize bg-transparent px-0'
+														classNames={{
+															base: 'w-fit',
+															pre: 'overflow-x-auto max-w-[260px]',
+														}}
+													>
+														{depositAddress || 'none'}
+													</Snippet>
+												</div>
 												{error ? (
 													<Button
 														className={`text-[16px] xl:text-[20px] flex items-center bg-transparent outline hover:bg-[#0c0c0c] justify-center w-fit !py-[8px]  rounded-[50px] text-red-500`}
@@ -428,19 +426,17 @@ const Deposit_steps = () => {
 														{error}
 													</Button>
 												) : (
-													<Deposit_confirmation
-														input3={input3}
-														setInput3={setInput3}
-														setInputStep2={setInputStep2}
-														inputStep2={inputStep2}
-														setInput2Step2={setInput2Step2}
-														handleGetDepositAddress={handleGetDepositAddress}
-														setSelectedCrypto={setSelectedCrypto}
-														titleTrigger={'Deposit'}
-														selectedCrypto={selectedCrypto}
-														depositAddress={depositAddress}
-														error={error}
-													/>
+													<Button
+														className={`text-[16px] xl:text-[20px] flex items-center justify-center w-[156px] h-[44px] !py-[8px] hover:!bg-[#205BC9] rounded-[50px] ${inputStep2.length > 2 && selectedCrypto ? '!bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#888888]'}`}
+														disabled={inputStep2.length < 2}
+														onClick={() => {
+															handleGetDepositAddress
+															setStep(1)
+															setInputStep2('')
+														}}
+													>
+														{t('setAmount')}
+													</Button>
 												)}
 											</div>
 										</div>

@@ -126,7 +126,7 @@ export const Alert_phone = ({ propsItem }: Props) => {
 						>
 							<label className='text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] flex flex-col items-start gap-[10px] w-full'>
 								{t('currSMS')}
-								<div className='relative w-full'>
+								<span className='relative w-full'>
 									<Input
 										className='border border-solid rounded-[30px] shadow-none !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] px-[10px] py-[20px]'
 										placeholder={t('enterCode')}
@@ -138,7 +138,7 @@ export const Alert_phone = ({ propsItem }: Props) => {
 									<Button className='absolute right-[10px] bottom-[50%] translate-y-[50%] dark:text-white text-[#0c0c0c] text-[16px] rounded-[50px] cursor-pointer dark:bg-[#0c0c0c] bg-white h-fit border-1 border-solid outline-[#4d4d4d] dark:outline-[#4d4d4d] !outline-none'>
 										{t('sendCode')}
 									</Button>
-								</div>
+								</span>
 							</label>
 						</AlertDialogDescription>
 						<AlertDialogDescription

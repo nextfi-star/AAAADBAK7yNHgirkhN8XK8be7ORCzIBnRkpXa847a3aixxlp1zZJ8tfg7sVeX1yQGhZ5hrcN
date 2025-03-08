@@ -19,6 +19,7 @@ import { useThemeStore } from '@/store'
 import { useUserStore } from '@/hooks/useUserData'
 import { changeUserData } from '@/utils/api'
 import { error } from 'console'
+import { Spinner } from '@heroui/spinner'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -52,6 +53,13 @@ export const Alert_email = ({ propsItem }: Props) => {
 			return
 		}
 
+		// Валидация email
+		const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+		if (!emailRegex.test(inputs.newEmail)) {
+			setMessage('Неверный формат email!')
+			return
+		}
+
 		setLoading(true)
 		setMessage('')
 
@@ -65,8 +73,7 @@ export const Alert_email = ({ propsItem }: Props) => {
 
 		if (result.success) {
 			setMessage('Email успешно изменён!')
-			useUserStore.getState().updateUser({ email: inputs.newEmail });
-			useUserStore.getState().loadUser() 
+			useUserStore.getState().updateUser({ email: inputs.newEmail }) 
 		} else {
 			setMessage(result.message)
 		}
@@ -174,7 +181,6 @@ export const Alert_email = ({ propsItem }: Props) => {
 				{message && <p className='text-center text-red-500'>{message}</p>}
 				<AlertDialogFooter className='px-[30px] pt-[15px] h-fit items-center gap-[30px]'>
 					<Button
-						
 						onPress={handleSubmit}
 						className={`text-[16px] px-[40px] rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
 							isDisabled || loading
@@ -182,7 +188,7 @@ export const Alert_email = ({ propsItem }: Props) => {
 								: 'bg-[#205bc9] hover:bg-[#205bc9] text-white border-none'
 						}`}
 					>
-						{loading ? 'Обновление...' : t('confirm')}
+						{loading ? <Spinner /> : t('confirm')}
 					</Button>
 				</AlertDialogFooter>
 			</AlertDialogContent>

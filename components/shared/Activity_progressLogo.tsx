@@ -2,6 +2,7 @@ import { Button } from "@heroui/button"
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useMemo } from 'react'
+import { Activity_modal } from './Activity_modal'
 
 const Activity_progressLogo = () => {
 	const t = useTranslations('activity')
@@ -106,13 +107,10 @@ const Activity_progressLogo = () => {
 				<li className="before:content-['•'] before:mr-2 list-none">
 				{t('upgrade')}
 				</li>
-			</ul>
-			<Button
-				className='flex xl:hidden items-center rounded-[50px] text-[14px]  font-medium border border-solid dark:border-white border-black'
-				variant='bordered'
-			>
-				{t('descCrit')}
-			</Button>
+			</ul>	
+			<div className='lg:hidden'>
+			<Activity_modal />
+			</div>
 		</section>
 	)
 }

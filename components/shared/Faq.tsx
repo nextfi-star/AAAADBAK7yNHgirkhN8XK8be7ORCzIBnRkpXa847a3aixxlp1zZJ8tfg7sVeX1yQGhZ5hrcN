@@ -55,6 +55,30 @@ export const Faq = () => {
 							<summary>{t('diff')}</summary>
 							<p>{t('diffDesc')}</p>
 						</details>
+						<details
+							data-aos='fade-up'
+							data-aos-duration='1500'
+							data-aos-once='true'
+						>
+							<summary>{t('howDowinvest')}</summary>
+							<p>{t('diffDesc')}</p>
+						</details>
+						<details
+							data-aos='fade-up'
+							data-aos-duration='1500'
+							data-aos-once='true'
+						>
+							<summary>{t('whereMoney')}</summary>
+							<p>{t('whereMoney2')}</p>
+						</details>
+						<details
+							data-aos='fade-up'
+							data-aos-duration='1500'
+							data-aos-once='true'
+						>
+							<summary>{t('howOften')}</summary>
+							<p>{t('howOften2')}</p>
+						</details>
 					</div>
 
 					<div className='faq__feedback'>
@@ -78,13 +102,13 @@ export const Faq = () => {
 							<input
 								className='faq__form-input'
 								name='name'
-								placeholder='Name'
+								placeholder={t('placeJolderName')}
 								type='text'
 							/>
 							<input
 								className='faq__form-input'
 								name='email'
-								placeholder='E-mail'
+								placeholder={t('placeJolderEmail')}
 								type='email'
 							/>
 							<div className='faq__form-field'>

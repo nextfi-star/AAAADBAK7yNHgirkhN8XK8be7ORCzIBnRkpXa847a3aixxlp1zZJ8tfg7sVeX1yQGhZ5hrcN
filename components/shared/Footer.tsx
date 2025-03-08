@@ -138,7 +138,7 @@ export const Footer = () => {
 						<span className='dark:text-[#FFFFFF66] text-[18px] whitespace-nowrap'>
 							©2024 NextFi.io
 						</span>
-						<div className='bg-transparent text-[18px] w-full  '>
+						<div className='bg-transparent text-[18px] w-full flex items-center '>
 							<LangSwitch />
 							<span>{t('lang')}</span>
 						</div>
@@ -157,8 +157,12 @@ export const Footer = () => {
 						<h5 className='text-[25px] font-semibold dark:text-[#EFEFEF] mb-[5px]'>
 							{t('overview')}
 						</h5>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>Profile</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>Security</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('profile')}
+						</span>
+						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('security')}
+						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
 							{t('verification')}
 						</span>
@@ -233,7 +237,7 @@ export const Footer = () => {
 					</div>
 				</div>
 
-				<div className='flex flex-col gap-[10px] lg:flex-row xl:items-center lg:items-start justify-between w-full'>
+				<div className='flex flex-col gap-[30px] lg:flex-row xl:items-center lg:items-start justify-center w-full'>
 					<div className='flex items-start gap-[18px] lg:flex-col xl:flex-row'>
 						<h5 className='text-[25px] dark:text-[#EFEFEF] font-semibold'>
 							{t('comm')}
@@ -272,19 +276,15 @@ export const Footer = () => {
 						</div>
 					</div>
 
-					<div className='flex items-center w-full justify-center'>
-						<input
-							className='text-[16px] pl-[30px] py-[8px] rounded-[50px] w-full max-w-[400px] bg-[#7676801F]'
-							placeholder='Search'
-						/>
-					</div>
-
 					<div className='flex items-center justify-end w-full xl:w-fit gap-[10px]'>
-						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0'>
+						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0 text-[#205bc9]'>
 							{t('agreeM')}
 						</span>
-						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0'>
-							{t('agreeM')}
+						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0 text-[#205bc9]'>
+							{t('termsSec')}
+						</span>
+						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0 text-[#205bc9]'>
+							{t('secPol')}
 						</span>
 					</div>
 				</div>
@@ -309,8 +309,12 @@ export const Footer = () => {
 								©2024 NextFi.io
 							</span>
 						</div>
-						<div>
-							<LangSwitch cls={'bg-transparent text-[18px] w-full '} />
+						<div className='bg-transparent text-[18px] w-full flex items-center gap-[10px]'>
+							<LangSwitch
+								cls={
+									'bg-transparent text-[18px] w-full focus-visible:!outline-none'
+								}
+							/>
 							<span>{t('lang')}</span>
 						</div>
 					</div>
@@ -343,7 +347,7 @@ export const Footer = () => {
 					</Accordion>
 				</div>
 
-				<div className='flex flex-col gap-[32px] items-start w-full'>
+				<div className='flex flex-col gap-[32px] items-center w-full'>
 					<div className='flex items-center gap-[8px]'>
 						<h5 className='text-[25px] dark:text-[#EFEFEF] font-semibold'>
 							{t('comm')}
@@ -382,16 +386,15 @@ export const Footer = () => {
 						</div>
 					</div>
 
-					<div className='flex items-center w-full justify-center'>
-						<input
-							className='text-[16px] pl-[30px] py-[8px] rounded-[50px] w-full  bg-[#7676801F]'
-							placeholder='Search'
-						/>
-					</div>
-
 					<div className='flex w-full justify-center items-center gap-[30px]'>
-						<span className='dark:text-[#EFEFEF] text-[18px]'>
+						<span className='hover:cursor-pointer text-[14px] flex-shrink-0 text-[#205bc9]'>
 							{t('agreeM')}
+						</span>
+						<span className='hover:cursor-pointer text-[14px] flex-shrink-0 text-[#205bc9]'>
+							{t('termsSec')}
+						</span>
+						<span className='hover:cursor-pointer text-[14px] flex-shrink-0 text-[#205bc9]'>
+							{t('secPol')}
 						</span>
 					</div>
 				</div>

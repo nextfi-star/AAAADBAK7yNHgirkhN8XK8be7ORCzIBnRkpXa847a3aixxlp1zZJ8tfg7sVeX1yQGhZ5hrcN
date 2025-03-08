@@ -1,5 +1,6 @@
 {
 	"shared": {
+		"lang": "Язык",
 		"login": "Войти",
 		"signup": "Зарегистрироваться",
 		"logout": "Выйти",
@@ -19,6 +20,7 @@
 		"authorized": "Авторизованные устройства"
 	},
 	"footer": {
+		"lang": "Language",
 		"policy": "NextFi — это торговое название Next Financial Investments, компании, зарегистрированной в Объединенных Арабских Эмиратах. Все услуги предоставляются за пределами других стран и лицензированы и/или зарегистрированы в ОАЭ.",
 		"overview": "Обзор",
 		"verification": "Верификация",
@@ -38,6 +40,8 @@
 		"scan": "Сканируйте для загрузки приложения NextFi",
 		"comm": "Сообщество",
 		"agreeM": "Пользовательское соглашение",
+		"termsSec": "Условия использования",
+		"secPol": "Политика конфиденциальности",
 		"security": "Безопасность",
 		"profile": "Профиль"
 	},
@@ -202,8 +206,29 @@
 		"byClick": "Нажимая на кнопку, вы соглашаетесь с условиями",
 		"thePriv": "Политики конфиденциальности."
 	},
-	"tablesOverview": {},
-	"tablesAssets": {},
+	"tablesOverview": {
+		"destination": "Назначение",
+		"amount": "Сумма",
+		"percent": "Процент",
+		"pnl": "ПНЛ",
+		"actions": "Действия",
+		"total": "Общая сумма",
+		"report": "Отчет",
+		"columns": "Столбцы",
+		"status": "Статус",
+		"searchName": "Поиск по имени..."
+	},
+	"tablesAssets": {
+		"name": "ИМЯ",
+		"holdings": "АКТИВЫ",
+		"pnl": "ПРИБЫЛЬ/УБЫТОК",
+		"actions": "ДЕЙСТВИЯ",
+		"columns": "Колонки",
+		"status": "Статус",
+		"searchName": "Поиск по имени...",
+		"view": "Просмотр",
+		"edit": "Редактировать"
+	},
 	"tablesDeposit": {},
 	"tablesWithdrawal": {},
 	"tableTier": {},
@@ -335,6 +360,7 @@
 		"enterCode": "Введите код",
 		"enterPhoneNum": "Введите номер телефона",
 		"enterEmail": "Введите новый адрес электронной почты",
+		"newEmail": "Новая почта",
 		"newEmailAuth": "Новая аутентификация электронной почты",
 		"currEmailAuth": "Текущая аутентификация электронной почты",
 		"changeLoginPass": "Изменить пароль для входа",
@@ -434,10 +460,15 @@
 		"to": "В",
 		"noSlip": "Без проскальзывания",
 		"howConvert": "Как конвертировать криптовалюту на платформе NextFi?",
+		"howConvert2": "To perform the conversion operation, you must select the initial token and the one you want to convert to, regardless of the different networks.",
 		"whichCrypto": "Какие криптовалюты я могу конвертировать на платформе NextFi?",
+		"whichCrypto2": "Any coin available on the platform is eligible for conversion.",
 		"howCrypto": "Чем конвертация криптовалюты отличается от торговли?",
+		"howCrypto2": "Crypto conversion is the process of exchanging one cryptocurrency for another, whereas trading involves actively buying and selling cryptocurrencies in order to profit from fluctuations in their prices.",
 		"whereCrypto": "Где я могу найти свою конвертированную криптовалюту?",
-		"depositCrypto": "Как я могу внести/вывести конвертированную криптовалюту?"
+		"whereCrypto2": "The converted currency will be displayed in the assets and overview personal account on the NextFi platform.`",
+		"depositCrypto": "Как я могу внести/вывести конвертированную криптовалюту?",
+		"depositCrypto2": "Converted cryptocurrencies, like regular cryptocurrencies, can be withdrawn by selecting one of several available networks for the selected token"
 	},
 	"verify": {
 		"cmfrnIdent": "Подтвердите свою личность",
@@ -501,19 +532,37 @@
 		"profitAb2": "+2% к доходности",
 		"expertWith": "-2% комиссия за досрочный вывод, -20% срок инвестирования для определенных типов активов",
 		"noFee": "Без комиссии за досрочный вывод, -30% срок инвестирования для любых активов"
- 	},
+	},
 	"activity": {
 		"genActivity": "Общая активность",
 		"joinUs": "Присоединяйтесь к нам на всем пути развития",
 		"the": "",
 		"ecosystem": "экосистемы NextFi.",
-		"descCrit": "Описание и критерии для повышения уровня",
+		"descCrit": "Больше",
 		"particPrj": "Участвуйте в проектной деятельности",
 		"mksTrad": "Совершайте торговые операции",
 		"upgrade": "Улучшайте карты наград",
 		"yourActivity": "Ваша активность",
 		"lvl": "Уровень ",
-		"nextLvl": "Следующий уровень"
+		"nextLvl": "Следующий уровень",
+		"criteries": "Критерии для повышения уровня",
+		"lvlBonus": "Уровень и бонусная система в NextFi",
+		"eachInvs": "В NextFi, каждая инвестиция приносит вам опыт (XP). Когда вы достигаете нового уровня, вы получаете возможность выбрать один бонус из списка. Есть 6 уровней и 6 уникальных бонусов.",
+		"expBonus": "Примеры бонусов",
+		"addPerc": "Дополнительный процент прибыли от инвестиций.",
+		"reducFee": "Снижение комиссии за досрочный вывод",
+		"reducMin": "Снижение минимального периода инвестиции для определенных активов",
+		"theHigh": "Чем выше ваш уровень, тем больше возможностей вы получаете! Расти в NextFi, выбираете стратегию и накапливайте преимущества для максимальной прибыли",
+		"genAct": "Общая активность и запуск токена NextFi",
+		"urInvs": "Ваша инвестиционная деятельность не только приносит вам прибыль, но и помогает развитию всей экосистемы NextFi! Каждая инвестиция заполняет полную индикатор, отображая вклад всех пользователей в развитии платформы. Когда индикатор достигает 100%, мы официально запустим токен NextFi, и все участники, внесшие вклад, получат эксклюзивный айрдроп!",
+		"howWorks": "Как это работает:",
+		"invUr": "Вклад - ваши инвестиции увеличивают общую прогресс",
+		"dvlpEco": "Развитие экосистемы - больше инвестиций, ближе запуск токена",
+		"getRew": "Получение награды - после запуска токена, все активные участники получат айрдроп в зависимости от их вклада",
+		"follwPrgs": "Следите за индикатором и становитесь частью будущего NextFi!",
+		"invstXp": "Вклад - каждая успешная инвестиция дает вам XP",
+		"levelUp": "Уровень - накопив достаточное количество опыта, вы переходите на новый уровень",
+		"chooseBonus": "Выберите бонус - все доступные бонусы отображены в advance, но вы можете открыть их по одному для каждого нового уровня"
 	},
 	"invest": {
 		"sclInd": "Выберите отрасль",

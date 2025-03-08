@@ -20,9 +20,7 @@ import { useTranslations } from 'next-intl'
 
 interface Props {
 	titleTrigger: string
-	input3: string
 	inputStep2: string
-	setInput3: (val: string) => void
 	selectedCrypto: CryptoData | null
 	setSelectedCrypto: (val: null) => void
 	setInputStep2: (val: string) => void
@@ -35,8 +33,6 @@ interface Props {
 export const Deposit_confirmation = ({
 	className,
 	titleTrigger,
-	input3,
-	setInput3,
 	setInputStep2,
 	setInput2Step2,
 	selectedCrypto,
@@ -54,7 +50,6 @@ export const Deposit_confirmation = ({
 		setStep(1)
 		setConfirmStep(1)
 		setChecked(false)
-		setInput3('')
 		setSelectedCrypto(null)
 		setInputStep2('')
 		setInput2Step2('')
@@ -73,8 +68,8 @@ export const Deposit_confirmation = ({
 		<Dialog>
 			<DialogTrigger asChild className='!hover:bg-[#205BC9]'>
 				<Button
-					className={`text-[16px] xl:text-[20px] flex items-center justify-center w-[156px] h-[44px] !py-[8px] hover:!bg-[#205BC9] rounded-[50px] ${input3.length > 2 && inputStep2.length > 2 && selectedCrypto ? '!bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#888888]'} ${className}`}
-					disabled={input3.length < 2 || inputStep2.length < 2}
+					className={`text-[16px] xl:text-[20px] flex items-center justify-center w-[156px] h-[44px] !py-[8px] hover:!bg-[#205BC9] rounded-[50px] ${inputStep2.length > 2 && selectedCrypto ? '!bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#888888]'} ${className}`}
+					disabled={inputStep2.length < 2}
 					onClick={handleGetDepositAddress}
 				>
 					{titleTrigger}
@@ -124,7 +119,7 @@ export const Deposit_confirmation = ({
 									</DialogDescription>
 
 									<DialogDescription className='flex items-center gap-[4px] dark:text-white text-[14px] md:text-[20px]'>
-										{input3} {selectedCrypto?.name}
+										 {selectedCrypto?.name}
 									</DialogDescription>
 								</div>
 							</article>

@@ -2,6 +2,7 @@ import { Button } from "@heroui/button"
 import Activity_progressLogo from '@/components/shared/Activity_progressLogo'
 import Activity_personal from '@/components/shared/Activity_personal'
 import { useTranslations } from 'next-intl'
+import { Activity_modal } from '@/components/shared/Activity_modal'
 
 const Activity = () => {
 	const t = useTranslations('activity')
@@ -17,12 +18,7 @@ const Activity = () => {
 							{t('joinUs')} <br /> {t('the')}
 							<span className='text-[#205BC9]'> {t('ecosystem')}</span>
 						</p>
-						<Button
-							className='hidden lg:flex items-center rounded-[50px] text-[20px] xl:text-[27px] font-medium px-[35px] xl:py-[35px] border border-solid dark:border-white border-black'
-							variant='bordered'
-						>
-							{t('descCrit')}
-						</Button>
+						<Activity_modal />
 					</div>
 				</article>
 				<Activity_progressLogo />

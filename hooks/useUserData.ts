@@ -16,25 +16,27 @@ export const useUserStore = create<UserState>(set => ({
 	csrf: null,
 	setUser: user => set({ user }),
 	setCsrf: csrf => set({ csrf }),
-  updateUser: updates =>
-		set(state => ({ user: { ...state.user, ...updates } })),
+  updateUser: updates => {
+		set(state => {
+			const updatedUser = { ...state.user, ...updates };
+			localStorage.setItem("userData", JSON.stringify(updatedUser));
+			return { user: updatedUser };
+		});
+	},
   loadUser: () => {
     try {
       const storedData = localStorage.getItem('userData')
-      // console.log('loadUser вызван. Данные в localStorage:', storedData)
   
       if (storedData) {
         const parsedData = JSON.parse(storedData)
-        // console.log('Парсим данные:', parsedData)
   
         if (parsedData && parsedData.uid && parsedData.csrf) {
-          // console.log('✅ Данные корректны, обновляем user')
-          set({ user: { ...parsedData } }) // 🔥 Обновляем состояние через новый объект
+          set({ user: { ...parsedData } }) 
         } else {
           console.warn('⚠️ Данные некорректны, очищаем userData')
           localStorage.removeItem('userData')
           localStorage.removeItem('profile-store')
-          set({ user: { uid: null, csrf: null } }) // 🔥 Меняем объект, а не просто null
+          set({ user: { uid: null, csrf: null } })
         }
       } else {
         console.log('🔴 Нет данных в localStorage, user = null')
@@ -44,7 +46,7 @@ export const useUserStore = create<UserState>(set => ({
       console.error('❌ Ошибка при загрузке userData:', error)
       localStorage.removeItem('userData')
       localStorage.removeItem('profile-store')
-      set({ user: { uid: null, csrf: null } }) // 🔥 Меняем объект
+      set({ user: { uid: null, csrf: null } }) 
     }
   },
   

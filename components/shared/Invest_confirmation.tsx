@@ -209,7 +209,7 @@ export const Invest_confirmation = ({
 									<Withdrawal_animation />
 								</div>
 								<DialogDescription className='text-[25px] font-bold dark:text-white text-[#0c0c0c] min-h-[150px] w-full flex flex-col justify-end items-center'>
-									[t('withApli')]
+									{t('withApli')}
 								</DialogDescription>
 							</article>
 						</div>
