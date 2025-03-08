@@ -9,15 +9,14 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import { useThemeStore } from '@/store'
-import { Divider } from "@heroui/divider"
-import { NextPage } from 'next'
+import { useThemeStore } from '@/store/useChatStore'
+import { Divider } from '@heroui/divider'
+import { Image } from '@heroui/react'
 import { Cross2Icon } from '@radix-ui/react-icons'
-import { Image } from "@heroui/react"
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import Withdrawal_animation from './Withdrawal_animation'
 import { CryptoData } from './Withdrawal_steps'
-import { useTranslations } from 'next-intl'
 
 interface Props {
 	titleTrigger: string

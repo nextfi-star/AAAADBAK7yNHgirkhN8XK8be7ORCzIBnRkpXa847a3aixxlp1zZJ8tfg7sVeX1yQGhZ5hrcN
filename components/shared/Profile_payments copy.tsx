@@ -1,13 +1,12 @@
 'use client'
-import { DateRangePicker } from "@heroui/date-picker"
+import { DateRangePicker } from '@heroui/date-picker'
 import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
-import React from 'react'
 
-import { useThemeStore } from '../../store/index'
-import { Profile_industry } from './Profile__industry'
+import { useThemeStore } from '../../store/useChatStore'
 import DataTable_unverif from './DataTable_unverif'
 import DataTable_verif from './DataTable_verif'
+import { Profile_industry } from './Profile__industry'
 
 export const Profile_payments: NextPage = () => {
 	const t = useTranslations('profile')

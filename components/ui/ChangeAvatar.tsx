@@ -1,22 +1,22 @@
 'use client'
-import { useState } from 'react'
-import Image from 'next/image'
-import { PlusIcon } from './PlusIcon'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import {
 	Drawer,
+	DrawerClose,
 	DrawerContent,
-	DrawerTrigger,
-	DrawerHeader,
-	DrawerTitle,
 	DrawerDescription,
 	DrawerFooter,
-	DrawerClose,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerTrigger,
 } from '@/components/ui/drawer'
-import { useThemeStore } from '@/store'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useUserStore } from '@/hooks/useUserData'
+import { useThemeStore } from '@/store/useChatStore'
 import { Button } from '@heroui/button'
 import { useTranslations } from 'next-intl'
-import { useUserStore } from '@/hooks/useUserData'
+import Image from 'next/image'
+import { useState } from 'react'
+import { PlusIcon } from './PlusIcon'
 const data = [
 	{
 		img: '/main/avatar_noface.png',

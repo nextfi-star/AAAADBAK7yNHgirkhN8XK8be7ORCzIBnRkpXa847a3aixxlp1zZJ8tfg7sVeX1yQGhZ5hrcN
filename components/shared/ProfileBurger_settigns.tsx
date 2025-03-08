@@ -1,20 +1,17 @@
 'use client'
-import Image from 'next/image'
 import ArrowBracket from '@/components/ui/ArrowBracket'
-import { useThemeStore } from '@/store'
 import { ChangeAvatar } from '@/components/ui/ChangeAvatar'
 import { useUserStore } from '@/hooks/useUserData'
+import { useThemeStore } from '@/store/useChatStore'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 
 interface Props {
 	username: string
 	setShowSection: (value: boolean) => void
 	showSection: boolean
 }
-export const ProfileBurger_settigns = ({
-	username,
-	showSection,
-}: Props) => {
+export const ProfileBurger_settigns = ({ username, showSection }: Props) => {
 	const { theme } = useThemeStore()
 	const user = useUserStore(state => state.user)
 	const t = useTranslations('burger')
@@ -53,7 +50,9 @@ export const ProfileBurger_settigns = ({
 					) : (
 						<h5 className='text-[18px]'>{user?.phone}</h5>
 					)}
-					{showSection && <span className='text-[14px]'>{t('profileSettings')}</span>}
+					{showSection && (
+						<span className='text-[14px]'>{t('profileSettings')}</span>
+					)}
 				</div>
 			</div>
 			{showSection && (

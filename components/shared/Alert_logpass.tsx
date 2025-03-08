@@ -1,7 +1,5 @@
-import { useState } from 'react'
 import {
 	AlertDialog,
-	AlertDialogAction,
 	AlertDialogCancel,
 	AlertDialogContent,
 	AlertDialogDescription,
@@ -11,14 +9,14 @@ import {
 	AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Input } from '@/components/ui/input'
+import { useUserStore } from '@/hooks/useUserData'
+import { Link } from '@/i18n/routing'
+import { useThemeStore } from '@/store/useChatStore'
+import { changeUserData } from '@/utils/api'
 import { Button } from '@heroui/button'
 import { useTranslations } from 'next-intl'
-import Image from 'next/image'
-import { Link } from '@/i18n/routing'
+import { useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
-import { useUserStore } from '@/hooks/useUserData'
-import { changeUserData } from '@/utils/api'
-import { useThemeStore } from '@/store'
 
 interface Props {
 	propsItem: React.ReactNode

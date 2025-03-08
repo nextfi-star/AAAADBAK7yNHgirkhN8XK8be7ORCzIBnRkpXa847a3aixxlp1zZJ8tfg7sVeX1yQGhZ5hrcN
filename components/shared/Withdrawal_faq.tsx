@@ -24,7 +24,7 @@ const Withdrawal_faq = () => {
 			</AccordionItem>
 
 			<AccordionItem value="howSelect">
-				<AccordionTrigger>{t("howSelect")}</AccordionTrigger>
+				<AccordionTrigger className='text-left'>{t("howSelect")}</AccordionTrigger>
 				<AccordionContent>{t("howSelect2")}</AccordionContent>
 			</AccordionItem>
 

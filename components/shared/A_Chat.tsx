@@ -1,28 +1,41 @@
 'use client'
+import { useUserStore } from '@/hooks/useUserData'
+import { useChatStore, useThemeStore } from '@/store/useChatStore'
 import {
+	Button,
+	Divider,
 	Modal,
+	ModalBody,
 	ModalContent,
 	ModalHeader,
-	ModalBody,
-	Button,
 	useDisclosure,
-	Divider,
-} from "@heroui/react"
+} from '@heroui/react'
+import { ChevronLeft, Images, SendHorizontal, X } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import { ChevronLeft, Images, SendHorizontal, X } from 'lucide-react'
-import { useThemeStore } from '@/store'
+import A_ChatUploader from './A_ChatUploader'
 type Message = {
 	content: string
 	time: string
 	sender: 'me' | 'bot'
 }
 export const A_Chat = () => {
+	const user = useUserStore(state => state.user)
+	const {
+		tid,
+		messages,
+		setTid,
+		loadChatHistory,
+		sendChatMessage,
+		addMessage,
+	} = useChatStore()
 	const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
 	const [show, setShow] = useState(false)
-	const [messages, setMessages] = useState<Message[]>([])
+	const [error, setError] = useState('')
 	const [newMessage, setNewMessage] = useState('')
 	const [showCancel, setShowCancel] = useState(false)
+	const fileInputRef = useRef<HTMLInputElement>(null)
+	const [uploading, setUploading] = useState(false)
 	const scrollToBottom = () => {
 		if (messagesEndRef.current) {
 			messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -30,48 +43,71 @@ export const A_Chat = () => {
 	}
 	const messagesEndRef = useRef<HTMLDivElement>(null)
 
-	const sendMessage = () => {
-		if (!newMessage.trim()) return
+	// const sendMessage = () => {
+	// 	if (!newMessage.trim()) return
+	// 	const message: Message = {
+	// 		content: newMessage,
+	// 		sender: 'me',
+	// 		time: new Date().toLocaleTimeString('en-US', {
+	// 			hour: '2-digit',
+	// 			minute: '2-digit',
+	// 			hour12: true,
+	// 		}),
+	// 	}
 
-		const message: Message = {
-			content: newMessage,
-			sender: 'me',
-			time: new Date().toLocaleTimeString('en-US', {
-				hour: '2-digit',
-				minute: '2-digit',
-				hour12: true,
-			}),
-		}
+	// 	setMessages(prev => [...prev, message])
+	// 	setNewMessage('')
 
-		setMessages(prev => [...prev, message])
-		setNewMessage('')
-
-		// Фейковый ответ от бота
-		setTimeout(() => {
-			const botMessage: Message = {
-				content: 'Hello! This is a mock response.',
-				sender: 'bot',
-				time: new Date().toLocaleTimeString('en-US', {
-					hour: '2-digit',
-					minute: '2-digit',
-					hour12: true,
-				}),
-			}
-			setMessages(prev => [...prev, botMessage])
-		}, 1000)
-	}
+	// 	setTimeout(() => {
+	// 		const botMessage: Message = {
+	// 			content: 'Hello! This is a mock response.',
+	// 			sender: 'bot',
+	// 			time: new Date().toLocaleTimeString('en-US', {
+	// 				hour: '2-digit',
+	// 				minute: '2-digit',
+	// 				hour12: true,
+	// 			}),
+	// 		}
+	// 		setMessages(prev => [...prev, botMessage])
+	// 	}, 1000)
+	// }
 
 	useEffect(() => {
-		scrollToBottom()
+		if (messagesEndRef.current) {
+			messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
+		}
 	}, [messages])
+	useEffect(() => {
+		if (isOpen && user?.csrf) {
+			loadChatHistory(user.csrf)
+		}
+	}, [isOpen, user?.csrf, loadChatHistory])
+
+	const handleSendMessage = async () => {
+		if (!newMessage.trim() || !user?.csrf) return
+
+		await sendChatMessage(user.csrf, newMessage)
+		setNewMessage('')
+	}
+	const handleFileUploaded = (filename: string) => {
+		// Отправляем сообщение в чат с URL загруженного файла
+		addMessage({
+			tid: tid || '',
+			text: `https://nextfi.io/uploads/${filename}`, // Генерируем ссылку
+			time: Date.now(),
+			status: 0,
+			sender: 'me',
+		})
+	}
 	const DeleteChat = () => {
 		setNewMessage('')
-		setMessages([])
 		setShow(!show)
 		setShowCancel(!showCancel)
 		onClose()
 	}
 	const { theme } = useThemeStore()
+	// const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+
 	return (
 		<>
 			<Button
@@ -92,12 +128,12 @@ export const A_Chat = () => {
 				onOpenChange={onOpenChange}
 				className='!max-w-[428px]'
 				classNames={{
-					base: 'z-[9999] rounded-0 m-0 xl:rounded-[50px] dark:bg-[#0C0C0C] px-[20px] pt-[30px] !max-w-[428px] min-h-[737px]',
+					base: 'z-[9999] rounded-0 m-0 xl:rounded-[50px] dark:bg-[#0C0C0C] px-[20px] pt-[30px] !max-w-[428px] min-h-[650px]',
 					wrapper: '!items-end !justify-end z-[9999999]',
 					closeButton: 'hidden',
 				}}
 			>
-				<ModalContent className='!m-[0_40px_40px] '>
+				<ModalContent className='!m-[0_40px_0px] '>
 					{onClose => (
 						<>
 							<ModalHeader className='flex items-center justify-between w-full'>
@@ -162,46 +198,28 @@ export const A_Chat = () => {
 											{!showCancel ? (
 												<div className='flex flex-col w-full'>
 													<div className='md:max-h-[450px] max-h-[524px] overflow-y-auto'>
-														{messages.map((message, index) => (
+														{messages.map((msg, index) => (
 															<div
 																key={index}
-																className={`flex items-center w-full gap-[10px] mb-4 ${
-																	message.sender === 'me'
-																		? 'justify-end'
-																		: 'justify-start'
-																}`}
+																className={`flex items-center w-full gap-[10px] mb-4 ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}
 															>
-																<div className='flex items-center gap-[10px] mb-4 '>
-																	{message.sender === 'bot' && (
-																		<Image
-																			src={
-																				theme === 'dark'
-																					? '/chat/operator.svg'
-																					: '/chat/operator_light.svg'
-																			}
-																			width={40}
-																			height={40}
-																			priority
-																			alt='Operator icon'
-																		/>
-																	)}
-																	{message.sender === 'me' && (
-																		<span className='text-[13px] font-medium text-[#888888]'>
-																			{message.time}
-																		</span>
-																	)}
-																	<span className='text-[15px] font-medium p-[7px_27px] bg-[#7676801F] rounded-[20px] break-words max-w-[256px]'>
-																		{!message.content
-																			? 'Please select the language you prefer to continue'
-																			: message.content}
+																{msg.sender === 'bot' && (
+																	<Image
+																		src={'/chat/operator.svg'}
+																		width={40}
+																		height={40}
+																		priority
+																		alt='Operator icon'
+																	/>
+																)}
+																<span className='text-[15px] font-medium p-[7px_27px] bg-[#7676801F] rounded-[20px] break-words max-w-[256px]'>
+																	{msg.text}
+																</span>
+																{msg.sender === 'bot' && (
+																	<span className='text-[13px] font-medium text-[#888888]'>
+																		{new Date(msg.time).toLocaleTimeString()}
 																	</span>
-																	{message.sender === 'bot' && (
-																		<span className='text-[13px] font-medium text-[#888888]'>
-																			{message.time}
-																		</span>
-																	)}
-																</div>
-																<div ref={messagesEndRef} />
+																)}
 															</div>
 														))}
 														<div className='BOT flex flex-wrap gap-[7px] items-center mb-[20px]'>
@@ -235,20 +253,20 @@ export const A_Chat = () => {
 														onSubmit={e => e.preventDefault()}
 														className='relative flex items-center gap-[10px] w-full pb-[.5rem]'
 													>
-														<Images
-															className='bg-transparent absolute top-[11px] left-[17px] max-w-[32px] w-full cursor-pointer'
-															strokeWidth={1}
+														<A_ChatUploader
+															onFileUploaded={handleFileUploaded}
 														/>
 														<input
 															type='text'
 															value={newMessage}
+															autoFocus
 															onChange={e => setNewMessage(e.target.value)}
 															className='flex-1 border px-[65px] py-4 rounded-[30px] bg-[#7676801F] w-full overflow-hidden'
 														/>
 														<button
 															type='submit'
 															className='w-fit !m-0 !p-0 absolute top-[11px] right-[18px] bg-transparent hover:bg-transparent'
-															onClick={sendMessage}
+															onClick={handleSendMessage}
 														>
 															<SendHorizontal
 																strokeWidth={1}
@@ -264,14 +282,14 @@ export const A_Chat = () => {
 													</span>
 													<Button
 														className='dark:text-[#EFEFEF] text-[#3A3939] text-[18px] font-semibold bg-[#EEEEEE] dark:bg-[#000] w-full rounded-[20px] py-[8px]'
-														onClick={DeleteChat}
+														onPress={DeleteChat}
 													>
 														End Chat
 													</Button>
 													<Button
 														className='dark:text-[#FFFFFF66] text-[#3A3939] text-[18px] font-semibold bg-transparent dark:bg-transparent w-full py-[8px]'
 														disableAnimation
-														onClick={() => setShowCancel(!showCancel)}
+														onPress={() => setShowCancel(!showCancel)}
 													>
 														Cancel
 													</Button>

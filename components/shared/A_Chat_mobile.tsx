@@ -1,17 +1,17 @@
+import { useThemeStore } from '@/store/useChatStore'
 import {
+	Button,
+	Divider,
 	Modal,
+	ModalBody,
 	ModalContent,
 	ModalHeader,
-	ModalBody,
-	Button,
 	useDisclosure,
-	Divider,
-} from "@heroui/react"
+} from '@heroui/react'
+import { ChevronLeft, Images, SendHorizontal, X } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import { ChevronLeft, Images, SendHorizontal, X } from 'lucide-react'
 import { Chat } from '../ui/Chat'
-import { useThemeStore } from '@/store'
 type Message = {
 	content: string
 	time: string

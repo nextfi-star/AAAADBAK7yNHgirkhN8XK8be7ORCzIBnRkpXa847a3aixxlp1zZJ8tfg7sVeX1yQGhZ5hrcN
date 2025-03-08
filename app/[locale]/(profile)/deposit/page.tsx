@@ -4,7 +4,7 @@ import Deposit_steps from '@/components/shared/Deposit_steps'
 import Deposit_table from '@/components/shared/Deposit_table'
 import Deposit_table_mobile from '@/components/shared/Deposit_table_mobile'
 import { Link } from '@/i18n/routing'
-import { useThemeStore } from '@/store'
+import { useThemeStore } from '@/store/useChatStore'
 import { ChevronLeft, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 

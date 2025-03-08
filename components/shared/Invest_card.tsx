@@ -1,15 +1,15 @@
 'use client'
-import { useThemeStore } from '@/store'
-import { Button } from "@heroui/button"
+import { useThemeStore } from '@/store/useChatStore'
+import { Button } from '@heroui/button'
+import { Divider } from '@heroui/divider'
+import { X } from 'lucide-react'
+import { NextPage } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
-import { Invest_progressBar } from './Invest_progressBar'
-import { NextPage } from 'next'
-import { Divider } from "@heroui/divider"
-import { X } from 'lucide-react'
-import { Checkbox } from './Checkbox'
-import NotFoundItem from './NotFoundItem'
 import { SkeletonCard_invest } from '../ui/skeleton/SkeletonCard_invest'
+import { Checkbox } from './Checkbox'
+import { Invest_progressBar } from './Invest_progressBar'
+import NotFoundItem from './NotFoundItem'
 
 interface Props {
 	selectedCompany?: string
@@ -85,7 +85,7 @@ export const Invest_card: NextPage<Props> = () => {
 									<p className='sm:text-[20px] text-[#888888] font-medium'>
 										Amount at the moment
 									</p>
-								<p className='sm:text-[32px] text-[#888888] font-bold'>
+									<p className='sm:text-[32px] text-[#888888] font-bold'>
 										7517 NextFi
 									</p>
 								</div>
@@ -206,8 +206,9 @@ export const Invest_card: NextPage<Props> = () => {
 									</p>
 								</div>
 
-								<Button className='max-w-[188px] w-full p-[8px_4px] bg-[#29292B] text-white rounded-[50px]'
-								disabled
+								<Button
+									className='max-w-[188px] w-full p-[8px_4px] bg-[#29292B] text-white rounded-[50px]'
+									disabled
 								>
 									Get
 								</Button>

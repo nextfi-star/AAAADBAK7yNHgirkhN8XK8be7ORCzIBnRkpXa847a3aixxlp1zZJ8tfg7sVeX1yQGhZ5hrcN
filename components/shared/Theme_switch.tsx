@@ -1,24 +1,23 @@
-"use client";
-import { useEffect } from "react";
+'use client'
 
-import { useThemeStore } from "../../store";
-import { Moon, SunMoon } from 'lucide-react'
+import { Moon } from 'lucide-react'
+import { useThemeStore } from '../../store/useChatStore'
 
 interface Props {
-  width?: string;
+	width?: string
 }
 export default function Theme_switch({ width }: Props) {
-  const { theme, setTheme, initializeTheme } = useThemeStore();
+	const { theme, setTheme, initializeTheme } = useThemeStore()
 
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
+	const toggleTheme = () => {
+		const newTheme = theme === 'dark' ? 'light' : 'dark'
 
-    setTheme(newTheme);
-  };
+		setTheme(newTheme)
+	}
 
-  return (
-    <button className="theme-switch" onClick={toggleTheme}>
-     <Moon strokeWidth={1} />
-    </button>
-  );
+	return (
+		<button className='theme-switch' onClick={toggleTheme}>
+			<Moon strokeWidth={1} />
+		</button>
+	)
 }

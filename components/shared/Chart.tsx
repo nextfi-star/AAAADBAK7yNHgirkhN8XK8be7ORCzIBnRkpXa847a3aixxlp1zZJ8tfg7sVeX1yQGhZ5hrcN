@@ -1,17 +1,13 @@
 'use client'
-import * as React from 'react'
-import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
-import {
-	Card,
-	CardContent,
-	CardHeader,
-} from '@/components/ui/card'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import {
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from '@/components/ui/chart'
-import { useThemeStore } from '@/store'
+import { useThemeStore } from '@/store/useChatStore'
+import * as React from 'react'
+import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
 
 const chartData = [
 	{

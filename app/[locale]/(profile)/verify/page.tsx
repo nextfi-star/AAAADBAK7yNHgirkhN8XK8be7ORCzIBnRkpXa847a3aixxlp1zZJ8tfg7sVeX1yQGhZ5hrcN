@@ -4,11 +4,6 @@ import { Verify_documents } from '@/components/shared/Verify_documents'
 import ArrowBracket from '@/components/ui/ArrowBracket'
 import { ProfilePage_guard } from '@/components/ui/ProfilePage_guard'
 import { Button } from '@/components/ui/button'
-import animationData2 from '@/public/animation/verify_anim_mini.json'
-import Lottie, { LottieRefCurrentProps } from 'lottie-react'
-import { Check, ChevronsUpDown, X } from 'lucide-react'
-import Image from 'next/image'
-import { useRef, useState } from 'react'
 import {
 	Command,
 	CommandEmpty,
@@ -23,8 +18,13 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
-import { useThemeStore } from '@/store'
+import animationData2 from '@/public/animation/verify_anim_mini.json'
+import { useThemeStore } from '@/store/useChatStore'
+import Lottie, { LottieRefCurrentProps } from 'lottie-react'
+import { Check, ChevronsUpDown, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
+import { useRef, useState } from 'react'
 
 const countries = [
 	{
@@ -105,7 +105,6 @@ const Verify = () => {
 			className={`verify -mt-[8rem] sm:-mt-0 pb-[2rem] sm:pb-[0] ${
 				showFaq ? 'fixed' : ''
 			}`}
-			
 		>
 			<div className='site-holder !px-[0]'>
 				{!change ? (
@@ -160,16 +159,14 @@ const Verify = () => {
 											{t('accLaw')}
 										</p>
 										<p className='text-[14px] sm:text-[18px] md:text-[20px] leading-[24px] pb-[7px] max-w-[60%%] text-left'>
-										{t('uponCompl')}
+											{t('uponCompl')}
 										</p>
 										<div className='flex flex-col items-start gap-[4px]'>
 											<p className='text-[18px] md:text-[20px]'>
 												{t('provide')}:{' '}
 											</p>
 											<ul className='pl-[24px] text-[14px] sm:text-[18px] md:text-[20px]'>
-												<li className='!list-disc'>
-													{t('provideDoc')}
-												</li>
+												<li className='!list-disc'>{t('provideDoc')}</li>
 												<li className='!list-disc'>{t('persInfo')}</li>
 											</ul>
 										</div>
@@ -202,9 +199,7 @@ const Verify = () => {
 								<h3 className='text-[20px] md:text-[32px] font-bold'>
 									{t('basicVerif')}
 								</h3>
-								<p className='text-[20px] text-center'>
-									{t('passedVerif')}
-								</p>
+								<p className='text-[20px] text-center'>{t('passedVerif')}</p>
 							</div>
 						)}
 					</div>

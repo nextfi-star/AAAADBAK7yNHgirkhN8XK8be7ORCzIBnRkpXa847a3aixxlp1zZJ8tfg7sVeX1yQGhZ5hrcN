@@ -1,5 +1,5 @@
 'use client'
-import { useThemeStore } from '@/store'
+import { useThemeStore } from '@/store/useChatStore'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
 

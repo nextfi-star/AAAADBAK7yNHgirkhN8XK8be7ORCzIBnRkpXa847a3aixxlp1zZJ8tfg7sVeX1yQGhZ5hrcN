@@ -1,4 +1,4 @@
-import { Button } from "@heroui/button"
+import { Button } from '@heroui/button'
 import Activity_progressLogo from '@/components/shared/Activity_progressLogo'
 import Activity_personal from '@/components/shared/Activity_personal'
 import { useTranslations } from 'next-intl'
@@ -18,7 +18,9 @@ const Activity = () => {
 							{t('joinUs')} <br /> {t('the')}
 							<span className='text-[#205BC9]'> {t('ecosystem')}</span>
 						</p>
-						<Activity_modal />
+						<div className={'hidden lg:block'}>
+							<Activity_modal />
+						</div>
 					</div>
 				</article>
 				<Activity_progressLogo />

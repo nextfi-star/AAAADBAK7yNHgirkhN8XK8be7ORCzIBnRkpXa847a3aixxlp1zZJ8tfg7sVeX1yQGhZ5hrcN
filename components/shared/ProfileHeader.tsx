@@ -1,15 +1,9 @@
 'use client'
-import { useEffect, useMemo, useState } from 'react'
-import clsx from 'clsx'
+import { Logout } from '@/hooks/Logout'
+import { useUserStore } from '@/hooks/useUserData'
 import { Link } from '@/i18n/routing'
-import { useThemeStore } from '@/store'
-import { Burger_profile } from './Burger_profile'
-import Theme_switch from './Theme_switch'
-import { Navigation } from './Navigation'
-import { BurgerIcon } from './BurgerIcon'
-import { Platform_mode } from './Platform_mode'
-import { A_Chat_mobile } from './A_Chat_mobile'
-import { DropDown_menu } from './DropDown_menu'
+import { useThemeStore } from '@/store/useChatStore'
+import clsx from 'clsx'
 import {
 	ArrowDown,
 	BriefcaseBusiness,
@@ -24,12 +18,18 @@ import {
 	TrendingUp,
 	User2,
 } from 'lucide-react'
-import { Logo_header } from '../ui/Logo_header'
-import { Logout } from '@/hooks/Logout'
-import { useUserStore } from '@/hooks/useUserData'
-import { useParams, useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { useParams, useRouter } from 'next/navigation'
+import { useEffect, useMemo, useState } from 'react'
 import { LangSwitch } from '../ui/LangSwitch'
+import { Logo_header } from '../ui/Logo_header'
+import { A_Chat_mobile } from './A_Chat_mobile'
+import { Burger_profile } from './Burger_profile'
+import { BurgerIcon } from './BurgerIcon'
+import { DropDown_menu } from './DropDown_menu'
+import { Navigation } from './Navigation'
+import { Platform_mode } from './Platform_mode'
+import Theme_switch from './Theme_switch'
 
 interface Props {
 	auth: boolean
@@ -235,7 +235,7 @@ export const ProfileHeader = ({ auth = true }: Props) => {
 										<Theme_switch width={'35'} />
 									</a>
 									<div className='header__icons-item flex items-center'>
-									<LangSwitch />
+										<LangSwitch />
 									</div>
 									<div className='header__icons-item'>
 										<A_Chat_mobile />

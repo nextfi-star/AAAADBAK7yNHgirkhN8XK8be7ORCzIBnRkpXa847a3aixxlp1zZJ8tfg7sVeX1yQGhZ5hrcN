@@ -9,14 +9,14 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import { useThemeStore } from '@/store'
+import { useThemeStore } from '@/store/useChatStore'
 import { Divider } from '@heroui/divider'
-import { Cross2Icon } from '@radix-ui/react-icons'
 import { Snippet, Spinner } from '@heroui/react'
+import { Cross2Icon } from '@radix-ui/react-icons'
+import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import Withdrawal_animation from './Withdrawal_animation'
 import { CryptoData } from './Withdrawal_steps'
-import { useTranslations } from 'next-intl'
 
 interface Props {
 	titleTrigger: string
@@ -80,7 +80,7 @@ export const Deposit_confirmation = ({
 				<DialogContent className='max-w-[90%] md:max-w-[38rem] w-full p-0 rounded-[20px] !dark:bg-[#000] focus:outline-none'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
-							{t("makeDepos")}
+							{t('makeDepos')}
 							<DialogClose asChild>
 								<Cross2Icon className='h-[32px] w-[32px]' />
 							</DialogClose>
@@ -119,7 +119,7 @@ export const Deposit_confirmation = ({
 									</DialogDescription>
 
 									<DialogDescription className='flex items-center gap-[4px] dark:text-white text-[14px] md:text-[20px]'>
-										 {selectedCrypto?.name}
+										{selectedCrypto?.name}
 									</DialogDescription>
 								</div>
 							</article>

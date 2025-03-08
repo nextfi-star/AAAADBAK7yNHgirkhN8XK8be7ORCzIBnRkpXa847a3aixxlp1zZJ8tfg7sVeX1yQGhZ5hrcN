@@ -1,10 +1,10 @@
 'use client'
 import { Accordion, AccordionItem } from '@/components/ui/AccordionBurger'
 import { Device } from '@/components/ui/Device'
-import { useThemeStore } from '@/store'
+import { useUserStore } from '@/hooks/useUserData'
+import { useThemeStore } from '@/store/useChatStore'
 import { NextPage } from 'next'
 import Image from 'next/image'
-import { useUserStore } from '@/hooks/useUserData'
 import { useParams, useRouter } from 'next/navigation'
 
 export const ProfileBurger_devices__accor: NextPage = () => {

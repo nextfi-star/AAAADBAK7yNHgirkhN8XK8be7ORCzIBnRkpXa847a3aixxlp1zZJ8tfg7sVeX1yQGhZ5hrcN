@@ -2,14 +2,14 @@
 
 import { useInvestStore } from '@/hooks/useInvest'
 import { useUserStore } from '@/hooks/useUserData'
-import { fetchCoinList, getUserBalance, getUserHistory } from '@/utils/api'
+import {  getUserBalance, getUserHistory } from '@/utils/api'
 import { Spinner } from '@heroui/spinner'
 import { useEffect, useMemo, useState } from 'react'
 import { Coin } from '@/types'
+import { useCoinStore } from '@/store/coinList'
 
 const TestingCode = () => {
 	const [coin, setCoin] = useState('TEST')
-	const [coins, setCoins] = useState<Coin[]>([])
 	const user = useUserStore(state => state.user)
 	const [profileData, setProfileData] = useState(user)
 	const [history, setHistory] = useState<any>(null)
@@ -17,6 +17,15 @@ const TestingCode = () => {
 	const [balance, setBalance] = useState<number | null>(null)
 	const { invests, isLoading, fetchInvestHistory } = useInvestStore()
 	const csrf = useUserStore(state => state.user?.csrf) || ''
+	const { coins, loadCoins } = useCoinStore()
+	const [selectedCoin, setSelectedCoin] = useState<string>('')
+
+	// Загружаем список монет при запуске
+	useEffect(() => {
+		if (user?.csrf) {
+			loadCoins(user.csrf)
+		}
+	}, [user?.csrf, loadCoins])
 	useEffect(() => {
 		if (csrf) {
 			fetchInvestHistory(csrf, coin)
@@ -42,14 +51,6 @@ const TestingCode = () => {
 			fetchData()
 		}
 	}, [csrf, coin])
-	useEffect(() => {
-		const loadCoins = async () => {
-			const coinList = await fetchCoinList()
-			setCoins(coinList)
-		}
-
-		loadCoins()
-	}, [])
 	useEffect(() => {
 		setProfileData(user) // Автообновление данных при изменениях
 	}, [user])
@@ -206,6 +207,31 @@ const TestingCode = () => {
 								<p>Time - {data.time}</p>
 							</div>
 						))}
+				</div>
+				<div className='flex flex-col gap-4'>
+					<h1 className='text-[32px] font-bold w-full text-center lg:text-left'>
+						COIN LIST
+					</h1>
+					<div className='bg-teal-500 text-black w-fit p-4'>
+						<select
+							className='border p-2 rounded-md'
+							value={selectedCoin}
+							onChange={e => setSelectedCoin(e.target.value)}
+						>
+							<option value=''>Выберите монету</option>
+							{coins.map(coin => (
+								<option
+									key={coin.name}
+									value={coin.name}
+									disabled={!coin.enable}
+								>
+									{coin.name} {coin.deposit ? '(Доступен для депозита)' : ''} {coin.type}
+								</option>
+							))}
+						</select>
+
+						{selectedCoin && <p className='mt-4'>Вы выбрали: {selectedCoin}</p>}
+					</div>
 				</div>
 			</div>
 		</div>

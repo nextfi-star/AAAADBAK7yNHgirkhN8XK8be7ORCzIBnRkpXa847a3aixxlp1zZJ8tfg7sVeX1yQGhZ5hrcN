@@ -1,13 +1,13 @@
-import { useThemeStore } from '@/store'
+import { useThemeStore } from '@/store/useChatStore'
 import { useParams, useRouter } from 'next/navigation'
-const {  setEmail, setPassword,  } = useThemeStore()
+const { setEmail, setPassword } = useThemeStore()
 
 export const handleLogout = () => {
-  const router = useRouter()
+	const router = useRouter()
 	const locale = useParams().locale
-  useThemeStore.getState().clearUser();
+	useThemeStore.getState().clearUser()
 	localStorage.removeItem('zustand-store')
-  setEmail('')
+	setEmail('')
 	setPassword('')
 
 	router.push(`/${locale}/login?error=sessionExpired`)

@@ -9,16 +9,16 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import { Button } from "@heroui/button"
-import { useThemeStore } from '@/store'
-import { useParams, useRouter } from 'next/navigation'
+import { useThemeStore } from '@/store/useChatStore'
+import { Button } from '@heroui/button'
 import { useTranslations } from 'next-intl'
+import { useParams, useRouter } from 'next/navigation'
 interface Props {
 	content?: string
 	titleTriger?: string | any
 	title?: string
 	className?: string
-	sure?:string
+	sure?: string
 	unDone?: string
 }
 export const Logout_confirmation = ({
@@ -27,11 +27,11 @@ export const Logout_confirmation = ({
 	titleTriger,
 	className,
 	sure,
-	unDone
+	unDone,
 }: Props) => {
-	const { setEmail, setPassword, clearUser } = useThemeStore();
-  const router = useRouter();
-  const locale = useParams().locale;
+	const { setEmail, setPassword, clearUser } = useThemeStore()
+	const router = useRouter()
+	const locale = useParams().locale
 	const t = useTranslations('burger')
 	const handleLogout = () => {
 		clearUser()
@@ -52,7 +52,9 @@ export const Logout_confirmation = ({
 			<DialogContent className='max-w-[23rem] sm:max-w-md rounded-[10px]'>
 				<DialogHeader className='my-[20px]'>
 					<DialogTitle>{sure ? t('sure') : title}</DialogTitle>
-					<DialogDescription>{unDone ? t('unDone') : content}</DialogDescription>
+					<DialogDescription>
+						{unDone ? t('unDone') : content}
+					</DialogDescription>
 				</DialogHeader>
 				<DialogFooter className='flex flex-row gap-[40px] items-center justify-center sm:justify-center'>
 					<DialogClose asChild>

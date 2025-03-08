@@ -1,16 +1,15 @@
 'use client'
-import { useThemeStore } from '@/store'
+import { useThemeStore } from '@/store/useChatStore'
 import clsx from 'clsx'
 import { LogOut } from 'lucide-react'
-import { NextPage } from 'next'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useState } from 'react'
 import { ProfileBurger_info, ProgileBurger_Tabsinfo } from '.'
 import ArrowBracket from '../ui/ArrowBracket'
+import { Logout_confirmation } from './Logout_confirmation'
 import { ProfileBurger_menu_list } from './ProfileBurger_menu_list'
 import { ProfileBurger_settigns } from './ProfileBurger_settigns'
-import { Logout_confirmation } from './Logout_confirmation'
-import { useTranslations } from 'next-intl'
 
 interface Props {
 	handleClick: () => void
@@ -18,7 +17,7 @@ interface Props {
 }
 
 export const Burger_profile = ({ handleClick, show }: Props) => {
-	const t = useTranslations('burger')	
+	const t = useTranslations('burger')
 	const listClass = clsx('m_header__profile', { active: !show })
 	const [showSection, setShowSection] = useState<boolean>(true)
 	const { theme } = useThemeStore()

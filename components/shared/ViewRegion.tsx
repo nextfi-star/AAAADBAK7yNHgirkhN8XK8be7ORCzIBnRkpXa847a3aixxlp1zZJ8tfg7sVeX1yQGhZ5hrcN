@@ -1,22 +1,22 @@
 'use client'
-import { useState } from 'react'
-import { RussiaMap } from '../ui/RussiaMap'
-import ArrowBracket from '../ui/ArrowBracket'
-import { Choose_region } from './Choose_region'
 import {
 	Drawer,
+	DrawerClose,
 	DrawerContent,
-	DrawerTrigger,
-	DrawerHeader,
-	DrawerTitle,
 	DrawerDescription,
 	DrawerFooter,
-	DrawerClose,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerTrigger,
 } from '@/components/ui/drawer'
-import { useThemeStore } from '@/store'
 import { Link } from '@/i18n/routing'
+import { useThemeStore } from '@/store/useChatStore'
 import { Button } from '@heroui/button'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
+import ArrowBracket from '../ui/ArrowBracket'
+import { RussiaMap } from '../ui/RussiaMap'
+import { Choose_region } from './Choose_region'
 
 interface Props {
 	propsItem: React.ReactNode

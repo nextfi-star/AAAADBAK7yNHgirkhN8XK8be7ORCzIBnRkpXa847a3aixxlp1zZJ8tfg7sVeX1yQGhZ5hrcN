@@ -1,29 +1,27 @@
-import { NextPage } from 'next'
-import Image from 'next/image'
-import ArrowBracket from '../ui/ArrowBracket'
 import {
 	Drawer,
+	DrawerClose,
 	DrawerContent,
-	DrawerTrigger,
-	DrawerTitle,
 	DrawerDescription,
 	DrawerFooter,
-	DrawerClose,
+	DrawerTitle,
+	DrawerTrigger,
 } from '@/components/ui/drawer'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Link } from '@/i18n/routing'
-import { useThemeStore } from '@/store'
-import { Confirmation_dialog } from './Confirmation_dialog'
-import { Button } from "@heroui/button"
-import { useState } from 'react'
-import { handleAccountAction } from '@/utils/api'
+import { useThemeStore } from '@/store/useChatStore'
+import { Button } from '@heroui/button'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
+import { useState } from 'react'
+import ArrowBracket from '../ui/ArrowBracket'
+import { Confirmation_dialog } from './Confirmation_dialog'
 
 interface Props {
 	propsItem: React.ReactNode
 }
 
-export const FreezeAccount= ({ propsItem }: Props) => {
+export const FreezeAccount = ({ propsItem }: Props) => {
 	const { theme } = useThemeStore()
 	const t = useTranslations('security')
 	const [checked, setChecked] = useState(false)
@@ -87,20 +85,12 @@ export const FreezeAccount= ({ propsItem }: Props) => {
 								{t('afterFreeze')}
 							</span>
 							<span className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
-								<span>
-									• {t('after1')}{' '}
-								</span>
-								<span>
-									• {t('after2')}{' '}
-								</span>
-								<span>
-									• {t('after3')}
-								</span>
+								<span>• {t('after1')} </span>
+								<span>• {t('after2')} </span>
+								<span>• {t('after3')}</span>
 								<span>• {t('after4')}</span>
 								<span>• {t('after5')}</span>
-								<span>
-									• {t('after6')}
-								</span>
+								<span>• {t('after6')}</span>
 							</span>
 						</DrawerDescription>
 						<div className='flex w-full max-w-[921px] flex-col items-start gap-[10px] md:gap-[20px] border border-solid border-gray-400 py-[10px] rounded-[4px]'>
@@ -197,9 +187,7 @@ export const FreezeAccount= ({ propsItem }: Props) => {
 										? 'bg-[#205bc9] hover:bg-[#205bc9] dark:!border-[#205bc9] !border-[#205bc9] text-white'
 										: 'bg-transparent hover:bg-transparent data-[hover=true]:opacity-[.6] opacity-[.6]'
 								}`}
-								content={
-									t('undone')
-								}
+								content={t('undone')}
 								title={t('sure')}
 								titleTriger={t('confirm')}
 								checked={checked}

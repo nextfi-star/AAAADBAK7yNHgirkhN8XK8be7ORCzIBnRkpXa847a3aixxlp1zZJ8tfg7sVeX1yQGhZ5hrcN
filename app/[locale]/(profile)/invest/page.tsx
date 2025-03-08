@@ -3,11 +3,11 @@ import { Invest_card } from '@/components/shared/Invest_card'
 import { Invest_Faq } from '@/components/shared/Invest_Faq'
 import Invest_steps from '@/components/shared/Invest_steps'
 import Invest_Table from '@/components/shared/Invest_Table'
+import Invest_table_mobile from '@/components/shared/Invest_table_mobile'
 import { Page_title } from '@/components/shared/Page_title'
 import { SkeletonCard_invest } from '@/components/ui/skeleton/SkeletonCard_invest'
-import { useThemeStore } from '@/store'
+import { useThemeStore } from '@/store/useChatStore'
 import { useEffect, useState } from 'react'
-import Invest_table_mobile from '@/components/shared/Invest_table_mobile'
 
 const Invest = () => {
 	const { setConfirmStep, swapCheck, swapCheck2, setStep } = useThemeStore()
@@ -26,7 +26,7 @@ const Invest = () => {
 		}, 3000)
 	}, [])
 	return (
-		<section className='invest -mt-[8rem] md:-mt-[4rem] lg:mt-[4.5rem] pb-[1.5rem] top-mobile'  >
+		<section className='invest -mt-[8rem] md:-mt-[4rem] lg:mt-[4.5rem] pb-[1.5rem] top-mobile'>
 			<Page_title title='Investing' DropSteps={DropSteps} />
 			<div className='grid xl:grid-cols-[2fr_1fr] gap-[31px] mb-[33px]'>
 				<div className=''>

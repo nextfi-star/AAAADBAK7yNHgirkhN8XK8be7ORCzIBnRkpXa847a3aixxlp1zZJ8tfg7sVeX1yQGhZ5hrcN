@@ -1,15 +1,14 @@
-import { useThemeStore } from '@/store'
-import { Button } from '@heroui/button'
-import { Divider } from '@heroui/react'
-import { Globe, Info } from 'lucide-react'
-import Image from 'next/image'
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from '@/components/ui/AccordionBurger'
+import { useThemeStore } from '@/store/useChatStore'
+import { Divider } from '@heroui/react'
+import { Info } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 import { useMemo } from 'react'
 import { LangSwitch } from '../ui/LangSwitch'
 
@@ -277,13 +276,13 @@ export const Footer = () => {
 					</div>
 
 					<div className='flex items-center justify-end w-full xl:w-fit gap-[10px]'>
-						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0 text-[#205bc9]'>
+						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0 text-[#205bc9] hover:cursor-pointer'>
 							{t('agreeM')}
 						</span>
-						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0 text-[#205bc9]'>
+						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0 text-[#205bc9] hover:cursor-pointer'>
 							{t('termsSec')}
 						</span>
-						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0 text-[#205bc9]'>
+						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0 text-[#205bc9] hover:cursor-pointer'>
 							{t('secPol')}
 						</span>
 					</div>

@@ -1,8 +1,4 @@
 'use client'
-import { CheckCheck } from 'lucide-react'
-import Image from 'next/image'
-import { useState } from 'react'
-import ArrowBracket from '../ui/ArrowBracket'
 import {
 	AlertDialog,
 	AlertDialogCancel,
@@ -13,14 +9,18 @@ import {
 	AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Input } from '@/components/ui/input'
+import { useUserStore } from '@/hooks/useUserData'
 import { Link } from '@/i18n/routing'
-import { useThemeStore } from '@/store'
+import { useThemeStore } from '@/store/useChatStore'
+import { enable2FA, verify2FA } from '@/utils/api'
 import { Button } from '@heroui/button'
 import { Snippet } from '@heroui/snippet'
-import { enable2FA, verify2FA } from '@/utils/api'
-import { useUserStore } from '@/hooks/useUserData'
 import { Spinner } from '@heroui/spinner'
+import { CheckCheck } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
+import { useState } from 'react'
+import ArrowBracket from '../ui/ArrowBracket'
 
 interface Props {
 	propsItem: React.ReactNode

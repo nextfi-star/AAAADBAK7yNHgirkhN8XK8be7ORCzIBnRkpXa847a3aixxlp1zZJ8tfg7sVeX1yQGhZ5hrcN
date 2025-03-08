@@ -1,17 +1,14 @@
+import { useUserStore } from '@/hooks/useUserData'
+import { useThemeStore } from '@/store/useChatStore'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import ArrowBracket from '../ui/ArrowBracket'
-import { useThemeStore } from '@/store'
-import { useUserStore } from '@/hooks/useUserData'
-import { useTranslations } from 'next-intl'
 
 interface Props {
 	setShowSection: (val: boolean) => void
 	showSection: boolean
 }
-export const ProfileBurger_info = ({
-	setShowSection,
-	showSection,
-}: Props) => {
+export const ProfileBurger_info = ({ setShowSection, showSection }: Props) => {
 	const { theme } = useThemeStore()
 	const handleClick = () => {
 		setShowSection(!showSection)
@@ -45,7 +42,9 @@ export const ProfileBurger_info = ({
 							{user?.phone}
 						</h5>
 					)}
-					{showSection && <span className='text-[14px]'>{t('profileSettings')}</span>}
+					{showSection && (
+						<span className='text-[14px]'>{t('profileSettings')}</span>
+					)}
 				</div>
 			</div>
 			{showSection && (

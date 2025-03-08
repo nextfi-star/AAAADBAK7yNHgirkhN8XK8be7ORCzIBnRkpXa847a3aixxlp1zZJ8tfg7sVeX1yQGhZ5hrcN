@@ -1,16 +1,13 @@
 'use client'
-import Image from 'next/image'
-import { Device } from '../ui/Device'
 import { Accordion, AccordionItem } from '@/components/ui/AccordionBurger'
-import { useThemeStore } from '@/store'
-import { Button } from '@heroui/button'
-import { useEffect, useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
-import { Skeleton } from '@heroui/skeleton'
 import { useUserStore } from '@/hooks/useUserData'
+import { useThemeStore } from '@/store/useChatStore'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
+import { useParams, useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { Device } from '../ui/Device'
 import { Logout_confirmation } from './Logout_confirmation'
-import { LogOut } from 'lucide-react'
 
 export const Profile_devices = () => {
 	const t = useTranslations('device')
@@ -76,10 +73,10 @@ export const Profile_devices = () => {
 			if (!response.ok) {
 				throw new Error(result.message || 'Logout failed')
 			}
-		if(response.ok){
-			localStorage.removeItem('userData')
-			router.push(`/${locale}/login?error=sessionExpired`)
-		}
+			if (response.ok) {
+				localStorage.removeItem('userData')
+				router.push(`/${locale}/login?error=sessionExpired`)
+			}
 		} catch (error) {
 			console.error('Logout error:', error)
 		}
@@ -143,8 +140,12 @@ export const Profile_devices = () => {
 						width={'835'}
 					/>
 					<Logout_confirmation
-						unDone={'This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'}
-						className={'text-[20px] bg-[#205BC9] rounded-[50px] px-[25px] py-[5px] text-white !w-fit hover:bg-[#205BC9]'}
+						unDone={
+							'This action cannot be undeone. You will be logged out from this device, but your account and data will remain intact on servers'
+						}
+						className={
+							'text-[20px] bg-[#205BC9] rounded-[50px] px-[25px] py-[5px] text-white !w-fit hover:bg-[#205BC9]'
+						}
 						titleTriger={t('logOutAll')}
 						sure={'Are you absolutelu sure'}
 					/>

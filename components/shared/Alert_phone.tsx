@@ -12,13 +12,12 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Input } from '@/components/ui/input'
 import { Link } from '@/i18n/routing'
-import { useThemeStore } from '@/store'
-import { NextPage } from 'next'
-import Image from 'next/image'
-import ArrowBracket from '../ui/ArrowBracket'
-import { Button } from "@heroui/button"
-import { useState } from 'react'
+import { useThemeStore } from '@/store/useChatStore'
+import { Button } from '@heroui/button'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
+import { useState } from 'react'
+import ArrowBracket from '../ui/ArrowBracket'
 
 interface Props {
 	propsItem: React.ReactNode

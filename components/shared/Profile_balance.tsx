@@ -1,15 +1,15 @@
 'use client'
-import { useEffect, useState } from 'react'
-import Eye from '../ui/Eye'
-import ArrowBracket from '../ui/ArrowBracket'
-import { useThemeStore } from '../../store'
-import Chart from './Chart'
-import { Avatar, Image, Spinner } from "@heroui/react"
-import { Link } from '@/i18n/routing'
-import { RefreshCw } from 'lucide-react'
 import { useUserStore } from '@/hooks/useUserData'
-import { getUserBalance } from '@/utils/api'
+import { Link } from '@/i18n/routing'
+import { useBalanceStore } from '@/store/userBalance'
+import { Avatar, Image, Spinner } from '@heroui/react'
+import { RefreshCw } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useEffect, useState } from 'react'
+import { useThemeStore } from '../../store/useChatStore'
+import ArrowBracket from '../ui/ArrowBracket'
+import Eye from '../ui/Eye'
+import Chart from './Chart'
 
 export const Profile_balance = () => {
 	const { theme, verifyState } = useThemeStore()
@@ -31,16 +31,17 @@ export const Profile_balance = () => {
 	const [loading, setLoading] = useState(true)
 	const [coin, setCoin] = useState<string | ''>('TEST')
 	const user = useUserStore(state => state.user)
+	const { loadBalanceByCoin } = useBalanceStore()
+
 	useEffect(() => {
-		if (!user?.csrf) return
 		const fetchBalance = async () => {
-			setLoading(true)
-			const balanceData = await getUserBalance(user.csrf, coin)
-			setBalance(balanceData)
-			setLoading(false)
+			if (user?.csrf) {
+				const result = await loadBalanceByCoin(user.csrf, coin)
+				setBalance(result)
+			}
 		}
 		fetchBalance()
-	}, [user, coin])
+	}, [coin, user?.csrf, loadBalanceByCoin])
 
 	return (
 		<section className='h-fit'>
@@ -145,6 +146,12 @@ export const Profile_balance = () => {
 									</option>
 									<option
 										className='text-[12px] max-w-[1px] text-black'
+										value='BTC'
+									>
+										BTC
+									</option>
+									<option
+										className='text-[12px] max-w-[1px] text-black'
 										value='TEST'
 									>
 										TEST
@@ -187,6 +194,12 @@ export const Profile_balance = () => {
 										value='all'
 									>
 										All
+									</option>
+									<option
+										className='text-[12px] max-w-[1px] text-black'
+										value='BTC'
+									>
+										BTC
 									</option>
 									<option
 										className='text-[12px] max-w-[1px] text-black'

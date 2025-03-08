@@ -1,10 +1,10 @@
 'use client'
-import { useThemeStore } from '@/store'
+import { useThemeStore } from '@/store/useChatStore'
 import { ChevronLeft, X } from 'lucide-react'
 import Link from 'next/link'
 
 export const Dropsteps = () => {
-const { setConfirmStep, swapCheck, swapCheck2, setStep } = useThemeStore()
+	const { setConfirmStep, swapCheck, swapCheck2, setStep } = useThemeStore()
 
 	const DropSteps = () => {
 		setStep(1)

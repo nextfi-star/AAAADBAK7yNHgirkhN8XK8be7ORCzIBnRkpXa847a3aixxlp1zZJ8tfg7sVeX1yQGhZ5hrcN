@@ -1,11 +1,11 @@
 'use client'
+import { useThemeStore } from '@/store/useChatStore'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
 import { Button } from '../ui/button'
 import { PlusIcon } from '../ui/PlusIcon'
-import { useThemeStore } from '@/store'
 
 interface Props {
 	items: string

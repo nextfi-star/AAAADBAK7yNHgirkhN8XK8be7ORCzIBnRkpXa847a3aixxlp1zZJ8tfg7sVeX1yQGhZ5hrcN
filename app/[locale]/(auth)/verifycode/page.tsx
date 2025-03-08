@@ -1,19 +1,18 @@
 'use client'
 
-import { useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
-import { NextPage } from 'next'
-import { Button } from "@heroui/button"
 import {
 	InputOTP,
 	InputOTPGroup,
-	InputOTPSeparator,
 	InputOTPSlot,
 } from '@/components/ui/input-otp'
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
-import { useThemeStore } from '@/store'
-import { Spinner } from "@heroui/spinner"
+import { useThemeStore } from '@/store/useChatStore'
 import { verifyCode } from '@/utils/api'
+import { Button } from '@heroui/button'
+import { Spinner } from '@heroui/spinner'
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
+import { NextPage } from 'next'
+import { useParams, useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 const VerifyCode: NextPage = () => {
 	const [otp, setOtp] = useState<string>('')
@@ -36,7 +35,7 @@ const VerifyCode: NextPage = () => {
 			const payload = {
 				vcode: otp,
 				email: email,
-				password: 'test1@mail.com'
+				password: 'test1@mail.com',
 			}
 			const response = await verifyCode(payload)
 			if (response.response === 'success') {
@@ -76,7 +75,7 @@ const VerifyCode: NextPage = () => {
 					value={otp}
 					onChange={value => setOtp(value)}
 				>
-					<InputOTPGroup >
+					<InputOTPGroup>
 						{Array.from({ length: 6 }).map((_, index) => (
 							<InputOTPSlot
 								key={index}

@@ -108,9 +108,7 @@ const Activity_progressLogo = () => {
 				{t('upgrade')}
 				</li>
 			</ul>	
-			<div className='lg:hidden'>
-			<Activity_modal />
-			</div>
+		
 		</section>
 	)
 }

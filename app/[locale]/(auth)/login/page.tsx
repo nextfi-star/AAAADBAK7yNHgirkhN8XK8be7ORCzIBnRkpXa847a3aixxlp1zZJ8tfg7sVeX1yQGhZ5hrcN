@@ -1,24 +1,24 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
-import { useRouter, useParams } from 'next/navigation'
-import { Button } from '@heroui/button'
-import { useThemeStore } from '@/store'
-import { Spinner } from '@heroui/spinner'
-import { loginUser } from '@/utils/api'
-import Image from 'next/image'
-import { Link } from '@/i18n/routing'
 import { Logo_header } from '@/components/ui/Logo_header'
 import {
 	InputOTP,
 	InputOTPGroup,
 	InputOTPSlot,
 } from '@/components/ui/input-otp'
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
 import { useUserStore } from '@/hooks/useUserData'
+import { Link } from '@/i18n/routing'
+import { useThemeStore } from '@/store/useChatStore'
+import { loginUser } from '@/utils/api'
+import { Button } from '@heroui/button'
+import { Spinner } from '@heroui/spinner'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
+import { useParams, useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
 
 const Login = () => {
 	const t = useTranslations('auth')

@@ -1,9 +1,9 @@
 'use client'
-import { useThemeStore } from '@/store'
 import { Profile_balance, Profile_payments } from '@/components/shared'
 import Allocation from '@/components/shared/Allocation'
 import Transaction from '@/components/shared/Transactions'
 import { useCheckPathAssets } from '@/hooks/useCheckPathAssets'
+import { useThemeStore } from '@/store/useChatStore'
 
 const Assets = () => {
 	const { verifyState } = useThemeStore()

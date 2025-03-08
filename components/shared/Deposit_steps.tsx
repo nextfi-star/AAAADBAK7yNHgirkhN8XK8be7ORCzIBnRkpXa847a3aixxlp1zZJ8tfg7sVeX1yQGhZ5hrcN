@@ -11,17 +11,16 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover'
-import { useThemeStore } from '@/store'
+import { useUserStore } from '@/hooks/useUserData'
+import { useThemeStore } from '@/store/useChatStore'
+import { getDepositAddress } from '@/utils/api'
 import { Avatar, Snippet, Spinner } from '@heroui/react'
 import { CheckCheck, ChevronDown } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { useEffect, useMemo, useState } from 'react'
+import QRCode from 'react-qr-code'
 import { Button } from '../ui/button'
 import NotFoundItem from './NotFoundItem'
-import { Deposit_confirmation } from './Deposit_confirmation'
-import { useUserStore } from '@/hooks/useUserData'
-import { getDepositAddress } from '@/utils/api'
-import { useTranslations } from 'next-intl'
-import QRCode from 'react-qr-code'
 export type CryptoData = {
 	id: number
 	name: string
@@ -391,15 +390,17 @@ const Deposit_steps = () => {
 													{!inputStep2 ? (
 														<Spinner />
 													) : (
-														<div className='max-w-[119px]'>
+														<div className='max-w-[250px] w-full'>
 															{!depositAddress ? (
-																<Spinner />
+																<span className='block w-full'>
+																	Нет доступных адресов
+																</span>
 															) : (
 																<QRCode
 																	size={150}
 																	style={{
 																		height: 'auto',
-																		maxWidth: '100%',
+																		maxWidth: '119px',
 																		width: '100%',
 																	}}
 																	value={depositAddress}
@@ -412,8 +413,8 @@ const Deposit_steps = () => {
 														symbol=''
 														className='text-bold md:text-[20px] text-small capitalize bg-transparent px-0'
 														classNames={{
-															base: 'w-fit',
-															pre: 'overflow-x-auto max-w-[260px]',
+															base: 'w-fit h-fit ',
+															pre: 'overflow-x-auto px-[.5rem] py-[.4rem]',
 														}}
 													>
 														{depositAddress || 'none'}

@@ -1,8 +1,8 @@
 'use client'
-import { Accept_icon } from '../ui/Accept_icon'
-import { useThemeStore } from '../../store'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
+import { useThemeStore } from '../../store/useChatStore'
+import { Accept_icon } from '../ui/Accept_icon'
 
 interface Props {
 	toggleActive: () => void

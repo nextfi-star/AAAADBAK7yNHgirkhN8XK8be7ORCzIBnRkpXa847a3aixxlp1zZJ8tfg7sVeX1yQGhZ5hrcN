@@ -9,15 +9,15 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import { useThemeStore } from '@/store'
-import { Divider } from "@heroui/divider"
+import { useThemeStore } from '@/store/useChatStore'
+import { Divider } from '@heroui/divider'
+import { Image } from '@heroui/react'
 import { Cross2Icon } from '@radix-ui/react-icons'
-import { Image } from "@heroui/react"
-import { useState } from 'react'
-import Withdrawal_animation from './Withdrawal_animation'
-import { InvestData } from './Invest_steps'
-import { Checkbox } from './Checkbox'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
+import { Checkbox } from './Checkbox'
+import { InvestData } from './Invest_steps'
+import Withdrawal_animation from './Withdrawal_animation'
 
 interface Props {
 	titleTrigger: string
@@ -38,7 +38,14 @@ export const Invest_confirmation = ({
 	setSelectedInvest,
 }: Props) => {
 	const t = useTranslations('invest')
-	const { confirmationStep, setConfirmStep, setStep, setGlboalCompany, setGlboalCompanyIcon, setGlobalPeriod } = useThemeStore()
+	const {
+		confirmationStep,
+		setConfirmStep,
+		setStep,
+		setGlboalCompany,
+		setGlboalCompanyIcon,
+		setGlobalPeriod,
+	} = useThemeStore()
 	const [checked, setChecked] = useState(false)
 	const DropSteps = () => {
 		setStep(1)
@@ -97,10 +104,7 @@ export const Invest_confirmation = ({
 									</DialogDescription>
 								</div>
 							</article>
-							<Checkbox
-								forBox='confirm'
-								content={t('iCmfrWith')}
-							/>
+							<Checkbox forBox='confirm' content={t('iCmfrWith')} />
 						</div>
 					</DialogHeader>
 					<Divider className='m-0' />

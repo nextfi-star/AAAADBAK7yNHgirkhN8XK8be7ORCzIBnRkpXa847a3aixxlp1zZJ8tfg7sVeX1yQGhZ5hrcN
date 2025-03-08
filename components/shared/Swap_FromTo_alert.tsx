@@ -17,9 +17,9 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '@/components/ui/dialog'
-import { useThemeStore } from '@/store'
-import { Divider } from "@heroui/divider"
-import { Avatar } from "@heroui/react"
+import { useThemeStore } from '@/store/useChatStore'
+import { Divider } from '@heroui/divider'
+import { Avatar } from '@heroui/react'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import { ChevronDown } from 'lucide-react'
 import { NextPage } from 'next'

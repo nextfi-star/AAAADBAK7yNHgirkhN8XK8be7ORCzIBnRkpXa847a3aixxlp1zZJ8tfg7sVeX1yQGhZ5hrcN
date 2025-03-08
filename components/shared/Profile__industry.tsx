@@ -1,12 +1,12 @@
 'use client'
-import { useMemo, useRef } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Swiper as SwiperType } from 'swiper'
-import Image from 'next/image'
 import ArrowBracket from '@/components/ui/ArrowBracket'
-import { useThemeStore } from '@/store'
+import { useThemeStore } from '@/store/useChatStore'
 import { Button } from '@heroui/button'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
+import { useMemo, useRef } from 'react'
+import { Swiper as SwiperType } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 interface Props {
 	unicClass: string

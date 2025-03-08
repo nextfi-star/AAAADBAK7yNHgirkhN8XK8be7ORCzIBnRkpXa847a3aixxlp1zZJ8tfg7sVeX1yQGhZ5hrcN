@@ -1,9 +1,9 @@
 'use client'
-import { DotLottie, DotLottieReact } from '@lottiefiles/dotlottie-react'
-import {  useEffect, useMemo, useRef, useState } from 'react'
-import { NextPage } from 'next'
-import { useThemeStore } from '../../store'
 import { Link } from '@/i18n/routing'
+import { DotLottie, DotLottieReact } from '@lottiefiles/dotlottie-react'
+import { NextPage } from 'next'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { useThemeStore } from '../../store/useChatStore'
 
 export const TapBar: NextPage = () => {
 	const { theme, initializeTheme, setVerifyState } = useThemeStore()

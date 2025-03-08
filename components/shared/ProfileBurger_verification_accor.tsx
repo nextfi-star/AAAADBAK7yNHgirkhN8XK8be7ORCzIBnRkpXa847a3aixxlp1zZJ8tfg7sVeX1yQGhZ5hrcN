@@ -1,13 +1,13 @@
 'use client'
-import { useEffect, useRef } from 'react'
-import Image from 'next/image'
-import { LottieRefCurrentProps } from 'lottie-react'
-import animationData2 from '@/public/animation/verify_anim_mini.json'
-import { Button } from "@heroui/button"
-import { useThemeStore } from '@/store'
-import { Link } from '@/i18n/routing'
 import { ProfilePage_guard } from '@/components/ui/ProfilePage_guard'
-import dynamic from 'next/dynamic';
+import { Link } from '@/i18n/routing'
+import animationData2 from '@/public/animation/verify_anim_mini.json'
+import { useThemeStore } from '@/store/useChatStore'
+import { Button } from '@heroui/button'
+import { LottieRefCurrentProps } from 'lottie-react'
+import dynamic from 'next/dynamic'
+import Image from 'next/image'
+import { useEffect, useRef } from 'react'
 interface AccordionItemType {
 	value: string
 	trigger: string
@@ -21,7 +21,7 @@ interface Props {
 }
 
 export const ProfileBurger_verification_accor = ({ data }: Props) => {
-	const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
+	const Lottie = dynamic(() => import('lottie-react'), { ssr: false })
 	const { theme, globalVeriState } = useThemeStore()
 	const lottieRef = useRef<LottieRefCurrentProps>(null)
 	const stopAtFrame = () => {
@@ -98,13 +98,13 @@ export const ProfileBurger_verification_accor = ({ data }: Props) => {
 						loop={false}
 					/>
 					<div className='flex flex-col items-center gap-[15px] -mt-[2rem]'>
-					<h3 className='text-[20px] md:text-[32px] font-bold'>
-						Basic verification completed
-					</h3>
-					<p className='text-[20px] text-center'>
-						You have passed identity verification. Start your journey into the
-						world of cryptocurrencies now!
-					</p>
+						<h3 className='text-[20px] md:text-[32px] font-bold'>
+							Basic verification completed
+						</h3>
+						<p className='text-[20px] text-center'>
+							You have passed identity verification. Start your journey into the
+							world of cryptocurrencies now!
+						</p>
 					</div>
 				</div>
 			)}

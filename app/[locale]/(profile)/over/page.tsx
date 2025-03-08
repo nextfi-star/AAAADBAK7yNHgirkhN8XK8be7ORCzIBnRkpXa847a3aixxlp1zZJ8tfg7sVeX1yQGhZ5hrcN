@@ -1,6 +1,4 @@
 'use client'
-import { useEffect, useState } from 'react'
-import { useThemeStore } from '@/store'
 import {
 	Profile_balance,
 	Profile_industry,
@@ -10,7 +8,9 @@ import {
 	Profile_qr,
 	Profile_verification,
 } from '@/components/shared'
+import { useThemeStore } from '@/store/useChatStore'
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 const Overview = () => {
 	const pathname = usePathname()

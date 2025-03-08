@@ -2,10 +2,10 @@
 import animationData from '@/public/animation/file.json'
 import animationData2 from '@/public/animation/sphera.json'
 import animationData3 from '@/public/animation/sphera_dark.json'
+import { useThemeStore } from '@/store/useChatStore'
 import Lottie from 'lottie-react'
-import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { useThemeStore } from '@/store'
+import { useEffect, useState } from 'react'
 
 const VerifyAnimation = () => {
 	const { theme, setGlobalVerifState } = useThemeStore()
@@ -30,7 +30,7 @@ const VerifyAnimation = () => {
 		<>
 			{progress !== 100 ? (
 				<div className='flex flex-col items-center gap-[20px]'>
-					<h1 className='text-[24px] font-medium'>{t("identVerif")}</h1>
+					<h1 className='text-[24px] font-medium'>{t('identVerif')}</h1>
 					<Lottie
 						autoPlay
 						animationData={theme === 'dark' ? animationData3 : animationData2}
@@ -63,9 +63,7 @@ const VerifyAnimation = () => {
 							</>
 						) : (
 							<div className='flex flex-col items-center'>
-								<h1 className='text-[24px] font-medium'>
-									{t('identVerif')}
-								</h1>
+								<h1 className='text-[24px] font-medium'>{t('identVerif')}</h1>
 								<Lottie
 									autoPlay
 									animationData={
@@ -75,7 +73,7 @@ const VerifyAnimation = () => {
 									loop={true}
 								/>
 								<p className='text-[24px] font-medium text-center'>
-									{t("verifProg")}
+									{t('verifProg')}
 								</p>
 								<span className='text-[20px] font-medium w-full py-[16px] rounded-[50px] text-white text-center'>
 									{t('24hours')}

@@ -1,10 +1,8 @@
 import {
 	AlertDialog,
-	AlertDialogAction,
 	AlertDialogCancel,
 	AlertDialogContent,
 	AlertDialogDescription,
-	AlertDialogFooter,
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
@@ -12,7 +10,6 @@ import {
 import { Button } from '@/components/ui/button'
 import { useTranslations } from 'next-intl'
 import ArrowBracket from '../ui/ArrowBracket'
-import { useThemeStore } from '@/store'
 
 export function Activity_modal() {
 	const t = useTranslations('activity')
@@ -21,12 +18,12 @@ export function Activity_modal() {
 			<AlertDialogTrigger asChild>
 				<Button
 					variant='default'
-					className='hidden lg:flex items-center rounded-[50px] text-[20px] xl:text-[27px] font-medium px-[35px] xl:py-[35px] border border-solid dark:border-white border-black'
+					className='flex items-center rounded-[50px] text-[20px] xl:text-[27px] font-medium px-[35px] xl:py-[35px] border border-solid dark:border-white border-black'
 				>
 					{t('descCrit')}
 				</Button>
 			</AlertDialogTrigger>
-			<AlertDialogContent className='max-w-[1200px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[0] !z-[999]'>
+			<AlertDialogContent className='max-w-[1200px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[176px]'>
 				<AlertDialogHeader className=''>
 					<AlertDialogTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px] mb-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>

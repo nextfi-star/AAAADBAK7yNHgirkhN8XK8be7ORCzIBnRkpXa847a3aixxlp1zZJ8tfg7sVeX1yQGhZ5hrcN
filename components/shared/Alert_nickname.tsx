@@ -1,7 +1,3 @@
-import Image from 'next/image'
-import { useState } from 'react'
-import ArrowBracket from '../ui/ArrowBracket'
-import { Input } from '../ui/input'
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -14,9 +10,13 @@ import {
 	AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Link } from '@/i18n/routing'
-import { useThemeStore } from '@/store'
+import { useThemeStore } from '@/store/useChatStore'
 import { Button } from '@heroui/button'
 import { useTranslations } from 'next-intl'
+import Image from 'next/image'
+import { useState } from 'react'
+import ArrowBracket from '../ui/ArrowBracket'
+import { Input } from '../ui/input'
 
 interface Props {
 	propsItem: React.ReactNode

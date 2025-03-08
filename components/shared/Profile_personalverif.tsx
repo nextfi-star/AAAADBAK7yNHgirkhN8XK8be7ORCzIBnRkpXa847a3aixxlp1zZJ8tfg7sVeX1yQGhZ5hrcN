@@ -1,17 +1,17 @@
 'use client'
+import { useUserStore } from '@/hooks/useUserData'
+import { Link } from '@/i18n/routing'
+import { useThemeStore } from '@/store/useChatStore'
+import { Button } from '@heroui/button'
+import { Spinner } from '@heroui/spinner'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { ProfilePage_guard } from '../ui/ProfilePage_guard'
 import { ViewRegion } from './ViewRegion'
-import { useThemeStore } from '@/store'
-import { Button } from "@heroui/button"
-import { Link } from '@/i18n/routing'
-import { Spinner } from "@heroui/spinner"
-import { useUserStore } from '@/hooks/useUserData'
-import { useTranslations } from 'next-intl'
 
 export const Profile_personalverif = () => {
 	const { theme } = useThemeStore()
-	const user = useUserStore((state) => state.user)
+	const user = useUserStore(state => state.user)
 	const t = useTranslations('profile')
 	return (
 		<section className='personal__content flex flex-col w-full'>
@@ -30,7 +30,7 @@ export const Profile_personalverif = () => {
 				<span className='flex sm:hidden'>{t('identity')}</span>
 				<span className='after:content-["needed"] after:absolute relative after:text-white after:-bottom-[20px] after:left-[43px] '>
 					<ProfilePage_guard color={theme === 'dark' ? '#fff' : '#000'} />
-					{t("addinfo")}
+					{t('addinfo')}
 				</span>
 
 				<div className='min-w-[181px] flex justify-end'>

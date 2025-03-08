@@ -1,5 +1,4 @@
 'use client'
-import { useState } from 'react'
 import {
 	AlertDialog,
 	AlertDialogCancel,
@@ -11,15 +10,15 @@ import {
 	AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Input } from '@/components/ui/input'
-import { Button } from '@heroui/button'
-import { useTranslations } from 'next-intl'
-import { Link } from '@/i18n/routing'
-import ArrowBracket from '../ui/ArrowBracket'
-import { useThemeStore } from '@/store'
 import { useUserStore } from '@/hooks/useUserData'
+import { Link } from '@/i18n/routing'
+import { useThemeStore } from '@/store/useChatStore'
 import { changeUserData } from '@/utils/api'
-import { error } from 'console'
+import { Button } from '@heroui/button'
 import { Spinner } from '@heroui/spinner'
+import { useTranslations } from 'next-intl'
+import { useState } from 'react'
+import ArrowBracket from '../ui/ArrowBracket'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -73,7 +72,7 @@ export const Alert_email = ({ propsItem }: Props) => {
 
 		if (result.success) {
 			setMessage('Email успешно изменён!')
-			useUserStore.getState().updateUser({ email: inputs.newEmail }) 
+			useUserStore.getState().updateUser({ email: inputs.newEmail })
 		} else {
 			setMessage(result.message)
 		}

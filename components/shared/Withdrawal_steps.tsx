@@ -11,16 +11,15 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover'
-import { useThemeStore } from '@/store'
-import { Autocomplete, AutocompleteItem } from "@heroui/autocomplete"
-import { Avatar } from "@heroui/react"
+import { useThemeStore } from '@/store/useChatStore'
+import { Avatar } from '@heroui/react'
 import { CheckCheck, ChevronDown } from 'lucide-react'
 import { NextPage } from 'next'
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { Button } from '../ui/button'
 import NotFoundItem from './NotFoundItem'
 import { Withdrawal_confirmation } from './Withdrawal_confirmation'
-import { useTranslations } from 'next-intl'
 
 export type CryptoData = {
 	id: number

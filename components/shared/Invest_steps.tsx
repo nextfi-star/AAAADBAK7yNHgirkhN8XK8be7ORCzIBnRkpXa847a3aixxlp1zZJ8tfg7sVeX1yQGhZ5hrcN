@@ -11,14 +11,14 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover'
-import { useThemeStore } from '@/store'
-import { Avatar, Input } from "@heroui/react"
+import { useThemeStore } from '@/store/useChatStore'
+import { Avatar, Input } from '@heroui/react'
 import { CheckCheck, ChevronDown } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { Button } from '../ui/button'
-import NotFoundItem from './NotFoundItem'
 import { Invest_confirmation } from './Invest_confirmation'
-import { useTranslations } from 'next-intl'
+import NotFoundItem from './NotFoundItem'
 
 export type InvestData = {
 	id: number
@@ -182,7 +182,7 @@ const Invest_steps = () => {
 											) : (
 												<div className='flex w-full justify-between gap-[8px] items-center'>
 													<p className='text-[20px] font-medium text-[#0c0c0c] dark:text-[#BDBDBD]'>
-														{t("chooseInd")}
+														{t('chooseInd')}
 													</p>
 													<ChevronDown
 														strokeWidth={1}

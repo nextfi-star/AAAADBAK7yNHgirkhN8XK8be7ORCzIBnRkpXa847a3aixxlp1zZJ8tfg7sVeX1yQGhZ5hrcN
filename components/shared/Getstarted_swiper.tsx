@@ -1,14 +1,14 @@
 'use client'
-import { useMemo } from 'react'
-import Image from 'next/image'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay } from 'swiper/modules'
+import { useThemeStore } from '@/store/useChatStore'
 import { useTranslations } from 'next-intl'
-import { useThemeStore } from '@/store'
+import Image from 'next/image'
+import { useMemo } from 'react'
+import { Autoplay } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 export const Getstarted_swiper = () => {
 	const { theme } = useThemeStore()
-  const t = useTranslations('landing')
+	const t = useTranslations('landing')
 	const data = useMemo(
 		() => [
 			{

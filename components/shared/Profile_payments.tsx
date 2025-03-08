@@ -1,13 +1,13 @@
 'use client'
-import { DateRangePicker } from "@heroui/date-picker"
-import { useThemeStore } from '@/store/index'
-import { Profile_industry } from './Profile__industry'
-import DataTable_verif from './DataTable_verif'
+import { useThemeStore } from '@/store/useChatStore'
+import { DateRangePicker } from '@heroui/date-picker'
+import { useTranslations } from 'next-intl'
+import { useParams, usePathname } from 'next/navigation'
 import DataTable_unverif from './DataTable_unverif'
 import DataTable_unverif_mobile from './DataTable_unverif_mobile'
+import DataTable_verif from './DataTable_verif'
 import DataTable_verif_mobile from './DataTable_verif_mobile'
-import { useParams, usePathname } from 'next/navigation'
-import { useTranslations } from 'next-intl'
+import { Profile_industry } from './Profile__industry'
 
 export const Profile_payments = () => {
 	const { verifyState } = useThemeStore()

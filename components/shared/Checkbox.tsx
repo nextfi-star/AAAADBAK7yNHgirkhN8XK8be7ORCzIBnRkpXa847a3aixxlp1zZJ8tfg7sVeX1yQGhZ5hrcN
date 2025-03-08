@@ -1,5 +1,4 @@
-import { useThemeStore } from '@/store'
-import React from 'react'
+import { useThemeStore } from '@/store/useChatStore'
 
 export const Checkbox = ({
 	content,

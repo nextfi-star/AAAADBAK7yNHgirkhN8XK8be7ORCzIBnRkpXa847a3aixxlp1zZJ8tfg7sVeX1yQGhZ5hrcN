@@ -1,5 +1,15 @@
 'use client'
 import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from '@/components/ui/dialog'
+import {
 	Drawer,
 	DrawerClose,
 	DrawerContent,
@@ -10,28 +20,17 @@ import {
 } from '@/components/ui/drawer'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Link } from '@/i18n/routing'
-import { useThemeStore } from '@/store'
+import { useThemeStore } from '@/store/useChatStore'
 import { Button } from '@heroui/button'
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
+import { Confirmation_dialog } from './Confirmation_dialog'
 interface Props {
 	propsItem: React.ReactNode
 	user?: any
 }
-import {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from '@/components/ui/dialog'
-import { useUserStore } from '@/hooks/useUserData'
-import { useTranslations } from 'next-intl'
-import { Confirmation_dialog } from './Confirmation_dialog'
 
 export const CloseAccount = ({ propsItem }: Props) => {
 	const { theme } = useThemeStore()
