@@ -17,9 +17,11 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover'
+import { useUserStore } from '@/hooks/useUserData'
 import { cn } from '@/lib/utils'
 import animationData2 from '@/public/animation/verify_anim_mini.json'
 import { useThemeStore } from '@/store/useChatStore'
+import { uploadFile } from '@/utils/api'
 import Lottie, { LottieRefCurrentProps } from 'lottie-react'
 import { Check, ChevronsUpDown, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -50,7 +52,7 @@ const countries = [
 ]
 const typeID = [
 	{
-		value: 'national id card',
+		value: 'id_card',
 		label: 'National ID card',
 	},
 	{
@@ -64,6 +66,7 @@ const typeID = [
 ]
 
 const Verify = () => {
+	const user = useUserStore(state => state.user)
 	const t = useTranslations('verify')
 	const { theme, globalVeriState } = useThemeStore()
 	const [change, SetChange] = useState<boolean>(false)
@@ -75,20 +78,37 @@ const Verify = () => {
 	const [photo, setPhoto] = useState<string | null>(null)
 	const [photo2, setPhoto2] = useState<string | null>(null)
 	const [showFaq, setShowFaq] = useState<boolean>(false)
+	const [selectedFile, setSelectedFile] = useState<File | null>(null)
+	const [region, setRegion] = useState('')
+	const [uploading, setUploading] = useState(false)
+	const [error, setError] = useState('')
+	const fileInputRef = useRef<HTMLInputElement>(null)
 
+	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (!event.target.files?.length) return
+		setSelectedFile(event.target.files[0])
+		setError('')
+	}
+	const handleUpload = async (type: "upload_verif" | "upload_logo") => {
+		if (!user?.csrf || !selectedFile) {
+			setError("Выберите файл!");
+			return;
+		}
+		setUploading(true);
+		const result = await uploadFile(user.csrf, selectedFile, type, region);
+		if (result?.response === "success") {
+			alert("Файл успешно загружен!");
+		} else {
+			setError(result?.message || "Ошибка загрузки файла");
+		}
+
+		setUploading(false);
+	};
 	const handlePhotoChange = (photoData: string) => {
 		setPhoto(photoData)
-		DataHolder(photoData, 1)
 	}
 	const handlePhotoChange2 = (photoData: string) => {
 		setPhoto2(photoData)
-		DataHolder(photoData, 2)
-	}
-
-	const DataHolder = (photoData: string, index: number) => {
-		console.log('Country/Region - ', value)
-		console.log('Type ID - ', valueID)
-		console.log(`img ${index} - `, photoData)
 	}
 	const lottieRef = useRef<LottieRefCurrentProps>(null)
 	const ClearState = () => {
@@ -266,6 +286,7 @@ const Verify = () => {
 																	onSelect={(
 																		currentValue: React.SetStateAction<string>
 																	) => {
+																		setRegion(currentValue)
 																		setValue(
 																			currentValue === value ? '' : currentValue
 																		)
@@ -328,6 +349,7 @@ const Verify = () => {
 																				? ''
 																				: currentValue
 																		)
+
 																		setOpenID(false)
 																	}}
 																>
@@ -364,12 +386,17 @@ const Verify = () => {
 
 						{step === 2 && (
 							<Verify_documents
+								error={error}
 								handlePhotoChange={handlePhotoChange}
 								handlePhotoChange2={handlePhotoChange2}
 								items={valueID}
 								setStep={setStep}
 								onPhotoChange={handlePhotoChange}
 								step={step}
+								fileInputRef={fileInputRef}
+								handleFileChangeApi={handleFileChange}
+								uploading={uploading}
+								upLoad={handleUpload}
 							/>
 						)}
 

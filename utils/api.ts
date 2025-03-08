@@ -126,6 +126,64 @@ export const verifyCode = async (payload: {
 		throw new Error(error.message || 'An error occurred during login')
 	}
 }
+export const uploadFile = async (
+	csrf: string,
+	file: File,
+	type: "upload_verif" | "upload_logo",
+	region: string = ""
+) => {
+	try {
+		const formData = new FormData();
+		formData.append("csrf", csrf);
+		formData.append("type", type); 
+		formData.append("files", file);
+
+		if (type === "upload_verif") {
+			formData.append("region", region);
+		}
+
+		const response = await fetch(`https://nextfi.io:5000/api/v1/${type === "upload_logo" ? "logo" : "verification"}`, {
+			method: "POST",
+			body: formData,
+		});
+
+		const result = await response.json();
+		return result;
+	} catch (error) {
+		console.error("❌ Ошибка загрузки файла:", error);
+		return { response: "error", message: "Network error" };
+	}
+};
+export const sendPicture = async (file: File) => {
+	try {
+		if (!file) {
+			throw new Error('File is required for upload')
+		}
+		const csrf = useUserStore.getState().user?.csrf
+		if (!csrf) {
+			throw new Error('Missing required user data in localStorage')
+		}
+		const formData = new FormData()
+		formData.append('file', file)
+		formData.append('csrf', csrf || '')
+		const response = await fetch('https://nextfi.io:5000/api/v1/logo', {
+			method: 'POST',
+			body: formData,
+		})
+
+		const result = await response.json()
+
+		if (!response.ok) {
+			throw new Error(result.message || 'Upload failed')
+		}
+
+		console.log('Upload result:', result)
+		return result
+	} catch (error: any) {
+		console.error('Upload error:', error.message)
+		throw new Error(error.message || 'An error occurred during upload')
+	}
+}
 export const getActiveDevices = async (csrf: string) => {
 	try {
 		const payload = {
@@ -270,22 +328,26 @@ export const getInvestHistory = async ({
 		throw new Error(error.message || 'Ошибка соединения с сервером')
 	}
 }
-export const getCoinList = async (csrf: string) => {
+export const getCoins = async (csrf: string) => {
 	try {
-		const response = await fetch('https://nextfi.io:5000/api/v1/coin_list', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
+		const response = await fetch("https://nextfi.io:5000/api/v1/coin_list", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ csrf }),
-		})
+		});
 
-		const result = await response.json()
-			console.log(result)
-		return result
+		const result = await response.json();
+		if (result?.response === "success" && Array.isArray(result.data)) {
+			return result.data;
+		} else {
+			console.error("Ошибка получения списка монет:", result);
+			return [];
+		}
 	} catch (error) {
-		console.error('Ошибка получения списка монет:', error)
-		return null
+		console.error("Ошибка загрузки монет:", error);
+		return [];
 	}
-}
+};
 export const uploadChatFile = async (csrf: string, file: File) => {
 	try {
 		const formData = new FormData();
@@ -371,7 +433,7 @@ export const getChatHistory = async (csrf: string, tid: string) => {
 		const response = await fetch('https://nextfi.io:5000/api/v1/support_chat', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ csrf, type: 'history', tid }),
+			body: JSON.stringify({ csrf, type: 'all', tid }),
 		})
 
 		const result = await response.json()
@@ -398,3 +460,61 @@ export const sendMessage = async (csrf: string, tid: string, text: string) => {
 		return null
 	}
 }
+
+
+// const Deposit_steps = () => {
+// 	const user = useUserStore((state) => state.user);
+// 	const { coins, selectedCoin, loadCoins, setSelectedCoin } = useCoinStore();
+// 	const [open, setOpen] = useState<boolean>(false);
+
+// 	// Загружаем список монет при загрузке страницы
+// 	useEffect(() => {
+// 		if (user?.csrf) {
+// 			loadCoins(user.csrf);
+// 		}
+// 	}, [user?.csrf, loadCoins]);
+
+// 	return (
+// 		<Popover open={open} onOpenChange={setOpen} modal={true}>
+// 			<PopoverTrigger asChild>
+// 				<button className="flex w-full justify-between gap-[8px] items-center p-2 border rounded-md">
+// 					<div className="flex items-center gap-[3px]">
+// 						<span className="text-[18px]">
+// 							{selectedCoin ? selectedCoin.name : "Выберите криптовалюту"}
+// 						</span>
+// 					</div>
+// 					<ChevronDown strokeWidth={1} className={`w-8 h-8 transition duration-300 ${!open ? "rotate-[0deg]" : "rotate-[180deg]"}`} />
+// 				</button>
+// 			</PopoverTrigger>
+// 			<PopoverContent className="p-0 w-full shadow-none">
+// 				<Command className="bg-[#eee] dark:bg-[#19191A]">
+// 					<CommandList className="bg-[#eee] dark:bg-[#19191A] px-[10px]">
+// 						<CommandEmpty>Нет доступных монет</CommandEmpty>
+// 						<CommandGroup>
+// 							{coins.map((coin) => (
+// 								<CommandItem
+// 									key={coin.id}
+// 									className="data-[selected=true]:!bg-[#7676801F]"
+// 									onSelect={() => {
+// 										setSelectedCoin(coin);
+// 										setOpen(false);
+// 									}}
+// 								>
+// 									<div className="flex items-center justify-between w-full">
+// 										<div className="flex items-center gap-[10px]">
+// 											<Avatar src={coin.avatar || ""} />
+// 											<p className="text-[20px] text-[#205BC9] flex flex-col items-start">
+// 												{coin.name}
+// 											</p>
+// 										</div>
+// 									</div>
+// 								</CommandItem>
+// 							))}
+// 						</CommandGroup>
+// 					</CommandList>
+// 				</Command>
+// 			</PopoverContent>
+// 		</Popover>
+// 	);
+// }
+// export default Deposit_steps

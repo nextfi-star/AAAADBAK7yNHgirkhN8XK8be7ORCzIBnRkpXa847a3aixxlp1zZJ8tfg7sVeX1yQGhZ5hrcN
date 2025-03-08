@@ -21,6 +21,7 @@ import { useEffect, useMemo, useState } from 'react'
 import QRCode from 'react-qr-code'
 import { Button } from '../ui/button'
 import NotFoundItem from './NotFoundItem'
+import { useCoinStore } from '@/store/coinList'
 export type CryptoData = {
 	id: number
 	name: string
@@ -38,6 +39,9 @@ export type NetworkData = {
 
 const Deposit_steps = () => {
 	const t = useTranslations('deposit')
+	const user = useUserStore(state => state.user)
+	const { coins, selectedCoin, loadCoins, setSelectedCoin } = useCoinStore()
+
 	const cryptoData = useMemo(
 		() => [
 			{
@@ -124,35 +128,42 @@ const Deposit_steps = () => {
 	const { step, setStep, theme } = useThemeStore()
 	const [open, setOpen] = useState(false)
 	const [inputStep2, setInputStep2] = useState<string>('')
-	const [input2Step2, setInput2Step2] = useState<string>('')
 	const [selectedCrypto, setSelectedCrypto] = useState<CryptoData | null>(null)
 	const [openNetwork, setOpenNetwork] = useState(false)
 	const [error, setError] = useState('')
 	const [depositAddress, setDepositAddress] = useState('')
-	const user = useUserStore(state => state.user)
+
 	const handleGetDepositAddress = async () => {
-		if (!user?.csrf || !selectedCrypto || !selectedNetwork) {
+		if (!user?.csrf || !selectedCoin || !selectedNetwork) {
 			setError(t('errChoose'))
 			return
 		}
 		setError('')
 		const result = await getDepositAddress(
 			user.csrf,
-			selectedCrypto.name,
+			selectedCoin.name,
 			selectedNetwork.name
 		)
 		if (result.success) {
 			setDepositAddress(result.address)
-			console.log(result)
 		} else {
 			setError(result.message)
 		}
 	}
 	useEffect(() => {
-		if (selectedCrypto && selectedNetwork) {
+		if (selectedCoin && selectedNetwork) {
 			handleGetDepositAddress()
 		}
-	}, [selectedCrypto, selectedNetwork])
+	}, [selectedCoin, selectedNetwork])
+	useEffect(() => {
+		if (user?.csrf) {
+			loadCoins(user.csrf)
+			console.log(selectedCoin)
+			console.log(coins)
+		}
+	}, [user?.csrf, loadCoins])
+	const getCoinImage = (coinName: string) =>
+		`/coins/${coinName.toLowerCase()}.svg`
 	return (
 		<div className=' dark:shadow-none rounded-[30px] p-[29px_16px] md:p-[29px]'>
 			<div className='flex justify-start gap-[10px] w-full  pb-[1.5rem]'>
@@ -185,34 +196,22 @@ const Deposit_steps = () => {
 												size='sm'
 												className='w-full h-[48px] rounded-medium max-w-[294px] sm:max-w-[962px] justify-start bg-[#7676801F] hover:bg-[#7676801F] pl-[20px]'
 											>
-												{selectedCrypto ? (
-													<div className='flex w-full justify-between gap-[8px] items-center'>
-														<div className='flex items-center gap-[3px]'>
-															<Avatar src={selectedCrypto.avatar} />
-															<p className='text-[18px] text-[#0c0c0c] dark:text-white'>
-																{selectedCrypto.name}
-															</p>
-														</div>
-														<ChevronDown
-															strokeWidth={1}
-															color={theme === 'dark' ? 'white' : 'black'}
-															className={`w-8 h-8 transition duration-300  
-															${!open ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
+												<div className='flex w-full justify-between gap-[8px] items-center'>
+													<div className='flex items-center gap-[3px]'>
+														<Avatar
+															src={`/crypto/${selectedCoin?.name?.toLowerCase()}.svg`}
 														/>
-													</div>
-												) : (
-													<div className='flex w-full justify-between gap-[8px] items-center'>
 														<p className='text-[18px] text-[#0c0c0c] dark:text-white'>
-															{t('selectCrpt')}
+															{selectedCoin ? selectedCoin.name : t('setDestn')}
 														</p>
-														<ChevronDown
-															strokeWidth={1}
-															color={theme === 'dark' ? 'white' : 'black'}
-															className={`w-8 h-8 transition duration-300  
-																${!open ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
-														/>
 													</div>
-												)}
+													<ChevronDown
+														strokeWidth={1}
+														color={theme === 'dark' ? 'white' : 'black'}
+														className={`w-8 h-8 transition duration-300  
+															${!open ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
+													/>
+												</div>
 											</Button>
 										</PopoverTrigger>
 										<PopoverContent
@@ -226,16 +225,12 @@ const Deposit_steps = () => {
 														<NotFoundItem />
 													</CommandEmpty>
 													<CommandGroup>
-														{cryptoData.map(status => (
+														{coins.map(coin => (
 															<CommandItem
-																key={status.id}
-																value={status.name}
-																onSelect={value => {
-																	setSelectedCrypto(
-																		cryptoData.find(
-																			priority => priority.name === value
-																		) || null
-																	)
+																key={coin.id}
+																value={coin.name}
+																onSelect={() => {
+																	setSelectedCoin(coin)
 																	setOpen(false)
 																	setStep(2)
 																}}
@@ -243,9 +238,9 @@ const Deposit_steps = () => {
 															>
 																<div className='flex items-center justify-between w-full'>
 																	<div className='flex items-center gap-[10px]'>
-																		<Avatar src={status.avatar} />
+																		<Avatar src={`/crypto/${coin.name?.toLowerCase()}.svg`} />
 																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
-																			{status.name}
+																			{coin.name}
 																		</p>
 																	</div>
 																</div>
@@ -307,7 +302,7 @@ const Deposit_steps = () => {
 													) : (
 														<div className='flex w-full justify-between gap-[8px] items-center mb-[-5px]'>
 															<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
-																{t('selectCrpt')}
+																{t('setDestn')}
 															</p>
 															<ChevronDown
 																strokeWidth={1}
@@ -420,24 +415,12 @@ const Deposit_steps = () => {
 														{depositAddress || 'none'}
 													</Snippet>
 												</div>
-												{error ? (
-													<Button
+												{error && (
+													<span
 														className={`text-[16px] xl:text-[20px] flex items-center bg-transparent outline hover:bg-[#0c0c0c] justify-center w-fit !py-[8px]  rounded-[50px] text-red-500`}
 													>
 														{error}
-													</Button>
-												) : (
-													<Button
-														className={`text-[16px] xl:text-[20px] flex items-center justify-center w-[156px] h-[44px] !py-[8px] hover:!bg-[#205BC9] rounded-[50px] ${inputStep2.length > 2 && selectedCrypto ? '!bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#888888]'}`}
-														disabled={inputStep2.length < 2}
-														onClick={() => {
-															handleGetDepositAddress
-															setStep(1)
-															setInputStep2('')
-														}}
-													>
-														{t('setAmount')}
-													</Button>
+													</span>
 												)}
 											</div>
 										</div>

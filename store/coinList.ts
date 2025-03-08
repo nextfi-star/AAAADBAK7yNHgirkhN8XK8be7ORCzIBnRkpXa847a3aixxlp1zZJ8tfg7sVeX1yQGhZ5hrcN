@@ -1,25 +1,33 @@
-import { getCoinList } from '@/utils/api'
+import { getCoins } from '@/utils/api'
 import { create } from "zustand";
 
-type Coin = {
+export type Coin = {
+	id: number;
 	name: string;
+	avatar?: string;
 	type: string;
-	enable: number;
+	network: string;
+	fee: number;
 	deposit: number;
 	withdraw: number;
+	enable: number;
 };
 
-type CoinState = {
+type CoinStore = {
 	coins: Coin[];
+	selectedCoin: Coin | null;
 	loadCoins: (csrf: string) => Promise<void>;
+	setSelectedCoin: (coin: Coin) => void;
 };
 
-export const useCoinStore = create<CoinState>((set) => ({
+export const useCoinStore = create<CoinStore>((set) => ({
 	coins: [],
+	selectedCoin: null,
+
 	loadCoins: async (csrf) => {
-		const result = await getCoinList(csrf);
-		if (result?.response === "success" && result.data) {
-			set({ coins: result.data });
-		}
+		const result = await getCoins(csrf);
+		set({ coins: result });
 	},
+
+	setSelectedCoin: (coin) => set({ selectedCoin: coin }),
 }));

@@ -437,7 +437,8 @@
 		"howSelect": "How do I select the correct network for my crypto deposit and deposits?",
 		"howSelect2": "hen choosing a network for a deposit, be sure to check the networks and payment methods before transferring, otherwise it will be impossible to refund the funds.",
 		"doI": "Do I need to pay fees for deposit and deposit?",
-		"doI2": "There is no commission when making a deposit on the platform, but this does not apply to the commission for the transfer itself from your wallet."
+		"doI2": "There is no commission when making a deposit on the platform, but this does not apply to the commission for the transfer itself from your wallet.",
+		"noFree": "No available addresses"
 	},
 	"device": {
 		"authDev": "Authorized Devices",
@@ -508,7 +509,22 @@
 		"checkStatus": "Check Status",
 		"verifProg": "Verification in progress",
 		"24hours": "Please allow 24 hours for a response",
-		"more24": "Are you waiting more than 24 hours for a response?"
+		"more24": "Are you waiting more than 24 hours for a response?",
+		"stpBack": "Step Back",
+		"getUr": "Get your",
+		"toVerif": "To verify your identity and prevent fraud, you need to take a photo of your",
+		"makePic": "Make sure you capture a clear and complete image.",
+		"strtVerif": "Start verification",
+		"uploadY": "Upload page of your",
+		"upLoadDrag": "Upload a photo or drag and drop",
+		"maxSize": "Max size per file",
+		"consent": "I consent to NextFi's collection, processing and transfer of my personal information, which may include biometric data, as set forth in",
+		"privacNot": "the Privacy Notice",
+		"entirePrsc": "Complete the entire process in your",
+		"mobileBrowser": "mobile browser",
+		"or": "or",
+		"app": "app."
+	
 	},
 	"tier": {
 		"tier": "Tier",

@@ -4,7 +4,6 @@ import { IStore } from '@/types'
 import { persist } from 'zustand/middleware'
 import { getChatHistory, sendMessage } from '@/utils/api'
 
-
 type ChatMessage = {
 	tid: string;
 	text: string;
@@ -64,6 +63,12 @@ export const useChatStore = create<ChatState>((set, get) => ({
 }));
 
 
+setInterval(() => {
+	const { tid, loadChatHistory } = useChatStore.getState();
+	if (tid) {
+		loadChatHistory(tid);
+	}
+}, 5000);
 
 export const useThemeStore = create<IStore>()(
 	persist(

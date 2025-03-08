@@ -64,10 +64,3 @@ export interface InvestHistoryPayload {
   csrf: string;
 }
 
-export type Coin = {
-	name: string
-	type: string
-	enable: number
-	deposit: number
-	withdraw: number
-}

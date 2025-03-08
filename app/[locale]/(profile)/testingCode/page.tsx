@@ -5,7 +5,6 @@ import { useUserStore } from '@/hooks/useUserData'
 import {  getUserBalance, getUserHistory } from '@/utils/api'
 import { Spinner } from '@heroui/spinner'
 import { useEffect, useMemo, useState } from 'react'
-import { Coin } from '@/types'
 import { useCoinStore } from '@/store/coinList'
 
 const TestingCode = () => {

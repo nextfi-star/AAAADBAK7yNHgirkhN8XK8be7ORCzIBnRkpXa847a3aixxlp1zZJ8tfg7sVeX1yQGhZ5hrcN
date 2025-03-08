@@ -42,36 +42,6 @@ export const A_Chat = () => {
 		}
 	}
 	const messagesEndRef = useRef<HTMLDivElement>(null)
-
-	// const sendMessage = () => {
-	// 	if (!newMessage.trim()) return
-	// 	const message: Message = {
-	// 		content: newMessage,
-	// 		sender: 'me',
-	// 		time: new Date().toLocaleTimeString('en-US', {
-	// 			hour: '2-digit',
-	// 			minute: '2-digit',
-	// 			hour12: true,
-	// 		}),
-	// 	}
-
-	// 	setMessages(prev => [...prev, message])
-	// 	setNewMessage('')
-
-	// 	setTimeout(() => {
-	// 		const botMessage: Message = {
-	// 			content: 'Hello! This is a mock response.',
-	// 			sender: 'bot',
-	// 			time: new Date().toLocaleTimeString('en-US', {
-	// 				hour: '2-digit',
-	// 				minute: '2-digit',
-	// 				hour12: true,
-	// 			}),
-	// 		}
-	// 		setMessages(prev => [...prev, botMessage])
-	// 	}, 1000)
-	// }
-
 	useEffect(() => {
 		if (messagesEndRef.current) {
 			messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -81,7 +51,7 @@ export const A_Chat = () => {
 		if (isOpen && user?.csrf) {
 			loadChatHistory(user.csrf)
 		}
-	}, [isOpen, user?.csrf, loadChatHistory])
+	}, [isOpen, user?.csrf, loadChatHistory, sendChatMessage])
 
 	const handleSendMessage = async () => {
 		if (!newMessage.trim() || !user?.csrf) return
@@ -90,10 +60,9 @@ export const A_Chat = () => {
 		setNewMessage('')
 	}
 	const handleFileUploaded = (filename: string) => {
-		// Отправляем сообщение в чат с URL загруженного файла
 		addMessage({
 			tid: tid || '',
-			text: `https://nextfi.io/uploads/${filename}`, // Генерируем ссылку
+			text: `https://nextfi.io/uploads/${filename}`,
 			time: Date.now(),
 			status: 0,
 			sender: 'me',
@@ -106,7 +75,6 @@ export const A_Chat = () => {
 		onClose()
 	}
 	const { theme } = useThemeStore()
-	// const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
 	return (
 		<>
@@ -203,7 +171,7 @@ export const A_Chat = () => {
 																key={index}
 																className={`flex items-center w-full gap-[10px] mb-4 ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}
 															>
-																{msg.sender === 'bot' && (
+																{msg.sender !== 'me' && (
 																	<Image
 																		src={'/chat/operator.svg'}
 																		width={40}
@@ -215,7 +183,7 @@ export const A_Chat = () => {
 																<span className='text-[15px] font-medium p-[7px_27px] bg-[#7676801F] rounded-[20px] break-words max-w-[256px]'>
 																	{msg.text}
 																</span>
-																{msg.sender === 'bot' && (
+																{msg.sender !== 'me' && (
 																	<span className='text-[13px] font-medium text-[#888888]'>
 																		{new Date(msg.time).toLocaleTimeString()}
 																	</span>
@@ -249,31 +217,33 @@ export const A_Chat = () => {
 															</button>
 														</div>
 													</div>
-													<form
-														onSubmit={e => e.preventDefault()}
-														className='relative flex items-center gap-[10px] w-full pb-[.5rem]'
-													>
+													<div className='flex items-center gap-[10px]'>
 														<A_ChatUploader
 															onFileUploaded={handleFileUploaded}
 														/>
-														<input
-															type='text'
-															value={newMessage}
-															autoFocus
-															onChange={e => setNewMessage(e.target.value)}
-															className='flex-1 border px-[65px] py-4 rounded-[30px] bg-[#7676801F] w-full overflow-hidden'
-														/>
-														<button
-															type='submit'
-															className='w-fit !m-0 !p-0 absolute top-[11px] right-[18px] bg-transparent hover:bg-transparent'
-															onClick={handleSendMessage}
+														<form
+															onSubmit={e => e.preventDefault()}
+															className='relative flex items-center gap-[10px] w-full pb-[.5rem]'
 														>
-															<SendHorizontal
-																strokeWidth={1}
-																className='bg-transparent w-[32px] h-[32px]'
+															<input
+																type='text'
+																value={newMessage}
+																autoFocus
+																onChange={e => setNewMessage(e.target.value)}
+																className='flex-1 border px-[25px] py-4 rounded-[30px] bg-[#7676801F] w-full overflow-hidden'
 															/>
-														</button>
-													</form>
+															<button
+																type='submit'
+																className='w-fit !m-0 !p-0 absolute top-[11px] right-[18px] bg-transparent hover:bg-transparent'
+																onClick={handleSendMessage}
+															>
+																<SendHorizontal
+																	strokeWidth={1}
+																	className='bg-transparent w-[32px] h-[32px]'
+																/>
+															</button>
+														</form>
+													</div>
 												</div>
 											) : (
 												<div className='flex flex-col items-center justify-center w-full rounded-[30px] gap-[10px] bg-[#7676801F] py-[10px] px-[14px]'>

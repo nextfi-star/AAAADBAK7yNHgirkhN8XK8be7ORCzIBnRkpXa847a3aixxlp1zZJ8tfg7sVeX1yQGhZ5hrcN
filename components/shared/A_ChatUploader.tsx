@@ -1,5 +1,6 @@
 import { useUserStore } from '@/hooks/useUserData'
 import { uploadChatFile } from '@/utils/api'
+import { Spinner } from '@heroui/spinner'
 import { Images } from 'lucide-react'
 import { useState, useRef } from 'react'
 
@@ -17,25 +18,21 @@ export default function A_ChatUploader({
 		event: React.ChangeEvent<HTMLInputElement>
 	) => {
 		if (!event.target.files?.length || !user?.csrf) return
-
 		const file = event.target.files[0]
 		setUploading(true)
 		setError('')
-
 		const result = await uploadChatFile(user.csrf, file)
-
 		if (result?.response === 'success') {
-			onFileUploaded(result.filename) // 🔥 Передаем имя файла в `A_Chat.tsx`
+			onFileUploaded(result.filename) 
 		} else {
 			setError(result?.message || 'Ошибка загрузки файла')
 		}
-
 		setUploading(false)
 	}
 
 	return (
-		<div>
-			<label className='relative cursor-pointer'>
+		<>
+			<label className='relative z-[999999] cursor-pointer'>
 				<input
 					type='file'
 					ref={fileInputRef}
@@ -43,28 +40,23 @@ export default function A_ChatUploader({
 					accept='image/png, image/jpeg, image/webp'
 					onChange={handleFileChange}
 				/>
-
-				<Images
-					className='bg-transparent absolute top-[11px] left-[17px] max-w-[32px] w-full cursor-pointer'
-					strokeWidth={1}
-				/>
+				<button
+					className='bg-transparent text-white py-[4px] rounded-md'
+					onClick={() => fileInputRef.current?.click()}
+					disabled={uploading}
+				>
+					{uploading ? (
+						<Spinner />
+					) : (
+						<Images
+							className='bg-transparent max-w-[32px] w-full cursor-pointer'
+							strokeWidth={1}
+						/>
+					)}
+				</button>
 			</label>
-			<button
-				className='bg-transparent text-white py-2 rounded-md'
-				onClick={() => fileInputRef.current?.click()}
-				disabled={uploading}
-			>
-				{uploading ? (
-					'Загрузка...'
-				) : (
-					<Images
-						className='bg-transparent absolute top-[11px] left-[17px] max-w-[32px] w-full cursor-pointer'
-						strokeWidth={1}
-					/>
-				)}
-			</button>
 
 			{error && <p className='text-red-500 mt-2'>{error}</p>}
-		</div>
+		</>
 	)
 }
