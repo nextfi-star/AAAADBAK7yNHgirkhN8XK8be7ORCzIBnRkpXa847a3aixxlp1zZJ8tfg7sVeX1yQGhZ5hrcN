@@ -94,12 +94,15 @@ const SignUp = () => {
 				>
 					{t('email')}
 				</Button>
-				<Button
-					className={mode === 'phone ' ? 'active' : ''}
-					onPress={() => modeToogle('phone')}
-				>
-					{t('phone')}
-				</Button>
+				<div className='cursor-not-allowed'>
+							<Button
+								isDisabled={true}
+								className={mode === 'phone' ? 'active' : ''}
+								onPress={() => modeToogle('phone')}
+							>
+								{t('phone')}
+							</Button>
+						</div>
 			</div>
 			<form onSubmit={handleSubmit(onSubmit)} className='form'>
 				<div className='w-full'>

@@ -219,15 +219,15 @@
 		"searchName": "Поиск по имени..."
 	},
 	"tablesAssets": {
-		"name": "ИМЯ",
-		"holdings": "АКТИВЫ",
-		"pnl": "ПРИБЫЛЬ/УБЫТОК",
-		"actions": "ДЕЙСТВИЯ",
-		"columns": "Колонки",
-		"status": "Статус",
-		"searchName": "Поиск по имени...",
-		"view": "Просмотр",
-		"edit": "Редактировать"
+		"name": "NAME",
+		"holdings": "HOLDINGS",
+		"pnl": "PNL",
+		"actions": "ACTIONS",
+		"columns": "Columns",
+		"status": "Status",
+		"searchName": "Search by name...",
+		"view": "View",
+		"edit": "Edit"
 	},
 	"tablesDeposit": {},
 	"tablesWithdrawal": {

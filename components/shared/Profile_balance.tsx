@@ -1,7 +1,6 @@
 'use client'
 import { useUserStore } from '@/hooks/useUserData'
 import { Link } from '@/i18n/routing'
-import { useBalanceStore } from '@/store/userBalance'
 import { Avatar, Image, Spinner } from '@heroui/react'
 import { RefreshCw } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -10,6 +9,7 @@ import { useThemeStore } from '../../store/useChatStore'
 import ArrowBracket from '../ui/ArrowBracket'
 import Eye from '../ui/Eye'
 import Chart from './Chart'
+import { getUserBalance } from '@/utils/api'
 
 export const Profile_balance = () => {
 	const { theme, verifyState } = useThemeStore()
@@ -28,9 +28,21 @@ export const Profile_balance = () => {
 		}, 2000)
 	}
 	const [balance, setBalance] = useState<number | null>(null)
-	const [coin, setCoin] = useState<string | ''>('TEST')
 	const user = useUserStore(state => state.user)
-	const { loadBalanceByCoin } = useBalanceStore()
+	
+	useEffect(() => {
+		if (!user.csrf) return
+		const fetchBalance = async () => {
+			const totalValue = await getUserBalance(user.csrf)
+			if (totalValue !== null) {
+				setBalance(totalValue)
+			} else {
+				console.log('Ошибка загрузки данных')
+			}
+		}
+		fetchBalance()
+	}, [user.csrf])
+
 	const formattedBalance =
 		balance !== null
 			? new Intl.NumberFormat('ru-RU', {
@@ -39,15 +51,6 @@ export const Profile_balance = () => {
 					maximumFractionDigits: 2,
 				}).format(balance)
 			: '0'
-	useEffect(() => {
-		const fetchBalance = async () => {
-			if (user?.csrf) {
-				const result = await loadBalanceByCoin(user.csrf, coin)
-				setBalance(result)
-			}
-		}
-		fetchBalance()
-	}, [coin, user?.csrf, loadBalanceByCoin])
 
 	return (
 		<section className='h-fit'>
@@ -63,9 +66,7 @@ export const Profile_balance = () => {
 										<div className='flex items-center gap-2'>
 											<Image
 												src={
-													refresh
-														? '/main/balance.svg'
-														: '/main/balance.svg' // bonus
+													refresh ? '/main/balance.svg' : '/main/balance.svg' // bonus
 												}
 												width={44}
 												height={44}
@@ -74,7 +75,7 @@ export const Profile_balance = () => {
 											<h4 className='text-blue-600 text-[21px] font-medium'>
 												{refresh ? t('balance') : t('balance')}
 											</h4>
-{/* bonus */}
+											{/* bonus */}
 											<Eye />
 										</div>
 									</div>
@@ -87,12 +88,12 @@ export const Profile_balance = () => {
 											className='bg-transparent text-[16px] font-medium'
 											onChange={e => setCoin(e.target.value)}
 										> */}
-											{/* <option
+										{/* <option
 												className='text-[12px] max-w-[1px] text-black'
 												value='TEST'
 											> */}
-												TEST
-											{/* </option> */}
+										{/* TEST */}
+										{/* </option> */}
 										{/* </select> */}
 									</div>
 									<div className='flex items-center gap-2 text-blue-600 text-[14px]'>
@@ -130,19 +131,17 @@ export const Profile_balance = () => {
 								</div>
 							</div>
 							<div className='flex items-center gap-[8px]'>
-								<p className='text-[36px] font-bold'>
-								{formattedBalance || '0$'}
-								</p>
+								<p className='text-[36px] font-bold'>{formattedBalance || '0$'}</p>
 								{/* <select
 									className='bg-transparent text-[16px] font-medium'
 									onChange={e => setCoin(e.target.value)}
 								> */}
-									{/* <option
+								{/* <option
 										className='text-[12px] max-w-[1px] text-black'
 										value='TEST'
 									> */}
-										{/* TEST */}
-									{/* </option> */}
+								{/* TEST */}
+								{/* </option> */}
 								{/* </select> */}
 							</div>
 							<div className='flex items-center gap-2 text-blue-600 text-[14px]'>
@@ -177,12 +176,12 @@ export const Profile_balance = () => {
 									className='bg-transparent text-[16px] font-medium'
 									// onChange={e => setCoin(e.target.value)}
 								> */}
-									{/* <option
+								{/* <option
 										className='text-[12px] max-w-[1px] text-black'
 										value='TEST'
 									> */}
-										{/* TEST */}
-									{/* </option>
+								{/* TEST */}
+								{/* </option>
 								</select> */}
 							</div>
 							<div className='flex items-center gap-2 text-blue-600 text-[14px]'>

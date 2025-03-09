@@ -1,336 +1,324 @@
-"use client";
-import React from "react";
+'use client'
+import React, { useEffect, useState } from 'react'
 import {
-  Table,
-  TableHeader,
-  TableColumn,
-  TableBody,
-  TableRow,
-  TableCell,
-  Input,
-  Button,
-  DropdownTrigger,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Chip,
-  User,
-  Pagination,
-  Selection,
-  SortDescriptor,
-} from "@heroui/react";
+	Table,
+	TableHeader,
+	TableColumn,
+	TableBody,
+	TableRow,
+	TableCell,
+	Input,
+	Button,
+	DropdownTrigger,
+	Dropdown,
+	DropdownMenu,
+	DropdownItem,
+	Chip,
+	User,
+	Pagination,
+	Selection,
+	SortDescriptor,
+} from '@heroui/react'
 
-import { VerticalDotsIcon } from "./VerticalDotsIcon";
-import { ChevronDownIcon } from "./ChevronDownIcon";
-import { SearchIcon } from "./SearchIcon";
-import { capitalize } from "./utils";
-import { columns, statusOptions, users } from "./data";
+import { VerticalDotsIcon } from './VerticalDotsIcon'
+import { ChevronDownIcon } from './ChevronDownIcon'
+import { SearchIcon } from './SearchIcon'
+import { capitalize } from './utils'
+import { columns, statusOptions, users } from './data'
 import { useTranslations } from 'next-intl'
+import { useUserStore } from '@/hooks/useUserData'
+import { getUserBalance } from '@/utils/api'
 
 // const statusColorMap: Record<string, ChipProps["color"]> = {
 //   "+": "success",
 //   "-": "danger",
 // };
 
-const INITIAL_VISIBLE_COLUMNS = ["name", "holdings", "pnl", "actions"];
+const INITIAL_VISIBLE_COLUMNS = ['name', 'holdings', 'pnl', 'actions']
 
-type User = (typeof users)[0];
+type User = typeof users[0]
 
 export default function DataTable_verif() {
-  const t = useTranslations('tablesAssets')
-  const [filterValue, setFilterValue] = React.useState("");
-  const [selectedKeys, setSelectedKeys] = React.useState<Selection>(
-    new Set([]),
-  );
-  const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
-    new Set(INITIAL_VISIBLE_COLUMNS),
-  );
-  const [statusFilter, setStatusFilter] = React.useState<Selection>("all");
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [sortDescriptor, setSortDescriptor] = React.useState<SortDescriptor>({
-    column: "age",
-    direction: "ascending",
-  });
+	const t = useTranslations('tablesAssets')
 
-  const [page, setPage] = React.useState(1);
+	const [filterValue, setFilterValue] = React.useState('')
+	const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]))
+	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
+		new Set(INITIAL_VISIBLE_COLUMNS)
+	)
+	const [statusFilter, setStatusFilter] = React.useState<Selection>('all')
+	const [rowsPerPage, setRowsPerPage] = React.useState(5)
+	const [sortDescriptor, setSortDescriptor] = React.useState<SortDescriptor>({
+		column: 'age',
+		direction: 'ascending',
+	})
 
-  const hasSearchFilter = Boolean(filterValue);
+	const [page, setPage] = React.useState(1)
 
-  const headerColumns = React.useMemo(() => {
-    if (visibleColumns === "all") return columns;
+	const hasSearchFilter = Boolean(filterValue)
 
-    return columns.filter((column) =>
-      Array.from(visibleColumns).includes(column.uid),
-    );
-  }, [visibleColumns]);
+	const headerColumns = React.useMemo(() => {
+		if (visibleColumns === 'all') return columns
 
-  const filteredItems = React.useMemo(() => {
-    let filteredUsers = [...users];
+		return columns.filter(column =>
+			Array.from(visibleColumns).includes(column.uid)
+		)
+	}, [visibleColumns])
 
-    if (hasSearchFilter) {
-      filteredUsers = filteredUsers.filter((user) =>
-        user.name.toLowerCase().includes(filterValue.toLowerCase()),
-      );
-    }
-    if (
-      statusFilter !== "all" &&
-      Array.from(statusFilter).length !== statusOptions.length
-    ) {
-      filteredUsers = filteredUsers.filter((user) =>
-        Array.from(statusFilter).includes(user.pnl),
-      );
-    }
+	const filteredItems = React.useMemo(() => {
+		let filteredusers = [...users]
 
-    return filteredUsers;
-  }, [users, filterValue, statusFilter]);
+		if (hasSearchFilter) {
+			filteredusers = filteredusers.filter(user =>
+				user.name.toLowerCase().includes(filterValue.toLowerCase())
+			)
+		}
+		if (
+			statusFilter !== 'all' &&
+			Array.from(statusFilter).length !== statusOptions.length
+		) {
+			filteredusers = filteredusers.filter(user =>
+				Array.from(statusFilter).includes(user.pnl)
+			)
+		}
 
-  const pages = Math.ceil(filteredItems.length / rowsPerPage);
+		return filteredusers
+	}, [users, filterValue, statusFilter])
 
-  const items = React.useMemo(() => {
-    const start = (page - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
+	const pages = Math.ceil(filteredItems.length / rowsPerPage)
 
-    return filteredItems.slice(start, end);
-  }, [page, filteredItems, rowsPerPage]);
+	const items = React.useMemo(() => {
+		const start = (page - 1) * rowsPerPage
+		const end = start + rowsPerPage
 
-  const sortedItems = React.useMemo(() => {
-    return [...items].sort((a: User, b: User) => {
-      const first = a[sortDescriptor.column as keyof User] as number;
-      const second = b[sortDescriptor.column as keyof User] as number;
-      const cmp = first < second ? -1 : first > second ? 1 : 0;
+		return filteredItems.slice(start, end)
+	}, [page, filteredItems, rowsPerPage])
 
-      return sortDescriptor.direction === "descending" ? -cmp : cmp;
-    });
-  }, [sortDescriptor, items]);
+	const sortedItems = React.useMemo(() => {
+		return [...items].sort((a: User, b: User) => {
+			const first = a[sortDescriptor.column as keyof User] as number
+			const second = b[sortDescriptor.column as keyof User] as number
+			const cmp = first < second ? -1 : first > second ? 1 : 0
 
-  const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
-    const cellValue = user[columnKey as keyof User];
+			return sortDescriptor.direction === 'descending' ? -cmp : cmp
+		})
+	}, [sortDescriptor, items])
 
-    switch (columnKey) {
-      case "name":
-        return (
-          <User
-            avatarProps={{ radius: "full", src: user.avatar }}
-            classNames={{
-              base: "!bg-transparent flex items-center justify-start",
-              name: "!bg-transparent ",
-              description: "!bg-transparent ",
-              wrapper: "!bg-transparent ",
-            }}
-            description={user.crypto}
-            name={cellValue}
-          >
-            {user.crypto}
-          </User>
-        );
-      case "holdings":
-        return (
-          <div className="flex flex-col">
-            <p className="text-bold text-small capitalize">{cellValue}</p>
-            <p className="text-bold text-tiny capitalize text-default-400">
-              {user.percent}
-            </p>
-          </div>
-        );
-      case "pnl":
-        return (
-          <Chip
-            className="capitalize bg-transparent"
-            // color={statusColorMap[user.pnl]}
-            size="sm"
-            variant="flat"
-          >
-            {user.percent}
-          </Chip>
-        );
-      case "actions":
-        return (
-          <div className="relative flex justify-center items-center gap-2">
-            <Dropdown>
-              <DropdownTrigger>
-                <Button isIconOnly size="sm" variant="light">
-                  <VerticalDotsIcon className="text-default-300" />
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu>
-                <DropdownItem key="view">{t('view')}</DropdownItem>
-                <DropdownItem key="edit">{t('edit')}</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          </div>
-        );
-      default:
-        return cellValue;
-    }
-  }, []);
+	const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
+		const cellValue = user[columnKey as keyof User]
 
-  const onNextPage = React.useCallback(() => {
-    if (page < pages) {
-      setPage(page + 1);
-    }
-  }, [page, pages]);
+		switch (columnKey) {
+			case 'name':
+				return (
+					<User
+						avatarProps={{ radius: 'full', src: user.avatar }}
+						classNames={{
+							base: '!bg-transparent flex items-center justify-start',
+							name: '!bg-transparent ',
+							description: '!bg-transparent ',
+							wrapper: '!bg-transparent ',
+						}}
+						description={user.name}
+						name={cellValue}
+					>
+						{user.name}
+					</User>
+				)
+			case 'holdings':
+				return (
+					<div className='flex flex-col'>
+						<p className='text-bold text-small capitalize'>{cellValue}</p>
+						<p className='text-bold text-tiny capitalize text-default-400'>
+							{user.holdings}
+						</p>
+					</div>
+				)
+			case 'actions':
+				return (
+					<div className='relative flex justify-center items-center gap-2'>
+						<Dropdown>
+							<DropdownTrigger>
+								<Button isIconOnly size='sm' variant='light'>
+									<VerticalDotsIcon className='text-default-300' />
+								</Button>
+							</DropdownTrigger>
+							<DropdownMenu>
+								<DropdownItem key='view'>{t('view')}</DropdownItem>
+								<DropdownItem key='edit'>{t('edit')}</DropdownItem>
+							</DropdownMenu>
+						</Dropdown>
+					</div>
+				)
+			default:
+				return cellValue
+		}
+	}, [])
 
-  const onPreviousPage = React.useCallback(() => {
-    if (page > 1) {
-      setPage(page - 1);
-    }
-  }, [page]);
+	const onNextPage = React.useCallback(() => {
+		if (page < pages) {
+			setPage(page + 1)
+		}
+	}, [page, pages])
 
-  const onRowsPerPageChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => {
-      setRowsPerPage(Number(e.target.value));
-      setPage(1);
-    },
-    [],
-  );
+	const onPreviousPage = React.useCallback(() => {
+		if (page > 1) {
+			setPage(page - 1)
+		}
+	}, [page])
 
-  const onSearchChange = React.useCallback((value?: string) => {
-    if (value) {
-      setFilterValue(value);
-      setPage(1);
-    } else {
-      setFilterValue("");
-    }
-  }, []);
+	const onRowsPerPageChange = React.useCallback(
+		(e: React.ChangeEvent<HTMLSelectElement>) => {
+			setRowsPerPage(Number(e.target.value))
+			setPage(1)
+		},
+		[]
+	)
 
-  const onClear = React.useCallback(() => {
-    setFilterValue("");
-    setPage(1);
-  }, []);
+	const onSearchChange = React.useCallback((value?: string) => {
+		if (value) {
+			setFilterValue(value)
+			setPage(1)
+		} else {
+			setFilterValue('')
+		}
+	}, [])
 
-  const topContent = React.useMemo(() => {
-    return (
-      <div className="flex flex-col gap-4">
-        <div className="flex justify-between gap-3 items-end px-[20px]">
-          <Input
-            isClearable
-            className="w-full sm:max-w-[44%]"
-            placeholder={t('searchName')}
-            startContent={<SearchIcon />}
-            value={filterValue}
-            onClear={() => onClear()}
-            onValueChange={onSearchChange}
-          />
-          <div className="flex gap-3">
-            <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
-                <Button
-                  endContent={<ChevronDownIcon className="text-small" />}
-                  variant="flat"
-                >
-                  {t('status')}
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu
-                disallowEmptySelection
-                aria-label="Table Columns"
-                closeOnSelect={false}
-                selectedKeys={statusFilter}
-                selectionMode="multiple"
-                onSelectionChange={setStatusFilter}
-              >
-                {statusOptions.map((status) => (
-                  <DropdownItem key={status.uid} className="capitalize">
-                    {capitalize(status.name)}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-            <Dropdown>
-              <DropdownTrigger className="flex">
-                <Button
-                  endContent={<ChevronDownIcon className="text-small" />}
-                  variant="flat"
-                >
-                  {t('columns')}
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu
-                disallowEmptySelection
-                aria-label="Table Columns"
-                closeOnSelect={false}
-                selectedKeys={visibleColumns}
-                selectionMode="multiple"
-                onSelectionChange={setVisibleColumns}
-              >
-                {columns.map((column) => (
-                  <DropdownItem key={column.uid} className="capitalize">
-                    {capitalize(t(column.uid))}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown>
-          </div>
-        </div>
-      </div>
-    );
-  }, [
-    filterValue,
-    statusFilter,
-    visibleColumns,
-    onSearchChange,
-    onRowsPerPageChange,
-    users.length,
-    hasSearchFilter,
-  ]);
+	const onClear = React.useCallback(() => {
+		setFilterValue('')
+		setPage(1)
+	}, [])
 
-  const bottomContent = React.useMemo(() => {
-    return (
-      <div className="py-2 px-2 flex justify-center items-center">
-        <Pagination
-          isCompact
-          showControls
-          showShadow
-          color="primary"
-          page={page}
-          total={pages}
-          onChange={setPage}
-        />
-      </div>
-    );
-  }, [items.length, page, pages, hasSearchFilter]);
+	const topContent = React.useMemo(() => {
+		return (
+			<div className='flex flex-col gap-4'>
+				<div className='flex justify-between gap-3 items-end px-[20px]'>
+					<Input
+						isClearable
+						className='w-full sm:max-w-[44%]'
+						placeholder={t('searchName')}
+						startContent={<SearchIcon />}
+						value={filterValue}
+						onClear={() => onClear()}
+						onValueChange={onSearchChange}
+					/>
+					<div className='flex gap-3'>
+						<Dropdown>
+							<DropdownTrigger className='hidden sm:flex'>
+								<Button
+									endContent={<ChevronDownIcon className='text-small' />}
+									variant='flat'
+								>
+									{t('status')}
+								</Button>
+							</DropdownTrigger>
+							<DropdownMenu
+								disallowEmptySelection
+								aria-label='Table Columns'
+								closeOnSelect={false}
+								selectedKeys={statusFilter}
+								selectionMode='multiple'
+								onSelectionChange={setStatusFilter}
+							>
+								{statusOptions.map(status => (
+									<DropdownItem key={status.uid} className='capitalize'>
+										{capitalize(status.name)}
+									</DropdownItem>
+								))}
+							</DropdownMenu>
+						</Dropdown>
+						<Dropdown>
+							<DropdownTrigger className='flex'>
+								<Button
+									endContent={<ChevronDownIcon className='text-small' />}
+									variant='flat'
+								>
+									{t('columns')}
+								</Button>
+							</DropdownTrigger>
+							<DropdownMenu
+								disallowEmptySelection
+								aria-label='Table Columns'
+								closeOnSelect={false}
+								selectedKeys={visibleColumns}
+								selectionMode='multiple'
+								onSelectionChange={setVisibleColumns}
+							>
+								{columns.map(column => (
+									<DropdownItem key={column.uid} className='capitalize'>
+										{capitalize(t(column.uid))}
+									</DropdownItem>
+								))}
+							</DropdownMenu>
+						</Dropdown>
+					</div>
+				</div>
+			</div>
+		)
+	}, [
+		filterValue,
+		statusFilter,
+		visibleColumns,
+		onSearchChange,
+		onRowsPerPageChange,
+		users.length,
+		hasSearchFilter,
+	])
 
-  return (
-    <Table
-      isHeaderSticky
-      aria-label="-Datatable for NextFi-"
-      bottomContent={bottomContent}
-      bottomContentPlacement="outside"
-      classNames={{
-        table: '!bg-transparent',
-        tbody: '!shadow-none',
-        wrapper: "max-h-[382px] !bg-transparent shadow-none",
-        td: "text-center",
-        th: "text-center",
-      }}
-      // selectedKeys={selectedKeys} //! Отвечает за создание checkbox inputs
-      // selectionMode='multiple' //! Отвечает за создание checkbox inputs
-      sortDescriptor={sortDescriptor}
-      topContent={topContent}
-      topContentPlacement="outside"
-      onSelectionChange={setSelectedKeys}
-      onSortChange={setSortDescriptor}
-    >
-      <TableHeader columns={headerColumns}>
-        {(column) => (
-          <TableColumn
-            key={column.uid}
-            align={column.uid === "actions" ? "center" : "start"}
-            allowsSorting={column.sortable}
-          >
-            {t(column.uid)}
-          </TableColumn>
-        )}
-      </TableHeader>
-      <TableBody emptyContent={"No users found"} items={sortedItems}>
-        {(item) => (
-          <TableRow key={item.id}>
-            {(columnKey) => (
-              <TableCell>{renderCell(item, columnKey)}</TableCell>
-            )}
-          </TableRow>
-        )}
-      </TableBody>
-    </Table>
-  );
+	const bottomContent = React.useMemo(() => {
+		return (
+			<div className='py-2 px-2 flex justify-center items-center'>
+				<Pagination
+					isCompact
+					showControls
+					showShadow
+					color='primary'
+					page={page}
+					total={pages}
+					onChange={setPage}
+				/>
+			</div>
+		)
+	}, [items.length, page, pages, hasSearchFilter])
+
+	return (
+		<Table
+			isHeaderSticky
+			aria-label='-Datatable for NextFi-'
+			bottomContent={bottomContent}
+			bottomContentPlacement='outside'
+			classNames={{
+				table: '!bg-transparent',
+				tbody: '!shadow-none',
+				wrapper: 'max-h-[382px] !bg-transparent shadow-none',
+				td: 'text-center',
+				th: 'text-center',
+			}}
+			// selectedKeys={selectedKeys} //! Отвечает за создание checkbox inputs
+			// selectionMode='multiple' //! Отвечает за создание checkbox inputs
+			sortDescriptor={sortDescriptor}
+			topContent={topContent}
+			topContentPlacement='outside'
+			onSelectionChange={setSelectedKeys}
+			onSortChange={setSortDescriptor}
+		>
+			<TableHeader columns={headerColumns}>
+				{column => (
+					<TableColumn
+						key={column.uid}
+						align={column.uid === 'actions' ? 'center' : 'start'}
+						allowsSorting={column.sortable}
+					>
+						{column.name}
+					</TableColumn>
+				)}
+			</TableHeader>
+			<TableBody emptyContent={'No users found'} items={sortedItems}>
+				{item => (
+					<TableRow key={item.id}>
+						{columnKey => <TableCell>{renderCell(item, columnKey)}</TableCell>}
+					</TableRow>
+				)}
+			</TableBody>
+		</Table>
+	)
 }

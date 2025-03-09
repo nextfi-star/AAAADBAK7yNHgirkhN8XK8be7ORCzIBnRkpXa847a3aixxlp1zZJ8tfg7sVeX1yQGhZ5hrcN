@@ -3,9 +3,6 @@
 const columns = [
 	{ name: 'NAME', uid: 'name', sortable: true },
 	{ name: 'HOLDINGS', uid: 'holdings', sortable: true },
-	// {name: "ROLE", uid: "role", sortable: true},
-	// {name: "PERCENT", uid: "percent"},
-	// {name: "CRYPTO", uid: "crypto"},
 	{ name: 'PNL', uid: 'pnl', sortable: true },
 	{ name: 'ACTIONS', uid: 'actions' },
 ]

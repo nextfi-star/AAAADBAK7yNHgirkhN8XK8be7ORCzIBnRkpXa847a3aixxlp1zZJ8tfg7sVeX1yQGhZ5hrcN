@@ -146,7 +146,7 @@ export const ProfileHeader = ({ auth = true }: Props) => {
 			{
 				title: t('investment'),
 				key: 'invest',
-				href: '/invest',
+				href: '#',
 				icon: <TrendingUp strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},

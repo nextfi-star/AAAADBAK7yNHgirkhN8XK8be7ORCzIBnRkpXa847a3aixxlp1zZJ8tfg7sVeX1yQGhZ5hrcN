@@ -326,29 +326,29 @@ export const getDepositHistory = async (csrf: string) => {
 		return { error: true, message: 'Network error' };
 	}
 };
-
-export const getUserBalance = async (csrf: string, coin?: string) => {
+export const getUserBalance = async (csrf: string) => {
 	try {
-		const payload: Record<string, any> = { csrf }
-		if (coin) payload['coin'] = coin
-		else payload['type'] = 'total_usdt_value'
-
-		const response = await fetch('https://nextfi.io:5000/api/v1/user_balance', {
+		const payload: Record<string, any> = { csrf, type: 'all' }; 
+			const response = await fetch('https://nextfi.io:5000/api/v1/user_balance', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(payload),
-		})
+		});
 
-		const result = await response.json()
-		if (response.ok) {
-			console.log(result)
+		const result = await response.json();
+		if (response.ok && result.response === 'success') {
+			console.log('Total USDT Value:', result); 
+			return result.total_usdt_value; 
 		}
-		return result
+
+		console.error('Ошибка получения баланса:', result.message);
+		return null;
 	} catch (error) {
-		console.error('Ошибка получения баланса:', error)
-		return null
+		console.error('Ошибка сети при получении баланса:', error);
+		return null;
 	}
-}
+};
+
 export const createWithdraw = async (
 	csrf: string,
 	coin: string,

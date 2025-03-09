@@ -40,7 +40,14 @@ export type NetworkData = {
 const Deposit_steps = () => {
 	const t = useTranslations('deposit')
 	const user = useUserStore(state => state.user)
-	const { coins, selectedCoin, loadCoins, setSelectedCoin, setSelectedNetwork, selectedNetwork } = useCoinStore()
+	const {
+		coins,
+		selectedCoin,
+		loadCoins,
+		setSelectedCoin,
+		setSelectedNetwork,
+		selectedNetwork,
+	} = useCoinStore()
 	const { step, setStep, theme } = useThemeStore()
 	const [open, setOpen] = useState(false)
 	const [inputStep2, setInputStep2] = useState<string>('')
@@ -147,6 +154,7 @@ const Deposit_steps = () => {
 																onSelect={() => {
 																	setSelectedCoin(coin)
 																	setOpen(false)
+																	setSelectedNetwork('')
 																	setStep(2)
 																}}
 																className='data-[selected=true]:!bg-[#7676801F]'

@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/AccordionBurger'
 import { useThemeStore } from '@/store/useChatStore'
 import { Divider } from '@heroui/react'
-import { Info } from 'lucide-react'
+import { Info, Lock } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useMemo } from 'react'
@@ -165,32 +165,45 @@ export const Footer = () => {
 						<h5 className='text-[25px] font-semibold dark:text-[#EFEFEF] mb-[5px]'>
 							{t('overview')}
 						</h5>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<Link href='/profile' className='text-[18px] dark:text-[#FFFFFF66]'>
 							{t('profile')}
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						</Link>
+						<Link
+							href='/security'
+							className='text-[18px] dark:text-[#FFFFFF66]'
+						>
 							{t('security')}
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						</Link>
+						<Link href='/verify' className='text-[18px] dark:text-[#FFFFFF66]'>
 							{t('verification')}
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						</Link>
+						<Link href='/devices' className='text-[18px] dark:text-[#FFFFFF66]'>
 							{t('authDev')}
-						</span>
+						</Link>
 					</div>
 
 					<div className='flex flex-col items-start gap-[15px]'>
 						<h5 className='text-[25px] font-semibold dark:text-[#EFEFEF] mb-[5px]'>
 							{t('assets')}
 						</h5>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>Deposit</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>Swap</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<Link href='/deposit' className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('deposit')}
+						</Link>
+						<Link href='#' className='text-[18px] dark:text-[#FFFFFF66]'>
+							{t('swap')} <Lock strokeWidth={1} className='inline' />
+						</Link>
+						<Link
+							href='/withdrawal'
+							className='text-[18px] dark:text-[#FFFFFF66]'
+						>
 							{t('withdrawal')}
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						</Link>
+						<Link
+							href='/activity'
+							className='text-[18px] dark:text-[#FFFFFF66]'
+						>
 							{t('levels')}
-						</span>
+						</Link>
 					</div>
 
 					<div className='flex flex-col items-start gap-[15px]'>
@@ -222,7 +235,7 @@ export const Footer = () => {
 							{t('supCenter')}
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('token')}
+							{t('token')} <Lock strokeWidth={1} className='inline' />
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
 							{t('history')}

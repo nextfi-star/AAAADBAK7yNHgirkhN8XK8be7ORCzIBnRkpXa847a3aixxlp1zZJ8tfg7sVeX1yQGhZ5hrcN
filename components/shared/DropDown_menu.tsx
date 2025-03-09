@@ -148,7 +148,7 @@ export const DropDown_menu: NextPage<Props> = ({
 															className='text-[14px] w-full flex items-center'
 														>
 															{item.title}{' '}
-															{item.key === 'swap' ? (
+															{item.key === 'swap' || item.key === 'invest' ? (
 																<Lock
 																	strokeWidth={1}
 																	className='max-w-[15px] ml-[5px]'

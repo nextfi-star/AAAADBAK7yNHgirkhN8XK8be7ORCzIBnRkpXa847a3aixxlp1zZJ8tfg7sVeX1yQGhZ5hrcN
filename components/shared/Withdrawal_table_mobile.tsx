@@ -18,7 +18,7 @@ import {
 	TableHeader,
 	TableRow,
 	User,
-} from "@heroui/react"
+} from '@heroui/react'
 import React, { useEffect, useState } from 'react'
 import { ChevronDownIcon } from './ChevronDownIcon'
 import { columnsDataW, statusOptionsDataW, usersDataW } from './data'
@@ -26,22 +26,20 @@ import { capitalize } from './utils'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
 import { useUserStore } from '@/hooks/useUserData'
 import { getWithdrawHistory } from '@/utils/api'
+import { useTranslations } from 'next-intl'
 
 const statusColorMap: Record<string, ChipProps['color']> = {
-	sent: 'success',
-	denied: 'danger',
-	pending: 'warning',
+	1: 'success',
+	2: 'danger',
+	0: 'warning',
 }
 
-const INITIAL_VISIBLE_COLUMNS = [
-	'time',
-	'amount',
-	'status',
-]
+const INITIAL_VISIBLE_COLUMNS = ['time', 'amount', 'status']
 
 type User = (typeof usersDataW)[0]
 
 export default function Withdrawal_table_mobile() {
+	const t = useTranslations('tablesWithdrawal')
 	const csrf = useUserStore(state => state.user?.csrf)
 	const [withdraws, setWithdraws] = useState<any[]>([])
 	const [error, setError] = useState<string>('')
@@ -135,7 +133,9 @@ export default function Withdrawal_table_mobile() {
 
 		switch (columnKey) {
 			case 'time':
-				return <span className='md:text-[20px]'>{user.time}</span>
+				const date = new Date(Number(user.time) * 1000)
+				const formattedDate = date.toLocaleDateString('en-GB')
+				return <span className='md:text-[20px]'>{formattedDate}</span>
 			case 'address':
 				return (
 					<div className='flex flex-col items-start gap-[5px]'>
@@ -156,18 +156,22 @@ export default function Withdrawal_table_mobile() {
 				return <span className='md:text-[20px]'> {user.coin}</span>
 			case 'amount':
 				return <span className='md:text-[20px]'> {user.amount}</span>
-		
+
 			case 'status':
 				return (
-                    <Chip
-                    	className='capitalize'
-                    	color={statusColorMap[user.status]}
-                    	size='sm'
-                    	variant='flat'
-                    >
-                    	{user.status === 0 ? 'pending' : user.status === 1 ? 'sent' : 'denied'}
-                    </Chip>
-                );
+					<Chip
+						className='capitalize'
+						color={statusColorMap[user.status]}
+						size='sm'
+						variant='flat'
+					>
+						{user.status === 0
+							? 'pending'
+							: user.status === 1
+								? 'sent'
+								: 'denied'}
+					</Chip>
+				)
 			case 'actions':
 				return (
 					<div className='relative flex justify-center items-center gap-2'>
@@ -178,8 +182,8 @@ export default function Withdrawal_table_mobile() {
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu>
-								<DropdownItem key='view'>View</DropdownItem>
-								<DropdownItem key='edit'>Edit</DropdownItem>
+								<DropdownItem key='view'>{t('view')}</DropdownItem>
+								<DropdownItem key='edit'>{t('edit')}</DropdownItem>
 							</DropdownMenu>
 						</Dropdown>
 					</div>
@@ -210,9 +214,7 @@ export default function Withdrawal_table_mobile() {
 		return (
 			<div className='flex flex-col gap-4'>
 				<div className='flex justify-between gap-3 items-end p-[25px_20px_0px]'>
-					<h1 className='text-[20px] xl:text-[32px]'>
-						All withdrawals
-					</h1>
+					<h1 className='text-[20px] xl:text-[32px]'>{t('allwithdrawals')}</h1>
 					<div className='flex gap-3'>
 						<Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
@@ -220,7 +222,7 @@ export default function Withdrawal_table_mobile() {
 									endContent={<ChevronDownIcon className='md:!text-[20px]' />}
 									variant='flat'
 								>
-									Status
+										{t('statusLow')}
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu
@@ -236,7 +238,7 @@ export default function Withdrawal_table_mobile() {
 										key={status.uid}
 										className='capitalize md:!text-[20px]'
 									>
-										{capitalize(status.name)}
+										{capitalize(t(status.uid))}
 									</DropdownItem>
 								))}
 							</DropdownMenu>
@@ -247,7 +249,7 @@ export default function Withdrawal_table_mobile() {
 									endContent={<ChevronDownIcon className='md:!text-[20px]' />}
 									variant='flat'
 								>
-									Columns
+								{t('columns')}
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu
@@ -263,7 +265,7 @@ export default function Withdrawal_table_mobile() {
 										key={column.uid}
 										className='capitalize md:text-[20px] '
 									>
-										{capitalize(column.name)}
+														{capitalize(t(column.uid))}
 									</DropdownItem>
 								))}
 							</DropdownMenu>
@@ -324,7 +326,7 @@ export default function Withdrawal_table_mobile() {
 						align={column.uid === 'actions' ? 'center' : 'start'}
 						allowsSorting={column.sortable}
 					>
-						{column.name}
+						{t(column.uid)}
 					</TableColumn>
 				)}
 			</TableHeader>

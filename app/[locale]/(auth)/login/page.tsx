@@ -134,7 +134,6 @@ const Login = () => {
 			setIsLoading(false)
 		}
 	}
-
 	return (
 		<div className='form__wrapper flex flex-col justify-between gap-[20px]'>
 			<div className='form__wrapper-title'>
@@ -200,12 +199,15 @@ const Login = () => {
 						>
 							{t('email')}
 						</Button>
-						<Button
-							className={mode === 'phone' ? 'active' : ''}
-							onPress={() => modeToogle('phone')}
-						>
-							{t('phone')}
-						</Button>
+						<div className='cursor-not-allowed'>
+							<Button
+								isDisabled={true}
+								className={mode === 'phone' ? 'active' : ''}
+								onPress={() => modeToogle('phone')}
+							>
+								{t('phone')}
+							</Button>
+						</div>
 					</div>
 					<form onSubmit={handleSubmit(onSubmit)} className='form'>
 						<div className='w-full'>

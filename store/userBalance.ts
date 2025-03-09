@@ -8,7 +8,7 @@ type BalanceState = {
 export const useBalanceStore = create<BalanceState>(() => ({
 	// Загружаем баланс по одной монете
 	loadBalanceByCoin: async (csrf, coin) => {
-		const result = await getUserBalance(csrf, coin);
+		const result = await getUserBalance(csrf);
 		if (result?.response === "success") {
 			return result.balance; 
 		}

@@ -5,6 +5,7 @@ import ArrowBracket from '../ui/ArrowBracket'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store/useChatStore'
+import { Lock } from 'lucide-react'
 
 export const Platform_mode = () => {
 	const { theme } = useThemeStore()
@@ -25,13 +26,14 @@ export const Platform_mode = () => {
 						value='Exchange'
 					>
 						Exchange
-						<Image
-							alt='lock icon'
-							className='pl-[5px] lock'
-							height={20}
-							src={'/lock.svg'}
-							width={20}
-						/>
+						<Lock strokeWidth={1} className='max-w-[20px] lock' />
+					</TabsTrigger>
+					<TabsTrigger
+						className='lock-btn text-[14px] data-[state=active]:bg-transparent data-[state=active]:shadow-none'
+						value='Web'
+					>
+						Web 3
+						<Lock strokeWidth={1} className='max-w-[20px] lock' />
 					</TabsTrigger>
 					<TabsTrigger
 						className='lock-btn text-[14px] data-[state=active]:bg-transparent data-[state=active]:shadow-none'
