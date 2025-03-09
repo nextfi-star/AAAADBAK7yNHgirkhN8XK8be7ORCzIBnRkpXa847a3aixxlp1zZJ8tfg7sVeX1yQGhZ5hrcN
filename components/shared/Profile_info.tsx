@@ -13,6 +13,9 @@ interface Props {
 }
 export const Profile_info = ({ verify, toggleActive }: Props) => {
 	const user = useUserStore(state => state.user)
+	if (user?.verification) {
+		console.log('verified')
+	}
 	const t = useTranslations('overview')
 	return (
 		<section className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px]'>

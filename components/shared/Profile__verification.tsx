@@ -37,7 +37,7 @@ export const Profile_verification = ({ toggleActive, verify }: Props) => {
 						</p>
 						<Link
 							className='profile__verification__info__block_button flex justify-center !py-[13px] !w-full '
-							href={'#'}
+							href={'/verify'}
 							onClick={toggleActive}
 						>
 							{t('verify')}
@@ -58,7 +58,7 @@ export const Profile_verification = ({ toggleActive, verify }: Props) => {
 				</div>
 				<Link
 					className='w-fit text-[14px] font-medium mt-[5px] py-[10px] px-[40px] bg-[#205BC9] rounded-[50px] text-white'
-					href={'#'}
+					href={'/verify'}
 					onClick={toggleActive}
 				>
 					{t('verifyNow')}

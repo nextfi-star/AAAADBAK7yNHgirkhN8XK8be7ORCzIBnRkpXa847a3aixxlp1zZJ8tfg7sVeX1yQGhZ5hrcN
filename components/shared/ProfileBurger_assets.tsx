@@ -26,7 +26,7 @@ export const ProfileBurger_assets = ({ handleShortcutClick }: Props) => {
 				src: '/header_icons/profile_burger/swap.svg',
 				title: t('swap'),
 				tabName: 'Verification',
-				href: '/swap',
+				href: '#',
 			},
 			{
 				src: '/header_icons/profile_burger/commission.svg',

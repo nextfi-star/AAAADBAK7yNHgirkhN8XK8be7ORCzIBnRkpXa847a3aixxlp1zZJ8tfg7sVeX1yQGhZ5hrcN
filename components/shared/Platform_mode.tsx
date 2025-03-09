@@ -40,13 +40,7 @@ export const Platform_mode = () => {
 						value='Web'
 					>
 						Web 3
-						<Image
-							alt='lock icon'
-							className='pl-[5px] lock'
-							height={20}
-							src={'/lock.svg'}
-							width={20}
-						/>
+						<Lock strokeWidth={1} className='max-w-[20px] lock' />
 					</TabsTrigger>
 				</TabsList>
 			</Tabs>
@@ -63,13 +57,7 @@ export const Platform_mode = () => {
 						className='lock-btn text-[14px] data-[state=active]:bg-transparent data-[state=active]:shadow-none px-[3px]'
 						value='Exchange'
 					>
-						<Image
-							alt='lock icon'
-							className='pl-[5px] lock'
-							height={20}
-							src={'/lock.svg'}
-							width={20}
-						/>
+					<Lock strokeWidth={1} className='max-w-[20px] lock' />
 						<ArrowBracket
 							className={'-rotate-[90deg]'}
 							color={theme === 'dark' ? 'white' : 'black'}
@@ -81,13 +69,7 @@ export const Platform_mode = () => {
 						className='lock-btn text-[14px] data-[state=active]:bg-transparent data-[state=active]:shadow-none px-[3px]'
 						value='Web'
 					>
-						<Image
-							alt='lock icon'
-							className='pl-[5px] lock'
-							height={20}
-							src={'/lock.svg'}
-							width={20}
-						/>
+					<Lock strokeWidth={1} className='max-w-[20px] lock' />
 						<ArrowBracket
 							className={'-rotate-[90deg]'}
 							color={theme === 'dark' ? 'white' : 'black'}

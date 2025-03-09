@@ -16,6 +16,7 @@ import { ViewRegion } from './ViewRegion'
 import { useMemo } from 'react'
 import { useUserStore } from '@/hooks/useUserData'
 import { useTranslations } from 'next-intl'
+import { Lock } from 'lucide-react'
 
 interface Props {
 	showSection: boolean
@@ -100,7 +101,9 @@ export const ProfileBurger_accordeon = ({
 						content: (
 							<>
 								<span>{user?.phone || '+*********'}</span>
+								<div>
 								<Alert_phone propsItem={t('change')} />
+								</div>
 							</>
 						),
 					},
@@ -139,7 +142,7 @@ export const ProfileBurger_accordeon = ({
 						content: (
 							<>
 								<span>{t('changephone')}</span>
-								<Alert_phone propsItem={t('change')} />
+							<Alert_phone propsItem={t('change')} />
 							</>
 						),
 					},
