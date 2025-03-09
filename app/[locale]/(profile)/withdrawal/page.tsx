@@ -22,7 +22,6 @@ const Withdrawal = () => {
 			<div className='block lg:hidden'>
 				<Withdrawal_table_mobile />
 			</div>
-
 			<div className='hidden lg:block'>
 				<Withdrawal_table />
 			</div>

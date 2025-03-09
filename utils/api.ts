@@ -131,26 +131,23 @@ export const uploadFile = async (
 	file: File,
 	type: 'upload_verif' | 'upload_logo',
 	region: string = ''
-) => {
+): Promise<any> => {
 	try {
 		const formData = new FormData()
 		formData.append('csrf', csrf)
 		formData.append('type', type)
-		formData.append('files', file)
+		formData.append('file', file)
 
 		if (type === 'upload_verif') {
 			formData.append('region', region)
 		}
-
-		const response = await fetch(
-			`https://nextfi.io:5000/api/v1/${type === 'upload_logo' ? 'logo' : 'verification'}`,
-			{
-				method: 'POST',
-				body: formData,
-			}
-		)
-
+		const endpoint = `https://nextfi.io:5000/api/v1/${type === 'upload_logo' ? 'logo' : 'verification'}`
+		const response = await fetch(endpoint, {
+			method: 'POST',
+			body: formData,
+		})
 		const result = await response.json()
+		console.log(result)
 		return result
 	} catch (error) {
 		console.error('❌ Ошибка загрузки файла:', error)
@@ -281,6 +278,30 @@ export const getUserHistory = async (
 		return null
 	}
 }
+export const getDepositHistory = async (csrf: string) => {
+  try {
+    const payload = { csrf, type: 'balance_deposit' };
+    const response = await fetch('https://nextfi.io:5000/api/v1/history', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+    console.log(result);
+    if (!response.ok || result.response === 'error') {
+      console.error('Error:', result.message || 'Unknown error');
+      return { error: true, message: result.message };
+    }
+    return { error: false, data: result.data };
+  } catch (error) {
+    console.error('Error fetching deposit history:', error);
+    return { error: true, message: 'Network error' };
+  }
+};
+
 export const getUserBalance = async (csrf: string, coin?: string) => {
 	try {
 		const payload: Record<string, any> = { csrf }
@@ -303,6 +324,66 @@ export const getUserBalance = async (csrf: string, coin?: string) => {
 		return null
 	}
 }
+export const createWithdraw = async (
+	csrf: string,
+	coin: string,
+	amount: string,
+	address: string,
+	net: string,
+	twoFaCode?: string
+) => {
+	try {
+		const payload: Record<string, string> = {
+			csrf,
+			coin,
+			amount,
+			address,
+			net,
+		}
+		if (twoFaCode) {
+			payload['2fa_code'] = twoFaCode
+		}
+		const response = await fetch('https://nextfi.io:5000/api/v1/withdraw', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(payload),
+		})
+		const result = await response.json()
+		console.log(result)
+		if (!response.ok || result.response === 'error') {
+			return { error: true, message: result.message || 'Unknown error' }
+		}
+		return { error: false, data: result, message: result.message };
+	} catch (error) {
+		console.error('Error creating withdraw:', error)
+		return { error: true, message: 'Network error' };
+	}
+}
+export const getWithdrawHistory = async (csrf: string) => {
+  try {
+    const payload = { csrf };
+    const response = await fetch('https://nextfi.io:5000/api/v1/withdraw_list', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+    console.log(result);
+    if (!response.ok || result.response === 'error') {
+      console.error('Error:', result.message || 'Unknown error');
+      return { error: true, message: result.message };
+    }
+    return { error: false, data: result.data };
+  } catch (error) {
+    console.error('Error fetching withdraw history:', error);
+    return { error: true, message: 'Network error' };
+  }
+};
 export const getInvestHistory = async ({
 	coin,
 	csrf,
@@ -440,10 +521,9 @@ export const getChatHistory = async (csrf: string, tid: string) => {
 		const response = await fetch('https://nextfi.io:5000/api/v1/support_chat', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ csrf, type: 'history', tid, text: "dummy" }),
+			body: JSON.stringify({ csrf, type: 'history', tid, text: 'dummy' }),
 		})
 		const result = await response.json()
-		console.log('История чата:', result.data)
 		return result
 	} catch (error) {
 		console.error('Ошибка загрузки чата:', error)
@@ -459,7 +539,6 @@ export const sendMessage = async (csrf: string, tid: string, text: string) => {
 		})
 
 		const result = await response.json()
-		console.log('Отправка сообщения:', result)
 		return result
 	} catch (error) {
 		console.error('Ошибка отправки сообщения:', error)

@@ -77,8 +77,6 @@ const Deposit_steps = () => {
 			console.log(coins)
 		}
 	}, [user?.csrf, loadCoins])
-	const getCoinImage = (coinName: string) =>
-		`/coins/${coinName.toLowerCase()}.svg`
 	return (
 		<div className=' dark:shadow-none rounded-[30px] p-[29px_16px] md:p-[29px]'>
 			<div className='flex justify-start gap-[10px] w-full  pb-[1.5rem]'>
@@ -114,7 +112,7 @@ const Deposit_steps = () => {
 												<div className='flex w-full justify-between gap-[8px] items-center'>
 													<div className='flex items-center gap-[10px]'>
 														<Avatar
-															src={`/crypto/${selectedCoin?.name?.toLowerCase()}.svg`}
+															src={`/crypto/${selectedCoin?.name?.toLowerCase() || 'btc'}.svg`}
 														/>
 														<p className='text-[18px] text-[#0c0c0c] dark:text-white'>
 															{selectedCoin

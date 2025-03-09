@@ -1,6 +1,7 @@
 'use client'
 import {
 	Button,
+	Chip,
 	ChipProps,
 	Dropdown,
 	DropdownItem,
@@ -17,17 +18,19 @@ import {
 	TableHeader,
 	TableRow,
 	User,
-} from "@heroui/react"
-import React from 'react'
+} from '@heroui/react'
+import React, { useEffect, useState } from 'react'
 import { ChevronDownIcon } from './ChevronDownIcon'
 import { columnsDataW, statusOptionsDataW, usersDataW } from './data'
 import { capitalize } from './utils'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
+import { useUserStore } from '@/hooks/useUserData'
+import { getWithdrawHistory } from '@/utils/api'
 
 const statusColorMap: Record<string, ChipProps['color']> = {
-	sent: 'success',
-	denied: 'danger',
-	pending: 'warning',
+	1: 'success',
+	2: 'danger',
+	0: 'warning',
 }
 
 const INITIAL_VISIBLE_COLUMNS = [
@@ -36,12 +39,38 @@ const INITIAL_VISIBLE_COLUMNS = [
 	'status',
 	'address',
 	'crypto',
-	'fee',
 ]
 
 type User = (typeof usersDataW)[0]
 
 export default function Withdrawal_table() {
+	const csrf = useUserStore(state => state.user?.csrf)
+	const [withdraws, setWithdraws] = useState<any[]>([])
+	const [error, setError] = useState<string>('')
+	const [loading, setLoading] = useState(false)
+
+	const fetchHistory = async () => {
+		if (!csrf) return
+		setLoading(true)
+		const result = await getWithdrawHistory(csrf)
+		setLoading(false)
+		if (result.error) {
+			setError(result.message || 'Ошибка получения истории выводов')
+			setWithdraws([])
+		} else {
+			setError('')
+			setWithdraws(result.data || [])
+		}
+	}
+	useEffect(() => {
+		if (csrf) {
+			fetchHistory()
+			const intervalId = setInterval(() => {
+				fetchHistory()
+			}, 10000)
+			return () => clearInterval(intervalId)
+		}
+	}, [csrf])
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
 		new Set(INITIAL_VISIBLE_COLUMNS)
@@ -65,7 +94,7 @@ export default function Withdrawal_table() {
 	}, [visibleColumns])
 
 	const filteredItems = React.useMemo(() => {
-		let filteredUsers = [...usersDataW]
+		let filteredUsers = [...withdraws]
 
 		if (hasSearchFilter) {
 			filteredUsers = filteredUsers.filter(user =>
@@ -82,7 +111,7 @@ export default function Withdrawal_table() {
 		}
 
 		return filteredUsers
-	}, [usersDataW, filterValue, statusFilter])
+	}, [withdraws, filterValue, statusFilter])
 
 	const pages = Math.ceil(filteredItems.length / rowsPerPage)
 
@@ -108,7 +137,9 @@ export default function Withdrawal_table() {
 
 		switch (columnKey) {
 			case 'time':
-				return <span className='md:text-[20px]'>{user.time}</span>
+				const date = new Date(Number(user.time) * 1000)
+				const formattedDate = date.toLocaleDateString('en-GB')
+				return <span className='md:text-[20px]'>{formattedDate}</span>
 			case 'address':
 				return (
 					<div className='flex flex-col items-start gap-[5px]'>
@@ -121,28 +152,29 @@ export default function Withdrawal_table() {
 							</Snippet>
 						</div>
 						<span className='md:text-[20px] font-medium text-[#BDBDBD]'>
-							{user.subaddress}
+							{user.network}
 						</span>
 					</div>
 				)
 			case 'crypto':
-				return <span className='md:text-[20px]'> {user.crypto}</span>
+				return <span className='md:text-[20px]'> {user.coin}</span>
 			case 'amount':
 				return <span className='md:text-[20px]'> {user.amount}</span>
-			case 'fee':
-				return <span className='md:text-[20px]'> {user.fee}</span>
 			case 'status':
 				return (
-                    // <Chip
-                    // 	className='capitalize'
-                    // 	color={statusColorMap[user.status]}
-                    // 	size='sm'
-                    // 	variant='flat'
-                    // >
-                    // 	{user.status}
-                    // </Chip>
-                    (<span className='capitalize md:text-[20px]'>{user.status}</span>)
-                );
+					<Chip
+						className='capitalize'
+						color={statusColorMap[user.status]}
+						size='sm'
+						variant='flat'
+					>
+						{user.status === 0
+							? 'pending'
+							: user.status === 1
+								? 'sent'
+								: 'denied'}
+					</Chip>
+				)
 			case 'actions':
 				return (
 					<div className='relative flex justify-center items-center gap-2'>
@@ -185,9 +217,7 @@ export default function Withdrawal_table() {
 		return (
 			<div className='flex flex-col gap-4'>
 				<div className='flex justify-between gap-3 items-end p-[25px_20px_0px]'>
-					<h1 className='text-[20px] xl:text-[32px]'>
-						All withdrawals
-					</h1>
+					<h1 className='text-[20px] xl:text-[32px]'>All withdrawals</h1>
 					<div className='flex gap-3'>
 						<Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
@@ -253,7 +283,7 @@ export default function Withdrawal_table() {
 		visibleColumns,
 		onSearchChange,
 		onRowsPerPageChange,
-		usersDataW.length,
+		withdraws.length,
 		hasSearchFilter,
 	])
 

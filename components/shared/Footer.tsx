@@ -11,6 +11,10 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useMemo } from 'react'
 import { LangSwitch } from '../ui/LangSwitch'
+import { Link } from '@/i18n/routing'
+import { TermsModal } from './TermsModal'
+import { PolicyModal } from './PolicyModal'
+import { SecPolicyModal } from './SecPolicyModal'
 
 export const Footer = () => {
 	const { theme } = useThemeStore()
@@ -20,39 +24,43 @@ export const Footer = () => {
 			{
 				val: 'overview',
 				title: t('overview'),
+				href: 'over',
 				content: (
 					<div className='flex flex-col items-start gap-[15px]'>
+						<Link href={'/over'}>
+							<span className='text-[18px] dark:text-[#FFFFFF66]'>
+								{t('profile')}
+							</span>
+						</Link>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('profile')}
+							<Link href={'/security'}>{t('security')}</Link>
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('security')}
+							<Link href={'/verify'}>{t('verification')}</Link>
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('verification')}
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('authDev')}
+							<Link href={'/devices'}>{t('authDev')}</Link>
 						</span>
 					</div>
 				),
 			},
 			{
 				val: 'assets',
+				href: 'assets',
 				title: t('assets'),
 				content: (
 					<div className='flex flex-col items-start gap-[15px]'>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('deposit')}
+							<Link href={'/deposit'}>{t('deposit')}</Link>
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('swap')}
+							<Link href={'/swap'}>{t('swap')}</Link>
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('withdrawal')}
+							<Link href={'/withdrawal'}>{t('withdrawal')}</Link>
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('levels')}
+							<Link href={'/activity'}>{t('levels')}</Link>
 						</span>
 					</div>
 				),
@@ -60,6 +68,7 @@ export const Footer = () => {
 			{
 				val: 'investment',
 				title: t('investment'),
+				href: 'invest',
 				content: (
 					<div className='flex flex-col items-start gap-[15px]'>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
@@ -276,15 +285,11 @@ export const Footer = () => {
 					</div>
 
 					<div className='flex items-center justify-end w-full xl:w-fit gap-[10px]'>
-						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0 text-[#205bc9] hover:cursor-pointer'>
-							{t('agreeM')}
-						</span>
-						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0 text-[#205bc9] hover:cursor-pointer'>
-							{t('termsSec')}
-						</span>
-						<span className='dark:text-[#EFEFEF] text-[14px] flex-shrink-0 text-[#205bc9] hover:cursor-pointer'>
-							{t('secPol')}
-						</span>
+						<TermsModal />
+
+						<PolicyModal />
+
+						<SecPolicyModal />
 					</div>
 				</div>
 			</div>
@@ -386,15 +391,11 @@ export const Footer = () => {
 					</div>
 
 					<div className='flex w-full justify-center items-center gap-[30px]'>
-						<span className='hover:cursor-pointer text-[14px] flex-shrink-0 text-[#205bc9]'>
-							{t('agreeM')}
-						</span>
-						<span className='hover:cursor-pointer text-[14px] flex-shrink-0 text-[#205bc9]'>
-							{t('termsSec')}
-						</span>
-						<span className='hover:cursor-pointer text-[14px] flex-shrink-0 text-[#205bc9]'>
-							{t('secPol')}
-						</span>
+						<TermsModal />
+
+						<PolicyModal />
+
+						<SecPolicyModal />
 					</div>
 				</div>
 			</div>

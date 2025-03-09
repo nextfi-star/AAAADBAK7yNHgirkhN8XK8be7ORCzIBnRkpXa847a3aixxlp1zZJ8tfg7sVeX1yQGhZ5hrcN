@@ -28,11 +28,17 @@ export const Profile_balance = () => {
 		}, 2000)
 	}
 	const [balance, setBalance] = useState<number | null>(null)
-	const [loading, setLoading] = useState(true)
 	const [coin, setCoin] = useState<string | ''>('TEST')
 	const user = useUserStore(state => state.user)
 	const { loadBalanceByCoin } = useBalanceStore()
-
+	const formattedBalance =
+  balance !== null
+    ? new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 2,
+      }).format(balance)
+    : '$0';
 	useEffect(() => {
 		const fetchBalance = async () => {
 			if (user?.csrf) {
@@ -58,7 +64,7 @@ export const Profile_balance = () => {
 											<Image
 												src={
 													refresh
-														? '/main/bonusbalance.svg'
+														? '/main/balance.svg'
 														: '/main/balance.svg'
 												}
 												width={44}
@@ -66,7 +72,7 @@ export const Profile_balance = () => {
 												alt='balance'
 											/>
 											<h4 className='text-blue-600 text-[21px] font-medium'>
-												{refresh ? t('bonus') : t('balance')}
+												{refresh ? t('balance') : t('balance')}
 											</h4>
 
 											<Eye />
@@ -75,7 +81,7 @@ export const Profile_balance = () => {
 									<div className='flex items-center gap-[8px]'>
 										<p className='text-[23px] font-bold'>
 											{' '}
-											{`${balance || '0'} $`}
+											{`${formattedBalance || '0'} $`}
 										</p>
 										<select
 											className='bg-transparent text-[16px] font-medium'
@@ -83,20 +89,14 @@ export const Profile_balance = () => {
 										>
 											<option
 												className='text-[12px] max-w-[1px] text-black'
-												value='all'
-											>
-												USDT
-											</option>
-											<option
-												className='text-[12px] max-w-[1px] text-black'
 												value='TEST'
 											>
-												NextFi
+												TEST
 											</option>
 										</select>
 									</div>
 									<div className='flex items-center gap-2 text-blue-600 text-[14px]'>
-										<p>{t('today')} $0,00 (0,00 %)</p>
+										{/* <p>{t('today')} $0,00 (0,00 %)</p> */}
 									</div>
 								</div>
 								<div className='flex items-center gap-[10px]'>
@@ -113,7 +113,7 @@ export const Profile_balance = () => {
 						)}
 					</div>
 					{/* PC */}
-					<div className='profile_balance_side'>
+					<div className='profile_balance_side !w-fit !max-w-fit'>
 						<div className='flex flex-col gap-[10px]'>
 							<div className='flex justify-between items-center'>
 								<div className='flex items-center gap-2'>
@@ -132,24 +132,12 @@ export const Profile_balance = () => {
 							<div className='flex items-center gap-[8px]'>
 								<p className='text-[36px] font-bold'>
 									{' '}
-									{`${balance || '0'} $`}{' '}
+									{`${formattedBalance || '0'} $`}{' '}
 								</p>
 								<select
 									className='bg-transparent text-[16px] font-medium'
 									onChange={e => setCoin(e.target.value)}
 								>
-									<option
-										className='text-[12px] max-w-[1px] text-black'
-										value='all'
-									>
-										All
-									</option>
-									<option
-										className='text-[12px] max-w-[1px] text-black'
-										value='BTC'
-									>
-										BTC
-									</option>
 									<option
 										className='text-[12px] max-w-[1px] text-black'
 										value='TEST'
@@ -159,12 +147,12 @@ export const Profile_balance = () => {
 								</select>
 							</div>
 							<div className='flex items-center gap-2 text-blue-600 text-[14px]'>
-								<p className='text-[19px]'>{t('today')} $0,00 (0,00 %)</p>
+								{/* <p className='text-[19px]'>{t('today')} $0,00 (0,00 %)</p> */}
 							</div>
 						</div>
 					</div>
 					{/* PC */}
-					<div className='profile_balance_side'>
+					{/* <div className='profile_balance_side'>
 						<div className='flex flex-col gap-[10px]'>
 							<div className='flex justify-between items-center'>
 								<div className='flex items-center gap-2'>
@@ -191,18 +179,6 @@ export const Profile_balance = () => {
 								>
 									<option
 										className='text-[12px] max-w-[1px] text-black'
-										value='all'
-									>
-										All
-									</option>
-									<option
-										className='text-[12px] max-w-[1px] text-black'
-										value='BTC'
-									>
-										BTC
-									</option>
-									<option
-										className='text-[12px] max-w-[1px] text-black'
 										value='TEST'
 									>
 										TEST
@@ -213,7 +189,7 @@ export const Profile_balance = () => {
 								<p className='text-[19px]'>{t('today')} $0,00 (0,00 %)</p>
 							</div>
 						</div>
-					</div>
+					</div> */}
 				</div>
 
 				<div className='flex w-full flex-col items-center gap-[40px] '>
@@ -243,7 +219,7 @@ export const Profile_balance = () => {
 									{t('withdrawal')}
 								</Link>
 								<Link
-									href='/swap'
+									href='#'
 									className='flex flex-col items-center text-[14px]'
 								>
 									<Avatar
@@ -279,7 +255,7 @@ export const Profile_balance = () => {
 									{t('withdrawal')}
 								</Link>
 								<Link
-									href='/swap'
+									href='#'
 									className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
 								>
 									{t('swap')}

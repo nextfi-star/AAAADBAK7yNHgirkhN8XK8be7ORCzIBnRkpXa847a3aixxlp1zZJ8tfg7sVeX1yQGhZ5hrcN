@@ -11,16 +11,18 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover'
+import { useUserStore } from '@/hooks/useUserData'
 import { useThemeStore } from '@/store/useChatStore'
-import { Avatar } from '@heroui/react'
+import { getDepositAddress } from '@/utils/api'
+import { Avatar, Snippet, Spinner } from '@heroui/react'
 import { CheckCheck, ChevronDown } from 'lucide-react'
-import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
-import { useState } from 'react'
+import { ChangeEvent, useEffect, useMemo, useState } from 'react'
+import QRCode from 'react-qr-code'
 import { Button } from '../ui/button'
 import NotFoundItem from './NotFoundItem'
+import { useCoinStore } from '@/store/coinList'
 import { Withdrawal_confirmation } from './Withdrawal_confirmation'
-
 export type CryptoData = {
 	id: number
 	name: string
@@ -35,125 +37,65 @@ export type NetworkData = {
 	cryptoNumbers: string
 	moreLess: string
 }
-interface Props {
-	cryptoData?: CryptoData[]
-	networkData?: NetworkData[]
-}
-const cryptoData = [
-	{
-		id: 1,
-		name: 'TRX',
-		avatar: '/payment_table/trx.svg',
-		crypto: 'TRON',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 2,
-		name: 'ZRO',
-		avatar: '/payment_table/zro.svg',
-		crypto: 'Zero layer',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 3,
-		name: 'USDT',
-		avatar: '/payment_table/teater.svg',
-		crypto: 'Tether',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-]
-const networkData = [
-	{
-		id: 1,
-		name: 'TRC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 2,
-		name: 'ERC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 3,
-		name: 'ZRC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 4,
-		name: 'XRC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 5,
-		name: 'CRC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 6,
-		name: 'VRC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 7,
-		name: 'ZXRC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 8,
-		name: 'ZRO20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 9,
-		name: 'CXC20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-	{
-		id: 10,
-		name: 'ZXX20',
-		cryptoNumbers: '0.00000079',
-		moreLess: '<$0.01',
-	},
-]
-const Withdrawal_steps: NextPage<Props> = () => {
+
+const Withdrawal_steps = () => {
 	const t = useTranslations('withdrawal')
+	const user = useUserStore(state => state.user)
+	const {
+		coins,
+		selectedCoin,
+		loadCoins,
+		setSelectedCoin,
+		setSelectedNetwork,
+		selectedNetwork,
+	} = useCoinStore()
 	const { step, setStep, theme } = useThemeStore()
 	const [open, setOpen] = useState(false)
-	const [openNetwork, setOpenNetwork] = useState(false)
 	const [inputStep2, setInputStep2] = useState<string>('')
-	const [input2Step2, setInput2Step2] = useState<string>('')
-	const [input3, setInput3] = useState('')
-	const [selectedCrypto, setSelectedCrypto] = useState<CryptoData | null>(null)
-	const [selectedNetwork, setSelectedNetwork] = useState<NetworkData | null>(
-		null
-	)
+	const [openNetwork, setOpenNetwork] = useState(false)
+	const [error, setError] = useState('')
+	const [amount, setAmount] = useState<string>('')
+	const [depositAddress, setDepositAddress] = useState('')
 
-	const input2Step2Handler = (e: any) => {
-		setInput2Step2(e.target.value)
-		if (input2Step2.length > 5) {
-			setStep(3)
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const inputValue = e.target.value
+		if (/^\d*\.?\d*$/.test(inputValue)) {
+			setAmount(inputValue)
 		}
 	}
-	const DropCache = () => {
-		setStep(1)
-		setInputStep2('')
-		setInput2Step2('')
-		setSelectedCrypto(null)
+	const isValidAmount = () => {
+		const parsed = parseFloat(amount)
+		return amount !== '' && !isNaN(parsed) && parsed > 0
 	}
+	const handleGetDepositAddress = async () => {
+		if (!user?.csrf || !selectedCoin || !selectedNetwork) {
+			setError(t('errChoose'))
+			return
+		}
+		setError('')
+		const result = await getDepositAddress(
+			user.csrf,
+			selectedCoin.name,
+			selectedNetwork
+		)
+		if (result.success) {
+			setDepositAddress(result.address)
+		} else {
+			setError(result.message)
+		}
+	}
+	useEffect(() => {
+		if (selectedCoin && selectedNetwork) {
+			handleGetDepositAddress()
+		}
+	}, [selectedCoin, selectedNetwork])
+	useEffect(() => {
+		if (user?.csrf) {
+			loadCoins(user.csrf)
+		}
+	}, [user?.csrf, loadCoins])
 	return (
-		<div className='shadow-none dark:shadow-none rounded-[30px] p-[29px_16px] md:p-[29px]'>
+		<div className=' dark:shadow-none rounded-[30px] p-[29px_16px] md:p-[29px]'>
 			<div className='flex justify-start gap-[10px] w-full  pb-[1.5rem]'>
 				<div className={'flex flex-col gap-[20px] w-full'}>
 					<div
@@ -182,36 +124,26 @@ const Withdrawal_steps: NextPage<Props> = () => {
 											<Button
 												variant='outline'
 												size='sm'
-												className='w-full h-[48px] rounded-medium max-w-[294px] sm:max-w-[962px] justify-start bg-[#7676801F] hover:bg-[#7676801F]'
+												className='w-full h-[48px] rounded-medium max-w-[294px] sm:max-w-[962px] justify-start bg-[#7676801F] hover:bg-[#7676801F] pl-[20px]'
 											>
-												{selectedCrypto ? (
-													<div className='flex w-full justify-between gap-[8px] items-center'>
-														<div className='flex items-center gap-[3px]'>
-															<Avatar src={selectedCrypto.avatar} />
-															<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
-																{selectedCrypto.name}
-															</p>
-														</div>
-														<ChevronDown
-															strokeWidth={1}
-															color={theme === 'dark' ? 'white' : 'black'}
-															className={`w-8 h-8 transition duration-300  
-																${!open ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
+												<div className='flex w-full justify-between gap-[8px] items-center'>
+													<div className='flex items-center gap-[10px]'>
+														<Avatar
+															src={`/crypto/${selectedCoin?.name?.toLowerCase() || 'btc'}.svg`}
 														/>
-													</div>
-												) : (
-													<div className='flex w-full justify-between gap-[8px] items-center'>
-														<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
-															{t('selectCrp')}
+														<p className='text-[18px] text-[#0c0c0c] dark:text-white'>
+															{selectedCoin
+																? selectedCoin.name
+																: t('selectCrp')}
 														</p>
-														<ChevronDown
-															strokeWidth={1}
-															color={theme === 'dark' ? 'white' : 'black'}
-															className={`w-8 h-8 transition duration-300  
-																${!open ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
-														/>
 													</div>
-												)}
+													<ChevronDown
+														strokeWidth={1}
+														color={theme === 'dark' ? 'white' : 'black'}
+														className={`w-8 h-8 transition duration-300  
+															${!open ? 'rotate-[0deg]' : 'rotate-[180deg]'}`}
+													/>
+												</div>
 											</Button>
 										</PopoverTrigger>
 										<PopoverContent
@@ -225,37 +157,26 @@ const Withdrawal_steps: NextPage<Props> = () => {
 														<NotFoundItem />
 													</CommandEmpty>
 													<CommandGroup>
-														{cryptoData.map(status => (
+														{coins.map(coin => (
 															<CommandItem
-																key={status.id}
-																value={status.name}
-																onSelect={value => {
-																	setSelectedCrypto(
-																		cryptoData.find(
-																			priority => priority.name === value
-																		) || null
-																	)
+																key={coin.id}
+																value={coin.name}
+																onSelect={() => {
+																	setSelectedCoin(coin)
 																	setOpen(false)
 																	setStep(2)
 																}}
 																className='data-[selected=true]:!bg-[#7676801F]'
 															>
 																<div className='flex items-center justify-between w-full'>
-																	<div className='flex items-center gap-[3px]'>
-																		<Avatar src={status.avatar} />
+																	<div className='flex items-center gap-[10px]'>
+																		<Avatar
+																			src={`/crypto/${coin.name?.toLowerCase()}.svg`}
+																		/>
 																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
-																			{status.name}
-																			<span className='text-[20px] text-[#3A3939] dark:text-[#BDBDBD]'>
-																				{status.name}
-																			</span>
+																			{coin.name}
 																		</p>
 																	</div>
-																	<p className='flex flex-col items-end text-[20px] text-[#181818] dark:text-[#EFEFEF]'>
-																		{status.cryptoNumbers}
-																		<span className='text-[14px] md:text-[20px] text-[#3C3C3C66] dark:text-[#BDBDBD]'>
-																			{status.moreLess}
-																		</span>
-																	</p>
 																</div>
 															</CommandItem>
 														))}
@@ -275,7 +196,7 @@ const Withdrawal_steps: NextPage<Props> = () => {
 										step === 2 ? 'bg-[#205BC9]' : 'bg-[#3A3939]'
 									} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
 								>
-									{input2Step2.length ? <CheckCheck /> : 2}
+									{inputStep2.length ? <CheckCheck /> : 2}
 								</span>
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 2 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
@@ -300,9 +221,9 @@ const Withdrawal_steps: NextPage<Props> = () => {
 												>
 													{selectedNetwork ? (
 														<div className='flex w-full justify-between gap-[8px] items-center'>
-															<div className='flex items-center gap-[3px]'>
+															<div className='flex items-center gap-[3px] mb-[-5px]'>
 																<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
-																	{selectedNetwork.name}
+																	{selectedNetwork}
 																</p>
 															</div>
 															<ChevronDown
@@ -313,9 +234,9 @@ const Withdrawal_steps: NextPage<Props> = () => {
 															/>
 														</div>
 													) : (
-														<div className='flex w-full justify-between gap-[8px] items-center'>
+														<div className='flex w-full justify-between gap-[8px] items-center mb-[-5px]'>
 															<p className='text-[16px] text-[#0c0c0c] dark:text-white'>
-																{t('selectNetwork')}
+																{t('setDestn')}
 															</p>
 															<ChevronDown
 																strokeWidth={1}
@@ -338,28 +259,23 @@ const Withdrawal_steps: NextPage<Props> = () => {
 															<NotFoundItem />
 														</CommandEmpty>
 														<CommandGroup>
-															{networkData.map(status => (
+															{selectedCoin?.network.map(status => (
 																<CommandItem
-																	key={status.id}
-																	value={status.name}
+																	key={status}
+																	value={status}
 																	className='data-[selected=true]:!bg-[#7676801F]'
 																	onSelect={value => {
-																		setSelectedNetwork(
-																			networkData.find(
-																				priority => priority.name === value
-																			) || null
-																		)
+																		setSelectedNetwork(value)
 																		setOpenNetwork(false)
+																		setInputStep2(value)
+																		setStep(3)
 																	}}
 																>
 																	<div className='flex items-center justify-between rounded-[4px] w-full'>
 																		<div className='flex flex-col'>
 																			<span className='text-small text-[#205BC9]'>
-																				{status.name}
+																				{status}
 																			</span>
-																		</div>
-																		<div className='flex flex-col items-end'>
-																			<span>{status.cryptoNumbers}</span>
 																		</div>
 																	</div>
 																</CommandItem>
@@ -369,13 +285,6 @@ const Withdrawal_steps: NextPage<Props> = () => {
 												</Command>
 											</PopoverContent>
 										</Popover>
-
-										<input
-											type='text'
-											placeholder='Select address'
-											className='px-3 text-[16px] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center'
-											onChange={input2Step2Handler}
-										/>
 									</div>
 								</div>
 							)}
@@ -385,10 +294,10 @@ const Withdrawal_steps: NextPage<Props> = () => {
 							<div className='flex items-start gap-[15px] mb-[15px] md:mb-[15px]'>
 								<span
 									className={`text-white text-[18px] ${
-										input2Step2.length > 3 ? 'bg-[#205BC9]' : 'bg-[#3A3939]'
+										inputStep2.length > 3 ? 'bg-[#205BC9]' : 'bg-[#3A3939]'
 									} rounded-[50%] min-w-[30px] min-h-[30px] flex items-center justify-center`}
 								>
-									{input3.length > 3 ? <CheckCheck /> : 3}
+									{inputStep2.length > 3 ? <CheckCheck /> : 3}
 								</span>
 								<span
 									className={`text-[16px] xl:text-[24px] ${step === 3 ? 'text-[#0c0c0c] dark:text-white' : 'text-[#888888]'}`}
@@ -403,28 +312,45 @@ const Withdrawal_steps: NextPage<Props> = () => {
 											type='text'
 											placeholder='Enter the amount'
 											className='px-2 text-[16px] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center max-w-[962px]'
-											onChange={e => setInput3(e.target.value)}
+											value={amount}
+											onChange={handleChange}
 										/>
-										<span className='text-[18px] font-bold text-[#888888]'>
-											{t('transFee')} <span>3.25 {selectedCrypto?.name}</span>
-										</span>
 										<div className='flex flex-col gap-[10px] md:gap-0 items-start md:flex-row md:items-center md:justify-between w-full '>
 											<p className='text-[16px] font-medium md:text-[20px] flex items-center justify-between gap-[5px] text-[#3A3939] dark:text-[#BDBDBD]'>
 												{t('AmountReceived')}:
 											</p>
 											<div className='flex items-center gap-[34px]'>
 												<span className='text-[18px] xl:text-[25px] text-[#3A3939] dark:text-[#EFEFEF]'>
-													111.25 {selectedCrypto?.name}
+													{amount} {selectedCoin?.name}
 												</span>
+												{/* {!error ? (
+													<Withdrawal_confirmation
+														amount={amount}
+														setAmount={setAmount}
+														selectedCoin={selectedCoin}
+														selectedNetwork={selectedNetwork}
+														setInputStep2={setInputStep2}
+														titleTrigger={'Withdrawal'}
+														className='dark:shadow-none'
+														inputStep2={inputStep2}
+														depositAddress={depositAddress}
+													/>
+												) : (
+													<p className='text-[16px] xl:text-[20px] text-danger-100'>
+														{error}
+													</p>
+												)} */}
 												<Withdrawal_confirmation
-													input3={input3}
-													setInput3={setInput3}
+													amount={amount}
+													setAmount={setAmount}
+													isValidAmount={isValidAmount}
+													selectedCoin={selectedCoin}
+													selectedNetwork={selectedNetwork}
 													setInputStep2={setInputStep2}
-													setInput2Step2={setInput2Step2}
-													setSelectedCrypto={setSelectedCrypto}
 													titleTrigger={'Withdrawal'}
-													selectedCrypto={selectedCrypto}
 													className='dark:shadow-none'
+													inputStep2={inputStep2}
+													depositAddress={depositAddress}
 												/>
 											</div>
 										</div>

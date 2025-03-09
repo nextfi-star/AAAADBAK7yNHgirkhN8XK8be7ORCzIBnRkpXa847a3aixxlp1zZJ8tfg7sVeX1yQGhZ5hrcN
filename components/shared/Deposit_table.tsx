@@ -38,6 +38,7 @@ const INITIAL_VISIBLE_COLUMNS = [
 ]
 type User = (typeof usersDataD)[0]
 export default function Deposit_table() {
+	
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
 		new Set(INITIAL_VISIBLE_COLUMNS)

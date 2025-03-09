@@ -64,7 +64,7 @@ export const ProfileHeader = ({ auth = true }: Props) => {
 			{
 				title: t('swap'),
 				key: 'swap',
-				href: '/swap',
+				href: '#',
 				icon: <Repeat strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},

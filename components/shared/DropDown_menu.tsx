@@ -11,13 +11,14 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover'
 import { Link } from '@/i18n/routing'
-import { Button } from "@heroui/button"
+import { Button } from '@heroui/button'
 import { NextPage } from 'next'
 import { useState } from 'react'
 import { DropData } from './ProfileHeader'
 import Image from 'next/image'
-import { Spinner } from "@heroui/spinner"
+import { Spinner } from '@heroui/spinner'
 import { useUserStore } from '@/hooks/useUserData'
+import { Lock } from 'lucide-react'
 
 interface Props {
 	dropData?: DropData[]
@@ -144,9 +145,17 @@ export const DropDown_menu: NextPage<Props> = ({
 														<Link
 															href={item.href}
 															onClick={item.verify}
-															className='text-[14px] w-full'
+															className='text-[14px] w-full flex items-center'
 														>
-															{item.title}
+															{item.title}{' '}
+															{item.key === 'swap' ? (
+																<Lock
+																	strokeWidth={1}
+																	className='max-w-[15px] ml-[5px]'
+																/>
+															) : (
+																''
+															)}
 														</Link>
 													)}
 												</div>

@@ -11,51 +11,82 @@ import {
 } from '@/components/ui/dialog'
 import { useThemeStore } from '@/store/useChatStore'
 import { Divider } from '@heroui/divider'
-import { Image } from '@heroui/react'
+import { Spinner } from '@heroui/react'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import Withdrawal_animation from './Withdrawal_animation'
-import { CryptoData } from './Withdrawal_steps'
+import { Coin } from '@/store/coinList'
+import { createWithdraw } from '@/utils/api'
+import { useUserStore } from '@/hooks/useUserData'
+import { useWithdrawStore } from '@/store/useWithdrawalStore'
 
 interface Props {
 	titleTrigger: string
-	input3: string
-	setInput3: (val: string) => void
-	selectedCrypto: CryptoData | null
-	setSelectedCrypto: (val: null) => void
 	setInputStep2: (val: string) => void
-	setInput2Step2: (val: string) => void
+	inputStep2: string
+	selectedCoin: Coin | null
+	selectedNetwork: string | null
 	className?: string
+	amount: string
+	setAmount: (val: string) => void
+	depositAddress: string
+	isValidAmount: () => boolean
 }
 export const Withdrawal_confirmation = ({
 	className,
 	titleTrigger,
-	input3,
-	setInput3,
 	setInputStep2,
-	setInput2Step2,
-	selectedCrypto,
-	setSelectedCrypto,
+	inputStep2,
+	selectedCoin,
+	selectedNetwork,
+	amount,
+	setAmount,
+	depositAddress,
+	isValidAmount,
 }: Props) => {
 	const t = useTranslations('withdrawal')
 	const { theme, confirmationStep, setConfirmStep, setStep } = useThemeStore()
+	const backUpdate = useWithdrawStore(state => state.fetchWithdrawList)
 	const [checked, setChecked] = useState(false)
+	const [message, setMessage] = useState('')
+
+	const csrf = useUserStore(state => state.user?.csrf)
+
+	const handleSubmit = async (e: any) => {
+		e.preventDefault()
+		const amountStr = amount.toString()
+		const result = await createWithdraw(
+			csrf,
+			selectedCoin?.name || '',
+			amountStr,
+			depositAddress || '0x627390cc319e1a61d6c3a9c7cbdfa9c85740bf89',
+			selectedNetwork || 'ERC20',
+			inputStep2
+		)
+		if (result.data) {
+			await backUpdate(csrf)
+			setMessage(result.message || 'Заявка успешно создана')
+			setConfirmStep(3)
+			setChecked(false)
+		} else {
+			setConfirmStep(1)
+			setMessage(result.message)
+		}
+	}
 	const DropSteps = () => {
 		setStep(1)
 		setConfirmStep(1)
 		setChecked(false)
-		setInput3('')
-		setSelectedCrypto(null)
 		setInputStep2('')
-		setInput2Step2('')
+		setAmount('')
 	}
 	return (
 		<Dialog>
 			<DialogTrigger asChild className='!hover:bg-[#205BC9]'>
 				<Button
-					className={`text-[16px] xl:text-[20px] flex items-center justify-center w-[156px] h-[44px] !py-[8px] hover:!bg-[#205BC9] rounded-[50px] ${input3.length > 3 ? '!bg-[#205BC9] text-[#EFEFEF]' : 'bg-[#7676801F] text-[#888888]'} ${className}`}
-					disabled={input3.length <= 3}
+					className={`text-[16px] xl:text-[20px] flex items-center justify-center w-[156px] h-[44px] !py-[8px] hover:!bg-[#205BC9] text-white rounded-[50px] ${isValidAmount() ? '!bg-[#205BC9] text-[#ffffff]' : 'bg-[#7676801F] text-[#888888]'} ${className}`}
+					disabled={!isValidAmount()}
 				>
 					{titleTrigger}
 				</Button>
@@ -80,9 +111,9 @@ export const Withdrawal_confirmation = ({
 
 									<DialogDescription className='flex items-center justify-end gap-[1px] md:gap-[16px] dark:text-white text-[12px] md:text-[20px] w-full '>
 										<span className='p-[5px] text-white bg-[#205BC9] rounded-[4px] ]'>
-											TRC20
+											{selectedCoin?.name || <Spinner />}
 										</span>
-										QnC4Nssok2bb3l0Iue1Own
+										{selectedNetwork || <Spinner />}
 									</DialogDescription>
 								</div>
 								<div className='flex items-center w-full justify-between'>
@@ -91,8 +122,7 @@ export const Withdrawal_confirmation = ({
 									</DialogDescription>
 
 									<DialogDescription className='flex items-center gap-[4px] dark:text-white text-[14px] md:text-[20px]'>
-										112.720 {selectedCrypto?.name} ({t('fee')}: 10
-										{selectedCrypto?.name})
+										{amount} {selectedCoin?.name}
 									</DialogDescription>
 								</div>
 							</article>
@@ -129,6 +159,11 @@ export const Withdrawal_confirmation = ({
 					</DialogHeader>
 					<Divider className='m-0' />
 					<DialogFooter className='flex flex-row justify-center items-center gap-[15px] p-[30px_40px]'>
+						{message && (
+							<p className='text-[14px] md:text-[16px] lg:text-[18px] 2xl:text-[20px] text-danger-500 leading-[1] w-full text-center'>
+								{message}
+							</p>
+						)}
 						<DialogClose asChild>
 							<Button
 								type='button'
@@ -139,7 +174,7 @@ export const Withdrawal_confirmation = ({
 							</Button>
 						</DialogClose>
 						<Button
-							onClick={() => setConfirmStep(2)}
+							onClick={handleSubmit}
 							type='button'
 							variant='secondary'
 							className='bg-[#205BC9] text-white w-fit rounded-[50px] hover:bg-[#205BC9] min-w-[124px]'
@@ -151,7 +186,7 @@ export const Withdrawal_confirmation = ({
 				</DialogContent>
 			)}
 
-			{confirmationStep === 2 && (
+			{/* {confirmationStep === 2 && (
 				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full p-0 rounded-[20px]'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
@@ -217,7 +252,7 @@ export const Withdrawal_confirmation = ({
 						</Button>
 					</DialogFooter>
 				</DialogContent>
-			)}
+			)} */}
 
 			{confirmationStep === 3 && (
 				<DialogContent className='max-w-[90%] md:max-w-[576px] w-full p-0 rounded-[20px]'>
@@ -243,7 +278,7 @@ export const Withdrawal_confirmation = ({
 					<DialogFooter className='flex sm:justify-center items-center gap-[15px] p-[30px_40px]'>
 						<DialogClose asChild>
 							<Button
-								onClick={DropSteps}
+								onClick={() => setConfirmStep(1)}
 								type='button'
 								variant='secondary'
 								className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] max-w-[124px] h-[48px] relative'
