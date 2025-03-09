@@ -1,24 +1,21 @@
 'use client'
+
+import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
 import { useUserStore } from '@/hooks/useUserData'
-import { useChatStore, useThemeStore } from '@/store/useChatStore'
 import {
-	Button,
-	Divider,
 	Modal,
 	ModalBody,
 	ModalContent,
 	ModalHeader,
 	useDisclosure,
-} from '@heroui/react'
-import { ChevronLeft, Images, SendHorizontal, X } from 'lucide-react'
-import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+} from '@heroui/modal'
+import { Button } from '@heroui/button'
+import { ChevronLeft, SendHorizontal, X } from 'lucide-react'
 import A_ChatUploader from './A_ChatUploader'
-type Message = {
-	content: string
-	time: string
-	sender: 'me' | 'bot'
-}
+import { useChatStore, useThemeStore } from '@/store/useChatStore'
+import { Divider } from '@heroui/divider'
+
 export const A_Chat = () => {
 	const user = useUserStore(state => state.user)
 	const {
@@ -30,43 +27,42 @@ export const A_Chat = () => {
 		addMessage,
 	} = useChatStore()
 	const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure()
+	const { theme } = useThemeStore()
 	const [show, setShow] = useState(false)
-	const [error, setError] = useState('')
-	const [newMessage, setNewMessage] = useState('')
 	const [showCancel, setShowCancel] = useState(false)
-	const fileInputRef = useRef<HTMLInputElement>(null)
-	const [uploading, setUploading] = useState(false)
-	const scrollToBottom = () => {
-		if (messagesEndRef.current) {
-			messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
-		}
-	}
+	const [newMessage, setNewMessage] = useState('')
 	const messagesEndRef = useRef<HTMLDivElement>(null)
+
+	const scrollToBottom = () => {
+		messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+	}
+
 	useEffect(() => {
-		if (messagesEndRef.current) {
-			messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
-		}
+		scrollToBottom()
 	}, [messages])
+
 	useEffect(() => {
 		if (isOpen && user?.csrf) {
-			loadChatHistory(user.csrf)
+			setTid(user.uid);
+			loadChatHistory(user.csrf);
+			const intervalId = setInterval(() => {
+				loadChatHistory(user.csrf);
+			}, 3000); 
+			return () => clearInterval(intervalId);
 		}
-	}, [isOpen, user?.csrf, loadChatHistory, sendChatMessage])
+	}, [isOpen, user?.csrf, setTid, loadChatHistory]);
 
 	const handleSendMessage = async () => {
 		if (!newMessage.trim() || !user?.csrf) return
-
 		await sendChatMessage(user.csrf, newMessage)
-		setNewMessage('')
-	}
-	const handleFileUploaded = (filename: string) => {
 		addMessage({
 			tid: tid || '',
-			text: `https://nextfi.io/uploads/${filename}`,
+			text: '@' + newMessage,
 			time: Date.now(),
 			status: 0,
 			sender: 'me',
 		})
+		setNewMessage('')
 	}
 	const DeleteChat = () => {
 		setNewMessage('')
@@ -74,21 +70,18 @@ export const A_Chat = () => {
 		setShowCancel(!showCancel)
 		onClose()
 	}
-	const { theme } = useThemeStore()
-
 	return (
 		<>
 			<Button
 				onPress={onOpen}
-				className={`fixed z-[80] md:bottom-[3.5rem] bottom-[2.5rem] md:right-[3.5rem] right-[2.5rem] p-0 m-0 min-w-[64px] min-h-[64px] rounded-full hidden md:flex items-center justify-center !bg-[#19191A] dark:bg-[#19191A] hover:bg-[#19191A] hover:opacity-[1] data-[hover=true]:!bg-[#19191A] `}
+				className='fixed z-[80] md:bottom-[3.5rem] bottom-[2.5rem] md:right-[3.5rem] right-[2.5rem] p-0 m-0 min-w-[64px] min-h-[64px] rounded-full'
 			>
 				<Image
-					src={'/chatIcon.svg'}
+					src='/chatIcon.svg'
 					width={37}
 					height={37}
 					priority
 					alt='Chat icon'
-					className='bg-transparent'
 				/>
 			</Button>
 			<Modal
@@ -101,7 +94,7 @@ export const A_Chat = () => {
 					closeButton: 'hidden',
 				}}
 			>
-				<ModalContent className='!m-[0_40px_0px] '>
+				<ModalContent className='!m-[0_40px_0px]'>
 					{onClose => (
 						<>
 							<ModalHeader className='flex items-center justify-between w-full'>
@@ -112,7 +105,7 @@ export const A_Chat = () => {
 									className='cursor-pointer'
 								/>
 							</ModalHeader>
-							<ModalBody className='flex flex-col items-center justify-between min-h-[522px] px-0 !m-0'>
+							<ModalBody className='flex flex-col items-center justify-between min-h-[522px] px-0'>
 								<div className='flex flex-col items-center gap-[26px]'>
 									<Image
 										src={
@@ -164,65 +157,83 @@ export const A_Chat = () => {
 									) : (
 										<>
 											{!showCancel ? (
-												<div className='flex flex-col w-full'>
-													<div className='md:max-h-[450px] max-h-[524px] overflow-y-auto'>
-														{messages.map((msg, index) => (
+												<div className='md:max-h-[450px] max-h-[524px] overflow-y-auto w-full'>
+													{messages.map((msg, index) => {
+														const decoded = msg.text
+														const isAdmin = decoded.startsWith('#')
+														const isUser = decoded.startsWith('@')
+														const displayText = decoded.substring(1)
+														return (
 															<div
 																key={index}
-																className={`flex items-center w-full gap-[10px] mb-4 ${msg.sender === 'me' ? 'justify-end' : 'justify-start'}`}
+																className={`flex items-center w-full gap-2 mb-4 ${
+																	isUser ? 'justify-end' : 'justify-start'
+																}`}
 															>
-																{msg.sender !== 'me' && (
+																{isAdmin && (
 																	<Image
-																		src={'/chat/operator.svg'}
+																		src='/chat/operator.svg'
 																		width={40}
 																		height={40}
 																		priority
 																		alt='Operator icon'
 																	/>
 																)}
-																<div className='flex items-end gap-[15px]'>
-																	<span className='text-[10px] font-medium text-[#888888]'>
-																		{new Date(msg.time).toLocaleTimeString()}
+																<div className='flex items-end'>
+																	<span className='text-base font-medium p-2 bg-[#7676801F] rounded-lg max-w-[256px] break-words'>
+																		{displayText}
 																	</span>
-																	<span className='text-[15px] font-medium p-[7px_27px] bg-[#7676801F] rounded-[20px] break-words max-w-[256px]'>
-																		{msg.text}
+																	<span className='text-xs text-[#888888]'>
+																		{new Date(msg.time).toLocaleTimeString()}
 																	</span>
 																</div>
 															</div>
-														))}
-														<div className='BOT flex flex-wrap gap-[7px] items-center mb-[20px]'>
-															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
-																Account security
-															</button>
-															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
-																Swap
-															</button>
-															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
-																Account security
-															</button>
-															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
-																Swap
-															</button>
-															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
-																Account security
-															</button>
-															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
-																Swap
-															</button>
-															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
-																Account security
-															</button>
-															<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
-																Swap
-															</button>
-														</div>
+														)
+													})}
+													<div ref={messagesEndRef} />
+													<div className='BOT flex flex-wrap gap-[7px] items-center mb-[20px]'>
+														<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+															Account security
+														</button>
+														<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+															Swap
+														</button>
+														<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+															Account security
+														</button>
+														<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+															Swap
+														</button>
+														<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+															Account security
+														</button>
+														<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+															Swap
+														</button>
+														<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+															Account security
+														</button>
+														<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+															Swap
+														</button>
 													</div>
-													<div className='flex items-center gap-[10px]'>
+													<div className='flex items-center gap-[10px] w-full pb-[.5rem]'>
 														<A_ChatUploader
-															onFileUploaded={handleFileUploaded}
+															onFileUploaded={(filename: string) => {
+																addMessage({
+																	tid: tid || '',
+																	text: `https://nextfi.io/uploads/${filename}`,
+																	time: Date.now(),
+																	status: 0,
+																	sender: 'me',
+																})
+															}}
 														/>
 														<form
-															onSubmit={e => e.preventDefault()}
+															onSubmit={e => {
+																e.preventDefault()
+																handleSendMessage()
+															}}
 															className='relative flex items-center gap-[10px] w-full pb-[.5rem]'
 														>
 															<input
@@ -234,12 +245,11 @@ export const A_Chat = () => {
 															/>
 															<button
 																type='submit'
-																className='w-fit !m-0 !p-0 absolute top-[11px] right-[18px] bg-transparent hover:bg-transparent'
-																onClick={handleSendMessage}
+																className='w-fit !m-0 !p-0 absolute top-[11px] right-[18px] bg-transparent'
 															>
 																<SendHorizontal
 																	strokeWidth={1}
-																	className='bg-transparent w-[32px] h-[32px]'
+																	className='w-[32px] h-[32px]'
 																/>
 															</button>
 														</form>

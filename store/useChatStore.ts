@@ -4,71 +4,69 @@ import { IStore } from '@/types'
 import { persist } from 'zustand/middleware'
 import { getChatHistory, sendMessage } from '@/utils/api'
 
-type ChatMessage = {
-	tid: string;
-	text: string;
-	time: number;
-	status: number;
-	sender: "me" | "bot";
-};
+function hexToString(hex: string): string {
+  try {
+    return decodeURIComponent(
+      hex.replace(/(..)/g, (m) => '%' + m)
+    );
+  } catch {
+    return hex;
+  }
+}
+interface ChatMessage {
+  tid: string;
+  text: string;
+  time: number;
+  status: number;
+  sender: 'me' | 'admin';
+}
 
-type ChatState = {
-	tid: string | null;
-	messages: ChatMessage[];
-	setTid: (tid: string | null) => void;
-	setMessages: (messages: ChatMessage[]) => void;
-	addMessage: (message: ChatMessage) => void;
-	loadChatHistory: (csrf: string) => Promise<void>;
-	sendChatMessage: (csrf: string, text: string) => Promise<void>;
-};
+interface ChatStore {
+  tid: string;
+  messages: ChatMessage[];
+  setTid: (tid: string) => void;
+  loadChatHistory: (csrf: string) => Promise<void>;
+  sendChatMessage: (csrf: string, text: string) => Promise<void>;
+  addMessage: (msg: ChatMessage) => void;
+}
 
-export const useChatStore = create<ChatState>((set, get) => ({
-	tid: null,
-	messages: [],
-
-	setTid: (tid) => set({ tid }),
-	setMessages: (messages) => set({ messages }),
-	addMessage: (message) =>
-		set((state) => ({ messages: [...state.messages, message] })),
-
-	// Загрузка истории сообщений
-	loadChatHistory: async (csrf) => {
-		const tid = get().tid;
-		if (!tid) return;
-
-		const result = await getChatHistory(csrf, tid);
-		if (result?.response === "success") {
-			console.log(result)
-			set({ tid: result.tid, messages: result.data });
-		}
-	},
-
-	sendChatMessage: async (csrf, text) => {
-		let tid = get().tid || ' ';
-		if (!tid) {
-			const result = await sendMessage(csrf, "", text);
-			if (result?.response === "success") {
-				tid = result.tid;
-				set({ tid });
-			} else {
-				return;
-			}
-		}
-	
-		const result = await sendMessage(csrf, tid, text);
-		if (result?.response === "success") {
-			get().addMessage({ tid, text, time: Date.now(), status: 0, sender: "me" });
-		}
-	},
+export const useChatStore = create<ChatStore>((set, get) => ({
+  tid: '',
+  messages: [],
+  setTid: (tid: string) => set({ tid }),
+  loadChatHistory: async (csrf: string) => {
+    const { tid } = get();
+    if (!csrf || !tid) return;
+    const result = await getChatHistory(csrf, tid);
+    if (result?.response === "success" && result.data) {
+      const msgs: ChatMessage[] = result.data.map((msg: any) => ({
+        tid: msg.tid,
+        text: hexToString(msg.text),
+        time: msg.time,
+        status: msg.status,
+        sender: msg.uid === tid ? 'me' : 'admin'
+      }));
+      set({ messages: msgs });
+    }
+  },
+  sendChatMessage: async (csrf: string, text: string) => {
+    const { tid, messages, addMessage } = get();
+    if (!csrf || !tid) return;
+    const result = await sendMessage(csrf, tid, text);
+    if (result?.response === "success") {
+      const newMsg: ChatMessage = {
+        tid,
+        text,
+        time: Date.now(),
+        status: 0,
+        sender: 'me'
+      };
+      addMessage(newMsg);
+    }
+  },
+  addMessage: (msg: ChatMessage) =>
+    set((state) => ({ messages: [...state.messages, msg] })),
 }));
-
-
-setInterval(() => {
-	const { tid, loadChatHistory } = useChatStore.getState();
-	if (tid) {
-		loadChatHistory(tid);
-	}
-}, 5000);
 
 export const useThemeStore = create<IStore>()(
 	persist(

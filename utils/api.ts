@@ -129,31 +129,34 @@ export const verifyCode = async (payload: {
 export const uploadFile = async (
 	csrf: string,
 	file: File,
-	type: "upload_verif" | "upload_logo",
-	region: string = ""
+	type: 'upload_verif' | 'upload_logo',
+	region: string = ''
 ) => {
 	try {
-		const formData = new FormData();
-		formData.append("csrf", csrf);
-		formData.append("type", type); 
-		formData.append("files", file);
+		const formData = new FormData()
+		formData.append('csrf', csrf)
+		formData.append('type', type)
+		formData.append('files', file)
 
-		if (type === "upload_verif") {
-			formData.append("region", region);
+		if (type === 'upload_verif') {
+			formData.append('region', region)
 		}
 
-		const response = await fetch(`https://nextfi.io:5000/api/v1/${type === "upload_logo" ? "logo" : "verification"}`, {
-			method: "POST",
-			body: formData,
-		});
+		const response = await fetch(
+			`https://nextfi.io:5000/api/v1/${type === 'upload_logo' ? 'logo' : 'verification'}`,
+			{
+				method: 'POST',
+				body: formData,
+			}
+		)
 
-		const result = await response.json();
-		return result;
+		const result = await response.json()
+		return result
 	} catch (error) {
-		console.error("❌ Ошибка загрузки файла:", error);
-		return { response: "error", message: "Network error" };
+		console.error('❌ Ошибка загрузки файла:', error)
+		return { response: 'error', message: 'Network error' }
 	}
-};
+}
 export const sendPicture = async (file: File) => {
 	try {
 		if (!file) {
@@ -329,49 +332,49 @@ export const getInvestHistory = async ({
 }
 export const getCoins = async (csrf: string) => {
 	try {
-		const response = await fetch("https://nextfi.io:5000/api/v1/coin_list", {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
+		const response = await fetch('https://nextfi.io:5000/api/v1/coin_list', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ csrf }),
-		});
+		})
 
-		const result = await response.json();
-		if (result.response === "success") {
+		const result = await response.json()
+		if (result.response === 'success') {
 			console.log(result.data)
 			return result.data.map((coin: any) => ({
 				id: coin.id,
 				name: coin.name,
-				network: coin.network.split(":"),
-			}));
+				network: coin.network.split(':'),
+			}))
 		} else {
-			console.error("Ошибка загрузки списка монет:", result);
-			return [];
+			console.error('Ошибка загрузки списка монет:', result)
+			return []
 		}
 	} catch (error) {
-		console.error("Ошибка сети при получении списка монет:", error);
-		return [];
+		console.error('Ошибка сети при получении списка монет:', error)
+		return []
 	}
-};
+}
 export const uploadChatFile = async (csrf: string, file: File) => {
 	try {
-		const formData = new FormData();
-		formData.append("file", file);
+		const formData = new FormData()
+		formData.append('file', file)
 
-		const response = await fetch("https://nextfi.io:5000/api/v1/chat_file", {
-			method: "POST",
+		const response = await fetch('https://nextfi.io:5000/api/v1/chat_file', {
+			method: 'POST',
 			headers: {
-				"X-CSRF-Token": csrf, 
+				'X-CSRF-Token': csrf,
 			},
 			body: formData,
-		});
+		})
 
-		const result = await response.json();
-		return result;
+		const result = await response.json()
+		return result
 	} catch (error) {
-		console.error("Ошибка загрузки файла:", error);
-		return null;
+		console.error('Ошибка загрузки файла:', error)
+		return null
 	}
-};
+}
 export const getDepositAddress = async (
 	csrf: string,
 	coin: string,
@@ -437,11 +440,10 @@ export const getChatHistory = async (csrf: string, tid: string) => {
 		const response = await fetch('https://nextfi.io:5000/api/v1/support_chat', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ csrf, type: 'all', tid }),
+			body: JSON.stringify({ csrf, type: 'history', tid, text: "dummy" }),
 		})
-
 		const result = await response.json()
-		console.log(result)
+		console.log('История чата:', result.data)
 		return result
 	} catch (error) {
 		console.error('Ошибка загрузки чата:', error)
@@ -457,7 +459,7 @@ export const sendMessage = async (csrf: string, tid: string, text: string) => {
 		})
 
 		const result = await response.json()
-		console.log(result)
+		console.log('Отправка сообщения:', result)
 		return result
 	} catch (error) {
 		console.error('Ошибка отправки сообщения:', error)
