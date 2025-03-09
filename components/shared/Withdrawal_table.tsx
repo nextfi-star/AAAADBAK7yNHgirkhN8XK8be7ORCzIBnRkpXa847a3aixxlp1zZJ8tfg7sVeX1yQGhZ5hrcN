@@ -26,6 +26,7 @@ import { capitalize } from './utils'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
 import { useUserStore } from '@/hooks/useUserData'
 import { getWithdrawHistory } from '@/utils/api'
+import { useTranslations } from 'next-intl'
 
 const statusColorMap: Record<string, ChipProps['color']> = {
 	1: 'success',
@@ -44,6 +45,7 @@ const INITIAL_VISIBLE_COLUMNS = [
 type User = (typeof usersDataW)[0]
 
 export default function Withdrawal_table() {
+	const t = useTranslations('tablesWithdrawal')
 	const csrf = useUserStore(state => state.user?.csrf)
 	const [withdraws, setWithdraws] = useState<any[]>([])
 	const [error, setError] = useState<string>('')
@@ -168,11 +170,11 @@ export default function Withdrawal_table() {
 						size='sm'
 						variant='flat'
 					>
-						{user.status === 0
+						{t(user.status === 0
 							? 'pending'
 							: user.status === 1
 								? 'sent'
-								: 'denied'}
+								: 'denied')}
 					</Chip>
 				)
 			case 'actions':
@@ -185,8 +187,8 @@ export default function Withdrawal_table() {
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu>
-								<DropdownItem key='view'>View</DropdownItem>
-								<DropdownItem key='edit'>Edit</DropdownItem>
+								<DropdownItem key='view'>{t('view')}</DropdownItem>
+								<DropdownItem key='edit'>{t('edit')}</DropdownItem>
 							</DropdownMenu>
 						</Dropdown>
 					</div>
@@ -217,7 +219,7 @@ export default function Withdrawal_table() {
 		return (
 			<div className='flex flex-col gap-4'>
 				<div className='flex justify-between gap-3 items-end p-[25px_20px_0px]'>
-					<h1 className='text-[20px] xl:text-[32px]'>All withdrawals</h1>
+					<h1 className='text-[20px] xl:text-[32px]'>{t('allwithdrawals')}</h1>
 					<div className='flex gap-3'>
 						<Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
@@ -225,7 +227,7 @@ export default function Withdrawal_table() {
 									endContent={<ChevronDownIcon className='md:!text-[20px]' />}
 									variant='flat'
 								>
-									Status
+									{t('statusLow')}
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu
@@ -241,7 +243,7 @@ export default function Withdrawal_table() {
 										key={status.uid}
 										className='capitalize md:!text-[20px]'
 									>
-										{capitalize(status.name)}
+										{capitalize(t(status.uid))}
 									</DropdownItem>
 								))}
 							</DropdownMenu>
@@ -252,7 +254,7 @@ export default function Withdrawal_table() {
 									endContent={<ChevronDownIcon className='md:!text-[20px]' />}
 									variant='flat'
 								>
-									Columns
+									{t('columns')}
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu
@@ -268,7 +270,7 @@ export default function Withdrawal_table() {
 										key={column.uid}
 										className='capitalize md:text-[20px] '
 									>
-										{capitalize(column.name)}
+										{capitalize(t(column.uid))}
 									</DropdownItem>
 								))}
 							</DropdownMenu>
@@ -329,11 +331,11 @@ export default function Withdrawal_table() {
 						align={column.uid === 'actions' ? 'center' : 'start'}
 						allowsSorting={column.sortable}
 					>
-						{column.name}
+						{t(column.uid)}
 					</TableColumn>
 				)}
 			</TableHeader>
-			<TableBody emptyContent={'Not found'} items={sortedItems}>
+			<TableBody emptyContent={t('notFound')} items={sortedItems}>
 				{item => (
 					<TableRow key={item.id}>
 						{columnKey => <TableCell>{renderCell(item, columnKey)}</TableCell>}

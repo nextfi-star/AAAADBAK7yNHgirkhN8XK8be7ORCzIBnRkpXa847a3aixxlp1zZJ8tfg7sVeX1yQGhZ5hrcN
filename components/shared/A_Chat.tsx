@@ -32,6 +32,7 @@ export const A_Chat = () => {
 	const [showCancel, setShowCancel] = useState(false)
 	const [newMessage, setNewMessage] = useState('')
 	const messagesEndRef = useRef<HTMLDivElement>(null)
+	const [fileName, setFileName] = useState('')
 
 	const scrollToBottom = () => {
 		messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -43,21 +44,21 @@ export const A_Chat = () => {
 
 	useEffect(() => {
 		if (isOpen && user?.csrf) {
-			setTid(user.uid);
-			loadChatHistory(user.csrf);
+			setTid(user.uid)
+			loadChatHistory(user.csrf)
 			const intervalId = setInterval(() => {
-				loadChatHistory(user.csrf);
-			}, 3000); 
-			return () => clearInterval(intervalId);
+				loadChatHistory(user.csrf)
+			}, 3000)
+			return () => clearInterval(intervalId)
 		}
-	}, [isOpen, user?.csrf, setTid, loadChatHistory]);
+	}, [isOpen, user?.csrf, setTid, loadChatHistory])
 
 	const handleSendMessage = async () => {
 		if (!newMessage.trim() || !user?.csrf) return
 		await sendChatMessage(user.csrf, newMessage)
 		addMessage({
 			tid: tid || '',
-			text: '@' + newMessage,
+			text: '@' + fileName ? fileName : newMessage,
 			time: Date.now(),
 			status: 0,
 			sender: 'me',
@@ -179,8 +180,8 @@ export const A_Chat = () => {
 																		alt='Operator icon'
 																	/>
 																)}
-																<div className='flex items-end'>
-																	<span className='text-base font-medium p-2 bg-[#7676801F] rounded-lg max-w-[256px] break-words'>
+																<div className='flex items-end gap-[5px]'>
+																	<span className='text-base font-medium p-2 bg-[#7676801F] rounded-[35px] max-w-[256px] break-words'>
 																		{displayText}
 																	</span>
 																	<span className='text-xs text-[#888888]'>
@@ -219,10 +220,11 @@ export const A_Chat = () => {
 													</div>
 													<div className='flex items-center gap-[10px] w-full pb-[.5rem]'>
 														<A_ChatUploader
+															setFileName={setFileName}
 															onFileUploaded={(filename: string) => {
 																addMessage({
 																	tid: tid || '',
-																	text: `https://nextfi.io/uploads/${filename}`,
+																	text: '@' + filename,
 																	time: Date.now(),
 																	status: 0,
 																	sender: 'me',

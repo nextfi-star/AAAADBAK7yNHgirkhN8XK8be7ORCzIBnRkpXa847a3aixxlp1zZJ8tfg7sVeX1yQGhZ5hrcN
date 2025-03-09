@@ -239,7 +239,25 @@
 		"edit": "Edit"
 	},
 	"tablesDeposit": {},
-	"tablesWithdrawal": {},
+	"tablesWithdrawal": {
+		"time": "DATE",
+		"amount": "AMOUNT",
+		"status": "STATUS",
+		"address": "ADDRESS",
+		"crypto": "CRYPTO",
+		"network": "NETWORK",
+		"coin": "COIN",
+		"type": "TYPE",
+		"view": "View",
+		"edit": "Edit",
+		"allwithdrawals": "All withdrawals",
+		"statusLow": "Status",
+		"columns": "Columns",
+		"sent": "Sent",
+		"denied": "Denied",
+		"pending": "Pending",
+		"notFound": "Not found"
+	},
 	"tableTier": {},
 	"overview": {
 		"flipOver": "Flip over",
@@ -631,6 +649,7 @@
 		"depositCrypto2": "You can withdraw funds invested in the investment industry at any time convenient for you, taking into account the commission for early withdrawal."
 	},
 	"withdrawal": {
+		"enterAmount": "Enter amount",
 		"enterDeposAds": "Enter your address",
 		"withdrawal": "Withdrawal",
 		"selectCrp": "Select crypto",

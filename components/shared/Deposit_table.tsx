@@ -1,6 +1,7 @@
 'use client'
 import {
 	Button,
+	Chip,
 	ChipProps,
 	Dropdown,
 	DropdownItem,
@@ -17,7 +18,7 @@ import {
 	TableHeader,
 	TableRow,
 	User,
-} from "@heroui/react"
+} from '@heroui/react'
 import React, { useEffect, useState } from 'react'
 import { ChevronDownIcon } from './ChevronDownIcon'
 import { columnsDataD, statusOptionsDataD, usersDataD } from './data'
@@ -27,8 +28,6 @@ import { getDepositHistory } from '@/utils/api'
 import { useUserStore } from '@/hooks/useUserData'
 const statusColorMap: Record<string, ChipProps['color']> = {
 	sent: 'success',
-	denied: 'danger',
-	pending: 'warning',
 }
 const INITIAL_VISIBLE_COLUMNS = [
 	'time',
@@ -37,29 +36,40 @@ const INITIAL_VISIBLE_COLUMNS = [
 	'address',
 	'crypto',
 ]
-type User = (typeof usersDataD)[0]
+type User = {
+	id: number
+	time: string
+	address: string
+	subaddress: string
+	coin: string
+	amount: string
+	status: string
+	percent: string
+	adata: string
+	sid: string
+}
 export default function Deposit_table() {
-	const csrf = useUserStore((state) => state.user?.csrf);
-	const [deposits, setDeposits] = useState<any[]>([]);
-  const [error, setError] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
+	const csrf = useUserStore(state => state.user?.csrf)
+	const [deposits, setDeposits] = useState<any[]>([])
+	const [error, setError] = useState<string>('')
+	const [loading, setLoading] = useState<boolean>(false)
 	const fetchDeposits = async () => {
-    if (!csrf) return;
-    setLoading(true);
-    const result = await getDepositHistory(csrf);
-    setLoading(false);
+		if (!csrf) return
+		setLoading(true)
+		const result = await getDepositHistory(csrf)
+		setLoading(false)
 
-    if (result.error) {
-      setError(result.message || 'Ошибка получения истории депозитов');
-      setDeposits([]);
-    } else {
-      setError('');
-      setDeposits(result.data || []);
-    }
-  };
-  useEffect(() => {
-    fetchDeposits();
-  }, [csrf]);
+		if (result.error) {
+			setError(result.message || 'Ошибка получения истории депозитов')
+			setDeposits([])
+		} else {
+			setError('')
+			setDeposits(result.data || [])
+		}
+	}
+	useEffect(() => {
+		fetchDeposits()
+	}, [csrf])
 
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
@@ -124,7 +134,9 @@ export default function Deposit_table() {
 
 		switch (columnKey) {
 			case 'time':
-				return <span className='md:text-[20px]'>{user.time}</span>
+				const date = new Date(Number(user.time) * 1000)
+				const formattedDate = date.toLocaleDateString('en-GB')
+				return <span className='md:text-[20px]'>{formattedDate}</span>
 			case 'address':
 				return (
 					<div className='flex flex-col items-start gap-[5px]'>
@@ -142,21 +154,20 @@ export default function Deposit_table() {
 					</div>
 				)
 			case 'crypto':
-				return <span className='md:text-[20px]'> {user.crypto}</span>
+				return <span className='md:text-[20px]'> {user.coin}</span>
 			case 'amount':
 				return <span className='md:text-[20px]'> {user.amount}</span>
 			case 'status':
 				return (
-                    // <Chip
-                    // 	className='capitalize'
-                    // 	color={statusColorMap[user.status]}
-                    // 	size='sm'
-                    // 	variant='flat'
-                    // >
-                    // 	{user.status}
-                    // </Chip>
-                    (<span className='capitalize md:text-[20px]'>{user.status}</span>)
-                );
+					<Chip
+						className='capitalize bg-success'
+						color={statusColorMap[user.status]}
+						size='sm'
+						variant='flat'
+					>
+						Sent
+					</Chip>
+				)
 			case 'actions':
 				return (
 					<div className='relative flex justify-center items-center gap-2'>

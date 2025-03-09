@@ -6,8 +6,10 @@ import { useState, useRef } from 'react'
 
 export default function A_ChatUploader({
 	onFileUploaded,
+	setFileName,
 }: {
 	onFileUploaded: (filename: string) => void
+	setFileName: (filename: string) => void
 }) {
 	const user = useUserStore(state => state.user)
 	const fileInputRef = useRef<HTMLInputElement>(null)
@@ -23,7 +25,8 @@ export default function A_ChatUploader({
 		setError('')
 		const result = await uploadChatFile(user.csrf, file)
 		if (result?.response === 'success') {
-			onFileUploaded(result.filename) 
+			onFileUploaded(result.filename)
+			setFileName(result.filename)
 		} else {
 			setError(result?.message || 'Ошибка загрузки файла')
 		}

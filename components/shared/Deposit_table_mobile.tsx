@@ -119,8 +119,7 @@ export default function Deposit_table_mobile() {
 				return <span className='md:text-[20px]'> {user.crypto}</span>
 			case 'amount':
 				return <span className='md:text-[20px]'> {user.amount}</span>
-			case 'fee':
-				return <span className='md:text-[20px]'> {user.fee}</span>
+		
 			case 'status':
 				return (
                     // <Chip

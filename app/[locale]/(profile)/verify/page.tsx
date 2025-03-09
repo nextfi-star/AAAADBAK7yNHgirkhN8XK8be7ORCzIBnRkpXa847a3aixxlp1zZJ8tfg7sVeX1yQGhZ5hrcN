@@ -118,8 +118,13 @@ const Verify = () => {
 			setError('Ошибка: CSRF токен отсутствует')
 			return
 		}
-		const result = await uploadFile(user.csrf, selectedFile, 'upload_verif', region, )
+		const result = await uploadFile(user.csrf, selectedFile, 'upload_verif', region)
 		if (result.response === 'success') {
+			const changeStep = setTimeout(() => {
+				setStep(3)
+				setUploading(false)
+				clearTimeout(changeStep)
+			}, 2000)
 			setSelectedFile(null)
 			setError('✅ Файл успешно загружен и отправлен на проверку')
 		} else {
@@ -414,6 +419,7 @@ const Verify = () => {
 								handlePhotoChange2={handlePhotoChange2}
 								items={valueID}
 								setStep={setStep}
+								setUploading={setUploading}
 								onPhotoChange={handlePhotoChange}
 								step={step}
 								fileInputRef={fileInputRef}

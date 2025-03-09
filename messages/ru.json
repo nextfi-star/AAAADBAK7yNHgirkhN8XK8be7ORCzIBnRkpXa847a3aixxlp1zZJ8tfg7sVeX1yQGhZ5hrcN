@@ -230,7 +230,25 @@
 		"edit": "Редактировать"
 	},
 	"tablesDeposit": {},
-	"tablesWithdrawal": {},
+	"tablesWithdrawal": {
+		"time": "ДАТА",
+		"amount": "СУММА",
+		"status": "СТАТУС",
+		"address": "АДРЕС",
+		"crypto": "КРИПТОВАЛЮТА",
+		"network": "СЕТЬ",
+		"coin": "КОИН",
+		"type": "ТИП",
+		"view": "Просмотр",
+		"edit": "Редактировать",
+		"allwithdrawals": "Все выводы",
+		"statusLow": "Статус",
+		"columns": "Колонки",
+		"sent": "Отправлено",
+		"denied": "Отказано",
+		"pending": "В ожидании",
+		"notFound": "Не найдено"
+	},
 	"tableTier": {},
 	"overview": {
 		"flipOver": "Перевернуть",
@@ -616,6 +634,8 @@
 		"depositCrypto": "Как я могу внести/вывести конвертированную криптовалюту?"
 	},
 	"withdrawal": {
+		"enterAmount": "Введите сумму",
+		"enterDeposAds": "Введите адрес",
 		"withdrawal": "Вывод средств",
 		"selectCrp": "Выбрать криптовалюту",
 		"setDestn": "Установить назначение",
@@ -638,11 +658,14 @@
 		"2fa": "Код Google 2FA",
 		"comfirm": "Подтвердить",
 		"withApli": "Заявка на вывод средств отправлена",
-		"howConvert": "Как конвертировать криптовалюту на платформе NextFi?",
-		"whichCrypto": "Какие криптовалюты я могу конвертировать на платформе NextFi?",
-		"howCrypto": "Чем конвертация криптовалюты отличается от торговли?",
-		"whereCrypto": "Где я могу найти свою конвертированную криптовалюту?",
-		"depositCrypto": "Как я могу внести/вывести конвертированную криптовалюту?",
+		"howMake": "How do I make withdrawal?",
+		"howmake2": "To withdraw funds, you must select a withdrawal token, select an available network, and then specify the withdrawal address and amount.",
+		"whyStill": "Why is withdrawal taking so long?",
+		"whyStill2": "The withdrawal time depends on the network load, the average waiting time is 30-60 minutes",
+		"howSelect": "How do I select the correct network for my crypto withdrawals?",
+		"howSelect2": "The network is selected from those presented for each token and must match the network of the specified withdrawal address.",
+		"doI": "Do I need to pay fees for withdrawal?",
+		"doI2": "TThe NextFi platform does not charge a withdrawal fee.",
 		"withApp": "Заявка на вывод средств отправлена"
 	}
 }

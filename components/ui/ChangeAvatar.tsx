@@ -17,6 +17,7 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useState } from 'react'
 import { PlusIcon } from './PlusIcon'
+import { uploadFile } from '@/utils/api'
 const data = [
 	{
 		img: '/main/avatar_noface.png',
@@ -40,21 +41,40 @@ const data = [
 
 export const ChangeAvatar = () => {
 	const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null)
+	const [selectedFile, setSelectedFile] = useState<File | null>(null)
 	const [activeTab, setActiveTab] = useState('select-avatar')
+	const [error, setError] = useState('')
+
 	const { theme } = useThemeStore()
 	const userAvatar = useUserStore(state => state.user?.logo)
 	const t = useTranslations('profile')
 	const handleAvatarSelect = (avatarUrl: string) => {
 		setSelectedAvatar(avatarUrl)
 	}
+	const user = useUserStore(state => state.user)
 	const [file, setFile] = useState<File | null>(null)
-	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (e.target.files && e.target.files[0]) {
-			setFile(e.target.files[0])
-			console.log(file)
+	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (!event.target.files?.length) return
+		setSelectedFile(event.target.files[0])
+		setError('')
+	}
+	const handleUpload = async () => {
+		if (!selectedFile) {
+			setError('Выберите файл перед загрузкой')
+			return
+		}
+		if (!user?.csrf) {
+			setError('Ошибка: CSRF токен отсутствует')
+			return
+		}
+		const result = await uploadFile(user.csrf, selectedFile, 'upload_logo' )
+		if (result.response === 'success') {
+			setSelectedFile(null)
+			setError('✅ Файл успешно загружен и отправлен на проверку')
+		} else {
+			setError(`❌ Ошибка: ${result.message}`)
 		}
 	}
-
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
@@ -144,7 +164,7 @@ export const ChangeAvatar = () => {
 						</DrawerClose>
 						<Button
 							className='bg-[#205BC9] text-white rounded-[50px] px-[35px] border border-solid border-[#205BC9] min-w-[117px] hover:bg-[#205BC9] hover:text-white hover:opacity-[.8] transition duration-300'
-							type='submit'
+							onPress={handleUpload}
 							disabled={!file}
 						>
 							{t('save')}

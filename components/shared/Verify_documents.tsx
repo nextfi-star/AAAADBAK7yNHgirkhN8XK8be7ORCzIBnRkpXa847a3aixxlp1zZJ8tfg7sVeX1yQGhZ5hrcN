@@ -20,7 +20,7 @@ interface Props {
 	uploading: boolean
 	error: string
 	upLoad: (type: 'upload_verif' | 'upload_logo') => void
-	// resetData: () => void
+	setUploading: (value: boolean) => void
 }
 export const Verify_documents = ({
 	items,
@@ -31,6 +31,7 @@ export const Verify_documents = ({
 	handleFileChangeApi,
 	uploading,
 	error,
+	setUploading,
 	upLoad,
 }: Props) => {
 	const { theme } = useThemeStore()
@@ -44,10 +45,8 @@ export const Verify_documents = ({
 		setPhoto: React.Dispatch<React.SetStateAction<string | null>>
 	) => {
 		const file = e.target.files && e.target.files[0]
-
 		if (file) {
 			const reader = new FileReader()
-
 			reader.onloadend = () => {
 				onPhotoChange(reader.result as string)
 				setPhoto(reader.result as string)
@@ -102,9 +101,7 @@ export const Verify_documents = ({
 							<div className='min-h-[60px] min-w-[50px] md:min-h-[100px] md:min-w-[90px] -mt-[19px] border border-solid border-[#888888] rounded-[5px]' />
 						</div>
 					</div>
-					<span className='text-[20px] text-center'>
-						{t('makePic')}
-					</span>
+					<span className='text-[20px] text-center'>{t('makePic')}</span>
 					<button
 						className='text-[16px] sm:text-[20px] bg-[#205BC9] rounded-[50px] py-[5px] sm:py-[16px] px-[60px] mb-[40px] text-white'
 						onClick={() => setChange(!change)}
@@ -210,15 +207,17 @@ export const Verify_documents = ({
 						</div>
 
 						<button
-							className={`text-[20px] ${error ? 'bg-danger-50' : 'bg-[#205BC9]'} ${
+							className={`text-[20px] ${
 								!photo || !privacy ? 'bg-[#888888]' : 'bg-[#205BC9]'
 							} rounded-[50px] py-[10px] sm:py-[16px] max-w-[248px] w-full mb-[40px] text-white`}
-							disabled={!photo || !privacy }
+							disabled={!photo || !privacy}
 							onClick={() => {
+			setUploading(true)
+
 								upLoad('upload_verif')
 							}}
 						>
-							{error ? error : uploading ? <Spinner /> : t('next')}
+							{uploading ? <Spinner /> : t('next')}
 						</button>
 					</div>
 				</div>
@@ -229,9 +228,9 @@ export const Verify_documents = ({
 				<span className='text-[#3F7EF3] hover:cursor-pointer'>
 					{t('mobileBrowser')}
 				</span>{' '}
-				{t('or')} <span className='text-[#3F7EF3] hover:cursor-pointer'>{t('app')}.</span>{' '}
+				{t('or')}{' '}
+				<span className='text-[#3F7EF3] hover:cursor-pointer'>{t('app')}.</span>{' '}
 			</span>
 		</div>
 	)
 }
-

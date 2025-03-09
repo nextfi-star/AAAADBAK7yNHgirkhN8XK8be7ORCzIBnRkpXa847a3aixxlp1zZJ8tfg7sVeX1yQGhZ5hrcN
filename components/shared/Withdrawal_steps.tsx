@@ -321,7 +321,7 @@ const Withdrawal_steps = () => {
 									<div className='flex flex-col gap-[10px] max-w-[294px] sm:max-w-[962px]'>
 										<input
 											type='text'
-											placeholder='Enter the amount'
+											placeholder={t('enterAmount')}
 											className='px-2 text-[16px] !bg-[#7676801F] rounded-medium flex items-start h-[48px] justify-center max-w-[962px]'
 											value={amount}
 											onChange={handleChange}
@@ -358,7 +358,7 @@ const Withdrawal_steps = () => {
 													selectedCoin={selectedCoin}
 													selectedNetwork={selectedNetwork}
 													setInputStep2={setInputStep2}
-													titleTrigger={'Withdrawal'}
+													titleTrigger={t('withdrawal')}
 													className='dark:shadow-none'
 													inputStep2={inputStep2}
 													depositAddress={depositAddress}

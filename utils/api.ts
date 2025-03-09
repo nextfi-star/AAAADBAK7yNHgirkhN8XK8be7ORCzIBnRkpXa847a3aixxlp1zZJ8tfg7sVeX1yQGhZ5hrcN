@@ -144,6 +144,7 @@ export const uploadFile = async (
 			body: formData,
 		})
 		const result = await response.json()
+		console.log(result)
 		return result
 	} catch (error) {
 		console.error('❌ Ошибка загрузки файла:', error)
