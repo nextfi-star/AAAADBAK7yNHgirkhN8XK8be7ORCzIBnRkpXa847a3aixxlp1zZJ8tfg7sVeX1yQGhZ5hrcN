@@ -11,10 +11,10 @@ import {
 } from '@/components/ui/dialog'
 import { useThemeStore } from '@/store/useChatStore'
 import { Divider } from '@heroui/divider'
-import { Snippet, Spinner } from '@heroui/react'
+import { Spinner } from '@heroui/react'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
 import Withdrawal_animation from './Withdrawal_animation'
 import { Coin } from '@/store/coinList'
 import { createWithdraw } from '@/utils/api'
@@ -50,9 +50,7 @@ export const Withdrawal_confirmation = ({
 	const backUpdate = useWithdrawStore(state => state.fetchWithdrawList)
 	const [checked, setChecked] = useState(false)
 	const [message, setMessage] = useState('')
-
 	const csrf = useUserStore(state => state.user?.csrf)
-
 	const handleSubmit = async (e: any) => {
 		e.preventDefault()
 		const amountStr = amount.toString()
@@ -65,7 +63,6 @@ export const Withdrawal_confirmation = ({
 			inputStep2
 		)
 		if (result.data) {
-			await backUpdate(csrf)
 			setMessage(result.message || 'Заявка успешно создана')
 			setConfirmStep(3)
 			setChecked(false)
@@ -117,9 +114,11 @@ export const Withdrawal_confirmation = ({
 										</span>
 									</DialogDescription>
 
-									<span className='flex items-center justify-start flex-wrap w-full max-w-[300px] '>
-										{depositAddress || 'none'}
-									</span>
+									<div className='max-w-[300px] break-words hyphens-auto ml-[10px]'>
+										<span className='block'>
+											{depositAddress || 'none'}
+										</span>
+									</div>
 								</div>
 								<div className='flex items-center w-full justify-between'>
 									<DialogDescription className='flex flex-col gap-[1px] text-[14px] md:text-[20px]'>

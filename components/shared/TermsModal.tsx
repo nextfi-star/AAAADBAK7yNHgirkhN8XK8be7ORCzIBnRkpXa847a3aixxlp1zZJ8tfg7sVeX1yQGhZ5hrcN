@@ -16,7 +16,7 @@ export function TermsModal() {
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
 				<Button className='p-0 text-[14px] bg-transparent hover:bg-transparent flex-shrink-0 text-[#205bc9] hover:cursor-pointer hover:text-[#205bc9] shadow-none'>
-					Privacy Policy
+					Terms of Service
 				</Button>
 			</AlertDialogTrigger>
 			<AlertDialogContent className='max-w-[1200px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[176px]'>
@@ -36,136 +36,97 @@ export function TermsModal() {
 				</AlertDialogHeader>
 				<AlertDialogHeader className='flex flex-col items-center gap-[10px] py-4'>
 					<AlertDialogTitle className='text-[24px] xl:text-[32px]'>
-						Privacy Policy
+						Terms of Service
 					</AlertDialogTitle>
 				</AlertDialogHeader>
 				<div className='flex flex-col gap-4'>
 					<div className='flex flex-col gap-[.5rem]'>
 						<p>Introduction</p>
 						<span>
-							• Company Information: NextFi is committed to safeguarding user
-							privacy and data security.
+							• Agreement to Terms: By using NextFi, you agree to abide by these
+							Terms of Service.
 						</span>
 						<span>
-							• Purpose of this Policy: This Privacy Policy explains how we
-							collect, use, and protect user data in compliance with GDPR (EU),
-							CCPA (California), PDPL (UAE), and other applicable laws.
+							• Updates & Changes: NextFi may modify these Terms at any time,
+							with notifications to users.
 						</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>Information We Collect</p>
-						<span>• Personal Identification Data:</span>
+						<p>Account Registration & KYC Compliance</p>
 						<span>
-							o Full name, date of birth, passport/government-issued ID.
-						</span>
-						<span>o Photo/video for identity verification.</span>
-					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Financial Data:</p>
-						<span>o Cryptocurrency transactions.</span>
-						<span>o Payment details (Visa, MasterCard, UnionPay).</span>
-					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Technical and Analytical Data:</p>
-						<span>
-							o IP address, device type, browser version, operating system.
+							• Users must be 18+ and complete identity verification (KYC)
+							before engaging in transactions:
 						</span>
 						<span>
-							o Login frequency, platform interactions, geographic location.
+							• Identity verification includes passport submission and live
+							video confirmation.
 						</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>Marketing & Tracking Data:</p>
-						<span>o Cookies, advertising tracking, behavioral analytics.</span>
+						<p>Financial Transactions & Fees</p>
+						<span>
+							• Supported deposit/withdrawal methods: cryptocurrency, Visa,
+							MasterCard, UnionPay.
+						</span>
+						<span>• Transaction fees apply and vary by payment method.</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>How We Use Your Data:</p>
-						<span>
-							• Account verification and compliance with financial regulations.
-						</span>
-						<span>• Processing transactions and payments.</span>
-						<span>• Risk assessment and fraud prevention.</span>
-						<span>• Marketing, personalization, and service improvement.</span>
+						<p>Acceptable Use Policy</p>
+						<p>Users may not engage in:</p>
+						<span>o Fraudulent activities or money laundering.</span>
+						<span>o Unauthorized access to accounts.</span>
+						<span>o Automated bots/scripts for platform manipulation.</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>Legal Basis for Data Processing (GDPR Compliance)</p>
-						<span>• Contractual necessity: To provide our services.</span>
+						<p>Risk Disclosure & Platform Liability</p>
+						<span>• Investing in financial assets involves market risks.</span>
 						<span>
-							• <strong>Legal obligations</strong>: AML/KYC compliance.
-						</span>
-						<span>
-							• <strong>Legitimate interest</strong>: Security, fraud
-							prevention.
-						</span>
-						<span>
-							• <strong>User consent</strong>: Marketing and tracking analytics.
+							• NextFi does not guarantee profits and is not liable for
+							financial losses due to market fluctuations.
 						</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>Cookies & Tracking Technologies</p>
+						<p>Account Suspension & Termination:</p>
 						<span>
-							• We use cookies and tracking technologies to enhance user
-							experience and improve service functionality.
+							• NextFi reserves the right to suspend or terminate accounts
+							involved in suspicious or prohibited activities.
 						</span>
 						<span>
-							• Users can manage cookie preferences via their browser settings.
-						</span>
-					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Data Sharing with Third Parties</p>
-						<span>
-							• <strong>Payment service providers</strong> (Visa, MasterCard,
-							UnionPay)
-						</span>
-						<span>
-							• <strong>Identity verification partners</strong> (AML/KYC
-							compliance)
-						</span>
-						<span>
-							• <strong>Advertising and analytics partners</strong>
+							• Users will receive prior notice unless the termination is due to
+							legal obligations.
 						</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>User Rights (GDPR, CCPA, PDPL)</p>
-						<span>Users can:</span>
+						<p>Intellectual Property Rights</p>
 						<span>
-							• Request access, correction, or deletion of personal data
-						</span>
-						<span>• Opt out of marketing communications</span>
-						<span>• Withdraw consent for data processing</span>
-					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Data Security Measures</p>
-						<span>Users can:</span>
-						<span>
-							• <strong>AES-256 encryption</strong> for data storage
+							• All NextFi trademarks, logos, and content are the property of
+							NextFi.
 						</span>
 						<span>
-							• <strong>TLS 1.3 encryption</strong> for data transmission
-						</span>
-						<span>
-							• <strong>Multi-factor authentication (2FA)</strong> for account
-							protection
+							• Users may not reproduce, distribute, or exploit any part of the
+							platform without authorization.
 						</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>International Data Transfers</p>
+						<p>Governing Law & Dispute Resolution</p>
+						<span>• These Terms are governed by the laws of Malta.</span>
 						<span>
-							• Data may be transferred to secure data centers across multiple
-							jurisdictions in compliance with applicable regulations
+							• Disputes shall be resolved through arbitration or legal
+							proceedings in the relevant jurisdiction.
 						</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>Changes to the Privacy Policy</p>
+						<p>Changes to Terms of Service</p>
 						<span>
-							• Users will be notified of any significant changes to this
-							Privacy Policy
+							• Users will be notified of changes through email and platform
+							announcements
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem] pb-[2.5rem]'>
+					<div className='flex flex-col gap-[.5rem]'>
 						<p>Contact Information</p>
-						<span>
-							• Privacy Officer Contact:{' '}
+						<span>Users can:</span>
+						<span className='flex items-center gap-[10px]'>
+							• Support Contact:{' '}
 							<span className='text-[#205bc9]'>technicalNextfi@gmail.com</span>
 						</span>
 					</div>

@@ -16,7 +16,7 @@ export function SecPolicyModal() {
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
 				<Button className='p-0 text-[14px] bg-transparent hover:bg-transparent flex-shrink-0 text-[#205bc9] hover:cursor-pointer hover:text-[#205bc9] shadow-none'>
-				Security & Compliance Policy
+					Security & Compliance Policy
 				</Button>
 			</AlertDialogTrigger>
 			<AlertDialogContent className='max-w-[1200px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[176px]'>
@@ -36,133 +36,97 @@ export function SecPolicyModal() {
 				</AlertDialogHeader>
 				<AlertDialogHeader className='flex flex-col items-center gap-[10px] py-4'>
 					<AlertDialogTitle className='text-[24px] xl:text-[32px]'>
-					Security & Compliance Policy
+						Security & Compliance Policy
 					</AlertDialogTitle>
 				</AlertDialogHeader>
 				<div className='flex flex-col gap-4'>
 					<div className='flex flex-col gap-[.5rem]'>
 						<p>Introduction</p>
 						<span>
-							• Company Information: NextFi is committed to safeguarding user
-							privacy and data security.
+							• NextFi is committed to the highest standards of cybersecurity
+							and regulatory compliance.
 						</span>
 						<span>
-							• Purpose of this Policy: This Privacy Policy explains how we
-							collect, use, and protect user data in compliance with GDPR (EU),
-							CCPA (California), PDPL (UAE), and other applicable laws.
+							• We comply with AML (Anti-Money Laundering), KYC (Know Your
+							Customer), GDPR, CCPA, PDPL, and other global regulations.
 						</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>Information We Collect</p>
-						<span>• Personal Identification Data:</span>
+						<p>Cybersecurity Measures</p>
+						<p>• Data Encryption:</p>
+						<span>o AES-256 encryption for stored user data.</span>
+						<span>o TLS 1.3 encryption for data transmission.</span>
+						<p>• Authentication & Access Contro:</p>
+						<span>o Mandatory two-factor authentication (2FA)</span>
+						<span>o Automated brute-force attack protection.</span>
+						<p>• Fraud Detection & Monitoring</p>
 						<span>
-							o Full name, date of birth, passport/government-issued ID.
-						</span>
-						<span>o Photo/video for identity verification.</span>
-					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Financial Data:</p>
-						<span>o Cryptocurrency transactions.</span>
-						<span>o Payment details (Visa, MasterCard, UnionPay).</span>
-					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Technical and Analytical Data:</p>
-						<span>
-							o IP address, device type, browser version, operating system.
+							o AI-driven transaction monitoring for suspicious activities.
 						</span>
 						<span>
-							o Login frequency, platform interactions, geographic location.
+							o User activity segmentation to prevent unauthorized access.
 						</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>Marketing & Tracking Data:</p>
-						<span>o Cookies, advertising tracking, behavioral analytics.</span>
-					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>How We Use Your Data:</p>
+						<p>AML/KYC Compliance</p>
+						<p>• Mandatory Identity Verification:</p>
 						<span>
-							• Account verification and compliance with financial regulations.
+							o Users must submit a government-issued ID and live verification.
 						</span>
-						<span>• Processing transactions and payments.</span>
-						<span>• Risk assessment and fraud prevention.</span>
-						<span>• Marketing, personalization, and service improvement.</span>
-					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Legal Basis for Data Processing (GDPR Compliance)</p>
-						<span>• Contractual necessity: To provide our services.</span>
+						<p>• Mandatory Identity Verification:</p>
 						<span>
-							• <strong>Legal obligations</strong>: AML/KYC compliance.
+							o Transactions exceeding risk limits require additional
+							verification.
 						</span>
+						<p>• International Compliance:</p>
 						<span>
-							• <strong>Legitimate interest</strong>: Security, fraud
-							prevention.
-						</span>
-						<span>
-							• <strong>User consent</strong>: Marketing and tracking analytics.
+							o NextFi adheres to sanction lists (OFAC, FATF, and global
+							financial crime databases).
 						</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>Cookies & Tracking Technologies</p>
+						<p>Data Protection & Storage</p>
+						<span>• ISO 27001, SOC 2-certified data centers.</span>
 						<span>
-							• We use cookies and tracking technologies to enhance user
-							experience and improve service functionality.
+							• Hybrid storage model (on-premises & cloud-based for redundancy).
 						</span>
 						<span>
-							• Users can manage cookie preferences via their browser settings.
-						</span>
-					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Data Sharing with Third Parties</p>
-						<span>
-							• <strong>Payment service providers</strong> (Visa, MasterCard,
-							UnionPay)
-						</span>
-						<span>
-							• <strong>Identity verification partners</strong> (AML/KYC
-							compliance)
-						</span>
-						<span>
-							• <strong>Advertising and analytics partners</strong>
+							• 5-year minimum data retention for regulatory compliance.
 						</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>User Rights (GDPR, CCPA, PDPL)</p>
-						<span>Users can:</span>
+						<p>Incident Response & Data Breach Policy</p>
 						<span>
-							• Request access, correction, or deletion of personal data
+							• 72-hour breach notification policy for affected users.
 						</span>
-						<span>• Opt out of marketing communications</span>
-						<span>• Withdraw consent for data processing</span>
+						<span>
+							• Immediate security audit & response protocol in case of a
+							cyberattack.
+						</span>
+						<span>• DDoS protection using Cloudflare & AWS Shield.</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>Data Security Measures</p>
-						<span>Users can:</span>
+						<p>Government & Law Enforcement Compliance</p>
 						<span>
-							• <strong>AES-256 encryption</strong> for data storage
+							• NextFi may provide user data only under a valid legal request.
 						</span>
 						<span>
-							• <strong>TLS 1.3 encryption</strong> for data transmission
-						</span>
-						<span>
-							• <strong>Multi-factor authentication (2FA)</strong> for account
-							protection
+							• Cross-border cooperation with regulatory authorities in the EU,
+							US, UAE, and CIS.
 						</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>International Data Transfers</p>
-						<span>
-							• Data may be transferred to secure data centers across multiple
-							jurisdictions in compliance with applicable regulations
-						</span>
+						<p>User Responsibilities</p>
+						<p>• Users must</p>
+						<span>• Use strong passwords and enable 2FA.</span>
+						<span>• Avoid sharing account details with third parties.</span>
+						<span>• Report suspicious activity immediately</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
-						<p>Changes to the Privacy Policy</p>
-						<span>
-							• Users will be notified of any significant changes to this
-							Privacy Policy
-						</span>
+						<p>Updates to Security & Compliance Policy</p>
+						<span>• NextFi will notify users of security policy changes.</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem] pb-[2.5rem]'>
+					<div className='flex flex-col gap-[.5rem]'>
 						<p>Contact Information</p>
 						<span>
 							• Privacy Officer Contact:{' '}

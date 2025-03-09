@@ -133,7 +133,7 @@ export const uploadFile = async (
 		const formData = new FormData()
 		formData.append('csrf', csrf)
 		formData.append('type', type)
-		formData.append('file', file)
+		formData.append('file', file)	
 
 		if (type === 'upload_verif') {
 			formData.append('region', region)
@@ -150,6 +150,34 @@ export const uploadFile = async (
 		return { response: 'error', message: 'Network error' }
 	}
 }
+
+// export const uploadFile = async (
+//   csrf: string,
+//   file: File,
+//   region: string = ''
+// ) => {
+//   try {
+//     const formData = new FormData();
+//     formData.append('csrf', csrf);
+//     formData.append('type', 'upload_verif'); // Указываем тип запроса
+//     formData.append('file', file);
+//     if (region) {
+//       formData.append('region', region);
+//     }
+//     const response = await fetch('https://nextfi.io:5000/api/v1/verification', {
+//       method: 'POST',
+//       body: formData,
+//     });
+
+//     const result = await response.json();
+//     return result;
+//   } catch (error) {
+//     console.error('Ошибка загрузки файла:', error);
+//     return { response: 'error', message: 'Network error' };
+//   }
+// };
+
+
 export const sendPicture = async (file: File) => {
 	try {
 		if (!file) {
@@ -272,32 +300,37 @@ export const getUserHistory = async (
 	}
 }
 export const getDepositHistory = async (csrf: string) => {
-  try {
-    const payload = { csrf, type: 'balance_deposit' };
-    const response = await fetch('https://nextfi.io:5000/api/v1/history', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
+	try {
+		const payload = { csrf };
 
-    const result = await response.json();
-    if (!response.ok || result.response === 'error') {
-      console.error('Error:', result.message || 'Unknown error');
-      return { error: true, message: result.message };
-    }
-    return { error: false, data: result.data };
-  } catch (error) {
-    console.error('Error fetching deposit history:', error);
-    return { error: true, message: 'Network error' };
-  }
+		const response = await fetch('https://nextfi.io:5000/api/v1/all_deposits', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(payload),
+		});
+
+		const result = await response.json();
+		console.log(result); // Для отладки, можно удалить после тестирования
+
+		if (!response.ok || result.response === 'error') {
+			console.error('Ошибка получения истории депозитов:', result.message);
+			return { error: true, message: result.message };
+		}
+
+		return { error: false, data: result.data };
+	} catch (error) {
+		console.error('Ошибка сети при получении истории депозитов:', error);
+		return { error: true, message: 'Network error' };
+	}
 };
+
 export const getUserBalance = async (csrf: string, coin?: string) => {
 	try {
 		const payload: Record<string, any> = { csrf }
 		if (coin) payload['coin'] = coin
-		else payload['type'] = 'total_usdt_value' 
+		else payload['type'] = 'total_usdt_value'
 
 		const response = await fetch('https://nextfi.io:5000/api/v1/user_balance', {
 			method: 'POST',
@@ -345,34 +378,38 @@ export const createWithdraw = async (
 		if (!response.ok || result.response === 'error') {
 			return { error: true, message: result.message || 'Unknown error' }
 		}
-		return { error: false, data: result, message: result.message };
+		return { error: false, data: result, message: result.message }
 	} catch (error) {
 		console.error('Error creating withdraw:', error)
-		return { error: true, message: 'Network error' };
+		return { error: true, message: 'Network error' }
 	}
 }
 export const getWithdrawHistory = async (csrf: string) => {
-  try {
-    const payload = { csrf };
-    const response = await fetch('https://nextfi.io:5000/api/v1/withdraw_list', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
+	try {
+		const payload = { csrf }
+		const response = await fetch(
+			'https://nextfi.io:5000/api/v1/withdraw_list',
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(payload),
+			}
+		)
 
-    const result = await response.json();
-    if (!response.ok || result.response === 'error') {
-      console.error('Error:', result.message || 'Unknown error');
-      return { error: true, message: result.message };
-    }
-    return { error: false, data: result.data };
-  } catch (error) {
-    console.error('Error fetching withdraw history:', error);
-    return { error: true, message: 'Network error' };
-  }
-};
+		const result = await response.json()
+		if (!response.ok || result.response === 'error') {
+			console.error('Error:', result.message || 'Unknown error')
+			return { error: true, message: result.message }
+		}
+		console.log(result)
+		return { error: false, data: result.data }
+	} catch (error) {
+		console.error('Error fetching withdraw history:', error)
+		return { error: true, message: 'Network error' }
+	}
+}
 export const getInvestHistory = async ({
 	coin,
 	csrf,

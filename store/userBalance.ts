@@ -10,7 +10,7 @@ export const useBalanceStore = create<BalanceState>(() => ({
 	loadBalanceByCoin: async (csrf, coin) => {
 		const result = await getUserBalance(csrf, coin);
 		if (result?.response === "success") {
-			return result.balance; // ✅ Возвращаем баланс монеты
+			return result.balance; 
 		}
 		return null;
 	},

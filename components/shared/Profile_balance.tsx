@@ -33,7 +33,7 @@ export const Profile_balance = () => {
 	const { loadBalanceByCoin } = useBalanceStore()
 	const formattedBalance =
 		balance !== null
-			? new Intl.NumberFormat('en-US', {
+			? new Intl.NumberFormat('ru-RU', {
 					style: 'currency',
 					currency: 'USD',
 					maximumFractionDigits: 2,
@@ -131,7 +131,7 @@ export const Profile_balance = () => {
 							</div>
 							<div className='flex items-center gap-[8px]'>
 								<p className='text-[36px] font-bold'>
-								{formattedBalance || '$0'}
+								{formattedBalance || '0$'}
 								</p>
 								{/* <select
 									className='bg-transparent text-[16px] font-medium'
@@ -141,7 +141,7 @@ export const Profile_balance = () => {
 										className='text-[12px] max-w-[1px] text-black'
 										value='TEST'
 									> */}
-										TEST
+										{/* TEST */}
 									{/* </option> */}
 								{/* </select> */}
 							</div>
@@ -171,7 +171,7 @@ export const Profile_balance = () => {
 								<p className='text-[36px] font-bold'>
 									{' '}
 									{/* {`${balance || '0'} $`}{' '} */}
-									$0.00
+									0.00$
 								</p>
 								{/* <select
 									className='bg-transparent text-[16px] font-medium'

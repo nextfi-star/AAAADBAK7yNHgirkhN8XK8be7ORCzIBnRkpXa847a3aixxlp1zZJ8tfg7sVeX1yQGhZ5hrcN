@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 export type Coin = {
 	id: number;
-	name: string;
+	name: string | '';
 	avatar?: string;
 	type: string;
 	network: string[];

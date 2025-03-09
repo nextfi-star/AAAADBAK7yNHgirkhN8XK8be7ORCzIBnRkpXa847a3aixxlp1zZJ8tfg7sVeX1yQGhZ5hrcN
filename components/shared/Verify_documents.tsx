@@ -1,6 +1,5 @@
 'use client'
 import { useThemeStore } from '@/store/useChatStore'
-import { NextPage } from 'next'
 import Image from 'next/image'
 import { useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
@@ -23,7 +22,7 @@ interface Props {
 	upLoad: (type: 'upload_verif' | 'upload_logo') => void
 	// resetData: () => void
 }
-export const Verify_documents: NextPage<Props> = ({
+export const Verify_documents = ({
 	items,
 	step,
 	setStep,
@@ -33,7 +32,7 @@ export const Verify_documents: NextPage<Props> = ({
 	uploading,
 	error,
 	upLoad,
-}) => {
+}: Props) => {
 	const { theme } = useThemeStore()
 	const [change, setChange] = useState<boolean>(false)
 	const [photo, setPhoto] = useState<string | null>(null)

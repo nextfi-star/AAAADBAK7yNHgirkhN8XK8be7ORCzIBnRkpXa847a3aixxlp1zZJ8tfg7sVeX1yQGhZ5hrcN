@@ -26,46 +26,51 @@ import Lottie, { LottieRefCurrentProps } from 'lottie-react'
 import { Check, ChevronsUpDown, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { useRef, useState } from 'react'
-
-const countries = [
-	{
-		value: 'russia',
-		label: 'Russia',
-	},
-	{
-		value: 'uzbekistan',
-		label: 'Uzbekistan',
-	},
-	{
-		value: 'usa',
-		label: 'USA',
-	},
-	{
-		value: 'china',
-		label: 'China',
-	},
-	{
-		value: 'japan',
-		label: 'Japan',
-	},
-]
-const typeID = [
-	{
-		value: 'id_card',
-		label: 'National ID card',
-	},
-	{
-		value: 'passport',
-		label: 'Passport',
-	},
-	{
-		value: 'driver license',
-		label: 'Driver license',
-	},
-]
+import { useMemo, useRef, useState } from 'react'
 
 const Verify = () => {
+	const typeID = useMemo(
+		() => [
+			{
+				value: 'id_card',
+				label: 'National ID card',
+			},
+			{
+				value: 'passport',
+				label: 'Passport',
+			},
+			{
+				value: 'driver license',
+				label: 'Driver license',
+			},
+		],
+		[]
+	)
+	const countries = useMemo(
+		() => [
+			{
+				value: 'russia',
+				label: 'Russia',
+			},
+			{
+				value: 'uzbekistan',
+				label: 'Uzbekistan',
+			},
+			{
+				value: 'usa',
+				label: 'USA',
+			},
+			{
+				value: 'china',
+				label: 'China',
+			},
+			{
+				value: 'japan',
+				label: 'Japan',
+			},
+		],
+		[]
+	)
 	const user = useUserStore(state => state.user)
 	const t = useTranslations('verify')
 	const { theme, globalVeriState } = useThemeStore()
@@ -89,21 +94,39 @@ const Verify = () => {
 		setSelectedFile(event.target.files[0])
 		setError('')
 	}
-	const handleUpload = async (type: "upload_verif" | "upload_logo") => {
-		if (!user?.csrf || !selectedFile) {
-			setError("Выберите файл!");
-			return;
-		}
-		setUploading(true);
-		const result = await uploadFile(user.csrf, selectedFile, type, region);
-		if (result?.response === "success") {
-			alert("Файл успешно загружен!");
-		} else {
-			setError(result?.message || "Ошибка загрузки файла");
-		}
+	// const handleUpload = async (type: "upload_verif" | "upload_logo") => {
+	// 	if (!user?.csrf || !selectedFile) {
+	// 		setError("Выберите файл!");
+	// 		return;
+	// 	}
+	// 	setUploading(true);
+	// 	const result = await uploadFile(user.csrf, selectedFile, type, region);
+	// 	if (result?.response === "success") {
+	// 		alert("Файл успешно загружен!");
+	// 	} else {
+	// 		setError(result?.message || "Ошибка загрузки файла");
+	// 	}
+	// 	setUploading(false);
+	// };
 
-		setUploading(false);
-	};
+	const handleUpload = async () => {
+		if (!selectedFile) {
+			setError('Выберите файл перед загрузкой')
+			return
+		}
+		if (!user?.csrf) {
+			setError('Ошибка: CSRF токен отсутствует')
+			return
+		}
+		const result = await uploadFile(user.csrf, selectedFile, 'upload_verif', region, )
+		if (result.response === 'success') {
+			setSelectedFile(null)
+			setError('✅ Файл успешно загружен и отправлен на проверку')
+		} else {
+			setError(`❌ Ошибка: ${result.message}`)
+		}
+	}
+
 	const handlePhotoChange = (photoData: string) => {
 		setPhoto(photoData)
 	}

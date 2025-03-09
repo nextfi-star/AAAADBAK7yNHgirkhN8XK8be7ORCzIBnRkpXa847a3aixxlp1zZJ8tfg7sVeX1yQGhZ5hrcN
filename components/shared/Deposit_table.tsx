@@ -18,11 +18,13 @@ import {
 	TableRow,
 	User,
 } from "@heroui/react"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ChevronDownIcon } from './ChevronDownIcon'
 import { columnsDataD, statusOptionsDataD, usersDataD } from './data'
 import { capitalize } from './utils'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
+import { getDepositHistory } from '@/utils/api'
+import { useUserStore } from '@/hooks/useUserData'
 const statusColorMap: Record<string, ChipProps['color']> = {
 	sent: 'success',
 	denied: 'danger',
@@ -34,11 +36,31 @@ const INITIAL_VISIBLE_COLUMNS = [
 	'status',
 	'address',
 	'crypto',
-	'fee',
 ]
 type User = (typeof usersDataD)[0]
 export default function Deposit_table() {
-	
+	const csrf = useUserStore((state) => state.user?.csrf);
+	const [deposits, setDeposits] = useState<any[]>([]);
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+	const fetchDeposits = async () => {
+    if (!csrf) return;
+    setLoading(true);
+    const result = await getDepositHistory(csrf);
+    setLoading(false);
+
+    if (result.error) {
+      setError(result.message || 'Ошибка получения истории депозитов');
+      setDeposits([]);
+    } else {
+      setError('');
+      setDeposits(result.data || []);
+    }
+  };
+  useEffect(() => {
+    fetchDeposits();
+  }, [csrf]);
+
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
 		new Set(INITIAL_VISIBLE_COLUMNS)
@@ -59,7 +81,7 @@ export default function Deposit_table() {
 	}, [visibleColumns])
 
 	const filteredItems = React.useMemo(() => {
-		let filteredUsers = [...usersDataD]
+		let filteredUsers = [...deposits]
 
 		if (hasSearchFilter) {
 			filteredUsers = filteredUsers.filter(user =>
@@ -76,7 +98,7 @@ export default function Deposit_table() {
 		}
 
 		return filteredUsers
-	}, [usersDataD, filterValue, statusFilter])
+	}, [deposits, filterValue, statusFilter])
 
 	const pages = Math.ceil(filteredItems.length / rowsPerPage)
 
@@ -123,8 +145,6 @@ export default function Deposit_table() {
 				return <span className='md:text-[20px]'> {user.crypto}</span>
 			case 'amount':
 				return <span className='md:text-[20px]'> {user.amount}</span>
-			case 'fee':
-				return <span className='md:text-[20px]'> {user.fee}</span>
 			case 'status':
 				return (
                     // <Chip

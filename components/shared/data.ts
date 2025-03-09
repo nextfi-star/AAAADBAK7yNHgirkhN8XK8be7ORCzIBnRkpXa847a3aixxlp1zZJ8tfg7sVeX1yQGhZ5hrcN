@@ -293,7 +293,6 @@ const columnsDataD = [
 	{ name: 'ADDRESS', uid: 'address' },
 	{ name: 'CRYPTO', uid: 'crypto', sortable: true },
 	{ name: 'AMOUNT', uid: 'amount', sortable: true },
-	{ name: 'FEE', uid: 'fee' },
 	{ name: 'STATUS', uid: 'status', sortable: true },
 ]
 const statusOptionsDataD = [
@@ -309,7 +308,6 @@ const usersDataD = [
 		subaddress: 'Tron(TRC 20)',
 		crypto: 'TRX', //! sub-subaddress group-1
 		amount: '112.720',
-		fee: '1',
 		status: 'completed', //! status independent element
 		percent: '+<$0.1',
 	},
@@ -320,7 +318,6 @@ const usersDataD = [
 		subaddress: 'Tron(TRC 20)',
 		crypto: 'ZRO', //! sub-subaddress group-1
 		amount: '112.720',
-		fee: '1',
 		status: 'completed', //! status independent element
 		percent: '+<$0.1',
 	},
@@ -331,7 +328,6 @@ const usersDataD = [
 		subaddress: 'Tron(TRC 20)',
 		crypto: 'USDT', //! sub-subaddress group-1
 		amount: '112.720',
-		fee: '1',
 		status: 'completed', //! status independent element
 		percent: '+<$0.1',
 	},
@@ -342,7 +338,6 @@ const usersDataD = [
 		subaddress: 'Tron(TRC 20)',
 		crypto: 'TRX', //! sub-subaddress group-1
 		amount: '112.720',
-		fee: '1',
 		status: 'canceled', //! status independent element
 		percent: '+<$0.1',
 	},
@@ -353,7 +348,6 @@ const usersDataD = [
 		subaddress: 'Tron(TRC 20)',
 		crypto: 'USDT', //! sub-subaddress group-1
 		amount: '112.720',
-		fee: '1',
 		status: 'canceled', //! status independent element
 		percent: '+<$0.1',
 	},
@@ -364,7 +358,6 @@ const usersDataD = [
 		subaddress: 'Tron(TRC 20)',
 		crypto: 'ZRO', //! sub-subaddress group-1
 		amount: '112.720',
-		fee: '1',
 		status: 'canceled', //! status independent element
 		percent: '+<$0.1',
 	},
@@ -375,7 +368,6 @@ const usersDataD = [
 		subaddress: 'Tron(TRC 20)',
 		crypto: 'ZRO', //! sub-subaddress group-1
 		amount: '112.720',
-		fee: '1',
 		status: 'pending', //! status independent element
 		percent: '+<$0.1',
 	},
@@ -386,7 +378,6 @@ const usersDataD = [
 		subaddress: 'Tron(TRC 20)',
 		crypto: 'USDT', //! sub-subaddress group-1
 		amount: '112.720',
-		fee: '1',
 		status: 'pending', //! status independent element
 		percent: '+<$0.1',
 	},
@@ -397,7 +388,6 @@ const usersDataD = [
 		subaddress: 'Tron(TRC 20)',
 		crypto: 'USDT', //! sub-subaddress group-1
 		amount: '112.720',
-		fee: '1',
 		status: 'in progress', //! status independent element
 		percent: '+<$0.1',
 	},

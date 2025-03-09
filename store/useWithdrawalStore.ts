@@ -18,14 +18,12 @@ interface WithdrawStore {
 
 export const useWithdrawStore = create<WithdrawStore>((set) => ({
   withdrawList: [],
-  // Функция для получения списка выводов по CSRF токену
   fetchWithdrawList: async (csrf: string) => {
     const result = await getWithdrawHistory(csrf);
     if (!result.error) {
       set({ withdrawList: result.data || [] });
     }
   },
-  // Функция для добавления нового запроса на вывод в локальное состояние
   addWithdraw: (withdraw: Withdraw) =>
     set((state) => ({ withdrawList: [withdraw, ...state.withdrawList] })),
 }));

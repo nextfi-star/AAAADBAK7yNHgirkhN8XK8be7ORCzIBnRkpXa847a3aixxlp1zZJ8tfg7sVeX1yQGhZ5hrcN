@@ -16,7 +16,7 @@ export function PolicyModal() {
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
 				<Button className='p-0 text-[14px] bg-transparent hover:bg-transparent flex-shrink-0 text-[#205bc9] hover:cursor-pointer hover:text-[#205bc9] shadow-none'>
-				Terms of Service
+				Privacy Policy
 				</Button>
 			</AlertDialogTrigger>
 			<AlertDialogContent className='max-w-[1200px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[176px]'>
@@ -36,7 +36,7 @@ export function PolicyModal() {
 				</AlertDialogHeader>
 				<AlertDialogHeader className='flex flex-col items-center gap-[10px] py-4'>
 					<AlertDialogTitle className='text-[24px] xl:text-[32px]'>
-					Terms of Service
+					Privacy Policy
 					</AlertDialogTitle>
 				</AlertDialogHeader>
 				<div className='flex flex-col gap-4'>
