@@ -25,7 +25,7 @@ export const Profile_verification = ({ toggleActive, verify }: Props) => {
 						</h4>
 						<Accept_icon color={theme === 'dark' ? 'white' : 'black'} />
 					</div>
-					<div className='profile__verification__info__block profile_blocks_border !gap-[13px] !bg-[#F2F7FF] dark:!bg-[#1e1e1e66]'>
+					<div className='profile__verification__info__block profile_blocks_border !gap-[13px] !bg-[#F2F7FF] items-center dark:!bg-[#1e1e1e66]'>
 						<h5 className='profile__verification__info__block_step_text'>
 							{t('step2')}
 						</h5>
@@ -36,7 +36,7 @@ export const Profile_verification = ({ toggleActive, verify }: Props) => {
 							{t('step2Descperson2')}
 						</p>
 						<Link
-							className='profile__verification__info__block_button flex justify-center !py-[13px]'
+							className='profile__verification__info__block_button flex justify-center !py-[13px] !w-full '
 							href={'#'}
 							onClick={toggleActive}
 						>

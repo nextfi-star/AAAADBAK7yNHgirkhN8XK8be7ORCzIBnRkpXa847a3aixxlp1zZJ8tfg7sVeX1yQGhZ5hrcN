@@ -68,7 +68,6 @@ export const enable2FA = async (csrf: string) => {
 			throw new Error(result.message || 'Failed to enable 2FA')
 		}
 
-		console.log(result)
 		return result
 	} catch (error: any) {
 		throw new Error(error.message || 'An error occurred while enabling 2FA')
@@ -87,10 +86,8 @@ export const verify2FA = async (csrf: string, code: string) => {
 		const data = await response.json()
 
 		if (data.response === 'success') {
-			console.log('2FA verification successful', data)
 			useUserStore.getState().loadUser()
 		} else {
-			console.log(data)
 			console.error('Error verifying 2FA:', data)
 		}
 
@@ -147,7 +144,6 @@ export const uploadFile = async (
 			body: formData,
 		})
 		const result = await response.json()
-		console.log(result)
 		return result
 	} catch (error) {
 		console.error('❌ Ошибка загрузки файла:', error)
@@ -177,7 +173,6 @@ export const sendPicture = async (file: File) => {
 			throw new Error(result.message || 'Upload failed')
 		}
 
-		console.log('Upload result:', result)
 		return result
 	} catch (error: any) {
 		console.error('Upload error:', error.message)
@@ -226,7 +221,6 @@ export const handleAccountAction = async (
 
 		if (response.ok) {
 			if (typeof window !== 'undefined') {
-				console.log(action === 'freeze' ? 'Freeze' : 'Close')
 				localStorage.removeItem('userData')
 				localStorage.removeItem('profile-store')
 				window.location.reload()
@@ -266,7 +260,6 @@ export const getUserHistory = async (
 		})
 
 		const result = await response.json()
-		console.log(result)
 		if (!response.ok || result.response === 'error') {
 			console.error('Error:', result.message || 'Unknown error')
 			return null
@@ -290,7 +283,6 @@ export const getDepositHistory = async (csrf: string) => {
     });
 
     const result = await response.json();
-    console.log(result);
     if (!response.ok || result.response === 'error') {
       console.error('Error:', result.message || 'Unknown error');
       return { error: true, message: result.message };
@@ -301,12 +293,11 @@ export const getDepositHistory = async (csrf: string) => {
     return { error: true, message: 'Network error' };
   }
 };
-
 export const getUserBalance = async (csrf: string, coin?: string) => {
 	try {
 		const payload: Record<string, any> = { csrf }
 		if (coin) payload['coin'] = coin
-		else payload['type'] = 'all' // Если coin не указан, получаем баланс всех монет
+		else payload['type'] = 'total_usdt_value' 
 
 		const response = await fetch('https://nextfi.io:5000/api/v1/user_balance', {
 			method: 'POST',
@@ -351,7 +342,6 @@ export const createWithdraw = async (
 			body: JSON.stringify(payload),
 		})
 		const result = await response.json()
-		console.log(result)
 		if (!response.ok || result.response === 'error') {
 			return { error: true, message: result.message || 'Unknown error' }
 		}
@@ -373,7 +363,6 @@ export const getWithdrawHistory = async (csrf: string) => {
     });
 
     const result = await response.json();
-    console.log(result);
     if (!response.ok || result.response === 'error') {
       console.error('Error:', result.message || 'Unknown error');
       return { error: true, message: result.message };
@@ -402,7 +391,6 @@ export const getInvestHistory = async ({
 
 		const result = await response.json()
 		if (response.ok) {
-			console.log(result)
 			return result
 		} else {
 			throw new Error(result.message || 'Ошибка получения истории инвестиций')
@@ -421,7 +409,6 @@ export const getCoins = async (csrf: string) => {
 
 		const result = await response.json()
 		if (result.response === 'success') {
-			console.log(result.data)
 			return result.data.map((coin: any) => ({
 				id: coin.id,
 				name: coin.name,
@@ -506,7 +493,6 @@ export const changeUserData = async (
 		const result = await response.json()
 
 		if (result.response === 'success') {
-			console.log(result)
 			return { success: true, message: result.message }
 		} else {
 			return { success: false, message: result.message }

@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/dialog'
 import { useThemeStore } from '@/store/useChatStore'
 import { Divider } from '@heroui/divider'
-import { Spinner } from '@heroui/react'
+import { Snippet, Spinner } from '@heroui/react'
 import { Cross2Icon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
 import { FormEvent, useState } from 'react'
@@ -69,8 +69,10 @@ export const Withdrawal_confirmation = ({
 			setMessage(result.message || 'Заявка успешно создана')
 			setConfirmStep(3)
 			setChecked(false)
+			setMessage('')
 		} else {
 			setConfirmStep(1)
+			setChecked(false)
 			setMessage(result.message)
 		}
 	}
@@ -93,7 +95,7 @@ export const Withdrawal_confirmation = ({
 			</DialogTrigger>
 
 			{confirmationStep === 1 && (
-				<DialogContent className='max-w-[90%] md:max-w-[38rem] w-full p-0 rounded-[20px]'>
+				<DialogContent className='max-w-[90%] md:max-w-[36rem] w-full p-0 rounded-[20px]'>
 					<DialogHeader>
 						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
 							{t('ConfirmToWithdraw')}
@@ -104,7 +106,7 @@ export const Withdrawal_confirmation = ({
 						<Divider className='m-0 space-0' />
 						<div className='p-[21px] flex flex-col gap-[28px]'>
 							<article className='dark:bg-[#7676801F] rounded-[6px] flex flex-col gap-[28px] py-[21px] px-[18px] md:px-[21px]'>
-								<div className='flex items-center w-full justify-between overflow-hidden'>
+								<div className='flex items-center w-full justify-between overflow-hidden gap-[4]'>
 									<DialogDescription className='flex flex-col gap-[1px] text-[14px] md:text-[20px]'>
 										{t('onChain')} <span>{t('onChainWith')}</span>
 									</DialogDescription>
@@ -113,8 +115,11 @@ export const Withdrawal_confirmation = ({
 										<span className='p-[5px] text-white bg-[#205BC9] rounded-[4px] ]'>
 											{selectedCoin?.name || <Spinner />}
 										</span>
-										{selectedNetwork || <Spinner />}
 									</DialogDescription>
+
+									<span className='flex items-center justify-start flex-wrap w-full max-w-[300px] '>
+										{depositAddress || 'none'}
+									</span>
 								</div>
 								<div className='flex items-center w-full justify-between'>
 									<DialogDescription className='flex flex-col gap-[1px] text-[14px] md:text-[20px]'>

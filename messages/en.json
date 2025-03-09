@@ -631,6 +631,7 @@
 		"depositCrypto2": "You can withdraw funds invested in the investment industry at any time convenient for you, taking into account the commission for early withdrawal."
 	},
 	"withdrawal": {
+		"enterDeposAds": "Enter your address",
 		"withdrawal": "Withdrawal",
 		"selectCrp": "Select crypto",
 		"setDestn": "Set distination",

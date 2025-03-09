@@ -58,8 +58,11 @@ const Withdrawal_steps = () => {
 	const [depositAddress, setDepositAddress] = useState('')
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		const inputValue = e.target.value
+		let inputValue = e.target.value
 		if (/^\d*\.?\d*$/.test(inputValue)) {
+			if (inputValue === '0') {
+				inputValue = '0.'
+			}
 			setAmount(inputValue)
 		}
 	}
@@ -285,6 +288,14 @@ const Withdrawal_steps = () => {
 												</Command>
 											</PopoverContent>
 										</Popover>
+
+										<input
+											type='text'
+											className='w-full h-[48px] rounded-medium max-w-[294px] sm:max-w-[962px] justify-start bg-[#7676801F] hover:bg-[#7676801F] px-3'
+											placeholder={t('enterDeposAds')}
+											value={depositAddress}
+											onChange={e => setDepositAddress(e.target.value)}
+										/>
 									</div>
 								</div>
 							)}
@@ -320,8 +331,8 @@ const Withdrawal_steps = () => {
 												{t('AmountReceived')}:
 											</p>
 											<div className='flex items-center gap-[34px]'>
-												<span className='text-[18px] xl:text-[25px] text-[#3A3939] dark:text-[#EFEFEF]'>
-													{amount} {selectedCoin?.name}
+												<span className='text-[18px] xl:text-[25px] text-[#3A3939] dark:text-[#EFEFEF] flex items-center w-full max-w-[300px] overflow-x-auto whitespace-nowrap'>
+													{selectedCoin?.name} {amount}
 												</span>
 												{/* {!error ? (
 													<Withdrawal_confirmation
