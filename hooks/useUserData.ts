@@ -16,9 +16,9 @@ interface UserData {
   verification: number;
   verified: number;
   xp: number;
+  lvl?: number;
+  level?: number;
 }
-
-// Тип состояния стора
 type UserState = {
   user: UserData | null;
   csrf: string | null;
