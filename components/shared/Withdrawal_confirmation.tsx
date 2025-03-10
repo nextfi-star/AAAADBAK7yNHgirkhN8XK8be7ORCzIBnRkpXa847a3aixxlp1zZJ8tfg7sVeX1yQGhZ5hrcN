@@ -51,28 +51,42 @@ export const Withdrawal_confirmation = ({
 	const [checked, setChecked] = useState(false)
 	const [message, setMessage] = useState('')
 	const csrf = useUserStore(state => state.user?.csrf)
+	const [isSubmitting, setIsSubmitting] = useState(false);
 	const handleSubmit = async (e: any) => {
-		e.preventDefault()
-		const amountStr = amount.toString()
-		const result = await createWithdraw(
-			csrf,
-			selectedCoin?.name || '',
-			amountStr,
-			depositAddress || '0x627390cc319e1a61d6c3a9c7cbdfa9c85740bf89',
-			selectedNetwork || 'ERC20',
-			inputStep2
-		)
-		if (result.data) {
-			setMessage(result.message || 'Заявка успешно создана')
-			setConfirmStep(3)
-			setChecked(false)
-			setMessage('')
-		} else {
-			setConfirmStep(1)
-			setChecked(false)
-			setMessage(result.message)
+		e.preventDefault();
+	
+		if (isSubmitting) return;
+	
+		setIsSubmitting(true);
+		try {
+			const amountStr = amount.toString();
+			const result = await createWithdraw(
+				csrf || '',
+				selectedCoin?.name || '',
+				amountStr,
+				depositAddress || '0x627390cc319e1a61d6c3a9c7cbdfa9c85740bf89',
+				selectedNetwork || 'ERC20',
+				inputStep2
+			);
+	
+			if (result.data) {
+				setMessage(result.message || 'Заявка успешно создана');
+				setConfirmStep(3);
+				setChecked(false);
+				// Если нужно, можно убрать setMessage(''), чтобы не затирать предыдущее сообщение
+			} else {
+				setConfirmStep(1);
+				setChecked(false);
+				setMessage(result.message);
+			}
+		} catch (error) {
+			// Обработка ошибок, например:
+			setMessage('Произошла ошибка при отправке запроса');
+		} finally {
+			setIsSubmitting(false);
 		}
-	}
+	};
+	
 	const DropSteps = () => {
 		setStep(1)
 		setConfirmStep(1)
@@ -182,7 +196,7 @@ export const Withdrawal_confirmation = ({
 							type='button'
 							variant='secondary'
 							className='bg-[#205BC9] text-white w-fit rounded-[50px] hover:bg-[#205BC9] min-w-[124px]'
-							disabled={!checked}
+							disabled={!checked || isSubmitting}
 						>
 							{t('contin')}
 						</Button>

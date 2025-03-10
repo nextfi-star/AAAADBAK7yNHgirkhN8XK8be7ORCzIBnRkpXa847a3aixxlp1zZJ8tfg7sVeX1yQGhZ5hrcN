@@ -8,6 +8,7 @@ import {
 	Profile_qr,
 	Profile_verification,
 } from '@/components/shared'
+import { useUserStore } from '@/hooks/useUserData'
 import { useThemeStore } from '@/store/useChatStore'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -16,6 +17,7 @@ const Overview = () => {
 	const pathname = usePathname()
 	const [verify, setVerify] = useState<boolean>(false)
 	const { setVerifyState } = useThemeStore()
+	const user = useUserStore(state => state.user)
 	const toggleActive = () => {
 		setVerify(prev => !prev)
 	}
@@ -32,10 +34,10 @@ const Overview = () => {
 			<Profile_info toggleActive={toggleActive} verify={verify} />
 			<div className='profile__grid gap-[1.5rem] max-xl:grid max-xl:grid-cols-1'>
 				<div className='flex flex-col gap-[1.5rem] h-full items-stretch justify-start'>
-					{verify ? (
+					{user && user.verification === 1 ? (
 						<Profile_balance />
 					) : (
-						<Profile_verification toggleActive={toggleActive} verify={verify} />
+						<Profile_verification  verify={verify} />
 					)}
 					<Profile_payments />
 				</div>

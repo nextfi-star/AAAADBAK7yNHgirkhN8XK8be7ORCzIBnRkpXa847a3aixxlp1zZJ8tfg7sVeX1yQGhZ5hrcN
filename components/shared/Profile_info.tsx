@@ -9,7 +9,7 @@ import { useTranslations } from 'next-intl'
 
 interface Props {
 	verify: boolean
-	toggleActive: () => void
+	toggleActive?: () => void
 }
 export const Profile_info = ({ verify, toggleActive }: Props) => {
 	const user = useUserStore(state => state.user)
@@ -57,10 +57,10 @@ export const Profile_info = ({ verify, toggleActive }: Props) => {
 					<h5 className='profile__info__block___right__main__text'>
 						{t('verification')}
 					</h5>
-					{!verify ? (
-						<Link href='#' onClick={toggleActive}>
+					{user && user.verification === 0 ? (
+						<Link href='#' >
 							<Button className='profile__info__block___right__additional__text border-1 border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  rounded-[50px] px-[10px] !bg-transparent'>
-								{t('goVerif')}
+							{t('goVerif')}
 							</Button>
 						</Link>
 					) : (
@@ -85,7 +85,7 @@ export const Profile_info = ({ verify, toggleActive }: Props) => {
 						{t('status')}
 					</h5>
 					<Button className='profile__info__block___right__additional__text border-1 border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'>
-						{t('lvl')} {user?.level || 1}
+						{t('lvl')} {user?.xp || 1}
 					</Button>
 				</div>
 			</div>

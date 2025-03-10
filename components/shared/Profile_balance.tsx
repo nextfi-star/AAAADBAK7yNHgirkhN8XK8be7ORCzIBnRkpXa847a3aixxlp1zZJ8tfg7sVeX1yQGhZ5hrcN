@@ -31,9 +31,9 @@ export const Profile_balance = () => {
 	const user = useUserStore(state => state.user)
 	
 	useEffect(() => {
-		if (!user.csrf) return
+		if (!user?.csrf) return
 		const fetchBalance = async () => {
-			const totalValue = await getUserBalance(user.csrf)
+			const totalValue = await getUserBalance(user?.csrf)
 			if (totalValue !== null) {
 				setBalance(totalValue)
 			} else {
@@ -41,7 +41,7 @@ export const Profile_balance = () => {
 			}
 		}
 		fetchBalance()
-	}, [user.csrf])
+	}, [user?.csrf])
 
 	const formattedBalance =
 		balance !== null

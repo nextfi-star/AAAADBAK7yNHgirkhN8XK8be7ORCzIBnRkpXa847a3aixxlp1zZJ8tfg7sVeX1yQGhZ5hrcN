@@ -5,9 +5,13 @@ export interface Withdraw {
   id: number;
   coin: string;
   amount: string;
+  address: string;
+  uid: string;
   network: string;
-  status: string;
-  time: number;
+  status: number;
+  time: string;
+  csrf: string
+  type: string
 }
 
 interface WithdrawStore {

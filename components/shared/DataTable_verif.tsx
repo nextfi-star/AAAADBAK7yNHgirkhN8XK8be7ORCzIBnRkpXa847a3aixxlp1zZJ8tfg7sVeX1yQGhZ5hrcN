@@ -26,8 +26,8 @@ import { SearchIcon } from './SearchIcon'
 import { capitalize } from './utils'
 import { columns, statusOptions, users } from './data'
 import { useTranslations } from 'next-intl'
+import { getUserBalanceArray } from '@/utils/api'
 import { useUserStore } from '@/hooks/useUserData'
-import { getUserBalance } from '@/utils/api'
 
 // const statusColorMap: Record<string, ChipProps["color"]> = {
 //   "+": "success",
@@ -35,11 +35,32 @@ import { getUserBalance } from '@/utils/api'
 // };
 
 const INITIAL_VISIBLE_COLUMNS = ['name', 'holdings', 'pnl', 'actions']
-
-type User = typeof users[0]
+interface BalanceItem {
+	coin: string
+	amount: number
+	price_usdt: number
+	value_usdt: number
+	pnl?: string
+}
+interface UserBalanceTableProps {
+	csrf: string
+}
 
 export default function DataTable_verif() {
 	const t = useTranslations('tablesAssets')
+	const [balances, setBalances] = useState<BalanceItem[]>([])
+	const [loading, setLoading] = useState<boolean>(true)
+	const csrf = useUserStore(state => state.user?.csrf)
+	useEffect(() => {
+		async function fetchData() {
+			const data = await getUserBalanceArray(csrf!)
+			if (data) {
+				setBalances(data)
+			}
+			setLoading(false)
+		}
+		fetchData()
+	}, [csrf])
 
 	const [filterValue, setFilterValue] = React.useState('')
 	const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([]))
@@ -66,24 +87,24 @@ export default function DataTable_verif() {
 	}, [visibleColumns])
 
 	const filteredItems = React.useMemo(() => {
-		let filteredusers = [...users]
+		let filteredbalances = [...balances]
 
 		if (hasSearchFilter) {
-			filteredusers = filteredusers.filter(user =>
-				user.name.toLowerCase().includes(filterValue.toLowerCase())
+			filteredbalances = filteredbalances.filter(user =>
+				user.coin.toLowerCase().includes(filterValue.toLowerCase())
 			)
 		}
 		if (
 			statusFilter !== 'all' &&
 			Array.from(statusFilter).length !== statusOptions.length
 		) {
-			filteredusers = filteredusers.filter(user =>
-				Array.from(statusFilter).includes(user.pnl)
+			filteredbalances = filteredbalances.filter(user =>
+				Array.from(statusFilter).includes(user?.pnl || '')
 			)
 		}
 
-		return filteredusers
-	}, [users, filterValue, statusFilter])
+		return filteredbalances
+	}, [balances, filterValue, statusFilter])
 
 	const pages = Math.ceil(filteredItems.length / rowsPerPage)
 
@@ -95,64 +116,70 @@ export default function DataTable_verif() {
 	}, [page, filteredItems, rowsPerPage])
 
 	const sortedItems = React.useMemo(() => {
-		return [...items].sort((a: User, b: User) => {
-			const first = a[sortDescriptor.column as keyof User] as number
-			const second = b[sortDescriptor.column as keyof User] as number
+		return [...items].sort((a: BalanceItem, b: BalanceItem) => {
+			const first = a[sortDescriptor.column as keyof BalanceItem] as number
+			const second = b[sortDescriptor.column as keyof BalanceItem] as number
 			const cmp = first < second ? -1 : first > second ? 1 : 0
 
 			return sortDescriptor.direction === 'descending' ? -cmp : cmp
 		})
 	}, [sortDescriptor, items])
 
-	const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
-		const cellValue = user[columnKey as keyof User]
+	const renderCell = React.useCallback(
+		(user: BalanceItem, columnKey: React.Key) => {
+			const cellValue = user[columnKey as keyof BalanceItem]
 
-		switch (columnKey) {
-			case 'name':
-				return (
-					<User
-						avatarProps={{ radius: 'full', src: user.avatar }}
-						classNames={{
-							base: '!bg-transparent flex items-center justify-start',
-							name: '!bg-transparent ',
-							description: '!bg-transparent ',
-							wrapper: '!bg-transparent ',
-						}}
-						description={user.name}
-						name={cellValue}
-					>
-						{user.name}
-					</User>
-				)
-			case 'holdings':
-				return (
-					<div className='flex flex-col'>
-						<p className='text-bold text-small capitalize'>{cellValue}</p>
-						<p className='text-bold text-tiny capitalize text-default-400'>
-							{user.holdings}
-						</p>
-					</div>
-				)
-			case 'actions':
-				return (
-					<div className='relative flex justify-center items-center gap-2'>
-						<Dropdown>
-							<DropdownTrigger>
-								<Button isIconOnly size='sm' variant='light'>
-									<VerticalDotsIcon className='text-default-300' />
-								</Button>
-							</DropdownTrigger>
-							<DropdownMenu>
-								<DropdownItem key='view'>{t('view')}</DropdownItem>
-								<DropdownItem key='edit'>{t('edit')}</DropdownItem>
-							</DropdownMenu>
-						</Dropdown>
-					</div>
-				)
-			default:
-				return cellValue
-		}
-	}, [])
+			switch (columnKey) {
+				case 'name':
+					return (
+						<User
+							avatarProps={{
+								radius: 'full',
+								src: `/crypto/${user.coin.toLocaleLowerCase()}.svg`,
+							}}
+							classNames={{
+								base: '!bg-transparent flex items-center justify-start',
+								name: '!bg-transparent ',
+								description: '!bg-transparent ',
+								wrapper: '!bg-transparent ',
+							}}
+							description={user.coin}
+							name={cellValue}
+						>
+							{user.coin}
+						</User>
+					)
+				case 'holdings':
+					return (
+						<div className='flex flex-col'>
+							<p className='text-bold text-small capitalize'>{cellValue}</p>
+							<p className='text-bold text-tiny capitalize text-default-400'>
+								{user.amount}
+							</p>
+						</div>
+					)
+				case 'actions':
+					return (
+						<div className='relative flex justify-center items-center gap-2'>
+							<Dropdown>
+								<DropdownTrigger>
+									<Button isIconOnly size='sm' variant='light'>
+										<VerticalDotsIcon className='text-default-300' />
+									</Button>
+								</DropdownTrigger>
+								<DropdownMenu>
+									<DropdownItem key='view'>{t('view')}</DropdownItem>
+									<DropdownItem key='edit'>{t('edit')}</DropdownItem>
+								</DropdownMenu>
+							</Dropdown>
+						</div>
+					)
+				default:
+					return cellValue
+			}
+		},
+		[]
+	)
 
 	const onNextPage = React.useCallback(() => {
 		if (page < pages) {
@@ -260,7 +287,7 @@ export default function DataTable_verif() {
 		visibleColumns,
 		onSearchChange,
 		onRowsPerPageChange,
-		users.length,
+		balances.length,
 		hasSearchFilter,
 	])
 
@@ -312,9 +339,9 @@ export default function DataTable_verif() {
 					</TableColumn>
 				)}
 			</TableHeader>
-			<TableBody emptyContent={'No users found'} items={sortedItems}>
+			<TableBody emptyContent={'No balances found'} items={sortedItems}>
 				{item => (
-					<TableRow key={item.id}>
+					<TableRow key={item.coin}>
 						{columnKey => <TableCell>{renderCell(item, columnKey)}</TableCell>}
 					</TableRow>
 				)}

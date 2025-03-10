@@ -5,7 +5,7 @@ import { useThemeStore } from '../../store/useChatStore'
 import { Accept_icon } from '../ui/Accept_icon'
 
 interface Props {
-	toggleActive: () => void
+	toggleActive?: () => void
 	verify: boolean
 }
 export const Profile_verification = ({ toggleActive, verify }: Props) => {

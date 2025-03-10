@@ -340,13 +340,33 @@ export const getUserBalance = async (csrf: string) => {
 			console.log('Total USDT Value:', result); 
 			return result.total_usdt_value; 
 		}
-
 		console.error('Ошибка получения баланса:', result.message);
 		return null;
 	} catch (error) {
 		console.error('Ошибка сети при получении баланса:', error);
 		return null;
 	}
+};
+export const getUserBalanceArray = async (csrf: string) => {
+  try {
+    const payload: Record<string, any> = { csrf, type: 'all' };
+    const response = await fetch('https://nextfi.io:5000/api/v1/user_balance', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+    if (response.ok && result.response === 'success') {
+      console.log('User Balance:', result);
+      return result.data;
+    }
+    console.error('Ошибка получения баланса:', result.message);
+    return null;
+  } catch (error) {
+    console.error('Ошибка сети при получении баланса:', error);
+    return null;
+  }
 };
 
 export const createWithdraw = async (

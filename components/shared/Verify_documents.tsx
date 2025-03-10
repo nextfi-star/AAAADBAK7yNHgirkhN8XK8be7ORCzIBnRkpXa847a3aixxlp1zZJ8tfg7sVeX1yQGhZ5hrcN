@@ -212,7 +212,7 @@ export const Verify_documents = ({
 							} rounded-[50px] py-[10px] sm:py-[16px] max-w-[248px] w-full mb-[40px] text-white`}
 							disabled={!photo || !privacy}
 							onClick={() => {
-			setUploading(true)
+								setUploading(true)
 
 								upLoad('upload_verif')
 							}}

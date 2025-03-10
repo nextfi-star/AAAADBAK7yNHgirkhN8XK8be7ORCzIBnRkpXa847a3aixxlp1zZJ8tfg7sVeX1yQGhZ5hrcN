@@ -26,6 +26,7 @@ import { capitalize } from './utils'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
 import { getDepositHistory } from '@/utils/api'
 import { useUserStore } from '@/hooks/useUserData'
+import { useDepositStore } from '@/store/useDepositStore'
 const statusColorMap: Record<string, ChipProps['color']> = {
 	sent: 'success',
 }
@@ -50,26 +51,7 @@ type User = {
 }
 export default function Deposit_table() {
 	const csrf = useUserStore(state => state.user?.csrf)
-	const [deposits, setDeposits] = useState<any[]>([])
-	const [error, setError] = useState<string>('')
-	const [loading, setLoading] = useState<boolean>(false)
-	const fetchDeposits = async () => {
-		if (!csrf) return
-		setLoading(true)
-		const result = await getDepositHistory(csrf)
-		setLoading(false)
-
-		if (result.error) {
-			setError(result.message || 'Ошибка получения истории депозитов')
-			setDeposits([])
-		} else {
-			setError('')
-			setDeposits(result.data || [])
-		}
-	}
-	useEffect(() => {
-		fetchDeposits()
-	}, [csrf])
+	const deposits = useDepositStore((state) => state.depositList);
 
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(

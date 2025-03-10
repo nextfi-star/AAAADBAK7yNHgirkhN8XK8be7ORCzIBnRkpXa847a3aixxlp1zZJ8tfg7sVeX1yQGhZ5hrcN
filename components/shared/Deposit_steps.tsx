@@ -67,6 +67,7 @@ const Deposit_steps = () => {
 			selectedNetwork
 		)
 		if (result.success) {
+			
 			setDepositAddress(result.address)
 		} else {
 			setError(result.message)

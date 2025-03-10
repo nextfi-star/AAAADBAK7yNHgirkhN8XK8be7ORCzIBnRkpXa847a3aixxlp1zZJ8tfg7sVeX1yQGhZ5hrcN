@@ -19,14 +19,13 @@ import {
 	TableRow,
 	User,
 } from '@heroui/react'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { ChevronDownIcon } from './ChevronDownIcon'
 import { columnsDataW, statusOptionsDataW, usersDataW } from './data'
 import { capitalize } from './utils'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
-import { useUserStore } from '@/hooks/useUserData'
-import { getWithdrawHistory } from '@/utils/api'
 import { useTranslations } from 'next-intl'
+import { useWithdrawStore, Withdraw } from '@/store/useWithdrawalStore'
 
 const statusColorMap: Record<string, ChipProps['color']> = {
 	1: 'success',
@@ -42,37 +41,20 @@ const INITIAL_VISIBLE_COLUMNS = [
 	'crypto',
 ]
 
-type User = (typeof usersDataW)[0]
+type User = {
+	id: number
+	time: string
+	address: string
+	network: string
+	coin: string
+	amount: number
+	status: number
+	type: string
+}
 
 export default function Withdrawal_table() {
 	const t = useTranslations('tablesWithdrawal')
-	const csrf = useUserStore(state => state.user?.csrf)
-	const [withdraws, setWithdraws] = useState<any[]>([])
-	const [error, setError] = useState<string>('')
-	const [loading, setLoading] = useState(false)
-
-	const fetchHistory = async () => {
-		if (!csrf) return
-		setLoading(true)
-		const result = await getWithdrawHistory(csrf)
-		setLoading(false)
-		if (result.error) {
-			setError(result.message || 'Ошибка получения истории выводов')
-			setWithdraws([])
-		} else {
-			setError('')
-			setWithdraws(result.data || [])
-		}
-	}
-	useEffect(() => {
-		if (csrf) {
-			fetchHistory()
-			const intervalId = setInterval(() => {
-				fetchHistory()
-			}, 10000)
-			return () => clearInterval(intervalId)
-		}
-	}, [csrf])
+	const withdrawList = useWithdrawStore((state) => state.withdrawList);
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
 		new Set(INITIAL_VISIBLE_COLUMNS)
@@ -96,7 +78,7 @@ export default function Withdrawal_table() {
 	}, [visibleColumns])
 
 	const filteredItems = React.useMemo(() => {
-		let filteredUsers = [...withdraws]
+		let filteredUsers = [...withdrawList]
 
 		if (hasSearchFilter) {
 			filteredUsers = filteredUsers.filter(user =>
@@ -113,7 +95,7 @@ export default function Withdrawal_table() {
 		}
 
 		return filteredUsers
-	}, [withdraws, filterValue, statusFilter])
+	}, [withdrawList, filterValue, statusFilter])
 
 	const pages = Math.ceil(filteredItems.length / rowsPerPage)
 
@@ -125,17 +107,17 @@ export default function Withdrawal_table() {
 	}, [page, filteredItems, rowsPerPage])
 
 	const sortedItems = React.useMemo(() => {
-		return [...items].sort((a: User, b: User) => {
-			const first = a[sortDescriptor.column as keyof User] as number
-			const second = b[sortDescriptor.column as keyof User] as number
+		return [...items].sort((a: Withdraw, b: Withdraw) => {
+			const first = a[sortDescriptor.column as keyof Withdraw] as number
+			const second = b[sortDescriptor.column as keyof Withdraw] as number
 			const cmp = first < second ? -1 : first > second ? 1 : 0
 
 			return sortDescriptor.direction === 'descending' ? -cmp : cmp
 		})
 	}, [sortDescriptor, items])
 
-	const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
-		const cellValue = user[columnKey as keyof User]
+	const renderCell = React.useCallback((user: Withdraw, columnKey: React.Key) => {
+		const cellValue = user[columnKey as keyof Withdraw]
 
 		switch (columnKey) {
 			case 'time':
@@ -285,7 +267,7 @@ export default function Withdrawal_table() {
 		visibleColumns,
 		onSearchChange,
 		onRowsPerPageChange,
-		withdraws.length,
+		withdrawList.length,
 		hasSearchFilter,
 	])
 

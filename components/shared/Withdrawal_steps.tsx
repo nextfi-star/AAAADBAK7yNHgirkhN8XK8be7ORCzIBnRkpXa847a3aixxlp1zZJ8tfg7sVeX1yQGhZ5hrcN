@@ -166,6 +166,7 @@ const Withdrawal_steps = () => {
 																value={coin.name}
 																onSelect={() => {
 																	setSelectedCoin(coin)
+																	setSelectedNetwork('')
 																	setOpen(false)
 																	setStep(2)
 																}}
