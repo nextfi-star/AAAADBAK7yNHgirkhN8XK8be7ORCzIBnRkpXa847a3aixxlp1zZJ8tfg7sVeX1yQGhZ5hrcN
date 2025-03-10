@@ -11,7 +11,7 @@ interface UserData {
   refcode: string;
   refid: string;
   status: number;
-  uid: string | null;
+  uid: string;
   username: string;
   verification: number;
   verified: number;
