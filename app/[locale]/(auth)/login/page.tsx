@@ -13,6 +13,7 @@ import { Button } from '@heroui/button'
 import { Spinner } from '@heroui/spinner'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
+import { Facebook, Instagram, Send, Twitter } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useParams, useRouter } from 'next/navigation'
@@ -293,7 +294,7 @@ const Login = () => {
 							<span>{t('ourSocial')}</span>
 
 							<div className='socials__icons'>
-								<Image
+								{/* <Image
 									alt='Logo'
 									height={48}
 									quality={100}
@@ -336,7 +337,11 @@ const Login = () => {
 											: '/form/icons_white/Twitter_white.svg'
 									}
 									width={48}
-								/>
+								/> */}
+								<Instagram strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
+								<Facebook strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
+								<Twitter strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
+								<Send strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
 							</div>
 						</div>
 					</div>

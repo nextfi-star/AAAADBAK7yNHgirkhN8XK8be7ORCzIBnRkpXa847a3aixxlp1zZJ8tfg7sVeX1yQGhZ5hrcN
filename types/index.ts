@@ -54,6 +54,8 @@ export interface IStore {
   clearUser: () => void;
 	showVerifWindow: boolean
 	setshowVerifWindow: (val: boolean) => void
+	localVerif: boolean
+	setLocalVerif: (val: boolean) => void
 }
 export interface User {
   [key: string]: any;

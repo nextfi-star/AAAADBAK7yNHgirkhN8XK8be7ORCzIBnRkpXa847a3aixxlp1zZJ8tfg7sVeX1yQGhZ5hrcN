@@ -13,7 +13,6 @@ import {
 	Dropdown,
 	DropdownMenu,
 	DropdownItem,
-	Chip,
 	User,
 	Pagination,
 	Selection,
@@ -29,13 +28,8 @@ import { useTranslations } from 'next-intl'
 import { getUserBalanceArray } from '@/utils/api'
 import { useUserStore } from '@/hooks/useUserData'
 
-// const statusColorMap: Record<string, ChipProps["color"]> = {
-//   "+": "success",
-//   "-": "danger",
-// };
-
-const INITIAL_VISIBLE_COLUMNS = ['name', 'holdings', 'pnl', 'actions']
-interface BalanceItem {
+const INITIAL_VISIBLE_COLUMNS = ['name', 'holdings']
+export interface BalanceItem {
 	coin: string
 	amount: number
 	price_usdt: number
@@ -48,14 +42,15 @@ interface UserBalanceTableProps {
 
 export default function DataTable_verif() {
 	const t = useTranslations('tablesAssets')
-	const [balances, setBalances] = useState<BalanceItem[]>([])
 	const [loading, setLoading] = useState<boolean>(true)
+	const [balances, setBalances] = useState<BalanceItem[]>([])
 	const csrf = useUserStore(state => state.user?.csrf)
 	useEffect(() => {
 		async function fetchData() {
 			const data = await getUserBalanceArray(csrf!)
 			if (data) {
 				setBalances(data)
+				console.log(data)
 			}
 			setLoading(false)
 		}
@@ -341,7 +336,7 @@ export default function DataTable_verif() {
 			</TableHeader>
 			<TableBody emptyContent={'No balances found'} items={sortedItems}>
 				{item => (
-					<TableRow key={item.coin}>
+					<TableRow key={item.amount + item.coin}>
 						{columnKey => <TableCell>{renderCell(item, columnKey)}</TableCell>}
 					</TableRow>
 				)}

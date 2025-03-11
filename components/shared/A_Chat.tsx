@@ -58,7 +58,7 @@ export const A_Chat = () => {
 		await sendChatMessage(user.csrf, newMessage)
 		addMessage({
 			tid: tid || '',
-			text: '@' + fileName ? fileName : newMessage,
+			text: '@' + newMessage,
 			time: Date.now(),
 			status: 0,
 			sender: 'me',
@@ -75,7 +75,7 @@ export const A_Chat = () => {
 		<>
 			<Button
 				onPress={onOpen}
-				className='fixed z-[80] md:bottom-[3.5rem] bottom-[2.5rem] md:right-[3.5rem] right-[2.5rem] p-0 m-0 min-w-[64px] min-h-[64px] rounded-full'
+				className='fixed z-[80] md:bottom-[3.5rem] bottom-[2.5rem] md:right-[3.5rem] right-[2.5rem] p-0 m-0 min-w-[64px] min-h-[64px] rounded-full hidden sm:flex'
 			>
 				<Image
 					src='/chatIcon.svg'
@@ -180,7 +180,7 @@ export const A_Chat = () => {
 																		alt='Operator icon'
 																	/>
 																)}
-																<div className='flex items-end gap-[5px]'>
+																<div className='flex items-center gap-[5px]'>
 																	<span className='text-base font-medium p-2 bg-[#7676801F] rounded-[35px] max-w-[256px] break-words'>
 																		{displayText}
 																	</span>
@@ -219,7 +219,7 @@ export const A_Chat = () => {
 														</button>
 													</div>
 													<div className='flex items-center gap-[10px] w-full pb-[.5rem]'>
-														<A_ChatUploader
+														{/* <A_ChatUploader
 															setFileName={setFileName}
 															onFileUploaded={(filename: string) => {
 																addMessage({
@@ -230,7 +230,7 @@ export const A_Chat = () => {
 																	sender: 'me',
 																})
 															}}
-														/>
+														/> */}
 														<form
 															onSubmit={e => {
 																e.preventDefault()

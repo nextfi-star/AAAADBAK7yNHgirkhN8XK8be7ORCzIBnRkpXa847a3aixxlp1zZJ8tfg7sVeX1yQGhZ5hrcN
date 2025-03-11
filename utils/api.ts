@@ -355,7 +355,6 @@ export const getUserBalanceArray = async (csrf: string) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
-
     const result = await response.json();
     if (response.ok && result.response === 'success') {
       console.log('User Balance:', result);
@@ -368,7 +367,6 @@ export const getUserBalanceArray = async (csrf: string) => {
     return null;
   }
 };
-
 export const createWithdraw = async (
 	csrf: string,
 	coin: string,

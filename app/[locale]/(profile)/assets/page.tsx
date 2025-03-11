@@ -26,7 +26,7 @@ const Assets = () => {
 					<div className='profile__grid gap-[1.5rem] max-xl:grid max-xl:grid-cols-1'>
 						<div className='flex mt-[-24px] flex-col w-full gap-[1.5rem]'>
 							<hr />
-							{user && user.verification === 1 ? (
+							{user && (user.verification === 1 || user.verification === 2) ? (
 								<Profile_balance />
 							) : (
 								<Profile_verification

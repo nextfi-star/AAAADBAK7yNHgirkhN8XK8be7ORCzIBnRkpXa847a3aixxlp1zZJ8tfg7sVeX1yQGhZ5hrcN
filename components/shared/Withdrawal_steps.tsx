@@ -167,6 +167,7 @@ const Withdrawal_steps = () => {
 																onSelect={() => {
 																	setSelectedCoin(coin)
 																	setSelectedNetwork('')
+																	setDepositAddress('')
 																	setOpen(false)
 																	setStep(2)
 																}}

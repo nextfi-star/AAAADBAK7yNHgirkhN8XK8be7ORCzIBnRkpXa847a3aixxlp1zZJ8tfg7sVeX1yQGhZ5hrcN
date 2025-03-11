@@ -84,6 +84,8 @@ export const useThemeStore = create<IStore>()(
 					return { theme: newTheme }
 				})
 			},
+			setLocalVerif: (val: boolean) => set({ localVerif: val }),
+			localVerif: false,
 			initializeTheme: () => {
 				const savedTheme = localStorage.getItem('theme') || 'dark'
 				set(() => {

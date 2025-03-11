@@ -13,6 +13,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
+import { Facebook, Instagram, Send, Twitter } from 'lucide-react'
 
 const SignUp = () => {
 	const t = useTranslations('auth')
@@ -95,14 +96,14 @@ const SignUp = () => {
 					{t('email')}
 				</Button>
 				<div className='cursor-not-allowed'>
-							<Button
-								isDisabled={true}
-								className={mode === 'phone' ? 'active' : ''}
-								onPress={() => modeToogle('phone')}
-							>
-								{t('phone')}
-							</Button>
-						</div>
+					<Button
+						isDisabled={true}
+						className={mode === 'phone' ? 'active' : ''}
+						onPress={() => modeToogle('phone')}
+					>
+						{t('phone')}
+					</Button>
+				</div>
 			</div>
 			<form onSubmit={handleSubmit(onSubmit)} className='form'>
 				<div className='w-full'>
@@ -234,7 +235,7 @@ const SignUp = () => {
 					<span>{t('ourSocial')}</span>
 
 					<div className='socials__icons'>
-						<Image
+						{/* <Image
 							alt='Logo'
 							height={48}
 							quality={100}
@@ -277,7 +278,11 @@ const SignUp = () => {
 									: '/form/icons_white/Twitter_white.svg'
 							}
 							width={48}
-						/>
+						/> */}
+						<Instagram strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
+						<Facebook strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
+						<Twitter strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
+						<Send strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
 					</div>
 				</div>
 			</div>

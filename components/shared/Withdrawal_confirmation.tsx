@@ -68,12 +68,10 @@ export const Withdrawal_confirmation = ({
 				selectedNetwork || 'ERC20',
 				inputStep2
 			);
-	
 			if (result.data) {
 				setMessage(result.message || 'Заявка успешно создана');
 				setConfirmStep(3);
 				setChecked(false);
-				// Если нужно, можно убрать setMessage(''), чтобы не затирать предыдущее сообщение
 			} else {
 				setConfirmStep(1);
 				setChecked(false);

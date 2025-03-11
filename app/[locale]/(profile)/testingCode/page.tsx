@@ -1,3 +1,5 @@
+
+
 // 'use client';
 
 // import { useUserStore } from '@/hooks/useUserData'
@@ -65,11 +67,12 @@
 'use client';
 
 import { useUserStore } from '@/hooks/useUserData'
+import { useWithdrawStore } from '@/store/useWithdrawalStore'
 import { uploadFile } from '@/utils/api'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export default function Verification() {
-  // Получаем CSRF токен из глобального состояния пользователя
+const TestingCode = () => {
+  const withdrawList = useWithdrawStore((state) => state.withdrawList);
   const csrf = useUserStore((state) => state.user?.csrf) || '';
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [region, setRegion] = useState<string>('');
@@ -128,7 +131,11 @@ export default function Verification() {
       >
         {loading ? 'Загрузка...' : 'Отправить'}
       </button>
+      <div className="mt-4">
+        <h3 className="text-lg font-semibold mb-2">История верификаций</h3>
+      </div>
       {message && <p className="mt-4">{message}</p>}
     </div>
   );
 }
+export default TestingCode

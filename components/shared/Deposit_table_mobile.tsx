@@ -1,6 +1,7 @@
 'use client'
 import {
 	Button,
+	Chip,
 	ChipProps,
 	Dropdown,
 	DropdownItem,
@@ -18,11 +19,13 @@ import {
 	TableRow,
 	User,
 } from "@heroui/react"
-import React from 'react'
+import React, { useEffect } from 'react'
 import { ChevronDownIcon } from './ChevronDownIcon'
 import { columnsDataD, statusOptionsDataD, usersDataD } from './data'
 import { capitalize } from './utils'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
+import { useUserStore } from '@/hooks/useUserData'
+import { getDepositHistory } from '@/utils/api'
 const statusColorMap: Record<string, ChipProps['color']> = {
 	sent: 'success',
 	denied: 'danger',
@@ -33,8 +36,41 @@ const INITIAL_VISIBLE_COLUMNS = [
 	'amount',
 	'status',
 ]
-type User = (typeof usersDataD)[0]
+type User = {
+	id: number
+	address: string
+	name: string
+	coin: string 
+	time: number 
+	amount: number 
+	adata: string
+	status: number 
+}
 export default function Deposit_table_mobile() {
+	const csrf = useUserStore(state => state.user?.csrf)
+	const [loading, setLoading] = React.useState(false)
+	const [error, setError] = React.useState('')
+	const [deposits, setDeposits] = React.useState<User[]>([])
+	const fetchDeposits = async () => {
+		if (!csrf) return;
+		setLoading(true);
+		const result = await getDepositHistory(csrf);
+		setLoading(false);
+	
+		if (result.error) {
+			setError(result.message || 'Ошибка получения истории депозитов');
+			setDeposits([]);
+		} else {
+			setError('');
+			setDeposits(result.data || []);
+		}
+	};
+	
+	useEffect(() => {
+		if (csrf) {
+			fetchDeposits();
+		}
+	}, [csrf]);
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
 		new Set(INITIAL_VISIBLE_COLUMNS)
@@ -55,11 +91,11 @@ export default function Deposit_table_mobile() {
 	}, [visibleColumns])
 
 	const filteredItems = React.useMemo(() => {
-		let filteredUsers = [...usersDataD]
+		let filteredUsers = [...deposits]
 
 		if (hasSearchFilter) {
 			filteredUsers = filteredUsers.filter(user =>
-				user.time.toLowerCase().includes(filterValue.toLowerCase())
+				user.time.toString().includes(filterValue)
 			)
 		}
 		if (
@@ -72,7 +108,7 @@ export default function Deposit_table_mobile() {
 		}
 
 		return filteredUsers
-	}, [usersDataD, filterValue, statusFilter])
+	}, [deposits, filterValue, statusFilter])
 
 	const pages = Math.ceil(filteredItems.length / rowsPerPage)
 
@@ -110,27 +146,24 @@ export default function Deposit_table_mobile() {
 								{user.address}
 							</Snippet>
 						</div>
-						<span className='md:text-[20px] font-medium text-[#BDBDBD]'>
-							{user.subaddress}
-						</span>
+						
 					</div>
 				)
 			case 'crypto':
-				return <span className='md:text-[20px]'> {user.crypto}</span>
+				return <span className='md:text-[20px]'> {user.coin}</span>
 			case 'amount':
 				return <span className='md:text-[20px]'> {user.amount}</span>
 		
 			case 'status':
 				return (
-                    // <Chip
-                    // 	className='capitalize'
-                    // 	color={statusColorMap[user.status]}
-                    // 	size='sm'
-                    // 	variant='flat'
-                    // >
-                    // 	{user.status}
-                    // </Chip>
-                    (<span className='capitalize md:text-[20px]'>{user.status}</span>)
+					<Chip
+					className='capitalize bg-success'
+					color={statusColorMap[user.status]}
+					size='sm'
+					variant='flat'
+				>
+					Sent
+				</Chip>
                 );
 			case 'actions':
 				return (

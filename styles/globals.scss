@@ -193,12 +193,6 @@ legend {
 // 	}
 // }
 
-@layer utilities {
-	tr:nth-child(2),
-	tr:nth-child(2) {
-		@apply hidden
-	}
-}
 @media (min-width: 768px) {
 	.backdrop-opacity-disabled {
 		background: none !important;

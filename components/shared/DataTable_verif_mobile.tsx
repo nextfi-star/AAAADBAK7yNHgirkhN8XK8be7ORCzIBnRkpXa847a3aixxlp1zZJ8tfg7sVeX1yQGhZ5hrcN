@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableHeader,
@@ -27,6 +27,9 @@ import { SearchIcon } from "./SearchIcon";
 import { capitalize } from "./utils";
 import { columns, statusOptions, users } from "./data";
 import { useTranslations } from 'next-intl'
+import { getUserBalanceArray } from '@/utils/api'
+import { BalanceItem } from './DataTable_verif'
+import { useUserStore } from '@/hooks/useUserData'
 
 // const statusColorMap: Record<string, ChipProps["color"]> = {
 //   "+": "success",
@@ -35,11 +38,24 @@ import { useTranslations } from 'next-intl'
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "holdings"];
 
-type User = (typeof users)[0];
 
 export default function DataTable_verif_mobile() {
   const t = useTranslations('tablesAssets')
   const [filterValue, setFilterValue] = React.useState("");
+  const [loading, setLoading] = useState<boolean>(true)
+	const [balances, setBalances] = useState<BalanceItem[]>([])
+	const csrf = useUserStore(state => state.user?.csrf)
+	useEffect(() => {
+		async function fetchData() {
+			const data = await getUserBalanceArray(csrf!)
+			if (data) {
+				setBalances(data)
+				console.log(data)
+			}
+			setLoading(false)
+		}
+		fetchData()
+	}, [csrf])
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(
     new Set([]),
   );
@@ -66,24 +82,24 @@ export default function DataTable_verif_mobile() {
   }, [visibleColumns]);
 
   const filteredItems = React.useMemo(() => {
-    let filteredUsers = [...users];
+    let filteredbalances = [...balances];
 
     if (hasSearchFilter) {
-      filteredUsers = filteredUsers.filter((user) =>
-        user.name.toLowerCase().includes(filterValue.toLowerCase()),
+      filteredbalances = filteredbalances.filter((user) =>
+      	user.coin.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
     if (
       statusFilter !== "all" &&
       Array.from(statusFilter).length !== statusOptions.length
     ) {
-      filteredUsers = filteredUsers.filter((user) =>
-        Array.from(statusFilter).includes(user.pnl),
-      );
+      filteredbalances = filteredbalances.filter(user =>
+				Array.from(statusFilter).includes(user?.pnl || '')
+			)
     }
 
-    return filteredUsers;
-  }, [users, filterValue, statusFilter]);
+    return filteredbalances;
+  }, [balances, filterValue, statusFilter]);
 
   const pages = Math.ceil(filteredItems.length / rowsPerPage);
 
@@ -95,33 +111,36 @@ export default function DataTable_verif_mobile() {
   }, [page, filteredItems, rowsPerPage]);
 
   const sortedItems = React.useMemo(() => {
-    return [...items].sort((a: User, b: User) => {
-      const first = a[sortDescriptor.column as keyof User] as number;
-      const second = b[sortDescriptor.column as keyof User] as number;
+    return [...items].sort((a: BalanceItem, b: BalanceItem) => {
+      const first = a[sortDescriptor.column as keyof BalanceItem] as number;
+      const second = b[sortDescriptor.column as keyof BalanceItem] as number;
       const cmp = first < second ? -1 : first > second ? 1 : 0;
 
       return sortDescriptor.direction === "descending" ? -cmp : cmp;
     });
   }, [sortDescriptor, items]);
 
-  const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
-    const cellValue = user[columnKey as keyof User];
+  const renderCell = React.useCallback((user: BalanceItem, columnKey: React.Key) => {
+    const cellValue = user[columnKey as keyof BalanceItem];
 
     switch (columnKey) {
       case "name":
         return (
           <User
-            avatarProps={{ radius: "full", src: user.avatar }}
+          avatarProps={{
+            radius: 'full',
+            src: `/crypto/${user.coin.toLocaleLowerCase()}.svg`,
+          }}
             classNames={{
               base: "!bg-transparent flex items-center justify-start",
               name: "!bg-transparent ",
               description: "!bg-transparent ",
               wrapper: "!bg-transparent ",
             }}
-            description={user.crypto}
+            description={user.coin}
             name={cellValue}
           >
-            {user.crypto}
+            {user.coin}
           </User>
         );
       case "holdings":
@@ -129,35 +148,8 @@ export default function DataTable_verif_mobile() {
           <div className="flex flex-col">
             <p className="text-bold text-small capitalize">{cellValue}</p>
             <p className="text-bold text-tiny capitalize text-default-400">
-              {user.percent}
+              {user.amount}
             </p>
-          </div>
-        );
-      case "pnl":
-        return (
-          <Chip
-            className="capitalize bg-transparent"
-            // color={statusColorMap[user.pnl]}
-            size="sm"
-            variant="flat"
-          >
-            {user.percent}
-          </Chip>
-        );
-      case "actions":
-        return (
-          <div className="relative flex justify-center items-center gap-2">
-            <Dropdown>
-              <DropdownTrigger>
-                <Button isIconOnly size="sm" variant="light">
-                  <VerticalDotsIcon className="text-default-300" />
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu>
-                <DropdownItem key="view">{t('view')}</DropdownItem>
-                <DropdownItem key="edit">{t('edit')}</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
           </div>
         );
       default:
@@ -272,7 +264,7 @@ export default function DataTable_verif_mobile() {
     visibleColumns,
     onSearchChange,
     onRowsPerPageChange,
-    users.length,
+    balances.length,
     hasSearchFilter,
   ]);
 
@@ -324,9 +316,9 @@ export default function DataTable_verif_mobile() {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"No users found"} items={sortedItems}>
+      <TableBody emptyContent={"No balances found"} items={sortedItems}>
         {(item) => (
-          <TableRow key={item.id}>
+          <TableRow key={item.amount + item.coin}>
             {(columnKey) => (
               <TableCell>{renderCell(item, columnKey)}</TableCell>
             )}

@@ -39,19 +39,39 @@ const INITIAL_VISIBLE_COLUMNS = [
 ]
 type User = {
 	id: number
-	time: string
 	address: string
-	subaddress: string
-	coin: string
-	amount: string
-	status: string
-	percent: string
+	name: string
+	coin: string 
+	time: number 
+	amount: number 
 	adata: string
-	sid: string
+	status: number 
 }
 export default function Deposit_table() {
 	const csrf = useUserStore(state => state.user?.csrf)
-	const deposits = useDepositStore((state) => state.depositList);
+	const [loading, setLoading] = React.useState(false)
+	const [error, setError] = React.useState('')
+	const [deposits, setDeposits] = React.useState<User[]>([])
+	const fetchDeposits = async () => {
+		if (!csrf) return;
+		setLoading(true);
+		const result = await getDepositHistory(csrf);
+		setLoading(false);
+	
+		if (result.error) {
+			setError(result.message || 'Ошибка получения истории депозитов');
+			setDeposits([]);
+		} else {
+			setError('');
+			setDeposits(result.data || []);
+		}
+	};
+	
+	useEffect(() => {
+		if (csrf) {
+			fetchDeposits();
+		}
+	}, [csrf]);
 
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
@@ -74,12 +94,13 @@ export default function Deposit_table() {
 
 	const filteredItems = React.useMemo(() => {
 		let filteredUsers = [...deposits]
-
+		
 		if (hasSearchFilter) {
 			filteredUsers = filteredUsers.filter(user =>
-				user.time.toLowerCase().includes(filterValue.toLowerCase())
+				user.time.toString().includes(filterValue)
 			)
 		}
+		
 		if (
 			statusFilter !== 'all' &&
 			Array.from(statusFilter).length !== statusOptionsDataD.length
@@ -130,9 +151,6 @@ export default function Deposit_table() {
 								{user.address}
 							</Snippet>
 						</div>
-						<span className='md:text-[20px] font-medium text-[#BDBDBD]'>
-							{user.subaddress}
-						</span>
 					</div>
 				)
 			case 'crypto':

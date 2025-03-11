@@ -55,7 +55,7 @@ export default function Withdrawal_table_mobile() {
 			setWithdraws([])
 		} else {
 			setError('')
-			setWithdraws(result.data || [])
+			setWithdraws(result.data)
 		}
 	}
 	useEffect(() => {
@@ -63,7 +63,7 @@ export default function Withdrawal_table_mobile() {
 			fetchHistory()
 			const intervalId = setInterval(() => {
 				fetchHistory()
-			}, 10000)
+			}, 20000)
 			return () => clearInterval(intervalId)
 		}
 	}, [csrf])

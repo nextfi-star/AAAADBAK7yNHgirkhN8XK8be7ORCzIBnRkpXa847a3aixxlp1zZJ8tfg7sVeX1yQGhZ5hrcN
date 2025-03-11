@@ -3,8 +3,6 @@
 const columns = [
 	{ name: 'NAME', uid: 'name', sortable: true },
 	{ name: 'HOLDINGS', uid: 'holdings', sortable: true },
-	{ name: 'PNL', uid: 'pnl', sortable: true },
-	{ name: 'ACTIONS', uid: 'actions' },
 ]
 const statusOptions = [
 	{ name: '+', uid: '+' },
