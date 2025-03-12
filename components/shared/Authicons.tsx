@@ -25,12 +25,15 @@ export const Authicons = () => {
 				alt='social icon'
 				src={`/form/soc/twitt.svg`}
 			/>
+			<div className='lock-btn'>
 			<Image
 				width={40}
 				height={40}
+				className='lock'
 				alt='social icon'
 				src={`/form/soc/teleg.svg`}
 			/>
+			</div>
 		</>
 	)
 }

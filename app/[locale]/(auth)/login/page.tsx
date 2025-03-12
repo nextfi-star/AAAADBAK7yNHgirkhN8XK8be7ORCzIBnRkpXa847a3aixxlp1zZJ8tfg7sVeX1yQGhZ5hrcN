@@ -1,7 +1,7 @@
 'use client'
 import { Authicons } from '@/components/shared/Authicons'
-import { LockIcon } from '@/components/ui/LockIcon'
 import { Logo_header } from '@/components/ui/Logo_header'
+import { SecIcon } from '@/components/ui/SecIcon'
 import {
 	InputOTP,
 	InputOTPGroup,
@@ -15,7 +15,6 @@ import { Button } from '@heroui/button'
 import { Spinner } from '@heroui/spinner'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
-import { Facebook, Instagram, Lock, Send, Twitter } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useParams, useRouter } from 'next/navigation'
@@ -289,7 +288,7 @@ const Login = () => {
 								width={24}
 							/>
 							{t('googleAuth')}
-							<LockIcon className='min-h-[30px] min-w-[30px] lock' color={theme === 'dark' ? '#000000' : '#ffffff'} />
+							<SecIcon cls='lock min-w-[20px]' />
 						
 						</button>
 

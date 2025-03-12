@@ -13,9 +13,8 @@ import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
-import { Facebook, Instagram, Lock, Send, Twitter } from 'lucide-react'
-import { LockIcon } from '@/components/ui/LockIcon'
 import { Authicons } from '@/components/shared/Authicons'
+import { SecIcon } from '@/components/ui/SecIcon'
 
 const SignUp = () => {
 	const t = useTranslations('auth')
@@ -230,10 +229,7 @@ const SignUp = () => {
 						width={24}
 					/>
 					{t('googleAuth')}
-					<LockIcon
-						className='min-h-[30px] min-w-[30px] lock'
-						color={theme === 'dark' ? '#000000' : '#ffffff'}
-					/>
+					<SecIcon cls='lock min-w-[20px]' />
 				</button>
 
 				<Link className='help-signup' href='/login'>

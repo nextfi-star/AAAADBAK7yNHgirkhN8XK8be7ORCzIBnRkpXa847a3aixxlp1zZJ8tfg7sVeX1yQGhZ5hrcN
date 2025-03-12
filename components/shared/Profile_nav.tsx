@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import { Link } from '../../i18n/routing'
 import Image from 'next/image'
+import { SecIcon } from '../ui/SecIcon'
 
 export const Profile_nav: NextPage = () => {
 	const currentPath = usePathname()
@@ -45,13 +46,7 @@ export const Profile_nav: NextPage = () => {
 							href={`#`}
 						>
 							{t('swap')}
-							<Image
-								src='/header_icons/security_lock.svg'
-								width={20}
-								height={20}
-								alt='lock'
-								className='lock'
-							/>
+							<SecIcon cls='lock min-w-[20px]' />
 						</Link>
 					</li>
 					<li>

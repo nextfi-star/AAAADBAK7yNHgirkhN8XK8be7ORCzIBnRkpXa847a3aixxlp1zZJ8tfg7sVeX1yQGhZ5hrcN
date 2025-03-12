@@ -6,6 +6,7 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store/useChatStore'
 import { Lock } from 'lucide-react'
+import { SecIcon } from '../ui/SecIcon'
 
 export const Platform_mode = () => {
 	const { theme } = useThemeStore()
@@ -26,26 +27,14 @@ export const Platform_mode = () => {
 						value='Exchange'
 					>
 						Exchange
-						<Image
-								src='/header_icons/security_lock.svg'
-								width={20}
-								height={20}
-								alt='lock'
-								className='lock'
-							/>
+						<SecIcon cls='lock min-w-[20px]' />
 					</TabsTrigger>
 					<TabsTrigger
 						className='lock-btn text-[14px] data-[state=active]:bg-transparent data-[state=active]:shadow-none'
 						value='Web'
 					>
 						Web 3
-							<Image
-								src='/header_icons/security_lock.svg'
-								width={20}
-								height={20}
-								alt='lock'
-								className='lock'
-							/>
+						<SecIcon cls='lock min-w-[20px]' />
 					</TabsTrigger>
 				</TabsList>
 			</Tabs>
@@ -62,7 +51,7 @@ export const Platform_mode = () => {
 						className='lock-btn text-[14px] data-[state=active]:bg-transparent data-[state=active]:shadow-none px-[3px]'
 						value='Exchange'
 					>
-					<Lock strokeWidth={1} className='max-w-[20px] lock' />
+						<SecIcon cls='lock min-w-[20px]' />
 						<ArrowBracket
 							className={'-rotate-[90deg]'}
 							color={theme === 'dark' ? 'white' : 'black'}
@@ -74,7 +63,7 @@ export const Platform_mode = () => {
 						className='lock-btn text-[14px] data-[state=active]:bg-transparent data-[state=active]:shadow-none px-[3px]'
 						value='Web'
 					>
-					<Lock strokeWidth={1} className='max-w-[20px] lock' />
+						<SecIcon cls='lock min-w-[20px]' />
 						<ArrowBracket
 							className={'-rotate-[90deg]'}
 							color={theme === 'dark' ? 'white' : 'black'}

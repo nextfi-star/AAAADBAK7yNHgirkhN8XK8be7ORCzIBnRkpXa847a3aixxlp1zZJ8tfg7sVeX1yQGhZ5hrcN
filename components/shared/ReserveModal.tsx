@@ -18,12 +18,12 @@ export const ReserveModal = () => {
 			<AlertDialogTrigger asChild>
 				<Button
 					variant='default'
-					className='flex items-center rounded-[50px] text-[20px] xl:text-[27px] font-medium px-[35px] xl:py-[35px] border border-solid dark:border-white border-black'
+					className='flex items-center rounded-[50px] text-[16px] xl:text-[20px] font-medium px-[15px] !py-[20px] border border-solid dark:border-white border-black'
 				>
 					Read more
 				</Button>
 			</AlertDialogTrigger>
-			<AlertDialogContent className='max-w-[800px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[176px]'>
+			<AlertDialogContent className='max-w-[1200px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[176px]'>
 				<AlertDialogHeader className=''>
 					<AlertDialogTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px] mb-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>

@@ -71,17 +71,17 @@ const Allocation = () => {
 			</h3>
 			<div className='w-full min-h-[10px] rounded-[30px] bg-[#3f7ef3]' />
 			<div className='flex flex-col gap-[10px]'>
-				<h1 className='text-[14px] md:text-[27px] xl:text-[32px]'>
+				<h1 className='text-[14px] md:text-[19px] xl:text-[25px]'>
 					Invest confidently — AI provides stable income
 				</h1>
 				<div className='flex flex-col gap-[1rem]'>
-					<span className='text-[14px] md:text-[20px] xl:text-[28px]'>
+					<span className='text-[14px] md:text-[16px] xl:text-[18px]'>
 						At NextFi, we guarantee profits regardless of market fluctuations.
 					</span>
-					<span className='text-[14px] md:text-[20px] xl:text-[28px]'>
+					<span className='text-[14px] md:text-[16px] xl:text-[18px]'>
 						You invest, and our system takes care of your stability.
 					</span>
-					<p className='text-[14px] md:text-[20px] xl:text-[28px]'>
+					<p className='text-[14px] md:text-[16px] xl:text-[18px]'>
 						The more users invest, the faster the AI learns and the more
 						accurate it becomes.You are becoming a part of the investment
 						ecosystem of the future.

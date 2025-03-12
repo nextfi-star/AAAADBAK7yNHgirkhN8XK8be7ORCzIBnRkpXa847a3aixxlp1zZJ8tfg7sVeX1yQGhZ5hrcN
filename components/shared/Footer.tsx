@@ -15,6 +15,7 @@ import { Link } from '@/i18n/routing'
 import { TermsModal } from './TermsModal'
 import { PolicyModal } from './PolicyModal'
 import { SecPolicyModal } from './SecPolicyModal'
+import { SecIcon } from '../ui/SecIcon'
 
 export const Footer = () => {
 	const { theme } = useThemeStore()
@@ -55,13 +56,7 @@ export const Footer = () => {
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66] flex items-center gap-[5px] lock-btn'>
 							<Link href={'#'}>{t('swap')}</Link>
-							<Image
-								src='/header_icons/security_lock.svg'
-								width={20}
-								height={20}
-								alt='lock'
-								className='lock'
-							/>
+							<SecIcon cls='lock min-w-[20px]' />
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
 							<Link href={'/withdrawal'}>{t('withdrawal')}</Link>
@@ -193,13 +188,7 @@ export const Footer = () => {
 							className='text-[18px] dark:text-[#FFFFFF66] lock-btn flex items-center gap-[5px]'
 						>
 							{t('swap')}{' '}
-							<Image
-								src='/header_icons/security_lock.svg'
-								width={20}
-								height={20}
-								alt='lock'
-								className='lock'
-							/>
+							<SecIcon cls='lock min-w-[20px]' />
 						</Link>
 						<Link
 							href='/withdrawal'
@@ -242,13 +231,7 @@ export const Footer = () => {
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66] lock-btn flex items-center gap-[5px] hover:cursor-pointer'>
 							{t('token')}{' '}
-							<Image
-								src='/header_icons/security_lock.svg'
-								width={20}
-								height={20}
-								alt='lock'
-								className='lock'
-							/>
+							<SecIcon cls='lock min-w-[20px]' />
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							{t('history')}

@@ -15,6 +15,7 @@ import { ChevronLeft, SendHorizontal, X } from 'lucide-react'
 import A_ChatUploader from './A_ChatUploader'
 import { useChatStore, useThemeStore } from '@/store/useChatStore'
 import { Divider } from '@heroui/divider'
+import { SecIcon } from '../ui/SecIcon'
 
 export const A_Chat = () => {
 	const user = useUserStore(state => state.user)
@@ -153,13 +154,7 @@ export const A_Chat = () => {
 												className='text-[15px] font-medium cursor-pointer flex items-center gap-[5px] lock-btn'
 											>
 												中文
-												<Image
-													src='/header_icons/security_lock.svg'
-													width={20}
-													height={20}
-													alt='lock'
-													className='lock'
-												/>
+												<SecIcon cls='lock min-w-[20px]' />
 											</span>
 										</div>
 									) : (
