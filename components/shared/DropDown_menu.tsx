@@ -139,7 +139,7 @@ export const DropDown_menu: NextPage<Props> = ({
 												<div className='flex items-center gap-[10px]'>
 													{item.icon}
 													{item.key === 'out' ? (
-														<button
+														<div
 															// onClick={item.logout}
 															className='text-[14px] w-full flex justify-start'
 														>
@@ -148,7 +148,7 @@ export const DropDown_menu: NextPage<Props> = ({
 																	title={t('sure')}
 																	content={t('unDone')}
 																	titleTriger={
-																		<div className='flex items-center gap-[10px] w-fit'>
+																		<div className='flex items-center gap-[10px] w-fit !text-[14px]'>
 																			<Power
 																				className='min-w-[20px] min-h-[20px]'
 																				strokeWidth={1}
@@ -160,7 +160,7 @@ export const DropDown_menu: NextPage<Props> = ({
 															) : (
 																item.title
 															)}
-														</button>
+														</div>
 													) : (
 														<Link
 															href={item.href}

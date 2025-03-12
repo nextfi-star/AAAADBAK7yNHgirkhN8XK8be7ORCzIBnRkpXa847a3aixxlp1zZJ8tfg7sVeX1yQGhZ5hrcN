@@ -141,7 +141,7 @@ const Verify = () => {
 			</section>
 		)
 	}
-	if ((user && user.verification === 1) || localVerif) {
+	if ((user && user.verification === 1)) {
 		return (
 		<>
 			<div className='w-full flex flex-col min-h-[100vh]'>

@@ -292,12 +292,6 @@ export const Footer = () => {
 							/>
 						</div>
 					</div>
-
-					<div className='flex items-center justify-end w-full xl:w-fit gap-[10px]'>
-						<TermsModal />
-						<PolicyModal />
-						<SecPolicyModal />
-					</div>
 				</div>
 			</div>
 

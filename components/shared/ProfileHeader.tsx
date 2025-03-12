@@ -49,9 +49,6 @@ export const ProfileHeader = ({ auth = true }: Props) => {
 	const [show, setShow] = useState(true)
 	const { theme, setVerifyState } = useThemeStore()
 	const classChange = clsx('m_header__profile_menu', { active: !show })
-	const csrf = useUserStore(state => state.user?.csrf)
-	const router = useRouter()
-	const locale = useParams()?.locale || 'en'
 	const t = useTranslations('shared')
 	const dropData: DropData[] = useMemo(
 		() => [
