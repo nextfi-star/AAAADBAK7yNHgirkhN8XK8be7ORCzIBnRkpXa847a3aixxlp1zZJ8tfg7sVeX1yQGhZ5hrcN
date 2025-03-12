@@ -6,7 +6,7 @@ import {
 } from '@/components/ui/AccordionBurger'
 import { useThemeStore } from '@/store/useChatStore'
 import { Divider } from '@heroui/react'
-import { Info, Lock } from 'lucide-react'
+import { Facebook, Info, Instagram, Lock, Send, Twitter } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useMemo } from 'react'
@@ -53,8 +53,15 @@ export const Footer = () => {
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
 							<Link href={'/deposit'}>{t('deposit')}</Link>
 						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							<Link href={'/swap'}>{t('swap')}</Link>
+						<span className='text-[18px] dark:text-[#FFFFFF66] flex items-center gap-[5px] lock-btn'>
+							<Link href={'#'}>{t('swap')}</Link>
+							<Image
+								src='/header_icons/security_lock.svg'
+								width={20}
+								height={20}
+								alt='lock'
+								className='lock'
+							/>
 						</span>
 						<span className='text-[18px] dark:text-[#FFFFFF66]'>
 							<Link href={'/withdrawal'}>{t('withdrawal')}</Link>
@@ -68,23 +75,20 @@ export const Footer = () => {
 			{
 				val: 'investment',
 				title: t('investment'),
-				href: 'invest',
+				href: '#',
 				content: (
 					<div className='flex flex-col items-start gap-[15px]'>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							Company Stocks
 						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							Corporate Bonds
 						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							Oil Sector
 						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							Precious Metals Level
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							Innovative Startups
 						</span>
 					</div>
 				),
@@ -94,18 +98,9 @@ export const Footer = () => {
 				title: t('more'),
 				content: (
 					<div className='flex flex-col items-start gap-[15px]'>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('supCenter')}
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('token')}
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('history')}
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('faq')}
-						</span>
+						<TermsModal />
+						<PolicyModal />
+						<SecPolicyModal />
 					</div>
 				),
 			},
@@ -115,7 +110,7 @@ export const Footer = () => {
 				content: (
 					<div className='flex flex-col items-start gap-[15px]'>
 						<Image
-							src={'/footer/qr.svg'}
+							src={'/footer/qr code.svg'}
 							width={137}
 							height={137}
 							alt='icon qr footer'
@@ -147,8 +142,12 @@ export const Footer = () => {
 							©2024 NextFi.io
 						</span>
 						<div className='bg-transparent text-[18px] w-full flex items-center '>
-							<LangSwitch />
-							<span>{t('lang')}</span>
+							<LangSwitch
+								title={t('lang')}
+								cls={
+									'bg-transparent text-[18px] w-full focus-visible:!outline-none'
+								}
+							/>
 						</div>
 					</div>
 
@@ -189,8 +188,18 @@ export const Footer = () => {
 						<Link href='/deposit' className='text-[18px] dark:text-[#FFFFFF66]'>
 							{t('deposit')}
 						</Link>
-						<Link href='#' className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('swap')} <Lock strokeWidth={1} className='inline' />
+						<Link
+							href='#'
+							className='text-[18px] dark:text-[#FFFFFF66] lock-btn flex items-center gap-[5px]'
+						>
+							{t('swap')}{' '}
+							<Image
+								src='/header_icons/security_lock.svg'
+								width={20}
+								height={20}
+								alt='lock'
+								className='lock'
+							/>
 						</Link>
 						<Link
 							href='/withdrawal'
@@ -210,44 +219,48 @@ export const Footer = () => {
 						<h5 className='text-[25px] font-semibold dark:text-[#EFEFEF] mb-[5px]'>
 							{t('investment')}
 						</h5>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							Company Stocks
 						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							Corporate Bonds
 						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							Oil Sector
 						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							Precious Metals Level
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							Innovative Startups
 						</span>
 					</div>
 
-					<div className='flex flex-col items-start gap-[15px]'>
+					<div className='flex flex-col items-start gap-[15px] '>
 						<h5 className='text-[25px] font-semibold dark:text-[#EFEFEF] mb-[5px]'>
 							{t('more')}
 						</h5>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							{t('supCenter')}
 						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
-							{t('token')} <Lock strokeWidth={1} className='inline' />
+						<span className='text-[18px] dark:text-[#FFFFFF66] lock-btn flex items-center gap-[5px] hover:cursor-pointer'>
+							{t('token')}{' '}
+							<Image
+								src='/header_icons/security_lock.svg'
+								width={20}
+								height={20}
+								alt='lock'
+								className='lock'
+							/>
 						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							{t('history')}
 						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66]'>
+						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							{t('faq')}
 						</span>
 					</div>
 
 					<div className='flex flex-col items-center gap-[15px]'>
 						<Image
-							src={'/footer/qr.svg'}
+							src={'/footer/qr code.svg'}
 							width={137}
 							height={137}
 							alt='icon qr footer'
@@ -264,44 +277,42 @@ export const Footer = () => {
 							{t('comm')}
 						</h5>
 						<div className='flex items-center gap-[8px]'>
-							<Image
-								width={27}
-								height={27}
+						<Image
+								width={40}
+								height={40}
 								alt='social icon'
-								src='/footer/telegram.svg'
+								src={`/footer/soc/inst.svg`}
 							/>
 							<Image
-								width={27}
-								height={27}
+								width={40}
+								height={40}
 								alt='social icon'
-								src='/footer/instagram.svg'
+								src={`/footer/soc/face.svg`}
 							/>
 							<Image
-								width={27}
-								height={27}
+								width={40}
+								height={40}
 								alt='social icon'
-								src='/footer/snapchat.svg'
+								src={`/footer/soc/twitt.svg`}
 							/>
 							<Image
-								width={27}
-								height={27}
+								width={40}
+								height={40}
 								alt='social icon'
-								src='/footer/twitter.svg'
+								src={`/footer/soc/teleg.svg`}
 							/>
 							<Image
-								width={27}
-								height={27}
+								width={40}
+								height={40}
 								alt='social icon'
-								src='/footer/facebook.svg'
+								src={`/footer/soc/snap.svg`}
 							/>
 						</div>
 					</div>
 
 					<div className='flex items-center justify-end w-full xl:w-fit gap-[10px]'>
 						<TermsModal />
-
 						<PolicyModal />
-
 						<SecPolicyModal />
 					</div>
 				</div>
@@ -328,11 +339,12 @@ export const Footer = () => {
 						</div>
 						<div className='bg-transparent text-[18px] w-full flex items-center gap-[10px]'>
 							<LangSwitch
+								title={t('lang')}
 								cls={
 									'bg-transparent text-[18px] w-full focus-visible:!outline-none'
 								}
 							/>
-							<span>{t('lang')}</span>
+							{/* <span>{t('lang')}</span> */}
 						</div>
 					</div>
 
@@ -364,51 +376,43 @@ export const Footer = () => {
 					</Accordion>
 				</div>
 
-				<div className='flex flex-col gap-[32px] items-center w-full'>
-					<div className='flex items-center gap-[8px]'>
+				<div className='flex flex-col pb-[2.8rem] gap-[32px] items-center w-full'>
+					<div className='flex flex-col items-center gap-[8px]'>
 						<h5 className='text-[25px] dark:text-[#EFEFEF] font-semibold'>
 							{t('comm')}
 						</h5>
 						<div className='flex items-center gap-[8px]'>
 							<Image
-								width={27}
-								height={27}
+								width={40}
+								height={40}
 								alt='social icon'
-								src='/footer/telegram.svg'
+								src={`/footer/soc/inst.svg`}
 							/>
 							<Image
-								width={27}
-								height={27}
+								width={40}
+								height={40}
 								alt='social icon'
-								src='/footer/instagram.svg'
+								src={`/footer/soc/face.svg`}
 							/>
 							<Image
-								width={27}
-								height={27}
+								width={40}
+								height={40}
 								alt='social icon'
-								src='/footer/snapchat.svg'
+								src={`/footer/soc/twitt.svg`}
 							/>
 							<Image
-								width={27}
-								height={27}
+								width={40}
+								height={40}
 								alt='social icon'
-								src='/footer/twitter.svg'
+								src={`/footer/soc/teleg.svg`}
 							/>
 							<Image
-								width={27}
-								height={27}
+								width={40}
+								height={40}
 								alt='social icon'
-								src='/footer/facebook.svg'
+								src={`/footer/soc/snap.svg`}
 							/>
 						</div>
-					</div>
-
-					<div className='flex w-full justify-center items-center gap-[30px]'>
-						<TermsModal />
-
-						<PolicyModal />
-
-						<SecPolicyModal />
 					</div>
 				</div>
 			</div>

@@ -15,11 +15,11 @@ export function TermsModal() {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='p-0 text-[14px] bg-transparent hover:bg-transparent flex-shrink-0 text-[#205bc9] hover:cursor-pointer hover:text-[#205bc9] shadow-none'>
+				<Button className='p-0 text-[14px] bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] hover:cursor-pointer shadow-none'>
 					Terms of Service
 				</Button>
 			</AlertDialogTrigger>
-			<AlertDialogContent className='max-w-[1200px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[176px]'>
+			<AlertDialogContent className='max-w-[1200px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[1px] sm:!top-[176px] md:!top-[176px]'>
 				<AlertDialogHeader className=''>
 					<AlertDialogTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px] mb-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
@@ -64,10 +64,7 @@ export function TermsModal() {
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
 						<p>Financial Transactions & Fees</p>
-						<span>
-							• Supported deposit/withdrawal methods: cryptocurrency, Visa,
-							MasterCard, UnionPay.
-						</span>
+						
 						<span>• Transaction fees apply and vary by payment method.</span>
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
@@ -130,6 +127,18 @@ export function TermsModal() {
 							<span className='text-[#205bc9]'>technicalNextfi@gmail.com</span>
 						</span>
 					</div>
+				</div>
+				<div className='w-full flex justify-center'>
+					<AlertDialogCancel
+						asChild
+						className='text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0 my-[3.5rem] w-full'
+					>
+						<Button
+							className='p-0 text-[20px] outline outline-1 rounded-[40px] px-[1.5rem] outline-white bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] hover:cursor-pointer shadow-none max-w-[150px]'
+						>
+							Close
+						</Button>
+					</AlertDialogCancel>
 				</div>
 			</AlertDialogContent>
 		</AlertDialog>

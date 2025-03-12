@@ -13,7 +13,7 @@ export const Profile_verification = ({ toggleActive, verify }: Props) => {
 	const t = useTranslations('overview')
 	return (
 		<>
-			<section className='profile__verification profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none w-full'>
+			<section className='profile__verification profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none w-full '>
 				<h3>{t('fullAcc')}</h3>
 				<div className='profile__verification__blocks__list'>
 					<div className='profile__verification__info__block profile_blocks_border !bg-[#F2F7FF] dark:!bg-[#1e1e1e66]'>
@@ -46,7 +46,7 @@ export const Profile_verification = ({ toggleActive, verify }: Props) => {
 				</div>
 			</section>
 
-			<section className='w-full container verify_mobile !bg-transparent md:!bg-[#fff] dark:!bg-transparent md:dark:!bg-[#1e1e1e66] !shadow-none md:!shadow-medium dark:!shadow-none'>
+			<section className='w-full container verify_mobile !bg-transparent md:!bg-[#fff] dark:!bg-transparent md:dark:!bg-[#1e1e1e66] !shadow-none md:!shadow-medium dark:!shadow-none pb-[2rem]'>
 				<h5 className='w-full text-[20px] mb-[32px] '>{t('fullAcc')}</h5>
 				<div className='w-full bg-[#515151] rounded-[10px]'>
 					<div className='max-w-[50%] min-h-[12px] bg-[#3F7EF3] rounded-[10px]' />

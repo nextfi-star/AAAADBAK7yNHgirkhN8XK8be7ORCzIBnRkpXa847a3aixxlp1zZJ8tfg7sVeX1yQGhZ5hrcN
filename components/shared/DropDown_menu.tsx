@@ -18,7 +18,9 @@ import { DropData } from './ProfileHeader'
 import Image from 'next/image'
 import { Spinner } from '@heroui/spinner'
 import { useUserStore } from '@/hooks/useUserData'
-import { Lock } from 'lucide-react'
+import { Lock, Power } from 'lucide-react'
+import { Logout_confirmation } from './Logout_confirmation'
+import { useTranslations } from 'next-intl'
 
 interface Props {
 	dropData?: DropData[]
@@ -36,6 +38,7 @@ export const DropDown_menu: NextPage<Props> = ({
 	const [selectedKeys, setSelectedKeys] = useState<DropData | null>(null)
 	const [open, setOpen] = useState(false)
 	const user = useUserStore(state => state.user)
+	const t = useTranslations('burger')
 	return (
 		<div onMouseLeave={() => setOpen(!open)}>
 			<Popover open={open} onOpenChange={setOpen}>
@@ -136,22 +139,41 @@ export const DropDown_menu: NextPage<Props> = ({
 													{item.icon}
 													{item.key === 'out' ? (
 														<button
-															onClick={item.logout}
+															// onClick={item.logout}
 															className='text-[14px] w-full flex justify-start'
 														>
-															{item.title}
+															{item.key === 'out' ? (
+																<Logout_confirmation
+																	title={t('sure')}
+																	content={t('unDone')}
+																	titleTriger={
+																		<div className='flex items-center gap-[10px] w-fit'>
+																			<Power
+																				className='min-w-[20px] min-h-[20px]'
+																				strokeWidth={1}
+																				/>
+																				Log out
+																		</div>
+																	}
+																/>
+															) : (
+																item.title
+															)}
 														</button>
 													) : (
 														<Link
 															href={item.href}
 															onClick={item.verify}
-															className='text-[14px] w-full flex items-center'
+															className='text-[14px] w-full flex items-center lock-btn'
 														>
 															{item.title}{' '}
-															{item.key === 'swap' || item.key === 'invest' ? (
-																<Lock
-																	strokeWidth={1}
-																	className='max-w-[15px] ml-[5px]'
+															{item.key === 'swap' ? (
+																<Image
+																	src='/header_icons/security_lock.svg'
+																	width={20}
+																	height={20}
+																	alt='lock'
+																	className='lock'
 																/>
 															) : (
 																''

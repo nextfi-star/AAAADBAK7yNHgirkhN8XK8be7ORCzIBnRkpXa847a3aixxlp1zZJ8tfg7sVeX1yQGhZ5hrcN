@@ -24,7 +24,7 @@ export const Profile_accountdetails = () => {
 			</h1>
 			<article className='flex items-center justify-between gap-[5px]'>
 				<span>{t('email')}</span>
-				<span>{user?.email || <Spinner /> ? !user?.email : 'none'}</span>
+				<span>{user?.email || <Spinner /> }</span>
 
 				<div className='min-w-[181px] flex justify-end'>
 					<Alert_email propsItem={'Change'} />

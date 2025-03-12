@@ -3,7 +3,7 @@ import { useUserStore } from '@/hooks/useUserData'
 import { useThemeStore } from '@/store/useChatStore'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
-import ArrowBracket from '../ui/ArrowBracket'
+import { ReserveModal } from './ReserveModal'
 
 const Allocation = () => {
 	const { theme } = useThemeStore()
@@ -66,28 +66,27 @@ const Allocation = () => {
 	return (
 		<section className='dark:!bg-[#1e1e1e66] !bg-[#fff] !shadow-medium dark:!shadow-none rounded-[30px] p-[33.5px_40px] flex flex-col gap-[20px]'>
 			<h3 className='text-[14px] md:text-[20px] 2xl:text-[25px] w-full flex items-center justify-between'>
-				{t('allocation')}{' '}
-				<ArrowBracket color={theme === 'dark' ? 'white' : 'black'} width={24} />{' '}
+				NextFi Reserve
+				<ReserveModal />
 			</h3>
 			<div className='w-full min-h-[10px] rounded-[30px] bg-[#3f7ef3]' />
 			<div className='flex flex-col gap-[10px]'>
-				{data &&
-					data.map(item => (
-						<div key={item.name}>
-							<div className='flex items-center w-full justify-between'>
-								<div className='flex gap-[10px] items-center'>
-									<span
-										className={`${item.dot} min-h-[13px] min-w-[13px] rounded-[50%]`}
-									/>
-									<h5 className='text-[14px] md:text-[20px] 2xl:text-[25px]'>
-										{item.name}
-									</h5>
-								</div>
-								{item.cell}
-							</div>
-							<span className='min-h-[1px] w-full bg-white block' />
-						</div>
-					))}
+				<h1 className='text-[14px] md:text-[27px] xl:text-[32px]'>
+					Invest confidently — AI provides stable income
+				</h1>
+				<div className='flex flex-col gap-[1rem]'>
+					<span className='text-[14px] md:text-[20px] xl:text-[28px]'>
+						At NextFi, we guarantee profits regardless of market fluctuations.
+					</span>
+					<span className='text-[14px] md:text-[20px] xl:text-[28px]'>
+						You invest, and our system takes care of your stability.
+					</span>
+					<p className='text-[14px] md:text-[20px] xl:text-[28px]'>
+						The more users invest, the faster the AI learns and the more
+						accurate it becomes.You are becoming a part of the investment
+						ecosystem of the future.
+					</p>
+				</div>
 			</div>
 		</section>
 	)

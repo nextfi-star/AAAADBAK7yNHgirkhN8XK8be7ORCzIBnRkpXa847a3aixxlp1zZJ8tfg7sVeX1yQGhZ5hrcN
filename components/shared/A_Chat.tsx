@@ -75,7 +75,7 @@ export const A_Chat = () => {
 		<>
 			<Button
 				onPress={onOpen}
-				className='fixed z-[80] md:bottom-[3.5rem] bottom-[2.5rem] md:right-[3.5rem] right-[2.5rem] p-0 m-0 min-w-[64px] min-h-[64px] rounded-full hidden sm:flex'
+				className='fixed z-[80] md:bottom-[3.5rem] bottom-[2.5rem] md:right-[3.5rem] right-[2.5rem] p-0 m-0 min-w-[64px] min-h-[64px] rounded-full hidden sm:flex bg-[#202022]'
 			>
 				<Image
 					src='/chatIcon.svg'
@@ -150,9 +150,16 @@ export const A_Chat = () => {
 											<Divider className='mt-[16px] mb-[12px]' />
 											<span
 												onClick={() => setShow(prev => !prev)}
-												className='text-[15px] font-medium cursor-pointer'
+												className='text-[15px] font-medium cursor-pointer flex items-center gap-[5px] lock-btn'
 											>
 												中文
+												<Image
+													src='/header_icons/security_lock.svg'
+													width={20}
+													height={20}
+													alt='lock'
+													className='lock'
+												/>
 											</span>
 										</div>
 									) : (

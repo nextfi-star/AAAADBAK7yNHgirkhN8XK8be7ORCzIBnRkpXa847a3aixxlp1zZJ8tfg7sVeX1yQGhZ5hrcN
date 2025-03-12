@@ -29,6 +29,7 @@ import { Check, ChevronsUpDown, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { Link } from '@/i18n/routing'
 
 const Verify = () => {
 	const typeID = useMemo(
@@ -116,11 +117,7 @@ const Verify = () => {
 			setStep(step + 1)
 		}
 	}
-	// useEffect(() => {
-	// 	if (user && user.verification === 0) {
-	// 		setLocalVerif(false)
-	// 	}
-	// }, [user])
+
 	if (user && user.verification === 2) {
 		return (
 			<section
@@ -146,22 +143,40 @@ const Verify = () => {
 	}
 	if ((user && user.verification === 1) || localVerif) {
 		return (
-			<div className='flex flex-col items-center'>
-				<h1 className='text-[24px] font-medium'>{t('identVerif')}</h1>
-				<Lottie
-					autoPlay
-					animationData={theme === 'dark' ? animationData3 : animationData2}
-					className='max-w-[170px] w-full h-auto'
-					loop={true}
-				/>
-				<p className='text-[24px] font-medium text-center'>{t('verifProg')}</p>
-				<span className='text-[20px] font-medium w-full py-[16px] rounded-[50px] text-white text-center'>
-					{t('24hours')}
+		<>
+			<div className='w-full flex flex-col min-h-[100vh]'>
+				<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
+					<Link
+						className='text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none p-0 hover:bg-transparent'
+						href={'/over'}
+					>
+						<ArrowBracket
+							className='rotate-90'
+							color={theme === 'dark' ? 'white' : 'black'}
+							height={25}
+							width={25}
+						/>
+					</Link>
 				</span>
+				<div className='flex flex-col items-center'>
+					<h1 className='text-[24px] font-medium'>{t('identVerif')}</h1>
+					<Lottie
+						autoPlay
+						animationData={theme === 'dark' ? animationData3 : animationData2}
+						className='max-w-[170px] w-full h-auto'
+						loop={true}
+					/>
+					<p className='text-[24px] font-medium text-center'>
+						{t('verifProg')}
+					</p>
+					<span className='text-[20px] font-medium w-full py-[16px] rounded-[50px] text-white text-center'>
+						{t('24hours')}
+					</span>
+				</div>
 			</div>
+		</>
 		)
 	}
-
 	return (
 		<section
 			className={`verify -mt-[8rem] sm:-mt-0 pb-[2rem] sm:pb-[0] ${
@@ -210,15 +225,15 @@ const Verify = () => {
 							/>
 						</div>
 
-						<div className='w-full flex flex-col gap-[25px] items-center'>
+						<div className='w-full flex flex-col gap-[25px] items-center pt-[2rem]'>
 							<h1 className='text-[25px] sm:text-[32px] font-medium leading-[35px]'>
 								{t('cmfrnIdent')}
 							</h1>
-							<article className='flex flex-col items-start md:items-center gap-[20px] md:gap-[50px]'>
-								<p className='text-[14px] sm:text-[18px] md:text-[20px] leading-[24px] pb-[7px] max-w-[60%] text-left'>
+							<article className='flex flex-col items-center md:items-center gap-[20px] md:gap-[50px]'>
+								<p className='text-[14px] sm:text-[18px] md:text-[20px] leading-[24px] pb-[7px]  text-left'>
 									{t('accLaw')}
 								</p>
-								<p className='text-[14px] sm:text-[18px] md:text-[20px] leading-[24px] pb-[7px] max-w-[60%] text-left'>
+								<p className='text-[14px] sm:text-[18px] md:text-[20px] leading-[24px] pb-[7px]  text-left'>
 									{t('uponCompl')}
 								</p>
 								<div className='flex flex-col items-start gap-[4px]'>

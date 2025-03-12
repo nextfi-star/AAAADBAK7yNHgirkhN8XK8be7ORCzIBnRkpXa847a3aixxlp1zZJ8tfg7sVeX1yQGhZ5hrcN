@@ -10,10 +10,12 @@ import ArrowBracket from '../ui/ArrowBracket'
 import Eye from '../ui/Eye'
 import Chart from './Chart'
 import { getUserBalance } from '@/utils/api'
+import { LockIcon } from '../ui/LockIcon'
 
 export const Profile_balance = () => {
 	const { theme, verifyState } = useThemeStore()
 	const [show, setShow] = useState<boolean>(false)
+	const [hide, setHide] = useState<boolean>(true)
 	const t = useTranslations('overview')
 	const handleCLick = () => {
 		setShow(!show)
@@ -29,7 +31,7 @@ export const Profile_balance = () => {
 	}
 	const [balance, setBalance] = useState<number | null>(null)
 	const user = useUserStore(state => state.user)
-	
+
 	useEffect(() => {
 		if (!user?.csrf) return
 		const fetchBalance = async () => {
@@ -127,11 +129,15 @@ export const Profile_balance = () => {
 									<h4 className='text-blue-600 text-[33px] font-medium'>
 										{t('balance')}
 									</h4>
-									<Eye />
+									<div className='cursor-pointer' onClick={() => setHide(!hide)}>
+										<Eye />
+									</div>
 								</div>
 							</div>
 							<div className='flex items-center gap-[8px]'>
-								<p className='text-[36px] font-bold'>{formattedBalance || '0$'}</p>
+								<p className='text-[36px] font-bold'>
+									{!hide ? '*******' : formattedBalance || '0$'}
+								</p>
 								{/* <select
 									className='bg-transparent text-[16px] font-medium'
 									onChange={e => setCoin(e.target.value)}
@@ -163,14 +169,16 @@ export const Profile_balance = () => {
 									<h4 className='text-blue-600 text-[33px] font-medium'>
 										{t('bonus')}
 									</h4>
-									<Eye />
+									<div className='cursor-pointer' onClick={() => setHide(!hide)}>
+										<Eye />
+									</div>
 								</div>
 							</div>
 							<div className='flex items-center gap-[8px]'>
 								<p className='text-[36px] font-bold'>
 									{' '}
 									{/* {`${balance || '0'} $`}{' '} */}
-									0.00$
+									{!hide ? '*******' : '0$'}
 								</p>
 								{/* <select
 									className='bg-transparent text-[16px] font-medium'
@@ -227,6 +235,7 @@ export const Profile_balance = () => {
 										size='lg'
 									/>
 									{t('swap')}
+									<LockIcon className='min-w-[23px] min-h-[23px]' />
 								</Link>
 								<Link
 									href='/invest'

@@ -26,21 +26,26 @@ export const Platform_mode = () => {
 						value='Exchange'
 					>
 						Exchange
-						<Lock strokeWidth={1} className='max-w-[20px] lock' />
+						<Image
+								src='/header_icons/security_lock.svg'
+								width={20}
+								height={20}
+								alt='lock'
+								className='lock'
+							/>
 					</TabsTrigger>
 					<TabsTrigger
 						className='lock-btn text-[14px] data-[state=active]:bg-transparent data-[state=active]:shadow-none'
 						value='Web'
 					>
 						Web 3
-						<Lock strokeWidth={1} className='max-w-[20px] lock' />
-					</TabsTrigger>
-					<TabsTrigger
-						className='lock-btn text-[14px] data-[state=active]:bg-transparent data-[state=active]:shadow-none'
-						value='Web'
-					>
-						Web 3
-						<Lock strokeWidth={1} className='max-w-[20px] lock' />
+							<Image
+								src='/header_icons/security_lock.svg'
+								width={20}
+								height={20}
+								alt='lock'
+								className='lock'
+							/>
 					</TabsTrigger>
 				</TabsList>
 			</Tabs>

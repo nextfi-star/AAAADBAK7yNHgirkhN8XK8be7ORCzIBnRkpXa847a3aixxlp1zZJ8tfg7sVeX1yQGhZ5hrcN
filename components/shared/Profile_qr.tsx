@@ -45,7 +45,13 @@ export const Profile_qr = () => {
 			<div className='profile_qr-into text-center'>
 				<span>{t('downLoadApp')}</span>
 				<div className='profile_qr-link'>
-					<Qr />
+				<Image
+							src={'/footer/qr code.svg'}
+							width={137}
+							height={137}
+							alt='icon qr footer'
+						/>
+
 					<div className='profile_qr-link-desk'>
 						<h3>NextFi {t('nextfiApp')}</h3>
 						<p>{t('scanDownload')}</p>

@@ -57,7 +57,7 @@ export const Profile_info = ({ verify, toggleActive }: Props) => {
 					<h5 className='profile__info__block___right__main__text'>
 						{t('verification')}
 					</h5>
-					{user && user.verification === 0 ? (
+					{user && (user.verification === 0 || user.verification === 1) ? (
 						<Link href='#' >
 							<Button className='profile__info__block___right__additional__text border-1 border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  rounded-[50px] px-[10px] !bg-transparent'>
 							{t('goVerif')}

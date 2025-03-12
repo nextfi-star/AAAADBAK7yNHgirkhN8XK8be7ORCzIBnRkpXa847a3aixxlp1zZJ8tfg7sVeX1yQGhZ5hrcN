@@ -21,30 +21,25 @@ const Assets = () => {
 	useCheckPathAssets()
 	return (
 		<>
-			{verifyState && (
-				<section className='profile'>
-					<div className='profile__grid gap-[1.5rem] max-xl:grid max-xl:grid-cols-1'>
-						<div className='flex mt-[-24px] flex-col w-full gap-[1.5rem]'>
-							<hr />
-							{user && (user.verification === 1 || user.verification === 2) ? (
-								<Profile_balance />
-							) : (
-								<Profile_verification
-									// toggleActive={toggleActive}
-									verify={verify}
-								/>
-							)}
+			<section className='profile'>
+				<div className='profile__grid gap-[1.5rem] max-xl:grid max-xl:grid-cols-1'>
+					<div className='flex mt-[-24px] flex-col w-full gap-[1.5rem]'>
+						<hr />
+						{user && (user.verification === 2) ? (
+							<Profile_balance />
+						) : (
+							<Profile_verification verify={verify} />
+						)}
 
-							<Profile_payments />
-						</div>
-
-						<div className='max-w-[1331px] flex flex-col gap-[1.5rem]'>
-							<Allocation />
-							<Transaction />
-						</div>
+						<Profile_payments />
 					</div>
-				</section>
-			)}
+
+					<div className='max-w-[1331px] flex flex-col gap-[1.5rem]'>
+						<Allocation />
+						<Transaction />
+					</div>
+				</div>
+			</section>
 		</>
 	)
 }

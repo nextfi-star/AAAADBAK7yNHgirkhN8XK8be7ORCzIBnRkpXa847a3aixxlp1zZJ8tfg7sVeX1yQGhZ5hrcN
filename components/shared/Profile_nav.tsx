@@ -4,6 +4,7 @@ import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
 import { usePathname } from 'next/navigation'
 import { Link } from '../../i18n/routing'
+import Image from 'next/image'
 
 export const Profile_nav: NextPage = () => {
 	const currentPath = usePathname()
@@ -38,12 +39,19 @@ export const Profile_nav: NextPage = () => {
 					</li>
 					<li>
 						<Link
-							className={`profile__nav-navbar-item ${
+							className={`profile__nav-navbar-item lock-btn flex items-center gap-[10px] ${
 								currentPath === `/${locale}/swap` ? 'active' : ''
 							}`}
-							href={`/swap`}
+							href={`#`}
 						>
 							{t('swap')}
+							<Image
+								src='/header_icons/security_lock.svg'
+								width={20}
+								height={20}
+								alt='lock'
+								className='lock'
+							/>
 						</Link>
 					</li>
 					<li>

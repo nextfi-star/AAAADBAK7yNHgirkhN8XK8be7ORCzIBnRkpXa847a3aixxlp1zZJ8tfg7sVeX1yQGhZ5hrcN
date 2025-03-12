@@ -34,7 +34,7 @@ const Overview = () => {
 			<Profile_info toggleActive={toggleActive} verify={verify} />
 			<div className='profile__grid gap-[1.5rem] max-xl:grid max-xl:grid-cols-1'>
 				<div className='flex flex-col gap-[1.5rem] h-full items-stretch justify-start'>
-					{user && (user.verification === 1 || user.verification === 2) ? (
+					{user && (user.verification === 2) ? (
 						<Profile_balance />
 					) : (
 						<Profile_verification  verify={verify} />

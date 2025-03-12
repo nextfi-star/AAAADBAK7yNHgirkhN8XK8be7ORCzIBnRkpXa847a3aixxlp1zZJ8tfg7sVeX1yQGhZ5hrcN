@@ -13,7 +13,9 @@ import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
-import { Facebook, Instagram, Send, Twitter } from 'lucide-react'
+import { Facebook, Instagram, Lock, Send, Twitter } from 'lucide-react'
+import { LockIcon } from '@/components/ui/LockIcon'
+import { Authicons } from '@/components/shared/Authicons'
 
 const SignUp = () => {
 	const t = useTranslations('auth')
@@ -90,7 +92,7 @@ const SignUp = () => {
 			</div>
 			<div className='switch-mode relative z-[9999]'>
 				<Button
-					className={mode === 'email ' ? 'active' : ''}
+					className={mode === 'email' ? 'active' : ''}
 					onPress={() => modeToogle('email')}
 				>
 					{t('email')}
@@ -217,7 +219,10 @@ const SignUp = () => {
 					<span />
 				</p>
 
-				<button className='mobile__google !cursor-not-allowed' disabled>
+				<button
+					className='mobile__google !cursor-not-allowed lock-btn'
+					disabled
+				>
 					<Image
 						alt='Google icon'
 						height={24}
@@ -225,6 +230,10 @@ const SignUp = () => {
 						width={24}
 					/>
 					{t('googleAuth')}
+					<LockIcon
+						className='min-h-[30px] min-w-[30px] lock'
+						color={theme === 'dark' ? '#000000' : '#ffffff'}
+					/>
 				</button>
 
 				<Link className='help-signup' href='/login'>
@@ -279,10 +288,11 @@ const SignUp = () => {
 							}
 							width={48}
 						/> */}
-						<Instagram strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
+						{/* <Instagram strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
 						<Facebook strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
 						<Twitter strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
-						<Send strokeWidth={1} className='min-h-[30px] min-w-[30px]' />
+						<Send strokeWidth={1} className='min-h-[30px] min-w-[30px]' /> */}
+						<Authicons />
 					</div>
 				</div>
 			</div>

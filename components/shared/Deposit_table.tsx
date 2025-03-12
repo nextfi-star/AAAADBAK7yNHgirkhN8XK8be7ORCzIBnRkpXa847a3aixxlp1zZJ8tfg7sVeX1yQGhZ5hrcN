@@ -19,7 +19,7 @@ import {
 	TableRow,
 	User,
 } from '@heroui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { ChevronDownIcon } from './ChevronDownIcon'
 import { columnsDataD, statusOptionsDataD, usersDataD } from './data'
 import { capitalize } from './utils'
@@ -27,6 +27,7 @@ import { VerticalDotsIcon } from './VerticalDotsIcon'
 import { getDepositHistory } from '@/utils/api'
 import { useUserStore } from '@/hooks/useUserData'
 import { useDepositStore } from '@/store/useDepositStore'
+import { useTranslations } from 'next-intl'
 const statusColorMap: Record<string, ChipProps['color']> = {
 	sent: 'success',
 }
@@ -48,6 +49,7 @@ type User = {
 	status: number 
 }
 export default function Deposit_table() {
+	const t = useTranslations('tablesAssets')
 	const csrf = useUserStore(state => state.user?.csrf)
 	const [loading, setLoading] = React.useState(false)
 	const [error, setError] = React.useState('')
@@ -160,7 +162,7 @@ export default function Deposit_table() {
 			case 'status':
 				return (
 					<Chip
-						className='capitalize bg-success'
+						className='capitalize bg-success px-[15px]'
 						color={statusColorMap[user.status]}
 						size='sm'
 						variant='flat'
@@ -178,8 +180,8 @@ export default function Deposit_table() {
 								</Button>
 							</DropdownTrigger>
 							<DropdownMenu>
-								<DropdownItem key='view'>View</DropdownItem>
-								<DropdownItem key='edit'>Edit</DropdownItem>
+								<DropdownItem key='view'>{t('view')}</DropdownItem>
+								<DropdownItem key='edit'>{t('edit')}</DropdownItem>
 							</DropdownMenu>
 						</Dropdown>
 					</div>

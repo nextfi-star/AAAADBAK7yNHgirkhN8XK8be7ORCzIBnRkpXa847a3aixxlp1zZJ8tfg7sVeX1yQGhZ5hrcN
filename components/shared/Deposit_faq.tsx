@@ -12,14 +12,14 @@ const Deposit_faq = () => {
 		<div className='shadow-medium dark:shadow-none dark:bg-[#181818] rounded-[30px] p-[40px_44px] h-fit'>
 			<h5 className='text-[18px] md:text-[32px] mb-[23px]'>{t('faq')}</h5>
 
-			<Accordion type='single' collapsible className='w-full'>
+			<Accordion type='single' collapsible className='w-full text-left'>
 				<AccordionItem value='howMake'>
-					<AccordionTrigger>{t('howMake')}</AccordionTrigger>
+					<AccordionTrigger className='text-left'>{t('howMake')}</AccordionTrigger>
 					<AccordionContent>{t('howmake2')}</AccordionContent>
 				</AccordionItem>
 
 				<AccordionItem value='whyStill'>
-					<AccordionTrigger>{t('whyStill')}</AccordionTrigger>
+					<AccordionTrigger className='text-left'>{t('whyStill')}</AccordionTrigger>
 					<AccordionContent>{t('whyStill2')}</AccordionContent>
 				</AccordionItem>
 
@@ -29,7 +29,7 @@ const Deposit_faq = () => {
 				</AccordionItem>
 
 				<AccordionItem value='doI'>
-					<AccordionTrigger>{t('doI')}</AccordionTrigger>
+					<AccordionTrigger className='text-left'>{t('doI')}</AccordionTrigger>
 					<AccordionContent>{t('doI2')}</AccordionContent>
 				</AccordionItem>
 			</Accordion>

@@ -15,11 +15,11 @@ export function PolicyModal() {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='p-0 text-[14px] bg-transparent hover:bg-transparent flex-shrink-0 text-[#205bc9] hover:cursor-pointer hover:text-[#205bc9] shadow-none'>
-				Privacy Policy
+				<Button className='p-0 text-[14px] bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] hover:cursor-pointer shadow-none'>
+					Privacy Policy
 				</Button>
 			</AlertDialogTrigger>
-			<AlertDialogContent className='max-w-[1200px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[176px]'>
+			<AlertDialogContent className='max-w-[1200px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[1px] sm:!top-[176px] md:!top-[176px]'>
 				<AlertDialogHeader className=''>
 					<AlertDialogTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px] mb-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
@@ -36,7 +36,7 @@ export function PolicyModal() {
 				</AlertDialogHeader>
 				<AlertDialogHeader className='flex flex-col items-center gap-[10px] py-4'>
 					<AlertDialogTitle className='text-[24px] xl:text-[32px]'>
-					Privacy Policy
+						Privacy Policy
 					</AlertDialogTitle>
 				</AlertDialogHeader>
 				<div className='flex flex-col gap-4'>
@@ -63,7 +63,7 @@ export function PolicyModal() {
 					<div className='flex flex-col gap-[.5rem]'>
 						<p>Financial Data:</p>
 						<span>o Cryptocurrency transactions.</span>
-						<span>o Payment details (Visa, MasterCard, UnionPay).</span>
+						
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
 						<p>Technical and Analytical Data:</p>
@@ -113,10 +113,6 @@ export function PolicyModal() {
 					</div>
 					<div className='flex flex-col gap-[.5rem]'>
 						<p>Data Sharing with Third Parties</p>
-						<span>
-							• <strong>Payment service providers</strong> (Visa, MasterCard,
-							UnionPay)
-						</span>
 						<span>
 							• <strong>Identity verification partners</strong> (AML/KYC
 							compliance)
@@ -168,6 +164,18 @@ export function PolicyModal() {
 							• Privacy Officer Contact:{' '}
 							<span className='text-[#205bc9]'>technicalNextfi@gmail.com</span>
 						</span>
+					</div>
+					<div className='w-full flex justify-center'>
+						<AlertDialogCancel
+							asChild
+							className='text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0 my-[3.5rem] w-full'
+						>
+							<Button
+								className='p-0 text-[20px] outline outline-1 rounded-[40px] px-[1.5rem] outline-white bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] hover:cursor-pointer shadow-none max-w-[150px]'
+							>
+								Close
+							</Button>
+						</AlertDialogCancel>
 					</div>
 				</div>
 			</AlertDialogContent>

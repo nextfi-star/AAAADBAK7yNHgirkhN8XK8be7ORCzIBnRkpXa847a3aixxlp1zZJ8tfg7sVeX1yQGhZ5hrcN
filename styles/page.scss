@@ -5726,8 +5726,9 @@ body {
 	&:active .lock {
 		animation: bounce 0.5s alternate ease-in-out;
 	}
-	.lock {
-		transition: 0.3s all ease-in-out;
+
+	&:hover .lock {
+		animation: bounce 0.5s alternate ease-in-out;
 	}
 	@keyframes bounce {
 		0% {

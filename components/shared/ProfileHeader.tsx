@@ -30,6 +30,7 @@ import { DropDown_menu } from './DropDown_menu'
 import { Navigation } from './Navigation'
 import { Platform_mode } from './Platform_mode'
 import Theme_switch from './Theme_switch'
+import { Logout_confirmation } from './Logout_confirmation'
 
 interface Props {
 	auth: boolean
@@ -40,7 +41,7 @@ export interface DropData {
 	key: string
 	href: string
 	verify?: () => void
-	logout?: () => void
+	logout?: JSX.Element
 	icon?: string | JSX.Element
 }
 
@@ -146,7 +147,7 @@ export const ProfileHeader = ({ auth = true }: Props) => {
 			{
 				title: t('investment'),
 				key: 'invest',
-				href: '#',
+				href: '/invest',
 				icon: <TrendingUp strokeWidth={1} />,
 				verify: () => setVerifyState(true),
 			},
@@ -154,9 +155,10 @@ export const ProfileHeader = ({ auth = true }: Props) => {
 				title: t('logout'),
 				key: 'out',
 				href: '#',
-				icon: <Power strokeWidth={1} />,
+				// icon: <Power strokeWidth={1} />,
 				verify: () => setVerifyState(false),
-				logout: () => Logout(csrf, router, locale),
+				// logout: () => Logout(csrf, router, locale),
+				// logout: <Logout_confirmation />,
 			},
 		],
 		[setVerifyState]
@@ -182,6 +184,7 @@ export const ProfileHeader = ({ auth = true }: Props) => {
 
 	return (
 		<header className='header py-[1.5rem]' id='header'>
+		
 			<div className='flex justify-between items-center site-holder'>
 				<div className='flex items-center gap-[40px]'>
 					<a className='hidden xl:block' href=''>

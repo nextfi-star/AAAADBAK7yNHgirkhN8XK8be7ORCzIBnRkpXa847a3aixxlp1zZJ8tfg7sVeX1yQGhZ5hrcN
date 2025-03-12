@@ -64,7 +64,7 @@ const Deposit_steps = () => {
 		const result = await getDepositAddress(
 			user.csrf,
 			selectedCoin.name,
-			selectedNetwork
+			selectedNetwork || '13LJksqr3vv3AjEqosLHpsnaNcECBfQPJx'
 		)
 		if (result.success) {
 			
@@ -248,7 +248,7 @@ const Deposit_steps = () => {
 												<Command className='bg-[#eee] dark:bg-[#19191A] w-[285px] md:w-[603px] lg:w-[799px] xl:w-[794px] 2xl:w-[962px]'>
 													<CommandList className='bg-[#eee] dark:bg-[#19191A] px-[10px]'>
 														<CommandEmpty>
-															<NotFoundItem />
+															
 														</CommandEmpty>
 														<CommandGroup>
 															{selectedCoin?.network.map(status => (
