@@ -141,7 +141,7 @@ export const DropDown_menu: NextPage<Props> = ({
 													{item.key === 'out' ? (
 														<div
 															// onClick={item.logout}
-															className='text-[14px] w-full flex justify-start'
+															className='text-[14px] w-full flex justify-center'
 														>
 															{item.key === 'out' ? (
 																<Logout_confirmation

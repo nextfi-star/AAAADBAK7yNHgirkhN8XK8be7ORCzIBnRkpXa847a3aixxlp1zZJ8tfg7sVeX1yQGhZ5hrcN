@@ -226,19 +226,6 @@ export const Footer = () => {
 						<h5 className='text-[25px] font-semibold dark:text-[#EFEFEF] mb-[5px]'>
 							{t('more')}
 						</h5>
-						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
-							{t('supCenter')}
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66] lock-btn flex items-center gap-[5px] hover:cursor-pointer'>
-							{t('token')}{' '}
-							<SecIcon cls='lock min-w-[20px]' />
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
-							{t('history')}
-						</span>
-						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
-							{t('faq')}
-						</span>
 						<TermsModal />
 						<PolicyModal />
 						<SecPolicyModal />
