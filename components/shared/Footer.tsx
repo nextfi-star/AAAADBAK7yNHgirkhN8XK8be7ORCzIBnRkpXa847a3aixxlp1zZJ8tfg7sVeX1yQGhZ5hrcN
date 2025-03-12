@@ -239,6 +239,9 @@ export const Footer = () => {
 						<span className='text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer'>
 							{t('faq')}
 						</span>
+						<TermsModal />
+						<PolicyModal />
+						<SecPolicyModal />
 					</div>
 
 					<div className='flex flex-col items-center gap-[15px]'>
