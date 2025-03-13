@@ -17,6 +17,8 @@ import Image from 'next/image'
 import { useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
 import { Input } from '../ui/input'
+import { changeUserData } from '@/utils/api'
+import { useUserStore } from '@/hooks/useUserData'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -24,15 +26,52 @@ interface Props {
 }
 export const Alert_nickname = ({ propsItem, className }: Props) => {
 	const { theme } = useThemeStore()
+	const user = useUserStore(state => state.user)
 	const t = useTranslations('profile')
 	const [symbols, setSymbols] = useState<number | string | any>(0)
-	const [inputValue, setInputValue] = useState<string>('')
+	const [message, setMessage] = useState('')
+	const [inputs, setInputs] = useState({
+		nickname: '',
+		vcode: '',
+	})
+	const [loading, setLoading] = useState(false)
 	const trackSymbols = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
 		if (value.length <= 20) {
-			setInputValue(value)
+			setInputs(prev => ({ ...prev, nickname: value }))
 			setSymbols(value.length)
 		}
+	}
+	const handleSubmit = async () => {
+		if (!user?.csrf || !inputs.nickname) {
+			setMessage('Заполните все обязательные поля!')
+			return
+		}
+
+		if (!inputs.nickname) {
+			setMessage('Заполните пустое поле')
+			return
+		}
+
+		setLoading(true)
+		setMessage('')
+
+		const result = await changeUserData(
+			user.csrf,
+			'change_nickname',
+			inputs.nickname,
+			inputs.vcode || '123123'
+		)
+			console.log(result)
+		if (result.success) {
+			setMessage('Никнейм успешно изменён!')
+			console.log(result)
+			useUserStore.getState().updateUser({ nickname: inputs.nickname })
+		} else {
+			setMessage(result.message)
+		}
+
+		setLoading(false)
 	}
 
 	return (
@@ -94,7 +133,7 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
 									className={`border border-solid shadow-none text-[16px] !border-[#4d4d4d] dark:!border-[#4d4d4d] px-[12px] py-[20px] rounded-[30px]  ${symbols >= 20 ? '!border-danger-600' : '!border-[#4d4d4d]'} `}
 									placeholder='Enter nickname'
 									type='text'
-									value={inputValue}
+									value={inputs.nickname}
 									onChange={trackSymbols}
 								/>
 							</label>
@@ -106,16 +145,17 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
 					</div>
 				</div>
 				<AlertDialogFooter className='px-[30px] pt-[20px] h-fit items-center gap-[30px]'>
-					<AlertDialogAction
+					<button	
 						className={`text-[16px] px-[40px] rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
 							symbols < 4
 								? '!bg-transparent cursor-not-allowed'
 								: 'bg-[#205bc9] hover:bg-[#205bc9] text-white border-none'
 						}`}
 						disabled={symbols < 4 || symbols >= 20}
+						onClick={handleSubmit}
 					>
 						{t('confirm')}
-					</AlertDialogAction>
+					</button>
 				</AlertDialogFooter>
 			</AlertDialogContent>
 		</AlertDialog>

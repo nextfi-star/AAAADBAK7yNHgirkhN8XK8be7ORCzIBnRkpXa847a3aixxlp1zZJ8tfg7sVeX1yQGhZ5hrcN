@@ -26,7 +26,7 @@ const Security = () => {
 				title: t('phoneAuth'),
 				desc: t('phoneDesc'),
 				btn: <Alert_phone propsItem={t('changephone')} />,
-				contain: '********140',
+				contain: user?.phone || '',
 			},
 			{
 				src: '/main/profile_security/email.svg',

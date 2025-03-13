@@ -39,104 +39,103 @@ export function PolicyModal() {
 						Privacy Policy
 					</AlertDialogTitle>
 				</AlertDialogHeader>
-				<div className='flex flex-col gap-4'>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Introduction</p>
-						<span>
+				<div className='flex flex-col gap-8'>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>Introduction</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Company Information: NextFi is committed to safeguarding user
 							privacy and data security.
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Purpose of this Policy: This Privacy Policy explains how we
 							collect, use, and protect user data in compliance with GDPR (EU),
 							CCPA (California), PDPL (UAE), and other applicable laws.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Information We Collect</p>
-						<span>• Personal Identification Data:</span>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>Information We Collect</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>• Personal Identification Data:</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							o Full name, date of birth, passport/government-issued ID.
 						</span>
-						<span>o Photo/video for identity verification.</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>o Photo/video for identity verification.</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Financial Data:</p>
-						<span>o Cryptocurrency transactions.</span>
-						
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lp font-semibold text-[24px] xl:text-[32px]'>Financial Data:</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>o Cryptocurrency transactions.</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Technical and Analytical Data:</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>Technical and Analytical Data:</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							o IP address, device type, browser version, operating system.
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							o Login frequency, platform interactions, geographic location.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Marketing & Tracking Data:</p>
-						<span>o Cookies, advertising tracking, behavioral analytics.</span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>Marketing & Tracking Data:</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>o Cookies, advertising tracking, behavioral analytics.</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>How We Use Your Data:</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>How We Use Your Data:</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Account verification and compliance with financial regulations.
 						</span>
-						<span>• Processing transactions and payments.</span>
-						<span>• Risk assessment and fraud prevention.</span>
-						<span>• Marketing, personalization, and service improvement.</span>
+						<span className='text-[18px] xl:text-[24px] texspan text-muted-foreground'>• Processing transactions and payments.</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>• Risk assessment and fraud prevention.</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>• Marketing, personalization, and service improvement.</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Legal Basis for Data Processing (GDPR Compliance)</p>
-						<span>• Contractual necessity: To provide our services.</span>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>Legal Basis for Data Processing (GDPR Compliance)</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>• Contractual necessity: To provide our services.</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• <strong>Legal obligations</strong>: AML/KYC compliance.
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• <strong>Legitimate interest</strong>: Security, fraud
 							prevention.
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• <strong>User consent</strong>: Marketing and tracking analytics.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Cookies & Tracking Technologies</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>Cookies & Tracking Technologies</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• We use cookies and tracking technologies to enhance user
 							experience and improve service functionality.
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Users can manage cookie preferences via their browser settings.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Data Sharing with Third Parties</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>Data Sharing with Third Parties</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• <strong>Identity verification partners</strong> (AML/KYC
 							compliance)
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• <strong>Advertising and analytics partners</strong>
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>User Rights (GDPR, CCPA, PDPL)</p>
-						<span>Users can:</span>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>User Rights (GDPR, CCPA, PDPL)</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>Users can:</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Request access, correction, or deletion of personal data
 						</span>
-						<span>• Opt out of marketing communications</span>
-						<span>• Withdraw consent for data processing</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>• Opt out of marketing communications</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>• Withdraw consent for data processing</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Data Security Measures</p>
-						<span>Users can:</span>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>Data Security Measures</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>Users can:</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• <strong>AES-256 encryption</strong> for data storage
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• <strong>TLS 1.3 encryption</strong> for data transmission
 						</span>
 						<span>
@@ -144,38 +143,36 @@ export function PolicyModal() {
 							protection
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>International Data Transfers</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibopd text-[24px] xl:text-[32px]'>International Data Transfers</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Data may be transferred to secure data centers across multiple
 							jurisdictions in compliance with applicable regulations
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Changes to the Privacy Policy</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>Changes to the Privacy Policy</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Users will be notified of any significant changes to this
 							Privacy Policy
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem] pb-[2.5rem]'>
-						<p>Contact Information</p>
-						<span>
+					<div className='flex flex-col gap-[1rem] pb-[2.5rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>Contact Information</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Privacy Officer Contact:{' '}
 							<span className='text-[#205bc9]'>technicalNextfi@gmail.com</span>
 						</span>
 					</div>
 					<div className='w-full flex justify-center'>
-						<AlertDialogCancel
-							asChild
-							className='text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0 my-[3.5rem] w-full'
-						>
-							<Button
-								className='p-0 text-[20px] outline outline-1 rounded-[40px] px-[1.5rem] outline-white bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] hover:cursor-pointer shadow-none max-w-[150px]'
-							>
-								Close
-							</Button>
-						</AlertDialogCancel>
+					<AlertDialogCancel
+						asChild
+						className='text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0 my-[3.5rem] w-full'
+					>
+						<Button className='p-0 text-[20px] outline outline-1 rounded-[40px] px-[1.5rem] outline-white bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] hover:cursor-pointer shadow-none max-w-[150px] !my-[2.5rem]'>
+							Close
+						</Button>
+					</AlertDialogCancel>
 					</div>
 				</div>
 			</AlertDialogContent>

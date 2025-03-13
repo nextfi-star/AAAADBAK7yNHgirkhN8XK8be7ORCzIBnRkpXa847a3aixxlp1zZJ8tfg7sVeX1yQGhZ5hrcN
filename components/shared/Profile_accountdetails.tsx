@@ -35,7 +35,7 @@ export const Profile_accountdetails = () => {
 
 			<article className='flex items-center justify-between gap-[5px]'>
 				<span>{t('phone')}</span>
-				<span>+{user?.phone || '*********140'}</span>
+				<span>{user.phone && `+${user?.phone}` || ''}</span>
 
 				<div className='min-w-[181px] flex justify-end'>
 					<Alert_phone propsItem={'Change'} />

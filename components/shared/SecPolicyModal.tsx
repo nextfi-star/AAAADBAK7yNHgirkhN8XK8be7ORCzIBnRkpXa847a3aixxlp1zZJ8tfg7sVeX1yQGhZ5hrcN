@@ -39,111 +39,167 @@ export function SecPolicyModal() {
 						Security & Compliance Policy
 					</AlertDialogTitle>
 				</AlertDialogHeader>
-				<div className='flex flex-col gap-4'>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Introduction</p>
-						<span>
+				<div className='flex flex-col gap-8'>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Introduction
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• NextFi is committed to the highest standards of cybersecurity
 							and regulatory compliance.
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• We comply with AML (Anti-Money Laundering), KYC (Know Your
 							Customer), GDPR, CCPA, PDPL, and other global regulations.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Cybersecurity Measures</p>
-						<p>• Data Encryption:</p>
-						<span>o AES-256 encryption for stored user data.</span>
-						<span>o TLS 1.3 encryption for data transmission.</span>
-						<p>• Authentication & Access Contro:</p>
-						<span>o Mandatory two-factor authentication (2FA)</span>
-						<span>o Automated brute-force attack protection.</span>
-						<p>• Fraud Detection & Monitoring</p>
-						<span>
-							o AI-driven transaction monitoring for suspicious activities.
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Cybersecurity Measures
+						</p>
+						<p className='text-[18px] xl:text-[24px] text-sm text-white/90'>
+							• Data Encryption:
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							a AES-256 encryption for stored user data.
 						</span>
-						<span>
-							o User activity segmentation to prevent unauthorized access.
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							a TLS 1.3 encryption for data transmission.
+						</span>
+						<p className='text-[18px] xl:text-[24px] text-sm text-white/90'>
+							• Authentication & Access Contro:
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							a Mandatory two-factor authentication (2FA)
+						</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							a Automated brute-force attack protection.
+						</span>
+						<p className='text-[18px] xl:text-[24px] text-sm text-white/90'>
+							• Fraud Detection & Monitoring
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							a AI-driven transaction monitoring for suspicious activities.
+						</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							aspanr activity segmentation to prevent unauthorized access.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>AML/KYC Compliance</p>
-						<p>• Mandatory Identity Verification:</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							AML/KYC Compliance
+						</p>
+						<p className='text-[18px] xl:text-[24px] text-sm text-white/90'>
+							• Mandatory Identity Verification:
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							o Users must submit a government-issued ID and live verification.
 						</span>
-						<p>• Mandatory Identity Verification:</p>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							o Transactions exceeding risk limits require additional
 							verification.
 						</span>
-						<p>• International Compliance:</p>
-						<span>
+						<p className='text-[18px] xl:text-[24px] text-sm text-white/90'>
+							• International Compliance:
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							o NextFi adheres to sanction lists (OFAC, FATF, and global
 							financial crime databases).
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Data Protection & Storage</p>
-						<span>• ISO 27001, SOC 2-certified data centers.</span>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-sempbold text-[24px] xl:text-[32px]'>
+							Data Protection & Storage
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• ISO 27001, SOC 2-certified data centers.
+						</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Hybrid storage model (on-premises & cloud-based for redundancy).
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• 5-year minimum data retention for regulatory compliance.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Incident Response & Data Breach Policy</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Incident Response & Data Breach Policy
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• 72-hour breach notification policy for affected users.
 						</span>
-						<span>
-							• Immediate security audit & response protocol in case of a
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• Immediate security spant & response protocol in case of a
 							cyberattack.
 						</span>
-						<span>• DDoS protection using Cloudflare & AWS Shield.</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• DDoS protection using Cloudflare & AWS Shield.
+						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Government & Law Enforcement Compliance</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Government & Law Enforcement Compliance
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• NextFi may provide user data only under a valid legal request.
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Cross-border cooperation with regulatory authorities in the EU,
 							US, UAE, and CIS.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>User Responsibilities</p>
-						<p>• Users must</p>
-						<span>• Use strong passwords and enable 2FA.</span>
-						<span>• Avoid sharing account details with third parties.</span>
-						<span>• Report suspicious activity immediately</span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							User Responsibilities
+						</p>
+						<p className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• Users must
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• Use strong passwords and enable 2FA.
+						</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• Avoid sharing account details with third parties.
+						</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• Report suspicious activity immediately
+						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Updates to Security & Compliance Policy</p>
-						<span>• NextFi will notify users of security policy changes.</span>
+					<div className='flex flex-col gap-[1rem]'>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• Avoid sharing account details with third parties.
+						</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• Report suspicious activity immediately
+						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Contact Information</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Updates to Security & Compliance Policy
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• NextFi will notify users of security policy changes.
+						</span>
+					</div>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Contact Information
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Privacy Officer Contact:{' '}
 							<span className='text-[#205bc9]'>technicalNextfi@gmail.com</span>
 						</span>
 					</div>
 					<div className='w-full flex justify-center'>
-				<AlertDialogCancel
-					asChild
-					className='text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0 my-[3.5rem] w-full'
-				>
-					<Button className='p-0 text-[20px] outline outline-1 rounded-[40px] px-[1.5rem] outline-white bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] hover:cursor-pointer shadow-none max-w-[150px]'
-					>
-						Close
-					</Button>
-				</AlertDialogCancel>
-				</div>
+						<AlertDialogCancel
+							asChild
+							className='text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0 my-[3.5rem] w-full'
+						>
+							<Button className='p-0 text-[20px] outline outline-1 rounded-[40px] px-[1.5rem] outline-white bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] hover:cursor-pointer shadow-none max-w-[150px] !my-[2.5rem]'>
+								Close
+							</Button>
+						</AlertDialogCancel>
+					</div>
 				</div>
 			</AlertDialogContent>
 		</AlertDialog>

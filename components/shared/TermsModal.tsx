@@ -39,90 +39,126 @@ export function TermsModal() {
 						Terms of Service
 					</AlertDialogTitle>
 				</AlertDialogHeader>
-				<div className='flex flex-col gap-4'>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Introduction</p>
-						<span>
+				<div className='flex flex-col gap-8'>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Introduction
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Agreement to Terms: By using NextFi, you agree to abide by these
 							Terms of Service.
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Updates & Changes: NextFi may modify these Terms at any time,
 							with notifications to users.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Account Registration & KYC Compliance</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Account Registration & KYC Compliance
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Users must be 18+ and complete identity verification (KYC)
 							before engaging in transactions:
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Identity verification includes passport submission and live
 							video confirmation.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Financial Transactions & Fees</p>
-						
-						<span>• Transaction fees apply and vary by payment method.</span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Financial Transactions & Fees
+						</p>
+
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• Transaction fees apply and vary by payment method.
+						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Acceptable Use Policy</p>
-						<p>Users may not engage in:</p>
-						<span>o Fraudulent activities or money laundering.</span>
-						<span>o Unauthorized access to accounts.</span>
-						<span>o Automated bots/scripts for platform manipulation.</span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Acceptable Use Policy
+						</p>
+						<p className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							Users may not engage in:
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							o Fraudulent activities or money laundering.
+						</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							o Unauthorized access to accounts.
+						</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							o Automated bots/scripts for platform manipulation.
+						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Risk Disclosure & Platform Liability</p>
-						<span>• Investing in financial assets involves market risks.</span>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Risk Disclosure & Platform Liability
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• Investing in financial assets involves market risks.
+						</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• NextFi does not guarantee profits and is not liable for
 							financial losses due to market fluctuations.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Account Suspension & Termination:</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold tept-[24px] xl:text-[32px]'>
+							Account Suspension & Termination:
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• NextFi reserves the right to suspend or terminate accounts
 							involved in suspicious or prohibited activities.
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Users will receive prior notice unless the termination is due to
 							legal obligations.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Intellectual Property Rights</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Intellectual Property Rights
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• All NextFi trademarks, logos, and content are the property of
 							NextFi.
 						</span>
-						<span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Users may not reproduce, distribute, or exploit any part of the
 							platform without authorization.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Governing Law & Dispute Resolution</p>
-						<span>• These Terms are governed by the laws of Malta.</span>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Governing Law & Dispute Resolution
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							• These Terms are governed by the laws of Malta.
+						</span>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Disputes shall be resolved through arbitration or legal
 							proceedings in the relevant jurisdiction.
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Changes to Terms of Service</p>
-						<span>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>
+							Changes to Terms of Service
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Users will be notified of changes through email and platform
 							announcements
 						</span>
 					</div>
-					<div className='flex flex-col gap-[.5rem]'>
-						<p>Contact Information</p>
-						<span>Users can:</span>
-						<span className='flex items-center gap-[10px]'>
+					<div className='flex flex-col gap-[1rem]'>
+						<p className='text-lg fopt-semibold text-[24px] xl:text-[32px]'>
+							Contact Information
+						</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+							Users can:
+						</span>
+						<span className='flex items-center gap-[10px] text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
 							• Support Contact:{' '}
 							<span className='text-[#205bc9]'>technicalNextfi@gmail.com</span>
 						</span>
@@ -133,9 +169,7 @@ export function TermsModal() {
 						asChild
 						className='text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0 my-[3.5rem] w-full'
 					>
-						<Button
-							className='p-0 text-[20px] outline outline-1 rounded-[40px] px-[1.5rem] outline-white bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] hover:cursor-pointer shadow-none max-w-[150px]'
-						>
+						<Button className='p-0 text-[20px] outline outline-1 rounded-[40px] px-[1.5rem] outline-white bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] hover:cursor-pointer shadow-none max-w-[150px] !my-[2.5rem]'>
 							Close
 						</Button>
 					</AlertDialogCancel>

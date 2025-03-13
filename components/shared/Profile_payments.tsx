@@ -24,9 +24,9 @@ export const Profile_payments = () => {
 					<h3 className='text-[20px] md:text-[32px] font-semibold'>
 						{!verifyState ? t('payments') : t('assets')}
 					</h3>
-					<div>
+					{/* <div>
 						<DateRangePicker className='max-w-xs' label='Stay duration' />
-					</div>
+					</div> */}
 				</div>
 				<div className='flex w-full'>
 					{!verifyState ? (

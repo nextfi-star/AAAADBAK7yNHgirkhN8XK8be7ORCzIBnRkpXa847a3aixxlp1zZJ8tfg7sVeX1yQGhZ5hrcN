@@ -56,7 +56,7 @@ export const Profile_balance = () => {
 
 	return (
 		<section className='h-fit'>
-			<div className='profile__balance bg-[#fff] dark:bg-[#1e1e1e66] md:!shadow-medium md:dark:!shadow-none'>
+			<div className='profile__balance bg-[#fff] dark:bg-[#1e1e1e66] md:!shadow-medium md:dark:!shadow-none !min-h-fit'>
 				<div className='profile__balance_sides !pt-[40px]'>
 					<div className='w-full min-h-[159px] sm:hidden m-auto gap-[10px] rounded-xl p-4 flex items-start justify-between dark:bg-[#131313] dark:!shadow-none shadow-medium relative'>
 						{isLoading ? (
@@ -78,13 +78,18 @@ export const Profile_balance = () => {
 												{refresh ? t('balance') : t('balance')}
 											</h4>
 											{/* bonus */}
-											<Eye />
+											<div
+												className='cursor-pointer'
+												onClick={() => setHide(!hide)}
+											>
+												<Eye />
+											</div>
 										</div>
 									</div>
 									<div className='flex items-center gap-[8px]'>
 										<p className='text-[23px] font-bold'>
 											{' '}
-											{`${formattedBalance || '0'} $`}
+											{!hide ? '*******' : formattedBalance || '0$'}
 										</p>
 										{/* <select
 											className='bg-transparent text-[16px] font-medium'
@@ -129,7 +134,10 @@ export const Profile_balance = () => {
 									<h4 className='text-blue-600 text-[33px] font-medium'>
 										{t('balance')}
 									</h4>
-									<div className='cursor-pointer' onClick={() => setHide(!hide)}>
+									<div
+										className='cursor-pointer'
+										onClick={() => setHide(!hide)}
+									>
 										<Eye />
 									</div>
 								</div>
@@ -169,7 +177,10 @@ export const Profile_balance = () => {
 									<h4 className='text-blue-600 text-[33px] font-medium'>
 										{t('bonus')}
 									</h4>
-									<div className='cursor-pointer' onClick={() => setHide(!hide)}>
+									<div
+										className='cursor-pointer'
+										onClick={() => setHide(!hide)}
+									>
 										<Eye />
 									</div>
 								</div>
@@ -277,7 +288,7 @@ export const Profile_balance = () => {
 							</div>
 						</>
 					)}
-					<span
+					{/* <span
 						className='flex items-center gap-[10px] cursor-pointer'
 						onClick={handleCLick}
 					>
@@ -285,14 +296,14 @@ export const Profile_balance = () => {
 							className={`min-w-[40px] transition-all duration-300`}
 							color={theme === 'dark' ? 'white' : '#0c0c0c'}
 						/>
-					</span>
+					</span> */}
 				</div>
 
-				<div
+				{/* <div
 					className={`overflow-hidden ${!show ? 'max-h-[0]' : 'max-h-[450px] '} transition-all duration-300`}
 				>
 					<Chart />
-				</div>
+				</div> */}
 			</div>
 		</section>
 	)

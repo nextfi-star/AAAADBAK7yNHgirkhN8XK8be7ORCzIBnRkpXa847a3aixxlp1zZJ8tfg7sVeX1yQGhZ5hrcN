@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import animationData from '@/public/animation/file.json'
 import animationData2 from '@/public/animation/sphera.json'
 import animationData3 from '@/public/animation/sphera_dark.json'
+import animationData4 from '@/public/animation/finished_pass.json'
 import {
 	Command,
 	CommandEmpty,
@@ -125,15 +126,15 @@ const Verify = () => {
 					showFaq ? 'fixed' : ''
 				}`}
 			>
-				<div className='flex flex-col items-center gap-[20px] mt-[-98px] sm:mt-[-116px]'>
+				<div className='flex flex-col items-center gap-[20px] mt-[-98px] sm:mt-[-50px]'>
 					<Lottie
 						lottieRef={lottieRef}
 						autoPlay
-						animationData={theme === 'dark' ? animationData3 : animationData2}
-						className='max-w-[281px] w-full h-auto'
+						animationData={theme === 'dark' ? animationData4 : animationData4}
+						className='max-w-[389px] w-full h-auto'
 						loop
 					/>
-					<h3 className='text-[20px] md:text-[32px] font-bold'>
+					<h3 className='text-[20px] md:text-[32px] font-bold -mt-[60px]'>
 						{t('basicVerif')}
 					</h3>
 					<p className='text-[20px] text-center'>{t('passedVerif')}</p>

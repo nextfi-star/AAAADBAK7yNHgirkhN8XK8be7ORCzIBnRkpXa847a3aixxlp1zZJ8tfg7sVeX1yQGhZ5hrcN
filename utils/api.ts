@@ -526,9 +526,9 @@ export const getDepositAddress = async (
 }
 export const changeUserData = async (
 	csrf: string,
-	type: 'change_email' | 'change_phone' | 'change_passw',
+	type: 'change_email' | 'change_phone' | 'change_passw' | 'change_nickname',
 	value: string,
-	vcode: string,
+	vcode?: string,
 	tfaCode?: string
 ) => {
 	try {
@@ -536,6 +536,7 @@ export const changeUserData = async (
 		if (type === 'change_email') payload['email'] = value
 		if (type === 'change_phone') payload['phone'] = value
 		if (type === 'change_passw') payload['password'] = value
+		if (type === 'change_nickname') payload['nickname'] = value
 		if (tfaCode) payload['2fa_code'] = tfaCode
 
 		const response = await fetch('https://nextfi.io:5000/api/v1/change', {
