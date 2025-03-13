@@ -261,7 +261,10 @@ const Withdrawal_steps = () => {
 												<Command className='bg-[#eee] dark:bg-[#19191A] w-[285px] md:w-[603px] lg:w-[799px] xl:w-[794px] 2xl:w-[962px]'>
 													<CommandList className='bg-[#eee] dark:bg-[#19191A] px-[10px]'>
 														<CommandEmpty>
-															<NotFoundItem />
+															<NotFoundItem
+																content='No crypto for withdrawal'
+																subContent='Please add crypto to your account'
+															/>
 														</CommandEmpty>
 														<CommandGroup>
 															{selectedCoin?.network.map(status => (

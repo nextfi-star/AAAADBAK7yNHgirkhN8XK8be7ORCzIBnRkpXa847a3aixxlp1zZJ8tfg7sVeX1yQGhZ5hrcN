@@ -6,11 +6,10 @@ import { RefreshCw } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { useThemeStore } from '../../store/useChatStore'
-import ArrowBracket from '../ui/ArrowBracket'
 import Eye from '../ui/Eye'
-import Chart from './Chart'
 import { getUserBalance } from '@/utils/api'
 import { LockIcon } from '../ui/LockIcon'
+import { SecIcon } from '../ui/SecIcon'
 
 export const Profile_balance = () => {
 	const { theme, verifyState } = useThemeStore()
@@ -275,9 +274,10 @@ export const Profile_balance = () => {
 								</Link>
 								<Link
 									href='#'
-									className='flex flex-col items-center text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent'
+									className='flex items-center justify-center gap-[5px] text-[14px] text-[#0c0c0c] dark:text-[#ffffff] w-full max-w-[156px] border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] border-solid rounded-[50px] px-[10px] !bg-transparent lock-btn'
 								>
 									{t('swap')}
+									<SecIcon cls='lock min-w-[20px] lock' />
 								</Link>
 								<Link
 									href='/invest'

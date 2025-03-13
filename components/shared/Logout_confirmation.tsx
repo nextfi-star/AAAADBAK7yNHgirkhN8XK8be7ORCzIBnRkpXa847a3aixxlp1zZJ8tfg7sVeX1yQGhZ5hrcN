@@ -36,6 +36,7 @@ export const Logout_confirmation = ({
 	const handleLogout = () => {
 		clearUser()
 		localStorage.removeItem('zustand-store')
+		localStorage.removeItem('userData')
 		setEmail('')
 		setPassword('')
 		router.push(`/${locale}/login?error=sessionExpired`)

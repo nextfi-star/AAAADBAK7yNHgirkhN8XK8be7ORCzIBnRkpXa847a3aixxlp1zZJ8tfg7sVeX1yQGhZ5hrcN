@@ -13,6 +13,8 @@ import { Button } from '@heroui/button'
 import { NextPage } from 'next'
 import { useState } from 'react'
 import { RussiaMap } from '../ui/RussiaMap'
+import { useUserStore } from '@/hooks/useUserData'
+import { Spinner } from '@heroui/spinner'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -22,7 +24,7 @@ interface Props {
 export const ChangeRegion: NextPage<Props> = ({ propsItem, className }) => {
 	const [indexItem, setIndex] = useState(false)
 	const { theme } = useThemeStore()
-
+	const user = useUserStore(state => state.user)
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
@@ -48,7 +50,7 @@ export const ChangeRegion: NextPage<Props> = ({ propsItem, className }) => {
 						</div>
 						<h1 className='text-[32px] lg:text-[40px] leading-[32px]'>
 							Country/Region of residence:{' '}
-							<span className='text-[#205BC9] '>Russia</span>
+							<span className='text-[#205BC9] '>{user && user?.country ? user?.country : <Spinner />}</span>
 						</h1>
 					</div>
 					<DrawerDescription className='text-black dark:text-white flex gap-[5px] justify-center text-center text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px]'>
@@ -64,7 +66,7 @@ export const ChangeRegion: NextPage<Props> = ({ propsItem, className }) => {
 					<DrawerClose asChild>
 						<Button
 							className='w-full max-w-[400px] lg:max-w-[450px] py-[20px] md:py-[22px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] hover:bg-[#205BC9] text-[#fff]'
-							onClick={() => setIndex(!indexItem)}
+							onPress={() => setIndex(!indexItem)}
 						>
 							Update
 						</Button>

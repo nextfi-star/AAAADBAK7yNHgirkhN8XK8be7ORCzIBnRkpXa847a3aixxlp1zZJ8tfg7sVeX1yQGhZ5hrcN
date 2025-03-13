@@ -75,7 +75,7 @@ export const DropDown_menu: NextPage<Props> = ({
 										>
 											<Image
 												alt={'avatar'}
-												className='object-contain rounded-full'
+												className='object-contain rounded-full '
 												height={42}
 												src={'/main/avatar_noface.png'}
 												width={42}

@@ -64,9 +64,9 @@ export const Profile_nav: NextPage = () => {
 							className={`profile__nav-navbar-item ${
 								currentPath === `/${locale}/tier` ? 'active' : ''
 							}`}
-							href={`/tier`}
+							href={`/activity`}
 						>
-							{t('status')}
+							{t('levels')}
 						</Link>
 					</li>
 				</ul>

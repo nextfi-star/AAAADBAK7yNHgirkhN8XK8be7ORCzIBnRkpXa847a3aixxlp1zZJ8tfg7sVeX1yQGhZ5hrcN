@@ -85,7 +85,6 @@ export const FreezeAccount = ({ propsItem }: Props) => {
 								{t('afterFreeze')}
 							</span>
 							<span className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
-								<span>• {t('after1')} </span>
 								<span>• {t('after2')} </span>
 								<span>• {t('after3')}</span>
 								<span>• {t('after4')}</span>

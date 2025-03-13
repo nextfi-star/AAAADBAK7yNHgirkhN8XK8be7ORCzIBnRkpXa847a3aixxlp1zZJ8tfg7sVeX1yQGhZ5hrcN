@@ -224,7 +224,7 @@ export default function DataTable_verif() {
 						onValueChange={onSearchChange}
 					/>
 					<div className='flex gap-3'>
-						<Dropdown>
+						{/* <Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
 								<Button
 									endContent={<ChevronDownIcon className='text-small' />}
@@ -247,7 +247,7 @@ export default function DataTable_verif() {
 									</DropdownItem>
 								))}
 							</DropdownMenu>
-						</Dropdown>
+						</Dropdown> */}
 						<Dropdown>
 							<DropdownTrigger className='flex'>
 								<Button

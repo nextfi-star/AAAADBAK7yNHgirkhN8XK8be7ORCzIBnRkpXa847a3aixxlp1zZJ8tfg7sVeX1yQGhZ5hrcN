@@ -10,9 +10,12 @@ import {
 } from '@/components/ui/dialog'
 import { useUserStore } from '@/hooks/useUserData'
 import { handleAccountAction } from '@/utils/api'
-import { Button } from "@heroui/button"
+import { Button } from '@heroui/button'
 import { NextPage } from 'next'
 import { useTranslations } from 'next-intl'
+import { useParams, useRouter } from 'next/navigation'
+import { useLocale } from 'next-intl'
+import { useThemeStore } from '@/store/useChatStore'
 interface Props {
 	content: string
 	titleTriger: string | any
@@ -33,11 +36,22 @@ export const Confirmation_dialog: NextPage<Props> = ({
 	selectedOption,
 }) => {
 	const user = useUserStore(state => state.user)
+	const { clearUser } = useThemeStore()
+
 	const t = useTranslations('security')
+	const router = useRouter()
+	const locale = useParams().locale
 	const handleActionClose = async (action: 'close') => {
 		try {
 			const result = await handleAccountAction(user?.csrf, action)
 			console.log(`${action} result:`, result)
+			if (result.success) {
+				clearUser()
+				localStorage.removeItem('zustand-store')
+				localStorage.removeItem('userData')
+
+				router.push(`/${locale}/login?error=sessionExpired`)
+			}
 		} catch (err: any) {
 			console.log(err.message)
 		}
@@ -55,7 +69,7 @@ export const Confirmation_dialog: NextPage<Props> = ({
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button
-					className={`dark:text-white text-black px-[15px] py-[5px] bg-transparent border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] rounded-[50px] text-[14px] xl:!text-[20px] 2xl:!text-[25px] xl:px-[40px] 2xl:px-[70px] font-medium h-fit w-[98px] hover:bg-transparent ${className}`}
+					className={`dark:text-white text-black px-[15px] py-[5px] bg-transparent border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] rounded-[50px] text-[14px] xl:!text-[20px] 2xl:!text-[25px] xl:px-[40px] 2xl:px-[70px] font-medium h-fit !w-fit hover:bg-transparent ${className}`}
 					disabled={!checked || !selectedOption}
 				>
 					{titleTriger}
@@ -79,7 +93,7 @@ export const Confirmation_dialog: NextPage<Props> = ({
 					{unic === 'freeze' ? (
 						<Button
 							type='button'
-							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
+							className='w-fit rounded-[50px] bg-[#205BC9] text-white'
 							onPress={() => handleActionFreeze('freeze')}
 						>
 							{t('cont')}
@@ -87,7 +101,7 @@ export const Confirmation_dialog: NextPage<Props> = ({
 					) : (
 						<Button
 							type='button'
-							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
+							className='w-fit rounded-[50px] bg-[#205BC9] text-white'
 							onPress={() => handleActionClose('close')}
 						>
 							{t('cont')}
@@ -96,7 +110,7 @@ export const Confirmation_dialog: NextPage<Props> = ({
 					{!unic && (
 						<Button
 							type='button'
-							className='min-w-[91.52px] rounded-[50px] bg-[#205BC9] text-white'
+							className='w-fit  rounded-[50px] bg-[#205BC9] text-white'
 						>
 							{t('cont')}
 						</Button>

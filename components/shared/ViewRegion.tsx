@@ -17,6 +17,8 @@ import { useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
 import { RussiaMap } from '../ui/RussiaMap'
 import { Choose_region } from './Choose_region'
+import { useUserStore } from '@/hooks/useUserData'
+import { Spinner } from '@heroui/spinner'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -26,7 +28,7 @@ export const ViewRegion = ({ propsItem }: Props) => {
 	const { theme } = useThemeStore()
 	const [indexItem, setIndex] = useState(false)
 	const t = useTranslations('profile')
-
+	const user = useUserStore(state => state.user)
 	return (
 		<>
 			{indexItem ? (
@@ -86,12 +88,13 @@ export const ViewRegion = ({ propsItem }: Props) => {
 									</span>
 
 									<DrawerClose asChild>
-										<Button
-											className='w-full lg:max-w-[631px] py-[20px] md:py-[28px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] text-[#fff] hover:bg-[#205BC9] max-w-[490px]'
-											onPress={() => setIndex(!indexItem)}
+										<Link
+											className='w-full flex justify-center lg:max-w-[631px] py-[20px] md:py-[28px] 2xl:py-[2rem] text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px] rounded-[50px] min-w-[117px] bg-[#205BC9] text-[#fff] hover:bg-[#205BC9] max-w-[490px]'
+											href={'/verify'}
+											onClick={() => setIndex(!indexItem)}
 										>
 											{t('next')}
-										</Button>
+										</Link>
 									</DrawerClose>
 								</span>
 							</DrawerDescription>
@@ -121,7 +124,9 @@ export const ViewRegion = ({ propsItem }: Props) => {
 								</div>
 								<h1 className='text-[32px] lg:text-[40px] leading-[32px]'>
 									{t('CRresidence')}:{' '}
-									<span className='text-[#205BC9] '>Russia</span>
+									<span className='text-[#205BC9] '>
+										{user && user?.country ? user?.country : <Spinner />}
+									</span>
 								</h1>
 							</div>
 							<DrawerDescription className='text-black dark:text-white flex gap-[5px] justify-center text-center text-[14px] md:text-[17px] lg:text-[20px] 2xl:text-[25px]'>

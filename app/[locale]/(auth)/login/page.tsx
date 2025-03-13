@@ -288,7 +288,7 @@ const Login = () => {
 								width={24}
 							/>
 							{t('googleAuth')}
-							<SecIcon cls='lock min-w-[20px]' />
+							<SecIcon cls='lock min-w-[20px] lock' color='black' />
 						
 						</button>
 

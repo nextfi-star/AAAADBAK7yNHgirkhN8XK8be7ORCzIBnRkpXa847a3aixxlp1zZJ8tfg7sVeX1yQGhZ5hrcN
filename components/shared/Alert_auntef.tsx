@@ -28,6 +28,7 @@ interface Props {
 
 export const Alert_auntef = ({ propsItem }: Props) => {
 	const user = useUserStore(state => state.user)
+	const [disabled, setDisabled] = useState(false)
 	const { theme } = useThemeStore()
 	const t = useTranslations('security')
 	const [inputs, setInputs] = useState({
@@ -54,6 +55,10 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 	const handleVerify = async (e: React.FormEvent) => {
 		e.preventDefault()
 		const result = await verify2FA(user?.csrf, code)
+		if (user?.['2fa']) {
+			console.log('2FA enabled successfully')
+			setDisabled(true)
+		}
 		setMessage(result.message)
 	}
 	return (

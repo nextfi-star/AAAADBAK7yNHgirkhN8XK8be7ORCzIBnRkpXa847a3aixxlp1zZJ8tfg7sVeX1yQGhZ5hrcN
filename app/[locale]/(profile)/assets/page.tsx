@@ -30,10 +30,8 @@ const Assets = () => {
 						) : (
 							<Profile_verification verify={verify} />
 						)}
-
 						<Profile_payments />
 					</div>
-
 					<div className='max-w-[1331px] flex flex-col gap-[1.5rem]'>
 						<Allocation />
 						<Transaction />

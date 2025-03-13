@@ -47,13 +47,13 @@ const Security = () => {
 	)
 	const data2 = useMemo(
 		() => [
-			{
-				src: '/main/profile_security/account_freeze.svg',
-				title: t('freezeAcc'),
-				desc: t('freezeDesc'),
-				unic: '2',
-				btn: <FreezeAccount propsItem={t('freezeAcc')} />,
-			},
+			// {
+			// 	src: '/main/profile_security/account_freeze.svg',
+			// 	title: t('freezeAcc'),
+			// 	desc: t('freezeDesc'),
+			// 	unic: '2',
+			// 	btn: <FreezeAccount propsItem={t('freezeAcc')} />,
+			// },
 			{
 				src: '/main/profile_security/account_close.svg',
 				title: t('closeAcc'),

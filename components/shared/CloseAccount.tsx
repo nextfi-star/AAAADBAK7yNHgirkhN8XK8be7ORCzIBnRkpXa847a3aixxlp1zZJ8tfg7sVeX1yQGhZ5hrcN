@@ -96,8 +96,6 @@ export const CloseAccount = ({ propsItem }: Props) => {
 								{t('afterClose')}:
 							</span>
 							<ul className='flex flex-col gap-[10px] items-start text-[14px] md:text-[16px] lg:text-[17px] text-left leading-[16px] xl:leading-[18px] 2xl:leading-[20px]'>
-								<li>• {t('afterCl1')}</li>
-
 								<li>• {t('afterCl2')}</li>
 
 								<li>• {t('afterCl3')}</li>
@@ -223,16 +221,16 @@ export const CloseAccount = ({ propsItem }: Props) => {
 											<DialogClose asChild>
 												<Button
 													type='button'
-													className='min-w-[91.52px] border-1 !border-[#767680] border-solid rounded-[50px] px-[10px] !bg-[#7676801F] !text-[#0c0c0c] dark:!text-[#EFEFEF] !text-[16px] xl:!text-[16px] 2xl:!text-[16px]'
+													className=' border-1 !border-[#767680] border-solid rounded-[50px] px-[10px] !bg-[#7676801F] !text-[#0c0c0c] dark:!text-[#EFEFEF] !text-[16px] xl:!text-[16px] 2xl:!text-[16px] w-full max-w-[122px]'
 												>
 													Close
 												</Button>
 											</DialogClose>
 											<Confirmation_dialog
-												className={`text-[14px] xl:!text-[20px]  2xl:!text-[25px]  xl:!px-[40px] 2xl:!px-[70px] rounded-[50px] font-medium h-fit !max-w-[220px] !w-full text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
+												className={`text-[14px] xl:!text-[20px]  2xl:!text-[25px]  xl:!px-[40px] 2xl:!px-[70px] rounded-[50px] font-medium h-fit w-full max-w-[122px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
 													checked && selectedOption
-														? 'bg-[#205bc9] hover:bg-[#205bc9] dark:!border-[#205bc9] !border-[#205bc9] text-white'
-														: 'bg-transparent hover:bg-transparent data-[hover=true]:opacity-[.6] opacity-[.6]'
+														? 'bg-[#205bc9] hover:bg-[#205bc9] dark:!border-[#205bc9] !border-[#205bc9] text-white w-full max-w-[122px]'
+														: 'bg-transparent hover:bg-transparent data-[hover=true]:opacity-[.6] opacity-[.6] w-full max-w-[122px]'
 												}`}
 												content={t('undone')}
 												title={t('sure')}

@@ -13,7 +13,7 @@ const Tier = () => {
 		<div className='flex flex-col gap-[40px] w-full -mt-[7.5rem] md:-mt-[0]' >
 			<Page_title title='Levels Activity' className='!my-0'/>
 
-			<article className='rounded-[30px] sm:shadow-medium dark:!shadow-none sm:dark:bg-[#181818] p-[44px_0px] md:p-[44px_26px] xl:p-[44px] w-full flex flex-col xl:flex-row items-center justify-between gap-[40px] xl:gap-[146px]'>
+			{/* <article className='rounded-[30px] sm:shadow-medium dark:!shadow-none sm:dark:bg-[#181818] p-[44px_0px] md:p-[44px_26px] xl:p-[44px] w-full flex flex-col xl:flex-row items-center justify-between gap-[40px] xl:gap-[146px]'>
 				<div className='flex flex-col sm:flex-row items-center gap-[31px]'>
 					<Image
 						width={152}
@@ -31,7 +31,7 @@ const Tier = () => {
 				</div>
 
 				<Tier_initData />
-			</article>
+			</article> */}
 
 			<Tier_table_regUsers
 				title={t('lvlDesc')}
