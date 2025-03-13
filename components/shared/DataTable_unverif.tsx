@@ -115,7 +115,7 @@ export default function DataTable_unverif() {
 			case 'amount':
 				return <p className='text-bold capitalize '>{cellValue}</p>
 			case 'total':
-				return <p className='capitalize '>{cellValue}</p>
+				return <p className='capitalize'>{cellValue}</p>
 			case 'report':
 				return (
 					<p className='capitalize flex items-center justify-center gap-[5px] '>

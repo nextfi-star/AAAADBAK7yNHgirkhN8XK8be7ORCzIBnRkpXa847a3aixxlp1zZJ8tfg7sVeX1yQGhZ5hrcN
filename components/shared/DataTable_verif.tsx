@@ -159,7 +159,7 @@ export default function DataTable_verif() {
 							<Dropdown>
 								<DropdownTrigger>
 									<Button isIconOnly size='sm' variant='light'>
-										<VerticalDotsIcon className='text-default-300' />
+										<VerticalDotsIcon className='text-default-400' />
 									</Button>
 								</DropdownTrigger>
 								<DropdownMenu>

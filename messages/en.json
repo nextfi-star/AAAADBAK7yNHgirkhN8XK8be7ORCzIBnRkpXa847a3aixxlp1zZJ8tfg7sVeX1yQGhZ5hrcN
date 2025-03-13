@@ -216,15 +216,15 @@
 		"placeJolderEmail": "E-mail"
 	},
 	"tablesOverview": {
-		"destination": "Destination",
-		"amount": "Amount",
-		"percent": "Percent",
+		"destination": "DESTINATION",
+		"amount": "AMOUNT",
+		"percent": "PERCENT",
 		"pnl": "PNL",
-		"actions": "Actions",
-		"total": "Total",
-		"report": "Report",
-		"columns": "Columns",
-		"status": "Status",
+		"actions": "ACTIONS",
+		"total": "TOTAL",
+		"report": "REPORT",
+		"columns": "COLUMNS",
+		"status": "STATUS",
 		"searchName": "Search by name..."
 	},
 	"tablesAssets": {
