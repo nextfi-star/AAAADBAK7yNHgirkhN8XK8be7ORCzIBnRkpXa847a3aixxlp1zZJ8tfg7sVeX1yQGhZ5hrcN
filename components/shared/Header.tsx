@@ -11,6 +11,7 @@ import { User } from '../ui/User'
 import { Burger } from './Burger'
 import { Navigation } from './Navigation'
 import Theme_switch from './Theme_switch'
+import { usePathname } from 'next/navigation'
 
 interface Props {
 	auth?: boolean
@@ -18,6 +19,11 @@ interface Props {
 export const Header = ({ auth = true }: Props) => {
 	const { theme } = useThemeStore()
 	const csrf = useUserStore(state => state.user?.csrf)
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1]; 
+  const shouldHide = ["/"].some((path) =>
+    pathname.includes(path)
+  );
 	useEffect(() => {
 		const header = document.getElementById('header')
 		const handleScroll = () => {
@@ -50,7 +56,7 @@ export const Header = ({ auth = true }: Props) => {
 						</a>
 					)}
 
-					{csrf && <Navigation />}
+					{!shouldHide && <Navigation />}
 
 					<div className='header__actions'>
 						<div className='header__buttons'>
