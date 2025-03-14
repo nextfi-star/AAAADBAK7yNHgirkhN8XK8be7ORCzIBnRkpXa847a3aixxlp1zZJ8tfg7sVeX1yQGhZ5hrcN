@@ -38,6 +38,7 @@ const VerifyCode: NextPage = () => {
 				password: 'test1@mail.com',
 			}
 			const response = await verifyCode(payload)
+
 			if (response.response === 'success') {
 				router.push(`/${locale}/login`)
 			} else {

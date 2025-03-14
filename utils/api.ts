@@ -52,6 +52,28 @@ export const loginUser = async (payload: {
 		throw new Error(error.message || 'An error occurred during login')
 	}
 }
+export const changeUsername = async (data: {
+	username: string
+}) => {
+	try {
+		const response = await fetch('https://nextfi.io:5000/api/v1/change', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		})
+		const result = await response.json()
+		if (response.ok) {
+			useThemeStore.getState().setshowVerifWindow(true)
+			return result
+		} else {
+			throw new Error(result.message)
+		}
+	} catch (error: any) {
+		throw new Error(error.message || 'An error occurred during registration')
+	}
+}
 export const enable2FA = async (csrf: string) => {
 	try {
 		const response = await fetch('https://nextfi.io:5000/api/v1/enable_2fa', {
@@ -526,7 +548,7 @@ export const getDepositAddress = async (
 }
 export const changeUserData = async (
 	csrf: string,
-	type: 'change_email' | 'change_phone' | 'change_passw' | 'change_nickname',
+	type: 'change_email' | 'change_phone' | 'change_passw' | 'change_uname',
 	value: string,
 	vcode?: string,
 	tfaCode?: string
@@ -536,8 +558,9 @@ export const changeUserData = async (
 		if (type === 'change_email') payload['email'] = value
 		if (type === 'change_phone') payload['phone'] = value
 		if (type === 'change_passw') payload['password'] = value
-		if (type === 'change_nickname') payload['nickname'] = value
-		if (tfaCode) payload['2fa_code'] = tfaCode
+		if (type === 'change_uname') payload['username'] = value
+		if (tfaCode) payload['2fa_code'] = tfaCode;
+		console.log(payload);
 
 		const response = await fetch('https://nextfi.io:5000/api/v1/change', {
 			method: 'POST',

@@ -58,15 +58,14 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
 
 		const result = await changeUserData(
 			user.csrf,
-			'change_nickname',
+			'change_uname',
 			inputs.nickname,
 			inputs.vcode || '123123'
 		)
-			console.log(result)
 		if (result.success) {
 			setMessage('Никнейм успешно изменён!')
 			console.log(result)
-			useUserStore.getState().updateUser({ nickname: inputs.nickname })
+			useUserStore.getState().updateUser({ username: inputs.nickname })
 		} else {
 			setMessage(result.message)
 		}
