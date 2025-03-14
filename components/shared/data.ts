@@ -1,4 +1,3 @@
-
 // ! Datatable for verified
 const columns = [
 	{ name: 'NAME', uid: 'name', sortable: true },
@@ -245,38 +244,38 @@ const usersDataI = [
 		currentAmount: '7806 nextFi',
 		status: 'In process',
 	},
-		{
-			id: 2,
-			industry: 'Corporate Bonds',
-			amount: '1285 NextFi',
-			period: '150 days',
-			currentAmount: '1512 nextFi',
-			status: 'Success',
-		},
-		{
-			id: 3,
-			industry: 'Oil Sector',
-			amount: '285 NextFi',
-			period: '90 days',
-			currentAmount: '301 nextFi',
-			status: 'In process',
-		},
-		{
-			id: 4,
-			industry: 'Precious Metals',
-			amount: '285 NextFi',
-			period: '30 days',
-			currentAmount: '291 nextFi',
-			status: 'In process',
-		},
-		{
-			id: 5,
-			industry: 'Innovative Startups',
-			amount: '78514 NextFi',
-			period: '120 days',
-			currentAmount: '78614 nextFi',
-			status: 'Withdrawn',
-		},
+	{
+		id: 2,
+		industry: 'Corporate Bonds',
+		amount: '1285 NextFi',
+		period: '150 days',
+		currentAmount: '1512 nextFi',
+		status: 'Success',
+	},
+	{
+		id: 3,
+		industry: 'Oil Sector',
+		amount: '285 NextFi',
+		period: '90 days',
+		currentAmount: '301 nextFi',
+		status: 'In process',
+	},
+	{
+		id: 4,
+		industry: 'Precious Metals',
+		amount: '285 NextFi',
+		period: '30 days',
+		currentAmount: '291 nextFi',
+		status: 'In process',
+	},
+	{
+		id: 5,
+		industry: 'Innovative Startups',
+		amount: '78514 NextFi',
+		period: '120 days',
+		currentAmount: '78614 nextFi',
+		status: 'Withdrawn',
+	},
 ]
 
 export { columnsDataI, statusOptionsDataI, usersDataI }
