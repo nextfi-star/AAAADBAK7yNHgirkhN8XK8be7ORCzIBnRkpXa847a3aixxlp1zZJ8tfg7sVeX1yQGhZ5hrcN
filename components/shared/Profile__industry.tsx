@@ -1,5 +1,6 @@
 'use client'
 import ArrowBracket from '@/components/ui/ArrowBracket'
+import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store/useChatStore'
 import { Button } from '@heroui/button'
 import { useTranslations } from 'next-intl'
@@ -127,9 +128,11 @@ export const Profile_industry = ({ unicClass }: Props) => {
 				</Swiper>
 
 				<div className='w-full flex justify-center'>
-					<Button className='profile__industry__button btn-blu'>
-						{t('next')}
-					</Button>
+					<Link href={'/invest'}>
+						<Button className='profile__industry__button btn-blu'>
+							{t('next')}
+						</Button>
+					</Link>
 				</div>
 			</section>
 		</>

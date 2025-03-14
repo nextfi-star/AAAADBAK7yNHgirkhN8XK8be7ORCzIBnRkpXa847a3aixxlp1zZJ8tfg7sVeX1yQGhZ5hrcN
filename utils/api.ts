@@ -198,7 +198,6 @@ export const uploadFile = async (
 //     return { response: 'error', message: 'Network error' };
 //   }
 // };
-
 export const sendPicture = async (file: File) => {
 	try {
 		if (!file) {

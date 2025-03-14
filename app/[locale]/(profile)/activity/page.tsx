@@ -15,7 +15,7 @@ const Activity = () => {
 					</h1>
 					<div className='flex flex-col lg:flex-row items-center md:justify-between w-full'>
 						<p className='text-[16px] xl:text-[42px] font-bold text-center lg:text-left'>
-							{t('joinUs')} <br /> {t('the')}
+							{t('joinUs')} {t('the')}
 							<span className='text-[#205BC9]'> {t('ecosystem')}</span>
 						</p>
 						<div className={'hidden lg:block'}>

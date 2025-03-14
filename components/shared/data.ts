@@ -1,4 +1,3 @@
-
 // ! Datatable for verified
 const columns = [
 	{ name: 'NAME', uid: 'name', sortable: true },

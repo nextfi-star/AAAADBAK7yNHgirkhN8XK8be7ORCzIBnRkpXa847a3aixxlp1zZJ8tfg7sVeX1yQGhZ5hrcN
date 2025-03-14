@@ -219,7 +219,7 @@ export const ProfileHeader = ({ auth = true }: Props) => {
 									<DropDown_menu
 										hasProfile={true}
 										data={dropData2}
-										defaultItem={<User2 strokeWidth={1} className={'user min-h-[24px]'} />}
+										defaultItem={<User2 strokeWidth={1} className={'user min-w-[24px] min-h-[24px]'} />}
 									/>
 
 									<div className='header__icons-item'>
