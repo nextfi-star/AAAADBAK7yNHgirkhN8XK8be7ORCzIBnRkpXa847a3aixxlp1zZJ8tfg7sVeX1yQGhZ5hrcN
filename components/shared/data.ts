@@ -127,67 +127,17 @@ const statusOptionsData = [
 	{ name: '+', uid: '+' },
 	{ name: '-', uid: '-' },
 ]
-const usersData = [
-	{
-		id: 1,
-		destination: 'Company Stocks', //! crypto name group-1
-		avatar: '/payment_table/company.svg', //! icon for crypto name group-1
-		amount: '$543', //! holding independent element
-		pnl: '+', //! PnL independent element
-		total: '$1233.000',
-		report: 'View Report',
-		percent: '+0.5%',
-	},
-	{
-		id: 2,
-		destination: 'Precious Metals', //! crypto name group-1
-		avatar: '/payment_table/metals.svg', //! icon for crypto name group-1
-		amount: '$123', //! holding independent element
-		pnl: '-', //! PnL independent element
-		total: '$2231.000',
-		report: 'View Report',
-		percent: '-0.5%',
-	},
-	{
-		id: 3,
-		destination: 'Corporate Bonds', //! crypto name group-1
-		avatar: '/payment_table/bonds.svg', //! icon for crypto name group-1
-		amount: '$1233', //! holding independent element
-		pnl: '-', //! PnL independent element
-		total: '$3321.000',
-		report: 'View Report',
-		percent: '-0.5%',
-	},
-	{
-		id: 4,
-		destination: 'Oil Sector', //! crypto name group-1
-		avatar: '/payment_table/oil.svg', //! icon for crypto name group-1
-		amount: '$321', //! holding independent element
-		pnl: '+', //! PnL independent element
-		total: '$4421.000',
-		report: 'View Report',
-		percent: '+0.5%',
-	},
-	{
-		id: 5,
-		destination: 'Innovative Startups', //! crypto name group-1
-		avatar: '/payment_table/startup.svg', //! icon for crypto name group-1
-		amount: '$123', //! holding independent element
-		pnl: '+', //! PnL independent element
-		total: '$3123.000',
-		report: 'View Report',
-		percent: '+0.5%',
-	},
-	{
-		id: 6,
-		destination: 'Innovative Startups', //! crypto name group-1
-		avatar: '/payment_table/startup.svg', //! icon for crypto name group-1
-		amount: '$123', //! holding independent element
-		pnl: '+', //! PnL independent element
-		total: '$3123.000',
-		report: 'View Report',
-		percent: '+0.5%',
-	},
+const usersData: any[] = [
+	// {
+	// 	id: 1,
+	// 	destination: '', 
+	// 	avatar: '',
+	// 	amount: '',
+	// 	pnl: '',
+	// 	total: '',
+	// 	report: '',
+	// 	percent: '',
+	// },
 ]
 
 export { columnsData, usersData, statusOptionsData }
@@ -235,15 +185,15 @@ const statusOptionsDataI = [
 	{ name: 'SUCCESS', uid: 'Succsess' },
 	{ name: 'WITHDRAWN', uid: 'Withdrawn' },
 ]
-const usersDataI = [
-	{
-		id: 1,
-		industry: '',
-		amount: '',
-		period: '',
-		currentAmount: '',
-		status: '',
-	},
+const usersDataI: any[] = [
+	// {
+	// 	id: 1,
+	// 	industry: '',
+	// 	amount: '',
+	// 	period: '',
+	// 	currentAmount: '',
+	// 	status: '',
+	// },
 	
 ]
 

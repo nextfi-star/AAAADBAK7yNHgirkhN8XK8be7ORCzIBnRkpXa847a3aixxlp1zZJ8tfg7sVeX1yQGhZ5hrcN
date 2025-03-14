@@ -295,9 +295,9 @@ const Login = () => {
 							)}
 						</div>
 
-						{error && (
+						{/* {error && (
 							<p className='text-danger pointer-events-none'>{error}</p>
-						)}
+						)} */}
 						<button
 							type='submit'
 							disabled={isLoading || !isValid}

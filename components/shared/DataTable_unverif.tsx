@@ -27,7 +27,7 @@ import { capitalize } from './utils'
 import { columnsData, statusOptionsData, usersData } from './data'
 import { useTranslations } from 'next-intl'
 
-type User = (typeof usersData)[0]
+type User = any 
 const INITIAL_VISIBLE_COLUMNS = [
 	'destination',
 	'amount',
@@ -97,21 +97,21 @@ export default function DataTable_unverif() {
 	const renderCell = React.useCallback((user: User, columnKey: React.Key) => {
 		const cellValue = user[columnKey as keyof User]
 		switch (columnKey) {
-			case 'destination': {
-				return (
-					<User
-						avatarProps={{ src: user.avatar }}
-						className='!bg-transparent'
-						classNames={{
-							base: '!bg-transparent min-w-[179px] flex items-center justify-start',
-							name: '!bg-transparent ',
-							description: '!bg-transparent ',
-							wrapper: '!bg-transparent ',
-						}}
-						name={cellValue}
-					/>
-				)
-			}
+			// case 'destination': {
+			// 	return (
+			// 		<User
+			// 			avatarProps={{ src: user.avatar }}
+			// 			className='!bg-transparent'
+			// 			classNames={{
+			// 				base: '!bg-transparent min-w-[179px] flex items-center justify-start',
+			// 				name: '!bg-transparent ',
+			// 				description: '!bg-transparent ',
+			// 				wrapper: '!bg-transparent ',
+			// 			}}
+			// 			name={cellValue}
+			// 		/>
+			// 	)
+			// }
 			case 'amount':
 				return <p className='text-bold capitalize '>{cellValue}</p>
 			case 'total':
@@ -305,7 +305,7 @@ export default function DataTable_unverif() {
 					</TableColumn>
 				)}
 			</TableHeader>
-			<TableBody emptyContent={'No users found'} items={sortedItems}>
+			<TableBody emptyContent={'Not found'} items={sortedItems}>
 				{item => (
 					<TableRow key={item.id}>
 						{columnKey => <TableCell>{renderCell(item, columnKey)}</TableCell>}
