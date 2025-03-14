@@ -37,7 +37,7 @@ const INITIAL_VISIBLE_COLUMNS = [
 	'current amount',
 	'status',
 ]
-
+	
 type User = (typeof usersDataI)[0]
 
 export default function Invest_Table() {

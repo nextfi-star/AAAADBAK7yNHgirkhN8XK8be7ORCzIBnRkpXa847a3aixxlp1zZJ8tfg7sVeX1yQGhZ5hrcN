@@ -15,7 +15,7 @@ export function PolicyModal() {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button className='p-0 text-[18px] bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] hover:cursor-pointer shadow-none'>
+				<Button className='p-0 text-[18px] bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] text-black hover:cursor-pointer shadow-none'>
 					Privacy Policy
 				</Button>
 			</AlertDialogTrigger>
