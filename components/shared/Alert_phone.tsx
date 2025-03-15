@@ -168,7 +168,7 @@ export const Alert_phone = ({ propsItem }: Props) => {
 						disabled={isDisabled}
 						className={`text-[16px] px-[40px] rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
 							isDisabled
-								? 'bg-transparent cursor-not-allowed'
+								? '!bg-[#205BC9] cursor-not-allowed'
 								: 'bg-[#205bc9] hover:bg-[#205bc9] text-white border-none'
 						}`}
 						onClick={() =>

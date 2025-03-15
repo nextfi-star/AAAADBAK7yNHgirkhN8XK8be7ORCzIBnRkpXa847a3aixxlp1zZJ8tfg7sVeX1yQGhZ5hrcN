@@ -22,14 +22,11 @@ const Security = () => {
 				src: '/main/profile_security/auth_app.svg',
 				title: t('authApp'),
 				desc: t('authDesc'),
-				btn:
-					!user ? (
-						<Spinner />
-					) : user?.['2fa'] === 0 ? (
-						<Alert_auntef propsItem={t('changeAuthApp')} />
-					) : (
-						<span className='text-success'>Enabled</span>
-					),
+				btn: !user ? (
+					<Spinner />
+				) : (
+					<Alert_auntef propsItem={t('changeAuthApp')} />
+				),
 			},
 			{
 				src: '/main/profile_security/phone.svg',
