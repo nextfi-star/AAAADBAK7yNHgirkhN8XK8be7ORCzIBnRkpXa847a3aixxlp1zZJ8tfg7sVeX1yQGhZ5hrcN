@@ -301,7 +301,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 													isLoading={loading}
 													isDisabled={code.length < 6}
 													type='submit'
-													className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] !w-fit ${inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
+													className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] !w-fit ${inputs.currentAuth.length < 3 ? '!bg-[#205BC9]' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
 													onPress={() => {
 														setInputs(prev => ({
 															...prev,
