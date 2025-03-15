@@ -10,6 +10,7 @@ import { useMemo } from 'react'
 import { useUserStore } from '@/hooks/useUserData'
 import { useTranslations } from 'next-intl'
 import { useThemeStore } from '@/store/useChatStore'
+import { Spinner } from '@heroui/spinner'
 
 const Security = () => {
 	const user = useUserStore(state => state.user)
@@ -21,11 +22,14 @@ const Security = () => {
 				src: '/main/profile_security/auth_app.svg',
 				title: t('authApp'),
 				desc: t('authDesc'),
-				btn: !twoFaActive ? (
-					<Alert_auntef propsItem={t('changeAuthApp')} />
-				) : (
-					<span className='text-success'>Enabled</span>
-				),
+				btn:
+					!user ? (
+						<Spinner />
+					) : user?.['2fa'] === 0 ? (
+						<Alert_auntef propsItem={t('changeAuthApp')} />
+					) : (
+						<span className='text-success'>Enabled</span>
+					),
 			},
 			{
 				src: '/main/profile_security/phone.svg',
