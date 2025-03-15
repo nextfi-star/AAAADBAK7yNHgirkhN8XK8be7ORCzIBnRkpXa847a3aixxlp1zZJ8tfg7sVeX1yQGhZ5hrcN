@@ -56,6 +56,7 @@ const Login = () => {
 		email,
 		phone,
 		showVerifWindow,
+		setTwoFaActive,
 		setshowVerifWindow,
 	} = useThemeStore()
 	const [isLoading, setIsLoading] = useState(false)
@@ -98,6 +99,7 @@ const Login = () => {
 					if (!userData.uid || !userData.csrf) {
 						throw new Error('Получены некорректные данные пользователя')
 					}
+					setTwoFaActive(false)
 					useUserStore.getState().setUser(userData)
 					if (userData.csrf) {
 						useUserStore.getState().setCsrf(userData.csrf)
