@@ -465,7 +465,10 @@
 	},
 	"transaction": {
 		"recent": "Последние транзакции",
-		"transfer": "Перевод"
+		"transfer": "Перевод",
+		"sent": "Sent",
+		"denied": "Denied",
+		"pending": "Pending"
 	},
 	"swap": {
 		"faq": "Часто задаваемые вопросы",

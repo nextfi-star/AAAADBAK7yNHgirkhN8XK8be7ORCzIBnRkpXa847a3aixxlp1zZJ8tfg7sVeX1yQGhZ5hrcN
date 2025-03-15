@@ -474,7 +474,10 @@
 	},
 	"transaction": {
 		"recent": "Recent transactions",
-		"transfer": "Transfer"
+		"transfer": "Transfer",
+		"sent": "Sent",
+		"denied": "Denied",
+		"pending": "Pending"
 	},
 	"swap": {
 		"faq": "FAQ",

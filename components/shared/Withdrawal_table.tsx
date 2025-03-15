@@ -25,7 +25,6 @@ import { columnsDataW, statusOptionsDataW, usersDataW } from './data'
 import { capitalize } from './utils'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
 import { useTranslations } from 'next-intl'
-import { useWithdrawStore, Withdraw } from '@/store/useWithdrawalStore'
 import { getWithdrawHistory } from '@/utils/api'
 import { useUserStore } from '@/hooks/useUserData'
 

@@ -46,7 +46,7 @@ export function PolicyModal() {
 							• Company Information: NextFi is committed to safeguarding user
 							privacy and data security.
 						</span>
-						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground leading-[1.5]'>
 							• Purpose of this Policy: This Privacy Policy explains how we
 							collect, use, and protect user data in compliance with GDPR (EU),
 							CCPA (California), PDPL (UAE), and other applicable laws.
@@ -102,11 +102,11 @@ export function PolicyModal() {
 					</div>
 					<div className='flex flex-col gap-[1rem]'>
 						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>Cookies & Tracking Technologies</p>
-						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground leading-[1.5]'>
 							• We use cookies and tracking technologies to enhance user
 							experience and improve service functionality.
 						</span>
-						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground leading-[1.5]'>
 							• Users can manage cookie preferences via their browser settings.
 						</span>
 					</div>
@@ -144,8 +144,8 @@ export function PolicyModal() {
 						</span>
 					</div>
 					<div className='flex flex-col gap-[1rem]'>
-						<p className='text-lg font-semibopd text-[24px] xl:text-[32px]'>International Data Transfers</p>
-						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+						<p className='text-lg font-semibold text-[24px] xl:text-[32px]'>International Data Transfers</p>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground leading-[1.5]'>
 							• Data may be transferred to secure data centers across multiple
 							jurisdictions in compliance with applicable regulations
 						</span>

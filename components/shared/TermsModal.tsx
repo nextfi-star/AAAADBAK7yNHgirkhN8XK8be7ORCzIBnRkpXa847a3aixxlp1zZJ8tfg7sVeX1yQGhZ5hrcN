@@ -108,11 +108,11 @@ export function TermsModal() {
 						<p className='text-lg font-semibold tept-[24px] xl:text-[32px]'>
 							Account Suspension & Termination:
 						</p>
-						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground leading-[1.5]'>
 							• NextFi reserves the right to suspend or terminate accounts
 							involved in suspicious or prohibited activities.
 						</span>
-						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground '>
 							• Users will receive prior notice unless the termination is due to
 							legal obligations.
 						</span>
