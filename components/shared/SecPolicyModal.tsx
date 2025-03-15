@@ -48,7 +48,7 @@ export function SecPolicyModal() {
 							• NextFi is committed to the highest standards of cybersecurity
 							and regulatory compliance.
 						</span>
-						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground'>
+						<span className='text-[18px] xl:text-[24px] text-sm text-muted-foreground leading-[1.5]'>
 							• We comply with AML (Anti-Money Laundering), KYC (Know Your
 							Customer), GDPR, CCPA, PDPL, and other global regulations.
 						</span>

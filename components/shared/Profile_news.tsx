@@ -5,32 +5,25 @@ import { useTranslations } from 'next-intl'
 
 export const Profile_news = () => {
 	const t = useTranslations('overview')
+	const getCurrentDate = () => {
+    const now = new Date();
+		const day = String(now.getDate()).padStart(2, '0'); 
+		const month = String(now.getMonth() + 1).padStart(2, '0'); 
+		const year = now.getFullYear();
+
+		return `${day}.${month}.${year}`; 
+	};
 	const dataNews = useMemo(
 		() => [
 			{
-				date: '11:24 am',
+				date: getCurrentDate(),
 				news: 'Kalshi seeks permission to trade political contracts amid CFTC appeal',
 				id: 1,
-			},
-			{
-				date: '11:24 am',
-				news: 'Kalshi seeks permission to trade political contracts amid CFTC appeal',
-				id: 2,
-			},
-			{
-				date: '11:24 am',
-				news: 'Kalshi seeks permission to trade political contracts amid CFTC appeal',
-				id: 3,
-			},
-			{
-				date: '11:24 am',
-				news: 'Kalshi seeks permission to trade political contracts amid CFTC appeal',
-				id: 4,
 			},
 		],
 		[]
 	)
-
+	
 	return (
 		<div className='profile-news md:!bg-[#fff] dark:!bg-transparent md:dark:!bg-[#1e1e1e66] shadow-none md:!shadow-medium dark:!shadow-none w-full'>
 			<div className='profile-news-title'>
@@ -42,16 +35,19 @@ export const Profile_news = () => {
 			<span className='profile-news-date'>September 25, 2024</span>
 			<ul className='profile-news-list'>
 				<li className='profile-news-list-item'>
-					{dataNews.map(news => (
-						<Link
-							key={news.id}
-							className='profile-news-list-item-link'
-							href='#'
-						>
-							<span className='news-date'>{news.date}</span>
-							{news.news}
-						</Link>
-					))}
+					{dataNews.map(news => {
+						const date = new Date(news.date)
+						return (
+							<Link
+								key={news.id}
+								className='profile-news-list-item-link'
+								href='#'
+							>
+								<span className='news-date'>{news.date}</span>
+								{news.news}
+							</Link>
+						)
+					})}
 				</li>
 			</ul>
 		</div>

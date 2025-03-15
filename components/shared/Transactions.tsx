@@ -5,16 +5,18 @@ import { Chip, ChipProps } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import { useEffect, useMemo, useState } from 'react'
 
+const statusColorMap: Record<string, ChipProps['color']> = {
+	1: 'success',
+	2: 'danger',
+	0: 'warning',
+}
+
 const Transaction = () => {
 	const t = useTranslations('transaction')
 	const [transac, setTransac] = useState<User[]>([])
 	const [transac2, setTransac2] = useState<User[]>([])
 	const csrf = useUserStore(state => state.user?.csrf)
-	const statusColorMap: Record<string, ChipProps['color']> = {
-		1: 'success',
-		2: 'danger',
-		0: 'warning',
-	}
+
 	const fetchDeposits = async () => {
 		if (!csrf) return
 		const result = await getDepositHistory(csrf)
@@ -119,22 +121,216 @@ const Transaction = () => {
 							<div className='flex items-center w-full justify-between'>
 								<div className='flex flex-col gap-[5px] items-start'>
 									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
-										{item.coin}
-										{item.time}
+										Deposit <br />
+										{item.coin}{' '}
+										{new Date(Number(item.time) * 1000).toLocaleDateString(
+											'en-GB'
+										)}
 									</h5>
 								</div>
-								<Chip
-									className='capitalize'
-									color={statusColorMap[item.status]}
-									size='sm'
-									variant='flat'
-								>
-									{item.status === 0
-										? 'pending'
-										: item.status === 1
-											? 'sent'
-											: 'denied'}
-								</Chip>
+								<span className='text-success-700 text-[14px] md:text-[20px] 2xl:text-[23px]'>
+									+{item.amount} {item.coin}
+								</span>{' '}
+							</div>
+							<span className='min-h-[1px] w-full bg-white block' />
+						</div>
+					))}
+				{transac &&
+					transac.map(item => (
+						<div key={item.id}>
+							<div className='flex items-center w-full justify-between'>
+								<div className='flex flex-col gap-[5px] items-start'>
+									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
+										Deposit <br />
+										{item.coin}{' '}
+										{new Date(Number(item.time) * 1000).toLocaleDateString(
+											'en-GB'
+										)}
+									</h5>
+								</div>
+								<span className='text-success-700 text-[14px] md:text-[20px] 2xl:text-[23px]'>
+									+{item.amount} {item.coin}
+								</span>{' '}
+							</div>
+							<span className='min-h-[1px] w-full bg-white block' />
+						</div>
+					))}
+				{transac &&
+					transac.map(item => (
+						<div key={item.id}>
+							<div className='flex items-center w-full justify-between'>
+								<div className='flex flex-col gap-[5px] items-start'>
+									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
+										Deposit <br />
+										{item.coin}{' '}
+										{new Date(Number(item.time) * 1000).toLocaleDateString(
+											'en-GB'
+										)}
+									</h5>
+								</div>
+								<span className='text-success-700 text-[14px] md:text-[20px] 2xl:text-[23px]'>
+									+{item.amount} {item.coin}
+								</span>{' '}
+							</div>
+							<span className='min-h-[1px] w-full bg-white block' />
+						</div>
+					))}
+				{transac &&
+					transac.map(item => (
+						<div key={item.id}>
+							<div className='flex items-center w-full justify-between'>
+								<div className='flex flex-col gap-[5px] items-start'>
+									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
+										Deposit <br />
+										{item.coin}{' '}
+										{new Date(Number(item.time) * 1000).toLocaleDateString(
+											'en-GB'
+										)}
+									</h5>
+								</div>
+								<span className='text-success-700 text-[14px] md:text-[20px] 2xl:text-[23px]'>
+									+{item.amount} {item.coin}
+								</span>{' '}
+							</div>
+							<span className='min-h-[1px] w-full bg-white block' />
+						</div>
+					))}
+				{transac &&
+					transac.map(item => (
+						<div key={item.id}>
+							<div className='flex items-center w-full justify-between'>
+								<div className='flex flex-col gap-[5px] items-start'>
+									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
+										Deposit <br />
+										{item.coin}{' '}
+										{new Date(Number(item.time) * 1000).toLocaleDateString(
+											'en-GB'
+										)}
+									</h5>
+								</div>
+								<span className='text-success-700 text-[14px] md:text-[20px] 2xl:text-[23px]'>
+									+{item.amount} {item.coin}
+								</span>{' '}
+							</div>
+							<span className='min-h-[1px] w-full bg-white block' />
+						</div>
+					))}
+				{transac &&
+					transac.map(item => (
+						<div key={item.id}>
+							<div className='flex items-center w-full justify-between'>
+								<div className='flex flex-col gap-[5px] items-start'>
+									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
+										Deposit <br />
+										{item.coin}{' '}
+										{new Date(Number(item.time) * 1000).toLocaleDateString(
+											'en-GB'
+										)}
+									</h5>
+								</div>
+								<span className='text-success-700 text-[14px] md:text-[20px] 2xl:text-[23px]'>
+									+{item.amount} {item.coin}
+								</span>{' '}
+							</div>
+							<span className='min-h-[1px] w-full bg-white block' />
+						</div>
+					))}
+				{transac &&
+					transac.map(item => (
+						<div key={item.id}>
+							<div className='flex items-center w-full justify-between'>
+								<div className='flex flex-col gap-[5px] items-start'>
+									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
+										Deposit <br />
+										{item.coin}{' '}
+										{new Date(Number(item.time) * 1000).toLocaleDateString(
+											'en-GB'
+										)}
+									</h5>
+								</div>
+								<span className='text-success-700 text-[14px] md:text-[20px] 2xl:text-[23px]'>
+									+{item.amount} {item.coin}
+								</span>{' '}
+							</div>
+							<span className='min-h-[1px] w-full bg-white block' />
+						</div>
+					))}
+				{transac &&
+					transac.map(item => (
+						<div key={item.id}>
+							<div className='flex items-center w-full justify-between'>
+								<div className='flex flex-col gap-[5px] items-start'>
+									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
+										Deposit <br />
+										{item.coin}{' '}
+										{new Date(Number(item.time) * 1000).toLocaleDateString(
+											'en-GB'
+										)}
+									</h5>
+								</div>
+								<span className='text-success-700 text-[14px] md:text-[20px] 2xl:text-[23px]'>
+									+{item.amount} {item.coin}
+								</span>{' '}
+							</div>
+							<span className='min-h-[1px] w-full bg-white block' />
+						</div>
+					))}
+				{transac &&
+					transac.map(item => (
+						<div key={item.id}>
+							<div className='flex items-center w-full justify-between'>
+								<div className='flex flex-col gap-[5px] items-start'>
+									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
+										Deposit <br />
+										{item.coin}{' '}
+										{new Date(Number(item.time) * 1000).toLocaleDateString(
+											'en-GB'
+										)}
+									</h5>
+								</div>
+								<span className='text-success-700 text-[14px] md:text-[20px] 2xl:text-[23px]'>
+									+{item.amount} {item.coin}
+								</span>{' '}
+							</div>
+							<span className='min-h-[1px] w-full bg-white block' />
+						</div>
+					))}
+				{transac &&
+					transac.map(item => (
+						<div key={item.id}>
+							<div className='flex items-center w-full justify-between'>
+								<div className='flex flex-col gap-[5px] items-start'>
+									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
+										Deposit <br />
+										{item.coin}{' '}
+										{new Date(Number(item.time) * 1000).toLocaleDateString(
+											'en-GB'
+										)}
+									</h5>
+								</div>
+								<span className='text-success-700 text-[14px] md:text-[20px] 2xl:text-[23px]'>
+									+{item.amount} {item.coin}
+								</span>{' '}
+							</div>
+							<span className='min-h-[1px] w-full bg-white block' />
+						</div>
+					))}
+				{transac &&
+					transac.map(item => (
+						<div key={item.id}>
+							<div className='flex items-center w-full justify-between'>
+								<div className='flex flex-col gap-[5px] items-start'>
+									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
+										Deposit <br />
+										{item.coin}{' '}
+										{new Date(Number(item.time) * 1000).toLocaleDateString(
+											'en-GB'
+										)}
+									</h5>
+								</div>
+								<span className='text-success-700 text-[14px] md:text-[20px] 2xl:text-[23px]'>
+									+{item.amount} {item.coin}
+								</span>{' '}
 							</div>
 							<span className='min-h-[1px] w-full bg-white block' />
 						</div>
@@ -145,7 +341,7 @@ const Transaction = () => {
 							<div className='flex items-center w-full justify-between'>
 								<div className='flex flex-col gap-[5px] items-start'>
 									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
-										Transfer
+										Withdraw
 										<br />
 										{item.coin}{' '}
 										{new Date(Number(item.time) * 1000).toLocaleDateString(
@@ -154,7 +350,7 @@ const Transaction = () => {
 									</h5>
 								</div>
 								<span className='text-danger-700 text-[14px] 2xl:text-[20px]'>
-									-{item.amount}
+									-{item.amount} {item.coin}
 								</span>
 							</div>
 							<span className='min-h-[1px] w-full bg-white block' />

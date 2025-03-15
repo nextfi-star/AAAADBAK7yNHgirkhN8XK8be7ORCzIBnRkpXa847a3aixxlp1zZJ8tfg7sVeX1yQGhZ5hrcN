@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import Image from 'next/image'
 import { useUserStore } from '@/hooks/useUserData'
 import {
@@ -72,6 +72,7 @@ export const A_Chat = () => {
 		setShowCancel(!showCancel)
 		onClose()
 	}
+
 	return (
 		<>
 			<Button
@@ -166,30 +167,39 @@ export const A_Chat = () => {
 														const isAdmin = decoded.startsWith('#')
 														const isUser = decoded.startsWith('@')
 														const displayText = decoded.substring(1)
+														const formattedTime = new Date(Number(msg.time)).toLocaleTimeString()
 														return (
 															<div
 																key={index}
-																className={`flex items-center w-full gap-2 mb-4 ${
-																	isUser ? 'justify-end' : 'justify-start'
-																}`}
+																className={`flex items-center w-full gap-2 mb-4 justify-end`}
 															>
 																{isAdmin && (
-																	<Image
-																		src='/chat/operator.svg'
-																		width={40}
-																		height={40}
-																		priority
-																		alt='Operator icon'
-																	/>
+																	<div className='flex items-center justify-start w-full gap-[5px]'>
+																		<Image
+																			src='/chat/operator.svg'
+																			width={40}
+																			height={40}
+																			priority
+																			alt='Operator icon'
+																		/>
+																		<span className='text-base font-medium p-2 bg-[#7676801F] rounded-[35px] max-w-[256px] break-words'>
+																			{displayText}
+																		</span>
+																		<span className='text-xs text-[#888888]'>
+																		{formattedTime}
+																		</span>
+																	</div>
 																)}
-																<div className='flex items-center gap-[5px]'>
-																	<span className='text-base font-medium p-2 bg-[#7676801F] rounded-[35px] max-w-[256px] break-words'>
-																		{displayText}
-																	</span>
-																	<span className='text-xs text-[#888888]'>
-																		{new Date(msg.time).toLocaleTimeString()}
-																	</span>
-																</div>
+																{isUser && (
+																	<div className='flex items-center gap-[5px]'>
+																		<span className='text-base font-medium p-2 bg-[#7676801F] rounded-[35px] max-w-[256px] break-words'>
+																			{displayText}
+																		</span>
+																		<span className='text-xs text-[#888888]'>
+																			{formattedTime}
+																		</span>
+																	</div>
+																)}
 															</div>
 														)
 													})}

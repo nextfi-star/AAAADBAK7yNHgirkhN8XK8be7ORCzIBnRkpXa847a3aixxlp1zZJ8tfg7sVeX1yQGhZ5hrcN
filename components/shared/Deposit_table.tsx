@@ -65,6 +65,7 @@ export default function Deposit_table() {
 			setDeposits([]);
 		} else {
 			setError('');
+			console.log(result)
 			setDeposits(result.data || []);
 		}
 	};

@@ -134,7 +134,9 @@ export default function Deposit_table_mobile() {
 
 		switch (columnKey) {
 			case 'time':
-				return <span className='md:text-[20px]'>{user.time}</span>
+				const date = new Date(Number(user.time) * 1000)
+				const formattedDate = date.toLocaleDateString('en-GB')
+				return <span className='md:text-[20px]'>{formattedDate}</span>
 			case 'address':
 				return (
 					<div className='flex flex-col items-start gap-[5px]'>
