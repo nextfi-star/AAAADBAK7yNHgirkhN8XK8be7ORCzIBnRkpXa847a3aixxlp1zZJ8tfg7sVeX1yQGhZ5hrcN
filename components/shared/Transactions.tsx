@@ -1,8 +1,44 @@
+import { useUserStore } from '@/hooks/useUserData'
+import { User } from '@/types'
+import { getDepositHistory, getWithdrawHistory } from '@/utils/api'
 import { useTranslations } from 'next-intl'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 const Transaction = () => {
 	const t = useTranslations('transaction')
+	const [transac, setTransac] = useState<User[]>([])
+	const [transac2, setTransac2] = useState<User[]>([])
+	const csrf = useUserStore(state => state.user?.csrf)
+	const fetchDeposits = async () => {
+		if (!csrf) return
+		const result = await getDepositHistory(csrf)
+
+		if (result.error) {
+			setTransac([])
+		} else {
+			setTransac(result.data || [])
+		}
+	}
+	const fetchHistory = async () => {
+		if (!csrf) return
+		const result = await getWithdrawHistory(csrf)
+		if (result.error) {
+			setTransac2([])
+		} else {
+			setTransac2(result.data || [])
+		}
+	}
+	useEffect(() => {
+		if (csrf) {
+			fetchDeposits()
+			fetchHistory()
+			const intervalId = setInterval(() => {
+				fetchHistory()
+				fetchDeposits()
+			}, 20000)
+			return () => clearInterval(intervalId)
+		}
+	}, [csrf])
 	const data = useMemo(
 		() => [
 			{
@@ -70,18 +106,35 @@ const Transaction = () => {
 				{t('recent')}
 			</h3>
 			<div className='flex flex-col gap-[10px] max-h-[690px] overflow-y-auto'>
-				{data &&
-					data.map(item => (
+				{transac &&
+					transac.map(item => (
 						<div key={item.id}>
 							<div className='flex items-center w-full justify-between'>
 								<div className='flex flex-col gap-[5px] items-start'>
 									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
-										{item.name}
-										{item.cell}
+										{item.coin}
+										{item.time}
 									</h5>
 								</div>
 								<span className='text-green-700 text-[14px] 2xl:text-[20px]'>
-									{item.money}
+									{item.amount}
+								</span>
+							</div>
+							<span className='min-h-[1px] w-full bg-white block' />
+						</div>
+					))}
+				{transac2 &&
+					transac2.map(item => (
+						<div key={item.id}>
+							<div className='flex items-center w-full justify-between'>
+								<div className='flex flex-col gap-[5px] items-start'>
+									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
+										{item.coin}
+										{item.time}
+									</h5>
+								</div>
+								<span className='text-green-700 text-[14px] 2xl:text-[20px]'>
+									{item.amount}
 								</span>
 							</div>
 							<span className='min-h-[1px] w-full bg-white block' />
