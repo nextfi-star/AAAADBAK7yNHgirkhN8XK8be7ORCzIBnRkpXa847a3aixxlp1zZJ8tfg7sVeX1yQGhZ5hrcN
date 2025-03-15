@@ -83,7 +83,7 @@ export const ChangeAvatar = () => {
 						alt={'avatar'}
 						className={`absolute bottom-0 -right-[10px] object-contain min-h-[20px] min-w-[20px] cursor-pointer`}
 						height={53}
-						src={userAvatar || '/main/profile_page/edit_icon.svg'}
+						src={'/main/profile_page/edit_icon.svg'}
 						width={53}
 					/>
 				</div>

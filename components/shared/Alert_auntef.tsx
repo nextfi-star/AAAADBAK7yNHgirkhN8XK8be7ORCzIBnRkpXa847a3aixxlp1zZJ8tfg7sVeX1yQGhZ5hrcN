@@ -29,7 +29,7 @@ interface Props {
 export const Alert_auntef = ({ propsItem }: Props) => {
 	const user = useUserStore(state => state.user)
 	const [disabled, setDisabled] = useState(false)
-	const { theme } = useThemeStore()
+	const { theme, twoFaActive, setTwoFaActive } = useThemeStore()
 	const t = useTranslations('security')
 	const [inputs, setInputs] = useState({
 		emailAuth: '',
@@ -47,6 +47,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 		}
 		try {
 			const response = await enable2FA(csrf)
+			console.log(response)
 			setTwoFA(response.data)
 		} catch (error) {
 			console.log(error)
@@ -54,17 +55,26 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 	}
 	const handleVerify = async (e: React.FormEvent) => {
 		e.preventDefault()
-		const result = await verify2FA(user?.csrf, code)
-		if (user?.['2fa']) {
+		try {
+			const result = await verify2FA(user?.csrf, code)
 			console.log('2FA enabled successfully')
 			setDisabled(true)
+			setTwoFaActive(true)
+			setMessage(result.message)
+			if (typeof window !== 'undefined') {
+				window.location.reload()
+			}
+		} catch (error: any) {
+			console.log(error)
+			setMessage(error.message)
 		}
-		setMessage(result.message)
 	}
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
 				<Button
+					isDisabled={twoFaActive}
+					disabled={twoFaActive}
 					onPress={handleEnable2FA}
 					className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] lg:max-w-[220px] w-full min-h-[28px]'
 				>
@@ -270,6 +280,11 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 														value={code}
 														onChange={e => setCode(e.target.value)}
 													/>
+													{message && (
+														<p className='text-[16px] text-danger ml-[15px]'>
+															{message}
+														</p>
+													)}
 												</div>
 											</label>
 
@@ -282,6 +297,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 												</Button>
 
 												<Button
+													isDisabled={disabled}
 													type='submit'
 													className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] !w-fit ${inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
 													onPress={() => {

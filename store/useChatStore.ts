@@ -71,6 +71,8 @@ export const useChatStore = create<ChatStore>((set, get) => ({
 export const useThemeStore = create<IStore>()(
 	persist(
 		set => ({
+			twoFaActive: false,
+			setTwoFaActive: (val: boolean) => set({ twoFaActive: val }),
 			theme: 'dark',
 			setTheme: newTheme => {
 				set(() => {

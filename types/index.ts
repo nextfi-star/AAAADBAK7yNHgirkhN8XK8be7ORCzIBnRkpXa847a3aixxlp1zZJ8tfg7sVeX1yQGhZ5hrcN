@@ -6,6 +6,8 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
 }
 
 export interface IStore {
+	twoFaActive: boolean
+	setTwoFaActive: (val: boolean) => void
 	activeTab: string
 	theme: string
 	setTheme: (newTheme: string) => void

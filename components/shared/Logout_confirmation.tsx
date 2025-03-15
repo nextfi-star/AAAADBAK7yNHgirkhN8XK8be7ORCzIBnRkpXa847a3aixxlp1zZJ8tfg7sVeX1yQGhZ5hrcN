@@ -35,7 +35,7 @@ export const Logout_confirmation = ({
 	const t = useTranslations('burger')
 	const handleLogout = () => {
 		clearUser()
-		localStorage.removeItem('zustand-store')
+		localStorage.removeItem('profile-store')
 		localStorage.removeItem('userData')
 		setEmail('')
 		setPassword('')

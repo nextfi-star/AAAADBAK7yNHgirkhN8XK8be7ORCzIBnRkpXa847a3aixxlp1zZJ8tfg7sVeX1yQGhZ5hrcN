@@ -6,12 +6,14 @@ import { Alert_logpass } from '@/components/shared/Alert_logpass'
 import { Alert_phone } from '@/components/shared/Alert_phone'
 import { CloseAccount } from '@/components/shared/CloseAccount'
 import { FreezeAccount } from '@/components/shared/FreezeAccount'
-import { useMemo} from 'react'
+import { useMemo } from 'react'
 import { useUserStore } from '@/hooks/useUserData'
 import { useTranslations } from 'next-intl'
+import { useThemeStore } from '@/store/useChatStore'
 
 const Security = () => {
-	const user = useUserStore((state) => state.user)
+	const user = useUserStore(state => state.user)
+	const { twoFaActive } = useThemeStore()
 	const t = useTranslations('security')
 	const data = useMemo(
 		() => [
@@ -19,7 +21,11 @@ const Security = () => {
 				src: '/main/profile_security/auth_app.svg',
 				title: t('authApp'),
 				desc: t('authDesc'),
-				btn: <Alert_auntef propsItem={t('changeAuthApp')} />,
+				btn: !twoFaActive ? (
+					<Alert_auntef propsItem={t('changeAuthApp')} />
+				) : (
+					<span className='text-success'>Enabled</span>
+				),
 			},
 			{
 				src: '/main/profile_security/phone.svg',
@@ -43,7 +49,7 @@ const Security = () => {
 				contain: '********',
 			},
 		],
-		[]
+		[twoFaActive]
 	)
 	const data2 = useMemo(
 		() => [
@@ -65,9 +71,7 @@ const Security = () => {
 		[]
 	)
 	return (
-		<section
-			className='security !shadow-medium dark:!shadow-none'
-		>
+		<section className='security !shadow-medium dark:!shadow-none'>
 			<div className='security-container '>
 				<div className='security__content mb-[20px]'>
 					<h1 className='!text-[28px] mb-[15px]'>{t('authMethods')}</h1>

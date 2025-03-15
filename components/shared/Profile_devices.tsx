@@ -51,10 +51,6 @@ export const Profile_devices = () => {
 			fetchSessions()
 		}
 	}, [csrf])
-	// if (loading)
-	// 	return (
-	// 		<Skeleton className='min-h-[214px] bg-transparent dark:shadow-none shadow-medium rounded-[30px]' />
-	// 	)
 	if (error) return <div>Error: {error}</div>
 	const handleLogout = async (fullLogout = false) => {
 		try {
@@ -105,8 +101,10 @@ export const Profile_devices = () => {
 										className='flex w-full gap-[15px] justify-between items-center'
 										onClick={e => e.stopPropagation()}
 									>
-										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
+										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black   after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
 											{t('macBook')}
+											<br />
+											{user.country || ''}
 										</span>
 									</div>
 
@@ -114,8 +112,10 @@ export const Profile_devices = () => {
 										className='flex w-full gap-[15px] justify-between items-center'
 										onClick={e => e.stopPropagation()}
 									>
-										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
+										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black   after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
 											{t('macBook')}
+											<br />
+											{user.country || ''}
 										</span>
 									</div>
 
@@ -123,8 +123,10 @@ export const Profile_devices = () => {
 										className='flex w-full gap-[15px] justify-between items-center'
 										onClick={e => e.stopPropagation()}
 									>
-										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
+										<span className='text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]'>
 											{t('macBook')}
+											<br />
+											{user.country || ''}
 										</span>
 									</div>
 								</div>
