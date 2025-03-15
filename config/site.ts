@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-	name: 'NextFi | Home',
+	name: 'NextFi | AI Powered Crypto Trading Platform',
 	title: 'NextFi - Crypto Trading Platform',
 	description:
 		'NextFi is a secure, user-friendly crypto trading platform. Join us to start investing with confidence in a wide range of digital assets. Realize your financial potential with NextFi.',
