@@ -110,11 +110,7 @@ export default function Invest_Table() {
 			case 'amount':
 				return (
 					<div className='flex flex-col items-start gap-[5px]'>
-<<<<<<< HEAD
 						<div className='flex items-center gap-[5px] '>
-=======
-						<div className='flex items-center gap-[5px]'>
->>>>>>> main
 							{/* <Snippet
 								symbol=''
 								className='text-bold md:text-[20px] text-small capitalize overflow-ellipsis whitespace-nowrap overflow-hidden bg-transparent px-0'
