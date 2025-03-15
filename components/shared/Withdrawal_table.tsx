@@ -29,11 +29,7 @@ import { useWithdrawStore, Withdraw } from '@/store/useWithdrawalStore'
 import { getWithdrawHistory } from '@/utils/api'
 import { useUserStore } from '@/hooks/useUserData'
 
-const statusColorMap: Record<string, ChipProps['color']> = {
-	1: 'success',
-	2: 'danger',
-	0: 'warning',
-}
+c
 
 const INITIAL_VISIBLE_COLUMNS = [
 	'time',

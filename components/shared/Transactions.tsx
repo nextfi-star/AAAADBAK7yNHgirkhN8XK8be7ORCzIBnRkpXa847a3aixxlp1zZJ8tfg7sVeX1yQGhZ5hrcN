@@ -1,6 +1,7 @@
 import { useUserStore } from '@/hooks/useUserData'
 import { User } from '@/types'
 import { getDepositHistory, getWithdrawHistory } from '@/utils/api'
+import { Chip, ChipProps } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import { useEffect, useMemo, useState } from 'react'
 
@@ -9,6 +10,11 @@ const Transaction = () => {
 	const [transac, setTransac] = useState<User[]>([])
 	const [transac2, setTransac2] = useState<User[]>([])
 	const csrf = useUserStore(state => state.user?.csrf)
+	const statusColorMap: Record<string, ChipProps['color']> = {
+		1: 'success',
+		2: 'danger',
+		0: 'warning',
+	}
 	const fetchDeposits = async () => {
 		if (!csrf) return
 		const result = await getDepositHistory(csrf)
@@ -39,6 +45,7 @@ const Transaction = () => {
 			return () => clearInterval(intervalId)
 		}
 	}, [csrf])
+
 	const data = useMemo(
 		() => [
 			{
@@ -116,9 +123,18 @@ const Transaction = () => {
 										{item.time}
 									</h5>
 								</div>
-								<span className='text-green-700 text-[14px] 2xl:text-[20px]'>
-									{item.amount}
-								</span>
+								<Chip
+									className='capitalize'
+									color={statusColorMap[item.status]}
+									size='sm'
+									variant='flat'
+								>
+									{item.status === 0
+										? 'pending'
+										: item.status === 1
+											? 'sent'
+											: 'denied'}
+								</Chip>
 							</div>
 							<span className='min-h-[1px] w-full bg-white block' />
 						</div>
@@ -129,12 +145,16 @@ const Transaction = () => {
 							<div className='flex items-center w-full justify-between'>
 								<div className='flex flex-col gap-[5px] items-start'>
 									<h5 className='text-[14px] md:text-[20px] 2xl:text-[23px]'>
-										{item.coin}
-										{item.time}
+										Transfer
+										<br />
+										{item.coin}{' '}
+										{new Date(Number(item.time) * 1000).toLocaleDateString(
+											'en-GB'
+										)}
 									</h5>
 								</div>
-								<span className='text-green-700 text-[14px] 2xl:text-[20px]'>
-									{item.amount}
+								<span className='text-danger-700 text-[14px] 2xl:text-[20px]'>
+									-{item.amount}
 								</span>
 							</div>
 							<span className='min-h-[1px] w-full bg-white block' />
