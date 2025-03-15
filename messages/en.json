@@ -373,7 +373,7 @@
 		"next": "Next",
 		"scanQR": "Scan QR code",
 		"launchApp": "Launch the authenticator app and scan",
-		"laucnApp2": "the QR code or enter the key.",
+		"launchApp2": "the QR code or enter the key.",
 		"orCopy": "Or manually enter the code below",
 		"back": "Back",
 		"secAuth": "Security authentication",

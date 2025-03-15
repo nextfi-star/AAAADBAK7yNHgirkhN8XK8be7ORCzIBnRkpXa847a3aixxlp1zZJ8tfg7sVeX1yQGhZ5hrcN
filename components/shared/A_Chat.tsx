@@ -47,11 +47,15 @@ export const A_Chat = () => {
 		if (isOpen && user?.csrf) {
 			setTid(user.uid)
 			loadChatHistory(user.csrf)
+			console.log('open')
+
 			const intervalId = setInterval(() => {
 				loadChatHistory(user.csrf)
-			}, 3000)
+				console.log('Обновление')
+			}, 10000)
 			return () => clearInterval(intervalId)
 		}
+
 	}, [isOpen, user?.csrf, setTid, loadChatHistory])
 
 	const handleSendMessage = async () => {

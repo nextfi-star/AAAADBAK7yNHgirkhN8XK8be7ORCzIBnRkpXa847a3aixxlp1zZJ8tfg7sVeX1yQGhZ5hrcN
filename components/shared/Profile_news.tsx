@@ -5,14 +5,29 @@ import { useTranslations } from 'next-intl'
 
 export const Profile_news = () => {
 	const t = useTranslations('overview')
-	const getCurrentDate = () => {
-    const now = new Date();
-		const day = String(now.getDate()).padStart(2, '0'); 
-		const month = String(now.getMonth() + 1).padStart(2, '0'); 
-		const year = now.getFullYear();
+	const getCurrentTime = () => {
+		const now = new Date()
+		let hours = now.getHours()
+		const minutes = String(now.getMinutes()).padStart(2, '0')
+		const ampm = hours >= 12 ? 'pm' : 'am'
 
-		return `${day}.${month}.${year}`; 
-	};
+		hours = hours % 12 || 12
+
+		return `${hours}:${minutes} ${ampm}`
+	}
+
+	const getCurrentDate = () => {
+		const now = new Date()
+		const day = String(now.getDate()).padStart(2, '0')
+		const month = String(now.getMonth() + 1).padStart(2, '0')
+		const year = now.getFullYear()
+
+		return `${day}.${month}.${year}`
+	}
+	const getCurrentMonthName = () => {
+		const now = new Date()
+		return now.toLocaleString('en-En', { month: 'long' })
+	}
 	const dataNews = useMemo(
 		() => [
 			{
@@ -23,7 +38,7 @@ export const Profile_news = () => {
 		],
 		[]
 	)
-	
+
 	return (
 		<div className='profile-news md:!bg-[#fff] dark:!bg-transparent md:dark:!bg-[#1e1e1e66] shadow-none md:!shadow-medium dark:!shadow-none w-full'>
 			<div className='profile-news-title'>
@@ -32,7 +47,9 @@ export const Profile_news = () => {
 					{t('moreNews')} <ArrowUP />
 				</span>
 			</div>
-			<span className='profile-news-date'>September 25, 2024</span>
+			<span className='profile-news-date'>
+				{getCurrentMonthName() + ' ' + getCurrentDate()}
+			</span>
 			<ul className='profile-news-list'>
 				<li className='profile-news-list-item'>
 					{dataNews.map(news => {
@@ -43,7 +60,7 @@ export const Profile_news = () => {
 								className='profile-news-list-item-link'
 								href='#'
 							>
-								<span className='news-date'>{news.date}</span>
+								<span className='news-date'>{getCurrentTime()}</span>
 								{news.news}
 							</Link>
 						)
