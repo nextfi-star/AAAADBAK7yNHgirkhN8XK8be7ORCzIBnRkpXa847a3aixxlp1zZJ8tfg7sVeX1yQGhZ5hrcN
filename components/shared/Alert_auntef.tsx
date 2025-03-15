@@ -76,6 +76,7 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 			<AlertDialogTrigger asChild>
 				<Button
 					onPress={handleEnable2FA}
+					disabled={!user || user['2fa'] === 1}
 					className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] lg:max-w-[220px] w-full min-h-[28px]'
 				>
 					{propsItem}
