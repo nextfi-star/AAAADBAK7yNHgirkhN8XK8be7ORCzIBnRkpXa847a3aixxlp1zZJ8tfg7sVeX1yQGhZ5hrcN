@@ -25,11 +25,14 @@ import { columnsDataW, statusOptionsDataW, usersDataW } from './data'
 import { capitalize } from './utils'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
 import { useTranslations } from 'next-intl'
-import { useWithdrawStore, Withdraw } from '@/store/useWithdrawalStore'
 import { getWithdrawHistory } from '@/utils/api'
 import { useUserStore } from '@/hooks/useUserData'
 
-c
+const statusColorMap: Record<string, ChipProps['color']> = {
+	1: 'success',
+	2: 'danger',
+	0: 'warning',
+}
 
 const INITIAL_VISIBLE_COLUMNS = [
 	'time',
