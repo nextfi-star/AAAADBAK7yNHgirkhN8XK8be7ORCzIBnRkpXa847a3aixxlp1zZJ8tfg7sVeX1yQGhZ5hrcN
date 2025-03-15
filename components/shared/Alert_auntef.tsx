@@ -30,7 +30,7 @@ interface Props {
 export const Alert_auntef = ({ propsItem }: Props) => {
 	const user = useUserStore(state => state.user)
 	const [loading, setLoading] = useState(false)
-	const { theme } = useThemeStore()
+	const { theme, setTwoFaActive, twoFaActive } = useThemeStore()
 	const t = useTranslations('security')
 	const [inputs, setInputs] = useState({
 		emailAuth: '',
@@ -58,25 +58,26 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 	}
 	const handleVerify = async (e: React.FormEvent) => {
 		e.preventDefault()
-			const result = await verify2FA(user?.csrf, code)
-			setLoading(true)
-			if (result) {
-				console.log('2FA enabled successfully')
-				setLoading(false)
-				localStorage.removeItem('profile-store')
-				localStorage.removeItem('userData')
-				setMessage(result.message)
-				router.push(`/${locale}/login?error=authApp`)
-			} else {
-				console.log(result.message)
+		const result = await verify2FA(user?.csrf, code)
+		setLoading(true)
+		if (result) {
+			console.log('2FA enabled successfully')
+			setLoading(false)
+			setTwoFaActive(true)
+			setMessage(result.message)
+			if(typeof window !== 'undefined') {
+				window.location.reload()
 			}
+		} else {
+			console.log(result.message)
+		}
 	}
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
 				<Button
+					isDisabled={!user || user['2fa'] === 1 || twoFaActive}
 					onPress={handleEnable2FA}
-					disabled={!user || user['2fa'] === 1}
 					className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] lg:max-w-[220px] w-full min-h-[28px]'
 				>
 					{propsItem}

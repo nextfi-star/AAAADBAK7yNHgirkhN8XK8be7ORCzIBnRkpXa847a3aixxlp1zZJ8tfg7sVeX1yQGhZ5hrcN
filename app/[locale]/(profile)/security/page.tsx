@@ -22,11 +22,7 @@ const Security = () => {
 				src: '/main/profile_security/auth_app.svg',
 				title: t('authApp'),
 				desc: t('authDesc'),
-				btn: !user ? (
-					<Spinner />
-				) : (
-					<Alert_auntef propsItem={t('changeAuthApp')} />
-				),
+				btn: <Alert_auntef propsItem={t('changeAuthApp')} />,
 			},
 			{
 				src: '/main/profile_security/phone.svg',
@@ -50,7 +46,7 @@ const Security = () => {
 				contain: '********',
 			},
 		],
-		[twoFaActive]
+		[twoFaActive, user]
 	)
 	const data2 = useMemo(
 		() => [
