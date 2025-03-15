@@ -23,6 +23,7 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 const Login = () => {
+	const user = useUserStore(state => state.user)
 	const t = useTranslations('auth')
 	const schema = yup.object().shape({
 		emailOrPhone: yup
@@ -79,11 +80,49 @@ const Login = () => {
 		}
 	}, [])
 
-	const handleChange = () => {
+	const handleChange = async () => {
 		setIsSubmit(true)
-		const timer = setTimeout(() => {
+		const timer = setTimeout(async () => {
 			setIsSubmit(true)
 			setshowVerifWindow(false)
+			const loginPayload = {
+				email: user?.registerEmail,
+				phone: user?.registerPhone,
+				password: user?.registerPassword,
+				vcode: vcode,
+			}
+			try {
+				const response = await loginUser(loginPayload)
+				if (response.response === 'success') {
+					const userData = response.data
+					if (!userData.uid || !userData.csrf) {
+						throw new Error('Получены некорректные данные пользователя')
+					}
+					useUserStore.getState().setUser(userData)
+					if (userData.csrf) {
+						useUserStore.getState().setCsrf(userData.csrf)
+					}
+					localStorage.setItem('userData', JSON.stringify(userData))
+					if (userData.csrf) {
+						setshowVerifWindow(false)
+						setIsSubmit(false)
+						router.push(`/${locale}/over`)
+					}
+				} else if (response.requires_verif) {
+					setshowVerifWindow(true)
+					setIsSubmit(false)
+				} else if (vcode.length === 0 && vcode.length < 6) {
+					setshowVerifWindow(true)
+					setIsSubmit(false)
+				} else {
+					throw new Error(response.message || 'Ошибка авторизации')
+				}
+			} catch (err: any) {
+				console.log(err.message)
+				setError(err.message)
+			} finally {
+				setIsLoading(false)
+			}
 		}, 3000)
 		return () => clearTimeout(timer)
 	}

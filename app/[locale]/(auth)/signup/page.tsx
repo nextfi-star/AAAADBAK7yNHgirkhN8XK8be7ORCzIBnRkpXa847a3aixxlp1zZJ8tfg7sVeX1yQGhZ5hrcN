@@ -15,6 +15,7 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { Authicons } from '@/components/shared/Authicons'
 import { SecIcon } from '@/components/ui/SecIcon'
+import { useUserStore } from '@/hooks/useUserData'
 
 const SignUp = () => {
 	const t = useTranslations('auth')
@@ -72,6 +73,9 @@ const SignUp = () => {
 		try {
 			const response = await registerUser(payload)
 			if (response.response === 'success') {
+				useUserStore.getState().updateUser({ registerEmail: payload.email })
+				useUserStore.getState().updateUser({ registerPhone: payload.phone })
+				useUserStore.getState().updateUser({ registerPassword: payload.password })
 				router.push(`/${locale}/login`)
 			} else {
 				setError(response.message)
