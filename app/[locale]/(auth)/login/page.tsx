@@ -68,7 +68,7 @@ const Login = () => {
 	const [vcode, setVcode] = useState<string>('')
 	const [state, setState] = useState(false)
 	const [isSubmit, setIsSubmit] = useState(false)
-	const [tfaCode, setTfaCode] = useState('')
+	const [typeError, setTypeError] = useState('')
 
 	useEffect(() => {
 		if (typeof window !== undefined) {
@@ -81,50 +81,59 @@ const Login = () => {
 		}
 	}, [])
 
-	const handleChange = async () => {
+	// const handleChange = async () => {
+	// 	setIsSubmit(true)
+	// 	const timer = setTimeout(async () => {
+	// 		setIsSubmit(true)
+	// 		setshowVerifWindow(false)
+	// 		const loginPayload = {
+	// 			email: user?.registerEmail,
+	// 			phone: user?.registerPhone,
+	// 			password: user?.registerPassword,
+	// 			vcode: vcode,
+	// 		}
+	// 		try {
+	// 			const response = await loginUser(loginPayload)
+	// 			if (response.response === 'success') {
+	// 				const userData = response.data
+	// 				if (!userData.uid || !userData.csrf) {
+	// 					throw new Error('Получены некорректные данные пользователя')
+	// 				}
+	// 				setTwoFaActive(false)
+	// 				useUserStore.getState().setUser(userData)
+	// 				if (userData.csrf) {
+	// 					useUserStore.getState().setCsrf(userData.csrf)
+	// 				}
+	// 				localStorage.setItem('userData', JSON.stringify(userData))
+	// 				if (userData.csrf) {
+	// 					setshowVerifWindow(false)
+	// 					setIsSubmit(false)
+	// 					router.push(`/${locale}/over`)
+	// 				}
+	// 			} else if (response.requires_verif) {
+	// 				setshowVerifWindow(true)
+	// 				setIsSubmit(false)
+	// 			} else if (vcode.length === 0 && vcode.length < 6) {
+	// 				setshowVerifWindow(true)
+	// 				setIsSubmit(false)
+	// 			} else {
+	// 				throw new Error(response.message || 'Ошибка авторизации')
+	// 			}
+	// 		} catch (err: any) {
+	// 			console.log(err.message)
+	// 			setError(err.message)
+	// 		} finally {
+	// 			setIsLoading(false)
+	// 		}
+	// 	}, 3000)
+	// 	return () => clearTimeout(timer)
+	// }
+	const handleChange = () => {
 		setIsSubmit(true)
-		const timer = setTimeout(async () => {
+		const timer = setTimeout(() => {
 			setIsSubmit(true)
 			setshowVerifWindow(false)
-			const loginPayload = {
-				email: user?.registerEmail,
-				phone: user?.registerPhone,
-				password: user?.registerPassword,
-				vcode: vcode,
-			}
-			try {
-				const response = await loginUser(loginPayload)
-				if (response.response === 'success') {
-					const userData = response.data
-					if (!userData.uid || !userData.csrf) {
-						throw new Error('Получены некорректные данные пользователя')
-					}
-					setTwoFaActive(false)
-					useUserStore.getState().setUser(userData)
-					if (userData.csrf) {
-						useUserStore.getState().setCsrf(userData.csrf)
-					}
-					localStorage.setItem('userData', JSON.stringify(userData))
-					if (userData.csrf) {
-						setshowVerifWindow(false)
-						setIsSubmit(false)
-						router.push(`/${locale}/over`)
-					}
-				} else if (response.requires_verif) {
-					setshowVerifWindow(true)
-					setIsSubmit(false)
-				} else if (vcode.length === 0 && vcode.length < 6) {
-					setshowVerifWindow(true)
-					setIsSubmit(false)
-				} else {
-					throw new Error(response.message || 'Ошибка авторизации')
-				}
-			} catch (err: any) {
-				console.log(err.message)
-				setError(err.message)
-			} finally {
-				setIsLoading(false)
-			}
+			setTypeError('')
 		}, 3000)
 		return () => clearTimeout(timer)
 	}
@@ -145,8 +154,18 @@ const Login = () => {
 
 		try {
 			const response = await loginUser(payload)
+			console.log(response)
+			if (response.requires_verif === true) {
+				setTypeError('requires_verif')
+				console.log(typeError)
+			}
+			if (response.requires_2fa === true) {
+				setTypeError('requires_2fa')
+				console.log(typeError)
+			}
 			if (response.response === 'success') {
 				const userData = response.data
+				setTwoFaActive(false)
 
 				if (!userData.uid || !userData.csrf) {
 					throw new Error('Получены некорректные данные пользователя')
@@ -168,10 +187,12 @@ const Login = () => {
 				setshowVerifWindow(true)
 				setIsSubmit(false)
 			} else {
-				throw new Error(response.message || 'Ошибка авторизации')
+				setIsSubmit(false)
+				console.log(response)
+				setError(response.message)
 			}
 		} catch (err: any) {
-			console.log(err.message)
+			console.log(err)
 			setError(err.message)
 		} finally {
 			setIsLoading(false)
@@ -183,7 +204,7 @@ const Login = () => {
 				<Logo_header />
 			</div>
 
-			{showVerifWindow ? (
+			{typeError === 'requires_verif' ? (
 				<div className='form__verify w-full '>
 					<h2>
 						{t('confirmYour')}{' '}
@@ -233,6 +254,46 @@ const Login = () => {
 						{t('notRecieved')} <a href=''>{t('email')}</a>
 					</span>
 				</div>
+			) : typeError === 'requires_2fa' ? (
+				<div className='form__verify w-full '>
+				<h2>
+				Enter the 2FA code
+				</h2>
+				<p>
+				Enter the 6-digit two-factor authentication code. To get the code, check the 2fa app.
+				</p>
+				<span>{t('enterCd')}:</span>
+				<div className='flex flex-col w-full justify-center items-center gap-[20px]'>
+					<InputOTP
+						maxLength={6}
+						pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
+						value={vcode}
+						onChange={value => setVcode(value)}
+					>
+						<InputOTPGroup>
+							{Array.from({ length: 6 }).map((_, index) => (
+								<InputOTPSlot
+									key={index}
+									className='border-1 border-solid border-gray-500 text-[16px] p-[25px] text-[#0c0c0c] dark:text-[#ffffff]'
+									index={index}
+								/>
+							))}
+						</InputOTPGroup>
+					</InputOTP>
+					{error && <p className='text-danger'>{error}</p>}
+					<Button
+						onPress={handleChange}
+						disabled={vcode.length < 6 || isSubmit}
+						className={`next__btn ${
+							vcode.length >= 6
+								? '!bg-[#205bc9] !border-[#205bc9]'
+								: '!bg-gray-600 !border-gray-600'
+						}`}
+					>
+						{isSubmit ? <Spinner /> : t('next')}
+					</Button>
+				</div>
+			</div>
 			) : (
 				<>
 					<div className='switch-mode relative z-[9999]'>
@@ -330,7 +391,6 @@ const Login = () => {
 							/>
 							{t('googleAuth')}
 							<SecIcon cls='lock min-w-[20px] lock' color='black' />
-						
 						</button>
 
 						<Link className='help-signup' href='/signup'>
