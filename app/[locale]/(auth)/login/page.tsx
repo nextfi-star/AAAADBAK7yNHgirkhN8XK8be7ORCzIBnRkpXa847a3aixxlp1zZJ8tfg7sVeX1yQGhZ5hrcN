@@ -68,6 +68,7 @@ const Login = () => {
 	const [state, setState] = useState(false)
 	const [isSubmit, setIsSubmit] = useState(false)
 	const [tfaCode, setTfaCode] = useState('')
+	const [loginWith2fa, setLoginWith2fa] = useState(false)
 
 	useEffect(() => {
 		if (typeof window !== undefined) {
@@ -79,6 +80,48 @@ const Login = () => {
 			}
 		}
 	}, [])
+
+	const handle2faLogin = async () => {
+		try {
+			const loginPayload = {
+				email: user?.loginEmail,
+				phone: user?.loginPhone,
+				password: user?.loginPassword,
+				vcode: user?.loginVcode,
+			}
+			console.log(loginPayload);
+			const response = await loginUser(loginPayload)
+			if (response.response === 'success') {
+				const userData = response.data
+				if (!userData.uid || !userData.csrf) {
+					throw new Error('Получены некорректные данные пользователя')
+				}
+				useUserStore.getState().setUser(userData)
+				if (userData.csrf) {
+					useUserStore.getState().setCsrf(userData.csrf)
+				}
+				localStorage.setItem('userData', JSON.stringify(userData))
+				if (userData.csrf) {
+					setshowVerifWindow(false)
+					setIsSubmit(false)
+					router.push(`/${locale}/over`)
+				}
+			} else if (response.requires_verif) {
+				setshowVerifWindow(true)
+				setIsSubmit(false)
+			} else if (vcode.length === 0 && vcode.length < 6) {
+				setshowVerifWindow(true)
+				setIsSubmit(false)
+			} else {
+				throw new Error(response.message || 'Ошибка авторизации')
+			}
+		} catch (err: any) {
+			console.log(err.message)
+			setError(err.message)
+		} finally {
+			setIsLoading(false)
+		}
+	}
 
 	const handleChange = async () => {
 		setIsSubmit(true)
@@ -93,6 +136,7 @@ const Login = () => {
 			}
 			try {
 				const response = await loginUser(loginPayload)
+				console.log(response)
 				if (response.response === 'success') {
 					const userData = response.data
 					if (!userData.uid || !userData.csrf) {
@@ -103,6 +147,12 @@ const Login = () => {
 						useUserStore.getState().setCsrf(userData.csrf)
 					}
 					localStorage.setItem('userData', JSON.stringify(userData))
+
+					useUserStore.getState().updateUser({ loginEmail: loginPayload?.email })
+					useUserStore.getState().updateUser({ loginPhone: loginPayload?.phone })
+					useUserStore.getState().updateUser({ loginPassword: loginPayload?.password })
+					useUserStore.getState().updateUser({ loginVcode: loginPayload?.vcode })
+
 					if (userData.csrf) {
 						setshowVerifWindow(false)
 						setIsSubmit(false)
@@ -111,6 +161,7 @@ const Login = () => {
 				} else if (response.requires_verif) {
 					setshowVerifWindow(true)
 					setIsSubmit(false)
+					setLoginWith2fa(true)
 				} else if (vcode.length === 0 && vcode.length < 6) {
 					setshowVerifWindow(true)
 					setIsSubmit(false)
@@ -143,6 +194,7 @@ const Login = () => {
 
 		try {
 			const response = await loginUser(payload)
+			console.log(response)
 			if (response.response === 'success') {
 				const userData = response.data
 
@@ -164,6 +216,10 @@ const Login = () => {
 				setIsSubmit(false)
 			} else if (vcode.length === 0 && vcode.length < 6) {
 				setshowVerifWindow(true)
+				setIsSubmit(false)
+			} else if (response.requires_2fa){
+				setshowVerifWindow(true)
+				setLoginWith2fa(true)
 				setIsSubmit(false)
 			} else {
 				throw new Error(response.message || 'Ошибка авторизации')
@@ -216,7 +272,7 @@ const Login = () => {
 						</InputOTP>
 						{error && <p className='text-danger'>{error}</p>}
 						<Button
-							onPress={handleChange}
+							onPress={loginWith2fa ? handle2faLogin: handleChange}
 							disabled={vcode.length < 6 || isSubmit}
 							className={`next__btn ${
 								vcode.length >= 6
