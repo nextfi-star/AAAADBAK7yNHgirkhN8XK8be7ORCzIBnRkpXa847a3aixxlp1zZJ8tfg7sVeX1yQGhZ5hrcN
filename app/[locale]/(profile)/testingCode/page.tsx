@@ -31,14 +31,14 @@ export type InvestPacket = {
 	// Добавляем поле packet, которое определяет тип пакета (например, число от 1 до 5)
 	packet: number
 }
-export type InvestData = {
-	id: number
-	name: string
-	avatar: string
-	value: string
-	periodFrom: string
-	periodTo: string
-}
+// export type InvestData = {
+// 	id: number
+// 	name: string
+// 	avatar: string
+// 	value: string
+// 	periodFrom: string
+// 	periodTo: string
+// }
 export type PeriodData = {
 	id: number
 	name: string
@@ -50,8 +50,8 @@ export type CoinsData = {
 }
 
 interface Props {
-	investData?: InvestData[]
-	periodData?: PeriodData[]
+	investData?: any
+	periodData?: any
 }
 
 const Invest_steps = () => {
@@ -159,11 +159,11 @@ const Invest_steps = () => {
 	const [input3, setInput3] = useState('')
 	// Здесь вместо selectedInvest (из investData) будем хранить выбранный инвест-пакет из API
 	const [selectedInvestPacket, setSelectedInvestPacket] = useState<InvestPacket | null>(null)
-	const [selectedPeriod, setSelectedPeriod] = useState<PeriodData | null>(null)
-	const [selectedCoin, setSelectedCoin] = useState<CoinsData | null>(null)
+	const [selectedPeriod, setSelectedPeriod] = useState<any | null>(null)
+	const [selectedCoin, setSelectedCoin] = useState<any | null>(null)
 	const [open, setOpen] = useState(false)
 	const [openNetwork, setOpenNetwork] = useState(false)
-	const [packets, setPackets] = useState<InvestPacket[]>([])
+	const [packets, setPackets] = useState<any>([])
 	// DropCache оставляем как есть
 	const DropCache = () => {
 		setStep(1)
@@ -186,7 +186,7 @@ const Invest_steps = () => {
 
 	// Группировка пакетов по полю "packet" (например, 1..5)
 	const groupedPackets = useMemo(() => {
-		return packets.reduce((groups: { [key: number]: InvestPacket[] }, pkt) => {
+		return packets.reduce((groups: { [key: number]: any }, pkt: any) => {
 			const key = pkt.packet
 			if (!groups[key]) {
 				groups[key] = []
@@ -227,7 +227,7 @@ const Invest_steps = () => {
 				return many
 		}
 	}
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: any) => {
 		e.preventDefault()
 	
 		// Проверяем, что все обязательные поля заполнены
@@ -342,7 +342,7 @@ const Invest_steps = () => {
 																	Пакет {key} ({formatDuration(group[0].rtime)})
 																</CommandItem>
 																{/* Список вариантов внутри группы */}
-																{group.map((item) => (
+																{group.map((item: any) => (
 																	<CommandItem
 																		key={item.id}
 																		value={item.coin}
