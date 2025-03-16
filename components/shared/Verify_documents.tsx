@@ -213,7 +213,6 @@ export const Verify_documents = ({
 							disabled={!photo || !privacy}
 							onClick={() => {
 								setUploading(true)
-
 								upLoad('upload_verif')
 							}}
 						>

@@ -10,7 +10,7 @@ import ArrowBracket from '../ui/ArrowBracket'
 import { Link } from '@/i18n/routing'
 
 const VerifyAnimation = () => {
-	const { theme, setGlobalVerifState, setLocalVerif } = useThemeStore()
+	const { theme, setGlobalVerifState, setLocalVerif, localVerif } = useThemeStore()
 	const [progress, setProgress] = useState(0)
 	const [showStatus, setShowStatus] = useState(false)
 
@@ -31,7 +31,7 @@ const VerifyAnimation = () => {
 
 	return (
 		<>
-			{showStatus ? (
+			{localVerif ? (
 				<div className='w-full flex flex-col min-h-[100vh]'>
 					<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
 						<Link

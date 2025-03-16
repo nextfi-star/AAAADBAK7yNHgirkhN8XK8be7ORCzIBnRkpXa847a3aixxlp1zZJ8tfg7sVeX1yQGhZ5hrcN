@@ -630,56 +630,85 @@ export const getInvestPackets = async () => {
 		return { success: false, message: 'Ошибка сети' };
 	}
 };
-interface InvestActionPayload {
-	type: string;   
-	coin: string;
-	amount: number;
-	csrf: string;
-	id: number;     
-	packet: number; 
-}
-export const investAction = async (payload: InvestActionPayload) => {
-	try {
-		const response = await fetch('https://nextfi.io:5000/api/v1/invest_action', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(payload)
-		});
-		const result = await response.json();
-
-		if (result.response === 'success') {
-			console.log(result)
-			return { success: true, message: result.message };
-		} else {
-			console.error('❌ Ошибка инвест действия:', result.message);
-			return { success: false, message: result.message };
-		}
-	} catch (error: any) {
-		console.error('❌ Сетевая ошибка:', error);
-		return { success: false, message: 'Ошибка сети' };
-	}
+export type InvestActionPayload = {
+  type: string; // всегда "invest_create" в нашем случае
+  coin: string;
+  amount: number;
+  csrf: string;
+  id: number;     // id инвестиционного пакета (из invest_packets)
+  packet: number; // номер пакета (например, 1..5)
 };
-export const getInvestHistory = async (csrf: string, coin: string) => {
-	try {
-		const response = await fetch('https://nextfi.io:5000/api/v1/history', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ csrf, coin, type: 'invest' })
-		});
-		const result = await response.json();
+export const investAction = async (payload: InvestActionPayload): Promise<{ success: boolean; message: string }> => {
+  try {
+    const response = await fetch('https://nextfi.io:5000/api/v1/invest_action', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const result = await response.json();
+    if (result.response === 'success') {
+      console.log(result);
+      return { success: true, message: result.message };
+    } else {
+      console.error('❌ investAction error:', result.message);
+      return { success: false, message: result.message };
+    }
+  } catch (error: any) {
+    console.error('❌ Network error in investAction:', error);
+    return { success: false, message: 'Ошибка сети' };
+  }
+};
 
-		if (result.response === 'success') {
-			return { success: true, history: result.data };
-		} else {
-			console.error('❌ Ошибка получения истории инвестиций:', result.message);
-			return { success: false, message: result.message };
-		}
-	} catch (error: any) {
-		console.error('❌ Сетевая ошибка:', error);
-		return { success: false, message: 'Ошибка сети' };
-	}
+export const getInvestHistory = async ({
+  coin,
+  csrf,
+  type = 'all', // можно передавать 'invest', 'tx' и т.п. для фильтрации
+}: {
+  coin: string;
+  csrf: string;
+  type?: string;
+}) => {
+  try {
+    const response = await fetch('https://nextfi.io:5000/api/v1/history', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ coin, csrf, type })
+    });
+    const result = await response.json();
+
+    if (result.response === 'success') {
+      return { success: true, data: result.data };
+    } else {
+      console.error('❌ Ошибка получения истории инвестиций:', result.message);
+      return { success: false, message: result.message };
+    }
+  } catch (error: any) {
+    console.error('❌ Сетевая ошибка:', error);
+    return { success: false, message: 'Ошибка сети' };
+  }
+};
+export const resendVerificationCode = async (csrf: string) => {
+  try {
+    const response = await fetch('https://nextfi.io:5000/api/v1/resend', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ csrf })
+    });
+    const result = await response.json();
+
+    if (result.response === 'success') {
+      console.log('Verification code resent:', result);
+      return { success: true, message: result.message, requires_verif: result.requires_verif };
+    } else {
+      console.error('❌ Ошибка resend:', result.message);
+      return { success: false, message: result.message };
+    }
+  } catch (error: any) {
+    console.error('❌ Сетевая ошибка в resend:', error);
+    return { success: false, message: 'Ошибка сети' };
+  }
 };
