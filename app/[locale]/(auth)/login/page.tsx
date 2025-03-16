@@ -56,6 +56,7 @@ const Login = () => {
 		email,
 		phone,
 		showVerifWindow,
+		setTwoFaActive,
 		setshowVerifWindow,
 	} = useThemeStore()
 	const [isLoading, setIsLoading] = useState(false)
@@ -70,17 +71,6 @@ const Login = () => {
 	const [tfaCode, setTfaCode] = useState('')
 	const [loginWith2fa, setLoginWith2fa] = useState(false)
 
-	useEffect(() => {
-		if (typeof window !== undefined) {
-			const params = new URLSearchParams(window.location.search)
-			const sessionError = params.get('error')
-			if (sessionError === 'sessionExpired') {
-				setError(t('userExpired'))
-				setState(false)
-			}
-		}
-	}, [])
-
 	const handle2faLogin = async () => {
 		try {
 			const loginPayload = {
@@ -88,9 +78,11 @@ const Login = () => {
 				phone: user?.loginPhone,
 				password: user?.loginPassword,
 				vcode: user?.loginVcode,
+				'2fa_code': tfaCode
 			}
 			console.log(loginPayload);
 			const response = await loginUser(loginPayload)
+			console.log(response)
 			if (response.response === 'success') {
 				const userData = response.data
 				if (!userData.uid || !userData.csrf) {
@@ -101,6 +93,12 @@ const Login = () => {
 					useUserStore.getState().setCsrf(userData.csrf)
 				}
 				localStorage.setItem('userData', JSON.stringify(userData))
+
+				useUserStore.getState().updateUser({ loginEmail: loginPayload?.email })
+				useUserStore.getState().updateUser({ loginPhone: loginPayload?.phone })
+				useUserStore.getState().updateUser({ loginPassword: loginPayload?.password })
+				useUserStore.getState().updateUser({ loginVcode: loginPayload?.vcode })
+				
 				if (userData.csrf) {
 					setshowVerifWindow(false)
 					setIsSubmit(false)
@@ -123,35 +121,58 @@ const Login = () => {
 		}
 	}
 
+	useEffect(() => {
+		if (typeof window !== undefined) {
+			const params = new URLSearchParams(window.location.search)
+			const sessionError = params.get('error')
+			if (sessionError === 'sessionExpired') {
+				setError(t('userExpired'))
+				setState(false)
+			}
+		}
+	}, [])
+
 	const handleChange = async () => {
 		setIsSubmit(true)
 		const timer = setTimeout(async () => {
 			setIsSubmit(true)
 			setshowVerifWindow(false)
-			const loginPayload = {
+
+			const loginPayload = user?.email ? {
+				email: user?.email,
+				phone: user?.phone,
+				password: user?.password,
+				vcode: vcode,
+			} : user?.loginUsername ? {
+				email: user?.loginEmail,
+				phone: user?.loginPhone,
+				password: user?.loginPassword,
+				vcode: vcode,
+			} : {
 				email: user?.registerEmail,
 				phone: user?.registerPhone,
 				password: user?.registerPassword,
 				vcode: vcode,
 			}
+
+			useUserStore.getState().updateUser({ loginEmail: loginPayload?.email })
+			useUserStore.getState().updateUser({ loginPhone: loginPayload?.phone })
+			useUserStore.getState().updateUser({ loginPassword: loginPayload?.password })
+			useUserStore.getState().updateUser({ loginVcode: loginPayload?.vcode })
+
 			try {
 				const response = await loginUser(loginPayload)
-				console.log(response)
 				if (response.response === 'success') {
 					const userData = response.data
 					if (!userData.uid || !userData.csrf) {
 						throw new Error('Получены некорректные данные пользователя')
 					}
+					setTwoFaActive(false)
 					useUserStore.getState().setUser(userData)
 					if (userData.csrf) {
 						useUserStore.getState().setCsrf(userData.csrf)
 					}
 					localStorage.setItem('userData', JSON.stringify(userData))
-
-					useUserStore.getState().updateUser({ loginEmail: loginPayload?.email })
-					useUserStore.getState().updateUser({ loginPhone: loginPayload?.phone })
-					useUserStore.getState().updateUser({ loginPassword: loginPayload?.password })
-					useUserStore.getState().updateUser({ loginVcode: loginPayload?.vcode })
 
 					if (userData.csrf) {
 						setshowVerifWindow(false)
@@ -159,6 +180,9 @@ const Login = () => {
 						router.push(`/${locale}/over`)
 					}
 				} else if (response.requires_verif) {
+					setshowVerifWindow(true)
+					setIsSubmit(false)
+				} else if (response.requires_2fa) {
 					setshowVerifWindow(true)
 					setIsSubmit(false)
 					setLoginWith2fa(true)
@@ -189,12 +213,16 @@ const Login = () => {
 			'2fa_code': vcode,
 		}
 
+		useUserStore.getState().updateUser({ loginEmail: payload?.email })
+		useUserStore.getState().updateUser({ loginPhone: payload?.phone })
+		useUserStore.getState().updateUser({ loginPassword: payload?.password })
+		useUserStore.getState().updateUser({ loginVcode: payload?.vcode })
+
 		setError(null)
 		setIsLoading(true)
 
 		try {
 			const response = await loginUser(payload)
-			console.log(response)
 			if (response.response === 'success') {
 				const userData = response.data
 
@@ -214,12 +242,13 @@ const Login = () => {
 			} else if (response.requires_verif) {
 				setshowVerifWindow(true)
 				setIsSubmit(false)
-			} else if (vcode.length === 0 && vcode.length < 6) {
+			} else if (response.requires_2fa) {
 				setshowVerifWindow(true)
 				setIsSubmit(false)
-			} else if (response.requires_2fa){
-				setshowVerifWindow(true)
 				setLoginWith2fa(true)
+				setTfaCode(vcode)
+			} else if (vcode.length === 0 && vcode.length < 6) {
+				setshowVerifWindow(true)
 				setIsSubmit(false)
 			} else {
 				throw new Error(response.message || 'Ошибка авторизации')
@@ -257,8 +286,8 @@ const Login = () => {
 						<InputOTP
 							maxLength={6}
 							pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
-							value={vcode}
-							onChange={value => setVcode(value)}
+							value={loginWith2fa ? tfaCode : vcode}
+							onChange={loginWith2fa ? value => setTfaCode(value) : value => setVcode(value)}
 						>
 							<InputOTPGroup>
 								{Array.from({ length: 6 }).map((_, index) => (
@@ -272,14 +301,17 @@ const Login = () => {
 						</InputOTP>
 						{error && <p className='text-danger'>{error}</p>}
 						<Button
-							onPress={loginWith2fa ? handle2faLogin: handleChange}
-							disabled={vcode.length < 6 || isSubmit}
+							onPress={loginWith2fa ? handle2faLogin : handleChange}
+							disabled={loginWith2fa ? tfaCode.length < 6 || isSubmit : vcode.length < 6 || isSubmit}
 							className={`next__btn ${
-								vcode.length >= 6
-									? '!bg-[#205bc9] !border-[#205bc9]'
-									: '!bg-gray-600 !border-gray-600'
-							}`}
-						>
+								loginWith2fa ? (tfaCode.length >= 6
+										? '!bg-[#205bc9] !border-[#205bc9]'
+										: '!bg-gray-600 !border-gray-600'
+									)  : (vcode.length >= 6
+										? '!bg-[#205bc9] !border-[#205bc9]'
+										: '!bg-gray-600 !border-gray-600'
+								)}`}
+							>
 							{isSubmit ? <Spinner /> : t('next')}
 						</Button>
 					</div>
