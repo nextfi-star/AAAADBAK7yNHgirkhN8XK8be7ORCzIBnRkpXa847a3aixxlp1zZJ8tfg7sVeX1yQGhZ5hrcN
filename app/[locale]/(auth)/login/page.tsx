@@ -131,7 +131,7 @@ const Login = () => {
 		}
 	}
 
-	const handleChange = () => {
+	const handleChange = async () => {
 		setIsSubmit(true)
 		const timer = setTimeout(() => {
 			setIsSubmit(true)
