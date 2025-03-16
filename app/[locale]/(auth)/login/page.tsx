@@ -153,7 +153,7 @@ const Login = () => {
 				password: user?.registerPassword,
 				vcode: vcode,
 			}
-
+			console.log(loginPayload);
 			useUserStore.getState().updateUser({ loginEmail: loginPayload?.email })
 			useUserStore.getState().updateUser({ loginPhone: loginPayload?.phone })
 			useUserStore.getState().updateUser({ loginPassword: loginPayload?.password })
@@ -222,13 +222,24 @@ const Login = () => {
 
 		try {
 			const response = await loginUser(payload)
+			console.log(response)
+			if (response.requires_verif === true) {
+				setTypeError('requires_verif')
+				console.log(typeError)
+			}
+			if (response.requires_2fa === true) {
+				setTypeError('requires_2fa')
+				console.log(typeError)
+			}
 			if (response.response === 'success') {
 				const userData = response.data
+				setTwoFaActive(false)
 
 				if (!userData.uid || !userData.csrf) {
 					throw new Error('Получены некорректные данные пользователя')
 				}
 				useUserStore.getState().setUser(userData)
+				useUserStore.getState().updateUser({ password: payload?.password })
 				if (userData.csrf) {
 					useUserStore.getState().setCsrf(userData.csrf)
 				}
@@ -249,10 +260,12 @@ const Login = () => {
 				setshowVerifWindow(true)
 				setIsSubmit(false)
 			} else {
-				throw new Error(response.message || 'Ошибка авторизации')
+				setIsSubmit(false)
+				console.log(response)
+				setError(response.message)
 			}
 		} catch (err: any) {
-			console.log(err.message)
+			console.log(err)
 			setError(err.message)
 		} finally {
 			setIsLoading(false)
@@ -265,7 +278,7 @@ const Login = () => {
 				<Logo_header />
 			</div>
 
-			{typeError === 'requires_verif' ? (
+			{(typeError === 'requires_verif') || (showVerifWindow & (typeError !== 'requires_2fa')) ? (
 				<div className='form__verify w-full '>
 					<h2>
 						{t('confirmYour')}{' '}
