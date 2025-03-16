@@ -29,7 +29,7 @@ import Lottie, { LottieRefCurrentProps } from 'lottie-react'
 import { Check, ChevronsUpDown, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import {  useMemo, useRef, useState } from 'react'
 import { Link } from '@/i18n/routing'
 
 const Verify = () => {
@@ -54,7 +54,7 @@ const Verify = () => {
 	// Получаем данные пользователя из Zustand store
 	const user = useUserStore(state => state.user)
 	const t = useTranslations('verify')
-	const { theme, localVerif, setLocalVerif } = useThemeStore()
+	const { theme, localVerif } = useThemeStore()
 	const [change, SetChange] = useState<boolean>(false)
 	const [open, setOpen] = useState(false)
 	const [openID, setOpenID] = useState(false)
@@ -142,7 +142,7 @@ const Verify = () => {
 			</section>
 		)
 	}
-	if ((user && user.verification === 1)) {
+	if ((user && user.verification === 1) || localVerif) {
 		return (
 		<>
 			<div className='w-full flex flex-col min-h-[100vh]'>

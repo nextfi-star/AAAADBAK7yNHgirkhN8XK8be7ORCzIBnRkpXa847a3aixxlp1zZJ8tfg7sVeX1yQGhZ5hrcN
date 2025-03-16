@@ -12,7 +12,7 @@ import { Input } from '@/components/ui/input'
 import { useUserStore } from '@/hooks/useUserData'
 import { Link } from '@/i18n/routing'
 import { useThemeStore } from '@/store/useChatStore'
-import { changeUserData } from '@/utils/api'
+import { changeUserData, resendVerificationCode } from '@/utils/api'
 import { Button } from '@heroui/button'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
@@ -31,13 +31,11 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 		newPassword: string
 		confirmNew: string
 		emailAuth: string
-		authApp: string
 	}>({
 		currentPassword: '',
 		newPassword: '',
 		confirmNew: '',
 		emailAuth: '',
-		authApp: '',
 	})
 
 	const [checked, setChecked] = useState(false)
@@ -72,8 +70,7 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 			user.csrf,
 			'change_passw',
 			inputs.newPassword,
-			inputs.emailAuth,
-			inputs.authApp
+			inputs.emailAuth
 		)
 
 		if (result.success) {
@@ -83,7 +80,6 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 				newPassword: '',
 				confirmNew: '',
 				emailAuth: '',
-				authApp: '',
 			})
 		} else {
 			setMessage(result.message)
@@ -92,6 +88,20 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 		setLoading(false)
 	}
 	const { theme } = useThemeStore()
+
+	const handleResend = async () => {
+		if (!user?.csrf) {
+			setMessage('CSRF token отсутствует')
+			return
+		}
+		const result = await resendVerificationCode(user.csrf)
+		if (result.success) {
+			console.log(result)
+		} else {
+			setMessage(`Ошибка: ${result.message}`)
+		}
+	}
+
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
@@ -125,7 +135,7 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 					</AlertDialogTitle>
 				</AlertDialogHeader>
 				<div className='flex justify-center gap-[10px] w-full mb-[20px]'>
-					<div className={'flex flex-col max-w-[600px] gap-[20px]'}>
+					<div className={'flex flex-col max-w-[515px] w-full gap-[20px]'}>
 						<AlertDialogDescription className='w-full flex flex-col gap-[10px]'>
 							<label className='text-[#181818] dark:text-white flex flex-col items-start gap-[10px] w-full'>
 								{t('currPass')}
@@ -163,7 +173,7 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 							</label>
 						</AlertDialogDescription>
 						<AlertDialogDescription className='w-full flex flex-col gap-[10px]'>
-							<label className='text-[#181818] dark:text-white flex flex-col items-start gap-[10px] w-full'>
+							<label className='text-[#181818] dark:text-white flex flex-col items-start gap-[10px] w-full relative'>
 								{t('emailAuth')}
 								<Input
 									name='emailAuth'
@@ -172,18 +182,12 @@ export const Alert_logpass = ({ propsItem }: Props) => {
 									onChange={handleChange}
 									className='border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] shadow-none text-[16px] px-[10px] py-[20px] rounded-[30px]'
 								/>
-							</label>
-						</AlertDialogDescription>
-						<AlertDialogDescription className='w-full flex flex-col gap-[10px]'>
-							<label className='text-[#181818] dark:text-white flex flex-col items-start gap-[10px] w-full'>
-								{t('authApp')}
-								<Input
-									name='authApp'
-									placeholder={t('enterAuthApp')}
-									value={inputs.authApp}
-									onChange={handleChange}
-									className='border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] shadow-none text-[16px] px-[10px] py-[20px] rounded-[30px]'
-								/>
+								<Button
+									onPress={handleResend}
+									className='text-[14px] p-0 py-[5px] px-[5px] h-fit absolute bottom-[5px] right-[14px] bg-transparent rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#ffffff] dark:!border-[#4d4d4d]'
+								>
+									{t('sendCode')}
+								</Button>
 							</label>
 						</AlertDialogDescription>
 					</div>

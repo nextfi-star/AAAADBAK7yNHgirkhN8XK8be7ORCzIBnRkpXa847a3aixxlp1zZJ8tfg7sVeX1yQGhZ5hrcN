@@ -67,7 +67,6 @@ export const Alert_email = ({ propsItem }: Props) => {
 			'change_email',
 			inputs.newEmail,
 			inputs.newEmailAuth,
-			inputs.authenticatorApp
 		)
 
 		if (result.success) {
@@ -118,7 +117,7 @@ export const Alert_email = ({ propsItem }: Props) => {
 					</AlertDialogTitle>
 				</AlertDialogHeader>
 				<div className='flex justify-center gap-[10px] w-full mb-[20px]'>
-					<div className='flex flex-col max-w-[600px] gap-[20px]'>
+					<div className='flex flex-col max-w-[512px] w-full gap-[20px]'>
 						<AlertDialogDescription
 							className={'w-full flex flex-col gap-[10px]'}
 						>
