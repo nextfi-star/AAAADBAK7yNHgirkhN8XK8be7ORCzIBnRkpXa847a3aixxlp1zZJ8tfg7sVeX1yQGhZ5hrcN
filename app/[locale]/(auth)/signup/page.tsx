@@ -76,6 +76,7 @@ const SignUp = () => {
 				useUserStore.getState().updateUser({ registerEmail: payload.email })
 				useUserStore.getState().updateUser({ registerPhone: payload.phone })
 				useUserStore.getState().updateUser({ registerPassword: payload.password })
+				useUserStore.getState().updateUser({ lastAuthAction: 'register' })
 				router.push(`/${locale}/login`)
 			} else {
 				setError(response.message)

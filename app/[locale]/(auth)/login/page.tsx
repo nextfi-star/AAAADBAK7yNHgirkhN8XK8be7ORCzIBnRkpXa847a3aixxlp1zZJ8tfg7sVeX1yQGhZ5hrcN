@@ -83,13 +83,18 @@ const Login = () => {
 
 	const handle2faLogin = async () => {
 		try {
-			const loginPayload = {
+			const loginPayload = user?.lastAuthAction === 'login' ? {
 				email: user?.loginEmail,
 				phone: user?.loginPhone,
 				password: user?.loginPassword,
-				vcode: user?.loginVcode,
+				'2fa_code': vcode
+			} : {
+				email: user?.registerEmail,
+				phone: user?.registerPhone,
+				password: user?.registerPassword,
 				'2fa_code': vcode
 			}
+
 			console.log(loginPayload);
 			const response = await loginUser(loginPayload)
 			console.log(response)
@@ -107,7 +112,7 @@ const Login = () => {
 				useUserStore.getState().updateUser({ loginEmail: loginPayload?.email })
 				useUserStore.getState().updateUser({ loginPhone: loginPayload?.phone })
 				useUserStore.getState().updateUser({ loginPassword: loginPayload?.password })
-				useUserStore.getState().updateUser({ loginVcode: loginPayload?.vcode })
+				useUserStore.getState().updateUser({ lastAuthAction: 'login' })
 				
 				if (userData.csrf) {
 					setshowVerifWindow(false)
@@ -136,13 +141,8 @@ const Login = () => {
 		const timer = setTimeout(async () => {
 			setIsSubmit(true)
 			setshowVerifWindow(false)
-
-			const loginPayload = user?.email ? {
-				email: user?.email,
-				phone: user?.phone,
-				password: user?.password,
-				vcode: vcode,
-			} : user?.loginUsername ? {
+			useUserStore.getState().updateUser({ lastAuthAction: 'login' })
+			const loginPayload = user?.lastAuthAction === 'login' ? {
 				email: user?.loginEmail,
 				phone: user?.loginPhone,
 				password: user?.loginPassword,
@@ -153,14 +153,17 @@ const Login = () => {
 				password: user?.registerPassword,
 				vcode: vcode,
 			}
-			console.log(loginPayload);
+
 			useUserStore.getState().updateUser({ loginEmail: loginPayload?.email })
 			useUserStore.getState().updateUser({ loginPhone: loginPayload?.phone })
 			useUserStore.getState().updateUser({ loginPassword: loginPayload?.password })
 			useUserStore.getState().updateUser({ loginVcode: loginPayload?.vcode })
+			useUserStore.getState().updateUser({ lastAuthAction: 'login' })
 
 			try {
+				console.log(loginPayload)
 				const response = await loginUser(loginPayload)
+				console.log(response)
 				if (response.response === 'success') {
 					const userData = response.data
 					if (!userData.uid || !userData.csrf) {
@@ -216,6 +219,7 @@ const Login = () => {
 		useUserStore.getState().updateUser({ loginPhone: payload?.phone })
 		useUserStore.getState().updateUser({ loginPassword: payload?.password })
 		useUserStore.getState().updateUser({ loginVcode: payload?.vcode })
+		useUserStore.getState().updateUser({ lastAuthAction: 'login' })
 
 		setError(null)
 		setIsLoading(true)
@@ -277,8 +281,47 @@ const Login = () => {
 			<div className='form__wrapper-title'>
 				<Logo_header />
 			</div>
-
-			{((typeError === 'requires_verif') || (showVerifWindow & (typeError !== 'requires_2fa'))) ? (
+			{typeError === 'requires_2fa' ? (
+				<div className='form__verify w-full '>
+				<h2>
+				Enter the 2FA code
+				</h2>
+				<p>
+				Enter the 6-digit two-factor authentication code. To get the code, check the 2fa app.
+				</p>
+				<span>{t('enterCd')}:</span>
+				<div className='flex flex-col w-full justify-center items-center gap-[20px]'>
+					<InputOTP
+						maxLength={6}
+						pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
+						value={vcode}
+						onChange={value => setVcode(value)}
+					>
+						<InputOTPGroup>
+							{Array.from({ length: 6 }).map((_, index) => (
+								<InputOTPSlot
+									key={index}
+									className='border-1 border-solid border-gray-500 text-[16px] p-[25px] text-[#0c0c0c] dark:text-[#ffffff]'
+									index={index}
+								/>
+							))}
+						</InputOTPGroup>
+					</InputOTP>
+					{error && <p className='text-danger'>{error}</p>}
+					<Button
+						onPress={handle2faLogin}
+						disabled={vcode.length < 6 || isSubmit}
+						className={`next__btn ${
+							vcode.length >= 6
+								? '!bg-[#205bc9] !border-[#205bc9]'
+								: '!bg-gray-600 !border-gray-600'
+						}`}
+					>
+						{isSubmit ? <Spinner /> : t('next')}
+					</Button>
+				</div>
+			</div>
+			) : typeError === 'requires_verif' || showVerifWindow ? (
 				<div className='form__verify w-full '>
 					<h2>
 						{t('confirmYour')}{' '}
@@ -328,46 +371,6 @@ const Login = () => {
 						{t('notRecieved')} <a href=''>{t('email')}</a>
 					</span>
 				</div>
-			) : typeError === 'requires_2fa' ? (
-				<div className='form__verify w-full '>
-				<h2>
-				Enter the 2FA code
-				</h2>
-				<p>
-				Enter the 6-digit two-factor authentication code. To get the code, check the 2fa app.
-				</p>
-				<span>{t('enterCd')}:</span>
-				<div className='flex flex-col w-full justify-center items-center gap-[20px]'>
-					<InputOTP
-						maxLength={6}
-						pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
-						value={vcode}
-						onChange={value => setVcode(value)}
-					>
-						<InputOTPGroup>
-							{Array.from({ length: 6 }).map((_, index) => (
-								<InputOTPSlot
-									key={index}
-									className='border-1 border-solid border-gray-500 text-[16px] p-[25px] text-[#0c0c0c] dark:text-[#ffffff]'
-									index={index}
-								/>
-							))}
-						</InputOTPGroup>
-					</InputOTP>
-					{error && <p className='text-danger'>{error}</p>}
-					<Button
-						onPress={handle2faLogin}
-						disabled={vcode.length < 6 || isSubmit}
-						className={`next__btn ${
-							vcode.length >= 6
-								? '!bg-[#205bc9] !border-[#205bc9]'
-								: '!bg-gray-600 !border-gray-600'
-						}`}
-					>
-						{isSubmit ? <Spinner /> : t('next')}
-					</Button>
-				</div>
-			</div>
 			) : (
 				<>
 					<div className='switch-mode relative z-[9999]'>
