@@ -21,6 +21,7 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { useState } from 'react'
 import ArrowBracket from '../ui/ArrowBracket'
+import { useParams, useRouter } from 'next/navigation'
 
 interface Props {
 	propsItem: React.ReactNode
@@ -28,8 +29,8 @@ interface Props {
 
 export const Alert_auntef = ({ propsItem }: Props) => {
 	const user = useUserStore(state => state.user)
-	const [disabled, setDisabled] = useState(false)
-	const { theme, twoFaActive, setTwoFaActive } = useThemeStore()
+	const [loading, setLoading] = useState(false)
+	const { theme, setTwoFaActive, twoFaActive } = useThemeStore()
 	const t = useTranslations('security')
 	const [inputs, setInputs] = useState({
 		emailAuth: '',
@@ -39,6 +40,8 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 	const [step, setStep] = useState<number>(1)
 	const [message, setMessage] = useState('')
 	const [code, setCode] = useState('')
+	const router = useRouter()
+	const locale = useParams().locale
 	const handleEnable2FA = async () => {
 		const csrf = user?.csrf || ''
 		if (!csrf) {
@@ -55,26 +58,25 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 	}
 	const handleVerify = async (e: React.FormEvent) => {
 		e.preventDefault()
-		try {
-			const result = await verify2FA(user?.csrf, code)
+		const result = await verify2FA(user?.csrf, code)
+		setLoading(true)
+		if (result) {
 			console.log('2FA enabled successfully')
-			setDisabled(true)
+			setLoading(false)
 			setTwoFaActive(true)
 			setMessage(result.message)
-			if (typeof window !== 'undefined') {
+			if(typeof window !== 'undefined') {
 				window.location.reload()
 			}
-		} catch (error: any) {
-			console.log(error)
-			setMessage(error.message)
+		} else {
+			console.log(result.message)
 		}
 	}
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
 				<Button
-					isDisabled={twoFaActive}
-					disabled={twoFaActive}
+					isDisabled={!user || user['2fa'] === 1 || twoFaActive}
 					onPress={handleEnable2FA}
 					className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] lg:max-w-[220px] w-full min-h-[28px]'
 				>
@@ -297,9 +299,10 @@ export const Alert_auntef = ({ propsItem }: Props) => {
 												</Button>
 
 												<Button
-													isDisabled={disabled}
+													isLoading={loading}
+													isDisabled={code.length < 6}
 													type='submit'
-													className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] !w-fit ${inputs.currentAuth.length < 3 ? '!bg-transparent' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
+													className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px]  dark:!text-[#eeeeee] min-w-[115px] xl:min-w-[150px] xl:max-w-[150px] !w-fit ${inputs.currentAuth.length < 3 ? '!bg-[#205BC9]' : '!bg-[#205BC9] !border-[#205bc9] dark:!border-[#205bc9] !text-[#fff]'}`}
 													onPress={() => {
 														setInputs(prev => ({
 															...prev,

@@ -131,9 +131,9 @@ const Login = () => {
 		}
 	}
 
-	const handleChange = async () => {
+	const handleChange = () => {
 		setIsSubmit(true)
-		const timer = setTimeout(async () => {
+		const timer = setTimeout(() => {
 			setIsSubmit(true)
 			setshowVerifWindow(false)
 
@@ -222,8 +222,18 @@ const Login = () => {
 
 		try {
 			const response = await loginUser(payload)
+			console.log(response)
+			if (response.requires_verif === true) {
+				setTypeError('requires_verif')
+				console.log(typeError)
+			}
+			if (response.requires_2fa === true) {
+				setTypeError('requires_2fa')
+				console.log(typeError)
+			}
 			if (response.response === 'success') {
 				const userData = response.data
+				setTwoFaActive(false)
 
 				if (!userData.uid || !userData.csrf) {
 					throw new Error('Получены некорректные данные пользователя')
@@ -249,10 +259,12 @@ const Login = () => {
 				setshowVerifWindow(true)
 				setIsSubmit(false)
 			} else {
-				throw new Error(response.message || 'Ошибка авторизации')
+				setIsSubmit(false)
+				console.log(response)
+				setError(response.message)
 			}
 		} catch (err: any) {
-			console.log(err.message)
+			console.log(err)
 			setError(err.message)
 		} finally {
 			setIsLoading(false)
