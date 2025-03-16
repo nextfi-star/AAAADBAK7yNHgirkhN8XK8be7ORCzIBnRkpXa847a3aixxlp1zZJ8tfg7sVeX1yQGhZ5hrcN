@@ -16,8 +16,8 @@ import { Cross2Icon } from '@radix-ui/react-icons'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { Checkbox } from './Checkbox'
-import { InvestData } from './Invest_steps'
 import Withdrawal_animation from './Withdrawal_animation'
+import { InvestData } from './Invest_steps'
 
 interface Props {
 	titleTrigger: string
@@ -119,80 +119,11 @@ export const Invest_confirmation = ({
 							</Button>
 						</DialogClose>
 						<Button
-							onClick={() => setConfirmStep(2)}
 							type='button'
 							variant='secondary'
 							className='bg-[#205BC9] text-white w-fit rounded-[50px] hover:bg-[#205BC9] min-w-[124px]'
 						>
 							{t('contin')}
-						</Button>
-					</DialogFooter>
-				</DialogContent>
-			)}
-
-			{confirmationStep === 2 && (
-				<DialogContent className='max-w-[90%] md:max-w-[38rem]  w-full p-0 rounded-[20px]'>
-					<DialogHeader>
-						<DialogTitle className='text-[25px] md:text-[32px] p-[20px_41px_19px] flex items-center justify-between w-full'>
-							{t('secVerf')}
-							<DialogClose asChild>
-								<Cross2Icon className='h-[32px] w-[32px]' />
-							</DialogClose>
-						</DialogTitle>
-						<Divider className='m-0' />
-						<div className='p-[21px] flex flex-col gap-[28px]'>
-							<article className='rounded-[6px] flex flex-col gap-[28px] py-[21px]'>
-								<div className='flex flex-col gap-[36px]'>
-									<label className='flex flex-col gap-[8px]'>
-										<div className='flex items-start gap-[10px]'>
-											<Image
-												src={'/main/withdraw_confirmation/mail.svg'}
-												className='min-w-[28px] rounded-none'
-											/>
-											<DialogDescription className='text-[20px] text-[#888888]'>
-												{t('verifCode')}
-											</DialogDescription>
-										</div>
-										<div className='relative w-full'>
-											<input
-												type='text'
-												placeholder='Please enter the email verification'
-												className='text-[16px] bg-[#7676801F] rounded-[20px] h-[50px] px-[15px] w-full'
-											/>
-											<p className='text-[#205BC9] font-bold text-[16px] absolute top-[13px] right-[17px]'>
-												{t('sendCode')}
-											</p>
-										</div>
-									</label>
-									<label className='flex flex-col gap-[8px]'>
-										<div className='flex items-start gap-[10px]'>
-											<Image
-												src={'/main/withdraw_confirmation/google.svg'}
-												className='min-w-[28px] rounded-none'
-											/>
-											<DialogDescription className='text-[20px] text-[#888888]'>
-												{t('2fa')}
-											</DialogDescription>
-										</div>
-										<input
-											type='text'
-											placeholder='Please enter the Google Aunteficator code'
-											className='text-[16px] bg-[#7676801F] rounded-[20px] h-[50px] px-[15px]'
-										/>
-									</label>
-								</div>
-							</article>
-						</div>
-					</DialogHeader>
-					<Divider className='m-0' />
-					<DialogFooter className='flex flex-row justify-center items-center gap-[15px] p-[30px_40px]'>
-						<Button
-							onClick={() => setConfirmStep(3)}
-							type='button'
-							variant='secondary'
-							className='bg-[#205BC9] w-full text-white rounded-[50px] hover:bg-[#205BC9] min-w-[124px] h-[48px] flex items-center justify-center'
-						>
-							{t('comfirm')}
 						</Button>
 					</DialogFooter>
 				</DialogContent>

@@ -29,12 +29,13 @@ export const Logout_confirmation = ({
 	sure,
 	unDone,
 }: Props) => {
-	const { setEmail, setPassword, clearUser } = useThemeStore()
+	const { setEmail, setPassword, clearUser, setTwoFaActive } = useThemeStore()
 	const router = useRouter()
 	const locale = useParams().locale
 	const t = useTranslations('burger')
 	const handleLogout = () => {
 		clearUser()
+		setTwoFaActive(false)
 		localStorage.removeItem('profile-store')
 		localStorage.removeItem('userData')
 		setEmail('')
