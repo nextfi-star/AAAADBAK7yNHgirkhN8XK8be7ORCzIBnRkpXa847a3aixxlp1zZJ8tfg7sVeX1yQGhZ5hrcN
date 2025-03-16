@@ -20,8 +20,7 @@ export const Invest_Faq = () => {
 			},
 			{
 				title: t('whichCrypto'),
-				content:
-					t('whichCrypto2'),
+				content: t('whichCrypto2'),
 				id: 22,
 				val: '22',
 			},
@@ -39,8 +38,7 @@ export const Invest_Faq = () => {
 			},
 			{
 				title: t('depositCrypto'),
-				content:
-					t('depositCrypto2'),
+				content: t('depositCrypto2'),
 				id: 4,
 				val: '4',
 			},
@@ -48,7 +46,8 @@ export const Invest_Faq = () => {
 		[]
 	)
 	return (
-		<div className='bg-[#FFFFFF] dark:bg-[#1e1e1e66] md:shadow-medium dark:shadow-none w-full p-[26px_16px] md:p-[26px_36px_6px] rounded-[30px]'>
+		<div className='shadow-medium dark:shadow-none dark:bg-[#181818] rounded-[30px] p-[40px_44px] h-fit'>
+			<h5 className='text-[18px] md:text-[32px] mb-[23px]'>{t('faq')}</h5>
 			<Accordion
 				collapsible
 				className='w-full flex flex-col items-center justify-between'

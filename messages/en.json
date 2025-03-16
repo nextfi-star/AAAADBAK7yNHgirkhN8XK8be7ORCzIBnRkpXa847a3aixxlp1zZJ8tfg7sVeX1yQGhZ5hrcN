@@ -649,7 +649,8 @@
 		"whereCrypto": "What percentage can I get when investing on the platform?`",
 		"whereCrypto2": "The maximum return on invested funds that you can receive is 14 percent.`",
 		"depositCrypto": "Can I withdraw my investment early?",
-		"depositCrypto2": "You can withdraw funds invested in the investment industry at any time convenient for you, taking into account the commission for early withdrawal."
+		"depositCrypto2": "You can withdraw funds invested in the investment industry at any time convenient for you, taking into account the commission for early withdrawal.",
+		"faq":"FAQ"
 	},
 	"withdrawal": {
 		"enterAmount": "Enter amount",

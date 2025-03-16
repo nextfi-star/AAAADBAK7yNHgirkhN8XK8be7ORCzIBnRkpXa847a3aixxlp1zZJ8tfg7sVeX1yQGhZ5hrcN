@@ -17,19 +17,28 @@ import {
 	TableHeader,
 	TableRow,
 	User,
-} from "@heroui/react"
-import React from 'react'
+} from '@heroui/react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { ChevronDownIcon } from './ChevronDownIcon'
 import { columnsDataI, statusOptionsDataI, usersDataI } from './data'
 import { capitalize } from './utils'
 import { VerticalDotsIcon } from './VerticalDotsIcon'
+import { useUserStore } from '@/hooks/useUserData'
+import { getInvestHistory } from '@/utils/api'
 
 const statusColorMap: Record<string, ChipProps['color']> = {
 	sent: 'success',
 	denied: 'danger',
 	pending: 'warning',
 }
-
+type HistoryItem = {
+  id: number
+  type: string
+  coin: string
+  amount: number
+  create_time: number
+  // можно добавить другие поля, возвращаемые сервером
+}
 const INITIAL_VISIBLE_COLUMNS = [
 	'industry',
 	'amount',
@@ -40,6 +49,29 @@ const INITIAL_VISIBLE_COLUMNS = [
 type User = (typeof usersDataI)[0]
 
 export default function Invest_Table() {
+	const csrf = useUserStore(state => state.user?.csrf)
+	const [history, setHistory] = useState<HistoryItem[]>([])
+	const [loading, setLoading] = useState<boolean>(false)
+	const [error, setError] = useState<string>('')
+	const fetchHistory = useCallback(async () => {
+		if (!csrf) return
+		setLoading(true)
+		setError('')
+
+		const result = await getInvestHistory({ coin: 'BTC', csrf, type: 'invest' })
+		if (result.success) {
+			setHistory(result.data)
+		} else {
+			setError(result.message)
+		}
+		setLoading(false)
+	}, [csrf])
+
+	useEffect(() => {
+		fetchHistory()
+		console.log(history)
+	}, [fetchHistory])
+
 	const [filterValue, setFilterValue] = React.useState('')
 	const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
 		new Set(INITIAL_VISIBLE_COLUMNS)
@@ -63,11 +95,11 @@ export default function Invest_Table() {
 	}, [visibleColumns])
 
 	const filteredItems = React.useMemo(() => {
-		let filteredUsers = [...usersDataI]
+		let filteredUsers = [...history]
 
 		if (hasSearchFilter) {
 			filteredUsers = filteredUsers.filter(user =>
-				user.industry.toLowerCase().includes(filterValue.toLowerCase())
+				user.type.toLowerCase().includes(filterValue.toLowerCase())
 			)
 		}
 		if (
@@ -75,12 +107,12 @@ export default function Invest_Table() {
 			Array.from(statusFilter).length !== statusOptionsDataI.length
 		) {
 			filteredUsers = filteredUsers.filter(user =>
-				Array.from(statusFilter).includes(user.status)
+				Array.from(statusFilter).includes(user.type)
 			)
 		}
 
 		return filteredUsers
-	}, [usersDataI, filterValue, statusFilter])
+	}, [history, filterValue, statusFilter])
 
 	const pages = Math.ceil(filteredItems.length / rowsPerPage)
 
@@ -115,7 +147,7 @@ export default function Invest_Table() {
 								symbol=''
 								className='text-bold md:text-[20px] text-small capitalize overflow-ellipsis whitespace-nowrap overflow-hidden bg-transparent px-0'
 							> */}
-								{user.amount}
+							{user.amount}
 							{/* </Snippet> */}
 						</div>
 						{/* <span className='md:text-[20px] font-medium text-[#BDBDBD]'>
@@ -237,7 +269,7 @@ export default function Invest_Table() {
 		visibleColumns,
 		onSearchChange,
 		onRowsPerPageChange,
-		usersDataI.length,
+		history.length,
 		hasSearchFilter,
 	])
 

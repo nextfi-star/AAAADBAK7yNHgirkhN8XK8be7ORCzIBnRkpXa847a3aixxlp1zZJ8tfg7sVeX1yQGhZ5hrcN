@@ -10,7 +10,6 @@ import { useMemo } from 'react'
 import { useUserStore } from '@/hooks/useUserData'
 import { useTranslations } from 'next-intl'
 import { useThemeStore } from '@/store/useChatStore'
-import { Spinner } from '@heroui/spinner'
 
 const Security = () => {
 	const user = useUserStore(state => state.user)

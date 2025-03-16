@@ -87,29 +87,37 @@ const Invest_steps = () => {
 				periodFrom: '30',
 				periodTo: '80',
 			},
-		],
-		[]
-	)
-	const periodData = useMemo(
-		() => [
 			{
-				id: 1,
-				name: '30',
-				percent: '1.7',
-			},
-			{
-				id: 2,
-				name: '50',
-				percent: '2.2',
-			},
-			{
-				id: 3,
-				name: '80',
-				percent: '3.6',
+				id: 6,
+				name: 'Corporate Bonds',
+				avatar: '/main/invest/bonds.svg',
+				value: 'bonds',
+				periodFrom: '30',
+				periodTo: '80',
 			},
 		],
 		[]
 	)
+	// const periodData = useMemo(
+	// 	() => [
+	// 		{
+	// 			id: 1,
+	// 			name: '30',
+	// 			percent: '1.7',
+	// 		},
+	// 		{
+	// 			id: 2,
+	// 			name: '50',
+	// 			percent: '2.2',
+	// 		},
+	// 		{
+	// 			id: 3,
+	// 			name: '80',
+	// 			percent: '3.6',
+	// 		},
+	// 	],
+	// 	[]
+	// )
 	const coins = useMemo(
 		() => [
 			{
@@ -139,7 +147,7 @@ const Invest_steps = () => {
 		],
 		[]
 	)
-	const csrf = useUserStore((state) => state.csrf)
+	const csrf = useUserStore(state => state.csrf)
 	const t = useTranslations('invest')
 	const {
 		step,
@@ -162,55 +170,51 @@ const Invest_steps = () => {
 	const [packets, setPackets] = useState<InvestPacket[]>([])
 	const [coinsData, setCoinsData] = useState<CoinsData[]>([])
 	const [packets2, setPacket2s] = useState<InvestPacket[]>([])
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
+	
 	const DropCache = () => {
 		setStep(1)
 		setInputStep2('')
 		setSelectedInvest(null)
 	}
+	const periodData: PeriodData[] = [
+    { id: 1, name: '30', percent: '1.7' },
+    { id: 2, name: '50', percent: '2.2' },
+    { id: 3, name: '80', percent: '3.6' },
+  ];
 	useEffect(() => {
-		const fetchPackets = async () => {
-			const result = await getInvestPackets()
-			if (result.success) {
-				console.log(result)
-				setPackets(result.packets)
-			} else {
-			}
-		}
-		fetchPackets()
-	}, [])
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
-	
-		// Проверяем, что все обязательные поля заполнены
-		if (!selectedInvest || !selectedCoin || !input3) {
-			console.log('Пожалуйста, заполните все обязательные поля')
-			return
-		}
-	
-		// Формируем payload для запроса, используя выбранный инвест-пакет (selectedInvest)
-		const payload: any = {
-			type: 'invest_create', // или 'invest_close'
-			coin: selectedCoin.name,
-			amount: parseFloat(input3),
-			csrf, // CSRF-токен из useUserStore
-			id: selectedInvest.id,
-			// Если у объекта selectedInvest отсутствует поле packet, можно использовать его id, если он соответствует требованиям сервера (1-5)
-			packet: selectedInvest.id,
-		}
-	
-		try {
-			const result = await investAction(payload)
-			if (result.success) {
-				console.log(result)
-			} else {
-				console.log(`Ошибка: ${result.message}`)
-			}
-		} catch (error: any) {
-			console.log('Ошибка при выполнении запроса')
-		}
-	}
-	
-	
+    const fetchPackets = async () => {
+      try {
+        const res = await fetch('https://nextfi.io:5000/api/v1/invest_packets', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        const data = await res.json();
+        if (data.response === 'success') {
+          setPackets(data.data);
+        } else {
+          setError(data.message);
+        }
+      } catch (err: any) {
+        setError('Ошибка сети');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPackets();
+  }, []);
+  const groupedPackets = useMemo(() => {
+    // Создаём объект, где ключ – число дней, а значение – массив пакетов
+    const groups: { [days: number]: InvestPacket[] } = {};
+    periodData.forEach(period => {
+      const days = parseInt(period.name, 10);
+      groups[days] = packets.filter(packet => Math.floor(packet.rtime / 86400) === days);
+    });
+    return groups;
+  }, [packets, periodData]);
 	return (
 		<div className='shadow-none dark:shadow-none rounded-[30px] p-[0px_16px_29px_16px] md:p-[0px_29px_29px_29px]'>
 			<div className='flex justify-start gap-[10px] w-full pb-[1.5rem]'>
