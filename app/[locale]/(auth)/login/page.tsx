@@ -68,18 +68,33 @@ const Login = () => {
 	const [vcode, setVcode] = useState<string>('')
 	const [state, setState] = useState(false)
 	const [isSubmit, setIsSubmit] = useState(false)
-	const [tfaCode, setTfaCode] = useState('')
-	const [loginWith2fa, setLoginWith2fa] = useState(false)
+	const [typeError, setTypeError] = useState('')
+
+	useEffect(() => {
+		if (typeof window !== undefined) {
+			const params = new URLSearchParams(window.location.search)
+			const sessionError = params.get('error')
+			if (sessionError === 'sessionExpired') {
+				setError(t('userExpired'))
+				setState(false)
+			}
+		}
+	}, [])
 
 	const handle2faLogin = async () => {
 		try {
-			const loginPayload = {
+			const loginPayload = user?.lastAuthAction === 'login' ? {
 				email: user?.loginEmail,
 				phone: user?.loginPhone,
 				password: user?.loginPassword,
-				vcode: user?.loginVcode,
-				'2fa_code': tfaCode
+				'2fa_code': vcode
+			} : {
+				email: user?.registerEmail,
+				phone: user?.registerPhone,
+				password: user?.registerPassword,
+				'2fa_code': vcode
 			}
+
 			console.log(loginPayload);
 			const response = await loginUser(loginPayload)
 			console.log(response)
@@ -97,7 +112,7 @@ const Login = () => {
 				useUserStore.getState().updateUser({ loginEmail: loginPayload?.email })
 				useUserStore.getState().updateUser({ loginPhone: loginPayload?.phone })
 				useUserStore.getState().updateUser({ loginPassword: loginPayload?.password })
-				useUserStore.getState().updateUser({ loginVcode: loginPayload?.vcode })
+				useUserStore.getState().updateUser({ lastAuthAction: 'login' })
 				
 				if (userData.csrf) {
 					setshowVerifWindow(false)
@@ -121,29 +136,13 @@ const Login = () => {
 		}
 	}
 
-	useEffect(() => {
-		if (typeof window !== undefined) {
-			const params = new URLSearchParams(window.location.search)
-			const sessionError = params.get('error')
-			if (sessionError === 'sessionExpired') {
-				setError(t('userExpired'))
-				setState(false)
-			}
-		}
-	}, [])
-
 	const handleChange = async () => {
 		setIsSubmit(true)
 		const timer = setTimeout(async () => {
 			setIsSubmit(true)
 			setshowVerifWindow(false)
 
-			const loginPayload = user?.email ? {
-				email: user?.email,
-				phone: user?.phone,
-				password: user?.password,
-				vcode: vcode,
-			} : user?.loginUsername ? {
+			const loginPayload = user?.lastAuthAction === 'login' ? {
 				email: user?.loginEmail,
 				phone: user?.loginPhone,
 				password: user?.loginPassword,
@@ -159,9 +158,12 @@ const Login = () => {
 			useUserStore.getState().updateUser({ loginPhone: loginPayload?.phone })
 			useUserStore.getState().updateUser({ loginPassword: loginPayload?.password })
 			useUserStore.getState().updateUser({ loginVcode: loginPayload?.vcode })
+			useUserStore.getState().updateUser({ lastAuthAction: 'login' })
 
 			try {
+				console.log(loginPayload)
 				const response = await loginUser(loginPayload)
+				console.log(response)
 				if (response.response === 'success') {
 					const userData = response.data
 					if (!userData.uid || !userData.csrf) {
@@ -185,7 +187,7 @@ const Login = () => {
 				} else if (response.requires_2fa) {
 					setshowVerifWindow(true)
 					setIsSubmit(false)
-					setLoginWith2fa(true)
+					setTypeError('requires_2fa')
 				} else if (vcode.length === 0 && vcode.length < 6) {
 					setshowVerifWindow(true)
 					setIsSubmit(false)
@@ -217,19 +219,31 @@ const Login = () => {
 		useUserStore.getState().updateUser({ loginPhone: payload?.phone })
 		useUserStore.getState().updateUser({ loginPassword: payload?.password })
 		useUserStore.getState().updateUser({ loginVcode: payload?.vcode })
+		useUserStore.getState().updateUser({ lastAuthAction: 'login' })
 
 		setError(null)
 		setIsLoading(true)
 
 		try {
 			const response = await loginUser(payload)
+			console.log(response)
+			if (response.requires_verif === true) {
+				setTypeError('requires_verif')
+				console.log(typeError)
+			}
+			if (response.requires_2fa === true) {
+				setTypeError('requires_2fa')
+				console.log(typeError)
+			}
 			if (response.response === 'success') {
 				const userData = response.data
+				setTwoFaActive(false)
 
 				if (!userData.uid || !userData.csrf) {
 					throw new Error('Получены некорректные данные пользователя')
 				}
 				useUserStore.getState().setUser(userData)
+				useUserStore.getState().updateUser({ password: payload?.password })
 				if (userData.csrf) {
 					useUserStore.getState().setCsrf(userData.csrf)
 				}
@@ -245,28 +259,69 @@ const Login = () => {
 			} else if (response.requires_2fa) {
 				setshowVerifWindow(true)
 				setIsSubmit(false)
-				setLoginWith2fa(true)
-				setTfaCode(vcode)
+				setTypeError('requires_2fa')
 			} else if (vcode.length === 0 && vcode.length < 6) {
 				setshowVerifWindow(true)
 				setIsSubmit(false)
 			} else {
-				throw new Error(response.message || 'Ошибка авторизации')
+				setIsSubmit(false)
+				console.log(response)
+				setError(response.message)
 			}
 		} catch (err: any) {
-			console.log(err.message)
+			console.log(err)
 			setError(err.message)
 		} finally {
 			setIsLoading(false)
 		}
 	}
+
 	return (
 		<div className='form__wrapper flex flex-col justify-between gap-[20px]'>
 			<div className='form__wrapper-title'>
 				<Logo_header />
 			</div>
-
-			{showVerifWindow ? (
+			{typeError === 'requires_2fa' ? (
+				<div className='form__verify w-full '>
+				<h2>
+				Enter the 2FA code
+				</h2>
+				<p>
+				Enter the 6-digit two-factor authentication code. To get the code, check the 2fa app.
+				</p>
+				<span>{t('enterCd')}:</span>
+				<div className='flex flex-col w-full justify-center items-center gap-[20px]'>
+					<InputOTP
+						maxLength={6}
+						pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
+						value={vcode}
+						onChange={value => setVcode(value)}
+					>
+						<InputOTPGroup>
+							{Array.from({ length: 6 }).map((_, index) => (
+								<InputOTPSlot
+									key={index}
+									className='border-1 border-solid border-gray-500 text-[16px] p-[25px] text-[#0c0c0c] dark:text-[#ffffff]'
+									index={index}
+								/>
+							))}
+						</InputOTPGroup>
+					</InputOTP>
+					{error && <p className='text-danger'>{error}</p>}
+					<Button
+						onPress={handle2faLogin}
+						disabled={vcode.length < 6 || isSubmit}
+						className={`next__btn ${
+							vcode.length >= 6
+								? '!bg-[#205bc9] !border-[#205bc9]'
+								: '!bg-gray-600 !border-gray-600'
+						}`}
+					>
+						{isSubmit ? <Spinner /> : t('next')}
+					</Button>
+				</div>
+			</div>
+			) : typeError === 'requires_verif' || showVerifWindow ? (
 				<div className='form__verify w-full '>
 					<h2>
 						{t('confirmYour')}{' '}
@@ -286,8 +341,8 @@ const Login = () => {
 						<InputOTP
 							maxLength={6}
 							pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
-							value={loginWith2fa ? tfaCode : vcode}
-							onChange={loginWith2fa ? value => setTfaCode(value) : value => setVcode(value)}
+							value={vcode}
+							onChange={value => setVcode(value)}
 						>
 							<InputOTPGroup>
 								{Array.from({ length: 6 }).map((_, index) => (
@@ -301,16 +356,13 @@ const Login = () => {
 						</InputOTP>
 						{error && <p className='text-danger'>{error}</p>}
 						<Button
-							onPress={loginWith2fa ? handle2faLogin : handleChange}
-							disabled={loginWith2fa ? tfaCode.length < 6 || isSubmit : vcode.length < 6 || isSubmit}
+							onPress={handleChange}
+							disabled={vcode.length < 6 || isSubmit}
 							className={`next__btn ${
-								loginWith2fa ? (tfaCode.length >= 6
+								vcode.length >= 6
 										? '!bg-[#205bc9] !border-[#205bc9]'
 										: '!bg-gray-600 !border-gray-600'
-									)  : (vcode.length >= 6
-										? '!bg-[#205bc9] !border-[#205bc9]'
-										: '!bg-gray-600 !border-gray-600'
-								)}`}
+								}`}
 							>
 							{isSubmit ? <Spinner /> : t('next')}
 						</Button>
@@ -416,7 +468,6 @@ const Login = () => {
 							/>
 							{t('googleAuth')}
 							<SecIcon cls='lock min-w-[20px] lock' color='black' />
-						
 						</button>
 
 						<Link className='help-signup' href='/signup'>

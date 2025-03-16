@@ -1,4 +1,7 @@
 'use client'
+import { Invest_confirmation } from '@/components/shared/Invest_confirmation'
+import NotFoundItem from '@/components/shared/NotFoundItem'
+import { Button } from '@/components/ui/button'
 import {
 	Command,
 	CommandEmpty,
@@ -11,15 +14,21 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '@/components/ui/popover'
+import { useUserStore } from '@/hooks/useUserData'
 import { useThemeStore } from '@/store/useChatStore'
+import { getInvestPackets, investAction } from '@/utils/api'
 import { Avatar, Input } from '@heroui/react'
 import { CheckCheck, ChevronDown } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useState } from 'react'
-import { Button } from '../ui/button'
-import { Invest_confirmation } from './Invest_confirmation'
-import NotFoundItem from './NotFoundItem'
+import { useEffect, useMemo, useState } from 'react'
 
+export type InvestPacket = {
+	amount_limit: number
+	coin: string
+	id: number
+	percent: number
+	rtime: number
+}
 export type InvestData = {
 	id: number
 	name: string
@@ -37,98 +46,100 @@ export type CoinsData = {
 	name: string
 	val: string
 }
+
 interface Props {
 	investData?: InvestData[]
 	periodData?: PeriodData[]
 }
-const investData = [
-	{
-		id: 1,
-		name: 'Company Stocks',
-		avatar: '/main/invest/stocks.svg',
-		value: 'stocks',
-		periodFrom: '30',
-		periodTo: '90',
-	},
-	{
-		id: 3,
-		name: 'Oil Sector',
-		avatar: '/main/invest/oil.svg',
-		value: 'oil',
-		periodFrom: '30',
-		periodTo: '90',
-	},
-	{
-		id: 4,
-		name: 'Precious metals',
-		avatar: '/main/invest/metals.svg',
-		value: 'metals',
-		periodFrom: '30',
-		periodTo: '90',
-	},
-	{
-		id: 5,
-		name: 'Innovative Startups',
-		avatar: '/main/invest/innovative.svg',
-		value: 'innovative',
-		periodFrom: '30',
-		periodTo: '90',
-	},
-]
-const periodData = [
-	{
-		id: 1,
-		name: '30',
-		percent: '1.7',
-	},
-	{
-		id: 2,
-		name: '60',
-		percent: '2.2',
-	},
-	{
-		id: 3,
-		name: '90',
-		percent: '3.6',
-	},
-	{
-		id: 4,
-		name: '120',
-		percent: '4.9',
-	},
-	{
-		id: 5,
-		name: '150',
-		percent: '6.2',
-	},
-]
-const coins =[
-	{
-		name: "BTC",
-		val: 'btc',
-	},
-	{
-		name: "ETH",
-		val: 'eth',
-	},
-	{
-		name: "TRX",
-		val: 'trx',
-	},
-	{
-		name: "LTC",
-		val: 'ltc',
-	},
-	{
-		name: "USDT",
-		val: 'usdt',
-	},
-	{
-		name: "TEST",
-		val: 'test',
-	},
-]
+
 const Invest_steps = () => {
+	const investData = useMemo(
+		() => [
+			{
+				id: 1,
+				name: 'Company Stocks',
+				avatar: '/main/invest/stocks.svg',
+				value: 'stocks',
+				periodFrom: '30',
+				periodTo: '80',
+			},
+			{
+				id: 3,
+				name: 'Oil Sector',
+				avatar: '/main/invest/oil.svg',
+				value: 'oil',
+				periodFrom: '30',
+				periodTo: '80',
+			},
+			{
+				id: 4,
+				name: 'Precious metals',
+				avatar: '/main/invest/metals.svg',
+				value: 'metals',
+				periodFrom: '30',
+				periodTo: '80',
+			},
+			{
+				id: 5,
+				name: 'Innovative Startups',
+				avatar: '/main/invest/innovative.svg',
+				value: 'innovative',
+				periodFrom: '30',
+				periodTo: '80',
+			},
+		],
+		[]
+	)
+	const periodData = useMemo(
+		() => [
+			{
+				id: 1,
+				name: '30',
+				percent: '1.7',
+			},
+			{
+				id: 2,
+				name: '50',
+				percent: '2.2',
+			},
+			{
+				id: 3,
+				name: '80',
+				percent: '3.6',
+			},
+		],
+		[]
+	)
+	const coins = useMemo(
+		() => [
+			{
+				name: 'BTC',
+				val: 'btc',
+			},
+			{
+				name: 'ETH',
+				val: 'eth',
+			},
+			{
+				name: 'TRX',
+				val: 'trx',
+			},
+			{
+				name: 'LTC',
+				val: 'ltc',
+			},
+			{
+				name: 'USDT',
+				val: 'usdt',
+			},
+			{
+				name: 'TEST',
+				val: 'test',
+			},
+		],
+		[]
+	)
+	const csrf = useUserStore((state) => state.csrf)
 	const t = useTranslations('invest')
 	const {
 		step,
@@ -148,12 +159,58 @@ const Invest_steps = () => {
 	const [selectedCoin, setSelectedCoin] = useState<CoinsData | null>(null)
 	const [open, setOpen] = useState(false)
 	const [openNetwork, setOpenNetwork] = useState(false)
+	const [packets, setPackets] = useState<InvestPacket[]>([])
+	const [coinsData, setCoinsData] = useState<CoinsData[]>([])
+	const [packets2, setPacket2s] = useState<InvestPacket[]>([])
 	const DropCache = () => {
 		setStep(1)
 		setInputStep2('')
 		setSelectedInvest(null)
 	}
-
+	useEffect(() => {
+		const fetchPackets = async () => {
+			const result = await getInvestPackets()
+			if (result.success) {
+				console.log(result)
+				setPackets(result.packets)
+			} else {
+			}
+		}
+		fetchPackets()
+	}, [])
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+	
+		// Проверяем, что все обязательные поля заполнены
+		if (!selectedInvest || !selectedCoin || !input3) {
+			console.log('Пожалуйста, заполните все обязательные поля')
+			return
+		}
+	
+		// Формируем payload для запроса, используя выбранный инвест-пакет (selectedInvest)
+		const payload: any = {
+			type: 'invest_create', // или 'invest_close'
+			coin: selectedCoin.name,
+			amount: parseFloat(input3),
+			csrf, // CSRF-токен из useUserStore
+			id: selectedInvest.id,
+			// Если у объекта selectedInvest отсутствует поле packet, можно использовать его id, если он соответствует требованиям сервера (1-5)
+			packet: selectedInvest.id,
+		}
+	
+		try {
+			const result = await investAction(payload)
+			if (result.success) {
+				console.log(result)
+			} else {
+				console.log(`Ошибка: ${result.message}`)
+			}
+		} catch (error: any) {
+			console.log('Ошибка при выполнении запроса')
+		}
+	}
+	
+	
 	return (
 		<div className='shadow-none dark:shadow-none rounded-[30px] p-[0px_16px_29px_16px] md:p-[0px_29px_29px_29px]'>
 			<div className='flex justify-start gap-[10px] w-full pb-[1.5rem]'>
@@ -429,7 +486,7 @@ const Invest_steps = () => {
 												) : (
 													<div className='flex w-full justify-between gap-[8px] items-center'>
 														<p className='text-[20px] font-medium text-[#0c0c0c] dark:text-white'>
-															{t('sclPer')}
+															Select coin
 														</p>
 														<ChevronDown
 															strokeWidth={1}
@@ -462,7 +519,7 @@ const Invest_steps = () => {
 																			priority => priority.name === value
 																		) || null
 																	)
-																	setOpenPeriod(false)
+																	setOpenCoin(false)
 																	setStep(3)
 																}}
 																className='data-[selected=true]:!bg-[#7676801F]'
