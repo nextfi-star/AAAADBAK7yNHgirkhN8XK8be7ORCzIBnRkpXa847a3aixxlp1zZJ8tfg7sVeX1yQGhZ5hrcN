@@ -81,59 +81,122 @@ const Login = () => {
 		}
 	}, [])
 
-	// const handleChange = async () => {
-	// 	setIsSubmit(true)
-	// 	const timer = setTimeout(async () => {
-	// 		setIsSubmit(true)
-	// 		setshowVerifWindow(false)
-	// 		const loginPayload = {
-	// 			email: user?.registerEmail,
-	// 			phone: user?.registerPhone,
-	// 			password: user?.registerPassword,
-	// 			vcode: vcode,
-	// 		}
-	// 		try {
-	// 			const response = await loginUser(loginPayload)
-	// 			if (response.response === 'success') {
-	// 				const userData = response.data
-	// 				if (!userData.uid || !userData.csrf) {
-	// 					throw new Error('Получены некорректные данные пользователя')
-	// 				}
-	// 				setTwoFaActive(false)
-	// 				useUserStore.getState().setUser(userData)
-	// 				if (userData.csrf) {
-	// 					useUserStore.getState().setCsrf(userData.csrf)
-	// 				}
-	// 				localStorage.setItem('userData', JSON.stringify(userData))
-	// 				if (userData.csrf) {
-	// 					setshowVerifWindow(false)
-	// 					setIsSubmit(false)
-	// 					router.push(`/${locale}/over`)
-	// 				}
-	// 			} else if (response.requires_verif) {
-	// 				setshowVerifWindow(true)
-	// 				setIsSubmit(false)
-	// 			} else if (vcode.length === 0 && vcode.length < 6) {
-	// 				setshowVerifWindow(true)
-	// 				setIsSubmit(false)
-	// 			} else {
-	// 				throw new Error(response.message || 'Ошибка авторизации')
-	// 			}
-	// 		} catch (err: any) {
-	// 			console.log(err.message)
-	// 			setError(err.message)
-	// 		} finally {
-	// 			setIsLoading(false)
-	// 		}
-	// 	}, 3000)
-	// 	return () => clearTimeout(timer)
-	// }
-	const handleChange = () => {
+	const handle2faLogin = async () => {
+		try {
+			const loginPayload = {
+				email: user?.loginEmail,
+				phone: user?.loginPhone,
+				password: user?.loginPassword,
+				vcode: user?.loginVcode,
+				'2fa_code': vcode
+			}
+			console.log(loginPayload);
+			const response = await loginUser(loginPayload)
+			console.log(response)
+			if (response.response === 'success') {
+				const userData = response.data
+				if (!userData.uid || !userData.csrf) {
+					throw new Error('Получены некорректные данные пользователя')
+				}
+				useUserStore.getState().setUser(userData)
+				if (userData.csrf) {
+					useUserStore.getState().setCsrf(userData.csrf)
+				}
+				localStorage.setItem('userData', JSON.stringify(userData))
+
+				useUserStore.getState().updateUser({ loginEmail: loginPayload?.email })
+				useUserStore.getState().updateUser({ loginPhone: loginPayload?.phone })
+				useUserStore.getState().updateUser({ loginPassword: loginPayload?.password })
+				useUserStore.getState().updateUser({ loginVcode: loginPayload?.vcode })
+				
+				if (userData.csrf) {
+					setshowVerifWindow(false)
+					setIsSubmit(false)
+					router.push(`/${locale}/over`)
+				}
+			} else if (response.requires_verif) {
+				setshowVerifWindow(true)
+				setIsSubmit(false)
+			} else if (vcode.length === 0 && vcode.length < 6) {
+				setshowVerifWindow(true)
+				setIsSubmit(false)
+			} else {
+				throw new Error(response.message || 'Ошибка авторизации')
+			}
+		} catch (err: any) {
+			console.log(err.message)
+			setError(err.message)
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
+	const handleChange = async () => {
 		setIsSubmit(true)
-		const timer = setTimeout(() => {
+		const timer = setTimeout(async () => {
 			setIsSubmit(true)
 			setshowVerifWindow(false)
-			setTypeError('')
+
+			const loginPayload = user?.email ? {
+				email: user?.email,
+				phone: user?.phone,
+				password: user?.password,
+				vcode: vcode,
+			} : user?.loginUsername ? {
+				email: user?.loginEmail,
+				phone: user?.loginPhone,
+				password: user?.loginPassword,
+				vcode: vcode,
+			} : {
+				email: user?.registerEmail,
+				phone: user?.registerPhone,
+				password: user?.registerPassword,
+				vcode: vcode,
+			}
+
+			useUserStore.getState().updateUser({ loginEmail: loginPayload?.email })
+			useUserStore.getState().updateUser({ loginPhone: loginPayload?.phone })
+			useUserStore.getState().updateUser({ loginPassword: loginPayload?.password })
+			useUserStore.getState().updateUser({ loginVcode: loginPayload?.vcode })
+
+			try {
+				const response = await loginUser(loginPayload)
+				if (response.response === 'success') {
+					const userData = response.data
+					if (!userData.uid || !userData.csrf) {
+						throw new Error('Получены некорректные данные пользователя')
+					}
+					setTwoFaActive(false)
+					useUserStore.getState().setUser(userData)
+					if (userData.csrf) {
+						useUserStore.getState().setCsrf(userData.csrf)
+					}
+					localStorage.setItem('userData', JSON.stringify(userData))
+
+					if (userData.csrf) {
+						setshowVerifWindow(false)
+						setIsSubmit(false)
+						router.push(`/${locale}/over`)
+					}
+				} else if (response.requires_verif) {
+					setshowVerifWindow(true)
+					setIsSubmit(false)
+				} else if (response.requires_2fa) {
+					setshowVerifWindow(true)
+					setIsSubmit(false)
+					setTypeError('requires_2fa')
+				} else if (vcode.length === 0 && vcode.length < 6) {
+					setshowVerifWindow(true)
+					setIsSubmit(false)
+				} else {
+					throw new Error(response.message || 'Ошибка авторизации')
+				}
+			} catch (err: any) {
+				console.log(err.message)
+				setError(err.message)
+			} finally {
+				setIsLoading(false)
+			}
 		}, 3000)
 		return () => clearTimeout(timer)
 	}
@@ -148,6 +211,11 @@ const Login = () => {
 			uid: data.uid || '',
 			'2fa_code': vcode,
 		}
+
+		useUserStore.getState().updateUser({ loginEmail: payload?.email })
+		useUserStore.getState().updateUser({ loginPhone: payload?.phone })
+		useUserStore.getState().updateUser({ loginPassword: payload?.password })
+		useUserStore.getState().updateUser({ loginVcode: payload?.vcode })
 
 		setError(null)
 		setIsLoading(true)
@@ -183,6 +251,10 @@ const Login = () => {
 			} else if (response.requires_verif) {
 				setshowVerifWindow(true)
 				setIsSubmit(false)
+			} else if (response.requires_2fa) {
+				setshowVerifWindow(true)
+				setIsSubmit(false)
+				setTypeError('requires_2fa')
 			} else if (vcode.length === 0 && vcode.length < 6) {
 				setshowVerifWindow(true)
 				setIsSubmit(false)
@@ -198,6 +270,7 @@ const Login = () => {
 			setIsLoading(false)
 		}
 	}
+
 	return (
 		<div className='form__wrapper flex flex-col justify-between gap-[20px]'>
 			<div className='form__wrapper-title'>
@@ -282,7 +355,7 @@ const Login = () => {
 					</InputOTP>
 					{error && <p className='text-danger'>{error}</p>}
 					<Button
-						onPress={handleChange}
+						onPress={handle2faLogin}
 						disabled={vcode.length < 6 || isSubmit}
 						className={`next__btn ${
 							vcode.length >= 6

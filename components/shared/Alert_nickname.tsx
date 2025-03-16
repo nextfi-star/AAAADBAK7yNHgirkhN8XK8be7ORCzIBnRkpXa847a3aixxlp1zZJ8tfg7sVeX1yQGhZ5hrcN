@@ -1,6 +1,5 @@
 import {
 	AlertDialog,
-	AlertDialogAction,
 	AlertDialogCancel,
 	AlertDialogContent,
 	AlertDialogDescription,
@@ -19,12 +18,20 @@ import ArrowBracket from '../ui/ArrowBracket'
 import { Input } from '../ui/input'
 import { changeUserData } from '@/utils/api'
 import { useUserStore } from '@/hooks/useUserData'
+import { useRef } from 'react'
 
 interface Props {
 	propsItem: React.ReactNode
 	className?: string
 }
 export const Alert_nickname = ({ propsItem, className }: Props) => {
+	const cancelAlertDialogref = useRef<HTMLButtonElement>(null)
+	const closeDialog = () => {
+		if (cancelAlertDialogref.current){
+			cancelAlertDialogref.current.click()
+		}
+	};
+	
 	const { theme } = useThemeStore()
 	const user = useUserStore(state => state.user)
 	const t = useTranslations('profile')
@@ -66,6 +73,7 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
 			setMessage('Никнейм успешно изменён!')
 			console.log(result)
 			useUserStore.getState().updateUser({ username: inputs.nickname })
+			closeDialog();
 		} else {
 			setMessage(result.message)
 		}
@@ -86,7 +94,7 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
 				<AlertDialogHeader className=''>
 					<AlertDialogTitle className='w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px] mb-[10px]'>
 						<span className='text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]'>
-							<AlertDialogCancel className='text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0'>
+							<AlertDialogCancel className='text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0' ref={cancelAlertDialogref}>
 								<ArrowBracket
 									className={'rotate-90'}
 									color={theme === 'dark' ? 'white' : 'black'}
