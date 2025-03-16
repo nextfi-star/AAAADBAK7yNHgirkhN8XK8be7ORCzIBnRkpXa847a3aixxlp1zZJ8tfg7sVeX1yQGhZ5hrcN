@@ -133,7 +133,7 @@ const Login = () => {
 
 	const handleChange = async () => {
 		setIsSubmit(true)
-		const timer = setTimeout(() => {
+		const timer = setTimeout(async () => {
 			setIsSubmit(true)
 			setshowVerifWindow(false)
 
