@@ -278,7 +278,7 @@ const Login = () => {
 				<Logo_header />
 			</div>
 
-			{(typeError === 'requires_verif') || (showVerifWindow & (typeError !== 'requires_2fa')) ? (
+			{((typeError === 'requires_verif') || (showVerifWindow & (typeError !== 'requires_2fa'))) ? (
 				<div className='form__verify w-full '>
 					<h2>
 						{t('confirmYour')}{' '}
