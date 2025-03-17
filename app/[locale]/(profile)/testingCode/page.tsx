@@ -40,11 +40,9 @@ const InvestCreateSelect: React.FC = () => {
   // Выбираем объект пакета по выбранному ID
   const selectedPacket = packets.find(pkt => pkt.id === selectedPacketId);
 
-  // Функция для преобразования времени (rtime) в дни
   const formatDays = (rtime: number): number => {
     return Math.floor(rtime / 86400);
   };
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!csrf) {

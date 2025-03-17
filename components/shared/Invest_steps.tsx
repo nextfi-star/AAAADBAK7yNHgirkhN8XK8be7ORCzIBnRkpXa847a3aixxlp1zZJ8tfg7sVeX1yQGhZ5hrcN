@@ -16,7 +16,11 @@ import {
 } from '@/components/ui/popover'
 import { useUserStore } from '@/hooks/useUserData'
 import { useThemeStore } from '@/store/useChatStore'
-import { getInvestPackets, investAction } from '@/utils/api'
+import {
+	getInvestPackets,
+	investAction,
+	InvestActionPayload,
+} from '@/utils/api'
 import { Avatar, Input } from '@heroui/react'
 import { CheckCheck, ChevronDown } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -62,6 +66,7 @@ const Invest_steps = () => {
 				value: 'stocks',
 				periodFrom: '30',
 				periodTo: '80',
+				packet: 1,
 			},
 			{
 				id: 3,
@@ -70,6 +75,7 @@ const Invest_steps = () => {
 				value: 'oil',
 				periodFrom: '30',
 				periodTo: '80',
+				packet: 2,
 			},
 			{
 				id: 4,
@@ -78,6 +84,7 @@ const Invest_steps = () => {
 				value: 'metals',
 				periodFrom: '30',
 				periodTo: '80',
+				packet: 3,
 			},
 			{
 				id: 5,
@@ -86,6 +93,7 @@ const Invest_steps = () => {
 				value: 'innovative',
 				periodFrom: '30',
 				periodTo: '80',
+				packet: 4,
 			},
 			{
 				id: 6,
@@ -94,6 +102,7 @@ const Invest_steps = () => {
 				value: 'bonds',
 				periodFrom: '30',
 				periodTo: '80',
+				packet: 5,
 			},
 		],
 		[]
@@ -147,7 +156,7 @@ const Invest_steps = () => {
 		],
 		[]
 	)
-	const csrf = useUserStore(state => state.csrf)
+	const csrf = useUserStore(state => state.user?.csrf)
 	const t = useTranslations('invest')
 	const {
 		step,
@@ -170,51 +179,78 @@ const Invest_steps = () => {
 	const [packets, setPackets] = useState<InvestPacket[]>([])
 	const [coinsData, setCoinsData] = useState<CoinsData[]>([])
 	const [packets2, setPacket2s] = useState<InvestPacket[]>([])
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>('');
-	
+	const [loading, setLoading] = useState<boolean>(true)
+	const [error, setError] = useState<string>('')
+	const [amount, setAmount] = useState<string>('')
+	const [selectedPacketId, setSelectedPacketId] = useState<number | null>(null)
+	const [coin, setCoin] = useState<string>('')
+	const [date, setDate] = useState<string>('')
+	const [percent, setPercent] = useState<string>('')
+	const selectedPacket = packets.find(pkt => pkt.id === selectedPacketId)
+
 	const DropCache = () => {
 		setStep(1)
 		setInputStep2('')
 		setSelectedInvest(null)
 	}
 	const periodData: PeriodData[] = [
-    { id: 1, name: '30', percent: '1.7' },
-    { id: 2, name: '50', percent: '2.2' },
-    { id: 3, name: '80', percent: '3.6' },
-  ];
+		{ id: 1, name: '30', percent: '1.7' },
+		{ id: 2, name: '50', percent: '2.2' },
+		{ id: 3, name: '80', percent: '3.6' },
+	]
 	useEffect(() => {
-    const fetchPackets = async () => {
-      try {
-        const res = await fetch('https://nextfi.io:5000/api/v1/invest_packets', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-        const data = await res.json();
-        if (data.response === 'success') {
-          setPackets(data.data);
-        } else {
-          setError(data.message);
-        }
-      } catch (err: any) {
-        setError('Ошибка сети');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPackets();
-  }, []);
-  const groupedPackets = useMemo(() => {
-    // Создаём объект, где ключ – число дней, а значение – массив пакетов
-    const groups: { [days: number]: InvestPacket[] } = {};
-    periodData.forEach(period => {
-      const days = parseInt(period.name, 10);
-      groups[days] = packets.filter(packet => Math.floor(packet.rtime / 86400) === days);
-    });
-    return groups;
-  }, [packets, periodData]);
+		const fetchPackets = async () => {
+			try {
+				const result = await getInvestPackets()
+				if (result.success) {
+					setPackets(result.packets)
+				} else {
+					console.log(`Ошибка: ${result.message}`)
+				}
+			} catch (error) {
+				console.log('Ошибка сети при загрузке пакетов')
+			}
+		}
+		fetchPackets()
+	}, [])
+	const formatDays = (rtime: number): number => {
+		return Math.floor(rtime / 86400)
+	}
+	const handleSubmit = async (e: any) => {
+		e.preventDefault()
+		if (!csrf) {
+			console.log('CSRF токен отсутствует')
+			return
+		}
+		if (!selectedPacket) {
+			console.log('Пожалуйста, выберите инвестиционный пакет')
+			return
+		}
+		if (!amount) {
+			console.log('Пожалуйста, введите сумму инвестиций')
+			return
+		}
+
+		const payload: InvestActionPayload = {
+			type: 'invest_create',
+			coin: coin,
+			amount: parseFloat(amount),
+			csrf,
+			id: selectedPacket.id,
+			packet: selectedPacket.packet,
+		}
+
+		try {
+			const result = await investAction(payload)
+			if (result.success) {
+				console.log('Инвестиция успешно создана')
+			} else {
+				console.log(`Ошибка: ${result.message}`)
+			}
+		} catch (error) {
+			console.log('Ошибка при отправке запроса')
+		}
+	}
 	return (
 		<div className='shadow-none dark:shadow-none rounded-[30px] p-[0px_16px_29px_16px] md:p-[0px_29px_29px_29px]'>
 			<div className='flex justify-start gap-[10px] w-full pb-[1.5rem]'>
@@ -385,11 +421,11 @@ const Invest_steps = () => {
 												size='lg'
 												className='w-full h-[58px] rounded-[20px] justify-start bg-[#7676801F] hover:bg-[#7676801F]'
 											>
-												{selectedPeriod ? (
+												{coin && date && percent ? (
 													<div className='flex w-full justify-between gap-[8px] items-center'>
 														<div className='flex items-center gap-[3px]'>
 															<p className='text-[20px] font-medium text-[#0c0c0c] dark:text-white'>
-																{selectedPeriod.name}
+																{coin}-{date}-{percent}%
 															</p>
 														</div>
 														<ChevronDown
@@ -425,16 +461,11 @@ const Invest_steps = () => {
 														<NotFoundItem />
 													</CommandEmpty>
 													<CommandGroup>
-														{periodData.map(period => (
+														{packets.map(pkt => (
 															<CommandItem
-																key={period.id}
-																value={period.name}
+																key={pkt.id}
+																value={selectedPacketId !== null ? selectedPacketId.toString() : ''}
 																onSelect={value => {
-																	setSelectedPeriod(
-																		periodData.find(
-																			priority => priority.name === value
-																		) || null
-																	)
 																	setGlobalPeriod(
 																		periodData.find(
 																			priority => priority.name === value
@@ -442,18 +473,20 @@ const Invest_steps = () => {
 																	)
 																	setOpenPeriod(false)
 																	setStep(3)
+																	setCoin(pkt.coin)
+																	setDate(formatDays(pkt.rtime))
+																	setPercent(pkt.percent)
+																	
 																}}
 																className='data-[selected=true]:!bg-[#7676801F]'
 															>
 																<div className='flex items-center justify-between w-full px-[15px]'>
 																	<div className='flex items-center gap-[3px]'>
 																		<p className='text-[20px] text-[#205BC9] flex flex-col items-start'>
-																			{period.name} {t('days')}
+																			{pkt.coin} {formatDays(pkt.rtime)} дней –{' '}
+																			{pkt.percent}%
 																		</p>
 																	</div>
-																	<p className='flex items-center gap-[5px] text-[20px]'>
-																		{period.percent}%
-																	</p>
 																</div>
 															</CommandItem>
 														))}
@@ -462,7 +495,7 @@ const Invest_steps = () => {
 											</Command>
 										</PopoverContent>
 									</Popover>
-									<Popover
+									{/* <Popover
 										open={openCoin}
 										onOpenChange={setOpenCoin}
 										modal={true}
@@ -541,7 +574,7 @@ const Invest_steps = () => {
 												</CommandList>
 											</Command>
 										</PopoverContent>
-									</Popover>
+									</Popover> */}
 								</div>
 							</div>
 						)}
@@ -590,7 +623,7 @@ const Invest_steps = () => {
 												7050 NextFi
 											</span>
 										</p>
-										<Invest_confirmation
+										{/* <Invest_confirmation
 											className='!w-fit min-w-[200px] dark:!shadow-none'
 											input3={input3}
 											setInput3={setInput3}
@@ -598,7 +631,8 @@ const Invest_steps = () => {
 											setSelectedInvest={setSelectedInvest}
 											titleTrigger={'Invest'}
 											selectedInvest={selectedInvest}
-										/>
+										/> */}
+										<button onClick={handleSubmit}>Invest</button>
 									</div>
 								</div>
 							</div>

@@ -658,7 +658,6 @@ export const investAction = async (payload: InvestActionPayload): Promise<{ succ
     return { success: false, message: 'Ошибка сети' };
   }
 };
-
 export const getInvestHistory = async ({
   coin,
   csrf,
@@ -689,6 +688,7 @@ export const getInvestHistory = async ({
     return { success: false, message: 'Ошибка сети' };
   }
 };
+	
 export const resendVerificationCode = async (csrf: string) => {
   try {
     const response = await fetch('https://nextfi.io:5000/api/v1/resend', {
