@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl'
 
 const Devices = () => {
   const t = useTranslations('device')
+  
   return (
     <section className="personal !shadow-medium dark:!shadow-none"  > 
       <div className="personal-container">

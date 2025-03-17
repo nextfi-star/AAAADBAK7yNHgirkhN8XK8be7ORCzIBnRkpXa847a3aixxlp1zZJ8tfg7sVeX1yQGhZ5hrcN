@@ -26,7 +26,7 @@ export const Profile_info = ({ verify, toggleActive }: Props) => {
 						alt={'avatar'}
 						className='object-contain rounded-full min-w-[78px]'
 						height={63}
-						src={'/main/avatar_noface.png'}
+						src={user?.logo ? `https://nextfi.io:5000/uploads/${user.logo}` : '/main/avatar_noface.png'}
 						width={63}
 					/>
 				</div>
