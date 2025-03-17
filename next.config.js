@@ -8,6 +8,9 @@ const nextConfig = {
 		ignoreDuringBuilds: true,
 	},
 	cacheMaxMemorySize: 256,
+	images: {
+        domains: ['nextfi.io'],
+    },
 }
 
 module.exports = withNextIntl(nextConfig)

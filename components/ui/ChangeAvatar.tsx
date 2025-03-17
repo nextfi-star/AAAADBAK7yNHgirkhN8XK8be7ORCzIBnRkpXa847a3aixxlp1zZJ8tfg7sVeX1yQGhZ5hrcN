@@ -18,38 +18,84 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { PlusIcon } from './PlusIcon'
 import { uploadFile } from '@/utils/api'
+import { useRef } from 'react'
+import { responseCookiesToRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies'
+
+
 const data = [
 	{
-		img: '/main/avatar_noface.png',
+		img: '/main/avatars/avatar_1.svg',
 	},
 	{
-		img: '/main/avatar_noface.png',
+		img: '/main/avatars/avatar_2.svg',
 	},
 	{
-		img: '/main/avatar_noface.png',
+		img: '/main/avatars/avatar_3.svg',
 	},
 	{
-		img: '/main/avatar_noface.png',
+		img: '/main/avatars/avatar_4.svg',
 	},
 	{
-		img: '/main/avatar_noface.png',
+		img: '/main/avatars/avatar_5.svg',
 	},
 	{
-		img: '/main/avatar_noface.png',
+		img: '/main/avatars/avatar_6.svg',
 	},
 ]
 
 export const ChangeAvatar = () => {
+	const closeButt = useRef<HTMLInputElement>(null);
+	const closeUpload = () => {
+		if (closeButt.current){
+			closeButt.current.click()
+		}
+	}
 	const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null)
 	const [selectedFile, setSelectedFile] = useState<File | null>(null)
 	const [activeTab, setActiveTab] = useState('select-avatar')
 	const [error, setError] = useState('')
 
 	const { theme } = useThemeStore()
-	const userAvatar = useUserStore(state => state.user?.logo)
 	const t = useTranslations('profile')
-	const handleAvatarSelect = (avatarUrl: string) => {
-		setSelectedAvatar(avatarUrl)
+
+	const getSelectedAvatarFIle = async (fileName: string) => {
+		try {
+			// 1. Получаем файл как Blob
+			const response = await fetch(`https://nextfi.io${fileName}`);
+			if (!response.ok) {
+			  throw new Error(`Failed to fetch file: ${response.status} ${response.statusText}`);
+			}
+			const blob = await response.blob();
+	  
+			// 2. Создаем объект File
+			const file = new File([blob], fileName, { type: blob.type }); // Создаем File
+			return file
+		}
+		catch (error: any) {
+			setError(`❌ Ошибка: ${error}`)
+		}
+	}
+
+	const handleAvatarSelect = async (avatarUrl: string) => {
+		setSelectedAvatar(avatarUrl);
+
+		if (!user?.csrf) {
+			setError('Ошибка: CSRF токен отсутствует')
+			return
+		}
+		console.log(avatarUrl)
+		const file = await getSelectedAvatarFIle(avatarUrl);
+		if (file){
+			const result = await uploadFile(user.csrf, file, 'upload_logo' )
+			if (result.response === 'success') {
+				setSelectedFile(null)
+				setError('✅ Файл успешно загружен и отправлен на проверку')
+				useUserStore.getState().updateUser({ logo: result.filename })
+				closeUpload()
+			} else {
+				setError(`❌ Ошибка: ${result.message}`)
+			}
+		}
 	}
 	const user = useUserStore(state => state.user)
 	const [file, setFile] = useState<File | null>(null)
@@ -68,9 +114,12 @@ export const ChangeAvatar = () => {
 			return
 		}
 		const result = await uploadFile(user.csrf, selectedFile, 'upload_logo' )
+
 		if (result.response === 'success') {
 			setSelectedFile(null)
 			setError('✅ Файл успешно загружен и отправлен на проверку')
+			useUserStore.getState().updateUser({ logo: result.filename })
+			closeUpload()
 		} else {
 			setError(`❌ Ошибка: ${result.message}`)
 		}
