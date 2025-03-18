@@ -45,12 +45,13 @@ const data = [
 export const ChangeAvatar = () => {
 	const closeButt = useRef<HTMLInputElement>(null);
 	const closeUpload = () => {
-		if (closeButt.current) {
+		/*if (closeButt.current) {
 			const button = closeButt.current.querySelector('button') as HTMLButtonElement;
 			if (button){
 				button.click()
 			}
-		}
+		}*/
+		console.log("closed");
 	}
 	const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null)
 	const [selectedFile, setSelectedFile] = useState<File | null>(null)
