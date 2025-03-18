@@ -550,10 +550,10 @@ const Invest_steps = () => {
                             <NotFoundItem />
                           </CommandEmpty>
                           <CommandGroup>
-                            {packets.map((coin) => (
+                            {coins.map((coin, index) => (
                               <CommandItem
-                                key={coin.id}
-                                value={coin.coin}
+                                key={index}
+                                value={coin.name}
                                 onSelect={(value) => {
                                   setGlobalCoin(
                                     coins.find(
@@ -568,10 +568,10 @@ const Invest_steps = () => {
                                 <div className="flex items-center justify-between w-full px-[15px]">
                                   <div className="flex items-center gap-[10px]">
                                     <Avatar
-                                      src={`/crypto/${coin.coin?.toLowerCase()}.svg`}
+                                      src={`/crypto/${coin.name?.toLowerCase()}.svg`}
                                     />
                                     <p className="text-[20px] text-[#205BC9] flex flex-col items-start">
-                                      {coin.coin}
+                                      {coin.name}
                                     </p>
                                   </div>
                                 </div>

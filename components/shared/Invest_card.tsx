@@ -1,18 +1,13 @@
 "use client";
 import { useThemeStore } from "@/store/useChatStore";
 import { Button } from "@heroui/button";
-import { Divider } from "@heroui/divider";
-import { X } from "lucide-react";
-import { NextPage } from "next";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { SkeletonCard_invest } from "../ui/skeleton/SkeletonCard_invest";
-import { Checkbox } from "./Checkbox";
-import { Invest_progressBar } from "./Invest_progressBar";
-import NotFoundItem from "./NotFoundItem";
-import { InvestData, PeriodData } from "@/app/[locale]/(profile)/invest/page";
 import { SecIcon } from "../ui/SecIcon";
+import { SkeletonCard_invest } from "../ui/skeleton/SkeletonCard_invest";
+import { Invest_progressBar } from "./Invest_progressBar";
 import { industries } from "./Invest_steps";
+import NotFoundItem from "./NotFoundItem";
 
 interface UserBalance {
   data: {
@@ -28,13 +23,7 @@ interface UserBalance {
 }
 
 export const Invest_card = () => {
-  const {
-    globalCompany,
-    globalCompanyIcon,
-    globalPeriod,
-    globalCoin,
-    globalAmount,
-  } = useThemeStore();
+  const { globalCompany, globalCompanyIcon, globalPeriod } = useThemeStore();
   const [state, setState] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [change, setChange] = useState(false);

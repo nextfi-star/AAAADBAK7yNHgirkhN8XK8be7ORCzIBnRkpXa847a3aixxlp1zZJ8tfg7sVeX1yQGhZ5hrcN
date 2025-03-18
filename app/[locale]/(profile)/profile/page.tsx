@@ -13,7 +13,7 @@ import { Avatar } from "@/components/shared/Avatar";
 
 const Page = () => {
   const user = useUserStore((state) => state.user);
-
+  console.log(user);
   const t = useTranslations("auth");
 
   const [showPassword, setShowPassword] = useState(false);
