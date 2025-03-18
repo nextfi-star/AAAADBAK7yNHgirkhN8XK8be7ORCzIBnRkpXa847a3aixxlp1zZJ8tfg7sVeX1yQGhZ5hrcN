@@ -46,8 +46,9 @@ export const ChangeAvatar = () => {
 	const closeButt = useRef<HTMLInputElement>(null);
 	const closeUpload = () => {
 		if (closeButt.current) {
-			if (closeButt.current.querySelector('button')){
-				closeButt.current.querySelector('button').click()
+			const button = closeButt.current.querySelector('button') as HTMLButtonElement;
+			if (button){
+				button.click()
 			}
 		}
 	}
