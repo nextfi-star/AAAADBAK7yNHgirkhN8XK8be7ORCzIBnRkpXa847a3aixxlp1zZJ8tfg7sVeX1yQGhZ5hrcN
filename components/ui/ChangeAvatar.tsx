@@ -75,27 +75,34 @@ export const ChangeAvatar = () => {
 		}
 	}
 
-	const handleAvatarSelect = async (avatarUrl: string) => {
-		setSelectedAvatar(avatarUrl);
-
+	const uploadAvatar = async (file: File) => {
 		if (!user?.csrf) {
 			setError('Ошибка: CSRF токен отсутствует')
 			return
 		}
-		console.log(avatarUrl)
-		const file = await getSelectedAvatarFIle(avatarUrl);
-		if (file){
-			const result = await uploadFile(user.csrf, file, 'upload_logo' )
-			if (result.response === 'success') {
-				setSelectedFile(null)
-				setError('✅ Файл успешно загружен и отправлен на проверку')
-				useUserStore.getState().updateUser({ logo: result.filename })
-				closeUpload()
-			} else {
-				setError(`❌ Ошибка: ${result.message}`)
-			}
+
+		const result = await uploadFile(user.csrf, file, 'upload_logo' )
+
+		if (result.response === 'success') {
+			setSelectedFile(null)
+			setError('✅ Файл успешно загружен и отправлен на проверку')
+			useUserStore.getState().updateUser({ logo: result.filename })
+			closeUpload()
+		} else {
+			setError(`❌ Ошибка: ${result.message}`)
 		}
 	}
+
+	const handleAvatarSelect = async (avatarUrl: string) => {
+		setSelectedAvatar(avatarUrl);
+		console.log(avatarUrl)
+
+		const file = await getSelectedAvatarFIle(avatarUrl);
+		if (file){
+			await uploadAvatar(file);
+		}
+	}
+
 	const user = useUserStore(state => state.user)
 	const [file, setFile] = useState<File | null>(null)
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,21 +115,9 @@ export const ChangeAvatar = () => {
 			setError('Выберите файл перед загрузкой')
 			return
 		}
-		if (!user?.csrf) {
-			setError('Ошибка: CSRF токен отсутствует')
-			return
-		}
-		const result = await uploadFile(user.csrf, selectedFile, 'upload_logo' )
-
-		if (result.response === 'success') {
-			setSelectedFile(null)
-			setError('✅ Файл успешно загружен и отправлен на проверку')
-			useUserStore.getState().updateUser({ logo: result.filename })
-			closeUpload()
-		} else {
-			setError(`❌ Ошибка: ${result.message}`)
-		}
+		await uploadAvatar(selectedFile);
 	}
+
 	return (
 		<Drawer>
 			<DrawerTrigger asChild>
@@ -169,7 +164,11 @@ export const ChangeAvatar = () => {
 										>
 											<Image
 												alt={'avatar'}
-												className={`object-cover max-w-[116px] max-h-[116px] w-full rounded-[50%] hover:cursor-pointer border border-solid hover:border-[#205BC9] hover:shadow-2xl hover:shadow-[#205BC9] index-${index}`}
+												className={
+													selectedAvatar === avatar.img ? 
+													`object-cover max-w-[116px] max-h-[116px] w-full rounded-[50%] hover:cursor-pointer border border-solid border-[#205BC9] shadow-2xl shadow-[#205BC9] index-${index}` :
+													`object-cover max-w-[116px] max-h-[116px] w-full rounded-[50%] hover:cursor-pointer border border-solid hover:border-[#205BC9] hover:shadow-2xl hover:shadow-[#205BC9] index-${index}`
+												}
 												height={116}
 												src={avatar.img}
 												width={116}
@@ -205,11 +204,16 @@ export const ChangeAvatar = () => {
 					</Tabs>
 
 					<DrawerFooter className='flex flex-row justify-center gap-[42px]'>
-						<DrawerClose asChild>
-							<Button className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] min-w-[117px]'>
-								{t('close')}
-							</Button>
-						</DrawerClose>
+						<span>
+							<DrawerClose asChild>
+								<Button
+									className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] min-w-[117px]'
+									ref={closeButt}
+								>
+									{t('close')}
+								</Button>
+							</DrawerClose>
+						</span>
 						<Button
 							className='bg-[#205BC9] text-white rounded-[50px] px-[35px] border border-solid border-[#205BC9] min-w-[117px] hover:bg-[#205BC9] hover:text-white hover:opacity-[.8] transition duration-300'
 							onPress={handleUpload}

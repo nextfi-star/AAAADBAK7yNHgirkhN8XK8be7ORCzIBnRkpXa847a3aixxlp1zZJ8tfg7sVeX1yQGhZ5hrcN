@@ -1,11 +1,12 @@
 'use client'
-import Image from 'next/image'
 import { Link } from '@/i18n/routing'
 import { Snippet } from '@heroui/snippet'
 import { Button } from '@heroui/button'
 import { Spinner } from '@heroui/spinner'
 import { useUserStore } from '@/hooks/useUserData'
 import { useTranslations } from 'next-intl'
+import { Avatar } from '@/components/shared/Avatar'
+
 
 interface Props {
 	verify: boolean
@@ -21,12 +22,9 @@ export const Profile_info = ({ verify, toggleActive }: Props) => {
 		<section className='hidden sm:block profile__info profile_blocks_border !bg-[#fff] dark:!bg-[#1e1e1e66] !shadow-medium dark:!shadow-none !rounded-[30px]'>
 			<div className='profile__info__block__left'>
 				<div className='profile__info__block__left__avatar'>
-					<Image
-						priority
-						alt={'avatar'}
-						className='object-contain rounded-full min-w-[78px]'
+					<Avatar
+						className="object-contain rounded-full min-w-[78px]"
 						height={63}
-						src={user?.logo ? `https://nextfi.io:5000/uploads/${user.logo}` : '/main/avatar_noface.png'}
 						width={63}
 					/>
 				</div>
