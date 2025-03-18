@@ -205,10 +205,9 @@ export const ChangeAvatar = () => {
 
 					<DrawerFooter className='flex flex-row justify-center gap-[42px]'>
 						<span>
-							<DrawerClose asChild>
+							<DrawerClose ref={closeButt} asChild>
 								<Button
 									className='border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] min-w-[117px]'
-									ref={closeButt}
 								>
 									{t('close')}
 								</Button>
