@@ -19,27 +19,26 @@ import { useState } from 'react'
 import { PlusIcon } from './PlusIcon'
 import { uploadFile } from '@/utils/api'
 import { useRef } from 'react'
-import { responseCookiesToRequestCookies } from 'next/dist/server/web/spec-extension/adapters/request-cookies'
 
 
 const data = [
 	{
-		img: '/main/avatars/avatar_1.svg',
+		img: '/main/avatars/avatar_1.jpg',
 	},
 	{
-		img: '/main/avatars/avatar_2.svg',
+		img: '/main/avatars/avatar_2.jpg',
 	},
 	{
-		img: '/main/avatars/avatar_3.svg',
+		img: '/main/avatars/avatar_3.jpg',
 	},
 	{
-		img: '/main/avatars/avatar_4.svg',
+		img: '/main/avatars/avatar_4.jpg',
 	},
 	{
-		img: '/main/avatars/avatar_5.svg',
+		img: '/main/avatars/avatar_5.jpg',
 	},
 	{
-		img: '/main/avatars/avatar_6.svg',
+		img: '/main/avatars/avatar_6.jpg',
 	},
 ]
 
