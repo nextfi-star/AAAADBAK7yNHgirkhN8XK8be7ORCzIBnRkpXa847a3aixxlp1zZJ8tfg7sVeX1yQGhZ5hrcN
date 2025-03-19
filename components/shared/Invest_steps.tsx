@@ -144,9 +144,12 @@ const Invest_steps = () => {
     setGlobalCoin,
     globalPeriod,
     globalCoin,
+    packets,
+    setPackets,
     globalAmount,
     globalCompany,
     setGlobalAmount,
+    setConfirmStep,
   } = useThemeStore();
   const [openInvest, setOpenInvest] = useState(false);
   const [openPeriod, setOpenPeriod] = useState(false);
@@ -157,7 +160,6 @@ const Invest_steps = () => {
   // const [selectedPeriod, setSelectedPeriod] = useState<PeriodData | null>(null);
   const [open, setOpen] = useState(false);
   const [openNetwork, setOpenNetwork] = useState(false);
-  const [packets, setPackets] = useState<InvestPacket[]>([]);
   const [coinsData, setCoinsData] = useState<CoinsData[]>([]);
   const [packets2, setPacket2s] = useState<InvestPacket[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -216,43 +218,47 @@ const Invest_steps = () => {
   }, [packets, periodData]);
 
   const onInvest = async () => {
-    const body = {
-      csrf,
-      coin: globalCoin?.val,
-      amount: parseFloat(String(globalAmount)),
-      packet: globalCompany?.id,
-      id: packets.find((packet) => {
-        console.log(
-          parseInt(String(packet.percent)) ==
-            parseInt(String(globalPeriod?.percent))
-        );
-        return (
-          packet.coin.toLowerCase() === globalCoin?.name.toLowerCase() &&
-          // parseInt(String(packet.percent)) ==
-          //   parseInt(String(globalPeriod?.percent)) &&
-          Number(globalPeriod?.name) === packet.rtime / 24 / 60 / 60 &&
-          packet.packet == globalCompany?.id
-        );
-      })?.id,
-      type: "invest_create",
-    };
-    const response = await fetch(
-      "https://nextfi.io:5000/api/v1/invest_action",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
+    try {
+      const body = {
+        csrf,
+        coin: globalCoin?.val,
+        amount: parseFloat(String(globalAmount)),
+        packet: globalCompany?.id,
+        id: packets.find((packet) => {
+          console.log(
+            parseInt(String(packet.percent)) ==
+              parseInt(String(globalPeriod?.percent))
+          );
+          return (
+            packet.coin.toLowerCase() === globalCoin?.name.toLowerCase() &&
+            // parseInt(String(packet.percent)) ==
+            //   parseInt(String(globalPeriod?.percent)) &&
+            Number(globalPeriod?.name) === packet.rtime / 24 / 60 / 60 &&
+            packet.packet == globalCompany?.id
+          );
+        })?.id,
+        type: "invest_create",
+      };
+      const response = await fetch(
+        "https://nextfi.io:5000/api/v1/invest_action",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.response === "success") {
+        setConfirmStep(3);
       }
-    );
-
-    const data = await response.json();
-
-    console.log(data);
+    } catch (e) {
+      console.error(e);
+    }
   };
-
-  console.log(globalPeriod);
 
   return (
     <div className="shadow-none dark:shadow-none rounded-[30px] p-[0px_16px_29px_16px] md:p-[0px_29px_29px_29px]">

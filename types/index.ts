@@ -1,6 +1,7 @@
 import {
   CoinsData,
   InvestData,
+  InvestPacket,
   PeriodData,
 } from "@/app/[locale]/(profile)/invest/page";
 import { SVGProps } from "react";
@@ -60,11 +61,29 @@ export interface IStore {
     uid?: string;
     password?: string;
   } | null;
+  invests: {
+    uid: number;
+    packet: {
+      name: string;
+      periodFrom: number;
+      periodTo: number;
+    };
+    create_time: number;
+    id: number;
+    status: number;
+    rtime: number;
+    percent: number;
+    amount: number;
+    coin: string;
+  }[];
+  setInvests: (val: any) => void;
   setUser: (userData: any) => void;
   clearUser: () => void;
   showVerifWindow: boolean;
   setshowVerifWindow: (val: boolean) => void;
   localVerif: boolean;
+  packets: InvestPacket[];
+  setPackets: (val: InvestPacket[]) => void;
   setLocalVerif: (val: boolean) => void;
 }
 export interface User {
