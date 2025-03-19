@@ -112,6 +112,16 @@ export const ChangeAvatar = () => {
 		if (!event.target.files?.length) return
 		setSelectedFile(event.target.files[0])
 		setError('')
+
+		const file = event.target.files?.[0]; // Получаем файл
+		if (file) {
+		// Создаем URL для отображения файла
+		const url = URL.createObjectURL(file);
+		setFileUrl(url); // Обновляем состояние
+		} else {
+		setFileUrl(''); // Очищаем URL, если файл не выбран
+		}
+
 	}
 	const handleUpload = async () => {
 		if (!selectedFile) {
@@ -120,6 +130,9 @@ export const ChangeAvatar = () => {
 		}
 		await uploadAvatar(selectedFile);
 	}
+
+	const [fileUrl, setFileUrl] = useState<string>('');
+	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	return (
 		<Drawer>
@@ -149,6 +162,7 @@ export const ChangeAvatar = () => {
 						className='flex flex-col items-center md:items-start overflow-y-visible overflow-x-visible'
 						value={activeTab}
 						onValueChange={setActiveTab}
+						style={{width: "100%"}}
 					>
 						<TabsList className='mb-[0px]'>
 							<TabsTrigger value='select-avatar'>{t('selectAva')}</TabsTrigger>
@@ -182,13 +196,38 @@ export const ChangeAvatar = () => {
 						</TabsContent>
 
 						{/* Табка для загрузки картинки */}
-						<TabsContent value='upload-avatar'>
+						<TabsContent value='upload-avatar' style={{width: "100%"}}>
+						<div className="flex flex-col items-center justify-center" style={{minWidth: "100%"}}>
+						{fileUrl ?(
+							<div className='relative' style={{margin: "20px"}}>
+								<Image
+									alt='Uploaded photo'
+									className='w-full h-full max-w-[340px] max-h-[191px] transition duration-300'
+									height={100}
+									src={fileUrl}
+									width={100}
+								/>
+								<button
+									className='absolute top-0 right-0 text-[20px] bg-[#BDBDBD] w-[24px] h-[24px] rounded-[5px] flex items-center justify-center'
+									onClick={() => setFileUrl('')}
+								>
+									<Image
+										alt='close X'
+										className='w-full h-auto max-w-[10px] '
+										height={20}
+										src={'/header_icons/profile_burger/close.svg'}
+										width={20}
+									/>
+								</button>
+							</div>
+							) : (
 							<form className='min-h-[321px] border-1 border-dashed border-gray-500 rounded-[10px] flex flex-col gap-[10px] items-center justify-center p-[10px] max-w-[390px]'>
 								<input
 									className='hidden'
 									id='file-upload'
 									type='file'
 									onChange={handleFileChange}
+									ref={fileInputRef}
 								/>
 								<label
 									className='flex flex-col items-center justify-center cursor-pointer rounded-[50%] border-1 border-solid dark:border-white border-black p-[13px] mb-[10px]'
@@ -202,7 +241,8 @@ export const ChangeAvatar = () => {
 								<span className='text-center text-[14px] md:text-[20px]'>
 									{t('suppFormat')}
 								</span>
-							</form>
+							</form>)}
+						</div>
 						</TabsContent>
 					</Tabs>
 
