@@ -260,9 +260,6 @@ const Login = () => {
 				setshowVerifWindow(true)
 				setIsSubmit(false)
 				setTypeError('requires_2fa')
-			} else if (vcode.length === 0 && vcode.length < 6) {
-				setshowVerifWindow(true)
-				setIsSubmit(false)
 			} else {
 				setIsSubmit(false)
 				console.log(response)
@@ -429,15 +426,15 @@ const Login = () => {
 								</span>
 							</div>
 							{errors.password && (
-								<p className=' text-danger pointer-events-none'>
+								<p className='text-danger pointer-events-none' style={{margin: "-15px"}}>
 									{errors.password.message}
 								</p>
 							)}
 						</div>
 
-						{/* {error && (
+						{error && (
 							<p className='text-danger pointer-events-none'>{error}</p>
-						)} */}
+						)}
 						<button
 							type='submit'
 							disabled={isLoading || !isValid}
