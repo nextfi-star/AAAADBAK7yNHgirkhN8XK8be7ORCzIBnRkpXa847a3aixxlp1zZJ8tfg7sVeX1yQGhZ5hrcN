@@ -142,6 +142,8 @@ export const useThemeStore = create<IStore>()(
       setGlobalAmount: (val) => set({ globalAmount: val }),
       invests: [],
       setInvests: (val) => set({ invests: val }),
+      investConfirmError: null,
+      setInvestConfirmError: (val) => set({ investConfirmError: val }),
       open: false,
       setOpen: (val) => set({ open: val }),
       user: null,

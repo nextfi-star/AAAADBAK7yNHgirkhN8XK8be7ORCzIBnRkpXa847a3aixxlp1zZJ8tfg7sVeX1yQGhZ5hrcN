@@ -77,6 +77,8 @@ export interface IStore {
     coin: string;
   }[];
   setInvests: (val: any) => void;
+  investConfirmError: string | null;
+  setInvestConfirmError: (val: null | string) => void;
   setUser: (userData: any) => void;
   clearUser: () => void;
   showVerifWindow: boolean;

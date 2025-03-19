@@ -171,7 +171,7 @@ export const Deposit_confirmation = ({
               onClick={() => setConfirmStep(2)}
               type="button"
               variant="secondary"
-              className="bg-[#205BC9] text-white w-fit rounded-[50px] hover:bg-[#205BC9] min-w-[124px]"
+              className={` text-white w-fit rounded-[50px] hover:bg-[#205BC9] ${!checked ? `bg-none` : `bg-[#205BC9]`} min-w-[124px]`}
               disabled={!checked}
             >
               {t("confrm")}

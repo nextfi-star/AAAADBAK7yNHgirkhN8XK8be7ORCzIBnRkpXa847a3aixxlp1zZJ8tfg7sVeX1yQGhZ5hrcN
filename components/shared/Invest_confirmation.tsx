@@ -54,6 +54,7 @@ export const Invest_confirmation = ({
     globalAmount,
     globalCoin,
     globalPeriod,
+    investConfirmError,
   } = useThemeStore();
   const [checked, setChecked] = useState(false);
   const DropSteps = () => {
@@ -119,13 +120,18 @@ export const Invest_confirmation = ({
               </article>
               <Checkbox
                 forBox="confirm"
+                checked={isConfirmed}
                 onChange={() => setIsConfirmed((prev) => !prev)}
                 content={t("iCmfrWith")}
               />
             </div>
           </DialogHeader>
           <Divider className="m-0" />
-          <DialogFooter className="flex flex-row justify-center items-center gap-[15px] p-[30px_40px]">
+          <DialogFooter
+            className="flex flex-row justify-center items-center 
+          gap-[15px] p-[30px_40px]"
+          >
+            <div className="w-full text-red-600">{investConfirmError}</div>
             <DialogClose asChild>
               <Button
                 type="button"

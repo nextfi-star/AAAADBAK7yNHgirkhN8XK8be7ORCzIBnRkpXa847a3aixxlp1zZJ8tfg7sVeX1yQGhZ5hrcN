@@ -26,6 +26,7 @@ import { getInvestPackets, investAction } from "@/utils/api";
 import { Avatar, Input } from "@heroui/react";
 import { CheckCheck, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Niconne } from "next/font/google";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 
 // interface Props {
@@ -43,7 +44,7 @@ export const industries = [
     periodTo: "80",
   },
   {
-    id: 3,
+    id: 2,
     name: "Oil Sector",
     avatar: "/main/invest/oil.svg",
     value: "oil",
@@ -51,7 +52,7 @@ export const industries = [
     periodTo: "80",
   },
   {
-    id: 4,
+    id: 3,
     name: "Precious metals",
     avatar: "/main/invest/metals.svg",
     value: "metals",
@@ -59,7 +60,7 @@ export const industries = [
     periodTo: "80",
   },
   {
-    id: 5,
+    id: 4,
     name: "Innovative Startups",
     avatar: "/main/invest/innovative.svg",
     value: "innovative",
@@ -67,7 +68,7 @@ export const industries = [
     periodTo: "80",
   },
   {
-    id: 6,
+    id: 5,
     name: "Corporate Bonds",
     avatar: "/main/invest/bonds.svg",
     value: "bonds",
@@ -150,6 +151,7 @@ const Invest_steps = () => {
     globalCompany,
     setGlobalAmount,
     setConfirmStep,
+    setInvestConfirmError,
   } = useThemeStore();
   const [openInvest, setOpenInvest] = useState(false);
   const [openPeriod, setOpenPeriod] = useState(false);
@@ -217,6 +219,10 @@ const Invest_steps = () => {
     return groups;
   }, [packets, periodData]);
 
+  useEffect(() => {
+    setInvestConfirmError(null);
+  }, [globalAmount, globalCompany?.id, packets.length]);
+
   const onInvest = async () => {
     try {
       const body = {
@@ -254,6 +260,8 @@ const Invest_steps = () => {
 
       if (data.response === "success") {
         setConfirmStep(3);
+      } else {
+        setInvestConfirmError(data.message);
       }
     } catch (e) {
       console.error(e);
