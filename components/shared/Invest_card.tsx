@@ -33,17 +33,8 @@ export const Invest_card = () => {
     invests,
     packets,
   } = useThemeStore();
-  const [state, setState] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [change, setChange] = useState(false);
 
-  const handleChange = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setChange(!change);
-      setIsLoading(false);
-    }, 800);
-  };
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchInvestData = async () => {
@@ -178,19 +169,19 @@ export const Invest_card = () => {
             <SkeletonCard_invest />
           ) : (
             <>
-              {showingCards > 2 && (
-                <div
-                  className="flex justify-center w-full cursor-pointer"
-                  onClick={() => setShowingCards((prev) => prev - 2)}
-                >
-                  <ArrowUp />
-                </div>
-              )}
+              <div
+                className="flex justify-center w-full cursor-pointer min-h-[50px]"
+                onClick={() =>
+                  showingCards > 2 && setShowingCards((prev) => prev - 2)
+                }
+              >
+                {showingCards > 2 && <ArrowUp />}
+              </div>
               {visibleInvests
                 .slice(showingCards - 2, showingCards)
                 .map((val, index) => (
                   <div
-                    className="bg-[#fff] shadow-medium dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px]  max-w-[650px] w-full"
+                    className="bg-[#fff] shadow-medium dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[400px]  max-w-[650px] w-full"
                     key={index}
                   >
                     <div className="p-[18px_23px] flex w-full flex-col sm:flex-row items-center justify-between">
