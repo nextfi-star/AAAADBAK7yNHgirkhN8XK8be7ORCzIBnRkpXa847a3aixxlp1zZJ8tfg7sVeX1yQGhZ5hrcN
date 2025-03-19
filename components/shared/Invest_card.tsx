@@ -176,7 +176,7 @@ export const Invest_card = () => {
             <>
               {invests
                 .filter((val) => val.status !== 0)
-                .slice(0, 1)
+                .slice(0, 2)
                 .map((val, index) => (
                   <div
                     className="bg-[#fff] shadow-medium dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px]  max-w-[650px] w-full"
