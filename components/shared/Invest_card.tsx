@@ -9,6 +9,7 @@ import { Invest_progressBar } from "./Invest_progressBar";
 import { industries } from "./Invest_steps";
 import NotFoundItem from "./NotFoundItem";
 import { useUserStore } from "@/hooks/useUserData";
+import { ArrowDown, ArrowUp } from "lucide-react";
 
 interface UserBalance {
   data: {
@@ -121,6 +122,8 @@ export const Invest_card = () => {
 
   const { csrf } = useUserStore();
 
+  const [showingCards, setShowingCards] = useState(2);
+
   const onDeleteInvest = async (
     coin: string,
     packet_name: string,
@@ -159,6 +162,7 @@ export const Invest_card = () => {
     }
   };
 
+  const visibleInvests = invests.filter((val) => val.status !== 0);
   return (
     <>
       {!invests?.length && !isLoading ? (
@@ -174,9 +178,16 @@ export const Invest_card = () => {
             <SkeletonCard_invest />
           ) : (
             <>
-              {invests
-                .filter((val) => val.status !== 0)
-                .slice(0, 2)
+              {showingCards > 2 && (
+                <div
+                  className="flex justify-center w-full cursor-pointer"
+                  onClick={() => setShowingCards((prev) => prev - 2)}
+                >
+                  <ArrowUp />
+                </div>
+              )}
+              {visibleInvests
+                .slice(showingCards - 2, showingCards)
                 .map((val, index) => (
                   <div
                     className="bg-[#fff] shadow-medium dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px]  max-w-[650px] w-full"
@@ -308,6 +319,15 @@ export const Invest_card = () => {
                     </div>
                   </div>
                 ))}
+
+              {showingCards <= visibleInvests.length - 1 && (
+                <div
+                  className="flex justify-center w-full cursor-pointer"
+                  onClick={() => setShowingCards((prev) => prev + 2)}
+                >
+                  <ArrowDown />
+                </div>
+              )}
             </>
           )}
         </>

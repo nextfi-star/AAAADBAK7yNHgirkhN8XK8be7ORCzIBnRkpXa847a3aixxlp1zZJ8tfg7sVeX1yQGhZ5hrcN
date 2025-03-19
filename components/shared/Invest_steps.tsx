@@ -582,7 +582,8 @@ const Invest_steps = () => {
                       base: "bg-tranparent ",
                       inputWrapper:
                         "bg-tranparent px-8 text-[16px] !bg-[#7676801F] h-[58px] rounded-[20px] flex items-start justify-center max-w-[962px]",
-                      input: "text-[20px] font-medium",
+                      input:
+                        "text-[20px] font-medium appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none",
                     }}
                     onChange={(e) => setGlobalAmount(Number(e.target.value))}
                   />
