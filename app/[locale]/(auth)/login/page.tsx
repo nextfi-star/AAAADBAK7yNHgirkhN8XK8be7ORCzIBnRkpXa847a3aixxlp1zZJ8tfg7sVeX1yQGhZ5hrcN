@@ -69,6 +69,7 @@ const Login = () => {
 	const [state, setState] = useState(false)
 	const [isSubmit, setIsSubmit] = useState(false)
 	const [typeError, setTypeError] = useState('')
+	const [passwordError, setPasswordError] = useState('');
 
 	useEffect(() => {
 		if (typeof window !== undefined) {
@@ -184,6 +185,7 @@ const Login = () => {
 				} else if (response.requires_verif) {
 					setshowVerifWindow(true)
 					setIsSubmit(false)
+					setError(response.message)
 				} else if (response.requires_2fa) {
 					setshowVerifWindow(true)
 					setIsSubmit(false)
@@ -204,6 +206,7 @@ const Login = () => {
 		return () => clearTimeout(timer)
 	}
 	const onSubmit = async (data: any) => {
+		setPasswordError('');
 		const payload = {
 			email: mode === 'email' ? data.emailOrPhone : '',
 			phone: mode === 'phone' ? data.emailOrPhone : '',
@@ -264,6 +267,9 @@ const Login = () => {
 				setIsSubmit(false)
 				console.log(response)
 				setError(response.message)
+				if (response.message === "Invalid user password"){
+					setPasswordError(response.message)
+				}
 			}
 		} catch (err: any) {
 			console.log(err)
@@ -304,7 +310,7 @@ const Login = () => {
 							))}
 						</InputOTPGroup>
 					</InputOTP>
-					{error && <p className='text-danger'>{error}</p>}
+					{error && <a className='text-danger'>{error}</a>}
 					<Button
 						onPress={handle2faLogin}
 						disabled={vcode.length < 6 || isSubmit}
@@ -351,7 +357,7 @@ const Login = () => {
 								))}
 							</InputOTPGroup>
 						</InputOTP>
-						{error && <p className='text-danger'>{error}</p>}
+						{error && <a className='text-danger'>{error}</a>}
 						<Button
 							onPress={handleChange}
 							disabled={vcode.length < 6 || isSubmit}
@@ -426,14 +432,14 @@ const Login = () => {
 								</span>
 							</div>
 							{errors.password && (
-								<p className='text-danger pointer-events-none' style={{margin: "-15px"}}>
+								<p className='text-danger pointer-events-none'>
 									{errors.password.message}
 								</p>
 							)}
 						</div>
 
-						{error && (
-							<p className='text-danger pointer-events-none'>{error}</p>
+						{passwordError && (
+							<p className='text-danger pointer-events-none' style={{margin: "-15px"}}>{passwordError}</p>
 						)}
 						<button
 							type='submit'
