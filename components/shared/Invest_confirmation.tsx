@@ -11,13 +11,14 @@ import {
 } from "@/components/ui/dialog";
 import { useThemeStore } from "@/store/useChatStore";
 import { Divider } from "@heroui/divider";
-import { Image } from "@heroui/react";
+import { Image, Spinner } from "@heroui/react";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { useTranslations } from "next-intl";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Checkbox } from "./Checkbox";
 import Withdrawal_animation from "./Withdrawal_animation";
 import { InvestData } from "@/app/[locale]/(profile)/invest/page";
+import { useUserStore } from "@/hooks/useUserData";
 
 interface Props {
   titleTrigger: string;
@@ -29,7 +30,6 @@ interface Props {
   className?: string;
   selectedCoin?: string;
   selectedIndustry?: string;
-  onClick: () => void;
 }
 export const Invest_confirmation = ({
   className,
@@ -40,9 +40,9 @@ export const Invest_confirmation = ({
   selectedInvest,
   setSelectedInvest,
   selectedCoin,
-  onClick,
 }: Props) => {
   const t = useTranslations("invest");
+  const { csrf } = useUserStore();
   const {
     confirmationStep,
     setConfirmStep,
@@ -55,6 +55,9 @@ export const Invest_confirmation = ({
     globalCoin,
     globalPeriod,
     investConfirmError,
+    globalCompany,
+    packets,
+    setInvestConfirmError,
   } = useThemeStore();
   const [checked, setChecked] = useState(false);
   const DropSteps = () => {
@@ -71,6 +74,55 @@ export const Invest_confirmation = ({
   };
 
   const [isConfirmed, setIsConfirmed] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const onInvest = async () => {
+    setIsLoading(true);
+    try {
+      const body = {
+        csrf,
+        coin: globalCoin?.val,
+        amount: parseFloat(String(globalAmount)),
+        packet: globalCompany?.id,
+        id: packets.find((packet) => {
+          console.log(
+            parseInt(String(packet.percent)) ==
+              parseInt(String(globalPeriod?.percent))
+          );
+          return (
+            packet.coin.toLowerCase() === globalCoin?.name.toLowerCase() &&
+            // parseInt(String(packet.percent)) ==
+            //   parseInt(String(globalPeriod?.percent)) &&
+            Number(globalPeriod?.name) === packet.rtime / 24 / 60 / 60 &&
+            packet.packet == globalCompany?.id
+          );
+        })?.id,
+        type: "invest_create",
+      };
+      const response = await fetch(
+        "https://nextfi.io:5000/api/v1/invest_action",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.response === "success") {
+        setConfirmStep(3);
+      } else {
+        setInvestConfirmError(data.message);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Dialog>
@@ -143,12 +195,12 @@ export const Invest_confirmation = ({
             </DialogClose>
             <Button
               type="button"
-              onClick={onClick}
+              onClick={onInvest}
               variant="secondary"
               className="bg-[#205BC9] text-white w-fit rounded-[50px] hover:bg-[#205BC9] min-w-[124px]"
-              disabled={!isConfirmed}
+              disabled={!isConfirmed || isLoading}
             >
-              {t("contin")}
+              {isLoading ? <Spinner size="sm" /> : t("contin")}
             </Button>
           </DialogFooter>
         </DialogContent>

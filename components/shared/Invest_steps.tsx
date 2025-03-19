@@ -223,51 +223,6 @@ const Invest_steps = () => {
     setInvestConfirmError(null);
   }, [globalAmount, globalCompany?.id, packets.length]);
 
-  const onInvest = async () => {
-    try {
-      const body = {
-        csrf,
-        coin: globalCoin?.val,
-        amount: parseFloat(String(globalAmount)),
-        packet: globalCompany?.id,
-        id: packets.find((packet) => {
-          console.log(
-            parseInt(String(packet.percent)) ==
-              parseInt(String(globalPeriod?.percent))
-          );
-          return (
-            packet.coin.toLowerCase() === globalCoin?.name.toLowerCase() &&
-            // parseInt(String(packet.percent)) ==
-            //   parseInt(String(globalPeriod?.percent)) &&
-            Number(globalPeriod?.name) === packet.rtime / 24 / 60 / 60 &&
-            packet.packet == globalCompany?.id
-          );
-        })?.id,
-        type: "invest_create",
-      };
-      const response = await fetch(
-        "https://nextfi.io:5000/api/v1/invest_action",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(body),
-        }
-      );
-
-      const data = await response.json();
-
-      if (data.response === "success") {
-        setConfirmStep(3);
-      } else {
-        setInvestConfirmError(data.message);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   return (
     <div className="shadow-none dark:shadow-none rounded-[30px] p-[0px_16px_29px_16px] md:p-[0px_29px_29px_29px]">
       <div className="flex justify-start gap-[10px] w-full pb-[1.5rem]">
@@ -655,7 +610,6 @@ const Invest_steps = () => {
                       titleTrigger={"Invest"}
                       selectedInvest={selectedInvest}
                       selectedCoin={globalCoin?.name}
-                      onClick={onInvest}
                     />
                   </div>
                 </div>

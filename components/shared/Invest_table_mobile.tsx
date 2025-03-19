@@ -1,5 +1,6 @@
 "use client";
 import {
+  Avatar,
   Button,
   ChipProps,
   Dropdown,
@@ -24,6 +25,8 @@ import { columnsDataI, statusOptionsDataI, usersDataI } from "./data";
 import { capitalize } from "./utils";
 import { VerticalDotsIcon } from "./VerticalDotsIcon";
 import { useThemeStore } from "@/store/useChatStore";
+import { industries } from "./Invest_steps";
+import { getStatus } from "./Invest_Table";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
   sent: "success",
@@ -101,7 +104,17 @@ export default function Invest_table_mobile() {
   const renderCell = React.useCallback((item: any, columnKey: React.Key) => {
     switch (columnKey) {
       case "industry":
-        return <span className="md:text-[20px]">{item.packet.name}</span>;
+        return (
+          <span className="md:text-[20px] flex items-center">
+            <Avatar
+              src={industries.find((val) => val.id === item.packet.id)!.avatar}
+              classNames={{
+                base: "bg-transparent",
+              }}
+            />
+            {item.packet.name}
+          </span>
+        );
       case "amount":
         return (
           <div className="flex flex-col items-start gap-[5px]">
@@ -125,7 +138,9 @@ export default function Invest_table_mobile() {
       case "current amount":
         return <span className="md:text-[20px]"> {item.amount}</span>;
       case "status":
-        return <span className="md:text-[20px]"> {item.status}</span>;
+        return (
+          <span className="md:text-[20px]"> {getStatus(item.status)}</span>
+        );
       case "actions":
         return (
           <div className="relative flex justify-center items-center gap-2">
@@ -216,7 +231,7 @@ export default function Invest_table_mobile() {
               >
                 {columnsDataI.map((column, index) => (
                   <DropdownItem
-                    key={index}
+                    key={column.uid}
                     className="capitalize md:text-[20px] "
                   >
                     {capitalize(column.name)}

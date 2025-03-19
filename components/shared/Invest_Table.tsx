@@ -1,5 +1,6 @@
 "use client";
 import {
+  Avatar,
   Button,
   ChipProps,
   Dropdown,
@@ -50,7 +51,24 @@ const INITIAL_VISIBLE_COLUMNS = [
 ];
 type User = (typeof usersDataI)[0];
 
-export default function Invest_Table() {
+export const getStatus = (numeric_status: number) => {
+  switch (numeric_status) {
+    case 0:
+      return <span className="md:text-[20px] text-green-400">COMPLETED</span>;
+    case 1:
+      return (
+        <span className="md:text-[20px] text-yellow-400">IN PROGRESS</span>
+      );
+    default:
+      return <span>SUCCESS</span>;
+  }
+};
+
+export default function Invest_Table({
+  title = "Investment history",
+}: {
+  title?: string;
+}) {
   const { csrf } = useUserStore();
   const { invests } = useThemeStore();
   const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -103,6 +121,8 @@ export default function Invest_Table() {
     );
   }, [visibleColumns]);
 
+  console.log(headerColumns);
+
   const filteredItems = React.useMemo(() => {
     let filteredUsers = [...history];
 
@@ -147,7 +167,17 @@ export default function Invest_Table() {
 
     switch (columnKey) {
       case "industry":
-        return <span className="md:text-[20px]">{item.packet.name}</span>;
+        return (
+          <span className="md:text-[20px] flex items-center">
+            <Avatar
+              src={industries.find((val) => val.id === item.packet.id)!.avatar}
+              classNames={{
+                base: "bg-transparent",
+              }}
+            />
+            {item.packet.name}
+          </span>
+        );
       case "amount":
         return (
           <div className="flex flex-col items-start gap-[5px]">
@@ -185,7 +215,9 @@ export default function Invest_Table() {
           </span>
         );
       case "status":
-        return <span className="md:text-[20px]"> {item.status}</span>;
+        return (
+          <span className="md:text-[20px]"> {getStatus(item.status)}</span>
+        );
       case "actions":
         return (
           <div className="relative flex justify-center items-center gap-2">
@@ -230,7 +262,7 @@ export default function Invest_Table() {
     return (
       <div className="flex flex-col gap-4">
         <div className="flex justify-between gap-3 items-end p-[25px_20px_0px]">
-          <h1 className="text-[20px] xl:text-[32px]">Investment history</h1>
+          <h1 className="text-[20px] xl:text-[32px]">{title}</h1>
           <div className="flex gap-3">
             {/* <Dropdown>
 							<DropdownTrigger className='hidden sm:flex'>
@@ -278,7 +310,7 @@ export default function Invest_Table() {
               >
                 {columnsDataI.map((column, index) => (
                   <DropdownItem
-                    key={index}
+                    key={column.uid}
                     className="capitalize md:text-[20px] "
                   >
                     {capitalize(column.name)}
