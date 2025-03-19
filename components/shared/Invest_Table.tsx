@@ -54,11 +54,9 @@ type User = (typeof usersDataI)[0];
 export const getStatus = (numeric_status: number) => {
   switch (numeric_status) {
     case 0:
-      return <span className="md:text-[20px] text-green-400">COMPLETED</span>;
+      return <span className=" text-green-400">COMPLETED</span>;
     case 1:
-      return (
-        <span className="md:text-[20px] text-yellow-400">IN PROGRESS</span>
-      );
+      return <span className="text-yellow-400">IN PROGRESS</span>;
     default:
       return <span>SUCCESS</span>;
   }
@@ -168,7 +166,7 @@ export default function Invest_Table({
     switch (columnKey) {
       case "industry":
         return (
-          <span className="md:text-[20px] flex items-center">
+          <span className="md:text-[17px] flex items-center">
             <Avatar
               src={industries.find((val) => val.id === item.packet.id)!.avatar}
               classNames={{
@@ -180,15 +178,13 @@ export default function Invest_Table({
         );
       case "amount":
         return (
-          <div className="flex flex-col items-start gap-[5px]">
-            <div className="flex items-center gap-[5px] ">
-              {/* <Snippet
+          <div className="flex flex-col items-start gap-[5px] md:text-[17px]">
+            {/* <Snippet
 								symbol=''
 								className='text-bold md:text-[20px] text-small capitalize overflow-ellipsis whitespace-nowrap overflow-hidden bg-transparent px-0'
 							> */}
-              {item.amount}
-              {/* </Snippet> */}
-            </div>
+            {item.amount}
+            {/* </Snippet> */}
             {/* <span className='md:text-[20px] font-medium text-[#BDBDBD]'>
 							{user.subAmount}
 						</span> */}
@@ -196,11 +192,11 @@ export default function Invest_Table({
         );
       case "period":
         return (
-          <span className="md:text-[20px]"> {item.rtime / 24 / 60 / 60}</span>
+          <span className="md:text-[17px]"> {item.rtime / 24 / 60 / 60}</span>
         );
       case "current amount":
         return (
-          <span className="md:text-[20px]">
+          <span className="md:text-[17px]">
             {" "}
             {(
               (item.amount / 100) *
@@ -216,7 +212,7 @@ export default function Invest_Table({
         );
       case "status":
         return (
-          <span className="md:text-[20px]"> {getStatus(item.status)}</span>
+          <span className="md:text-[17px]"> {getStatus(item.status)}</span>
         );
       case "actions":
         return (
