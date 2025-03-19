@@ -8,6 +8,7 @@ import { SkeletonCard_invest } from "../ui/skeleton/SkeletonCard_invest";
 import { Invest_progressBar } from "./Invest_progressBar";
 import { industries } from "./Invest_steps";
 import NotFoundItem from "./NotFoundItem";
+import { useUserStore } from "@/hooks/useUserData";
 
 interface UserBalance {
   data: {
@@ -23,7 +24,14 @@ interface UserBalance {
 }
 
 export const Invest_card = () => {
-  const { globalCompany, globalCompanyIcon, globalPeriod } = useThemeStore();
+  const {
+    globalCompany,
+    globalCompanyIcon,
+    globalPeriod,
+    setInvests,
+    invests,
+    packets,
+  } = useThemeStore();
   const [state, setState] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [change, setChange] = useState(false);
@@ -35,9 +43,6 @@ export const Invest_card = () => {
       setIsLoading(false);
     }, 800);
   };
-
-  const [userBalance, setUserBalance] = useState<UserBalance | null>(null);
-  const [invests, setInvests] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchInvestData = async () => {
@@ -93,6 +98,7 @@ export const Invest_card = () => {
                 return responseData.data.map((invest: any) => ({
                   ...invest,
                   packet: industries.find((val) => val.id === invest.packet),
+                  amountMoment: invest.amount,
                 }));
               }
             )
@@ -111,9 +117,44 @@ export const Invest_card = () => {
     };
 
     fetchInvestData();
-  }, []);
+  }, [invests.length]);
 
-  console.log(invests);
+  const { csrf } = useUserStore();
+
+  const onDeleteInvest = async (
+    coin: string,
+    packet_name: string,
+    amount: number,
+    id: number
+  ) => {
+    const industry_found = industries.find((val) => val.name === packet_name);
+
+    try {
+      const body = {
+        csrf,
+        coin,
+        amount: parseFloat(String(amount)),
+        packet: industry_found?.id,
+        id,
+        type: "invest_close",
+      };
+      const response = await fetch(
+        "https://nextfi.io:5000/api/v1/invest_action",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
+
+      const data = await response.json();
+      setInvests([]);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <>
@@ -130,78 +171,129 @@ export const Invest_card = () => {
             <SkeletonCard_invest />
           ) : (
             <>
-              {invests.slice(0, 2).map((val) => (
-                <div
-                  className="bg-[#fff] shadow-medium dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px]  max-w-[650px] w-full"
-                  key={val.uid}
-                >
-                  <div className="p-[18px_23px] flex w-full flex-col sm:flex-row items-center justify-between">
-                    <Image
-                      src={
-                        globalCompanyIcon?.avatar ?? "/main/invest/stocks.svg"
-                      }
-                      width={60}
-                      height={60}
-                      alt="icon"
-                    />
-                    <p className="text-[19px] sm:text-[20px] text-[#3A3939] dark:text-[#eeeeee] font-medium">
-                      {val.packet.name}
-                    </p>
-                    <Invest_progressBar
-                      progress={Math.min(
-                        ((new Date().getTime() / 1000 - val.create_time) /
-                          val.rtime) *
-                          100,
-                        100
-                      )}
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-[13px] items-center px-[12px] sm:px-[18px] py-[28px]">
-                    <div className="w-full flex items-center justify-between gap-[10px]">
-                      <p className="text-[16px] sm:text-[20px] text-[#888888] font-medium">
-                        Amount of investment: {userBalance?.total_usdt_value}{" "}
-                        USDT
+              {invests
+                .filter((val) => val.status !== 0)
+                .slice(0, 2)
+                .map((val) => (
+                  <div
+                    className="bg-[#fff] shadow-medium dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px]  max-w-[650px] w-full"
+                    key={val.uid}
+                  >
+                    <div className="p-[18px_23px] flex w-full flex-col sm:flex-row items-center justify-between">
+                      <Image
+                        src={
+                          globalCompanyIcon?.avatar ?? "/main/invest/stocks.svg"
+                        }
+                        width={60}
+                        height={60}
+                        alt="icon"
+                      />
+                      <p className="text-[19px] sm:text-[20px] text-[#3A3939] dark:text-[#eeeeee] font-medium">
+                        {val.packet.name}
                       </p>
-                      <p className="sm:text-[20px] text-[#888888] font-medium">
-                        Period: {val.rtime / 60 / 60 / 24} days
-                      </p>
+                      <Invest_progressBar
+                        progress={Math.min(
+                          ((new Date().getTime() / 1000 - val.create_time) /
+                            val.rtime) *
+                            100,
+                          100
+                        )}
+                      />
                     </div>
 
-                    <div className="w-full flex items-center justify-between pb-[23px]">
-                      <p className="text-[14px] sm:text-[20px] text-[#888888] font-medium">
-                        Remaining period: {val.packet?.periodFrom}-
-                        {val.packet?.periodTo} days
-                      </p>
-                      <p className="text-[14px] flex-shrink-0 sm:text-[20px] text-[#888888] font-medium">
-                        Percent: {val.percent}%
-                      </p>
-                    </div>
+                    <div className="flex flex-col gap-[13px] items-center px-[12px] sm:px-[18px] py-[28px]">
+                      <div className="w-full flex items-center justify-between gap-[10px]">
+                        <p className="text-[16px] sm:text-[20px] text-[#888888] font-medium">
+                          Amount of investment: {val.amount} USDT
+                        </p>
+                        <p className="sm:text-[20px] text-[#888888] font-medium">
+                          Period: {val.rtime / 60 / 60 / 24} days
+                        </p>
+                      </div>
 
-                    <div className="w-full flex items-center justify-between pb-[23px]">
-                      <p className="sm:text-[20px] text-[#888888] font-medium">
-                        Amount at the moment
-                      </p>
-                      <p className="sm:text-[32px] text-[#888888] font-bold">
-                        {val.amount} {val.coin}
-                      </p>
-                    </div>
+                      <div className="w-full flex items-center justify-between pb-[23px]">
+                        <p className="text-[14px] sm:text-[20px] text-[#888888] font-medium">
+                          Remaining period: {val.packet?.periodFrom}-
+                          {val.packet?.periodTo} days
+                        </p>
+                        <p className="text-[14px] flex-shrink-0 sm:text-[20px] text-[#888888] font-medium">
+                          Percent: {val.percent}%
+                        </p>
+                      </div>
 
-                    <div className="flex flex-col sm:gap-[15px] gap-[20px] sm:flex-row items-center justify-between w-full sm:mb-[20px]">
-                      <span className="flex gap-2 items-center">
-                        <SecIcon cls="lock min-w-[30px]" /> Early withdrawal
-                      </span>
-                      <Button
-                        className="max-w-[188px] w-full p-[8px_4px] text-white bg-[#205BC9] rounded-[50px]"
-                        onClick={handleChange}
-                        disabled
+                      <div className="w-full flex items-center justify-between pb-[23px]">
+                        <p className="sm:text-[20px] text-[#888888] font-medium">
+                          Amount <br /> at the moment
+                        </p>
+                        <p className="sm:text-[28px] text-[#888888] font-bold">
+                          {(
+                            (val.amount / 100) *
+                              Math.min(
+                                ((new Date().getTime() / 1000 -
+                                  val.create_time) /
+                                  val.rtime) *
+                                  100,
+                                100
+                              ) +
+                            val.amount
+                          ).toFixed(6)}{" "}
+                          {val.coin}
+                        </p>
+                      </div>
+
+                      <div
+                        className={`flex flex-col sm:gap-[15px] gap-[20px] sm:flex-row items-center justify-${
+                          Math.min(
+                            ((new Date().getTime() / 1000 - val.create_time) /
+                              val.rtime) *
+                              100,
+                            100
+                          ) >= 100
+                            ? "center"
+                            : "between"
+                        }  w-full sm:mb-[20px]`}
                       >
-                        Withdraw funds
-                      </Button>
+                        {!(
+                          Math.min(
+                            ((new Date().getTime() / 1000 - val.create_time) /
+                              val.rtime) *
+                              100,
+                            100
+                          ) >= 100
+                        ) && (
+                          <span className="flex gap-2 items-center">
+                            <SecIcon cls="lock min-w-[30px]" /> Early withdrawal
+                          </span>
+                        )}
+
+                        <Button
+                          className={`max-w-[188px] w-full p-[8px_4px] text-white bg-[#205BC9] rounded-[50px]`}
+                          onPress={() =>
+                            onDeleteInvest(
+                              val.coin,
+                              val.packet.name,
+                              val.amount,
+                              val.id
+                            )
+                          }
+                          disabled={
+                            !(
+                              Math.min(
+                                ((new Date().getTime() / 1000 -
+                                  val.create_time) /
+                                  val.rtime) *
+                                  100,
+                                100
+                              ) >= 100
+                            )
+                          }
+                        >
+                          Withdraw funds
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </>
           )}
         </>

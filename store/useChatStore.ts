@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { IStore } from "@/types";
 import { persist } from "zustand/middleware";
 import { getChatHistory, sendMessage } from "@/utils/api";
+import { InvestPacket } from "@/app/[locale]/(profile)/invest/page";
 
 function hexToString(hex: string): string {
   try {
@@ -139,6 +140,8 @@ export const useThemeStore = create<IStore>()(
       setGlobalCoin: (val) => set({ globalCoin: val }),
       globalAmount: 0,
       setGlobalAmount: (val) => set({ globalAmount: val }),
+      invests: [],
+      setInvests: (val) => set({ invests: val }),
       open: false,
       setOpen: (val) => set({ open: val }),
       user: null,
@@ -153,6 +156,8 @@ export const useThemeStore = create<IStore>()(
         localStorage.removeItem("profile-store");
         set({ user: null });
       },
+      packets: [],
+      setPackets: (val: InvestPacket[]) => set({ packets: val }),
       showVerifWindow: false,
       setshowVerifWindow: (val) => set({ showVerifWindow: val }),
     }),
