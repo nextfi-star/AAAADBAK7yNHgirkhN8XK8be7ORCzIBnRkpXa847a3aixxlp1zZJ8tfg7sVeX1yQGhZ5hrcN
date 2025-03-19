@@ -1,6 +1,6 @@
 "use client";
 import { useThemeStore } from "@/store/useChatStore";
-import { Button } from "@heroui/button";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { SecIcon } from "../ui/SecIcon";
@@ -125,8 +125,11 @@ export const Invest_card = () => {
     coin: string,
     packet_name: string,
     amount: number,
-    id: number
+    id: number,
+    isDisabled: boolean
   ) => {
+    if (isDisabled) return;
+
     const industry_found = industries.find((val) => val.name === packet_name);
 
     try {
@@ -173,11 +176,11 @@ export const Invest_card = () => {
             <>
               {invests
                 .filter((val) => val.status !== 0)
-                .slice(0, 2)
-                .map((val) => (
+                .slice(0, 1)
+                .map((val, index) => (
                   <div
                     className="bg-[#fff] shadow-medium dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px]  max-w-[650px] w-full"
-                    key={val.uid}
+                    key={index}
                   >
                     <div className="p-[18px_23px] flex w-full flex-col sm:flex-row items-center justify-between">
                       <Image
@@ -267,13 +270,24 @@ export const Invest_card = () => {
                         )}
 
                         <Button
+                          color="secondary"
+                          // className=" text-white w-fit rounded-[50px] hover:bg-[#205BC9] min-w-[124px]"
                           className={`max-w-[188px] w-full p-[8px_4px] text-white bg-[#205BC9] rounded-[50px]`}
-                          onPress={() =>
+                          onClick={() =>
                             onDeleteInvest(
                               val.coin,
                               val.packet.name,
                               val.amount,
-                              val.id
+                              val.id,
+                              !(
+                                Math.min(
+                                  ((new Date().getTime() / 1000 -
+                                    val.create_time) /
+                                    val.rtime) *
+                                    100,
+                                  100
+                                ) >= 100
+                              )
                             )
                           }
                           disabled={
