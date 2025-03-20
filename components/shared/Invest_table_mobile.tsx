@@ -37,28 +37,27 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
 
 const INITIAL_VISIBLE_COLUMNS = ["industry", "amount", "period"];
 
-const t = useTranslations("invest");
-
-const columnsDataI = [
-  { name: t("table_header_industry"), uid: "industry", sortable: true },
-  { name: t("table_header_amount"), uid: "amount", sortable: true },
-  { name: t("table_header_period"), uid: "period", sortable: true },
-  {
-    name: t("table_header_current_amount"),
-    uid: "current amount",
-    sortable: true,
-  },
-  { name: t("table_header_status"), uid: "status", sortable: true },
-];
-const statusOptionsDataI = [
-  { name: "IN PROCESS", uid: "in process" },
-  { name: "SUCCESS", uid: "Succsess" },
-  { name: "WITHDRAWN", uid: "Withdrawn" },
-];
-
 type User = (typeof usersDataI)[0];
 
 export default function Invest_table_mobile() {
+  const t = useTranslations("invest");
+
+  const columnsDataI = [
+    { name: t("table_header_industry"), uid: "industry", sortable: true },
+    { name: t("table_header_amount"), uid: "amount", sortable: true },
+    { name: t("table_header_period"), uid: "period", sortable: true },
+    {
+      name: t("table_header_current_amount"),
+      uid: "current amount",
+      sortable: true,
+    },
+    { name: t("table_header_status"), uid: "status", sortable: true },
+  ];
+  const statusOptionsDataI = [
+    { name: "IN PROCESS", uid: "in process" },
+    { name: "SUCCESS", uid: "Succsess" },
+    { name: "WITHDRAWN", uid: "Withdrawn" },
+  ];
   const { invests } = useThemeStore();
   const [filterValue, setFilterValue] = React.useState("");
   const [visibleColumns, setVisibleColumns] = React.useState<Selection>(

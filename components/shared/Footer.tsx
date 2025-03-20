@@ -150,7 +150,7 @@ export const Footer = ({ isAuth = true }: { isAuth?: boolean }) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-[25px] px-[36px] py-[20px] rounded-[50px] bg-[#7676801F]">
+          <div className="flex items-center gap-[25px] px-[36px] py-[20px] rounded-[20px] bg-[#7676801F]">
             <Info strokeWidth={1} className="w-full max-w-[33px]" />
             <p className="text-[18px] dark:text-[#EFEFEF] font-semibold">
               {t("policy")}
@@ -330,7 +330,7 @@ export const Footer = ({ isAuth = true }: { isAuth?: boolean }) => {
             </div>
           </div>
 
-          <div className="flex items-start gap-[25px] px-[36px] py-[20px] rounded-[50px] bg-[#7676801F]">
+          <div className="flex items-start gap-[25px] px-[36px] py-[20px] rounded-[25px] bg-[#7676801F]">
             <Info strokeWidth={1} className="w-full max-w-[33px]" />
             <p className="text-[16px] dark:text-[#EFEFEF] font-semibold">
               {t("policy")}
