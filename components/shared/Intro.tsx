@@ -9,7 +9,7 @@ export const Intro = () => {
   const t = useTranslations("landing");
 
   return (
-    <section className="main__intro">
+    <section className="main__intro" id="main__intro">
       <Intro__wave />
       <div className="site-holder">
         <div className="main__intro-content">
@@ -19,8 +19,7 @@ export const Intro = () => {
               data-aos-duration="800"
               data-aos-once="true"
             >
-              {t("heroTitle")}{" "}
-              <b>{t('withAI')}</b>
+              {t("heroTitle")} <b>{t("withAI")}</b>
             </h1>
             {/* mobile v. */}
             <div className="m-main__img-wrapper z-[9]">
@@ -47,10 +46,10 @@ export const Intro = () => {
               data-aos-once="true"
             >
               <Button className="btn btn-blue ">
-                <Link href="/signup">{t('signup')}</Link>
+                <Link href="/signup">{t("signup")}</Link>
               </Button>
               <Button className="btn btn-transparent ">
-                <Link href="/login">{t('login')}</Link>
+                <Link href="/login">{t("login")}</Link>
               </Button>
             </div>
           </div>
@@ -82,17 +81,18 @@ export const Intro = () => {
           </div>
           <div className="main__intro-values-item">
             <span className="main__intro-values-item__count">+ $8.5 M</span>
-            <span className="main__intro-values-item__name"> {t('activeDepos')}</span>
-          </div>
-          <div className="main__intro-values-item">
-            <span className="main__intro-values-item__count">+100</span>
             <span className="main__intro-values-item__name">
-              {t("users")}
+              {" "}
+              {t("activeDepos")}
             </span>
           </div>
           <div className="main__intro-values-item">
+            <span className="main__intro-values-item__count">+100</span>
+            <span className="main__intro-values-item__name">{t("users")}</span>
+          </div>
+          <div className="main__intro-values-item">
             <span className="main__intro-values-item__count">+100K</span>
-            <span className="main__intro-values-item__name">{t('bonus')}</span>
+            <span className="main__intro-values-item__name">{t("bonus")}</span>
           </div>
         </div>
       </div>

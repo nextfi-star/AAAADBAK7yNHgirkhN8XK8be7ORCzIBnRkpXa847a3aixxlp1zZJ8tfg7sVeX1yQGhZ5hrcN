@@ -20,16 +20,14 @@ import {
   ChipProps,
   SortDescriptor,
 } from "@heroui/react";
-
-import { VerticalDotsIcon } from "./VerticalDotsIcon";
-import { ChevronDownIcon } from "./ChevronDownIcon";
-import { SearchIcon } from "./SearchIcon";
-import { capitalize } from "./utils";
-import { columns, statusOptions, users } from "./data";
 import { useTranslations } from "next-intl";
-import { getUserBalanceArray } from "@/utils/api";
 import { BalanceItem } from "./DataTable_verif";
 import { useUserStore } from "@/hooks/useUserData";
+import { getUserBalanceArray } from "@/utils/api";
+import { columns, statusOptions } from "./data";
+import { SearchIcon } from "./SearchIcon";
+import { ChevronDownIcon } from "./ChevronDownIcon";
+import { capitalize } from "./utils";
 
 // const statusColorMap: Record<string, ChipProps["color"]> = {
 //   "+": "success",
