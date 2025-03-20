@@ -80,7 +80,7 @@ const Activity_progressLogo = () => {
               <div className="flex flex-row items-center gap-[5px]" key={index}>
                 <span className="text-[#3F7EF3] whitespace-nowrap">----</span>
                 <p
-                  className={`bg-${item.title === "0%" ? "[#3F7EF3]" : `gray-400`} h-[28px] lg:h-[48px] w-[28px] lg:w-[48px] text-[10px] lg:text-[18px] rounded-full flex items-center justify-center cursor-pointer transition duration shadow-medium text-white`}
+                  className={`bg-${item.title === "0%" ? "[#3F7EF3]" : `gray-400`} h-[28px] lg:h-[48px] w-[28px] lg:w-[48px] text-[10px] lg:text-[18px] rounded-full flex items-center justify-center cursor-pointer transition duration shadow-medium text-white bg-gray-500`}
                 >
                   {item.title}
                 </p>

@@ -252,9 +252,9 @@
     "allwithdrawals": "Все выводы",
     "statusLow": "Статус",
     "columns": "Столбцы",
-    "sent": "Отправлено",
-    "denied": "Отклонено",
-    "pending": "В ожидании",
+    "sent": "ОТПРАВЛЕНО",
+    "denied": "ОТКЛОНЕНО",
+    "pending": "В ОЖИДАНИИ",
     "notFound": "Не найдено"
   },
   "tableTier": {},

@@ -21,12 +21,13 @@ import {
 } from "@heroui/react";
 import React from "react";
 import { ChevronDownIcon } from "./ChevronDownIcon";
-import { columnsDataI, statusOptionsDataI, usersDataI } from "./data";
+import { usersDataI } from "./data";
 import { capitalize } from "./utils";
 import { VerticalDotsIcon } from "./VerticalDotsIcon";
 import { useThemeStore } from "@/store/useChatStore";
 import { industries } from "./Invest_steps";
 import { getStatus } from "./Invest_Table";
+import { useTranslations } from "next-intl";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
   sent: "success",
@@ -35,6 +36,25 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
 };
 
 const INITIAL_VISIBLE_COLUMNS = ["industry", "amount", "period"];
+
+const t = useTranslations("invest");
+
+const columnsDataI = [
+  { name: t("table_header_industry"), uid: "industry", sortable: true },
+  { name: t("table_header_amount"), uid: "amount", sortable: true },
+  { name: t("table_header_period"), uid: "period", sortable: true },
+  {
+    name: t("table_header_current_amount"),
+    uid: "current amount",
+    sortable: true,
+  },
+  { name: t("table_header_status"), uid: "status", sortable: true },
+];
+const statusOptionsDataI = [
+  { name: "IN PROCESS", uid: "in process" },
+  { name: "SUCCESS", uid: "Succsess" },
+  { name: "WITHDRAWN", uid: "Withdrawn" },
+];
 
 type User = (typeof usersDataI)[0];
 

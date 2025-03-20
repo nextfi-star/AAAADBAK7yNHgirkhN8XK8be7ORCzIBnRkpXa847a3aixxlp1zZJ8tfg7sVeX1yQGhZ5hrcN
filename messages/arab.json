@@ -648,7 +648,14 @@
     "whereCrypto2": "أقصى عائد ممكن على الأموال المستثمرة هو 14 بالمائة.",
     "depositCrypto": "هل يمكنني سحب استثماري مبكرًا؟",
     "depositCrypto2": "يمكنك سحب الأموال المستثمرة في صناعة الاستثمار في أي وقت يناسبك، مع الأخذ في الاعتبار عمولة السحب المبكر.",
-    "faq": "الأسئلة الشائعة"
+    "faq": "الأسئلة الشائعة",
+    "table_header_industry": "الصناعة",
+    "table_header_amount": "المبلغ",
+    "table_header_period": "الفترة",
+    "table_header_current_amount": "المبلغ الحالي",
+    "table_header_status": "الحالة",
+    "table_body_completed": "مكتمل",
+    "table_body_IN_PROGRESS": "قيد التنفيذ"
   },
   "withdrawal": {
     "enterAmount": "أدخل المبلغ",

@@ -1,4 +1,7 @@
 "use client";
+import { useUserStore } from "@/hooks/useUserData";
+import { useThemeStore } from "@/store/useChatStore";
+import { getInvestHistory } from "@/utils/api";
 import {
   Avatar,
   Button,
@@ -9,8 +12,8 @@ import {
   DropdownTrigger,
   Pagination,
   Selection,
-  Snippet,
   SortDescriptor,
+  Spinner,
   Table,
   TableBody,
   TableCell,
@@ -19,15 +22,13 @@ import {
   TableRow,
   User,
 } from "@heroui/react";
+import { useTranslations } from "next-intl";
 import React, { useCallback, useEffect, useState } from "react";
 import { ChevronDownIcon } from "./ChevronDownIcon";
-import { columnsDataI, statusOptionsDataI, usersDataI } from "./data";
+import { usersDataI } from "./data";
+import { industries } from "./Invest_steps";
 import { capitalize } from "./utils";
 import { VerticalDotsIcon } from "./VerticalDotsIcon";
-import { useUserStore } from "@/hooks/useUserData";
-import { getInvestHistory } from "@/utils/api";
-import { useThemeStore } from "@/store/useChatStore";
-import { industries } from "./Invest_steps";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
   sent: "success",
@@ -110,6 +111,25 @@ export default function Invest_Table({
 
   const [page, setPage] = React.useState(1);
   const hasSearchFilter = Boolean(filterValue);
+
+  const t = useTranslations("invest");
+
+  const columnsDataI = [
+    { name: t("table_header_industry"), uid: "industry", sortable: true },
+    { name: t("table_header_amount"), uid: "amount", sortable: true },
+    { name: t("table_header_period"), uid: "period", sortable: true },
+    {
+      name: t("table_header_current_amount"),
+      uid: "current amount",
+      sortable: true,
+    },
+    { name: t("table_header_status"), uid: "status", sortable: true },
+  ];
+  const statusOptionsDataI = [
+    { name: "IN PROCESS", uid: "in process" },
+    { name: "SUCCESS", uid: "Succsess" },
+    { name: "WITHDRAWN", uid: "Withdrawn" },
+  ];
 
   const headerColumns = React.useMemo(() => {
     if (visibleColumns === "all") return columnsDataI;
@@ -376,7 +396,12 @@ export default function Invest_Table({
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"Not found"} items={sortedItems}>
+      <TableBody
+        emptyContent={"Not found"}
+        items={sortedItems}
+        loadingContent={<Spinner />}
+        isLoading={loading}
+      >
         {sortedItems.map((item: any, index: number) => (
           <TableRow key={index}>
             {(columnKey) => (

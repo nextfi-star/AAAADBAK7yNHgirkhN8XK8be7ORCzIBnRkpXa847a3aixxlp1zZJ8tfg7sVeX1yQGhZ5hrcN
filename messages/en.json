@@ -253,9 +253,9 @@
     "allwithdrawals": "All withdrawals",
     "statusLow": "Status",
     "columns": "Columns",
-    "sent": "Sent",
-    "denied": "Denied",
-    "pending": "Pending",
+    "sent": "SENT",
+    "denied": "DENIED",
+    "pending": "PENDING",
     "notFound": "Not found"
   },
   "tableTier": {},
@@ -300,7 +300,14 @@
     "download2": "and trade on the go",
     "downLoadApp": "Download app and trade on the go",
     "nextfiApp": "App",
-    "scanDownload": "Scan to download"
+    "scanDownload": "Scan to download",
+    "news_reserve_fund": "NextFi launches $3 million Reserve Fund to protect Investors",
+    "news_invest_wisely": "Invest wisely: how NextFi provides up to 10% profit per month",
+    "news_ai_assistant": "The future is already here: what will the NextFi AI assistant look like?",
+    "news_game_changer": "NextFi is a game changer: Investments protected by artificial intelligence",
+    "news_experience_levels": "NextFi Experience Levels: How Your Investments Open up New Opportunities",
+    "news_reserve_fund_works": "How the NextFi Reserve Fund Works: Protecting Your Investments 24/7",
+    "news_future_2025": "NextFi in 2025: what awaits the platform and its users?"
   },
   "profile": {
     "changePic": "Change profile picture",
@@ -650,7 +657,14 @@
     "whereCrypto2": "The maximum return on invested funds that you can receive is 14 percent.`",
     "depositCrypto": "Can I withdraw my investment early?",
     "depositCrypto2": "You can withdraw funds invested in the investment industry at any time convenient for you, taking into account the commission for early withdrawal.",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "table_header_industry": "INDUTRY",
+    "table_header_amount": "AMOUNT",
+    "table_header_period": "PERIOD",
+    "table_header_current_amount": "Current amount",
+    "table_header_status": "STATUS",
+    "table_body_completed": "COMPLETED",
+    "table_body_IN_PROGRESS": "IN PROGRESS"
   },
   "withdrawal": {
     "enterAmount": "Enter amount",

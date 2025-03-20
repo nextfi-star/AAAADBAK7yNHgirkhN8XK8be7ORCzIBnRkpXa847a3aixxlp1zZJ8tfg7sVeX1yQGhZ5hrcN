@@ -37,11 +37,11 @@ const Activity_awards = ({ progress, handleIncreaseProgress }: Props) => {
         title: "Innovative Startups ",
         id: 5,
       },
-      // {
-      //   percent: "-22 ",
-      //   title: "Fee",
-      //   id: 6,
-      // },
+      {
+        percent: "-20",
+        title: "Fee",
+        id: 6,
+      },
       // {
       //   percent: "+32 ",
       //   title: "Strap",
@@ -96,11 +96,11 @@ const Activity_awards = ({ progress, handleIncreaseProgress }: Props) => {
               className="p-[24px] border-2 border-dashed border-[#3F7EF3] rounded-[30px] min-w-[304px]"
               key={item.id}
             >
-              <div className="p-[40px] flex flex-col items-center bg-[#073D95] rounded-[30px] gap-[12px]">
+              <div className="p-[40px] flex flex-col items-center bg-[#073D95] rounded-[30px] gap-[12px] h-full">
                 <h2 className="text-[20px] 2xl:text-[54px] text-white">
                   {item.percent} %
                 </h2>
-                <p className="text-[20px] 2xl:text-[32px] mb-[60px] !text-white">
+                <p className="text-[20px] text-center 2xl:text-[32px] mb-[60px] h-full !text-white">
                   {item.title}
                 </p>
                 <Button
