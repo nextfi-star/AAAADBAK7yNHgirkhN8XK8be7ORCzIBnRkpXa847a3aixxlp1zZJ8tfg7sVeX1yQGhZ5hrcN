@@ -28,7 +28,7 @@ export const Profile_accountdetails = () => {
         <span>{user?.email || <Spinner />}</span>
 
         <div className="min-w-[181px] flex justify-end">
-          <Alert_email propsItem={"Change"} />
+          <Alert_email propsItem={t("change")} />
         </div>
       </article>
 
@@ -39,7 +39,7 @@ export const Profile_accountdetails = () => {
         <span>{(user?.phone && `+${user?.phone}`) || ""}</span>
 
         <div className="min-w-[181px] flex justify-end">
-          <Alert_phone propsItem={"Change"} />
+          <Alert_phone propsItem={t("change")} />
         </div>
       </article>
 

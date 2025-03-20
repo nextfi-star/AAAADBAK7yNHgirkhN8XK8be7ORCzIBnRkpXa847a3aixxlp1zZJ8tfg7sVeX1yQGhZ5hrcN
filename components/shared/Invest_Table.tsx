@@ -52,17 +52,6 @@ const INITIAL_VISIBLE_COLUMNS = [
 ];
 type User = (typeof usersDataI)[0];
 
-export const getStatus = (numeric_status: number) => {
-  switch (numeric_status) {
-    case 0:
-      return <span className=" text-green-400">COMPLETED</span>;
-    case 1:
-      return <span className="text-yellow-400">IN PROGRESS</span>;
-    default:
-      return <span>SUCCESS</span>;
-  }
-};
-
 export default function Invest_Table({
   title = "Investment history",
 }: {
@@ -98,6 +87,21 @@ export default function Invest_Table({
     console.log(history);
   }, [fetchHistory]);
 
+  const getStatus = (numeric_status: number) => {
+    switch (numeric_status) {
+      case 0:
+        return (
+          <span className=" text-green-400">{t("table_body_completed")}</span>
+        );
+      case 1:
+        return (
+          <span className="text-yellow-400">{t("table_body_in_progress")}</span>
+        );
+      default:
+        return <span>SUCCESS</span>;
+    }
+  };
+
   const [filterValue, setFilterValue] = React.useState("");
   const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
     new Set(INITIAL_VISIBLE_COLUMNS)
@@ -126,9 +130,9 @@ export default function Invest_Table({
     { name: t("table_header_status"), uid: "status", sortable: true },
   ];
   const statusOptionsDataI = [
-    { name: "IN PROCESS", uid: "in process" },
-    { name: "SUCCESS", uid: "Succsess" },
-    { name: "WITHDRAWN", uid: "Withdrawn" },
+    { name: t("table_status_in_process"), uid: "in process" },
+    { name: t("table_status_success"), uid: "Succsess" },
+    { name: t("table_status_withdrawn"), uid: "Withdrawn" },
   ];
 
   const headerColumns = React.useMemo(() => {
@@ -278,42 +282,17 @@ export default function Invest_Table({
     return (
       <div className="flex flex-col gap-4">
         <div className="flex justify-between gap-3 items-end p-[25px_20px_0px]">
-          <h1 className="text-[20px] xl:text-[32px]">{title}</h1>
+          <h1 className="text-[20px] xl:text-[32px]">
+            {t("investmentHistory")}
+          </h1>
           <div className="flex gap-3">
-            {/* <Dropdown>
-							<DropdownTrigger className='hidden sm:flex'>
-								<Button
-									endContent={<ChevronDownIcon className='md:!text-[20px]' />}
-									variant='flat'
-								>
-									Status
-								</Button>
-							</DropdownTrigger>
-							<DropdownMenu
-								disallowEmptySelection
-								aria-label='Table Columns'
-								closeOnSelect={false}
-								selectedKeys={statusFilter}
-								selectionMode='multiple'
-								onSelectionChange={setStatusFilter}
-							>
-								{statusOptionsDataI.map(status => (
-									<DropdownItem
-										key={status.uid}
-										className='capitalize md:!text-[20px]'
-									>
-										{capitalize(status.name)}
-									</DropdownItem>
-								))}
-							</DropdownMenu>
-						</Dropdown> */}
             <Dropdown>
               <DropdownTrigger className="flex">
                 <Button
                   endContent={<ChevronDownIcon className="md:!text-[20px]" />}
                   variant="flat"
                 >
-                  Columns
+                  {t("columns")}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
@@ -370,7 +349,7 @@ export default function Invest_Table({
       aria-label="-Datatable for NextFi-"
       bottomContent={bottomContent}
       bottomContentPlacement="outside"
-      title="Investment history"
+      title={t("investmentHistory")}
       classNames={{
         table: "!bg-transparent",
         base: "dark:!bg-[#1e1e1e66] shadow-medium dark:shadow-none !bg-[#FFFFFF66] rounded-[15px] px-[25px]",
@@ -397,7 +376,7 @@ export default function Invest_Table({
         )}
       </TableHeader>
       <TableBody
-        emptyContent={"Not found"}
+        emptyContent={t("notFound")}
         items={sortedItems}
         loadingContent={<Spinner />}
         isLoading={loading}

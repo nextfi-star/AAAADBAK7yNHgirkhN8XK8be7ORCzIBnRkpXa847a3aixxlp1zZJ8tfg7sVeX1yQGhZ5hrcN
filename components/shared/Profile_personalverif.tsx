@@ -49,7 +49,7 @@ export const Profile_personalverif = () => {
         <span>{user?.country || <Spinner />}</span>
 
         <div className="min-w-[181px] flex justify-end">
-          <ViewRegion propsItem={"Change"} />
+          <ViewRegion propsItem={t("change")} />
         </div>
       </article>
     </section>

@@ -78,16 +78,16 @@ export const Footer = ({ isAuth = true }: { isAuth?: boolean }) => {
         content: (
           <div className="flex flex-col items-start gap-[15px]">
             <span className="text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer">
-              Company Stocks
+              {t("companyStocks")}
             </span>
             <span className="text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer">
-              Corporate Bonds
+              {t("corporateBonds")}
             </span>
             <span className="text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer">
-              Oil Sector
+              {t("oilSector")}
             </span>
             <span className="text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer">
-              Precious Metals Level
+              {t("preciousMetals")}
             </span>
           </div>
         ),
@@ -138,7 +138,7 @@ export const Footer = ({ isAuth = true }: { isAuth?: boolean }) => {
               alt="footer logo"
             />
             <span className="dark:text-[#FFFFFF66] text-[18px] whitespace-nowrap">
-              ©2024 NextFi.io
+              {t("copyright")}
             </span>
             <div className="bg-transparent text-[18px] w-full flex items-center ">
               <LangSwitch
@@ -224,16 +224,16 @@ export const Footer = ({ isAuth = true }: { isAuth?: boolean }) => {
               {t("investment")}
             </h5>
             <span className="text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer">
-              Company Stocks
+              {t("companyStocks")}
             </span>
             <span className="text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer">
-              Corporate Bonds
+              {t("corporateBonds")}
             </span>
             <span className="text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer">
-              Oil Sector
+              {t("oilSector")}
             </span>
             <span className="text-[18px] dark:text-[#FFFFFF66] hover:cursor-pointer">
-              Precious Metals Level
+              {t("preciousMetals")}
             </span>
           </div>
 
@@ -268,31 +268,31 @@ export const Footer = ({ isAuth = true }: { isAuth?: boolean }) => {
               <Image
                 width={40}
                 height={40}
-                alt="social icon"
+                alt={t("socialMedia.instagram")}
                 src={`/footer/soc/inst.svg`}
               />
               <Image
                 width={40}
                 height={40}
-                alt="social icon"
+                alt={t("socialMedia.facebook")}
                 src={`/footer/soc/face.svg`}
               />
               <Image
                 width={40}
                 height={40}
-                alt="social icon"
+                alt={t("socialMedia.twitter")}
                 src={`/footer/soc/twitt.svg`}
               />
               <Image
                 width={40}
                 height={40}
-                alt="social icon"
+                alt={t("socialMedia.telegram")}
                 src={`/footer/soc/teleg.svg`}
               />
               <Image
                 width={40}
                 height={40}
-                alt="social icon"
+                alt={t("socialMedia.snapchat")}
                 src={`/footer/soc/snap.svg`}
               />
             </div>
@@ -316,7 +316,7 @@ export const Footer = ({ isAuth = true }: { isAuth?: boolean }) => {
                 alt="footer logo"
               />
               <span className="dark:text-[#FFFFFF66] text-[18px] whitespace-nowrap">
-                ©2024 NextFi.io
+                {t("copyright")}
               </span>
             </div>
             <div className="bg-transparent text-[18px] w-full flex items-center gap-[10px]">
@@ -367,31 +367,31 @@ export const Footer = ({ isAuth = true }: { isAuth?: boolean }) => {
               <Image
                 width={40}
                 height={40}
-                alt="social icon"
+                alt={t("socialMedia.instagram")}
                 src={`/footer/soc/inst.svg`}
               />
               <Image
                 width={40}
                 height={40}
-                alt="social icon"
+                alt={t("socialMedia.facebook")}
                 src={`/footer/soc/face.svg`}
               />
               <Image
                 width={40}
                 height={40}
-                alt="social icon"
+                alt={t("socialMedia.twitter")}
                 src={`/footer/soc/twitt.svg`}
               />
               <Image
                 width={40}
                 height={40}
-                alt="social icon"
+                alt={t("socialMedia.telegram")}
                 src={`/footer/soc/teleg.svg`}
               />
               <Image
                 width={40}
                 height={40}
-                alt="social icon"
+                alt={t("socialMedia.snapchat")}
                 src={`/footer/soc/snap.svg`}
               />
             </div>

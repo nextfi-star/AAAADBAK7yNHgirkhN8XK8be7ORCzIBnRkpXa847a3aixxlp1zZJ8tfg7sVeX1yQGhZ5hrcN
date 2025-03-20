@@ -61,7 +61,7 @@ export default function Deposit_table() {
     setLoading(false);
 
     if (result.error) {
-      setError(result.message || "Ошибка получения истории депозитов");
+      setError(result.message || t("networkError"));
       setDeposits([]);
     } else {
       setError("");
@@ -88,12 +88,25 @@ export default function Deposit_table() {
   });
   const [page, setPage] = React.useState(1);
   const hasSearchFilter = Boolean(filterValue);
+
+  const columnsDataWithTranslations = React.useMemo(
+    () => [
+      { name: t("time"), uid: "time", sortable: true },
+      { name: t("amount"), uid: "amount", sortable: true },
+      { name: t("status"), uid: "status", sortable: true },
+      { name: t("address"), uid: "address", sortable: true },
+      { name: t("crypto"), uid: "crypto", sortable: true },
+      { name: t("actions"), uid: "actions" },
+    ],
+    [t]
+  );
+
   const headerColumns = React.useMemo(() => {
-    if (visibleColumns === "all") return columnsDataD;
-    return columnsDataD.filter((column) =>
+    if (visibleColumns === "all") return columnsDataWithTranslations;
+    return columnsDataWithTranslations.filter((column) =>
       Array.from(visibleColumns).includes(column.uid)
     );
-  }, [visibleColumns]);
+  }, [visibleColumns, columnsDataWithTranslations]);
 
   const filteredItems = React.useMemo(() => {
     let filteredUsers = [...deposits];
@@ -163,7 +176,7 @@ export default function Deposit_table() {
       case "status":
         return (
           <span className={`capitalize px-[15px] md:text-[20px] text-[green]`}>
-            SENT
+            {t("sent")}
           </span>
         );
       case "actions":
@@ -208,7 +221,7 @@ export default function Deposit_table() {
     return (
       <div className="flex flex-col gap-4">
         <div className="flex justify-between gap-3 items-end p-[25px_20px_0px]">
-          <h1 className="text-[20px] xl:text-[32px]">All deposits</h1>
+          <h1 className="text-[20px] xl:text-[32px]">{t("allDeposits")}</h1>
           <div className="flex gap-3">
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
@@ -216,7 +229,7 @@ export default function Deposit_table() {
                   endContent={<ChevronDownIcon className="md:!text-[20px]" />}
                   variant="flat"
                 >
-                  Status
+                  {t("status")}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
@@ -243,7 +256,7 @@ export default function Deposit_table() {
                   endContent={<ChevronDownIcon className="md:!text-[20px]" />}
                   variant="flat"
                 >
-                  Columns
+                  {t("columns")}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
@@ -254,12 +267,12 @@ export default function Deposit_table() {
                 selectionMode="multiple"
                 onSelectionChange={setVisibleColumns}
               >
-                {columnsDataD.map((column) => (
+                {columnsDataWithTranslations.map((column) => (
                   <DropdownItem
                     key={column.uid}
                     className="capitalize md:text-[20px] "
                   >
-                    {capitalize(column.name)}
+                    {column.name}
                   </DropdownItem>
                 ))}
               </DropdownMenu>
@@ -274,7 +287,7 @@ export default function Deposit_table() {
     visibleColumns,
     onSearchChange,
     onRowsPerPageChange,
-    columnsDataD.length,
+    columnsDataWithTranslations,
     hasSearchFilter,
   ]);
 
@@ -324,7 +337,7 @@ export default function Deposit_table() {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"Not found"} items={sortedItems}>
+      <TableBody emptyContent={t("notFound")} items={sortedItems}>
         {(item) => (
           <TableRow key={item.id}>
             {(columnKey) => (

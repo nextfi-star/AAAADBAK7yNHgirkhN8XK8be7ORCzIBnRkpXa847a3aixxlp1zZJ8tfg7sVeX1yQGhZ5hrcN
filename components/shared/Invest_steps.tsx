@@ -496,7 +496,7 @@ const Invest_steps = () => {
                         ) : (
                           <div className="flex w-full justify-between gap-[8px] items-center">
                             <p className="text-[20px] font-medium text-[#0c0c0c] dark:text-white">
-                              Select coin
+                              {t("selectCoin")}
                             </p>
                             <ChevronDown
                               strokeWidth={1}
@@ -575,8 +575,8 @@ const Invest_steps = () => {
               <div className="flex flex-col gap-[15px] w-full ml-[47px] pr-[35px]">
                 <div className="flex flex-col gap-[10px] w-full max-w-[294px] sm:max-w-[962px]">
                   <Input
-                    aria-labelledby="Enter the amount"
-                    placeholder="Enter the amount"
+                    aria-labelledby={t("enterAmount")}
+                    placeholder={t("enterAmount")}
                     type="number"
                     classNames={{
                       base: "bg-tranparent ",
@@ -608,7 +608,7 @@ const Invest_steps = () => {
                       setInput3={setGlobalAmount}
                       setInputStep2={setInputStep2}
                       setSelectedInvest={setSelectedInvest}
-                      titleTrigger={"Invest"}
+                      titleTrigger={t("invest")}
                       selectedInvest={selectedInvest}
                       selectedCoin={globalCoin?.name}
                     />

@@ -44,7 +44,19 @@
     "termsSec": "Terms of Service",
     "secPol": "Security & Compliance Policy",
     "security": "Security",
-    "profile": "Profile"
+    "profile": "Profile",
+    "copyright": "©2024 NextFi.io",
+    "socialMedia": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "telegram": "Telegram",
+      "snapchat": "Snapchat"
+    },
+    "companyStocks": "Company Stocks",
+    "corporateBonds": "Corporate Bonds",
+    "oilSector": "Oil Sector",
+    "preciousMetals": "Precious Metals"
   },
   "burger": {
     "aboutNextfi": "About NextFi",
@@ -87,7 +99,8 @@
     "verifAcc": "Verification",
     "notverif": "You are not verified",
     "verified": "You are verified",
-    "verifNow": "Verify now"
+    "verifNow": "Verify now",
+    "logout": "Log out"
   },
   "auth": {
     "emailOrPhone": "Email or phone is required",
@@ -347,10 +360,15 @@
     "email": "Email",
     "phone": "Phone",
     "lvl": "Levels Activity",
-    "level1": "Level"
+    "level1": "Level",
+    "payments_table": "Payments",
+    "change": "Change",
+    "enter_nickname": "Enter nickname",
+    "send_code_email": "Send code"
   },
   "security": {
     "authApp": "Authenticator app",
+    "send_code_email": "Send code",
     "authDesc": "Use authentication codes when managing assets and other functions",
     "changeAuthApp": "Change Authenticator app",
     "phoneAuth": "Phone authentication",
@@ -378,6 +396,7 @@
     "googleAuth": "Download an authenticator app such as Google Authenticator.",
     "agreePol": "By continuing, you agree to our",
     "disclamer": "disclamer",
+    "close_account_confirm": "To protect your account, you will not be able to withdraw funds within 24 hours after resetting your settings or changing your account password.",
     "next": "Next",
     "scanQR": "Scan QR code",
     "launchApp": "Launch the authenticator app and scan",
@@ -434,7 +453,11 @@
     "whyCl1": "This account is not safe, so I want to freeze it temporarily.",
     "whyCl2": "I don't want to use this account anymore.",
     "whyCl3": "I want to use another cryptocurrency platform.",
-    "whyCl4": "Other reasons"
+    "whyCl4": "Other reasons",
+    "introduction": "Introduction",
+    "securityPolicy": "Security & Compliance Policy",
+    "nextfiCommitted": "NextFi is committed to the highest standards of cybersecurity and regulatory compliance.",
+    "weComply": "We comply with AML (Anti-Money Laundering), KYC (Know Your Customer), GDPR, CCPA, PDPL, and other global regulations."
   },
   "deposit": {
     "deposit": "Deposit",
@@ -458,7 +481,7 @@
     "fundsBalance": "The funds will be credited to your balance soon",
     "faq": "FAQ",
     "howMake": "How do I make deposit?",
-    "howmake2": "NextFi is an innovative financial investment platform powered by cutting-edge artificial intelligence. Trained on vast datasets from the world’s leading investment funds and asset managers, our AI-driven technology dynamically analyzes market trends, optimizes investment strategies, and generates sustainable liquidity for the NextFi token.",
+    "howmake2": "NextFi is an innovative financial investment platform powered by cutting-edge artificial intelligence. Trained on vast datasets from the world's leading investment funds and asset managers, our AI-driven technology dynamically analyzes market trends, optimizes investment strategies, and generates sustainable liquidity for the NextFi token.",
     "whyStill": "Why have I still not recelved my deposit?",
     "whyStill2": "Verification of the payment and confirmation of the network takes from 10 to 30 minutes.",
     "howSelect": "How do I select the correct network for my crypto deposit and deposits?",
@@ -518,7 +541,7 @@
     "cmfrnIdent": "Confirm your identity",
     "accLaw": "According to the law, you need to verify your identity, which will enhance the security of your account and grant access to services.",
     "uponCompl": "Upon completion of the verification, you will receive rewards.",
-    "provide": "You’ll need to provide",
+    "provide": "You'll need to provide",
     "provideDoc": "Password, Id or Driver license",
     "persInfo": "Personal information",
     "onlyfor": "Your information is only used for identity verification.",
@@ -664,7 +687,12 @@
     "table_header_current_amount": "Current amount",
     "table_header_status": "STATUS",
     "table_body_completed": "COMPLETED",
-    "table_body_IN_PROGRESS": "IN PROGRESS"
+    "table_body_in_progress": "IN PROGRESS",
+    "amount_invest": "Amount of investment",
+    "remaining_period": "Remaining period",
+    "percent": "Percent",
+    "period": "Period",
+    "amount_at_moment": "Amount at the moment"
   },
   "withdrawal": {
     "enterAmount": "Enter amount",
@@ -700,5 +728,47 @@
     "doI": "Do I need to pay fees for withdrawal?",
     "doI2": "TThe NextFi platform does not charge a withdrawal fee.",
     "withApp": "Withdrawal Application Submitetted"
+  },
+  "privacy": {
+    "privacyPolicy": "Privacy Policy",
+    "introduction": "Introduction",
+    "companyInfo": "• Company Information: NextFi is committed to protecting user privacy and data security.",
+    "purposePolicy": "• Purpose of this policy: This Privacy Policy explains how we collect, use, and protect user data in compliance with GDPR (EU), CCPA (California), PDPL (UAE), and other applicable laws.",
+    "close": "Close"
+  },
+  "terms": {
+    "termsOfService": "Terms of Service",
+    "introduction": "Introduction",
+    "agreementToTerms": "• Agreement to Terms: By using NextFi, you agree to abide by these Terms of Service.",
+    "updatesChanges": "• Updates and Changes: NextFi may modify these Terms at any time, with notice to users.",
+    "accountRegistration": "Account Registration",
+    "usersOver18": "• Users must be at least 18 years old to register for a NextFi account.",
+    "identityVerification": "• Identity verification is required to comply with regulatory requirements.",
+    "financialTransactions": "Financial Transactions",
+    "transactionFees": "• NextFi may charge fees for certain transactions as specified on the platform.",
+    "acceptableUse": "Acceptable Use",
+    "usersMayNot": "Users may not engage in:",
+    "fraudulentActivities": "• Fraudulent activities or misrepresentation",
+    "unauthorizedAccess": "• Unauthorized access to NextFi systems",
+    "automatedBots": "• Use of automated bots without explicit permission",
+    "riskDisclosure": "Risk Disclosure",
+    "investingRisks": "• Investing in financial assets involves risks, including potential loss of principal.",
+    "nextfiNoGuarantee": "• NextFi does not guarantee profits or investment returns.",
+    "accountSuspension": "Account Suspension",
+    "nextfiRightToSuspend": "• NextFi reserves the right to suspend accounts for violations of these Terms.",
+    "usersReceiveNotice": "• Users will receive notice of account suspension when possible.",
+    "intellectualProperty": "Intellectual Property",
+    "allNextfiTrademarks": "• All NextFi trademarks and content are owned by Next Financial Investments.",
+    "usersMayNotReproduce": "• Users may not reproduce, modify, or distribute NextFi content without permission.",
+    "governingLaw": "Governing Law",
+    "termsGoverned": "• These Terms are governed by the laws of the United Arab Emirates.",
+    "disputesResolved": "• Disputes shall be resolved through arbitration in Dubai, UAE.",
+    "changesToTerms": "Changes to Terms",
+    "usersNotified": "• Users will be notified of significant changes to these Terms.",
+    "contactInformation": "Contact Information",
+    "usersCan": "• Users can contact NextFi for questions about these Terms at:",
+    "supportContact": "• Support:",
+    "email": "support@nextfi.io",
+    "close": "Close"
   }
 }

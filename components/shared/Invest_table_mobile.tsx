@@ -26,7 +26,6 @@ import { capitalize } from "./utils";
 import { VerticalDotsIcon } from "./VerticalDotsIcon";
 import { useThemeStore } from "@/store/useChatStore";
 import { industries } from "./Invest_steps";
-import { getStatus } from "./Invest_Table";
 import { useTranslations } from "next-intl";
 
 const statusColorMap: Record<string, ChipProps["color"]> = {
@@ -53,6 +52,21 @@ export default function Invest_table_mobile() {
     },
     { name: t("table_header_status"), uid: "status", sortable: true },
   ];
+
+  const getStatus = (numeric_status: number) => {
+    switch (numeric_status) {
+      case 0:
+        return (
+          <span className=" text-green-400">{t("table_body_completed")}</span>
+        );
+      case 1:
+        return (
+          <span className="text-yellow-400">{t("table_body_in_progress")}</span>
+        );
+      default:
+        return <span>SUCCESS</span>;
+    }
+  };
   const statusOptionsDataI = [
     { name: "IN PROCESS", uid: "in process" },
     { name: "SUCCESS", uid: "Succsess" },
@@ -202,42 +216,17 @@ export default function Invest_table_mobile() {
     return (
       <div className="flex flex-col gap-4">
         <div className="flex justify-between gap-3 items-end p-[25px_20px_0px]">
-          <h1 className="text-[20px] xl:text-[32px]">Investment history</h1>
+          <h1 className="text-[20px] xl:text-[32px]">
+            {t("investmentHistory")}
+          </h1>
           <div className="flex gap-3">
-            {/* <Dropdown>
-              <DropdownTrigger className="hidden sm:flex">
-                <Button
-                  endContent={<ChevronDownIcon className="md:!text-[20px]" />}
-                  variant="flat"
-                >
-                  Status
-                </Button>
-              </DropdownTrigger>
-              <DropdownMenu
-                disallowEmptySelection
-                aria-label="Table Columns"
-                closeOnSelect={false}
-                selectedKeys={statusFilter}
-                selectionMode="multiple"
-                onSelectionChange={setStatusFilter}
-              >
-                {statusOptionsDataI.map((status) => (
-                  <DropdownItem
-                    key={status.uid}
-                    className="capitalize md:!text-[20px]"
-                  >
-                    {capitalize(status.name)}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </Dropdown> */}
             <Dropdown>
               <DropdownTrigger className="flex">
                 <Button
                   endContent={<ChevronDownIcon className="md:!text-[20px]" />}
                   variant="flat"
                 >
-                  Columns
+                  {t("columns")}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
@@ -294,7 +283,7 @@ export default function Invest_table_mobile() {
       aria-label="-Datatable for NextFi-"
       bottomContent={bottomContent}
       bottomContentPlacement="outside"
-      title="Investment history"
+      title={t("investmentHistory")}
       classNames={{
         table: "!bg-transparent",
         base: "dark:!bg-[#1e1e1e66] shadow-medium !bg-[#FFFFFF66] rounded-[30px]",
@@ -320,7 +309,7 @@ export default function Invest_table_mobile() {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"Not found"} items={sortedItems}>
+      <TableBody emptyContent={t("notFound")} items={sortedItems}>
         {sortedItems.map((item, index) => (
           <TableRow key={index}>
             {(columnKey) => (

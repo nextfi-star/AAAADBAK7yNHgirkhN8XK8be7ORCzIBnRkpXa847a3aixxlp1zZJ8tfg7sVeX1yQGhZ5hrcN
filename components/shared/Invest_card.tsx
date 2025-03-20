@@ -10,6 +10,7 @@ import { industries } from "./Invest_steps";
 import NotFoundItem from "./NotFoundItem";
 import { useUserStore } from "@/hooks/useUserData";
 import { ArrowDown, ArrowUp } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface UserBalance {
   data: {
@@ -25,6 +26,7 @@ interface UserBalance {
 }
 
 export const Invest_card = () => {
+  const t = useTranslations("invest");
   const {
     globalCompany,
     globalCompanyIcon,
@@ -158,10 +160,7 @@ export const Invest_card = () => {
     <>
       {!invests?.length && !isLoading ? (
         <div className="bg-[#fff] shadow-medium dark:shadow-none dark:bg-[#1E1E1E66] rounded-[30px] min-h-[360px]  max-w-[650px] w-full flex justify-center items-center">
-          <NotFoundItem
-            content="No records found"
-            subContent="Get started with your investment transaction "
-          />
+          <NotFoundItem content={t("noRecords")} subContent={t("getStarted")} />
         </div>
       ) : (
         <>
@@ -209,26 +208,27 @@ export const Invest_card = () => {
                     <div className="flex flex-col gap-[13px] items-center px-[12px] sm:px-[18px] py-[28px]">
                       <div className="w-full flex items-center justify-between gap-[10px]">
                         <p className="text-[16px] sm:text-[20px] text-[#888888] font-medium">
-                          Amount of investment: {val.amount} USDT
+                          {t("amount_invest")}: {val.amount} USDT
                         </p>
                         <p className="sm:text-[20px] text-[#888888] font-medium">
-                          Period: {val.rtime / 60 / 60 / 24} days
+                          {t("period")}: {val.rtime / 60 / 60 / 24} days
                         </p>
                       </div>
 
                       <div className="w-full flex items-center justify-between pb-[23px]">
                         <p className="text-[14px] sm:text-[20px] text-[#888888] font-medium">
-                          Remaining period: {val.packet?.periodFrom}-
+                          {t("remaining_period")}: {val.packet?.periodFrom}-
                           {val.packet?.periodTo} days
                         </p>
                         <p className="text-[14px] flex-shrink-0 sm:text-[20px] text-[#888888] font-medium">
-                          Percent: {val.percent}%
+                          {t("percent")}: {val.percent}%
                         </p>
                       </div>
 
                       <div className="w-full flex items-center justify-between pb-[23px]">
-                        <p className="sm:text-[20px] text-[#888888] font-medium">
-                          Amount <br /> at the moment
+                        <p className="sm:text-[20px] text-[#888888] font-medium w-[35%]">
+                          {t("amount_at_moment")}
+                          {/* Amount <br /> at the moment */}
                         </p>
                         <p className="sm:text-[28px] text-[#888888] font-bold">
                           {(
@@ -267,13 +267,13 @@ export const Invest_card = () => {
                           ) >= 100
                         ) && (
                           <span className="flex gap-2 items-center">
-                            <SecIcon cls="lock min-w-[30px]" /> Early withdrawal
+                            <SecIcon cls="lock min-w-[30px]" />{" "}
+                            {t("earlyWithdrawal")}
                           </span>
                         )}
 
                         <Button
                           color="secondary"
-                          // className=" text-white w-fit rounded-[50px] hover:bg-[#205BC9] min-w-[124px]"
                           className={`max-w-[188px] w-full p-[8px_4px] text-white bg-[#205BC9] rounded-[50px]`}
                           onClick={() =>
                             onDeleteInvest(
@@ -304,7 +304,7 @@ export const Invest_card = () => {
                             )
                           }
                         >
-                          Withdraw funds
+                          {t("withdrawFunds")}
                         </Button>
                       </div>
                     </div>
@@ -379,6 +379,11 @@ export const Invest_card = () => {
           )}
         </>
       )} */}
+      <div className="p-[18px_41px]">
+        <h1 className="text-[18px] sm:text-[24px] font-medium dark:text-[rgb(239,239,239)]">
+          {t("transactionProcessing")}
+        </h1>
+      </div>
     </>
   );
 };

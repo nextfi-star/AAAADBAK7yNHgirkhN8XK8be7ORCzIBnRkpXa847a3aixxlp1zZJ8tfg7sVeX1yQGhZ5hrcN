@@ -11,6 +11,7 @@ import {
 import Invest_Table from "@/components/shared/Invest_Table";
 import { useUserStore } from "@/hooks/useUserData";
 import { useThemeStore } from "@/store/useChatStore";
+import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -30,6 +31,8 @@ const Overview = () => {
     }
   }, [pathname]);
 
+  const t = useTranslations("profile");
+
   return (
     <section className="profile">
       <Profile_info toggleActive={toggleActive} verify={verify} />
@@ -40,7 +43,7 @@ const Overview = () => {
           ) : (
             <Profile_verification verify={verify} />
           )}
-          <Invest_Table title="Payments" />
+          <Invest_Table title={t("payments_table")} />
         </div>
 
         <div className="max-w-[1331px] flex flex-col gap-[1.5rem]">
