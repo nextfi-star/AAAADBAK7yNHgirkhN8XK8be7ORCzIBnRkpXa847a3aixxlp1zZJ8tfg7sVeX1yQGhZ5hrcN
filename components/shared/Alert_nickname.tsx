@@ -153,13 +153,16 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
 				</div>
 				<AlertDialogFooter className='px-[30px] pt-[20px] h-fit items-center gap-[30px]'>
 					<button	
-						className={`text-[16px] px-[40px] rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d]  ${
+						className={`text-[16px] px-[40px] rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] ${
 							symbols < 4
 								? '!bg-transparent cursor-not-allowed'
 								: 'bg-[#205bc9] hover:bg-[#205bc9] text-white border-none'
 						}`}
 						disabled={symbols < 4 || symbols >= 20}
 						onClick={handleSubmit}
+						style={{
+							padding: "8px 35px"
+						}}
 					>
 						{t('confirm')}
 					</button>
