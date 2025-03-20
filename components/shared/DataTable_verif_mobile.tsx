@@ -26,10 +26,10 @@ import { ChevronDownIcon } from "./ChevronDownIcon";
 import { SearchIcon } from "./SearchIcon";
 import { capitalize } from "./utils";
 import { columns, statusOptions, users } from "./data";
-import { useTranslations } from 'next-intl'
-import { getUserBalanceArray } from '@/utils/api'
-import { BalanceItem } from './DataTable_verif'
-import { useUserStore } from '@/hooks/useUserData'
+import { useTranslations } from "next-intl";
+import { getUserBalanceArray } from "@/utils/api";
+import { BalanceItem } from "./DataTable_verif";
+import { useUserStore } from "@/hooks/useUserData";
 
 // const statusColorMap: Record<string, ChipProps["color"]> = {
 //   "+": "success",
@@ -38,29 +38,28 @@ import { useUserStore } from '@/hooks/useUserData'
 
 const INITIAL_VISIBLE_COLUMNS = ["name", "holdings"];
 
-
 export default function DataTable_verif_mobile() {
-  const t = useTranslations('tablesAssets')
+  const t = useTranslations("tablesAssets");
   const [filterValue, setFilterValue] = React.useState("");
-  const [loading, setLoading] = useState<boolean>(true)
-	const [balances, setBalances] = useState<BalanceItem[]>([])
-	const csrf = useUserStore(state => state.user?.csrf)
-	useEffect(() => {
-		async function fetchData() {
-			const data = await getUserBalanceArray(csrf!)
-			if (data) {
-				setBalances(data)
-				console.log(data)
-			}
-			setLoading(false)
-		}
-		fetchData()
-	}, [csrf])
+  const [loading, setLoading] = useState<boolean>(true);
+  const [balances, setBalances] = useState<BalanceItem[]>([]);
+  const csrf = useUserStore((state) => state.user?.csrf);
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getUserBalanceArray(csrf!);
+      if (data) {
+        setBalances(data);
+        console.log(data);
+      }
+      setLoading(false);
+    }
+    fetchData();
+  }, [csrf]);
   const [selectedKeys, setSelectedKeys] = React.useState<Selection>(
-    new Set([]),
+    new Set([])
   );
   const [visibleColumns, setVisibleColumns] = React.useState<Selection>(
-    new Set(INITIAL_VISIBLE_COLUMNS),
+    new Set(INITIAL_VISIBLE_COLUMNS)
   );
   const [statusFilter, setStatusFilter] = React.useState<Selection>("all");
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -77,7 +76,7 @@ export default function DataTable_verif_mobile() {
     if (visibleColumns === "all") return columns;
 
     return columns.filter((column) =>
-      Array.from(visibleColumns).includes(column.uid),
+      Array.from(visibleColumns).includes(column.uid)
     );
   }, [visibleColumns]);
 
@@ -86,16 +85,16 @@ export default function DataTable_verif_mobile() {
 
     if (hasSearchFilter) {
       filteredbalances = filteredbalances.filter((user) =>
-      	user.coin.toLowerCase().includes(filterValue.toLowerCase())
+        user.coin.toLowerCase().includes(filterValue.toLowerCase())
       );
     }
     if (
       statusFilter !== "all" &&
       Array.from(statusFilter).length !== statusOptions.length
     ) {
-      filteredbalances = filteredbalances.filter(user =>
-				Array.from(statusFilter).includes(user?.pnl || '')
-			)
+      filteredbalances = filteredbalances.filter((user) =>
+        Array.from(statusFilter).includes(user?.pnl || "")
+      );
     }
 
     return filteredbalances;
@@ -120,42 +119,45 @@ export default function DataTable_verif_mobile() {
     });
   }, [sortDescriptor, items]);
 
-  const renderCell = React.useCallback((user: BalanceItem, columnKey: React.Key) => {
-    const cellValue = user[columnKey as keyof BalanceItem];
+  const renderCell = React.useCallback(
+    (user: BalanceItem, columnKey: React.Key) => {
+      const cellValue = user[columnKey as keyof BalanceItem];
 
-    switch (columnKey) {
-      case "name":
-        return (
-          <User
-          avatarProps={{
-            radius: 'full',
-            src: `/crypto/${user.coin.toLocaleLowerCase()}.svg`,
-          }}
-            classNames={{
-              base: "!bg-transparent flex items-center justify-start",
-              name: "!bg-transparent ",
-              description: "!bg-transparent ",
-              wrapper: "!bg-transparent ",
-            }}
-            description={user.coin}
-            name={cellValue}
-          >
-            {user.coin}
-          </User>
-        );
-      case "holdings":
-        return (
-          <div className="flex flex-col">
-            <p className="text-bold text-small capitalize">{cellValue}</p>
-            <p className="text-bold text-tiny capitalize text-default-400">
-              {user.amount}
-            </p>
-          </div>
-        );
-      default:
-        return cellValue;
-    }
-  }, []);
+      switch (columnKey) {
+        case "name":
+          return (
+            <User
+              avatarProps={{
+                radius: "full",
+                src: `/crypto/${user.coin.toLocaleLowerCase()}.svg`,
+              }}
+              classNames={{
+                base: "!bg-transparent flex items-center justify-start",
+                name: "!bg-transparent text-default-800",
+                description: "!bg-transparent text-[20px]",
+                wrapper: "!bg-transparent ",
+              }}
+              description={user.coin}
+              name={cellValue}
+            >
+              {user.coin}
+            </User>
+          );
+        case "holdings":
+          return (
+            <div className="flex flex-col text-[20px]">
+              <p className="text-bold capitalize">{cellValue}</p>
+              <p className="text-bold capitalize text-default-800">
+                {user.amount}
+              </p>
+            </div>
+          );
+        default:
+          return cellValue;
+      }
+    },
+    []
+  );
 
   const onNextPage = React.useCallback(() => {
     if (page < pages) {
@@ -174,7 +176,7 @@ export default function DataTable_verif_mobile() {
       setRowsPerPage(Number(e.target.value));
       setPage(1);
     },
-    [],
+    []
   );
 
   const onSearchChange = React.useCallback((value?: string) => {
@@ -198,7 +200,7 @@ export default function DataTable_verif_mobile() {
           <Input
             isClearable
             className="w-full sm:max-w-[44%]"
-            placeholder={t('searchName')}
+            placeholder={t("searchName")}
             startContent={<SearchIcon />}
             value={filterValue}
             onClear={() => onClear()}
@@ -235,7 +237,7 @@ export default function DataTable_verif_mobile() {
                   endContent={<ChevronDownIcon className="text-small" />}
                   variant="flat"
                 >
-                  {t('columns')}
+                  {t("columns")}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
@@ -255,7 +257,6 @@ export default function DataTable_verif_mobile() {
             </Dropdown>
           </div>
         </div>
-       
       </div>
     );
   }, [
@@ -291,8 +292,8 @@ export default function DataTable_verif_mobile() {
       bottomContent={bottomContent}
       bottomContentPlacement="outside"
       classNames={{
-        table: '!bg-transparent',
-        tbody: '!shadow-none',
+        table: "!bg-transparent",
+        tbody: "!shadow-none",
         wrapper: "max-h-[382px] !bg-transparent shadow-none",
         td: "text-center",
         th: "text-center",
@@ -312,7 +313,7 @@ export default function DataTable_verif_mobile() {
             align={column.uid === "actions" ? "center" : "start"}
             allowsSorting={column.sortable}
           >
-           {t(column.uid)}
+            {t(column.uid)}
           </TableColumn>
         )}
       </TableHeader>

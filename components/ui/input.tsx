@@ -1,24 +1,38 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import { Button } from "@heroui/button";
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  rightButton?: string;
+  onClickRightButton?: () => void;
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
+  ({ className, type, rightButton, onClickRightButton, ...props }, ref) => {
     return (
-      <input
-        ref={ref}
-        className={cn(
-          "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
-          className,
+      <div className="relative w-full">
+        <input
+          ref={ref}
+          className={cn(
+            "flex h-9 w-full rounded-md border border-input bg-transparent px-3 pr-10 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+            className
+          )}
+          type={type}
+          {...props}
+        />
+        {rightButton && (
+          <Button
+            className="border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] text-sm h-[30px] absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1"
+            onPress={onClickRightButton}
+          >
+            {rightButton}
+          </Button>
         )}
-        type={type}
-        {...props}
-      />
+      </div>
     );
-  },
+  }
 );
 
 Input.displayName = "Input";

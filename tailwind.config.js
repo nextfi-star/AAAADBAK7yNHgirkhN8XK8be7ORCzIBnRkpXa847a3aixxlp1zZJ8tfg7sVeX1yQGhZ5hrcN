@@ -90,10 +90,5 @@ module.exports = {
     },
   },
   darkMode: ["class"],
-  plugins: [
-    heroui({
-      defaultTheme: "dark",
-    }),
-    require("tailwindcss-animate"),
-  ],
+  plugins: [heroui(), require("tailwindcss-animate")],
 };
