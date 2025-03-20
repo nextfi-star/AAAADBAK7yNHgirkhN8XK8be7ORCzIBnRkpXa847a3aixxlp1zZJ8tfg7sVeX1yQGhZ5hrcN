@@ -42,7 +42,7 @@ export const Burger = ({ csrf }: { csrf: string | null }) => {
 
             {csrf && (
               <ul className="m__nav-list">
-                <Link className="m__nav-item" href="/">
+                {/* <Link className="m__nav-item" href="/">
                   Home
                 </Link>
                 <Link className="m__nav-item" href="/token">
@@ -53,7 +53,7 @@ export const Burger = ({ csrf }: { csrf: string | null }) => {
                 </Link>
                 <Link className="m__nav-item" href="">
                   How
-                </Link>
+                </Link> */}
                 <a
                   className="m__nav-item hover:text-blue-700 transition-all"
                   href="#main__intro"
