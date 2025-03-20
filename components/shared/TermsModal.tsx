@@ -45,12 +45,12 @@ export function TermsModal() {
               Introduction
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Agreement t• Terms: By using NextFi, you agree t• abide by these
+              • Agreement t• Terms: By using NextFi, you agree to abide by these
               Terms of Service.
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
               • Updates & Changes: NextFi may modify these Terms at any time,
-              with notifications t• users.
+              with notifications to users.
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
@@ -63,7 +63,7 @@ export function TermsModal() {
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
               • Identity verification includes passport submission and live
-              vide• confirmation.
+              video confirmation.
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
@@ -86,7 +86,7 @@ export function TermsModal() {
               • Fraudulent activities or money laundering.
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Unauthorized access t• accounts.
+              • Unauthorized access to accounts.
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
               • Automated bots/scripts for platform manipulation.
@@ -101,7 +101,7 @@ export function TermsModal() {
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
               • NextFi does not guarantee profits and is not liable for
-              financial losses due t• market fluctuations.
+              financial losses due to market fluctuations.
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
@@ -109,7 +109,7 @@ export function TermsModal() {
               Account Suspension & Termination:
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground leading-[1.5]">
-              • NextFi reserves the right t• suspend or terminate accounts
+              • NextFi reserves the right to suspend or terminate accounts
               involved in suspicious or prohibited activities.
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground ">
@@ -144,7 +144,7 @@ export function TermsModal() {
           </div>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Changes t• Terms of Service
+              Changes to Terms of Service
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
               • Users will be notified of changes through email and platform

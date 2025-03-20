@@ -8,6 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Device } from "../ui/Device";
 import { Logout_confirmation } from "./Logout_confirmation";
+import { Spinner } from "@heroui/spinner";
 
 export const Profile_devices = () => {
   const t = useTranslations("device");
@@ -23,6 +24,7 @@ export const Profile_devices = () => {
   useEffect(() => {
     if (csrf) {
       const fetchSessions = async () => {
+        setLoading(true);
         try {
           const response = await fetch(
             "https://nextfi.io:5000/api/v1/devices",
@@ -37,7 +39,10 @@ export const Profile_devices = () => {
           const result = await response.json();
 
           if (response.ok) {
-            setSessions(result.data || []);
+            setSessions(
+              result.data.slice(result.data.length - 3, result.data.length) ||
+                []
+            );
           } else {
             setError(result.message || "Failed to fetch sessions");
           }
@@ -96,20 +101,24 @@ export const Profile_devices = () => {
                   </div>
                 </div>
 
-                {sessions.map((session) => (
-                  <div className="flex items-start flex-col gap-[25px] pb-[20px]">
-                    <div
-                      className="flex w-full gap-[15px] justify-between items-center"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <span className="text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black   after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]">
-                        {session.os} {session.browser}
-                        <br />
-                        {session.country}
-                      </span>
+                {loading ? (
+                  <Spinner />
+                ) : (
+                  sessions.map((session) => (
+                    <div className="flex items-start flex-col gap-[25px] pb-[20px]">
+                      <div
+                        className="flex w-full gap-[15px] justify-between items-center"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <span className="text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black   after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]">
+                          {session.os} {session.browser}
+                          <br />
+                          {session.country}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))
+                )}
               </div>
             </div>
           </AccordionItem>

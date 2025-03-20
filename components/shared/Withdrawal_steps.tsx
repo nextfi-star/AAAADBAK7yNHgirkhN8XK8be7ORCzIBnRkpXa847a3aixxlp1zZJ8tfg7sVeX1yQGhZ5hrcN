@@ -82,7 +82,7 @@ const Withdrawal_steps = () => {
       selectedNetwork
     );
     if (result.success) {
-      setDepositAddress(result.address);
+      // setDepositAddress(result.address);
     } else {
       setError(result.message);
     }
