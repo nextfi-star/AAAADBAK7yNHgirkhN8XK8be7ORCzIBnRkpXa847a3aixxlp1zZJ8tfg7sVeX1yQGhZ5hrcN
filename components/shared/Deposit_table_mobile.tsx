@@ -26,6 +26,7 @@ import { capitalize } from "./utils";
 import { VerticalDotsIcon } from "./VerticalDotsIcon";
 import { useUserStore } from "@/hooks/useUserData";
 import { getDepositHistory } from "@/utils/api";
+import { useTranslations } from "use-intl";
 const statusColorMap: Record<string, string> = {
   sent: "green",
   denied: "red",
@@ -47,6 +48,7 @@ export default function Deposit_table_mobile() {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState("");
   const [deposits, setDeposits] = React.useState<User[]>([]);
+  const t = useTranslations("tablesAssets");
   const fetchDeposits = async () => {
     if (!csrf) return;
     setLoading(true);
@@ -54,7 +56,7 @@ export default function Deposit_table_mobile() {
     setLoading(false);
 
     if (result.error) {
-      setError(result.message || "Ошибка получения истории депозитов");
+      setError(result.message || t("networkError"));
       setDeposits([]);
     } else {
       setError("");
@@ -153,7 +155,9 @@ export default function Deposit_table_mobile() {
 
       case "status":
         return (
-          <span className={`capitalize md:text-[20px] text-[green]`}>SENT</span>
+          <span className={`capitalize md:text-[20px] text-[green]`}>
+            {t("sent")}
+          </span>
         );
       case "actions":
         return (
@@ -165,8 +169,8 @@ export default function Deposit_table_mobile() {
                 </Button>
               </DropdownTrigger>
               <DropdownMenu>
-                <DropdownItem key="view">View</DropdownItem>
-                <DropdownItem key="edit">Edit</DropdownItem>
+                <DropdownItem key="view">{t("view")}</DropdownItem>
+                <DropdownItem key="edit">{t("edit")}</DropdownItem>
               </DropdownMenu>
             </Dropdown>
           </div>
@@ -197,7 +201,7 @@ export default function Deposit_table_mobile() {
     return (
       <div className="flex flex-col gap-4">
         <div className="flex justify-between gap-3 items-end p-[25px_20px_0px]">
-          <h1 className="text-[20px] xl:text-[32px]">All deposits</h1>
+          <h1 className="text-[20px] xl:text-[32px]">{t("allDeposits")}</h1>
           <div className="flex gap-3">
             <Dropdown>
               <DropdownTrigger className="hidden sm:flex">
@@ -205,7 +209,7 @@ export default function Deposit_table_mobile() {
                   endContent={<ChevronDownIcon className="md:!text-[20px]" />}
                   variant="flat"
                 >
-                  Status
+                  {t("status")}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
@@ -232,7 +236,7 @@ export default function Deposit_table_mobile() {
                   endContent={<ChevronDownIcon className="md:!text-[20px]" />}
                   variant="flat"
                 >
-                  Columns
+                  {t("columns")}
                 </Button>
               </DropdownTrigger>
               <DropdownMenu
@@ -313,7 +317,7 @@ export default function Deposit_table_mobile() {
           </TableColumn>
         )}
       </TableHeader>
-      <TableBody emptyContent={"Not found"} items={sortedItems}>
+      <TableBody emptyContent={t("notFound")} items={sortedItems}>
         {(item) => (
           <TableRow key={item.id}>
             {(columnKey) => (

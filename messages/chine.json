@@ -504,7 +504,7 @@
     "table_header_current_amount": "当前金额",
     "table_header_status": "状态",
     "table_body_completed": "已完成",
-    "table_body_IN_PROGRESS": "进行中"
+    "table_body_in_progress": "进行中"
   },
   "withdrawal": {
     "withdrawal": "提款",

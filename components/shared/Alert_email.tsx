@@ -79,7 +79,7 @@ export const Alert_email = ({ propsItem }: Props) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] max-w-[120px] w-full min-h-[28px]">
+        <Button className="border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] w-full min-h-[28px]">
           {propsItem}
         </Button>
       </AlertDialogTrigger>
@@ -138,7 +138,7 @@ export const Alert_email = ({ propsItem }: Props) => {
                   value={inputs.newEmailAuth}
                   onChange={handleChange}
                   className="border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] shadow-none text-[16px] px-[10px] py-[20px] rounded-[30px]"
-                  rightButton="Send code"
+                  rightButton={t("send_code_email")}
                   onClickRightButton={handleSubmit}
                 />
               </label>

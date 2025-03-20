@@ -11,12 +11,12 @@ import { useTranslations } from "next-intl";
 import ArrowBracket from "../ui/ArrowBracket";
 
 export function TermsModal() {
-  const t = useTranslations("activity");
+  const t = useTranslations("terms");
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button className="p-0 text-[18px] bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] text-black hover:cursor-pointer shadow-none">
-          Terms of Service
+          {t("termsOfService")}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="max-w-[1200px] px-[1rem] m-aut• overflow-y-aut• pb-[5.5rem] !top-[1px] sm:!top-[176px] md:!top-[176px]">
@@ -36,131 +36,120 @@ export function TermsModal() {
         </AlertDialogHeader>
         <AlertDialogHeader className="flex flex-col items-center gap-[10px] py-4">
           <AlertDialogTitle className="text-[24px] xl:text-[32px]">
-            Terms of Service
+            {t("termsOfService")}
           </AlertDialogTitle>
         </AlertDialogHeader>
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Introduction
+              {t("introduction")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Agreement t• Terms: By using NextFi, you agree to abide by these
-              Terms of Service.
+              {t("agreementToTerms")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Updates & Changes: NextFi may modify these Terms at any time,
-              with notifications to users.
+              {t("updatesChanges")}
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Account Registration & KYC Compliance
+              {t("accountRegistration")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Users must be 18+ and complete identity verification (KYC)
-              before engaging in transactions:
+              {t("usersOver18")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Identity verification includes passport submission and live
-              video confirmation.
+              {t("identityVerification")}
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Financial Transactions & Fees
+              {t("financialTransactions")}
             </p>
 
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Transaction fees apply and vary by payment method.
+              {t("transactionFees")}
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Acceptable Use Policy
+              {t("acceptableUse")}
             </p>
             <p className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              Users may not engage in:
+              {t("usersMayNot")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Fraudulent activities or money laundering.
+              {t("fraudulentActivities")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Unauthorized access to accounts.
+              {t("unauthorizedAccess")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Automated bots/scripts for platform manipulation.
+              {t("automatedBots")}
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Risk Disclosure & Platform Liability
+              {t("riskDisclosure")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Investing in financial assets involves market risks.
+              {t("investingRisks")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • NextFi does not guarantee profits and is not liable for
-              financial losses due to market fluctuations.
+              {t("nextfiNoGuarantee")}
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold tept-[24px] xl:text-[32px]">
-              Account Suspension & Termination:
+              {t("accountSuspension")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground leading-[1.5]">
-              • NextFi reserves the right to suspend or terminate accounts
-              involved in suspicious or prohibited activities.
+              {t("nextfiRightToSuspend")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground ">
-              • Users will receive prior notice unless the termination is due to
-              legal obligations.
+              {t("usersReceiveNotice")}
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Intellectual Property Rights
+              {t("intellectualProperty")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • All NextFi trademarks, logos, and content are the property of
-              NextFi.
+              {t("allNextfiTrademarks")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Users may not reproduce, distribute, or exploit any part of the
-              platform without authorization.
+              {t("usersMayNotReproduce")}
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Governing Law & Dispute Resolution
+              {t("governingLaw")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • These Terms are governed by the laws of Malta.
+              {t("termsGoverned")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Disputes shall be resolved through arbitration or legal
-              proceedings in the relevant jurisdiction.
+              {t("disputesResolved")}
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Changes to Terms of Service
+              {t("changesToTerms")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Users will be notified of changes through email and platform
-              announcements
+              {t("usersNotified")}
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg fopt-semibold text-[24px] xl:text-[32px]">
-              Contact Information
+              {t("contactInformation")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              Users can:
+              {t("usersCan")}
             </span>
             <span className="flex items-center gap-[10px] text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Support Contact:{" "}
-              <span className="text-[#205bc9]">technicalNextfi@gmail.com</span>
+              {t("supportContact")}{" "}
+              <span className="text-[#205bc9]">{t("email")}</span>
             </span>
           </div>
         </div>
@@ -170,7 +159,7 @@ export function TermsModal() {
             className="text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0 my-[3.5rem] w-full"
           >
             <Button className="p-0 text-[20px] outline outline-1 rounded-[40px] px-[1.5rem] outline-white bg-transparent hover:bg-transparent flex-shrink-0 dark:text-[#FFFFFF66] hover:cursor-pointer shadow-none max-w-[150px] !my-[2.5rem]">
-              Close
+              {t("close")}
             </Button>
           </AlertDialogCancel>
         </div>
