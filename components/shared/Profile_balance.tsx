@@ -58,8 +58,8 @@ export const Profile_balance = () => {
   return (
     <section className="h-fit">
       <div className="profile__balance bg-[#fff] dark:bg-[#1e1e1e66] md:!shadow-medium md:dark:!shadow-none !min-h-fit">
-        <div className="profile__balance_sides !pt-[40px]">
-          <div className="w-full min-h-[159px] sm:hidden m-auto gap-[10px] rounded-xl p-4 flex items-start justify-between dark:bg-[#131313] dark:!shadow-none shadow-medium relative">
+        <div className="profile__balance_sides">
+          <div className="w-full min-h-[80px] sm:hidden m-auto gap-[10px] rounded-xl p-4 flex items-start justify-between dark:bg-[#131313] dark:!shadow-none shadow-medium relative">
             {isLoading ? (
               <Spinner className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
             ) : (
@@ -216,7 +216,7 @@ export const Profile_balance = () => {
             <>
               <div className="w-full  flex sm:hidden items-center justify-center gap-[25px]">
                 <Link
-                  href="#"
+                  href="/deposit"
                   className="flex flex-col h-full items-center text-[14px]"
                 >
                   <Avatar

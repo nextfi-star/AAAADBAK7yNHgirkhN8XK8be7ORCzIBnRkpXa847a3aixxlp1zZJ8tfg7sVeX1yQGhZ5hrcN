@@ -18,14 +18,14 @@ const Withdrawal_faq = () => {
           <AccordionTrigger className="md:text-[20px]">
             {t("howMake")}
           </AccordionTrigger>
-          <AccordionContent className="text-[16px] md:text-[20px]">
+          <AccordionContent className="text-[16px]  text-left md:text-[20px]">
             {t("howmake2")}
           </AccordionContent>
           <Divider />
         </AccordionItem>
 
         <AccordionItem value="whyStill">
-          <AccordionTrigger className="md:text-[20px]">
+          <AccordionTrigger className="md:text-[20px]  text-left">
             {t("whyStill")}
           </AccordionTrigger>
           <AccordionContent className="text-[16px] md:text-[20px]">
@@ -45,7 +45,7 @@ const Withdrawal_faq = () => {
         </AccordionItem>
 
         <AccordionItem value="doI">
-          <AccordionTrigger className="md:text-[20px]">
+          <AccordionTrigger className="md:text-[20px]  text-left">
             {t("doI")}
           </AccordionTrigger>
           <AccordionContent className="text-[16px] md:text-[20px]">

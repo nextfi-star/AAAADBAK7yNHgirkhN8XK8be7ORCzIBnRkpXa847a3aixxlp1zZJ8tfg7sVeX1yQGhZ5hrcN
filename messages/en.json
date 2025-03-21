@@ -470,7 +470,49 @@
     "introduction": "Introduction",
     "securityPolicy": "Security & Compliance Policy",
     "nextfiCommitted": "NextFi is committed to the highest standards of cybersecurity and regulatory compliance.",
-    "weComply": "We comply with AML (Anti-Money Laundering), KYC (Know Your Customer), GDPR, CCPA, PDPL, and other global regulations."
+    "weComply": "We comply with AML (Anti-Money Laundering), KYC (Know Your Customer), GDPR, CCPA, PDPL, and other global regulations.",
+    "user_no_sharing": "Avoid sharing account details with third parties.",
+    "user_report_suspicious": "Report suspicious activity immediately.",
+
+    "updates_policy_title": "Updates to Security & Compliance Policy",
+    "updates_policy_notification": "NextFi will notify users of security policy changes.",
+
+    "contact_info_title": "Contact Information",
+    "contact_privacy_officer": "Privacy Officer Contact:",
+    "contact_email": "technicalNextfi@gmail.com",
+    "incident_response_title": "Incident Response & Data Breach Policy",
+    "incident_breach_notification": "72-hour breach notification policy for affected users.",
+    "incident_security_response": "Immediate security scan & response protocol in case of a cyberattack.",
+    "incident_ddos_protection": "DDoS protection using Cloudflare & AWS Shield.",
+
+    "gov_compliance_title": "Government & Law Enforcement Compliance",
+    "gov_legal_request": "NextFi may provide user data only under a valid legal request.",
+    "gov_cross_border_cooperation": "Cross-border cooperation with regulatory authorities in the EU, US, UAE, and CIS.",
+
+    "user_responsibilities_title": "User Responsibilities",
+    "user_must": "Users must:",
+    "user_strong_passwords": "Use strong passwords and enable 2FA.",
+    "aml_kyc_title": "AML/KYC Compliance",
+    "aml_identity_verification": "Mandatory Identity Verification:",
+    "aml_identity_id": "Users must submit a government-issued ID and live verification.",
+    "aml_transaction_verification": "Transactions exceeding risk limits require additional verification.",
+    "aml_international_compliance": "International Compliance:",
+    "aml_sanctions_adherence": "NextFi adheres to sanction lists (OFAC, FATF, and global financial crime databases).",
+
+    "data_protection_title": "Data Protection & Storage",
+    "data_iso_certification": "ISO 27001, SOC 2-certified data centers.",
+    "data_hybrid_storage": "Hybrid storage model (on-premises & cloud-based for redundancy).",
+    "data_retention_policy": "5-year minimum data retention for regulatory compliance.",
+    "title": "Cybersecurity Measures",
+    "data_encryption": "Data Encryption:",
+    "data_encryption_aes": "AES-256 encryption for stored user data.",
+    "data_encryption_tls": "TLS 1.3 encryption for data transmission.",
+    "auth_access_control": "Authentication & Access Control:",
+    "auth_2fa": "Mandatory two-factor authentication (2FA).",
+    "auth_brute_force": "Automated brute-force attack protection.",
+    "fraud_detection": "Fraud Detection & Monitoring:",
+    "fraud_ai_monitoring": "AI-driven transaction monitoring for suspicious activities.",
+    "fraud_activity_segmentation": "Activity segmentation to prevent unauthorized access."
   },
   "deposit": {
     "deposit": "Deposit",
@@ -747,7 +789,10 @@
     "notFound": "Not found",
     "table_status_in_process": "IN PROGRESS",
     "table_status_withdrawn": "Withdrawan",
-    "table_status_success": "SUCCESS"
+    "table_status_success": "SUCCESS",
+    "noRecords": "No records",
+    "getStarted": "Get started to invest",
+    "selectCoin": "Select coin"
   },
   "withdrawal": {
     "enterAmount": "Enter amount",

@@ -19,7 +19,7 @@ export function SecPolicyModal() {
           {t("securityPolicy")}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="max-w-[1200px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[1px] sm:!top-[176px] md:!top-[176px]">
+      <AlertDialogContent className="max-w-[1200px] bg-white dark:bg-[#111] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[1px] sm:!top-[176px] md:!top-[176px]">
         <AlertDialogHeader className="">
           <AlertDialogTitle className="w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px] mb-[10px]">
             <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]">
@@ -53,139 +53,142 @@ export function SecPolicyModal() {
           </div>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Cybersecurity Measures
+              {t("title")}
             </p>
             <p className="text-[18px] xl:text-[24px] text-sm text-white/90">
-              • Data Encryption:
+              {t("data_encryption")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              a AES-256 encryption for stored user data.
+              {t("data_encryption_aes")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              a TLS 1.3 encryption for data transmission.
+              {t("data_encryption_tls")}
             </span>
             <p className="text-[18px] xl:text-[24px] text-sm text-white/90">
-              • Authentication & Access Contro:
+              {t("auth_access_control")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              a Mandatory two-factor authentication (2FA)
+              {t("auth_2fa")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              a Automated brute-force attack protection.
+              {t("auth_brute_force")}
             </span>
             <p className="text-[18px] xl:text-[24px] text-sm text-white/90">
-              • Fraud Detection & Monitoring
+              {t("fraud_detection")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              a AI-driven transaction monitoring for suspicious activities.
+              {t("fraud_ai_monitoring")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              aspanr activity segmentation to prevent unauthorized access.
+              {t("fraud_activity_segmentation")}
+            </span>
+          </div>
+
+          <div className="flex flex-col gap-[1rem]">
+            <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
+              {t("aml_kyc_title")}
+            </p>
+            <p className="text-[18px] xl:text-[24px] text-sm text-white/90">
+              {t("aml_identity_verification")}
+            </p>
+            <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
+              {t("aml_identity_id")}
+            </span>
+            <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
+              {t("aml_transaction_verification")}
+            </span>
+            <p className="text-[18px] xl:text-[24px] text-sm text-white/90">
+              {t("aml_international_compliance")}
+            </p>
+            <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
+              {t("aml_sanctions_adherence")}
             </span>
           </div>
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              AML/KYC Compliance
-            </p>
-            <p className="text-[18px] xl:text-[24px] text-sm text-white/90">
-              • Mandatory Identity Verification:
+              {t("data_protection_title")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              o Users must submit a government-issued ID and live verification.
+              {t("data_iso_certification")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              o Transactions exceeding risk limits require additional
-              verification.
+              {t("data_hybrid_storage")}
             </span>
-            <p className="text-[18px] xl:text-[24px] text-sm text-white/90">
-              • International Compliance:
-            </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              o NextFi adheres to sanction lists (OFAC, FATF, and global
-              financial crime databases).
+              {t("data_retention_policy")}
             </span>
           </div>
-          <div className="flex flex-col gap-[1rem]">
-            <p className="text-lg font-sempbold text-[24px] xl:text-[32px]">
-              Data Protection & Storage
-            </p>
-            <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • ISO 27001, SOC 2-certified data centers.
-            </span>
-            <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Hybrid storage model (on-premises & cloud-based for redundancy).
-            </span>
-            <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • 5-year minimum data retention for regulatory compliance.
-            </span>
-          </div>
+
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Incident Response & Data Breach Policy
+              {t("incident_response_title")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • 72-hour breach notification policy for affected users.
+              {t("incident_breach_notification")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Immediate security spant & response protocol in case of a
-              cyberattack.
+              {t("incident_security_response")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • DDoS protection using Cloudflare & AWS Shield.
+              {t("incident_ddos_protection")}
             </span>
           </div>
+
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Government & Law Enforcement Compliance
+              {t("gov_compliance_title")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • NextFi may provide user data only under a valid legal request.
+              {t("gov_legal_request")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Cross-border cooperation with regulatory authorities in the EU,
-              US, UAE, and CIS.
+              {t("gov_cross_border_cooperation")}
             </span>
           </div>
+
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              User Responsibilities
+              {t("user_responsibilities_title")}
             </p>
             <p className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Users must
+              {t("user_must")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Use strong passwords and enable 2FA.
+              {t("user_strong_passwords")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Avoid sharing account details with third parties.
+              {t("user_no_sharing")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Report suspicious activity immediately
+              {t("user_report_suspicious")}
             </span>
           </div>
+
           <div className="flex flex-col gap-[1rem]">
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Avoid sharing account details with third parties.
+              {t("user_no_sharing")}
             </span>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Report suspicious activity immediately
+              {t("user_report_suspicious")}
             </span>
           </div>
-          <div className="flex flex-col gap-[1rem]">
-            <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Updates to Security & Compliance Policy
-            </p>
-            <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • NextFi will notify users of security policy changes.
-            </span>
-          </div>
+
           <div className="flex flex-col gap-[1rem]">
             <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
-              Contact Information
+              {t("updates_policy_title")}
             </p>
             <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
-              • Privacy Officer Contact:{" "}
-              <span className="text-[#205bc9]">technicalNextfi@gmail.com</span>
+              {t("updates_policy_notification")}
+            </span>
+          </div>
+
+          <div className="flex flex-col gap-[1rem]">
+            <p className="text-lg font-semibold text-[24px] xl:text-[32px]">
+              {t("contact_info_title")}
+            </p>
+            <span className="text-[18px] xl:text-[24px] text-sm text-muted-foreground">
+              {t("contact_privacy_officer")}{" "}
+              <span className="text-[#205bc9]">{t("contact_email")}</span>
             </span>
           </div>
           <div className="w-full flex justify-center">

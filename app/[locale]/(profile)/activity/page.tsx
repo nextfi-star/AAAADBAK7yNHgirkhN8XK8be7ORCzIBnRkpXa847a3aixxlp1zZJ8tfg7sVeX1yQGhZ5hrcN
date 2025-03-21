@@ -7,10 +7,10 @@ import { Activity_modal } from "@/components/shared/Activity_modal";
 const Activity = () => {
   const t = useTranslations("activity");
   return (
-    <section className="activity flex flex-col min-h-screen overflow-x-hidden relative">
+    <section className="activity flex flex-col min-h-screen overflow-x-hidden  -mt-[100px] md:m-0 xl:m-0 2xl:m-0  relative">
       <div className="site-holder flex flex-col items-center gap-[46px] relative">
         <article className="flex flex-col items-center w-full">
-          <h1 className="text-[24px] text-center xl:text-[42px] font-bold mb-[60px] uppercase">
+          <h1 className="text-[24px] text-center xl:text-[42px] font-bold mb-[20px] uppercase">
             {t("genActivity")}
           </h1>
           <div className="flex flex-col lg:flex-row items-center md:justify-between w-full">

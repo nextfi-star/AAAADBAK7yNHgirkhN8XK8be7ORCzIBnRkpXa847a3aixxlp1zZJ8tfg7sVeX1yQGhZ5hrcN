@@ -148,7 +148,7 @@ export const Invest_confirmation = ({
             <div className="p-[21px] flex flex-col gap-[28px]">
               <article className="dark:bg-[#7676801F] rounded-[6px] flex flex-col gap-[28px] py-[21px] px-[18px] md:px-[21px]">
                 <div className="flex items-center w-full justify-between overflow-hidden">
-                  <DialogDescription className="flex flex-col gap-[1px] text-[14px] md:text-[20px]">
+                  <DialogDescription className="flex flex-col gap-[1px] text-[14px] md:text-[20px] text-left">
                     {t("onChain")}
                   </DialogDescription>
 
