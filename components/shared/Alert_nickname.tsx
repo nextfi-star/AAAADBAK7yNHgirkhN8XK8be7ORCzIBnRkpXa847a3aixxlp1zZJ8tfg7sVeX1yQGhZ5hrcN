@@ -85,7 +85,7 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[14px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] w-full min-h-[28px] ${className}`}
+          className={`border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[14px] border-solid rounded-[50px] px-[10px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] min-w-[100px] flex min-h-[28px] ${className}`}
         >
           {propsItem}
         </Button>
