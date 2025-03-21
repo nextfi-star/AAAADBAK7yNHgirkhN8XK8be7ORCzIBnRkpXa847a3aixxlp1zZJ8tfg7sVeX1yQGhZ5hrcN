@@ -110,7 +110,7 @@ const Transaction = () => {
     []
   );
   return (
-    <section className="dark:!bg-[#1e1e1e66] bg-white !shadow-medium dark:!shadow-none rounded-[30px] p-[27px_40px] flex flex-col gap-[20px] min-h-[690px] max-h-[690px] overflow-y-auto">
+    <section className="dark:!bg-[#1e1e1e66] bg-white !shadow-medium dark:!shadow-none rounded-[30px] p-[27px_40px] flex flex-col gap-[20px] min-h-[350px] max-h-[350px] overflow-y-auto">
       <h3 className="text-[14px] md:text-[20px] 2xl:text-[25px] w-full">
         {t("recent")}
       </h3>

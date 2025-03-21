@@ -19,7 +19,7 @@ export function TermsModal() {
           {t("termsOfService")}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="max-w-[1200px] px-[1rem] m-aut• overflow-y-aut• pb-[5.5rem] !top-[1px] sm:!top-[176px] md:!top-[176px]">
+      <AlertDialogContent className="max-w-[1200px] bg-white dark:bg-[#111] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[1px] sm:!top-[176px] md:!top-[176px]">
         <AlertDialogHeader className="">
           <AlertDialogTitle className="w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px] mb-[10px]">
             <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]">

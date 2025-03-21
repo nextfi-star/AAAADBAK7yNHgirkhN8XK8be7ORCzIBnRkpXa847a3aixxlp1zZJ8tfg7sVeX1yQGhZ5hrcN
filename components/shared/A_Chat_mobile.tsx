@@ -189,7 +189,7 @@ export const A_Chat_mobile = () => {
                             );
                           })}
                           <div ref={messagesEndRef} />
-                          <div className="BOT flex flex-wrap gap-[7px] items-center mb-[20px]">
+                          {/* <div className="BOT flex flex-wrap gap-[7px] items-center mb-[20px]">
                             <button className="bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]">
                               Account security
                             </button>
@@ -214,7 +214,7 @@ export const A_Chat_mobile = () => {
                             <button className="bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]">
                               Swap
                             </button>
-                          </div>
+                          </div> */}
                           <div className="flex items-center gap-[10px] w-full pb-[.5rem]">
                             {/* <A_ChatUploader
 															setFileName={setFileName}

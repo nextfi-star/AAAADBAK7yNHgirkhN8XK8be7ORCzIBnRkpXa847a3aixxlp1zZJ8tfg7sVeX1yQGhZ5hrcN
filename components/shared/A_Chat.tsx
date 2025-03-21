@@ -161,7 +161,7 @@ export const A_Chat = () => {
                   ) : (
                     <>
                       {!showCancel ? (
-                        <div className="md:max-h-[450px] max-h-[524px] overflow-y-auto w-full">
+                        <div className="md:max-h-[500px] max-h-[750px] overflow-y-auto w-full">
                           {messages.map((msg, index) => {
                             const decoded = msg.text;
                             const isAdmin = decoded.startsWith("#");
@@ -207,7 +207,7 @@ export const A_Chat = () => {
                           })}
                           <div ref={messagesEndRef} />
                           {/* <div className='BOT flex flex-wrap gap-[7px] items-center mb-[20px]'>
-														<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>
+														<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4dpx]'>
 															Account security
 														</button>
 														<button className='bg-transparent border-1 border-solid dark:border-white border-[#0c0c0c] text-[16px] text-[#0c0c0c] dark:text-white rounded-[18px] px-[11px] py-[4px]'>

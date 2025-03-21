@@ -18,16 +18,16 @@ export const ReserveModal = () => {
       <AlertDialogTrigger asChild>
         <Button
           variant="default"
-          className="flex items-center rounded-[50px] text-[16px] xl:text-[20px] font-medium px-[15px] !py-[20px] border border-solid dark:border-white border-black"
+          className="flex items-center rounded-[50px] text-[16px] xl:text-[20px] font-medium px-[15px] border border-solid dark:border-white border-black"
         >
           {t("readMore")}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="max-w-[1200px] px-[1rem] m-auto overflow-y-auto pb-[5.5rem] !top-[176px]">
+      <AlertDialogContent className="max-w-[1200px] bg-white dark:bg-[#111] px-[1rem] m-auto overflow-y-auto pb-[5.5rem]">
         <AlertDialogHeader className="">
           <AlertDialogTitle className="w-full border-transparent border-b-1 border-solid border-b-gray-400 pb-[20px] text-[12px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-left flex items-center gap-[10px] mb-[10px]">
             <span className="text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px] text-[#888888] flex items-center gap-[15px]">
-              <AlertDialogCancel className="text-black dark:text-white bg-transparent text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0">
+              <AlertDialogCancel className="text-black dark:text-white dark:bg-[#111] text-[14px] md:text-[18px] border-none shadow-none hover:bg-transparent p-0 items-center m-0">
                 <ArrowBracket
                   className={"rotate-90"}
                   color={"currentColor"}

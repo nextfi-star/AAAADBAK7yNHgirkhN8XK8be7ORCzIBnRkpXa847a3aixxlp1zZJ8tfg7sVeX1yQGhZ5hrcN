@@ -128,7 +128,7 @@ const Activity_awards = ({ progress, handleIncreaseProgress }: Props) => {
                 <div className="p-[50px] border-2 border-dashed border-[#3F7EF3] rounded-[30px]">
                   <div className="p-[40px] flex flex-col items-center bg-[#073D95] rounded-[30px] gap-[12px] w-full max-w-[320px] ">
                     <h2 className="text-[32px] text-white">{item.percent} %</h2>
-                    <p className="text-[24px] mb-[40px] text-white">
+                    <p className="text-[24px] mb-[40px] text-white text-center">
                       {item.title}
                     </p>
                     <Button
