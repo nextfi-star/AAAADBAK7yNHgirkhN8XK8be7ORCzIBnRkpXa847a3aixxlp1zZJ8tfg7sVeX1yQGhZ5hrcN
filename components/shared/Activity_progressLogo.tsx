@@ -56,11 +56,20 @@ const Activity_progressLogo = () => {
           {data &&
             data.map((item, index) => (
               <div className="flex flex-row items-center gap-[5px]" key={index}>
-                <p
-                  className={`bg-${item.title === "0%" ? "[#3F7EF3]" : `gray-400`} h-[28px] lg:h-[48px] w-[28px] lg:w-[48px] text-[10px] lg:text-[18px] rounded-full flex items-center justify-center cursor-pointer transition duration shadow-medium text-white`}
-                >
-                  {item.title}
-                </p>
+                {item.title === "0%" ? (
+                  <p
+                    className={`bg-[#3F7EF3] h-[28px] lg:h-[48px] w-[28px] lg:w-[48px] text-[10px] lg:text-[18px] rounded-full flex items-center justify-center cursor-pointer transition duration shadow-medium text-white`}
+                  >
+                    {item.title}
+                  </p>
+                ) : (
+                  <p
+                    className={`bg-gray-500 h-[28px] lg:h-[48px] w-[28px] lg:w-[48px] text-[10px] lg:text-[18px] rounded-full flex items-center justify-center cursor-pointer transition duration shadow-medium text-white`}
+                  >
+                    {item.title}
+                  </p>
+                )}
+
                 <span className="text-[#3F7EF3] whitespace-nowrap">----</span>
               </div>
             ))}
@@ -80,7 +89,7 @@ const Activity_progressLogo = () => {
               <div className="flex flex-row items-center gap-[5px]" key={index}>
                 <span className="text-[#3F7EF3] whitespace-nowrap">----</span>
                 <p
-                  className={`bg-${item.title === "0%" ? "[#3F7EF3]" : `gray-400`} h-[28px] lg:h-[48px] w-[28px] lg:w-[48px] text-[10px] lg:text-[18px] rounded-full flex items-center justify-center cursor-pointer transition duration shadow-medium text-white bg-gray-500`}
+                  className={`h-[28px] lg:h-[48px] w-[28px] lg:w-[48px] text-[10px] lg:text-[18px] rounded-full flex items-center justify-center cursor-pointer transition duration shadow-medium text-white bg-gray-500`}
                 >
                   {item.title}
                 </p>

@@ -379,11 +379,11 @@ export const Invest_card = () => {
           )}
         </>
       )} */}
-      <div className="p-[18px_41px]">
+      {/* <div className="p-[18px_41px]">
         <h1 className="text-[18px] sm:text-[24px] font-medium dark:text-[rgb(239,239,239)]">
           {t("transactionProcessing")}
         </h1>
-      </div>
+      </div> */}
     </>
   );
 };
