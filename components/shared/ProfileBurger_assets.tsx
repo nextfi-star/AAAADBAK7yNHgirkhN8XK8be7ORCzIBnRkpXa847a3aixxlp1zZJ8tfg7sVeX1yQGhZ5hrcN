@@ -14,7 +14,7 @@ export const ProfileBurger_assets = ({ handleShortcutClick }: Props) => {
         src: "/header_icons/profile_burger/deposit.svg",
         title: t("deposit"),
         tabName: "Profile",
-        href: "/profile",
+        href: "/deposit",
       },
       {
         src: "/header_icons/profile_burger/withdraw.svg",
