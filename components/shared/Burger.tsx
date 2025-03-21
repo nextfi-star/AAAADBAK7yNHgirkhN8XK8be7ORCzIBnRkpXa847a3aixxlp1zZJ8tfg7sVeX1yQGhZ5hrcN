@@ -5,6 +5,7 @@ import { Link } from "../../i18n/routing";
 import Theme_switch from "./Theme_switch";
 import Locale_Switcher from "./Locale_Switcher";
 import { useTranslations } from "next-intl";
+import { LangSwitch } from "../ui/LangSwitch";
 
 export const Burger = ({ csrf }: { csrf: string | null }) => {
   const [show, setShow] = useState<boolean>(true);
@@ -25,7 +26,7 @@ export const Burger = ({ csrf }: { csrf: string | null }) => {
               <Theme_switch />
             </a>
             <button className="header__icons-item">
-              <Locale_Switcher />
+              <LangSwitch />
             </button>
           </div>
           <span />
@@ -33,10 +34,10 @@ export const Burger = ({ csrf }: { csrf: string | null }) => {
             {!auth && (
               <div className="m__buttons">
                 <Link className="m__buttons-signup" href="/signup">
-                  Sign up
+                  {t("signup")}
                 </Link>
-                <Link className="m__buttons-login m__outline" href="/login">
-                  Login
+                <Link className="m__buttons-login m__outline " href="/login">
+                  {t("login")}
                 </Link>
               </div>
             )}

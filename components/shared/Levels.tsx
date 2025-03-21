@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Levels_swiper } from "./Levels_swiper";
-import { useTranslations } from 'next-intl'
+import { useTranslations } from "next-intl";
 
 export const Levels = () => {
-  const t = useTranslations('landing')
+  const t = useTranslations("landing");
   return (
     <section className="levels">
       <Image
@@ -24,7 +24,8 @@ export const Levels = () => {
           data-aos-duration="1000"
           data-aos-once="true"
         >
-          <b>{t('personalized')}</b> {t('portfolio')}<b> {t('system')}</b>
+          <b>{t("personalized")}</b> {t("portfolio")}
+          <b> {t("system")}</b>
         </h2>
         <p
           className="section-description"
@@ -32,7 +33,7 @@ export const Levels = () => {
           data-aos-duration="1000"
           data-aos-once="true"
         >
-          {t('prtfDesc')}
+          {t("prtfDesc")}
         </p>
         {/* Swiper */}
 

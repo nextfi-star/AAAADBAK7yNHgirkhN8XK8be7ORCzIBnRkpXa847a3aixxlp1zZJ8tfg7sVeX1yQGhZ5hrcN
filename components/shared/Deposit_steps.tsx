@@ -141,7 +141,7 @@ const Deposit_steps = () => {
                       side="bottom"
                       align="start"
                     >
-                      <Command className="bg-[#eee] dark:bg-[#19191A] w-[285px] md:w-[603px] lg:w-[799px] xl:w-[794px] 2xl:w-[962px]">
+                      <Command className="bg-[#eee] dark:bg-[#19191A] w-full md:w-[603px] lg:w-[799px] xl:w-[794px] 2xl:w-[962px]">
                         <CommandList className="bg-[#eee] dark:bg-[#19191A] px-[10px]">
                           <CommandEmpty>
                             <NotFoundItem />
@@ -244,7 +244,7 @@ const Deposit_steps = () => {
                         side="bottom"
                         align="start"
                       >
-                        <Command className="bg-[#eee] dark:bg-[#19191A] w-[285px] md:w-[603px] lg:w-[799px] xl:w-[794px] 2xl:w-[962px]">
+                        <Command className="bg-[#eee] dark:bg-[#19191A] w-full md:w-[603px] lg:w-[799px] xl:w-[794px] 2xl:w-[962px]">
                           <CommandList className="bg-[#eee] dark:bg-[#19191A] px-[10px]">
                             <CommandEmpty></CommandEmpty>
                             <CommandGroup>
@@ -299,12 +299,12 @@ const Deposit_steps = () => {
                   <div className="flex flex-col gap-[10px] max-w-[294px] sm:max-w-[962px]">
                     <div className="flex flex-col gap-[10px] md:gap-0 items-start md:flex-row md:items-center md:justify-between w-full ">
                       <div className="flex flex-col gap-[34px]">
-                        <div className="flex flex-col gap-[.5rem]">
+                        <div className="flex flex-col gap-[.5rem] max-w-[80%]">
                           <span>{t("depositWarr")}</span>
                           {!inputStep2 ? (
                             <Spinner />
                           ) : (
-                            <div className="max-w-[250px] w-full">
+                            <div className="w-full">
                               {!depositAddress ? (
                                 <span className="block w-full">
                                   {t("noAddressAvailable")}
@@ -312,27 +312,25 @@ const Deposit_steps = () => {
                               ) : (
                                 <QRCode
                                   size={150}
-                                  style={{
-                                    height: "auto",
-                                    maxWidth: "119px",
-                                    width: "100%",
-                                  }}
                                   value={depositAddress}
-                                  viewBox={`0 0 256 256`}
+                                  // viewBox={`0 0 256 256`}
                                 />
                               )}
                             </div>
                           )}
-                          <Snippet
-                            symbol=""
-                            className="text-bold md:text-[20px] text-small capitalize bg-transparent px-0"
-                            classNames={{
-                              base: "w-fit h-fit ",
-                              pre: "overflow-x-auto px-[.5rem] py-[.4rem]",
-                            }}
-                          >
+                          <span className="break-all">
                             {depositAddress || t("none")}
-                          </Snippet>
+                          </span>
+                          {/* <Snippet
+                            variant="solid"
+                            symbol=""
+                            className="text-bold md:text-[20px] text-small capitalize bg-transparent px-0 break-all whitespace-pre-wrap max-w-[70%]"
+                            classNames={{
+                              base: "",
+                              pre: "overflow-x-auto max-w-[80%]",
+                            }}
+                          > */}
+                          {/* </Snippet> */}
                         </div>
                         {error && (
                           <span

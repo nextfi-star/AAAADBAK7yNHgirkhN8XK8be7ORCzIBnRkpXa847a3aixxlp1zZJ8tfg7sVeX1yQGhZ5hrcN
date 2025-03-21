@@ -352,7 +352,7 @@ export default function Invest_Table({
       title={t("investmentHistory")}
       classNames={{
         table: "!bg-transparent",
-        base: "dark:!bg-[#1e1e1e66] shadow-medium dark:shadow-none !bg-[#FFFFFF66] rounded-[15px] px-[25px]",
+        base: "dark:!bg-[#1e1e1e66] shadow-medium dark:shadow-none !bg-[#FFFFFF66] rounded-[15px]",
         tbody: "!shadow-none",
         wrapper: "max-h-[503px] !bg-transparent shadow-none",
         tr: "bg-transparent !outline-0 !border-0 !shadow-none",

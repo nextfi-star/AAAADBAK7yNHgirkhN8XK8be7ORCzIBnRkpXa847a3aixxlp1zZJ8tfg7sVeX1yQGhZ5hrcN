@@ -25,8 +25,9 @@ export const Profile_accountdetails = () => {
       </h1>
       <article className="flex items-center justify-between gap-[5px]">
         <span>{t("email")}</span>
-        <span>{user?.email || <Spinner />}</span>
-
+        <span className="text-ellipsis max-w-[25px] break-all">
+          {user?.email || <Spinner />}
+        </span>
         <div className="min-w-[181px] flex justify-end">
           <Alert_email propsItem={t("change")} />
         </div>

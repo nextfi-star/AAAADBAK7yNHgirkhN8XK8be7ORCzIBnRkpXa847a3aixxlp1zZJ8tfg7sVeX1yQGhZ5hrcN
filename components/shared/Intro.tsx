@@ -45,7 +45,7 @@ export const Intro = () => {
               data-aos-duration="1200"
               data-aos-once="true"
             >
-              <Button className="btn btn-blue ">
+              <Button className="btn btn-blue">
                 <Link href="/signup">{t("signup")}</Link>
               </Button>
               <Button className="btn btn-transparent ">
