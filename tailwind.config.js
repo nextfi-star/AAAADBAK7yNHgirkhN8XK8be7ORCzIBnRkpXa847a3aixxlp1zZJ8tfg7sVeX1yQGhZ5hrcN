@@ -8,9 +8,6 @@ module.exports = {
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    screens: {
-      sm: { max: "640px" },
-    },
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)"],
@@ -91,7 +88,6 @@ module.exports = {
         "caret-blink": "caret-blink 1.25s ease-out infinite",
       },
     },
-    screen: {},
   },
   darkMode: ["class"],
   plugins: [heroui(), require("tailwindcss-animate")],

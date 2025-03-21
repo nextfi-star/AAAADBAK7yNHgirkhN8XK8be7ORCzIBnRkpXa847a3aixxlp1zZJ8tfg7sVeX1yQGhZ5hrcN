@@ -111,7 +111,9 @@ export const Profile_devices = () => {
                         onClick={(e) => e.stopPropagation()}
                       >
                         <span className="text-[20px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black   after:text-[16px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-17px] after:left-[50%] after:translate-x-[-50%]">
-                          {session.os} | {session.browser} | {session.country}
+                          {session.os} {session.browser}
+                          <br />
+                          {session.country}
                         </span>
                       </div>
                     </div>
