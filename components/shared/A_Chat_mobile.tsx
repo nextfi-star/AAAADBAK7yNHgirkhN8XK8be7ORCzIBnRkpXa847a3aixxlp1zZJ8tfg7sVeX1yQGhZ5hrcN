@@ -10,11 +10,11 @@ import {
 } from "@heroui/react";
 import { ChevronLeft, Images, SendHorizontal, X } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Chat } from "../ui/Chat";
 import { useUserStore } from "@/hooks/useUserData";
 
-export const A_Chat_mobile = () => {
+export const A_Chat_mobile = ({ btn }: { btn: React.ReactNode }) => {
   const user = useUserStore((state) => state.user);
   const {
     tid,
@@ -73,14 +73,10 @@ export const A_Chat_mobile = () => {
     <>
       <Button
         onPress={onOpen}
-        className={`p-0 m-0 rounded-full flex items-center justify-center bg-transparent`}
+        className={`p-0 m-0 h-full rounded-full flex items-center justify-center bg-transparent`}
         disableAnimation={true}
       >
-        <Chat
-          color={theme === "dark" ? "white" : "black"}
-          height={20}
-          width={20}
-        />
+        {btn}
       </Button>
       <Modal
         isOpen={isOpen}

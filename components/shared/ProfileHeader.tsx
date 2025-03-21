@@ -31,6 +31,7 @@ import { Navigation } from "./Navigation";
 import { Platform_mode } from "./Platform_mode";
 import Theme_switch from "./Theme_switch";
 import { Logout_confirmation } from "./Logout_confirmation";
+import { Chat } from "../ui/Chat";
 
 interface Props {
   auth: boolean;
@@ -242,7 +243,15 @@ export const ProfileHeader = ({ auth = true }: Props) => {
                     <LangSwitch />
                   </div>
                   <div className="header__icons-item">
-                    <A_Chat_mobile />
+                    <A_Chat_mobile
+                      btn={
+                        <Chat
+                          color={theme === "dark" ? "white" : "black"}
+                          height={20}
+                          width={20}
+                        />
+                      }
+                    />
                   </div>
                 </div>
               </>
