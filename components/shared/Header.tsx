@@ -59,7 +59,7 @@ export const Header = ({ auth = true }: Props) => {
           {!shouldHide && <Navigation />}
 
           {width > 1100 && (
-            <div className="gap-10 text-[18px] flex md:gap-2 xl:gap-3 2xl:gap-5">
+            <div className="gap-10 text-[18px] flex md:gap-2 xl:gap-3 2xl:gap-5 ">
               <a
                 className="hover:text-blue-700 transition-all"
                 href="#main__intro"

@@ -94,8 +94,8 @@ const Security = () => {
                         </span>
                       </div>
                     </div>
-                    <div className="flex gap-[12px] flex-col md:flex-row items-center break-words">
-                      <div className="break-all text-center w-full">
+                    <div className="flex gap-[12px] flex-col md:flex-row items-center">
+                      <div className="text-center">
                         {item.contain && <p>{item.contain}</p>}
                       </div>
                       {item.btn}
