@@ -34,12 +34,14 @@ export const Profile_balance = () => {
   useEffect(() => {
     if (!user?.csrf) return;
     const fetchBalance = async () => {
+      setIsLoading(true);
       const totalValue = await getUserBalance(user?.csrf);
       if (totalValue !== null) {
         setBalance(totalValue);
       } else {
         console.log("Ошибка загрузки данных");
       }
+      setIsLoading(false);
     };
     fetchBalance();
   }, [user?.csrf]);

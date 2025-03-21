@@ -10,20 +10,20 @@ export const Authicons = () => {
       <Image
         width={40}
         height={40}
-        alt="social icon"
-        src={`/form/soc/inst.svg`}
+        alt={"socialMedia.instagra"}
+        src={`/footer/soc/inst.svg`}
       />
       <Image
         width={40}
         height={40}
-        alt="social icon"
-        src={`/form/soc/face.svg`}
+        alt={"socialMedia.faceboo"}
+        src={`/footer/soc/face.svg`}
       />
       <Image
         width={40}
         height={40}
-        alt="social icon"
-        src={`/form/soc/twitt.svg`}
+        alt={"socialMedia.twitte"}
+        src={`/footer/soc/twitt.svg`}
       />
       <div className="lock-btn">
         <Image

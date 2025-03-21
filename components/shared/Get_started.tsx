@@ -36,7 +36,7 @@ export const Get_started = () => {
             <div className="getstarted__row-item">
               <span className="getstarted__item-title">{t("accCreate")}</span>
               <p className="getstarted__item-text">{t("accDesc")}</p>
-              <Link className="btn btn-blue" href="/signup">
+              <Link className="btn btn-blue w-full" href="/signup">
                 {t("signup")}
               </Link>
               <Image

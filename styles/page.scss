@@ -1,6 +1,6 @@
 .btn-blue {
   display: block;
-  max-width: 256px;
+  // max-width: 256px;
   width: 100%;
   min-height: fit-content;
   padding: 12px 32px;
@@ -37,17 +37,17 @@
   @media (max-width: 1440px) {
     font-size: 1.25vw;
     line-height: 1.5625vw;
-    max-width: 210px;
+    // max-width: 210px;
   }
   @media (max-width: 992px) {
-    max-width: 212px;
+    // max-width: 212px;
     font-size: 18px;
     line-height: 24px;
   }
 }
 .btn-transparent {
   display: block;
-  max-width: 256px;
+  // max-width: 256px;
   width: 100%;
   padding: 12px 32px;
   font-family: inherit;
@@ -72,7 +72,7 @@
   @media (max-width: 1440px) {
     font-size: 1.25vw;
     line-height: 1.5625vw;
-    max-width: 210px;
+    // max-width: 210px;
   }
   @media (max-width: 992px) {
     font-size: 18px;
@@ -887,7 +887,7 @@ body {
     }
 
     &.active {
-      transform: translateX(7%);
+      transform: translateX(5%);
     }
   }
   .wrapper {
@@ -1847,18 +1847,18 @@ body {
 
       &-blue {
         @media (max-width: 430px) {
-          max-width: 129px;
+          // max-width: 129px;
         }
       }
       &-transparent {
         @media (max-width: 430px) {
-          max-width: 129px;
+          // max-width: 129px;
         }
       }
 
       @media (min-width: 1900px) {
         padding: 1rem 0;
-        max-width: 327px;
+        // max-width: 327px;
         font-size: 30px;
       }
     }
@@ -1981,6 +1981,8 @@ body {
         z-index: 10;
         @media (max-width: 640px) {
           gap: 30px;
+          flex-direction: column;
+          width: 100%;
         }
         @media (max-width: 434px) {
           gap: 40px;
@@ -2631,6 +2633,7 @@ body {
       width: 100%;
       height: fit-content;
       padding-top: 68px;
+      height: 100%;
 
       img {
         position: absolute;
@@ -2662,13 +2665,13 @@ body {
       border-radius: 30px;
       box-shadow: var(--how-swiper-shadow);
       text-align: center;
-      height: 304px;
+      height: 100%;
 
       @media (max-width: 1280px) {
-        height: 260px;
+        height: 300px;
       }
       @media (max-width: 992px) {
-        height: 224px;
+        height: 275px;
         padding: 84px 24px 20px;
         gap: 10px;
       }
@@ -2723,7 +2726,7 @@ body {
           height: 340px;
         }
         @media (max-width: 992px) {
-          height: 224px;
+          height: 280px;
           padding: 84px 24px 20px;
         }
       }
@@ -2747,7 +2750,7 @@ body {
 
     .section-title {
       @media (max-width: 575px) {
-        font-size: 30px;
+        font-size: 25px;
       }
     }
 
@@ -3260,6 +3263,12 @@ body {
       @media (max-width: 992px) {
         font-size: 48px;
         line-height: 56px;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+      @media (max-width: 568px) {
+        font-size: 40px;
+        line-height: 35px;
         font-weight: 700;
         margin-bottom: 24px;
       }

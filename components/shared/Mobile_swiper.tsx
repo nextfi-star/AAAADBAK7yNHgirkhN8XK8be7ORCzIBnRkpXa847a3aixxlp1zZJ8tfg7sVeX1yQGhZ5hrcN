@@ -3,10 +3,10 @@ import Image from "next/image";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
-import { useTranslations } from 'next-intl'
+import { useTranslations } from "next-intl";
 
 export const Mobile_swiper = () => {
-  const t = useTranslations('landing')
+  const t = useTranslations("landing");
   return (
     <div className="m-how__content">
       <Swiper
@@ -28,10 +28,8 @@ export const Mobile_swiper = () => {
                 width={200}
               />
               <div className="how__item-content">
-                <span className="how__item-title">{t('artIntli')}</span>
-                <span className="how__item-text">
-                  {t('artDesc')}
-                </span>
+                <span className="how__item-title">{t("artIntli")}</span>
+                <span className="how__item-text">{t("artDesc")}</span>
               </div>
             </div>
           </SwiperSlide>
@@ -46,10 +44,8 @@ export const Mobile_swiper = () => {
                 width={136}
               />
               <div className="how__item-content">
-                <span className="how__item-title">{t('compStck')}</span>
-                <span className="how__item-text">
-                  {t('stckDesc')}
-                </span>
+                <span className="how__item-title">{t("compStck")}</span>
+                <span className="how__item-text">{t("stckDesc")}</span>
               </div>
             </div>
           </SwiperSlide>
@@ -64,10 +60,8 @@ export const Mobile_swiper = () => {
                 width={136}
               />
               <div className="how__item-content">
-                <span className="how__item-title">{t('presciMetal')}</span>
-                <span className="how__item-text">
-                  {t('metalDesc')}
-                </span>
+                <span className="how__item-title">{t("presciMetal")}</span>
+                <span className="how__item-text">{t("metalDesc")}</span>
               </div>
             </div>
           </SwiperSlide>
@@ -82,10 +76,8 @@ export const Mobile_swiper = () => {
                 width={136}
               />
               <div className="how__item-content">
-                <span className="how__item-title">{t('corptBonds')}</span>
-                <span className="how__item-text">
-                  {t('bondsDesc')}
-                </span>
+                <span className="how__item-title">{t("corptBonds")}</span>
+                <span className="how__item-text">{t("bondsDesc")}</span>
               </div>
             </div>
           </SwiperSlide>
@@ -100,10 +92,8 @@ export const Mobile_swiper = () => {
                 width={136}
               />
               <div className="how__item-content">
-                <span className="how__item-title">{t('oilSctr')}</span>
-                <span className="how__item-text">
-                  {t('oilDesc')}
-                </span>
+                <span className="how__item-title">{t("oilSctr")}</span>
+                <span className="how__item-text">{t("oilDesc")}</span>
               </div>
             </div>
           </SwiperSlide>
@@ -118,10 +108,8 @@ export const Mobile_swiper = () => {
                 width={136}
               />
               <div className="how__item-content">
-                <span className="how__item-title">{t('InnvtStart')}</span>
-                <span className="how__item-text">
-                  {t('innvtDesc')}
-                </span>
+                <span className="how__item-title">{t("InnvtStart")}</span>
+                <span className="how__item-text">{t("innvtDesc")}</span>
               </div>
             </div>
           </SwiperSlide>

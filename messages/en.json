@@ -22,7 +22,8 @@
     "how_to_start": "How to start",
     "ai_technologies": "AI Technologies",
     "home": "Home",
-    "investing": "Investing"
+    "investing": "Investing",
+    "devices": "Devices"
   },
   "footer": {
     "lang": "Language",
@@ -499,7 +500,8 @@
     "howSelect2": "When choosing a network for a deposit, be sure to check the networks and payment methods before transferring, otherwise it will be impossible to refund the funds.",
     "doI": "Do I need to pay fees for deposit and deposit?",
     "doI2": "There is no commission when making a deposit on the platform, but this does not apply to the commission for the transfer itself from your wallet.",
-    "noFree": "No available addresses"
+    "noFree": "No available addresses",
+    "none": "None"
   },
   "device": {
     "authDev": "Authorized Devices",
