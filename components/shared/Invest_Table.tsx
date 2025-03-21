@@ -43,13 +43,8 @@ type HistoryItem = {
   create_time: number;
   // можно добавить другие поля, возвращаемые сервером
 };
-const INITIAL_VISIBLE_COLUMNS = [
-  "industry",
-  "amount",
-  "period",
-  "current amount",
-  "status",
-];
+const INITIAL_VISIBLE_COLUMNS = ["industry", "amount", "period", "status"];
+
 type User = (typeof usersDataI)[0];
 
 export default function Invest_Table({

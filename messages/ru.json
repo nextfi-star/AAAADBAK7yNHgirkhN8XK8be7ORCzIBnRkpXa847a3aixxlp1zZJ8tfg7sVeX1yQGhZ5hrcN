@@ -232,7 +232,9 @@
     "byClick": "Нажимая на кнопку, вы соглашаетесь с условиями",
     "thePriv": "Политики конфиденциальности.",
     "placeJolderName": "Имя",
-    "placeJolderEmail": "Электронная почта"
+    "placeJolderEmail": "Электронная почта",
+    "startup": "Инновационные стартапы",
+    "startup_desc": "Analysis and search for the most promising projects aimed at acquiring a stake and subsequent growth of dividends"
   },
   "tablesOverview": {
     "destination": "НАПРАВЛЕНИЕ",
