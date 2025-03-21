@@ -1,7 +1,7 @@
 "use client";
+import { Link } from "@/i18n/routing";
 import { useThemeStore } from "@/store/useChatStore";
 import { ChevronLeft, X } from "lucide-react";
-import Link from "next/link";
 
 export const Dropsteps = () => {
   const { setConfirmStep, swapCheck, swapCheck2, setStep } = useThemeStore();
