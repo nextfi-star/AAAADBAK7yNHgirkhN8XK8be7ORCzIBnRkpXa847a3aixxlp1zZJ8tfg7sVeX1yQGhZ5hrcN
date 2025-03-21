@@ -232,7 +232,9 @@
     "byClick": "By clicking the button, you agree to the terms of",
     "thePriv": "the Privacy Policy.",
     "placeJolderName": "Name",
-    "placeJolderEmail": "E-mail"
+    "placeJolderEmail": "E-mail",
+    "startup": "Innovative Startups",
+    "startup_desc": "Analysis and search for the most promising projects aimed at acquiring a stake and subsequent growth of dividends"
   },
   "tablesOverview": {
     "destination": "DESTINATION",
