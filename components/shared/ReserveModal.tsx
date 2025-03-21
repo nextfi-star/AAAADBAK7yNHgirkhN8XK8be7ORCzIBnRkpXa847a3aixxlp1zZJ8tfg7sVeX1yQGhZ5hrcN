@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl";
 import ArrowBracket from "../ui/ArrowBracket";
 
 export const ReserveModal = () => {
-  const t = useTranslations("activity");
+  const t = useTranslations("allocation");
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>

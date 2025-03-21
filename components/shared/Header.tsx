@@ -64,34 +64,34 @@ export const Header = ({ auth = true }: Props) => {
                 className="hover:text-blue-700 transition-all"
                 href="#main__intro"
               >
-                Home
+                {t("home")}
               </a>
               <a
                 className="hover:text-blue-700 transition-all"
                 href="#main__era"
               >
-                AI Technologies
+                {t("ai_technologies")}
               </a>
               <a className="hover:text-blue-700 transition-all" href="#how">
-                Investing
+                {t("investing")}
               </a>
               <a
                 className="hover:text-blue-700 transition-all"
                 href="#main__getstarted"
               >
-                How to start
+                {t("how_to_start")}
               </a>
               <a
                 className="hover:text-blue-700 transition-all"
                 href="#main__mobile"
               >
-                App
+                {t("app")}
               </a>
               <a
                 className="hover:text-blue-700 transition-all"
                 href="#main__faq"
               >
-                FAQ
+                {t("faq")}
               </a>
             </div>
           )}

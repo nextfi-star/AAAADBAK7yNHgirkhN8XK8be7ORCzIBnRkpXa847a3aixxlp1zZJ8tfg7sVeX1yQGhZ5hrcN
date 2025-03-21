@@ -691,7 +691,9 @@
     "remaining_period": "Оставшийся период",
     "percent": "Процент",
     "period": "Период",
-    "amount_at_moment": "Сумма на данный момент"
+    "amount_at_moment": "Сумма на данный момент",
+    "columns": "Колонки",
+    "investmentHistory": "История инвестиций"
   },
   "withdrawal": {
     "enterAmount": "Введите сумму",

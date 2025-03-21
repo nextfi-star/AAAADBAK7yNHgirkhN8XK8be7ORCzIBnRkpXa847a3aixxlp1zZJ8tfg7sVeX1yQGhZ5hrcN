@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { Link } from "../../i18n/routing";
 import Theme_switch from "./Theme_switch";
 import Locale_Switcher from "./Locale_Switcher";
+import { useTranslations } from "next-intl";
 
 export const Burger = ({ csrf }: { csrf: string | null }) => {
   const [show, setShow] = useState<boolean>(true);
@@ -14,7 +15,7 @@ export const Burger = ({ csrf }: { csrf: string | null }) => {
   const handleClick = (e: any) => {
     setShow(!show);
   };
-
+  const t = useTranslations("shared");
   return (
     <>
       <div className={listClass}>
@@ -55,40 +56,37 @@ export const Burger = ({ csrf }: { csrf: string | null }) => {
                   How
                 </Link> */}
                 <a
-                  className="m__nav-item hover:text-blue-700 transition-all"
+                  className="hover:text-blue-700 transition-all"
                   href="#main__intro"
                 >
-                  Home
+                  {t("home")}
                 </a>
                 <a
-                  className="m__nav-item hover:text-blue-700 transition-all"
+                  className="hover:text-blue-700 transition-all"
                   href="#main__era"
                 >
-                  AI Technologies
+                  {t("ai_technologies")}
+                </a>
+                <a className="hover:text-blue-700 transition-all" href="#how">
+                  {t("investing")}
                 </a>
                 <a
-                  className="m__nav-item hover:text-blue-700 transition-all"
-                  href="#how"
-                >
-                  Investing
-                </a>
-                <a
-                  className="m__nav-item hover:text-blue-700 transition-all"
+                  className="hover:text-blue-700 transition-all"
                   href="#main__getstarted"
                 >
-                  How to start
+                  {t("how_to_start")}
                 </a>
                 <a
-                  className="m__nav-item hover:text-blue-700 transition-all"
+                  className="hover:text-blue-700 transition-all"
                   href="#main__mobile"
                 >
-                  App
+                  {t("app")}
                 </a>
                 <a
-                  className="m__nav-item hover:text-blue-700 transition-all"
+                  className="hover:text-blue-700 transition-all"
                   href="#main__faq"
                 >
-                  FAQ
+                  {t("faq")}
                 </a>
               </ul>
             )}

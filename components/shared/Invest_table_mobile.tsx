@@ -215,7 +215,7 @@ export default function Invest_table_mobile() {
   const topContent = React.useMemo(() => {
     return (
       <div className="flex flex-col gap-4">
-        <div className="flex justify-between gap-3 items-end p-[25px_20px_0px]">
+        <div className="flex justify-between gap-3 flex-col p-[25px_20px_0px]">
           <h1 className="text-[20px] xl:text-[32px]">
             {t("investmentHistory")}
           </h1>
