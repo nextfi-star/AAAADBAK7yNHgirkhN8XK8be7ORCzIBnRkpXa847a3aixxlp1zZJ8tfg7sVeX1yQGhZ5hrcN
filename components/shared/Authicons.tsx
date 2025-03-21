@@ -10,18 +10,21 @@ export const Authicons = () => {
       <Image
         width={40}
         height={40}
+        className="md:hidden xl:hidden 2xl:hidden"
         alt={"socialMedia.instagra"}
         src={`/footer/soc/inst.svg`}
       />
       <Image
         width={40}
         height={40}
+        className="md:hidden xl:hidden 2xl:hidden"
         alt={"socialMedia.faceboo"}
         src={`/footer/soc/face.svg`}
       />
       <Image
         width={40}
         height={40}
+        className="md:hidden xl:hidden 2xl:hidden"
         alt={"socialMedia.twitte"}
         src={`/footer/soc/twitt.svg`}
       />

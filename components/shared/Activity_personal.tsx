@@ -27,7 +27,7 @@ const Activity_personal = () => {
 
   return (
     <>
-      <section className="w-full max-h-[476px] lg:pt-[40px] xl:shadow-medium xl:dark:bg-[#3C3C3C66] xl:rounded-[1000px] xl:backdrop-blur-[6px] flex items-start lg:items-center justify-center relative">
+      <section className="w-full lg:pb-[40px] xl:shadow-medium xl:dark:bg-[#3C3C3C66] xl:rounded-[1000px] xl:backdrop-blur-[6px] flex items-start lg:items-center justify-center relative">
         <article className="flex flex-col items-center gap-[15px] lg:gap-[40px] w-full relative">
           <h1 className="text-[24px] lg:text-[42px] font-bold lg:mb-[40px] uppercase">
             {t("yourActivity")}
