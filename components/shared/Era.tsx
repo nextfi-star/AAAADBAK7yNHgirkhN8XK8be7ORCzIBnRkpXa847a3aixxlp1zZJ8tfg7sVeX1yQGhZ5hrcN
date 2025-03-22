@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@heroui/react";
 import { Era_phone } from "../ui/Era_phone";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 export const Era = () => {
   const t = useTranslations("landing");
@@ -45,7 +45,11 @@ export const Era = () => {
               data-aos-duration="1200"
               data-aos-once="true"
             >
-              <Button className="btn btn-blue">{t("getStarted")}</Button>
+              <Link href="/signup" className="w-full">
+                <Button className="btn btn-blue w-full">
+                  {t("getStarted")}
+                </Button>
+              </Link>
               <div className="main__era-column-bottom-info">
                 <div className="main__era-column-bottom-info__item">
                   <span>50&nbsp;000+</span>

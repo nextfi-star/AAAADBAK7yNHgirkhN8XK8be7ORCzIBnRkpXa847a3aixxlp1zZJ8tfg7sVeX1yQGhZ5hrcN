@@ -42,9 +42,8 @@ export const Burger = ({ csrf }: { csrf: string | null }) => {
               </div>
             )}
 
-            {csrf && (
-              <ul className="m__nav-list">
-                {/* <Link className="m__nav-item" href="/">
+            <ul className="m__nav-list">
+              {/* <Link className="m__nav-item" href="/">
                   Home
                 </Link>
                 <Link className="m__nav-item" href="/token">
@@ -56,41 +55,49 @@ export const Burger = ({ csrf }: { csrf: string | null }) => {
                 <Link className="m__nav-item" href="">
                   How
                 </Link> */}
-                <a
-                  className="hover:text-blue-700 transition-all"
-                  href="#main__intro"
-                >
-                  {t("home")}
-                </a>
-                <a
-                  className="hover:text-blue-700 transition-all"
-                  href="#main__era"
-                >
-                  {t("ai_technologies")}
-                </a>
-                <a className="hover:text-blue-700 transition-all" href="#how">
-                  {t("investing")}
-                </a>
-                <a
-                  className="hover:text-blue-700 transition-all"
-                  href="#main__getstarted"
-                >
-                  {t("how_to_start")}
-                </a>
-                <a
-                  className="hover:text-blue-700 transition-all"
-                  href="#main__mobile"
-                >
-                  {t("app")}
-                </a>
-                <a
-                  className="hover:text-blue-700 transition-all"
-                  href="#main__faq"
-                >
-                  {t("faq")}
-                </a>
-              </ul>
-            )}
+              <a
+                className="hover:text-blue-700 transition-all"
+                href="#main__intro"
+                onClick={handleClick}
+              >
+                {t("home")}
+              </a>
+              <a
+                className="hover:text-blue-700 transition-all"
+                href="#main__era"
+                onClick={handleClick}
+              >
+                {t("ai_technologies")}
+              </a>
+              <a
+                className="hover:text-blue-700 transition-all"
+                href="#how"
+                onClick={handleClick}
+              >
+                {t("investing")}
+              </a>
+              <a
+                className="hover:text-blue-700 transition-all"
+                href="#main__getstarted"
+                onClick={handleClick}
+              >
+                {t("how_to_start")}
+              </a>
+              <a
+                className="hover:text-blue-700 transition-all"
+                href="#main__mobile"
+                onClick={handleClick}
+              >
+                {t("app")}
+              </a>
+              <a
+                className="hover:text-blue-700 transition-all"
+                href="#main__faq"
+                onClick={handleClick}
+              >
+                {t("faq")}
+              </a>
+            </ul>
           </div>
         </div>
       </div>

@@ -40,17 +40,19 @@ export const Intro = () => {
               {t("heroTitleUnder")}
             </span>
             <div
-              className="main__buttons"
+              className="main__buttons w-full"
               data-aos="fade-up"
               data-aos-duration="1200"
               data-aos-once="true"
             >
-              <Button className="btn btn-blue">
-                <Link href="/signup">{t("signup")}</Link>
-              </Button>
-              <Button className="btn btn-transparent ">
-                <Link href="/login">{t("login")}</Link>
-              </Button>
+              <Link href="/signup" className="w-full">
+                <Button className="btn btn-blue w-full">{t("signup")}</Button>
+              </Link>
+              <Link href="/login" className="w-full">
+                <Button className="btn btn-transparent w-full">
+                  {t("login")}
+                </Button>
+              </Link>
             </div>
           </div>
 
