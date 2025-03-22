@@ -377,8 +377,10 @@
     "lvl": "نشاط المستويات",
     "level1": "المستوى",
     "payments_table": "المدفوعات",
+    "enterCode": "أدخل الرمز",
     "change": "تغيير",
     "enter_nickname": "أدخل الاسم المستعار",
+    "verification_code": "رمز التحقق",
     "send_code_email": "إرسال الرمز"
   },
   "security": {
