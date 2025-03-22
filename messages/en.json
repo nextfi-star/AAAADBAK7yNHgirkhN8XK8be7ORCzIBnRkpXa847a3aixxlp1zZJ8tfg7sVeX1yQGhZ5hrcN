@@ -374,11 +374,13 @@
     "accDet": "Account details",
     "email": "Email",
     "phone": "Phone",
+    "enterCode": "Enter code",
     "lvl": "Levels Activity",
     "level1": "Level",
     "payments_table": "Payments",
     "change": "Change",
     "enter_nickname": "Enter nickname",
+    "verification_code": "Verification code",
     "send_code_email": "Send code"
   },
   "security": {
