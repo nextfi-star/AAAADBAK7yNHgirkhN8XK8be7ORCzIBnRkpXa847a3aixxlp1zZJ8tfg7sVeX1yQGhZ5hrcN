@@ -41,11 +41,14 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
     nickname: "",
     vcode: "",
   });
+
+  const [sent, setSent] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
   const trackSymbols = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.name);
     const value = e.target.value;
     if (value.length <= 20) {
-      setInputs((prev) => ({ ...prev, nickname: value }));
+      setInputs((prev) => ({ ...prev, [e.target.name]: value }));
       setSymbols(value.length);
     }
   };
@@ -67,8 +70,14 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
       user.csrf,
       "change_uname",
       inputs.nickname,
-      inputs.vcode || "123123"
+      inputs.vcode
     );
+    console.log(result.requires_verif);
+
+    if (result.requires_verif) {
+      setSent(true);
+    }
+
     if (result.success) {
       setMessage("Никнейм успешно изменён!");
       console.log(result);
@@ -144,6 +153,7 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
                   placeholder={t("enter_nickname")}
                   type="text"
                   value={inputs.nickname}
+                  name="nickname"
                   onChange={trackSymbols}
                 />
               </label>
@@ -152,17 +162,42 @@ export const Alert_nickname = ({ propsItem, className }: Props) => {
                 <span>{symbols}/20</span>
               </span>
             </AlertDialogDescription>
+            <AlertDialogDescription
+              className={"w-full flex flex-col gap-[10px]"}
+            >
+              <label className="text-[#181818] dark:text-white text-[14px] sm:text-[15px] md:text-[16px] lg:text-[17px] xl:text-[20px]  flex flex-col items-start gap-[10px] w-full">
+                {t("verification_code")}
+                <Input
+                  name="vcode"
+                  placeholder={t("enterCode")}
+                  value={inputs.vcode}
+                  onChange={trackSymbols}
+                  className="border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] shadow-none text-[16px] px-[10px] py-[20px] rounded-[30px]"
+                  rightButton={t("send_code_email")}
+                  onClickRightButton={handleSubmit}
+                  rightButtonDisabled={sent}
+                />
+              </label>
+            </AlertDialogDescription>
           </div>
         </div>
         <AlertDialogFooter className="px-[30px] pt-[20px] h-fit items-center gap-[30px]">
           <button
             className={`text-[16px] px-[40px] rounded-[50px] text-[#0c0c0c] dark:text-white border border-solid !border-[#4d4d4d] dark:!border-[#4d4d4d] ${
-              symbols < 4
+              symbols < 4 ||
+              symbols >= 20 ||
+              inputs.vcode?.length < 6 ||
+              !inputs.vcode
                 ? "!bg-transparent cursor-not-allowed"
                 : "bg-[#205bc9] hover:bg-[#205bc9] text-white border-none"
             }`}
-            disabled={symbols < 4 || symbols >= 20}
-            onClick={handleSubmit}
+            disabled={
+              symbols < 4 ||
+              symbols >= 20 ||
+              inputs.vcode?.length < 6 ||
+              !inputs.vcode
+            }
+            onClick={async () => sent && (await handleSubmit())}
             style={{
               padding: "8px 35px",
             }}

@@ -6,11 +6,22 @@ import { Button } from "@heroui/button";
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   rightButton?: string;
-  onClickRightButton?: () => void;
+  onClickRightButton?: () => Promise<void>;
+  rightButtonDisabled?: boolean;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, rightButton, onClickRightButton, ...props }, ref) => {
+  (
+    {
+      className,
+      type,
+      rightButton,
+      onClickRightButton,
+      rightButtonDisabled = false,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div className="relative w-full">
         <input
@@ -25,7 +36,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {rightButton && (
           <Button
             className="border-1 !border-[#4d4d4d] dark:!border-[#4d4d4d] text-[16px] border-solid rounded-[50px] !bg-transparent !text-[#0c0c0c] dark:!text-[#eeeeee] text-sm h-[30px] absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1"
-            onPress={onClickRightButton}
+            onPress={async () =>
+              !rightButtonDisabled &&
+              onClickRightButton &&
+              (await onClickRightButton())
+            }
+            disabled={rightButtonDisabled}
           >
             {rightButton}
           </Button>
