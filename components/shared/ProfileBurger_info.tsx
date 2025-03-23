@@ -3,6 +3,7 @@ import { useThemeStore } from "@/store/useChatStore";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import ArrowBracket from "../ui/ArrowBracket";
+import { Avatar } from "./Avatar";
 
 interface Props {
   setShowSection: (val: boolean) => void;
@@ -24,13 +25,15 @@ export const ProfileBurger_info = ({ setShowSection, showSection }: Props) => {
         <div
           className={"relative min-h-[64px] min-w-[64px] z-10 cursor-pointer"}
         >
-          <Image
-            alt={"avatar"}
-            className="absolute bottom-[0] left-[50%] -translate-x-[50%] object-contain rounded-full min-w-[60px]"
-            height={!showSection ? 100 : 63}
-            src={"/main/avatar_noface.png"}
+          <Avatar
             width={!showSection ? 100 : 63}
+            height={!showSection ? 100 : 63}
+            className="absolute bottom-[0] left-[50%] -translate-x-[50%] object-contain rounded-full min-w-[60px] z-50"
           />
+          {/* <Image
+            alt={"avatar"}
+            src={"/main/avatar_noface.png"}
+          /> */}
         </div>
         <div className="flex flex-col">
           {user?.email ? (
