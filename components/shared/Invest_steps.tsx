@@ -122,10 +122,10 @@ const Invest_steps = () => {
         name: "USDT",
         val: "usdt",
       },
-      {
-        name: "TEST",
-        val: "test",
-      },
+      // {
+      //   name: "TEST",
+      //   val: "test",
+      // },
     ],
     []
   );
