@@ -4,10 +4,12 @@ import { DotLottie, DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { NextPage } from "next";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useThemeStore } from "../../store/useChatStore";
+import { useTranslations } from "next-intl";
 
 export const TapBar: NextPage = () => {
   const { theme, initializeTheme, setVerifyState } = useThemeStore();
   const [isMobile, setIsMobile] = useState(false);
+  const t = useTranslations("tapbar");
   const data = useMemo(
     () => [
       {
@@ -133,7 +135,7 @@ export const TapBar: NextPage = () => {
                 <p
                   className={`Tapbar__item-text ${item.class ? "mb-[5px]" : "mb-[10px]"}`}
                 >
-                  {item.title}
+                  {t(item.title.toLowerCase())}
                 </p>
               </div>
             ))}
