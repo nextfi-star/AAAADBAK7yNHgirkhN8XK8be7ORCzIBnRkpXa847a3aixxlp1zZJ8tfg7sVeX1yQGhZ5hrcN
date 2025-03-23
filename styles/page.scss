@@ -5845,7 +5845,7 @@ body {
 }
 .show-mobile {
   display: none;
-  @media (max-width: 430px) {
+  @media (max-width: 500px) {
     display: flex;
   }
 }
