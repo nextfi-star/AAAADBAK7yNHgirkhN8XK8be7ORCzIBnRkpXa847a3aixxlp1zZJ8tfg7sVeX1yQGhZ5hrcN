@@ -598,7 +598,8 @@
     "transfer": "Transfer",
     "sent": "Sent",
     "denied": "Denied",
-    "pending": "Pending"
+    "pending": "Pending",
+    "notFound": "Not found"
   },
   "swap": {
     "faq": "FAQ",
