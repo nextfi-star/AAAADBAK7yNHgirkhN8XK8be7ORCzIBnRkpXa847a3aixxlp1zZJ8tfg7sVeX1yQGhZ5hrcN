@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 import { Profile_devices } from "@/components/shared/Profile_devices";
 import { useTranslations } from "next-intl";
-import { Avatar } from "@/components/ui/Avatar";
+import { Avatar } from "@/components/shared/Avatar";
 
 const Devices = () => {
   const t = useTranslations("device");
