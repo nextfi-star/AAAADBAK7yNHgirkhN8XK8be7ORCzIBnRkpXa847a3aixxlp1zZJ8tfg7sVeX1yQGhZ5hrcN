@@ -705,6 +705,13 @@
     "expertWith": "-2% fee for early withdrawal, -20% investment term for specific asset types",
     "noFee": "No fee for early withdrawal, -30% investment term for any assets"
   },
+  "tapbar": {
+    "home": "Home",
+    "activity": "Activity",
+    "investing": "Investing",
+    "deposit": "Deposit",
+    "assets": "Assets"
+  },
   "activity": {
     "genActivity": "General activity",
     "joinUs": "Join us on the entire journey of developingJoin us on the entire journey of developing",
