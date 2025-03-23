@@ -28,7 +28,8 @@ export const ProfileBurger_info = ({ setShowSection, showSection }: Props) => {
           <Avatar
             width={!showSection ? 100 : 63}
             height={!showSection ? 100 : 63}
-            className="absolute bottom-[0] left-[50%] -translate-x-[50%] object-contain rounded-full min-w-[60px] z-50"
+            className="rounded-full object-contain translate-x-[10%] "
+            // className="absolute bottom-[0] left-[50%] object-contain rounded-full min-w-[60px] z-50"
           />
           {/* <Image
             alt={"avatar"}

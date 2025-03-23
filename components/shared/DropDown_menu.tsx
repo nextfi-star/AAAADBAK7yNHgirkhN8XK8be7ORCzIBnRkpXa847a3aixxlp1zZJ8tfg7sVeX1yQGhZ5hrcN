@@ -22,6 +22,7 @@ import { Lock, Power } from "lucide-react";
 import { Logout_confirmation } from "./Logout_confirmation";
 import { useTranslations } from "next-intl";
 import { SecIcon } from "../ui/SecIcon";
+import { Avatar } from "./Avatar";
 
 interface Props {
   dropData?: DropData[];
@@ -73,11 +74,9 @@ export const DropDown_menu: NextPage<Props> = ({
                     <div
                       className={"cursor-pointer flex items-center gap-[7px]"}
                     >
-                      <Image
-                        alt={"avatar"}
+                      <Avatar
                         className="object-contain rounded-full "
                         height={42}
-                        src={"/main/avatar_noface.png"}
                         width={42}
                       />
                       <div className="flex flex-col items-stretch">

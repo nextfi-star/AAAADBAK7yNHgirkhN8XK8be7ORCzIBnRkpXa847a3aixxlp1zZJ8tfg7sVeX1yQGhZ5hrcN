@@ -2,24 +2,23 @@
 import Image from "next/image";
 import { ChangeAvatar } from "@/components/ui/ChangeAvatar";
 import { Profile_devices } from "@/components/shared/Profile_devices";
-import { useTranslations } from 'next-intl'
+import { useTranslations } from "next-intl";
+import { Avatar } from "@/components/ui/Avatar";
 
 const Devices = () => {
-  const t = useTranslations('device')
-  
+  const t = useTranslations("device");
+
   return (
-    <section className="personal !shadow-medium dark:!shadow-none"  > 
+    <section className="personal !shadow-medium dark:!shadow-none">
       <div className="personal-container">
         <h1 className="text-[32px] font-bold w-full text-center lg:text-left">
-          {t('authDev')}
+          {t("authDev")}
         </h1>
         <div className="personal-inner flex flex-row justify-between mt-[20px] gap-[40px]">
           <div className="relative h-fit w-fit">
-            <Image
-              alt={"avatar"}
+            <Avatar
               className="rounded-[50%] object-contain max-w-[152px] max-h-[152px]"
               height={152}
-              src={"/main/avatar_noface.png"}
               width={152}
             />
             <ChangeAvatar />
