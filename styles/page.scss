@@ -5627,9 +5627,10 @@ body {
   // padding: 10px;
   backdrop-filter: blur(4.5px);
   z-index: 30;
-  max-height: 72px;
+  max-height: 125px;
   position: fixed;
-  bottom: -3px;
+  bottom: 0;
+  // bottom: -3px;
   left: 0;
   padding-bottom: 10px;
 
