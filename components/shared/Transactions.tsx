@@ -115,6 +115,11 @@ const Transaction = () => {
         {t("recent")}
       </h3>
       <div className="flex flex-col gap-[10px] max-h-[690px] overflow-y-auto">
+        {!transac?.length && !transac2?.length && (
+          <div className="flex h-full justify-center items-center">
+            {t("notFound")}
+          </div>
+        )}
         {transac &&
           transac.map((item) => (
             <div key={item.id}>

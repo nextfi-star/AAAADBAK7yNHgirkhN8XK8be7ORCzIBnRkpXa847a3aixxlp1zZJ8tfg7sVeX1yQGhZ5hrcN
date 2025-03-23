@@ -595,10 +595,10 @@ const Invest_steps = () => {
                       {t("amountLimit")}: 250 - 7000 NextFi
                     </p> */}
                     <p className="flex items-center justify-between text-[20px] font-medium text-[#3A3939] dark:text-[#BDBDBD] w-full pr-[45px] pb-[44px]">
-                      {t("amountInvst")}
-                      {globalCoin?.name && globalAmount && (
-                        <span className="text-[20px] font-bold md:text-[32px]">
-                          {globalAmount || 0} {globalCoin.name}
+                      <span>{t("amountInvst")}</span>
+                      {globalCoin?.name && (
+                        <span className="text-[20px] font-bold md:text-[32px] ">
+                          {globalAmount} {globalCoin.name}
                         </span>
                       )}
                     </p>
