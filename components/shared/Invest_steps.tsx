@@ -184,6 +184,10 @@ const Invest_steps = () => {
           "https://nextfi.io:5000/api/v1/invest_packets",
           {
             method: "POST",
+            body: JSON.stringify({
+              select: "all",
+              csrf,
+            }),
             headers: {
               "Content-Type": "application/json",
             },
