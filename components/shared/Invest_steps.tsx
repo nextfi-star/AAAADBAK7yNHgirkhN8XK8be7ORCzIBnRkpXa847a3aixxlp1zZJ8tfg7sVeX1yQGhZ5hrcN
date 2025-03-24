@@ -186,7 +186,7 @@ const Invest_steps = () => {
             method: "POST",
             body: JSON.stringify({
               select: "all",
-              csrf: csfr,
+              csrf,
             }),
             headers: {
               "Content-Type": "application/json",
