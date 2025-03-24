@@ -289,12 +289,12 @@ export const Footer = ({ isAuth = true }: { isAuth?: boolean }) => {
                 alt={t("socialMedia.telegram")}
                 src={`/footer/soc/teleg.svg`}
               />
-              <Image
+              {/* <Image
                 width={40}
                 height={40}
                 alt={t("socialMedia.snapchat")}
                 src={`/footer/soc/snap.svg`}
-              />
+              /> */}
             </div>
           </div>
         </div>
