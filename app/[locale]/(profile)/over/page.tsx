@@ -43,7 +43,7 @@ const Overview = () => {
           ) : (
             <Profile_verification verify={verify} />
           )}
-          <Invest_Table title={t("payments_table")} />
+          <Invest_Table title={t("overview")} />
         </div>
 
         <div className="max-w-[1331px] flex flex-col gap-[1.5rem]">

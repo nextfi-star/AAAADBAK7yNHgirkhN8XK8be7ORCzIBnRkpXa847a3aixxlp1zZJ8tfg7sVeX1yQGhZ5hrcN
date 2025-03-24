@@ -47,11 +47,7 @@ const INITIAL_VISIBLE_COLUMNS = ["industry", "amount", "period", "status"];
 
 type User = (typeof usersDataI)[0];
 
-export default function Invest_Table({
-  title = "Investment history",
-}: {
-  title?: string;
-}) {
+export default function Invest_Table({ title }: { title?: string }) {
   const { csrf } = useUserStore();
   const { invests } = useThemeStore();
   const [history, setHistory] = useState<HistoryItem[]>([]);
@@ -278,7 +274,7 @@ export default function Invest_Table({
       <div className="flex flex-col gap-4">
         <div className="flex justify-between gap-3 items-end p-[25px_20px_0px]">
           <h1 className="text-[20px] xl:text-[32px]">
-            {t("investmentHistory")}
+            {title || t("investmentHistory")}
           </h1>
           <div className="flex gap-3">
             <Dropdown>
