@@ -265,30 +265,41 @@ export const Footer = ({ isAuth = true }: { isAuth?: boolean }) => {
               {t("comm")}
             </h5>
             <div className="flex items-center gap-[8px]">
-              <Image
-                width={40}
-                height={40}
-                alt={t("socialMedia.instagram")}
-                src={`/footer/soc/inst.svg`}
-              />
-              <Image
-                width={40}
-                height={40}
-                alt={t("socialMedia.facebook")}
-                src={`/footer/soc/face.svg`}
-              />
-              <Image
-                width={40}
-                height={40}
-                alt={t("socialMedia.twitter")}
-                src={`/footer/soc/twitt.svg`}
-              />
-              <Image
-                width={40}
-                height={40}
-                alt={t("socialMedia.telegram")}
-                src={`/footer/soc/teleg.svg`}
-              />
+              <Link href="">
+                <Image
+                  width={40}
+                  height={40}
+                  alt={t("socialMedia.instagram")}
+                  src={`/footer/soc/inst.svg`}
+                />
+              </Link>
+              <Link href="https://www.facebook.com/share/1A8DScx2Ar/?mibextid=wwXIfr">
+                <Image
+                  width={40}
+                  height={40}
+                  alt={t("socialMedia.facebook")}
+                  src={`/footer/soc/face.svg`}
+                />
+              </Link>
+
+              <Link href="https://x.com/nextfi_labs?s=11">
+                <Image
+                  width={40}
+                  height={40}
+                  alt={t("socialMedia.twitter")}
+                  src={`/footer/soc/twitt.svg`}
+                />
+              </Link>
+
+              <Link href="https://t.me/Nextfi_io">
+                <Image
+                  width={40}
+                  height={40}
+                  alt={t("socialMedia.telegram")}
+                  src={`/footer/soc/teleg.svg`}
+                />
+              </Link>
+
               {/* <Image
                 width={40}
                 height={40}
@@ -364,30 +375,41 @@ export const Footer = ({ isAuth = true }: { isAuth?: boolean }) => {
               {t("comm")}
             </h5>
             <div className="flex items-center gap-[8px]">
-              <Image
-                width={40}
-                height={40}
-                alt={t("socialMedia.instagram")}
-                src={`/footer/soc/inst.svg`}
-              />
-              <Image
-                width={40}
-                height={40}
-                alt={t("socialMedia.facebook")}
-                src={`/footer/soc/face.svg`}
-              />
-              <Image
-                width={40}
-                height={40}
-                alt={t("socialMedia.twitter")}
-                src={`/footer/soc/twitt.svg`}
-              />
-              <Image
-                width={40}
-                height={40}
-                alt={t("socialMedia.telegram")}
-                src={`/footer/soc/teleg.svg`}
-              />
+              <Link href="">
+                <Image
+                  width={40}
+                  height={40}
+                  alt={t("socialMedia.instagram")}
+                  src={`/footer/soc/inst.svg`}
+                />
+              </Link>
+              <Link href="https://www.facebook.com/share/1A8DScx2Ar/?mibextid=wwXIfr">
+                <Image
+                  width={40}
+                  height={40}
+                  alt={t("socialMedia.facebook")}
+                  src={`/footer/soc/face.svg`}
+                />
+              </Link>
+
+              <Link href="https://x.com/nextfi_labs?s=11">
+                <Image
+                  width={40}
+                  height={40}
+                  alt={t("socialMedia.twitter")}
+                  src={`/footer/soc/twitt.svg`}
+                />
+              </Link>
+
+              <Link href="https://t.me/Nextfi_io">
+                <Image
+                  width={40}
+                  height={40}
+                  alt={t("socialMedia.telegram")}
+                  src={`/footer/soc/teleg.svg`}
+                />
+              </Link>
+
               {/* <Image
                 width={40}
                 height={40}
