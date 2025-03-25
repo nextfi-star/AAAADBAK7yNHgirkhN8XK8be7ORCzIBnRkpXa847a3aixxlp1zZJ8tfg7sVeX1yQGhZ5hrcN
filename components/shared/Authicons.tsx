@@ -8,33 +8,41 @@ export const Authicons = () => {
 
   return (
     <>
-      <Link href="https://www.instagram.com/nextfi.io?igsh=MWJxeW1jczN4dWMwZg==">
+      <Link href="">
         <Image
           width={40}
           height={40}
-          alt={"socialMedia.instagra"}
+          alt={"socialMedia.instagram"}
           src={`/footer/soc/inst.svg`}
         />
       </Link>
-      <Image
-        width={40}
-        height={40}
-        alt={"socialMedia.faceboo"}
-        src={`/footer/soc/face.svg`}
-      />
-      <Image
-        width={40}
-        height={40}
-        alt={"socialMedia.twitte"}
-        src={`/footer/soc/twitt.svg`}
-      />
-      <div className="lock-btn">
+      <Link href="https://www.facebook.com/share/1A8DScx2Ar/?mibextid=wwXIfr">
         <Image
           width={40}
           height={40}
-          alt="social icon"
-          src={`/footer/soc/teleg.svg`}
+          alt={"socialMedia.facebook"}
+          src={`/footer/soc/face.svg`}
         />
+      </Link>
+
+      <Link href="https://x.com/nextfi_labs?s=11">
+        <Image
+          width={40}
+          height={40}
+          alt={"socialMedia.twitter"}
+          src={`/footer/soc/twitt.svg`}
+        />
+      </Link>
+
+      <div className="lock-btn">
+        <Link href="https://t.me/Nextfi_io">
+          <Image
+            width={40}
+            height={40}
+            alt={"socialMedia.telegram"}
+            src={`/footer/soc/teleg.svg`}
+          />
+        </Link>
       </div>
     </>
   );

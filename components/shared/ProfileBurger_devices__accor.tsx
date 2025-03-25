@@ -105,7 +105,7 @@ export const ProfileBurger_devices__accor: NextPage = () => {
                         className="flex w-full gap-[15px] justify-between items-center relative after:absolute after:w-full after:min-h-[1px] after:bottom-[-8px] after:border-0 after:border-b after:border-dashed after:border-black after:dark:border-white"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <span className='text-[14px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:content-["Russia/Moscow"] after:text-[10px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-10px] after:left-[50%] after:translate-x-[-50%] '>
+                        <span className="text-[14px]  flex items-center gap-[10px] dark:text-[#BDBDBD] text-black after:text-[10px] after:absolute relative after:dark:text-white after:text-black after:bottom-[-10px] after:left-[50%] after:translate-x-[-50%] ">
                           {session.os} | {session.browser} | {session.country}
                         </span>
                         {/* <Devices_confirmation
