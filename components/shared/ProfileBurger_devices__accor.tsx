@@ -33,7 +33,7 @@ export const ProfileBurger_devices__accor: NextPage = () => {
       if (!response.ok) {
         throw new Error(result.message || "Logout failed");
       }
-      localStorage.removeItem("userData");
+      sessionStorage.removeItem("userData");
       router.push(`/${locale}/login?error=sessionExpired`);
     } catch (error) {
       console.error("Logout error:", error);

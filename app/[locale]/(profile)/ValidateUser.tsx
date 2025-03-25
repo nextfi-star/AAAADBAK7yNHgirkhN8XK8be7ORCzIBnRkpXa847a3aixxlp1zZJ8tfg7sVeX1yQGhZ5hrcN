@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { useUserStore } from '@/hooks/useUserData';
-import { useRouter, usePathname } from 'next/navigation';
-import { useParams } from 'next/navigation';
+import { useEffect } from "react";
+import { useUserStore } from "@/hooks/useUserData";
+import { useRouter, usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 
 interface AppInitializerProps {
   children: React.ReactNode;
@@ -10,9 +10,9 @@ interface AppInitializerProps {
 export default function ValidateUser({ children }: AppInitializerProps) {
   const { user, loadUser } = useUserStore();
   const router = useRouter();
-  const pathname = usePathname(); 
+  const pathname = usePathname();
   const params = useParams();
-  const locale = params.locale || 'en';
+  const locale = params.locale || "en";
 
   useEffect(() => {
     if (pathname === `/${locale}/login` || pathname === `/${locale}/signup`) {
@@ -23,9 +23,9 @@ export default function ValidateUser({ children }: AppInitializerProps) {
       return;
     }
     if (!user.uid || !user.csrf) {
-      console.log('ОШИБКА')
-      localStorage.removeItem('userData');
-      localStorage.removeItem('profile-store');
+      console.log("ОШИБКА");
+      sessionStorage.removeItem("userData");
+      sessionStorage.removeItem("profile-store");
       router.push(`/${locale}/login?error=sessionExpired`);
     } else {
       // console.log('Пользователь авторизован:', user);

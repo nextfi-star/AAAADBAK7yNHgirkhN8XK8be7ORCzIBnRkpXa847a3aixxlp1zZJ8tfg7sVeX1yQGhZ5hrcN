@@ -22,8 +22,8 @@ const LayoutWithLink = () => {
     setEmail("");
     setPhone("");
     setPassword("");
-    localStorage.removeItem("userData");
-    localStorage.removeItem("profile-store");
+    sessionStorage.removeItem("userData");
+    sessionStorage.removeItem("profile-store");
     setUser(null);
     setshowVerifWindow(false);
   };

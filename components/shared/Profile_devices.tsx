@@ -75,7 +75,7 @@ export const Profile_devices = () => {
         throw new Error(result.message || "Logout failed");
       }
       if (response.ok) {
-        localStorage.removeItem("userData");
+        sessionStorage.removeItem("userData");
         router.push(`/${locale}/login?error=sessionExpired`);
       }
     } catch (error) {
