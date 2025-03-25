@@ -203,7 +203,7 @@ export const sendPicture = async (file: File) => {
     }
     const csrf = useUserStore.getState().user?.csrf;
     if (!csrf) {
-      throw new Error("Missing required user data in localStorage");
+      throw new Error("Missing required user data in sessionStorage");
     }
     const formData = new FormData();
     formData.append("file", file);
@@ -267,8 +267,8 @@ export const handleAccountAction = async (
 
     if (response.ok) {
       if (typeof window !== "undefined") {
-        localStorage.removeItem("userData");
-        localStorage.removeItem("profile-store");
+        sessionStorage.removeItem("userData");
+        sessionStorage.removeItem("profile-store");
         window.location.reload();
       }
     }

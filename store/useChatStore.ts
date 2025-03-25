@@ -76,7 +76,7 @@ export const useThemeStore = create<IStore>()(
       setTheme: (newTheme) => {
         set(() => {
           if (typeof document !== "undefined") {
-            localStorage.setItem("theme", newTheme);
+            sessionStorage.setItem("theme", newTheme);
             document.documentElement.classList.toggle(
               "dark",
               newTheme === "dark"
@@ -88,7 +88,7 @@ export const useThemeStore = create<IStore>()(
       setLocalVerif: (val: boolean) => set({ localVerif: val }),
       localVerif: false,
       initializeTheme: () => {
-        const savedTheme = localStorage.getItem("theme") || "dark";
+        const savedTheme = sessionStorage.getItem("theme") || "dark";
         set(() => {
           if (typeof document !== "undefined") {
             document.documentElement.classList.toggle(
@@ -150,12 +150,12 @@ export const useThemeStore = create<IStore>()(
       setUser: (userData) => {
         if (typeof document !== "undefined") {
           set({ user: userData });
-          localStorage.setItem("userData", JSON.stringify(userData));
+          sessionStorage.setItem("userData", JSON.stringify(userData));
         }
       },
       clearUser: () => {
-        localStorage.removeItem("userData");
-        localStorage.removeItem("profile-store");
+        sessionStorage.removeItem("userData");
+        sessionStorage.removeItem("profile-store");
         set({ user: null });
       },
       packets: [],

@@ -50,7 +50,9 @@ export const Invest_card = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              csrf: String(JSON.parse(localStorage.getItem("userData")!).csrf),
+              csrf: String(
+                JSON.parse(sessionStorage.getItem("userData")!).csrf
+              ),
             }),
           }
         );
@@ -80,7 +82,7 @@ export const Invest_card = () => {
                     },
                     body: JSON.stringify({
                       csrf: String(
-                        JSON.parse(localStorage.getItem("userData")!).csrf
+                        JSON.parse(sessionStorage.getItem("userData")!).csrf
                       ),
                       coin: i.coin,
                     }),

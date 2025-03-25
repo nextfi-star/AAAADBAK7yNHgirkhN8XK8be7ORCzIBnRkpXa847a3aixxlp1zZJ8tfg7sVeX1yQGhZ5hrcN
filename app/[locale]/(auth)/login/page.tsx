@@ -111,7 +111,7 @@ const Login = () => {
         if (userData.csrf) {
           useUserStore.getState().setCsrf(userData.csrf);
         }
-        localStorage.setItem("userData", JSON.stringify(userData));
+        sessionStorage.setItem("userData", JSON.stringify(userData));
 
         useUserStore.getState().updateUser({ loginEmail: loginPayload?.email });
         useUserStore.getState().updateUser({ loginPhone: loginPayload?.phone });
@@ -187,7 +187,7 @@ const Login = () => {
           if (userData.csrf) {
             useUserStore.getState().setCsrf(userData.csrf);
           }
-          localStorage.setItem("userData", JSON.stringify(userData));
+          sessionStorage.setItem("userData", JSON.stringify(userData));
 
           if (userData.csrf) {
             setshowVerifWindow(false);
@@ -219,7 +219,7 @@ const Login = () => {
 
   useEffect(() => {
     setTypeError("");
-  }, [localStorage.getItem("profile-store")]);
+  }, [sessionStorage.getItem("profile-store")]);
 
   const onSubmit = async (data: any) => {
     setPasswordError("");
@@ -266,7 +266,7 @@ const Login = () => {
         if (userData.csrf) {
           useUserStore.getState().setCsrf(userData.csrf);
         }
-        localStorage.setItem("userData", JSON.stringify(userData));
+        sessionStorage.setItem("userData", JSON.stringify(userData));
         if (userData.csrf) {
           setshowVerifWindow(false);
           setIsSubmit(false);
@@ -279,6 +279,12 @@ const Login = () => {
         setshowVerifWindow(true);
         setIsSubmit(false);
         setTypeError("requires_2fa");
+      } else if (response.message === "User not registered") {
+        setIsSubmit(false);
+        setError("Incorrect email or password");
+      } else if (response.message === "Invalid user password") {
+        setIsSubmit(false);
+        setError("Incorrect email or password");
       } else if (vcode.length === 0 && vcode.length < 6) {
         setshowVerifWindow(true);
         setIsSubmit(false);
@@ -467,9 +473,9 @@ const Login = () => {
               )}
             </div>
 
-            {/* {error && (
-							<p className='text-danger pointer-events-none'>{error}</p>
-						)} */}
+            {error && (
+              <p className="text-danger pointer-events-none">{error}</p>
+            )}
             <button
               type="submit"
               disabled={isLoading || !isValid}
