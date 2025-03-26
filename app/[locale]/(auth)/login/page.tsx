@@ -422,6 +422,7 @@ const Login = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="form">
             <div className="w-full">
               <input
+                disabled={isLoading}
                 type={mode === "email" ? "email" : "tel"}
                 placeholder={mode === "email" ? t("email") : t("phone")}
                 {...register("emailOrPhone")}
@@ -437,6 +438,7 @@ const Login = () => {
             <div className="password__wrapper w-full">
               <div className="relative w-full">
                 <input
+                  disabled={isLoading}
                   type={showPassword ? "text" : "password"}
                   placeholder={t("enterPass")}
                   {...register("password")}
