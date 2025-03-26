@@ -513,7 +513,7 @@ const Login = () => {
             </Link>
 
             <div className="socials login__social">
-              <span>{t("ourSocial")}</span>
+              <span>{t("joinComm")}</span>
 
               <div className="socials__icons">
                 {/* <Image
