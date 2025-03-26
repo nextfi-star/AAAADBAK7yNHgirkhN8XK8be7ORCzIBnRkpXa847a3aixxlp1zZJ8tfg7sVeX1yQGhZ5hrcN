@@ -116,6 +116,7 @@ const SignUp = () => {
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div className="w-full">
           <input
+            disabled={isLoading}
             type={mode === "email" ? "email" : "tel"}
             placeholder={mode === "email" ? "E-mail" : "Phone number"}
             {...register("emailOrPhone")}
@@ -131,6 +132,7 @@ const SignUp = () => {
         <div className="password__wrapper w-full">
           <div className="w-full relative">
             <input
+              disabled={isLoading}
               type={showPassword ? "text" : "password"}
               placeholder={t("enterPass")}
               {...register("password")}
@@ -178,6 +180,7 @@ const SignUp = () => {
           {isSelected && (
             <div className="relative">
               <input
+                disabled={isLoading}
                 type="text"
                 placeholder="UFRYXEEXDG"
                 {...register("refid")}

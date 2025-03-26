@@ -40,7 +40,7 @@ export const Logout_confirmation = ({
     sessionStorage.removeItem("userData");
     setEmail("");
     setPassword("");
-    router.push(`/${locale}/login?error=sessionExpired`);
+    router.push(`/${locale}/login`);
   };
   return (
     <Dialog>

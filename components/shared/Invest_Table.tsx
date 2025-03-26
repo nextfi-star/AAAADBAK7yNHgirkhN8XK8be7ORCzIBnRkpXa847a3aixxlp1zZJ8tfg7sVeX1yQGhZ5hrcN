@@ -372,13 +372,17 @@ export default function Invest_Table({ title }: { title?: string }) {
         loadingContent={<Spinner />}
         isLoading={loading}
       >
-        {sortedItems.map((item: any, index: number) => (
-          <TableRow key={index}>
-            {(columnKey) => (
-              <TableCell>{renderCell(item, columnKey)}</TableCell>
-            )}
-          </TableRow>
-        ))}
+        {!loading ? (
+          sortedItems.map((item: any, index: number) => (
+            <TableRow key={index}>
+              {(columnKey) => (
+                <TableCell>{renderCell(item, columnKey)}</TableCell>
+              )}
+            </TableRow>
+          ))
+        ) : (
+          <></>
+        )}
       </TableBody>
     </Table>
   );
