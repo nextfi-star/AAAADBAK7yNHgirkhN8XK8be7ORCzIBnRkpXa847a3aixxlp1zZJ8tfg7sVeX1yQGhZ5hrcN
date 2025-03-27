@@ -703,6 +703,33 @@ export const getInvestHistory = async ({
     return { success: false, message: "Ошибка сети" };
   }
 };
+
+export const getAuthUserData = async (csrf: string) => {
+  try {
+    const response = await fetch("https://nextfi.io:5000/api/v1/get_session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ csrf }),
+    });
+
+    const data = await response.json();
+
+    if (data.response === "success") {
+      return {
+        success: true,
+        data: data.data,
+      };
+    }
+
+    return { success: false, message: "User is not authorized" };
+  } catch (e) {
+    console.log(e);
+    return { success: false, message: "User is not authorized" };
+  }
+};
+
 export const resendVerificationCode = async (csrf: string) => {
   try {
     const response = await fetch("https://nextfi.io:5000/api/v1/resend", {
